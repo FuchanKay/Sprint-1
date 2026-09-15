@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -43,6 +44,12 @@ public class Game1 : Core
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
+        SpriteBatch.Begin();
+
+        // SpriteBatch.Draw(_logo, Vector2.Zero, Color.White);
+
+        SpriteBatch.End();
         base.Draw(gameTime);
+        Console.WriteLine("Hello World");
     }
 }
