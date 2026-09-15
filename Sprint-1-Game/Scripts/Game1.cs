@@ -7,7 +7,7 @@ using MonoGameLibrary;
 namespace Sprint_1_Game;
 
 public class Game1 : Core
-{
+{   
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
@@ -42,6 +42,7 @@ public class Game1 : Core
 
     protected override void Draw(GameTime gameTime)
     {
+        Console.WriteLine("Hello World");
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         SpriteBatch.Begin();
@@ -50,6 +51,6 @@ public class Game1 : Core
 
         SpriteBatch.End();
         base.Draw(gameTime);
-        Console.WriteLine("Hello World");
+
     }
 }
