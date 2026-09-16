@@ -1,36 +1,27 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
 using Scripts.Game;
-using Scripts.GameComponents;
 
-namespace Sprint_1_Game;
+namespace Sprint_1_Game.Scripts;
 
 public class Game1 : Core
 {
-    private static readonly string name = "Sprint-1-Game";
-    private static readonly int screenWidth = 1280;
-    private static readonly int screenHeight = 720;
-    private static readonly bool isFullScreen = false;
-    private static readonly Color backgroundColor = Color.Aquamarine;
-    private readonly GraphicsDeviceManager graphics;
-    private readonly SpriteBatch spriteBatch;
-    private readonly SceneManager sceneManager;
+    private static readonly string Name = "Sprint-1-Game";
+    private static readonly int ScreenWidth = 1280;
+    private static readonly int ScreenHeight = 720;
+    private static readonly bool IsFullScreen = false;
+    private static readonly Color BackgroundColor = Color.White;
+    private readonly SceneManager SceneManager;
 
-    private readonly KeyboardInputManager keyInput;
-    private readonly MouseInputManager mouseInput;
-
-    public Game1() : base(name, screenWidth, screenHeight, isFullScreen)
+    public Game1() : base(Name, ScreenWidth, ScreenHeight, IsFullScreen)
     {
-        keyInput = new();
-        mouseInput = new();
-        sceneManager = new();
+        SceneManager = new();
     }
 
     protected override void Initialize()
     {
-        sceneManager.Init();
+        SceneManager.Init();
         base.Initialize();
     }
 
@@ -41,22 +32,21 @@ public class Game1 : Core
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+        SceneManager.Update(gameTime.ElapsedGameTime.Milliseconds);
+        if (SceneManager.ShouldExit)
+        {
             Exit();
-
-        sceneManager.Update(gameTime.ElapsedGameTime.Milliseconds);
+        }
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(backgroundColor);
+        GraphicsDevice.Clear(BackgroundColor);
 
-        spriteBatch.Begin();
-
-        sceneManager.Draw(spriteBatch);
-
-        spriteBatch.End();
+        SpriteBatch.Begin();
+        SceneManager.Draw(SpriteBatch);
+        SpriteBatch.End();
 
         base.Draw(gameTime);
     }

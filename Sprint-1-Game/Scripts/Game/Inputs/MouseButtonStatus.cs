@@ -1,4 +1,4 @@
-namespace Scripts.GameComponents;
+namespace Scripts.Game;
 
 public class MouseButtonStatus(MouseButtons button)
 {

@@ -1,10 +1,14 @@
 using Microsoft.Xna.Framework.Graphics;
+using Scripts.Game;
 
 namespace Scripts.GameComponents;
 
-public interface IController
+/// <summary>
+/// Controls the initialization, update and draw of a scene
+/// </summary>
+public interface ISceneController
 {
-    void Init();
+    void Init(SceneManager sm);
 
     void Update(int dtMs);
 

@@ -1,4 +1,8 @@
 namespace Scripts.GameComponents;
+
+/// <summary>
+/// Checks whether an input is being held, pressed, or released. Update must be called frequently for it to work 
+/// </summary>
 public interface IInputManager
 {
     void Update();

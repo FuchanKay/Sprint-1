@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
+using Scripts.GameComponents;
 
-namespace Scripts.GameComponents;
+namespace Scripts.Game;
 
 public class MouseInputManager : IInputManager
 {
     private readonly Dictionary<string, MouseButtonStatus> InputButtonStateMap;
+    public int X => Mouse.GetState().Position.X;
+    public int Y => Mouse.GetState().Position.Y;
     public MouseInputManager()
     {
         InputButtonStateMap = [];
@@ -34,15 +37,6 @@ public class MouseInputManager : IInputManager
                     break;
             }
         }
-    }
-    public static int X()
-    {
-        return Mouse.GetState().Position.X;
-    }
-
-    public static int Y()
-    {
-        return Mouse.GetState().Position.Y;
     }
 
     public bool IsHeld(string input)
