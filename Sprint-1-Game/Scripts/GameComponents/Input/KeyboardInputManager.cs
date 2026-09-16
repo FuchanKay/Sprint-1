@@ -5,7 +5,7 @@ namespace Scripts.GameComponents;
 
 public class KeyboardInputManager : IInputManager
 {
-    private readonly Dictionary<IInput, KeyStatus> InputKeyStateMap;
+    private readonly Dictionary<string, KeyStatus> InputKeyStateMap;
 
     public KeyboardInputManager()
     {
@@ -21,7 +21,7 @@ public class KeyboardInputManager : IInputManager
             keyState.Current = Keyboard.GetState().IsKeyDown(keyState.Key);
         }
     }
-    public bool IsHeld(IInput input)
+    public bool IsHeld(string input)
     {
         if (InputKeyStateMap.TryGetValue(input, out KeyStatus keyState))
         {
@@ -30,7 +30,7 @@ public class KeyboardInputManager : IInputManager
         return false;
     }
 
-    public bool IsPressed(IInput input)
+    public bool IsPressed(string input)
     {
         if (InputKeyStateMap.TryGetValue(input, out KeyStatus keyState))
         {
@@ -39,7 +39,7 @@ public class KeyboardInputManager : IInputManager
         return false;
     }
 
-    public bool IsReleased(IInput input)
+    public bool IsReleased(string input)
     {
         if (InputKeyStateMap.TryGetValue(input, out KeyStatus keyState))
         {
@@ -48,7 +48,7 @@ public class KeyboardInputManager : IInputManager
         return false;
     }
 
-    public void MapInput(IInput input, int key)
+    public void MapInput(string input, int key)
     {
         var keyEnum = (Keys) key;
         if (!InputKeyStateMap.TryAdd(input, new KeyStatus(keyEnum)))

@@ -5,7 +5,7 @@ namespace Scripts.GameComponents;
 
 public class MouseInputManager : IInputManager
 {
-    private readonly Dictionary<IInput, MouseButtonStatus> InputButtonStateMap;
+    private readonly Dictionary<string, MouseButtonStatus> InputButtonStateMap;
     public MouseInputManager()
     {
         InputButtonStateMap = [];
@@ -45,7 +45,7 @@ public class MouseInputManager : IInputManager
         return Mouse.GetState().Position.Y;
     }
 
-    public bool IsHeld(IInput input)
+    public bool IsHeld(string input)
     {
         if (InputButtonStateMap.TryGetValue(input, out var buttonState))
         {
@@ -54,7 +54,7 @@ public class MouseInputManager : IInputManager
         return false;
     }
 
-    public bool IsPressed(IInput input)
+    public bool IsPressed(string input)
     {
         if (InputButtonStateMap.TryGetValue(input, out var buttonState))
         {
@@ -63,7 +63,7 @@ public class MouseInputManager : IInputManager
         return false;   
     }
 
-    public bool IsReleased(IInput input)
+    public bool IsReleased(string input)
     {
         if (InputButtonStateMap.TryGetValue(input, out var buttonState))
         {
@@ -72,7 +72,7 @@ public class MouseInputManager : IInputManager
         return false;
     }
 
-    public void MapInput(IInput input, int button)
+    public void MapInput(string input, int button)
     {
         var buttonEnum = (MouseButtons) button;
         var previouslyMapped = InputButtonStateMap.TryAdd(input, new MouseButtonStatus(buttonEnum));

@@ -16,15 +16,21 @@ public class Game1 : Core
     private static readonly Color backgroundColor = Color.Aquamarine;
     private readonly GraphicsDeviceManager graphics;
     private readonly SpriteBatch spriteBatch;
-    private readonly ISceneManager sceneManager;
+    private readonly SceneManager sceneManager;
+
+    private readonly KeyboardInputManager keyInput;
+    private readonly MouseInputManager mouseInput;
 
     public Game1() : base(name, screenWidth, screenHeight, isFullScreen)
     {
-        
+        keyInput = new();
+        mouseInput = new();
+        sceneManager = new();
     }
 
     protected override void Initialize()
     {
+        sceneManager.Init();
         base.Initialize();
     }
 
@@ -38,12 +44,19 @@ public class Game1 : Core
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
+        sceneManager.Update(gameTime.ElapsedGameTime.Milliseconds);
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(backgroundColor);
+
+        spriteBatch.Begin();
+
+        sceneManager.Draw(spriteBatch);
+
+        spriteBatch.End();
 
         base.Draw(gameTime);
     }
