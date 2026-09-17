@@ -1,28 +1,27 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
+using Scripts.Game;
 
-namespace Sprint_1_Game;
+namespace Sprint_1_Game.Scripts;
 
 public class Game1 : Core
 {
-    private GraphicsDeviceManager _graphics;
-    private SpriteBatch _spriteBatch;
+    private static readonly string Name = "Sprint-1-Game";
+    private static readonly int ScreenWidth = 1280;
+    private static readonly int ScreenHeight = 720;
+    private static readonly bool IsFullScreen = false;
+    private static readonly Color BackgroundColor = Color.White;
+    private readonly SceneManager SceneManager;
 
-    private static readonly string name = "Sprint-1-Game";
-    private static readonly int screenWidth = 1280;
-    private static readonly int screenHeight = 720;
-    private static readonly bool isFullScreen = false;
-
-
-    public Game1() : base(name, screenWidth, screenHeight, isFullScreen)
+    public Game1() : base(Name, ScreenWidth, ScreenHeight, IsFullScreen)
     {
-
+        SceneManager = new();
     }
 
     protected override void Initialize()
     {
+        SceneManager.Init();
         base.Initialize();
     }
 
@@ -33,15 +32,21 @@ public class Game1 : Core
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+        SceneManager.Update(gameTime.ElapsedGameTime.Milliseconds);
+        if (SceneManager.ShouldExit)
+        {
             Exit();
-
+        }
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.Clear(BackgroundColor);
+
+        SpriteBatch.Begin();
+        SceneManager.Draw(SpriteBatch);
+        SpriteBatch.End();
 
         base.Draw(gameTime);
     }
