@@ -69,8 +69,7 @@ public class MouseInputManager : IInputManager
     public void MapInput(string input, int button)
     {
         var buttonEnum = (MouseButtons) button;
-        var previouslyMapped = InputButtonStateMap.TryAdd(input, new MouseButtonStatus(buttonEnum));
-        if (!previouslyMapped)
+        if (!InputButtonStateMap.TryAdd(input, new MouseButtonStatus(buttonEnum)))
         {
             InputButtonStateMap[input] = new MouseButtonStatus(buttonEnum);
         }
