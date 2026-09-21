@@ -13,9 +13,9 @@ public class GameplaySceneController(KeyboardInputManager keyInput, MouseInputMa
     //placeholder mario texture to indicate that this is the gameplay scene
     public static Texture2D Mario { get; set; }
 
-    public void Init(SceneManager sm)
+    public void Init(ISceneManager sm)
     {
-        SceneManager = sm;
+        SceneManager = sm as SceneManager;
     }
 
     public void Update(int dtMs)
@@ -25,6 +25,7 @@ public class GameplaySceneController(KeyboardInputManager keyInput, MouseInputMa
 
     public void Draw(SpriteBatch sb)
     {
+        //TODO: Remove this after actual gameplay scenes get implemented
         var rect = new Rectangle(0, 0, Mario.Width, Mario.Height);
         sb.Draw(
             Mario,

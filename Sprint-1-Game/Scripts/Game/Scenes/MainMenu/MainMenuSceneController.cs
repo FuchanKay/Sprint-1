@@ -13,13 +13,13 @@ public class MainMenuSceneController(KeyboardInputManager keyInput, MouseInputMa
     private Button PlayGameButton;
     private Button ExitGameButton;
 
-    public void Init(SceneManager sm)
+    public void Init(ISceneManager sm)
     {
-        SceneManager = sm;
-        PlayGameButton = new PlayGameButton(sm);
+        SceneManager = sm as SceneManager;
+        PlayGameButton = new PlayGameButton(SceneManager);
         PlayGameButton.Init(200, 200, MouseInput);
 
-        ExitGameButton = new ExitGameButton(sm);
+        ExitGameButton = new ExitGameButton(SceneManager);
         ExitGameButton.Init(200, 300, MouseInput);
     }
 
