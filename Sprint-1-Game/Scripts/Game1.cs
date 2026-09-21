@@ -21,6 +21,7 @@ public class Game1 : Core
 
     protected override void Initialize()
     {
+        BindAllTextures();
         SceneManager.Init();
         base.Initialize();
     }
@@ -49,5 +50,10 @@ public class Game1 : Core
         SpriteBatch.End();
 
         base.Draw(gameTime);
+    }
+
+    private static void BindAllTextures()
+    {
+        PlayGameButton.ButtonTexture = Content.Load<Texture2D>("Images/play-button");
     }
 }

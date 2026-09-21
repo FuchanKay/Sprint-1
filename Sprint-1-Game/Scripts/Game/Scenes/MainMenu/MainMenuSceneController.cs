@@ -9,14 +9,19 @@ public class MainMenuSceneController(KeyboardInputManager keyInput, MouseInputMa
     private SceneManager SceneManager;
     private readonly KeyboardInputManager KeyInput = keyInput;
     private readonly MouseInputManager MouseInput = mouseInput;
+    private Button PlayGameButton;
     public readonly static string Name = "Main Menu";
     public void Init(SceneManager sm)
     {
         SceneManager = sm;
+        PlayGameButton = new PlayGameButton(sm);
+        PlayGameButton.Init(0, 0, 200, 60, MouseInput);
     }
 
     public void Update(int dtMs)
     {
+        PlayGameButton.Update(dtMs);
+
         //TODO: Example code. Remove this later
         var moveNorth = KeyInput.IsPressed("Move North");
         if (moveNorth)
@@ -35,6 +40,6 @@ public class MainMenuSceneController(KeyboardInputManager keyInput, MouseInputMa
 
     public void Draw(SpriteBatch sb)
     {
-        
+        PlayGameButton.Draw(sb);
     }
 }
