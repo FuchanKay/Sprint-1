@@ -27,7 +27,7 @@ public class SceneManager : ISceneManager
 
         AddScenesToMap();
 
-        CurrentScene = NameSceneMap["Main Menu"];
+        CurrentScene = NameSceneMap[MainMenuSceneController.Name];
         CurrentScene.Init(this);
     }
 
@@ -84,9 +84,9 @@ public class SceneManager : ISceneManager
     private void AddScenesToMap()
     {
         var mainMenuScene = new MainMenuSceneController(KeyInput, MouseInput);
-        NameSceneMap.TryAdd("Main Menu", mainMenuScene);
+        NameSceneMap.TryAdd(MainMenuSceneController.Name, mainMenuScene);
 
         var gameplayScene = new GameplaySceneController(KeyInput, MouseInput);
-        NameSceneMap.TryAdd("Gameplay", gameplayScene);
+        NameSceneMap.TryAdd(GameplaySceneController.Name, gameplayScene);
     }
 }

@@ -9,6 +9,7 @@ public class MainMenuSceneController(KeyboardInputManager keyInput, MouseInputMa
     private SceneManager SceneManager;
     private readonly KeyboardInputManager KeyInput = keyInput;
     private readonly MouseInputManager MouseInput = mouseInput;
+    public readonly static string Name = "Main Menu";
     public void Init(SceneManager sm)
     {
         SceneManager = sm;
