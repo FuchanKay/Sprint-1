@@ -8,18 +8,18 @@ public abstract class Button : IButton
 {
     protected MouseInputManager Input;
     protected Vector2 Coords;
-    protected int Width, Height;
     protected abstract Texture2D Texture { get; }
+    protected int Width => Texture.Width;
+    protected int Height => Texture.Height / 2;
+
     protected abstract void OnClick();
 
-    public void Init(int x, int y, int width, int height, MouseInputManager input)
+    public void Init(int x, int y, MouseInputManager input)
     {
         Input = input;
-
         Coords = new Vector2(x, y);
-        Width = width;
-        Height = height;
     }
+
     public void Update(int dtMs)
     {
         if (IsHot() && Input.IsPressed("Select"))

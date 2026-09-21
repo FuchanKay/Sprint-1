@@ -1,10 +1,8 @@
-using System;
-using System.Net.Mail;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
-public class PlayGameButton(SceneManager sm) : Button
+public class ExitGameButton(SceneManager sm) : Button
 {
     private readonly SceneManager SceneManager = sm;
     public static Texture2D ButtonTexture { get; set; }
@@ -12,6 +10,6 @@ public class PlayGameButton(SceneManager sm) : Button
 
     protected override void OnClick()
     {
-        SceneManager.SwapScene(GameplaySceneController.Name);
+        SceneManager.ExitGame();
     }
 }

@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
@@ -9,6 +10,9 @@ public class GameplaySceneController(KeyboardInputManager keyInput, MouseInputMa
     private readonly KeyboardInputManager KeyInput = keyInput;
     private readonly MouseInputManager MouseInput = mouseInput;
     public readonly static string Name = "GamePlay";
+    //placeholder mario texture to indicate that this is the gameplay scene
+    public static Texture2D Mario { get; set; }
+
     public void Init(SceneManager sm)
     {
         SceneManager = sm;
@@ -21,6 +25,17 @@ public class GameplaySceneController(KeyboardInputManager keyInput, MouseInputMa
 
     public void Draw(SpriteBatch sb)
     {
-        //TODO: Implement drawing here
+        var rect = new Rectangle(0, 0, Mario.Width, Mario.Height);
+        sb.Draw(
+            Mario,
+            Vector2.Zero,
+            rect,
+            Color.White,
+            0.0f,
+            Vector2.Zero,
+            0.2f,
+            SpriteEffects.None,
+            0.0f
+        );
     }
 }

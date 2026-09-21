@@ -55,5 +55,7 @@ public class Game1 : Core
     private static void BindAllTextures()
     {
         PlayGameButton.ButtonTexture = Content.Load<Texture2D>("Images/play-button");
+        ExitGameButton.ButtonTexture = Content.Load<Texture2D>("Images/exit-button");
+        GameplaySceneController.Mario = Content.Load<Texture2D>("Images/mario");
     }
 }
