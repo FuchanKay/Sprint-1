@@ -8,10 +8,10 @@ public abstract class Button : IButton
 {
     protected MouseInputManager Input;
     protected Vector2 Coords;
-    protected abstract Texture2D Texture { get; }
     protected int Width => Texture.Width;
     protected int Height => Texture.Height / 2;
 
+    protected abstract Texture2D Texture { get; }
     protected abstract void OnClick();
 
     public void Init(int x, int y, MouseInputManager input)
