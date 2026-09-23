@@ -12,6 +12,7 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
     public readonly static string Name = "GamePlay";
     //placeholder mario texture to indicate that this is the gameplay scene
     public static Texture2D Mario { get; set; }
+    IObject _object = new StoneBlock(new Vector2(300, 100));
 
     public void Init(ISceneManager sm)
     {
@@ -38,5 +39,7 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
             SpriteEffects.None,
             0.0f
         );
+
+        _object.Draw(sb);
     }
 }

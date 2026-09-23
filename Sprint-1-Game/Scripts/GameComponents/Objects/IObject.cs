@@ -13,8 +13,4 @@ public interface IObject
     void Destroy();
     void Move();
     void SnapBehavior();
-
-    Vector2 position {get; set;}
-    bool pushable {get; set;}
-    bool destructible {get; set;}
 }

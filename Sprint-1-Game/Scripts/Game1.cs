@@ -62,6 +62,6 @@ public class Game1 : Core
         ExitGameButton.ButtonTexture = Content.Load<Texture2D>("Images/exit-button");
         //TODO: Remove this once game play actually has stuff in it
         GameplaySceneController.Mario = Content.Load<Texture2D>("Images/mario");
-        StoneBlock.textures = Content.Load<Texture2D>("ObjectSprites/stoneBlock");
+        StoneBlock.objectTexture = Content.Load<Texture2D>("ObjectSprites/stoneBlock");
     }
 }
