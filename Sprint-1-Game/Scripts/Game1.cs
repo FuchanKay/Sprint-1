@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary;
 using Scripts.Game;
+using Scripts.GameComponents;
 
 namespace Sprint_1_Game.Scripts;
 
@@ -21,6 +22,7 @@ public class Game1 : Core
 
     protected override void Initialize()
     {
+        BindAllTextures();
         SceneManager.Init();
         base.Initialize();
     }
@@ -49,5 +51,10 @@ public class Game1 : Core
         SpriteBatch.End();
 
         base.Draw(gameTime);
+    }
+
+    private static void BindAllTextures()
+    {
+        StoneBlock.textures = Content.Load<Texture2D>("ObjectSprites/stoneBlock");
     }
 }

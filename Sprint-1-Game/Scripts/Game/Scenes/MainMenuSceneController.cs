@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 using Scripts.GameComponents;
-
 namespace Scripts.Game;
 
 public class MainMenuSceneController(KeyboardInputManager keyInput, MouseInputManager mouseInput) : ISceneController
@@ -9,13 +9,18 @@ public class MainMenuSceneController(KeyboardInputManager keyInput, MouseInputMa
     private SceneManager SceneManager;
     private readonly KeyboardInputManager KeyInput = keyInput;
     private readonly MouseInputManager MouseInput = mouseInput;
+
+    public static IObject _object;
     public void Init(SceneManager sm)
     {
         SceneManager = sm;
+        _object = new StoneBlock(new Vector2(100, 100));
     }
 
     public void Update(int dtMs)
     {
+        _object.Update(dtMs);
+
         //TODO: Example code. Remove this later
         var moveNorth = KeyInput.IsPressed("Move North");
         if (moveNorth)
@@ -34,6 +39,6 @@ public class MainMenuSceneController(KeyboardInputManager keyInput, MouseInputMa
 
     public void Draw(SpriteBatch sb)
     {
-        
+        _object?.Draw(sb);
     }
 }
