@@ -24,7 +24,7 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.1
-/build: Images/Exit game button.png;Images/exit-button
+/build:Images/Exit game button.png;Images/exit-button
 
 #begin Images/mario.png
 /importer:TextureImporter
