@@ -4,18 +4,18 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class GameplaySceneController(KeyboardInputManager keyInput, MouseInputManager mouseInput) : ISceneController
+public class GameplaySceneController(IInputManager buttonInput, IInputManager mouseInput) : ISceneController
 {
-    private SceneManager SceneManager;
-    private readonly KeyboardInputManager KeyInput = keyInput;
-    private readonly MouseInputManager MouseInput = mouseInput;
+    private ISceneManager SceneManager;
+    private readonly IInputManager ButtonInput = buttonInput;
+    private readonly IInputManager MouseInput = mouseInput;
     public readonly static string Name = "GamePlay";
     //placeholder mario texture to indicate that this is the gameplay scene
     public static Texture2D Mario { get; set; }
 
     public void Init(ISceneManager sm)
     {
-        SceneManager = sm as SceneManager;
+        SceneManager = sm;
     }
 
     public void Update(int dtMs)

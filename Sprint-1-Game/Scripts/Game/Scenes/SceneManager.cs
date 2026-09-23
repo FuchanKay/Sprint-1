@@ -5,19 +5,14 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class SceneManager : ISceneManager
+public class SceneManager(IInputManager buttonInput, IInputManager mouseInput) : ISceneManager
 {
     private readonly Dictionary<string, ISceneController> NameSceneMap = [];
     private ISceneController CurrentScene;
-    private readonly KeyboardInputManager KeyInput;
-    private readonly MouseInputManager MouseInput;
+    private readonly IInputManager ButtonInput = buttonInput;
+    private readonly IInputManager MouseInput = mouseInput;
     public bool ShouldExit;
 
-    public SceneManager()
-    {
-        KeyInput = new();
-        MouseInput = new();
-    }
 
     public void Init()
     {
@@ -36,7 +31,7 @@ public class SceneManager : ISceneManager
         UpdateInputs();
 
         //Later on in development exiting game should not be mapped to a key but decent temporary solution for now. 
-        if (KeyInput.IsPressed("Exit Game"))
+        if (ButtonInput.IsPressed("Exit Game"))
         {
             ExitGame();
         }
@@ -64,29 +59,29 @@ public class SceneManager : ISceneManager
 
     private void UpdateInputs()
     {
-        KeyInput.Update();
+        ButtonInput.Update();
         MouseInput.Update();
     }
 
     private void MapDefaultInputs()
     {
         //TODO: mapping input example. Should be removed
-        KeyInput.MapInput("Move North", (int) Keys.W);
-        KeyInput.MapInput("Move East", (int) Keys.D);
-        KeyInput.MapInput("Move South", (int) Keys.S);
-        KeyInput.MapInput("Move West", (int) Keys.A);
+        ButtonInput.MapInput("Move North", (int) Keys.W);
+        ButtonInput.MapInput("Move East", (int) Keys.D);
+        ButtonInput.MapInput("Move South", (int) Keys.S);
+        ButtonInput.MapInput("Move West", (int) Keys.A);
 
-        KeyInput.MapInput("Exit Game", (int) Keys.Escape);
+        ButtonInput.MapInput("Exit Game", (int) Keys.Escape);
         
         MouseInput.MapInput("Select", (int) MouseButtons.Left);
     }
 
     private void AddScenesToMap()
     {
-        var mainMenuScene = new MainMenuSceneController(KeyInput, MouseInput);
+        var mainMenuScene = new MainMenuSceneController(ButtonInput, MouseInput);
         NameSceneMap.TryAdd(MainMenuSceneController.Name, mainMenuScene);
 
-        var gameplayScene = new GameplaySceneController(KeyInput, MouseInput);
+        var gameplayScene = new GameplaySceneController(ButtonInput, MouseInput);
         NameSceneMap.TryAdd(GameplaySceneController.Name, gameplayScene);
     }
 }

@@ -4,17 +4,15 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class MainMenuSceneController(KeyboardInputManager keyInput, MouseInputManager mouseInput) : ISceneController
+public class MainMenuSceneController(IInputManager buttonInput, IInputManager mouseInput) : ISceneController
 {
     public readonly static string Name = "Main Menu";
-    private readonly static int PlayGameButtonX = 200;
-    private readonly static int PlayGameButtonY = 200;
-    private readonly static int ExitGameButtonX = 200;
-    private readonly static int ExitGameButtonY = 300;
+    private readonly static int PlayGameButtonX = 200, PlayGameButtonY = 200;
+    private readonly static int ExitGameButtonX = 200, ExitGameButtonY = 300;
 
     private SceneManager SceneManager;
-    private readonly KeyboardInputManager KeyInput = keyInput;
-    private readonly MouseInputManager MouseInput = mouseInput;
+    private readonly IInputManager KeyInput = buttonInput;
+    private readonly IInputManager MouseInput = mouseInput;
     private Button PlayGameButton;
     private Button ExitGameButton;
 

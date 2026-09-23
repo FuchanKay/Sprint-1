@@ -1,12 +1,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Scripts.Game;
 
 namespace Scripts.GameComponents;
 
 public abstract class Button : IButton
 {
-    protected MouseInputManager Input;
+    protected IInputManager Input;
     protected Vector2 Coords;
     protected int Width => Texture.Width;
     protected int Height => Texture.Height / 2;
@@ -14,7 +13,7 @@ public abstract class Button : IButton
     protected abstract Texture2D Texture { get; }
     protected abstract void OnClick();
 
-    public void Init(int x, int y, MouseInputManager input)
+    public void Init(int x, int y, IInputManager input)
     {
         Input = input;
         Coords = new Vector2(x, y);
@@ -38,18 +37,13 @@ public abstract class Button : IButton
             Texture,
             Coords,
             textureRect,
-            Color.White,
-            0.0f,
-            Vector2.Zero,
-            1.0f,
-            SpriteEffects.None,
-            0.0f
+            Color.White
         );
     }
     protected bool IsHot()
     {
-        var mouseX = Input.X;
-        var mouseY = Input.Y;
+        var mouseX = Input.MousePositionX;
+        var mouseY = Input.MousePositionY;
 
         var hotX = Coords.X <= mouseX && mouseX <= Coords.X + Width;
         var hotY = Coords.Y <= mouseY && mouseY <= Coords.Y + Height;

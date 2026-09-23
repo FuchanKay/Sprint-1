@@ -16,7 +16,9 @@ public class Game1 : Core
 
     public Game1() : base(Name, ScreenWidth, ScreenHeight, IsFullScreen)
     {
-        SceneManager = new();
+        KeyboardInputManager keyInput = new();
+        MouseInputManager mouseInput = new();
+        SceneManager = new(keyInput, mouseInput);
     }
 
     protected override void Initialize()

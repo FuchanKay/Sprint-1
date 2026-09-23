@@ -7,13 +7,13 @@ namespace Scripts.Game;
 public class MouseInputManager : IInputManager
 {
     private readonly Dictionary<string, MouseButtonStatus> InputButtonStateMap;
-    public int X => Mouse.GetState().Position.X;
-    public int Y => Mouse.GetState().Position.Y;
+    public int MousePositionX => Mouse.GetState().Position.X;
+    public int MousePositionY => Mouse.GetState().Position.Y;
+
     public MouseInputManager()
     {
         InputButtonStateMap = [];
     }
-
     public void Update()
     {
         foreach (var inputButtonState in InputButtonStateMap)
