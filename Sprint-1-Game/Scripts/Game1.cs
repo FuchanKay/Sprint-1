@@ -23,13 +23,13 @@ public class Game1 : Core
 
     protected override void Initialize()
     {
-        BindAllTextures();
         SceneManager.Init();
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
+        BindAllTextures();
         base.LoadContent();
     }
 

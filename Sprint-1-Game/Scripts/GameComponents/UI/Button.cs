@@ -29,9 +29,9 @@ public abstract class Button : IButton
 
     public void Draw(SpriteBatch sb)
     {
-        var topRectangle = new Rectangle(0, 0, Width, Height);
-        var botRectangle = new Rectangle(0, Height, Width, Height);
-        Rectangle textureRect = IsHot() ? topRectangle : botRectangle;
+        var hotTextureRectangle = new Rectangle(0, 0, Width, Height);
+        var notHotTextureRectangle = new Rectangle(0, Height, Width, Height);
+        Rectangle textureRect = IsHot() ? hotTextureRectangle : notHotTextureRectangle;
 
         sb.Draw(
             Texture,
