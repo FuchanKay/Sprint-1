@@ -5,6 +5,8 @@ namespace Scripts.GameComponents;
 /// </summary>
 public interface IInputManager
 {
+    int MousePositionX { get; }
+    int MousePositionY { get; }
     void Update();
     bool IsHeld(string input);
     bool IsPressed(string input);

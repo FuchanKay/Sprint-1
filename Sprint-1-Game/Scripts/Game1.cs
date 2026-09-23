@@ -17,7 +17,9 @@ public class Game1 : Core
 
     public Game1() : base(Name, ScreenWidth, ScreenHeight, IsFullScreen)
     {
-        SceneManager = new();
+        KeyboardInputManager keyInput = new();
+        MouseInputManager mouseInput = new();
+        SceneManager = new(keyInput, mouseInput);
     }
 
     protected override void Initialize()
@@ -29,6 +31,7 @@ public class Game1 : Core
 
     protected override void LoadContent()
     {
+        BindAllTextures();
         base.LoadContent();
     }
 
@@ -55,6 +58,10 @@ public class Game1 : Core
 
     private static void BindAllTextures()
     {
+        PlayGameButton.ButtonTexture = Content.Load<Texture2D>("Images/play-button");
+        ExitGameButton.ButtonTexture = Content.Load<Texture2D>("Images/exit-button");
+        //TODO: Remove this once game play actually has stuff in it
+        GameplaySceneController.Mario = Content.Load<Texture2D>("Images/mario");
         StoneBlock.textures = Content.Load<Texture2D>("ObjectSprites/stoneBlock");
     }
 }
