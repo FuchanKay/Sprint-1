@@ -11,6 +11,9 @@ public interface IObject
     void Update(int dtMs);
     void Draw(SpriteBatch sb);
     void Destroy();
-    void Move();
+    void MoveUp();
+    void MoveDown();
+    void MoveLeft();
+    void MoveRight();
     void SnapBehavior();
 }

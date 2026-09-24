@@ -1,11 +1,13 @@
+using System.Diagnostics.Contracts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace Scripts.GameComponents;
 public abstract class Object : IObject
 {
-    protected Vector2 position { get; set; }
+    public Vector2 position { get; set; }
     protected bool pushable { get; set; }
     protected bool destructible { get; set; }
+    public bool isDestroyed { get; set; }
     protected abstract Texture2D Texture { get; }
     public abstract void SnapBehavior();
     public void Update(int dtMs)
@@ -36,11 +38,28 @@ public abstract class Object : IObject
     }
     public void Destroy()
     {
-        // Logic to destroy the object (Removing it from the game world)
+        if(isDestroyed) return;
+        // TODO: Play destroy animation and sound effect
+        isDestroyed = true;
     }
-    public void Move()
+    public void MoveUp()
     {
-        // Logic to move the object (Changing its position)
+        position = new Vector2(position.X, position.Y - 20);
+    }
+
+    public void MoveDown()
+    {
+        position = new Vector2(position.X, position.Y + 20);
+    }
+
+    public void MoveLeft()
+    {
+        position = new Vector2(position.X - 20, position.Y);
+    }
+
+    public void MoveRight()
+    {
+        position = new Vector2(position.X + 20, position.Y);
     }
     
 }
