@@ -1,18 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Design;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Scripts.GameComponents;
 
 namespace Scripts.Game;
-public class AnimationManager
+public class AnimationManager : IAnimationManager
 {
     private readonly TimeSpan Delay;
-    private readonly OrderedDictionary<string, int> SetNamesAndNumFrames;
-    private readonly Dictionary<string, Animation> AnimationSets;
+    private readonly HashSet<AnimationSet> AnimationSets;
+    private readonly Dictionary<string, Animation> Playables;
 
     private TimeSpan Elapsed;
     private int CurrentFrameIndex;
@@ -22,37 +20,33 @@ public class AnimationManager
     public AnimationManager(TimeSpan delay)
     {
         Delay = delay;
-        SetNamesAndNumFrames = new();
-        AnimationSets = new();
+        AnimationSets = [];
+        Playables = [];
     }
 
-    public void AddNameAndFrames(string name, int numFrames)
+    public void AddAnimationSet(string name, int numFrames, int rowNumber)
     {
-        if(!SetNamesAndNumFrames.TryAdd(name, numFrames))
-        {
-            SetNamesAndNumFrames[name] = numFrames;
-        }
+        AnimationSets.Add(new AnimationSet(name, numFrames, rowNumber));
     }
 
     public void LoadAnimationSets(Texture2D texture, int width, int height)
     {
-        for(int row = 0; row < SetNamesAndNumFrames.Count; row++)
+        foreach(var animationSet in AnimationSets)
         {
             List<Rectangle> frames = [];
-            string name = SetNamesAndNumFrames.Keys.ElementAt(row);
-            int numFrames = SetNamesAndNumFrames[name];
 
-            for(int col = 0; col < numFrames; col++)
+            for (int col = 0; col < animationSet.NumFrames; col++)
             {
-                frames.Add(new Rectangle(width * col, height * row, width, height));
+                frames.Add(new Rectangle(width * col, height * animationSet.Row, width, height));
             }
-            AnimationSets.Add(name, new Animation(frames, Delay));
+
+            Playables.TryAdd(animationSet.Name, new Animation(frames, Delay));
         }
     }
 
-    public bool IsFinished(string currentAnimationName)
+    public bool IsFinished(string animationName)
     {
-        return CurrentFrameIndex >= SetNamesAndNumFrames[currentAnimationName];
+        return CurrentFrameIndex >= Playables[animationName].Frames.Count;
     }
 
     public Rectangle UpdateSourceRectangle(string currentAnimationName, GameTime gameTime)
@@ -60,7 +54,7 @@ public class AnimationManager
         PreviousAnimationName = CurrentAnimationName;
         CurrentAnimationName = currentAnimationName;
 
-        if (PreviousAnimationName == CurrentAnimationName && SetNamesAndNumFrames[CurrentAnimationName] > 1)
+        if (PreviousAnimationName == CurrentAnimationName && Playables[currentAnimationName].Frames.Count > 1)
         {
             UpdateFrameIndex(gameTime);
         }
@@ -69,7 +63,7 @@ public class AnimationManager
             CurrentFrameIndex = 0;
         }
 
-        Animation animation = AnimationSets[CurrentAnimationName];
+        Animation animation = Playables[CurrentAnimationName];
         return animation.Frames[CurrentFrameIndex];
     }
 
@@ -82,7 +76,7 @@ public class AnimationManager
             Elapsed -= Delay;
             CurrentFrameIndex++;
 
-            int maxFrameIndex = SetNamesAndNumFrames[CurrentAnimationName];
+            int maxFrameIndex = Playables[CurrentAnimationName].Frames.Count;
             if (CurrentFrameIndex > maxFrameIndex)
             {
                 CurrentFrameIndex = 0;
