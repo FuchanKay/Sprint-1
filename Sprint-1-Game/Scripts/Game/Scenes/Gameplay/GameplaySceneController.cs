@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
@@ -10,36 +11,56 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
     private readonly IInputManager ButtonInput = buttonInput;
     private readonly IInputManager MouseInput = mouseInput;
     public readonly static string Name = "GamePlay";
-    //placeholder mario texture to indicate that this is the gameplay scene
-    public static Texture2D Mario { get; set; }
-    private Object _object;
+    private Object _destructibleObject;
+    private Object _pushableObject;
+    private HashSet<Object> objects;
 
     public void Init(ISceneManager sm)
     {
         SceneManager = sm as SceneManager;
-        _object = new StoneBlock(SceneManager);
-        _object.Init(new Vector2(300, 100));
+
+        objects = new HashSet<Object>();
+
+        _destructibleObject = new StoneBlock(SceneManager);
+        _destructibleObject.Init(new Vector2(300, 100));
+        objects.Add(_destructibleObject);
+
+
+        _pushableObject = new Rock(SceneManager);
+        _pushableObject.Init(new Vector2(500, 100));
+        objects.Add(_pushableObject);
+
+
     }
 
     public void Update(int dtMs)
     {
         //TODO: Implement game logic here
-        if(!_object.isDestroyed) {
-            _object.Update(dtMs);
-            if(ButtonInput.IsPressed("Destroy")) _object.Destroy();
-            if(ButtonInput.IsPressed("Move East")) _object.MoveRight();
-            if(ButtonInput.IsPressed("Move West")) _object.MoveLeft();
-            if(ButtonInput.IsPressed("Move North")) _object.MoveUp();
-            if(ButtonInput.IsPressed("Move South")) _object.MoveDown();
+        foreach (Object obj in objects)
+        {
+            if(!obj.isDestroyed) {
+                obj.Update(dtMs);
+                CheckInputs(obj);
+            }
         }
+    }
+
+    private void CheckInputs(Object obj)
+    {
+        if(ButtonInput.IsPressed("Destroy")) obj.Destroy();
+        if(ButtonInput.IsPressed("Move East")) obj.MoveRight();
+        if(ButtonInput.IsPressed("Move West")) obj.MoveLeft();
+        if(ButtonInput.IsPressed("Move North")) obj.MoveUp();
+        if(ButtonInput.IsPressed("Move South")) obj.MoveDown();
     }
 
     public void Draw(SpriteBatch sb)
     {
-
-        if(!_object.isDestroyed) 
-        {
-            _object.Draw(sb);
+        foreach (Object obj in objects){
+            if(!obj.isDestroyed) 
+            {
+                obj.Draw(sb);
+            }
         }
     }
 }

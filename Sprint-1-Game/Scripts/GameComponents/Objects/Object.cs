@@ -7,10 +7,17 @@ public abstract class Object : IObject
     public Vector2 position { get; set; }
     protected abstract bool pushable { get; }
     protected abstract bool destructible { get; }
-    public bool isDestroyed { get; set; }
-    protected abstract Texture2D Texture { get; }
+    public bool isDestroyed { get; set; } = false;
     private float xSpeed = 0.0f;
     private float ySpeed = 0.0f;
+    // Sprite Properties (Potentially moved to a Sprite class in the future)
+    protected abstract Texture2D Texture { get; }
+    protected virtual float scale { get; } = 1.0f;
+    protected virtual float rotation { get; } = 0f;
+    protected virtual Color color { get; } = Color.White;
+    protected virtual Vector2 origin { get; } = Vector2.Zero;
+    protected virtual float layerDepth { get; } = 0f;
+    protected virtual SpriteEffects effects { get; } = SpriteEffects.None;
     public abstract void SnapBehavior();
     public void Init(Vector2 position)
     {
@@ -19,18 +26,15 @@ public abstract class Object : IObject
     }
     public void Update(int dtMs)
     {
-        position = new Vector2(position.X + xSpeed * dtMs, position.Y + ySpeed * dtMs);
-        xSpeed = 0.0f; ySpeed = 0.0f;   
+        if (pushable)
+        {
+            position = new Vector2(position.X + xSpeed * dtMs, position.Y + ySpeed * dtMs);
+            xSpeed = 0.0f; ySpeed = 0.0f;   
+        }
     }
     public void Draw(SpriteBatch sb)
     {
         Rectangle sourceRectangle = new Rectangle(0, 0, Texture.Width, Texture.Height);
-        float scale = 0.25f;
-        float rotation = 0f;
-        Color color = Color.White;
-        Vector2 origin = Vector2.Zero;
-        float layerDepth = 0f;
-        SpriteEffects effects = SpriteEffects.None;
         sb.Draw(
             Texture, 
             position, 
