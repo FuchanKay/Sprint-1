@@ -5,18 +5,25 @@ namespace Scripts.GameComponents;
 public abstract class Object : IObject
 {
     public Vector2 position { get; set; }
-    protected bool pushable { get; set; }
-    protected bool destructible { get; set; }
+    protected abstract bool pushable { get; }
+    protected abstract bool destructible { get; }
     public bool isDestroyed { get; set; }
     protected abstract Texture2D Texture { get; }
+    private float xSpeed = 0.0f;
+    private float ySpeed = 0.0f;
     public abstract void SnapBehavior();
+    public void Init(Vector2 position)
+    {
+        this.position = position;
+        this.isDestroyed = false;
+    }
     public void Update(int dtMs)
     {
-        // Update logic for the object (Checking for collisions, etc.)
+        position = new Vector2(position.X + xSpeed * dtMs, position.Y + ySpeed * dtMs);
+        xSpeed = 0.0f; ySpeed = 0.0f;   
     }
     public void Draw(SpriteBatch sb)
     {
-        // Draw logic for the object (Rendering the object on the screen)
         Rectangle sourceRectangle = new Rectangle(0, 0, Texture.Width, Texture.Height);
         float scale = 0.25f;
         float rotation = 0f;
@@ -38,28 +45,28 @@ public abstract class Object : IObject
     }
     public void Destroy()
     {
-        if(isDestroyed) return;
+        if(isDestroyed || !destructible) return;
         // TODO: Play destroy animation and sound effect
         isDestroyed = true;
     }
     public void MoveUp()
     {
-        position = new Vector2(position.X, position.Y - 20);
+        ySpeed = -5.0f;
     }
 
     public void MoveDown()
     {
-        position = new Vector2(position.X, position.Y + 20);
+        ySpeed = 5.0f;
     }
 
     public void MoveLeft()
     {
-        position = new Vector2(position.X - 20, position.Y);
+        xSpeed = -5.0f;
     }
 
     public void MoveRight()
     {
-        position = new Vector2(position.X + 20, position.Y);
+        xSpeed = 5.0f;
     }
     
 }

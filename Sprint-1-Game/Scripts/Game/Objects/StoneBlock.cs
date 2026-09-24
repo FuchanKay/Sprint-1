@@ -1,19 +1,16 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-namespace Scripts.GameComponents;
+using Scripts.GameComponents;
+namespace Scripts.Game;
 
-public class StoneBlock : Object
+public class StoneBlock(SceneManager sm) : Object
 {
+    private readonly SceneManager SceneManager = sm;
     public static Texture2D objectTexture {get; set;}
     protected override Texture2D Texture => objectTexture;
-
-    public StoneBlock(Vector2 position)
-    {
-        this.position = position;
-        this.pushable = false;
-        this.destructible = true;
-    }
+    protected override bool pushable => false;
+    protected override bool destructible => true;
 
     public override void SnapBehavior()
     {
