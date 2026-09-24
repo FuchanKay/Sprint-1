@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
+namespace Scripts.Game;
 public class Animation
 {
     public List<Rectangle> Frames { get; set; }
