@@ -1,17 +1,18 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-
 namespace Scripts.Game;
 public class Animation
 {
+    public string Name { get; set; }
+    public int NumFrames { get; set; }
+    public int Row { get; set; }
     public List<Rectangle> Frames { get; set; }
 
-    public TimeSpan Delay { get; set; }
-    
-    public Animation(List<Rectangle> frames, TimeSpan delay)
+    public Animation(string name, int numFrames, int rowNumber)
     {
-        Frames = frames;
-        Delay = delay;
+        Name = name;
+        NumFrames = numFrames;
+        Frames = [];
+        Row = rowNumber;
     }
 }

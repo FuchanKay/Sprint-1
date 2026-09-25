@@ -1,62 +1,59 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
 public class AnimationManager : IAnimationManager
 {
-    private readonly TimeSpan Delay;
-    private readonly HashSet<AnimationSet> AnimationSets;
+    private readonly HashSet<Animation> Animations;
     private readonly Dictionary<string, Animation> Playables;
-
-    private TimeSpan Elapsed;
+    private readonly int Delay;
+    private int Elapsed;
     private int CurrentFrameIndex;
+    private bool animationFinished;
     private string CurrentAnimationName;
     private string PreviousAnimationName;
 
-    public AnimationManager(TimeSpan delay)
+    public AnimationManager(int delay)
     {
         Delay = delay;
-        AnimationSets = [];
+        Animations = [];
         Playables = [];
+        animationFinished = false;
     }
 
-    public void AddAnimationSet(string name, int numFrames, int rowNumber)
+    public void AddAnimation(string name, int numFrames, int rowNumber)
     {
-        AnimationSets.Add(new AnimationSet(name, numFrames, rowNumber));
+        Animations.Add(new Animation(name, numFrames, rowNumber));
     }
 
-    public void LoadAnimationSets(Texture2D texture, int width, int height)
+    public void LoadAnimations(int width, int height)
     {
-        foreach(var animationSet in AnimationSets)
+        foreach(var animation in Animations)
         {
-            List<Rectangle> frames = [];
-
-            for (int col = 0; col < animationSet.NumFrames; col++)
+            for (int col = 0; col < animation.NumFrames; col++)
             {
-                frames.Add(new Rectangle(width * col, height * animationSet.Row, width, height));
+                animation.Frames.Add(new Rectangle(width * col, height * animation.Row, width, height));
             }
 
-            Playables.TryAdd(animationSet.Name, new Animation(frames, Delay));
+            Playables.TryAdd(animation.Name, animation);
         }
     }
 
-    public bool IsFinished(string animationName)
+    public bool IsFinished()
     {
-        return CurrentFrameIndex >= Playables[animationName].Frames.Count;
+        return animationFinished;
     }
 
-    public Rectangle UpdateSourceRectangle(string currentAnimationName, GameTime gameTime)
+    public Rectangle UpdateSourceRectangle(string currentAnimationName, int dtMs)
     {
         PreviousAnimationName = CurrentAnimationName;
         CurrentAnimationName = currentAnimationName;
 
-        if (PreviousAnimationName == CurrentAnimationName && Playables[currentAnimationName].Frames.Count > 1)
+        bool multiFrame = Playables[currentAnimationName].Frames.Count > 1;
+        if (PreviousAnimationName == CurrentAnimationName && multiFrame)
         {
-            UpdateFrameIndex(gameTime);
+            UpdateFrameIndex(dtMs);
         }
         else
         {
@@ -67,18 +64,20 @@ public class AnimationManager : IAnimationManager
         return animation.Frames[CurrentFrameIndex];
     }
 
-    private void UpdateFrameIndex(GameTime gameTime)
+    private void UpdateFrameIndex(int dtMs)
     {
-        Elapsed += gameTime.ElapsedGameTime;
+        animationFinished = false;
+        Elapsed += dtMs;
 
         if (Elapsed >= Delay)
         {
             Elapsed -= Delay;
             CurrentFrameIndex++;
 
-            int maxFrameIndex = Playables[CurrentAnimationName].Frames.Count;
+            int maxFrameIndex = Playables[CurrentAnimationName].Frames.Count - 1;
             if (CurrentFrameIndex > maxFrameIndex)
             {
+                animationFinished = true;
                 CurrentFrameIndex = 0;
             }
         }
