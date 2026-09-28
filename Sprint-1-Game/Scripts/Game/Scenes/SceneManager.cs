@@ -49,7 +49,6 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
     {
         if (NameSceneMap.TryGetValue(sceneName, out ISceneController scene))
         {
-            scene.Init(this);
             CurrentScene = scene;
             scene.Init(this);
         }
