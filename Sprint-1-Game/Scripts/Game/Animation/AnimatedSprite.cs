@@ -3,42 +3,52 @@ using Microsoft.Xna.Framework;
 namespace Scripts.Game;
 public class AnimatedSprite
 {
-    private Animation Animation;
-    private int CurrentFrame;
+    private Animation CurrentAnimation;
+    private int CurrentFrameIndex;
     private int Elapsed;
+    private Rectangle CurrentFrame;
     public bool IsFinished { get; private set; }
 
+    public AnimatedSprite()
+    {
+        IsFinished = false;
+    }
     public AnimatedSprite(Animation animation)
     {
-        Animation = animation;
+        CurrentAnimation = animation;
         IsFinished = false;
     }
 
-    public Rectangle UpdateFrame(int dtMs)
+    public void Update(int dtMs)
     {
         Elapsed += dtMs;
         IsFinished = false;
 
-        if (Elapsed >= Animation.Delay)
+        if (Elapsed >= CurrentAnimation.Delay)
         {
-            Elapsed -= Animation.Delay;
-            CurrentFrame++;
+            Elapsed -= CurrentAnimation.Delay;
+            CurrentFrameIndex++;
 
-            if (CurrentFrame >= Animation.Frames.Count)
+            if (CurrentFrameIndex >= CurrentAnimation.Frames.Count)
             {
                 IsFinished = true;
-                CurrentFrame = 0;
+                CurrentFrameIndex = 0;
             }
         }
 
-        return Animation.Frames[CurrentFrame];
+        CurrentFrame = CurrentAnimation.Frames[CurrentFrameIndex];
     }
 
-    public Rectangle UpdateAnimation(Animation animation)
+    public Rectangle GetFrame()
     {
-        Animation = animation;
-        CurrentFrame = 0;
-        return Animation.Frames[CurrentFrame];
+        return CurrentFrame;
+    }
+
+    public void SetAnimation(Animation animation)
+    {
+        CurrentAnimation = animation;
+        CurrentFrameIndex = 0;
+        CurrentFrame = CurrentAnimation.Frames[CurrentFrameIndex];
     }
 
 }

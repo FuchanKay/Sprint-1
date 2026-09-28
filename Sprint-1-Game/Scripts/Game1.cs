@@ -40,14 +40,13 @@ public class Game1 : Core
     protected override void LoadContent()
     {
         // TEST: i'm not initializing each of my test magic numbers as a variable bc that's ANNOYING!!!
-        // AddAnimation(name, numFrames, row)
-        AniAtlas.AddAnimation("SproutWalkDown", 3, 6);
         // AddAnimation(name, numFrames, row, width, height)
+        AniAtlas.AddAnimation("SproutWalkDown", 3, 6, 64, 64);
         AniAtlas.AddAnimation("SproutWalkRight",0, 6, 64, 64);
         // AddAnimation(name, numFrames, row, width, height, delay)
         AniAtlas.AddAnimation("SproutWalkLeft", 1, 6, 64, 64, 100);
 
-        Sprout = AniAtlas.CreateAnimatedSprite("SproutWalkRight");
+        Sprout = new AnimatedSprite(AniAtlas.GetAnimation("SproutWalkRight"));
 
         BindAllTextures();
         base.LoadContent();
@@ -62,21 +61,25 @@ public class Game1 : Core
         }
 
         // TEST
-        SproutSourceRectangle = Sprout.UpdateFrame(gameTime.ElapsedGameTime.Milliseconds);
+        Sprout.Update(gameTime.ElapsedGameTime.Milliseconds);
+        SproutSourceRectangle = Sprout.GetFrame();
         Animation animation;
         if(i == 100)
         {
             animation = AniAtlas.GetAnimation("SproutWalkDown");
-            SproutSourceRectangle = Sprout.UpdateAnimation(animation);
+            Sprout.SetAnimation(animation);
+            SproutSourceRectangle = Sprout.GetFrame();
         } 
         else if(i == 200)
         {
             animation = AniAtlas.GetAnimation("SproutWalkLeft");
-            SproutSourceRectangle = Sprout.UpdateAnimation(animation);
+            Sprout.SetAnimation(animation);
+            SproutSourceRectangle = Sprout.GetFrame();
         } 
         else if(i == 300) {
             animation = AniAtlas.GetAnimation("SproutWalkRight");
-            SproutSourceRectangle = Sprout.UpdateAnimation(animation);
+            Sprout.SetAnimation(animation);
+            SproutSourceRectangle = Sprout.GetFrame();
             i = 0; 
         }
         i++;

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.ComponentModel;
 using Microsoft.Xna.Framework;
 namespace Scripts.Game;
 public class Animation
