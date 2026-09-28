@@ -10,7 +10,7 @@ namespace Scripts.Game;
 public class SongController : IAudioController
 {
     private readonly Dictionary<string, Song> SongMap = [];
-    public float Volume {get; set;} = 1.0f;
+    public float Volume {get; set;} = 0.15f;
 
     public void Play(string songName)
     {

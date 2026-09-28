@@ -4,9 +4,10 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class GameplaySceneController(IInputManager buttonInput, IInputManager mouseInput) : ISceneController
+public class GameplaySceneController(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager) : ISceneController
 {
     private ISceneManager SceneManager;
+    private readonly IAudioManager AudioManager = audioManager;
     private readonly IInputManager ButtonInput = buttonInput;
     private readonly IInputManager MouseInput = mouseInput;
     public readonly static string Name = "GamePlay";
@@ -16,11 +17,13 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
     public void Init(ISceneManager sm)
     {
         SceneManager = sm;
+        // placeholder song to play in the background of the gameplay scene
+        AudioManager.PlaySong("song");
     }
 
     public void Update(int dtMs)
     {
-        //TODO: Implement game logic here
+
     }
 
     public void Draw(SpriteBatch sb)

@@ -21,12 +21,13 @@ public class Game1 : Core
     {
         KeyboardInputManager keyInput = new();
         MouseInputManager mouseInput = new();
-        SceneManager = new(keyInput, mouseInput);
         AudioManager = new();
+        SceneManager = new(keyInput, mouseInput, AudioManager);
     }
 
     protected override void Initialize()
     {
+        LoadAudio();
         SceneManager.Init();
         base.Initialize();
     }
@@ -68,7 +69,7 @@ public class Game1 : Core
 
     private void LoadAudio()
     {
-        AudioManager.MapSound("snap", Content.Load<SoundEffect>("snap"));
-        AudioManager.MapSong("song", Content.Load<Song>("song"));
+        AudioManager.MapSound("snap", Content.Load<SoundEffect>("audio/snap"));
+        AudioManager.MapSong("song", Content.Load<Song>("audio/song"));
     }
 }
