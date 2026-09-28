@@ -21,7 +21,7 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
 
         objects = new HashSet<Object>();
 
-        _exampleObject = new StoneBlock(SceneManager);
+        _exampleObject = new StoneBlock();
         _exampleObject.Init(new Vector2(300, 100));
         objects.Add(_exampleObject);
 
@@ -35,15 +35,15 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
         switch (timer)
         {
             case 1:
-                _exampleObject = new StoneBlock(SceneManager);
+                _exampleObject = new StoneBlock();
                 _exampleObject.Init(currentPosition);
                 break;
             case 100:
-                _exampleObject = new Rock(SceneManager);
+                _exampleObject = new Rock();
                 _exampleObject.Init(currentPosition);
                 break;
             case 200:
-                _exampleObject = new StoneWall(SceneManager);
+                _exampleObject = new StoneWall();
                 _exampleObject.Init(currentPosition);
                 break;
             case 300:
