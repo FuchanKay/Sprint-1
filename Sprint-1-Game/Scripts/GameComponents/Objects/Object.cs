@@ -5,8 +5,8 @@ namespace Scripts.GameComponents;
 public abstract class Object : IObject
 {
     public Vector2 position { get; set; }
-    protected abstract bool pushable { get; }
-    protected abstract bool destructible { get; }
+    protected abstract bool pushable { get; set; }
+    protected abstract bool destructible { get; set; }
     public bool isDestroyed { get; set; } = false;
     private float xSpeed = 0.0f;
     private float ySpeed = 0.0f;

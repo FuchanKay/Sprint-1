@@ -5,7 +5,6 @@ namespace Scripts.GameComponents;
 /// <summary>
 /// Interface that handles the basic properties and functionality of an object in the game.
 /// </summary>
-
 public interface IObject
 {
     void Update(int dtMs);
