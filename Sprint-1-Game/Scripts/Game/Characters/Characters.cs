@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 
 namespace Scripts.GameComponents;
 /*Basic functions for characters like players, enemies, and so on*/
-public abstract class Character
+public abstract class Character: ICharacter
 {
     protected Direction _direction;
 

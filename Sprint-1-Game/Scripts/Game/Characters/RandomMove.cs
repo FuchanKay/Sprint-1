@@ -8,7 +8,7 @@ public class RandomMove
     {
         Enemy = enemy;
         Random random = new Random();
-        int[] numbers = [0,0,0,0,0,1,2,3,4];
+        int[] numbers = [0,0,0,0,0,0,0,0,0,0,1,2,3,4];
         int stateIndex = numbers[random.Next(0, numbers.Length)];
         switch (stateIndex)
         {
