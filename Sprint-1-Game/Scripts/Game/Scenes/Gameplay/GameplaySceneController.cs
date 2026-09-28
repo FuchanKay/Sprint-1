@@ -22,7 +22,7 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
         objects = new HashSet<Object>();
 
         _exampleObject = new StoneBlock();
-        _exampleObject.Init(new Vector2(300, 100));
+        _exampleObject.Init(new Vector2(300, 300));
         objects.Add(_exampleObject);
 
     }
@@ -55,6 +55,10 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
                 _exampleObject.Init(currentPosition);
                 break;
             case 500:
+                _exampleObject = new Pylon();
+                _exampleObject.Init(currentPosition);
+                break;
+            case 600:
                 timer = 0;
                 break;
             default:
