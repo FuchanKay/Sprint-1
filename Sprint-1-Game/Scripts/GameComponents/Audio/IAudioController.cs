@@ -6,5 +6,4 @@ namespace Scripts.GameComponents;
 public interface IAudioController
 {
     void Play(String sound);
-    void MapAudio(String sound, SoundEffect soundEffect);
 }
