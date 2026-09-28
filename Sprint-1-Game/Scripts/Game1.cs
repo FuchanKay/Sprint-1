@@ -63,5 +63,6 @@ public class Game1 : Core
         
         StoneBlock.objectTexture = Content.Load<Texture2D>("ObjectSprites/stoneBlock");
         Rock.objectTexture = Content.Load<Texture2D>("ObjectSprites/rock");
+        StoneWall.objectTexture = Content.Load<Texture2D>("ObjectSprites/stoneWall");
     }
 }

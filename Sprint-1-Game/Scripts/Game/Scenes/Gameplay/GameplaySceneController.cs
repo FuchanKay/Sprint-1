@@ -43,6 +43,10 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
                 _exampleObject.Init(currentPosition);
                 break;
             case 200:
+                _exampleObject = new StoneWall(SceneManager);
+                _exampleObject.Init(currentPosition);
+                break;
+            case 300:
                 timer = 0;
                 break;
             default:
