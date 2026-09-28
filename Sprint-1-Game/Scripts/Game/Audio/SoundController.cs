@@ -6,7 +6,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class SoundEffectManager : ISoundController
+public class SoundEffectManager : IAudioController
 {
     private readonly Dictionary<string, SoundEffectInstance> SoundMap = [];
     public float Volume {get; set;} = 1.0f;
@@ -18,7 +18,7 @@ public class SoundEffectManager : ISoundController
         soundEffect.Play();
     }
 
-    public void MapSound(String sound, SoundEffect soundEffect)
+    public void MapAudio(String sound, SoundEffect soundEffect)
     {
         SoundEffectInstance soundEffectInstance = soundEffect.CreateInstance();
         if (!SoundMap.TryAdd(sound, soundEffectInstance))
