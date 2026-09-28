@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary;
 using Scripts.Game;
@@ -68,5 +69,6 @@ public class Game1 : Core
     private void LoadAudio()
     {
         AudioManager.MapSound("snap", Content.Load<SoundEffect>("snap"));
+        AudioManager.MapSong("song", Content.Load<Song>("song"));
     }
 }
