@@ -6,7 +6,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class SoundManager : IAudioManager
+public class SoundEffectManager : ISoundController
 {
     private readonly Dictionary<string, SoundEffectInstance> SoundMap = [];
     public float Volume {get; set;} = 1.0f;

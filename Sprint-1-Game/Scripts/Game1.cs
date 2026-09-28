@@ -14,14 +14,14 @@ public class Game1 : Core
     private static readonly bool IsFullScreen = false;
     private static readonly Color BackgroundColor = Color.White;
     private readonly SceneManager SceneManager;
-    private readonly SoundManager SoundManager;
+    private readonly AudioManager AudioManager;
 
     public Game1() : base(Name, ScreenWidth, ScreenHeight, IsFullScreen)
     {
         KeyboardInputManager keyInput = new();
         MouseInputManager mouseInput = new();
         SceneManager = new(keyInput, mouseInput);
-        SoundManager = new();
+        AudioManager = new();
     }
 
     protected override void Initialize()
@@ -67,6 +67,6 @@ public class Game1 : Core
 
     private void LoadAudio()
     {
-        SoundManager.MapSound("snap", Content.Load<SoundEffect>("snap"));
+        AudioManager.MapSound("snap", Content.Load<SoundEffect>("snap"));
     }
 }
