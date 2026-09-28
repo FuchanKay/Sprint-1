@@ -59,6 +59,10 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
                 _exampleObject.Init(currentPosition);
                 break;
             case 600:
+                _exampleObject = new Vine();
+                _exampleObject.Init(currentPosition);
+                break;
+            case 700:
                 timer = 0;
                 break;
             default:

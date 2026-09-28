@@ -67,6 +67,7 @@ public class Game1 : Core
         Bomb.objectTexture = Content.Load<Texture2D>("ObjectSprites/bomb");
         ExitDoor.objectTexture = Content.Load<Texture2D>("ObjectSprites/exitDoor");
         Pylon.objectTexture = Content.Load<Texture2D>("ObjectSprites/pylon");
+        Vine.objectTexture = Content.Load<Texture2D>("ObjectSprites/vines");
 
     }
 }
