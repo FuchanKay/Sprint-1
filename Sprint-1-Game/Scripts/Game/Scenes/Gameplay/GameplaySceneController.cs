@@ -51,6 +51,10 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
                 _exampleObject.Init(currentPosition);
                 break;
             case 400:
+                _exampleObject = new ExitDoor();
+                _exampleObject.Init(currentPosition);
+                break;
+            case 500:
                 timer = 0;
                 break;
             default:

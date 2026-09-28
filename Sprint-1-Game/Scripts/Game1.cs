@@ -65,6 +65,7 @@ public class Game1 : Core
         Rock.objectTexture = Content.Load<Texture2D>("ObjectSprites/rock");
         StoneWall.objectTexture = Content.Load<Texture2D>("ObjectSprites/stoneWall");
         Bomb.objectTexture = Content.Load<Texture2D>("ObjectSprites/bomb");
+        ExitDoor.objectTexture = Content.Load<Texture2D>("ObjectSprites/exitDoor");
 
     }
 }
