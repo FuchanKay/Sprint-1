@@ -22,50 +22,26 @@ public class AudioManager : IAudioManager
 
     public void SoundVolumeUp()
     {
-        if (VolumeIncrement + SoundController.Volume <= 1.0f)
-        {
-            SoundController.Volume += VolumeIncrement;
-        } 
-        else
-        {
-            SoundController.Volume = 1.0f;
-        }
+        SoundController.Volume += VolumeIncrement;
+        if (SoundController.Volume > 1.0f) SoundController.Volume = 1.0f;
     }
 
     public void SoundVolumeDown()
     {
-        if (SoundController.Volume - VolumeIncrement >= 0.0f)
-        {
-            SoundController.Volume -= VolumeIncrement;
-        }
-        else
-        {
-            SoundController.Volume = 0.0f;
-        }
+        SoundController.Volume -= VolumeIncrement;
+        if (SoundController.Volume < 0.0f) SoundController.Volume = 0.0f;
     }
 
     public void SongVolumeUp()
     {
-        if (VolumeIncrement + SongController.Volume <= 1.0f)
-        {
-            SongController.Volume += VolumeIncrement;
-        }
-        else
-        {
-            SongController.Volume = 1.0f;
-        }
+        SongController.Volume += VolumeIncrement;
+        if (SongController.Volume > 1.0f) SongController.Volume = 1.0f;
     }
 
     public void SongVolumeDown()
     {
-        if (SongController.Volume - VolumeIncrement >= 0.0f)
-        {
-            SongController.Volume -= VolumeIncrement;
-        }
-        else
-        {
-            SongController.Volume = 0.0f;
-        }
+        SongController.Volume -= VolumeIncrement;
+        if (SongController.Volume < 0.0f) SongController.Volume = 0.0f;
     }
 
     public void MapSound(string soundName, SoundEffect soundEffect, float baseVolume)
