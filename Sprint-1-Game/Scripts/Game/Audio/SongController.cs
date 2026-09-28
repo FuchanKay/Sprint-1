@@ -3,27 +3,27 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework.Audio;
 using Scripts.GameComponents;
+using Microsoft.Xna.Framework.Media;
 
 namespace Scripts.Game;
 
-public class SoundController : IAudioController
+public class SongController : IAudioController
 {
-    private readonly Dictionary<string, SoundEffectInstance> SoundMap = [];
+    private readonly Dictionary<string, Song> SongMap = [];
     public float Volume {get; set;} = 1.0f;
 
-    public void Play(string sound)
+    public void Play(string songName)
     {
-        SoundEffectInstance soundEffect = SoundMap[sound];
-        soundEffect.Volume = Volume;
-        soundEffect.Play();
+        Song song = SongMap[songName];
+        MediaPlayer.Volume = Volume;
+        MediaPlayer.Play(song);
     }
 
-    public void MapAudio(String sound, SoundEffect soundEffect)
+    public void MapSong(String songName, Song song)
     {
-        SoundEffectInstance soundEffectInstance = soundEffect.CreateInstance();
-        if (!SoundMap.TryAdd(sound, soundEffectInstance))
+        if (!SongMap.TryAdd(songName, song))
         {
-            SoundMap[sound] = soundEffectInstance;
+            SongMap[songName] = song;
         }
     }
 }

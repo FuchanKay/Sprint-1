@@ -3,56 +3,81 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework.Audio;
 using Scripts.GameComponents;
+using Microsoft.Xna.Framework.Media;
 
 namespace Scripts.Game;
 
 public class AudioManager : IAudioManager
 {
-    private readonly Dictionary<string, SoundEffectInstance> SoundMap = [];
+    private readonly SoundController soundController = new SoundController();
+    private readonly SongController songController = new SongController();
     private float VolumeIncrement = 0.1f;
 
     public void PlaySound(string sound)
     {
-        SoundEffectInstance soundEffect = SoundMap[sound];
-        soundEffect.Play();
+        soundController.Play(sound);
     }
 
-    public void PlaySong(string sound)
+    public void PlaySong(string song)
     {
-        
+        songController.Play(song);
     }
 
     public void SoundVolumeUp()
     {
-        throw new NotImplementedException();
+        if (VolumeIncrement + soundController.Volume <= 1.0f)
+        {
+            soundController.Volume += VolumeIncrement;
+        } 
+        else
+        {
+            soundController.Volume = 1.0f;
+        }
     }
 
     public void SoundVolumeDown()
     {
-        throw new NotImplementedException();
+        if (soundController.Volume - VolumeIncrement >= 0.0f)
+        {
+            soundController.Volume -= VolumeIncrement;
+        }
+        else
+        {
+            soundController.Volume = 0.0f;
+        }
     }
 
     public void SongVolumeUp()
     {
-        throw new NotImplementedException();
+        if (VolumeIncrement + songController.Volume <= 1.0f)
+        {
+            songController.Volume += VolumeIncrement;
+        }
+        else
+        {
+            songController.Volume = 1.0f;
+        }
     }
 
     public void SongVolumeDown()
     {
-        throw new NotImplementedException();
+        if (songController.Volume - VolumeIncrement >= 0.0f)
+        {
+            songController.Volume -= VolumeIncrement;
+        }
+        else
+        {
+            songController.Volume = 0.0f;
+        }
     }
 
     public void MapSound(String sound, SoundEffect soundEffect)
     {
-        SoundEffectInstance soundEffectInstance = soundEffect.CreateInstance();
-        if (!SoundMap.TryAdd(sound, soundEffectInstance))
-        {
-            SoundMap[sound] = soundEffectInstance;
-        }
+        soundController.MapSound(sound, soundEffect);
     }
 
-    public void MapSong(string sound, SoundEffectInstance soundEffectInstance)
+    public void MapSong(string sound, Song song)
     {
-        throw new NotImplementedException();
+        songController.MapSong(sound, song);
     }
 }

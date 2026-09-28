@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace Scripts.GameComponents;
 
@@ -12,5 +13,5 @@ public interface IAudioManager
     void SongVolumeUp();
     void SongVolumeDown();
     void MapSound(String sound, SoundEffect soundEffect);
-    void MapSong(String sound, SoundEffectInstance soundEffectInstance);
+    void MapSong(String sound, Song song);
 }
