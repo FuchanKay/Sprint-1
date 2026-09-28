@@ -38,9 +38,21 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
                 _exampleObject = new StoneBlock();
                 _exampleObject.Init(currentPosition);
                 break;
+            case 50:
+                _exampleObject.Destroy();
+                break;
             case 100:
                 _exampleObject = new Rock();
                 _exampleObject.Init(currentPosition);
+                break;
+            case 125:
+                _exampleObject.MoveLeft();
+                break;
+            case 150:
+                _exampleObject.MoveRight();
+                break;
+            case 175:
+                _exampleObject.Destroy();
                 break;
             case 200:
                 _exampleObject = new StoneWall();
@@ -50,19 +62,38 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
                 _exampleObject = new Bomb();
                 _exampleObject.Init(currentPosition);
                 break;
+            case 325:
+                _exampleObject.MoveLeft();
+                break;
+            case 350:
+                _exampleObject.MoveRight();
+                break;
+            case 375:
+                _exampleObject.SnapBehavior();
+                break;
             case 400:
+                _exampleObject = new TimedBomb();
+                _exampleObject.Init(currentPosition);
+                break;
+            case 425:
+                _exampleObject.MoveLeft();
+                break;
+            case 450:
+                _exampleObject.MoveRight();
+                break;
+            case 500:
                 _exampleObject = new ExitDoor();
                 _exampleObject.Init(currentPosition);
                 break;
-            case 500:
+            case 600:
                 _exampleObject = new Pylon();
                 _exampleObject.Init(currentPosition);
                 break;
-            case 600:
+            case 700:
                 _exampleObject = new Vine();
                 _exampleObject.Init(currentPosition);
                 break;
-            case 700:
+            case 800:
                 timer = 0;
                 break;
             default:

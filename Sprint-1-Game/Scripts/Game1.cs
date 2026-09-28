@@ -61,6 +61,7 @@ public class Game1 : Core
         PlayGameButton.ButtonTexture = Content.Load<Texture2D>("Images/play-button");
         ExitGameButton.ButtonTexture = Content.Load<Texture2D>("Images/exit-button");
         
+        // Placeholder Sprites
         StoneBlock.objectTexture = Content.Load<Texture2D>("ObjectSprites/stoneBlock");
         Rock.objectTexture = Content.Load<Texture2D>("ObjectSprites/rock");
         StoneWall.objectTexture = Content.Load<Texture2D>("ObjectSprites/stoneWall");
@@ -68,6 +69,7 @@ public class Game1 : Core
         ExitDoor.objectTexture = Content.Load<Texture2D>("ObjectSprites/exitDoor");
         Pylon.objectTexture = Content.Load<Texture2D>("ObjectSprites/pylon");
         Vine.objectTexture = Content.Load<Texture2D>("ObjectSprites/vines");
+        TimedBomb.objectTexture = Content.Load<Texture2D>("ObjectSprites/timedBomb");
 
     }
 }
