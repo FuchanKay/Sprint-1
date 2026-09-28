@@ -68,13 +68,13 @@ public class AudioManager : IAudioManager
         }
     }
 
-    public void MapSound(string soundName, SoundEffect soundEffect)
+    public void MapSound(string soundName, SoundEffect soundEffect, float baseVolume)
     {
-        SoundController.MapSound(soundName, soundEffect);
+        SoundController.MapSound(soundName, soundEffect, baseVolume);
     }
 
-    public void MapSong(string songName, Song song)
+    public void MapSong(string songName, Song song, float baseVolume)
     {
-        SongController.MapSong(songName, song);
+        SongController.MapSong(songName, song, baseVolume);
     }
 }

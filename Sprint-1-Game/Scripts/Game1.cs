@@ -69,7 +69,7 @@ public class Game1 : Core
 
     private void LoadAudio()
     {
-        AudioManager.MapSound("snap", Content.Load<SoundEffect>("audio/snap"));
-        AudioManager.MapSong("song", Content.Load<Song>("audio/song"));
+        AudioManager.MapSound("snap", Content.Load<SoundEffect>("audio/snap"), 1.0f);
+        AudioManager.MapSong("song", Content.Load<Song>("audio/song"), 0.2f);
     }
 }

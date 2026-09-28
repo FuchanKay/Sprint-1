@@ -6,22 +6,25 @@ namespace Scripts.Game;
 
 public class SoundController : IAudioController
 {
-    private readonly Dictionary<string, SoundEffectInstance> SoundMap = [];
+    private readonly Dictionary<string, SoundConfig> SoundMap = [];
     public float Volume {get; set;} = 1.0f;
 
     public void Play(string soundName)
     {
-        SoundEffectInstance soundEffect = SoundMap[soundName];
-        soundEffect.Volume = Volume;
-        soundEffect.Play();
+        SoundConfig soundConfig = SoundMap[soundName];
+        SoundEffectInstance soundEffectInstance = soundConfig.SoundEffect;
+        float VolumeMultiplier = soundConfig.Volume;
+        soundEffectInstance.Volume = Volume * VolumeMultiplier;
+        soundEffectInstance.Play();
     }
 
-    public void MapSound(string soundName, SoundEffect soundEffect)
+    public void MapSound(string soundName, SoundEffect soundEffect, float baseVolume)
     {
         SoundEffectInstance soundEffectInstance = soundEffect.CreateInstance();
-        if (!SoundMap.TryAdd(soundName, soundEffectInstance))
+        SoundConfig soundConfig = new SoundConfig(soundEffectInstance, baseVolume);
+        if (!SoundMap.TryAdd(soundName, soundConfig))
         {
-            SoundMap[soundName] = soundEffectInstance;
+            SoundMap[soundName] = soundConfig;
         }
     }
 }
