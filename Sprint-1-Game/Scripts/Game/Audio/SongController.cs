@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Microsoft.Xna.Framework.Audio;
 using Scripts.GameComponents;
 using Microsoft.Xna.Framework.Media;
 
@@ -19,7 +16,7 @@ public class SongController : IAudioController
         MediaPlayer.Play(song);
     }
 
-    public void MapSong(String songName, Song song)
+    public void MapSong(string songName, Song song)
     {
         if (!SongMap.TryAdd(songName, song))
         {

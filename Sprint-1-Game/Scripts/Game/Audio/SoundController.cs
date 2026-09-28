@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework.Audio;
 using Scripts.GameComponents;
 
@@ -18,7 +16,7 @@ public class SoundController : IAudioController
         soundEffect.Play();
     }
 
-    public void MapSound(String soundName, SoundEffect soundEffect)
+    public void MapSound(string soundName, SoundEffect soundEffect)
     {
         SoundEffectInstance soundEffectInstance = soundEffect.CreateInstance();
         if (!SoundMap.TryAdd(soundName, soundEffectInstance))
