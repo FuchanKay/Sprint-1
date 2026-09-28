@@ -7,17 +7,19 @@ public abstract class Object : IObject
     public Vector2 position { get; set; }
     protected abstract bool pushable { get; }
     protected abstract bool destructible { get; }
-    public bool isDestroyed { get; set; } = false;
-    private float xSpeed = 0.0f;
-    private float ySpeed = 0.0f;
+    protected bool isDestroyed { get; set; } = false;
+    protected float xSpeed = 0.0f;
+    protected float ySpeed = 0.0f;
     // Sprite Properties (Potentially moved to a Sprite class in the future)
     protected abstract Texture2D Texture { get; }
+    protected virtual Rectangle sourceRectangle { get; }
     protected virtual float scale { get; } = 1.0f;
     protected virtual float rotation { get; } = 0f;
     protected virtual Color color { get; } = Color.White;
     protected virtual Vector2 origin { get; } = Vector2.Zero;
     protected virtual float layerDepth { get; } = 0f;
     protected virtual SpriteEffects effects { get; } = SpriteEffects.None;
+    // Methods
     public abstract void SnapBehavior();
     public void Init(Vector2 position)
     {
@@ -34,7 +36,7 @@ public abstract class Object : IObject
     }
     public void Draw(SpriteBatch sb)
     {
-        Rectangle sourceRectangle = new Rectangle(0, 0, Texture.Width, Texture.Height);
+        if(isDestroyed) return;
         sb.Draw(
             Texture, 
             position, 

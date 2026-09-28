@@ -29,7 +29,7 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
 
     public void Update(int dtMs)
     {
-        //TODO: Implement game logic here
+        // This is placeholder code that cycles an object through each object type for demonstration purposes
         Vector2 currentPosition = _exampleObject.position;
         timer++;
         switch (timer)
@@ -47,6 +47,10 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
                 _exampleObject.Init(currentPosition);
                 break;
             case 300:
+                _exampleObject = new Bomb();
+                _exampleObject.Init(currentPosition);
+                break;
+            case 400:
                 timer = 0;
                 break;
             default:
@@ -60,6 +64,7 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
     private void CheckInputs(Object obj)
     {
         if(ButtonInput.IsPressed("Destroy")) obj.Destroy();
+        if(ButtonInput.IsPressed("Snap")) obj.SnapBehavior();
         if(ButtonInput.IsPressed("Move East")) obj.MoveRight();
         if(ButtonInput.IsPressed("Move West")) obj.MoveLeft();
         if(ButtonInput.IsPressed("Move North")) obj.MoveUp();
@@ -68,6 +73,6 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
 
     public void Draw(SpriteBatch sb)
     {
-        if(!_exampleObject.isDestroyed) _exampleObject.Draw(sb);
+        _exampleObject.Draw(sb);
     }
 }
