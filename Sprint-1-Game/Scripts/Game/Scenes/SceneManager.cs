@@ -5,12 +5,13 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class SceneManager(IInputManager buttonInput, IInputManager mouseInput) : ISceneManager
+public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager) : ISceneManager
 {
     private readonly Dictionary<string, ISceneController> NameSceneMap = [];
     private ISceneController CurrentScene;
     private readonly IInputManager ButtonInput = buttonInput;
     private readonly IInputManager MouseInput = mouseInput;
+    private readonly IAudioManager AudioManager = audioManager;
     public bool ShouldExit;
 
 
@@ -49,6 +50,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput) :
         if (NameSceneMap.TryGetValue(sceneName, out ISceneController scene))
         {
             CurrentScene = scene;
+            scene.Init(this);
         }
     }
     
@@ -78,10 +80,10 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput) :
 
     private void AddScenesToMap()
     {
-        var mainMenuScene = new MainMenuSceneController(ButtonInput, MouseInput);
+        var mainMenuScene = new MainMenuSceneController(ButtonInput, MouseInput, AudioManager);
         NameSceneMap.TryAdd(MainMenuSceneController.Name, mainMenuScene);
 
-        var gameplayScene = new GameplaySceneController(ButtonInput, MouseInput);
+        var gameplayScene = new GameplaySceneController(ButtonInput, MouseInput, AudioManager);
         NameSceneMap.TryAdd(GameplaySceneController.Name, gameplayScene);
     }
 }
