@@ -16,7 +16,7 @@ public class Vine(Vector2 pos, IAudioManager am) : Object(pos, am)
 
     public override void SnapBehavior()
     {
-        if (grown) 
+        if (!grown) 
         {
             // TODO: Grow Vines 
             grown = true;
