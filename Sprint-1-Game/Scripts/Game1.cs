@@ -17,8 +17,9 @@ public class Game1 : Core
 
     // TEST
     public static Texture2D SproutTexture { get; set; }
-    private AnimationManager AnimationManager;
-    private Rectangle SproutSource;
+    private AnimationAtlas AniAtlas;
+    private AnimatedSprite Sprout;
+    private Rectangle SproutSourceRectangle;
     private int i;
 
     public Game1() : base(Name, ScreenWidth, ScreenHeight, IsFullScreen)
@@ -26,15 +27,12 @@ public class Game1 : Core
         KeyboardInputManager keyInput = new();
         MouseInputManager mouseInput = new();
         SceneManager = new(keyInput, mouseInput);
+        AniAtlas = new();
     }
 
     protected override void Initialize()
     {
         SceneManager.Init();
-
-        // TEST
-        int delay = 100;
-        AnimationManager = new(delay);
 
         base.Initialize();
     }
@@ -43,12 +41,13 @@ public class Game1 : Core
     {
         // TEST: i'm not initializing each of my test magic numbers as a variable bc that's ANNOYING!!!
         // AddAnimation(name, numFrames, row)
-        AnimationManager.AddAnimation("WalkDown", 6, 3);
-        AnimationManager.AddAnimation("WalkLeft", 6, 1);
-        AnimationManager.AddAnimation("WalkRight", 6, 0);
-        // LoadAnimations(spritesWidth, SpritesHeight)
-        // requires all sprites to be the same width and height!
-        AnimationManager.LoadAnimations(64, 64);
+        AniAtlas.AddAnimation("SproutWalkDown", 3, 6);
+        // AddAnimation(name, numFrames, row, width, height)
+        AniAtlas.AddAnimation("SproutWalkRight",0, 6, 64, 64);
+        // AddAnimation(name, numFrames, row, width, height, delay)
+        AniAtlas.AddAnimation("SproutWalkLeft", 1, 6, 64, 64, 100);
+
+        Sprout = AniAtlas.CreateAnimatedSprite("SproutWalkRight");
 
         BindAllTextures();
         base.LoadContent();
@@ -62,18 +61,25 @@ public class Game1 : Core
             Exit();
         }
 
-        // TEST: note that gameTime will update much faster than animation frame
+        // TEST
+        SproutSourceRectangle = Sprout.UpdateFrame(gameTime.ElapsedGameTime.Milliseconds);
+        Animation animation;
+        if(i == 100)
+        {
+            animation = AniAtlas.GetAnimation("SproutWalkDown");
+            SproutSourceRectangle = Sprout.UpdateAnimation(animation);
+        } 
+        else if(i == 200)
+        {
+            animation = AniAtlas.GetAnimation("SproutWalkLeft");
+            SproutSourceRectangle = Sprout.UpdateAnimation(animation);
+        } 
+        else if(i == 300) {
+            animation = AniAtlas.GetAnimation("SproutWalkRight");
+            SproutSourceRectangle = Sprout.UpdateAnimation(animation);
+            i = 0; 
+        }
         i++;
-        if(i < 100)
-        {
-            SproutSource = AnimationManager.UpdateSourceRectangle("WalkRight", gameTime.ElapsedGameTime.Milliseconds);
-        } else if(i < 200)
-        {
-            SproutSource = AnimationManager.UpdateSourceRectangle("WalkDown", gameTime.ElapsedGameTime.Milliseconds);
-        } else if(i < 300)
-        {
-            SproutSource = AnimationManager.UpdateSourceRectangle("WalkLeft", gameTime.ElapsedGameTime.Milliseconds);
-        } else { i = 0; }
 
         base.Update(gameTime);
     }
@@ -85,7 +91,7 @@ public class Game1 : Core
         SpriteBatch.Begin();
 
         // TEST (random destination)
-        SpriteBatch.Draw(SproutTexture, new Vector2(800, 500), SproutSource, Color.White);
+        SpriteBatch.Draw(SproutTexture, new Vector2(800, 500), SproutSourceRectangle, Color.White);
 
         SceneManager.Draw(SpriteBatch);
         SpriteBatch.End();
