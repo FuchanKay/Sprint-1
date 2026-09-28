@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
 using Scripts.GameComponents;
 namespace Scripts.Game;
 
@@ -18,6 +17,6 @@ public class Bomb(Vector2 pos, IAudioManager am) : Object(pos, am)
     {
         if(IsDestroyed) return;
         //TODO: Play explosion animation and sound effect
-        this.IsDestroyed = true;
+        IsDestroyed = true;
     }
 }

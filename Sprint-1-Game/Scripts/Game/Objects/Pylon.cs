@@ -1,8 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
 using Scripts.GameComponents;
-using System.Runtime.CompilerServices;
 namespace Scripts.Game;
 
 public class Pylon(Vector2 pos, IAudioManager am) : Object(pos, am)
@@ -14,10 +12,10 @@ public class Pylon(Vector2 pos, IAudioManager am) : Object(pos, am)
     protected override bool Destructible => false;
     protected override float Scale => 2.0f;
     protected override Vector2 Origin => new Vector2(Texture.Width/2, Texture.Height/2);
-    public int snapPower = 1;
+    public int SnapPower = 1;
 
     public override void SnapBehavior()
     {
-        if(snapPower > 0) snapPower--;
+        if(SnapPower > 0) SnapPower--;
     }
 }

@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
 using Scripts.GameComponents;
 namespace Scripts.Game;
 
@@ -12,14 +11,14 @@ public class Vine(Vector2 pos, IAudioManager am) : Object(pos, am)
     protected override bool Destructible => false;
     protected override float Scale => 0.5f;
     protected override Vector2 Origin => new Vector2(Texture.Width/2, Texture.Height/2);
-    public bool grown = false;
+    public bool Grown = false;
 
     public override void SnapBehavior()
     {
-        if (!grown) 
+        if (!Grown) 
         {
             // TODO: Grow Vines 
-            grown = true;
+            Grown = true;
         } else
         {
             this.IsDestroyed = true;

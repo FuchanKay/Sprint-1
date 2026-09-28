@@ -7,7 +7,7 @@ namespace Scripts.Game;
 
 public class GameplaySceneController(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager) : ISceneController
 {
-    private SceneManager SceneManager;
+    private ISceneManager SceneManager;
     private readonly IAudioManager AudioManager = audioManager;
     private readonly IInputManager ButtonInput = buttonInput;
     private readonly IInputManager MouseInput = mouseInput;
