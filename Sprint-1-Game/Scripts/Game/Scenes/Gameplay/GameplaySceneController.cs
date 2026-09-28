@@ -11,9 +11,9 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
     private readonly IInputManager ButtonInput = buttonInput;
     private readonly IInputManager MouseInput = mouseInput;
     public readonly static string Name = "GamePlay";
-    private Object _destructibleObject;
-    private Object _pushableObject;
+    private Object _exampleObject;
     private HashSet<Object> objects;
+    private int timer = 0;
 
     public void Init(ISceneManager sm)
     {
@@ -21,28 +21,36 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
 
         objects = new HashSet<Object>();
 
-        _destructibleObject = new StoneBlock(SceneManager);
-        _destructibleObject.Init(new Vector2(300, 100));
-        objects.Add(_destructibleObject);
-
-
-        _pushableObject = new Rock(SceneManager);
-        _pushableObject.Init(new Vector2(500, 100));
-        objects.Add(_pushableObject);
-
+        _exampleObject = new StoneBlock(SceneManager);
+        _exampleObject.Init(new Vector2(300, 100));
+        objects.Add(_exampleObject);
 
     }
 
     public void Update(int dtMs)
     {
         //TODO: Implement game logic here
-        foreach (Object obj in objects)
+        Vector2 currentPosition = _exampleObject.position;
+        timer++;
+        switch (timer)
         {
-            if(!obj.isDestroyed) {
-                obj.Update(dtMs);
-                CheckInputs(obj);
-            }
+            case 1:
+                _exampleObject = new StoneBlock(SceneManager);
+                _exampleObject.Init(currentPosition);
+                break;
+            case 100:
+                _exampleObject = new Rock(SceneManager);
+                _exampleObject.Init(currentPosition);
+                break;
+            case 200:
+                timer = 0;
+                break;
+            default:
+                break;
         }
+
+        CheckInputs(_exampleObject);
+        _exampleObject.Update(dtMs);
     }
 
     private void CheckInputs(Object obj)
@@ -56,11 +64,6 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
 
     public void Draw(SpriteBatch sb)
     {
-        foreach (Object obj in objects){
-            if(!obj.isDestroyed) 
-            {
-                obj.Draw(sb);
-            }
-        }
+        if(!_exampleObject.isDestroyed) _exampleObject.Draw(sb);
     }
 }
