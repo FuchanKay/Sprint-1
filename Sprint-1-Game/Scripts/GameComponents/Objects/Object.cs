@@ -1,78 +1,76 @@
 using System.Diagnostics.Contracts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Scripts.Game;
 namespace Scripts.GameComponents;
-public abstract class Object : IObject
+public abstract class Object(Vector2 pos, IAudioManager am) : IObject
 {
-    public Vector2 position { get; set; }
-    protected abstract bool pushable { get; }
-    protected abstract bool destructible { get; }
-    protected bool isDestroyed { get; set; } = false;
+    protected IAudioManager AudioManager { get; } = am;
+    public Vector2 Position { get; set; } = pos;
+    protected abstract bool Pushable { get; }
+    protected abstract bool Destructible { get; }
+    protected bool IsDestroyed { get; set; } = false;
+    protected const float MoveSpeed = 5.0f;
     protected float xSpeed = 0.0f;
     protected float ySpeed = 0.0f;
     // Sprite Properties (Potentially moved to a Sprite class in the future)
     protected abstract Texture2D Texture { get; }
-    protected virtual Rectangle sourceRectangle { get; }
-    protected virtual float scale { get; } = 1.0f;
-    protected virtual float rotation { get; } = 0f;
-    protected virtual Color color { get; } = Color.White;
-    protected virtual Vector2 origin { get; } = Vector2.Zero;
-    protected virtual float layerDepth { get; } = 0f;
-    protected virtual SpriteEffects effects { get; } = SpriteEffects.None;
+    protected virtual Rectangle SourceRectangle { get; }
+    protected virtual float Scale { get; } = 1.0f;
+    protected virtual float Rotation { get; } = 0f;
+    protected virtual Color Color { get; } = Color.White;
+    protected virtual Vector2 Origin { get; } = Vector2.Zero;
+    protected virtual float LayerDepth { get; } = 0f;
+    protected virtual SpriteEffects Effects { get; } = SpriteEffects.None;
     // Methods
     public abstract void SnapBehavior();
-    public void Init(Vector2 position)
-    {
-        this.position = position;
-        this.isDestroyed = false;
-    }
     public void Update(int dtMs)
     {
-        if (pushable)
+        if (Pushable)
         {
-            position = new Vector2(position.X + xSpeed * dtMs, position.Y + ySpeed * dtMs);
+            Position = new Vector2(Position.X + xSpeed * dtMs, Position.Y + ySpeed * dtMs);
             xSpeed = 0.0f; ySpeed = 0.0f;   
         }
     }
     public void Draw(SpriteBatch sb)
     {
-        if(isDestroyed) return;
+        if(IsDestroyed) return;
         sb.Draw(
             Texture, 
-            position, 
-            sourceRectangle, 
-            color, 
-            rotation, 
-            origin, 
-            scale, 
-            effects, 
-            layerDepth
+            Position, 
+            SourceRectangle, 
+            Color, 
+            Rotation, 
+            Origin, 
+            Scale, 
+            Effects, 
+            LayerDepth
         );
     }
     public void Destroy()
     {
-        if(isDestroyed || !destructible) return;
+        if(IsDestroyed || !Destructible) return;
         // TODO: Play destroy animation and sound effect
-        isDestroyed = true;
+        IsDestroyed = true;
     }
     public void MoveUp()
     {
-        ySpeed = -5.0f;
+        ySpeed = MoveSpeed * -1;
     }
 
     public void MoveDown()
     {
-        ySpeed = 5.0f;
+        ySpeed = MoveSpeed;
     }
 
     public void MoveLeft()
     {
-        xSpeed = -5.0f;
+        xSpeed = MoveSpeed * -1;
     }
 
     public void MoveRight()
     {
-        xSpeed = 5.0f;
+        xSpeed = MoveSpeed;
     }
     
 }

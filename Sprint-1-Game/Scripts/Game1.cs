@@ -67,14 +67,14 @@ public class Game1 : Core
         ExitGameButton.ButtonTexture = Content.Load<Texture2D>("Images/exit-button");
         
         // Placeholder Sprites
-        StoneBlock.objectTexture = Content.Load<Texture2D>("ObjectSprites/stoneBlock");
-        Rock.objectTexture = Content.Load<Texture2D>("ObjectSprites/rock");
-        StoneWall.objectTexture = Content.Load<Texture2D>("ObjectSprites/stoneWall");
-        Bomb.objectTexture = Content.Load<Texture2D>("ObjectSprites/bomb");
-        ExitDoor.objectTexture = Content.Load<Texture2D>("ObjectSprites/exitDoor");
-        Pylon.objectTexture = Content.Load<Texture2D>("ObjectSprites/pylon");
-        Vine.objectTexture = Content.Load<Texture2D>("ObjectSprites/vines");
-        TimedBomb.objectTexture = Content.Load<Texture2D>("ObjectSprites/timedBomb");
+        StoneBlock.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/stoneBlock");
+        Rock.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/rock");
+        StoneWall.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/stoneWall");
+        Bomb.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/bomb");
+        ExitDoor.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/exitDoor");
+        Pylon.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/pylon");
+        Vine.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/vines");
+        TimedBomb.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/timedBomb");
     }
 
     private void LoadAudio()

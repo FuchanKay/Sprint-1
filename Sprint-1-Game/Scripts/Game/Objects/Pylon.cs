@@ -5,15 +5,15 @@ using Scripts.GameComponents;
 using System.Runtime.CompilerServices;
 namespace Scripts.Game;
 
-public class Pylon() : Object
+public class Pylon(Vector2 pos, IAudioManager am) : Object(pos, am)
 {
-    public static Texture2D objectTexture {get; set;}
-    protected override Texture2D Texture => objectTexture;
-    protected override Rectangle sourceRectangle => new Rectangle(0,  0, Texture.Width, Texture.Height);
-    protected override bool pushable => false;
-    protected override bool destructible => false;
-    protected override float scale => 2.0f;
-    protected override Vector2 origin => new Vector2(Texture.Width/2, Texture.Height/2);
+    public static Texture2D ObjectTexture {get; set;}
+    protected override Texture2D Texture => ObjectTexture;
+    protected override Rectangle SourceRectangle => new Rectangle(0,  0, Texture.Width, Texture.Height);
+    protected override bool Pushable => false;
+    protected override bool Destructible => false;
+    protected override float Scale => 2.0f;
+    protected override Vector2 Origin => new Vector2(Texture.Width/2, Texture.Height/2);
     public int snapPower = 1;
 
     public override void SnapBehavior()
