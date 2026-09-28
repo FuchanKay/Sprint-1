@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary;
 using Scripts.Game;
@@ -14,17 +16,20 @@ public class Game1 : Core
     private static readonly bool IsFullScreen = false;
     private static readonly Color BackgroundColor = Color.White;
     private readonly SceneManager SceneManager;
+    private readonly AudioManager AudioManager;
 
     public Game1() : base(Name, ScreenWidth, ScreenHeight, IsFullScreen)
     {
         KeyboardInputManager keyInput = new();
         MouseInputManager mouseInput = new();
-        SceneManager = new(keyInput, mouseInput);
+        AudioManager = new();
+        SceneManager = new(keyInput, mouseInput, AudioManager);
     }
 
     protected override void Initialize()
     {
         BindAllTextures();
+        LoadAudio();
         SceneManager.Init();
         base.Initialize();
     }
@@ -70,6 +75,11 @@ public class Game1 : Core
         Pylon.objectTexture = Content.Load<Texture2D>("ObjectSprites/pylon");
         Vine.objectTexture = Content.Load<Texture2D>("ObjectSprites/vines");
         TimedBomb.objectTexture = Content.Load<Texture2D>("ObjectSprites/timedBomb");
+    }
 
+    private void LoadAudio()
+    {
+        AudioManager.MapSound("snap", Content.Load<SoundEffect>("audio/snap"), 1.0f);
+        AudioManager.MapSong("song", Content.Load<Song>("audio/song"), 0.2f);
     }
 }

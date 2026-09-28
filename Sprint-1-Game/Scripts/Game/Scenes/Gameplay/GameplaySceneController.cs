@@ -5,9 +5,10 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class GameplaySceneController(IInputManager buttonInput, IInputManager mouseInput) : ISceneController
+public class GameplaySceneController(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager) : ISceneController
 {
     private SceneManager SceneManager;
+    private readonly IAudioManager AudioManager = audioManager;
     private readonly IInputManager ButtonInput = buttonInput;
     private readonly IInputManager MouseInput = mouseInput;
     public readonly static string Name = "GamePlay";
@@ -25,6 +26,8 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
         _exampleObject.Init(new Vector2(300, 300));
         objects.Add(_exampleObject);
 
+        // placeholder song to play in the background of the gameplay scene
+        AudioManager.PlaySong("song");
     }
 
     public void Update(int dtMs)
