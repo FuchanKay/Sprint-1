@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary;
 using Scripts.Game;
@@ -13,12 +14,14 @@ public class Game1 : Core
     private static readonly bool IsFullScreen = false;
     private static readonly Color BackgroundColor = Color.White;
     private readonly SceneManager SceneManager;
+    private readonly SoundManager SoundManager;
 
     public Game1() : base(Name, ScreenWidth, ScreenHeight, IsFullScreen)
     {
         KeyboardInputManager keyInput = new();
         MouseInputManager mouseInput = new();
         SceneManager = new(keyInput, mouseInput);
+        SoundManager = new();
     }
 
     protected override void Initialize()
@@ -60,5 +63,10 @@ public class Game1 : Core
         ExitGameButton.ButtonTexture = Content.Load<Texture2D>("Images/exit-button");
         //TODO: Remove this once game play actually has stuff in it
         GameplaySceneController.Mario = Content.Load<Texture2D>("Images/mario");
+    }
+
+    private void LoadAudio()
+    {
+        SoundManager.MapSound("snap", Content.Load<SoundEffect>("snap"));
     }
 }
