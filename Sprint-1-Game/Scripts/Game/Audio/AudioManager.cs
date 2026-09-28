@@ -13,14 +13,14 @@ public class AudioManager : IAudioManager
     private readonly SongController songController = new SongController();
     private float VolumeIncrement = 0.1f;
 
-    public void PlaySound(string sound)
+    public void PlaySound(string soundName)
     {
-        soundController.Play(sound);
+        soundController.Play(soundName);
     }
 
-    public void PlaySong(string song)
+    public void PlaySong(string songName)
     {
-        songController.Play(song);
+        songController.Play(songName);
     }
 
     public void SoundVolumeUp()

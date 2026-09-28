@@ -11,19 +11,19 @@ public class SoundController : IAudioController
     private readonly Dictionary<string, SoundEffectInstance> SoundMap = [];
     public float Volume {get; set;} = 1.0f;
 
-    public void Play(string sound)
+    public void Play(string soundName)
     {
-        SoundEffectInstance soundEffect = SoundMap[sound];
+        SoundEffectInstance soundEffect = SoundMap[soundName];
         soundEffect.Volume = Volume;
         soundEffect.Play();
     }
 
-    public void MapSound(String sound, SoundEffect soundEffect)
+    public void MapSound(String soundName, SoundEffect soundEffect)
     {
         SoundEffectInstance soundEffectInstance = soundEffect.CreateInstance();
-        if (!SoundMap.TryAdd(sound, soundEffectInstance))
+        if (!SoundMap.TryAdd(soundName, soundEffectInstance))
         {
-            SoundMap[sound] = soundEffectInstance;
+            SoundMap[soundName] = soundEffectInstance;
         }
     }
 }
