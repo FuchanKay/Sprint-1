@@ -3,15 +3,10 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class Enemy : ICharacter
+public class Enemy : Character
 {
-    public Enemy(Vector2 pos, float speed)
+    public Enemy(Vector2 pos, float speed, Direction direction)
+        : base(pos, speed, direction)
     {
-        Pos = pos;
-        Speed  = speed;
-        Health = 100;
     }
-    public int Health { get; set; }
-    public float Speed { get; set; }
-    public Vector2 Pos { get; set; }
 }

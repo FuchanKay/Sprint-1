@@ -2,6 +2,7 @@ namespace Scripts.Game;
 
 public class StateMachine
 {
+    //Keep this just in case
     private enum State{Left, Right, Up, Down};
     private State currState = State.Right;
     public void ChangeDirection()
