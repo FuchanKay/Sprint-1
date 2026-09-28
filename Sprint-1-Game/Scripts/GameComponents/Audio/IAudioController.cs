@@ -5,5 +5,5 @@ namespace Scripts.GameComponents;
 
 public interface IAudioController
 {
-    void Play(String sound);
+    void Play(String soundName);
 }
