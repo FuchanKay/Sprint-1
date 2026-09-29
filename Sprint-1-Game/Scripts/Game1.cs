@@ -15,22 +15,35 @@ public class Game1 : Core
     private readonly Setup Setup;
     private SceneManager SceneManager;
 
+
+    // TEST
+    public static Texture2D SproutTexture { get; set; }
+    private AnimationAtlas AniAtlas;
+    private AnimatedSprite Sprout;
+    private Rectangle SproutSourceRectangle;
+    private int i;
+
+
+
     public Game1() : base(Name, ScreenWidth, ScreenHeight, IsFullScreen)
     {
-        Setup = new(Content);
-
+        KeyboardInputManager keyInput = new();
+        MouseInputManager mouseInput = new();
+        AudioManager = new();
+        SceneManager = new(keyInput, mouseInput, AudioManager);
     }
 
     protected override void Initialize()
     {
-        Setup.Initialize(out var sceneManager);
-        SceneManager = sceneManager;
+        BindAllTextures();
+        LoadAudio();
+        SceneManager.Init();
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
-        Setup.LoadContent();
+        BindAllTextures();
         base.LoadContent();
     }
 
@@ -41,6 +54,23 @@ public class Game1 : Core
         {
             Exit();
         }
+
+        // TEST
+        Sprout.Update(gameTime.ElapsedGameTime.Milliseconds);
+        if(i == 100)
+        {
+            Sprout.SetAnimation("SproutWalkDown");
+        } 
+        else if(i == 200)
+        {
+            Sprout.SetAnimation("SproutWalkLeft");
+        } 
+        else if(i == 300) {
+            Sprout.SetAnimation("SproutWalkRight");
+            i = 0; 
+        }
+        i++;
+
         base.Update(gameTime);
     }
 
@@ -49,9 +79,36 @@ public class Game1 : Core
         GraphicsDevice.Clear(BackgroundColor);
 
         SpriteBatch.Begin();
+
+        // TEST (random destination)
+        SproutSourceRectangle = Sprout.GetFrame();
+        SpriteBatch.Draw(SproutTexture, new Vector2(800, 500), SproutSourceRectangle, Color.White);
+
         SceneManager.Draw(SpriteBatch);
         SpriteBatch.End();
 
         base.Draw(gameTime);
+    }
+
+    private static void BindAllTextures()
+    {
+        PlayGameButton.ButtonTexture = Content.Load<Texture2D>("Images/play-button");
+        ExitGameButton.ButtonTexture = Content.Load<Texture2D>("Images/exit-button");
+        
+        // Placeholder Sprites
+        StoneBlock.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/stoneBlock");
+        Rock.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/rock");
+        StoneWall.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/stoneWall");
+        Bomb.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/bomb");
+        ExitDoor.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/exitDoor");
+        Pylon.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/pylon");
+        Vine.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/vines");
+        TimedBomb.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/timedBomb");
+    }
+
+    private void LoadAudio()
+    {
+        AudioManager.MapSound("snap", Content.Load<SoundEffect>("audio/snap"), 1.0f);
+        AudioManager.MapSong("song", Content.Load<Song>("audio/song"), 0.2f);
     }
 }
