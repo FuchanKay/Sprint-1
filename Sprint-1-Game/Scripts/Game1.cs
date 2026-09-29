@@ -107,8 +107,6 @@ public class Game1 : Core
     {
         PlayGameButton.ButtonTexture = Content.Load<Texture2D>("Images/play-button");
         ExitGameButton.ButtonTexture = Content.Load<Texture2D>("Images/exit-button");
-        //TODO: Remove this once game play actually has stuff in it
-        GameplaySceneController.Mario = Content.Load<Texture2D>("Images/mario");
         
         // TEST
         SproutTexture = Content.Load<Texture2D>("Images/player-sprites");
