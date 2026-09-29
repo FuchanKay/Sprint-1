@@ -1,45 +1,61 @@
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class GameplaySceneController(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager) : ISceneController
+public class GameplaySceneController(ISceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, IAnimationAtlas aniAtlas) : ISceneController
 {
-    private ISceneManager SceneManager;
-    private readonly IAudioManager AudioManager = audioManager;
-    private readonly IInputManager ButtonInput = buttonInput;
-    private readonly IInputManager MouseInput = mouseInput;
     public readonly static string Name = "GamePlay";
     private Object _exampleObject;
     private int timer = 0;
+    private int SproutTimer = 0;
+    private AnimatedSprite Sprout;
+    public static Texture2D SproutTexture;
 
-    public void Init(ISceneManager sm)
+    public void Init()
     {
-        SceneManager = sm as SceneManager;
-
         _exampleObject = new StoneBlock(new Vector2(300, 300), audioManager);
 
+        Sprout = new AnimatedSprite(aniAtlas);
+        Sprout.SetAnimation("SproutWalkRight");
+
         // placeholder song to play in the background of the gameplay scene
-        AudioManager.PlaySong("song");
+        audioManager.PlaySong("song");
     }
 
     public void Update(int dtMs)
     {
+
+        // TEST
+        SproutTimer++;
+        Sprout.Update(dtMs);
+        if(SproutTimer == 100)
+        {
+            Sprout.SetAnimation("SproutWalkDown");
+        } 
+        else if(SproutTimer == 200)
+        {
+            Sprout.SetAnimation("SproutWalkLeft");
+        } 
+        else if(SproutTimer == 300) {
+            Sprout.SetAnimation("SproutWalkRight");
+            SproutTimer = 0; 
+        }
+
         // This is placeholder code that cycles an object through each object type for demonstration purposes
         Vector2 currentPosition = _exampleObject.Position;
         timer++;
         switch (timer)
         {
             case 1:
-                _exampleObject = new StoneBlock(currentPosition, AudioManager);
+                _exampleObject = new StoneBlock(currentPosition, audioManager);
                 break;
             case 50:
                 _exampleObject.Destroy();
                 break;
             case 100:
-                _exampleObject = new Rock(currentPosition, AudioManager);
+                _exampleObject = new Rock(currentPosition, audioManager);
                 break;
             case 125:
                 _exampleObject.MoveLeft();
@@ -51,10 +67,10 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
                 _exampleObject.Destroy();
                 break;
             case 200:
-                _exampleObject = new StoneWall(currentPosition, AudioManager);
+                _exampleObject = new StoneWall(currentPosition, audioManager);
                 break;
             case 300:
-                _exampleObject = new Bomb(currentPosition, AudioManager);
+                _exampleObject = new Bomb(currentPosition, audioManager);
                 break;
             case 325:
                 _exampleObject.MoveLeft();
@@ -66,7 +82,7 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
                 _exampleObject.SnapBehavior();
                 break;
             case 400:
-                _exampleObject = new TimedBomb(currentPosition, AudioManager);
+                _exampleObject = new TimedBomb(currentPosition, audioManager);
                 break;
             case 425:
                 _exampleObject.MoveLeft();
@@ -75,13 +91,13 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
                 _exampleObject.MoveRight();
                 break;
             case 500:
-                _exampleObject = new ExitDoor(currentPosition, AudioManager);
+                _exampleObject = new ExitDoor(currentPosition, audioManager);
                 break;
             case 600:
-                _exampleObject = new Pylon(currentPosition, AudioManager);
+                _exampleObject = new Pylon(currentPosition, audioManager);
                 break;
             case 700:
-                _exampleObject = new Vine(currentPosition, AudioManager);
+                _exampleObject = new Vine(currentPosition, audioManager);
                 break;
             case 800:
                 timer = 0;
@@ -96,5 +112,7 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
     public void Draw(SpriteBatch sb)
     {
         _exampleObject.Draw(sb);
+        var rect = Sprout.GetFrame();
+        sb.Draw(SproutTexture, new Vector2(800, 500), rect, Color.White);
     }
 }
