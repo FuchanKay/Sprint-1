@@ -1,8 +1,7 @@
 using Microsoft.Xna.Framework.Audio;
-using Scripts.GameComponents;
 using Microsoft.Xna.Framework.Media;
 
-namespace Scripts.Game;
+namespace Scripts.GameComponents;
 
 public class AudioManager : IAudioManager
 {

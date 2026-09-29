@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
-using Scripts.GameComponents;
 
-namespace Scripts.Game;
+namespace Scripts.GameComponents;
 
 public class KeyboardInputManager : IInputManager
 {
