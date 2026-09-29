@@ -1,7 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary;
 using Scripts.Game;
+using Scripts.GameComponents;
 
 namespace Sprint_1_Game.Scripts;
 
@@ -13,6 +16,7 @@ public class Game1 : Core
     private static readonly bool IsFullScreen = false;
     private static readonly Color BackgroundColor = Color.White;
     private readonly SceneManager SceneManager;
+    private readonly AudioManager AudioManager;
 
 
     // TEST
@@ -26,12 +30,15 @@ public class Game1 : Core
     {
         KeyboardInputManager keyInput = new();
         MouseInputManager mouseInput = new();
-        SceneManager = new(keyInput, mouseInput);
         AniAtlas = new();
+        AudioManager = new();
+        SceneManager = new(keyInput, mouseInput, AudioManager);
     }
 
     protected override void Initialize()
     {
+        BindAllTextures();
+        LoadAudio();
         SceneManager.Init();
 
         base.Initialize();
@@ -105,5 +112,21 @@ public class Game1 : Core
         
         // TEST
         SproutTexture = Content.Load<Texture2D>("Images/player-sprites");
+        
+        // Placeholder Sprites
+        StoneBlock.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/stoneBlock");
+        Rock.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/rock");
+        StoneWall.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/stoneWall");
+        Bomb.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/bomb");
+        ExitDoor.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/exitDoor");
+        Pylon.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/pylon");
+        Vine.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/vines");
+        TimedBomb.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/timedBomb");
+    }
+
+    private void LoadAudio()
+    {
+        AudioManager.MapSound("snap", Content.Load<SoundEffect>("audio/snap"), 1.0f);
+        AudioManager.MapSong("song", Content.Load<Song>("audio/song"), 0.2f);
     }
 }
