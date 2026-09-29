@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework.Media;
 
-namespace Scripts.Game;
+namespace Scripts.GameComponents;
 
 public class SongConfig(Song song, float baseVolume)
 {

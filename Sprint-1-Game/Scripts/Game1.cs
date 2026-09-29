@@ -1,6 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary;
 using Scripts.Game;
@@ -15,28 +13,24 @@ public class Game1 : Core
     private static readonly int ScreenHeight = 720;
     private static readonly bool IsFullScreen = false;
     private static readonly Color BackgroundColor = Color.White;
-    private readonly SceneManager SceneManager;
-    private readonly AudioManager AudioManager;
+    private readonly Setup Setup;
+    private SceneManager SceneManager;
 
     public Game1() : base(Name, ScreenWidth, ScreenHeight, IsFullScreen)
     {
-        KeyboardInputManager keyInput = new();
-        MouseInputManager mouseInput = new();
-        AudioManager = new();
-        SceneManager = new(keyInput, mouseInput, AudioManager);
+        Setup = new(Content);
     }
 
     protected override void Initialize()
     {
-        BindAllTextures();
-        LoadAudio();
-        SceneManager.Init();
+        Setup.Initialize(out var sceneManager);
+        SceneManager = sceneManager;
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
-        BindAllTextures();
+        Setup.LoadContent();
         base.LoadContent();
     }
 
@@ -55,31 +49,11 @@ public class Game1 : Core
         GraphicsDevice.Clear(BackgroundColor);
 
         SpriteBatch.Begin();
+
+        // TEST (random destination)
         SceneManager.Draw(SpriteBatch);
         SpriteBatch.End();
 
         base.Draw(gameTime);
-    }
-
-    private static void BindAllTextures()
-    {
-        PlayGameButton.ButtonTexture = Content.Load<Texture2D>("Images/play-button");
-        ExitGameButton.ButtonTexture = Content.Load<Texture2D>("Images/exit-button");
-        
-        // Placeholder Sprites
-        StoneBlock.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/stoneBlock");
-        Rock.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/rock");
-        StoneWall.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/stoneWall");
-        Bomb.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/bomb");
-        ExitDoor.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/exitDoor");
-        Pylon.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/pylon");
-        Vine.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/vines");
-        TimedBomb.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/timedBomb");
-    }
-
-    private void LoadAudio()
-    {
-        AudioManager.MapSound("snap", Content.Load<SoundEffect>("audio/snap"), 1.0f);
-        AudioManager.MapSong("song", Content.Load<Song>("audio/song"), 0.2f);
     }
 }

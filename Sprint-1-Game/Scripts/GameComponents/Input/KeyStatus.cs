@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework.Input;
 
-namespace Scripts.Game;
+namespace Scripts.GameComponents;
 
 public class KeyStatus(Keys key)
 {

@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using Scripts.GameComponents;
 using Microsoft.Xna.Framework.Media;
 
-namespace Scripts.Game;
+namespace Scripts.GameComponents;
 
 public class SongController : IAudioController
 {
