@@ -22,7 +22,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         AddAnimations();
 
         CurrentScene = NameSceneMap[MainMenuSceneController.Name];
-        CurrentScene.Init(this);
+        CurrentScene.Init();
     }
 
     public void Update(int dtMs)
@@ -48,7 +48,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         if (NameSceneMap.TryGetValue(sceneName, out ISceneController scene))
         {
             CurrentScene = scene;
-            scene.Init(this);
+            scene.Init();
         }
     }
     
@@ -80,10 +80,10 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
 
     private void AddScenesToMap()
     {
-        var mainMenuScene = new MainMenuSceneController(mouseInput, audioManager);
+        var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager);
         NameSceneMap.TryAdd(MainMenuSceneController.Name, mainMenuScene);
 
-        var gameplayScene = new GameplaySceneController(buttonInput, mouseInput, audioManager, aniAtlas);
+        var gameplayScene = new GameplaySceneController(this, buttonInput, mouseInput, audioManager, aniAtlas);
         NameSceneMap.TryAdd(GameplaySceneController.Name, gameplayScene);
     }
 

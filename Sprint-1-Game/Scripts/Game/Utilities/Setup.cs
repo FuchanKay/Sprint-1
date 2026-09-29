@@ -1,14 +1,16 @@
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class Setup(Microsoft.Xna.Framework.Content.ContentManager content)
+public class Setup(ContentManager content)
 {
     //TODO: If there are any save file stuff that needs to be resolved it should be done here. 
     private AudioManager AudioManager;
+
 
     public void Initialize(out SceneManager sceneManager)
     {

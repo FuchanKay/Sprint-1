@@ -15,12 +15,6 @@ public class Game1 : Core
     private readonly Setup Setup;
     private SceneManager SceneManager;
 
-
-    // TEST
-    public static Texture2D SproutTexture { get; set; }
-    private AnimatedSprite Sprout;
-    private Rectangle SproutSourceRectangle;
-
     public Game1() : base(Name, ScreenWidth, ScreenHeight, IsFullScreen)
     {
         Setup = new(Content);

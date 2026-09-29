@@ -4,19 +4,17 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class GameplaySceneController(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, IAnimationAtlas aniAtlas) : ISceneController
+public class GameplaySceneController(ISceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, IAnimationAtlas aniAtlas) : ISceneController
 {
-    private ISceneManager SceneManager;
     public readonly static string Name = "GamePlay";
     private Object _exampleObject;
     private int timer = 0;
+    private int SproutTimer = 0;
     private AnimatedSprite Sprout;
     public static Texture2D SproutTexture;
 
-    public void Init(ISceneManager sm)
+    public void Init()
     {
-        SceneManager = sm as SceneManager;
-
         _exampleObject = new StoneBlock(new Vector2(300, 300), audioManager);
 
         Sprout = new AnimatedSprite(aniAtlas);
@@ -30,19 +28,19 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
     {
 
         // TEST
-        
+        SproutTimer++;
         Sprout.Update(dtMs);
-        if(timer == 100)
+        if(SproutTimer == 100)
         {
             Sprout.SetAnimation("SproutWalkDown");
         } 
-        else if(timer == 200)
+        else if(SproutTimer == 200)
         {
             Sprout.SetAnimation("SproutWalkLeft");
         } 
-        else if(timer == 300) {
+        else if(SproutTimer == 300) {
             Sprout.SetAnimation("SproutWalkRight");
-            timer = 0; 
+            SproutTimer = 0; 
         }
 
         // This is placeholder code that cycles an object through each object type for demonstration purposes
