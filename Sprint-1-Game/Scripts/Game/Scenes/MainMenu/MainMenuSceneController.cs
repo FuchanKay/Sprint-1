@@ -4,27 +4,21 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class MainMenuSceneController(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager) : ISceneController
+public class MainMenuSceneController(ISceneManager sceneManager, IInputManager mouseInput, IAudioManager audioManager) : ISceneController
 {
     public readonly static string Name = "Main Menu";
     private readonly static int PlayGameButtonX = 200, PlayGameButtonY = 200;
     private readonly static int ExitGameButtonX = 200, ExitGameButtonY = 300;
-
-    private SceneManager SceneManager;
-    private readonly IInputManager KeyInput = buttonInput;
-    private readonly IInputManager MouseInput = mouseInput;
-    private readonly IAudioManager AudioManager = audioManager;
     private Button PlayGameButton;
     private Button ExitGameButton;
 
-    public void Init(ISceneManager sm)
+    public void Init()
     {
-        SceneManager = sm as SceneManager;
-        PlayGameButton = new PlayGameButton(SceneManager, AudioManager);
-        PlayGameButton.Init(PlayGameButtonX, PlayGameButtonY, MouseInput);
+        PlayGameButton = new PlayGameButton(sceneManager, audioManager);
+        PlayGameButton.Init(PlayGameButtonX, PlayGameButtonY, mouseInput);
 
-        ExitGameButton = new ExitGameButton(SceneManager);
-        ExitGameButton.Init(ExitGameButtonX, ExitGameButtonY, MouseInput);
+        ExitGameButton = new ExitGameButton(sceneManager);
+        ExitGameButton.Init(ExitGameButtonX, ExitGameButtonY, mouseInput);
     }
 
     public void Update(int dtMs)

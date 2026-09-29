@@ -1,16 +1,16 @@
 using Microsoft.Xna.Framework;
 
-namespace Scripts.Game;
+namespace Scripts.GameComponents;
 public class AnimatedSprite
 {
-    private AnimationAtlas AniAtlas;
+    private IAnimationAtlas AniAtlas;
     private Animation CurrentAnimation;
     private int CurrentFrameIndex;
     private int Elapsed;
     private Rectangle CurrentFrame;
     public bool IsFinished { get; private set; }
 
-    public AnimatedSprite(AnimationAtlas aniAtlas)
+    public AnimatedSprite(IAnimationAtlas aniAtlas)
     {
         AniAtlas = aniAtlas;
         IsFinished = false;
