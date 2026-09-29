@@ -13,19 +13,33 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Audio/14 Big Fat Bitchie's Blueberry Pie C.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/processorParam:Version=3.8.5.1
-/build:Audio/song.mp3;Audio/song.mp3
-
-#begin Audio/soundreality-finger-snap-sound-423220.mp3
+#begin Audio/explosion.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /processorParam:Version=3.8.5.1
-/build:Audio/snap.mp3;Audio/snap.mp3
+/build:Audio/explosion.mp3
+
+#begin Audio/snap.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.1
+/build:Audio/snap.mp3
+
+#begin Audio/song.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.1
+/build:Audio/song.mp3
+
+#begin Audio/stoneDestroy.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.1
+/build:Audio/stoneDestroy.mp3
 
 #begin Images/Exit game button.png
 /importer:TextureImporter

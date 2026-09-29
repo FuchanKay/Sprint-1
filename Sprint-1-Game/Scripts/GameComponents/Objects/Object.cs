@@ -50,6 +50,7 @@ public abstract class Object(Vector2 pos, IAudioManager am) : IObject
     {
         if(IsDestroyed || !Destructible) return;
         // TODO: Play destroy animation and sound effect
+        AudioManager.PlaySound("destroy");
         IsDestroyed = true;
     }
     public void MoveUp()

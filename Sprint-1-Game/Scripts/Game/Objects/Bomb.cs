@@ -16,7 +16,8 @@ public class Bomb(Vector2 pos, IAudioManager am) : Object(pos, am)
     public override void SnapBehavior()
     {
         if(IsDestroyed) return;
-        //TODO: Play explosion animation and sound effect
+        //TODO: Play explosion animation
+        AudioManager.PlaySound("explosion");
         IsDestroyed = true;
     }
 }

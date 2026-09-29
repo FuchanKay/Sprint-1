@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
@@ -12,14 +13,15 @@ public class TimedBomb(Vector2 pos, IAudioManager am) : Object(pos, am)
     protected override bool Destructible => false;
     protected override float Scale => 0.2f;
     protected override Vector2 Origin => new Vector2(Texture.Width/2, Texture.Height/2);
-    private int RemainingTime = 2;
+    private int RemainingTime = 1;
 
     public override void SnapBehavior()
     {
         if(IsDestroyed) return;
         if(RemainingTime == 1)
         {
-            //TODO: Play explosion animation and sound effect
+            //TODO: Play explosion animation
+            AudioManager.PlaySound("explosion");
             this.IsDestroyed = true;
         } else
         {
