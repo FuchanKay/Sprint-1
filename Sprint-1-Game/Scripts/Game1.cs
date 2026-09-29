@@ -46,7 +46,8 @@ public class Game1 : Core
         // AddAnimation(name, numFrames, row, width, height, delay)
         AniAtlas.AddAnimation("SproutWalkLeft", 1, 6, 64, 64, 100);
 
-        Sprout = new AnimatedSprite(AniAtlas.GetAnimation("SproutWalkRight"));
+        Sprout = new AnimatedSprite(AniAtlas);
+        Sprout.SetAnimation("SproutWalkRight");
 
         BindAllTextures();
         base.LoadContent();
@@ -62,24 +63,16 @@ public class Game1 : Core
 
         // TEST
         Sprout.Update(gameTime.ElapsedGameTime.Milliseconds);
-        SproutSourceRectangle = Sprout.GetFrame();
-        Animation animation;
         if(i == 100)
         {
-            animation = AniAtlas.GetAnimation("SproutWalkDown");
-            Sprout.SetAnimation(animation);
-            SproutSourceRectangle = Sprout.GetFrame();
+            Sprout.SetAnimation("SproutWalkDown");
         } 
         else if(i == 200)
         {
-            animation = AniAtlas.GetAnimation("SproutWalkLeft");
-            Sprout.SetAnimation(animation);
-            SproutSourceRectangle = Sprout.GetFrame();
+            Sprout.SetAnimation("SproutWalkLeft");
         } 
         else if(i == 300) {
-            animation = AniAtlas.GetAnimation("SproutWalkRight");
-            Sprout.SetAnimation(animation);
-            SproutSourceRectangle = Sprout.GetFrame();
+            Sprout.SetAnimation("SproutWalkRight");
             i = 0; 
         }
         i++;
@@ -94,6 +87,7 @@ public class Game1 : Core
         SpriteBatch.Begin();
 
         // TEST (random destination)
+        SproutSourceRectangle = Sprout.GetFrame();
         SpriteBatch.Draw(SproutTexture, new Vector2(800, 500), SproutSourceRectangle, Color.White);
 
         SceneManager.Draw(SpriteBatch);
