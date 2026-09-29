@@ -7,7 +7,8 @@ namespace Scripts.Game;
 public class KeyboardInputManager : IInputManager
 {
     private readonly Dictionary<string, KeyStatus> InputKeyStateMap;
-
+    public int MousePositionX => Mouse.GetState().Position.X;
+    public int MousePositionY => Mouse.GetState().Position.Y;
     public KeyboardInputManager()
     {
         InputKeyStateMap = [];

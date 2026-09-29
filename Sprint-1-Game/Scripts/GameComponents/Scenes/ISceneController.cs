@@ -8,7 +8,7 @@ namespace Scripts.GameComponents;
 /// </summary>
 public interface ISceneController
 {
-    void Init(SceneManager sm);
+    void Init(ISceneManager sm);
 
     void Update(int dtMs);
 

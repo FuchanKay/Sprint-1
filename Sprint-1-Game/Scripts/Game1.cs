@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary;
 using Scripts.Game;
@@ -13,20 +15,26 @@ public class Game1 : Core
     private static readonly bool IsFullScreen = false;
     private static readonly Color BackgroundColor = Color.White;
     private readonly SceneManager SceneManager;
+    private readonly AudioManager AudioManager;
 
     public Game1() : base(Name, ScreenWidth, ScreenHeight, IsFullScreen)
     {
-        SceneManager = new();
+        KeyboardInputManager keyInput = new();
+        MouseInputManager mouseInput = new();
+        AudioManager = new();
+        SceneManager = new(keyInput, mouseInput, AudioManager);
     }
 
     protected override void Initialize()
     {
+        LoadAudio();
         SceneManager.Init();
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
+        BindAllTextures();
         base.LoadContent();
     }
 
@@ -49,5 +57,19 @@ public class Game1 : Core
         SpriteBatch.End();
 
         base.Draw(gameTime);
+    }
+
+    private static void BindAllTextures()
+    {
+        PlayGameButton.ButtonTexture = Content.Load<Texture2D>("Images/play-button");
+        ExitGameButton.ButtonTexture = Content.Load<Texture2D>("Images/exit-button");
+        //TODO: Remove this once game play actually has stuff in it
+        GameplaySceneController.Mario = Content.Load<Texture2D>("Images/mario");
+    }
+
+    private void LoadAudio()
+    {
+        AudioManager.MapSound("snap", Content.Load<SoundEffect>("audio/snap"), 1.0f);
+        AudioManager.MapSong("song", Content.Load<Song>("audio/song"), 0.2f);
     }
 }
