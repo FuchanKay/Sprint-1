@@ -72,6 +72,8 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         ButtonInput.MapInput("Move East", (int) Keys.D);
         ButtonInput.MapInput("Move South", (int) Keys.S);
         ButtonInput.MapInput("Move West", (int) Keys.A);
+        ButtonInput.MapInput("Destroy", (int) Keys.Space); 
+        ButtonInput.MapInput("Snap", (int) Keys.E);
 
         ButtonInput.MapInput("Exit Game", (int) Keys.Escape);
         

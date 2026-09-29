@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary;
 using Scripts.Game;
+using Scripts.GameComponents;
 
 namespace Sprint_1_Game.Scripts;
 
@@ -27,6 +28,7 @@ public class Game1 : Core
 
     protected override void Initialize()
     {
+        BindAllTextures();
         LoadAudio();
         SceneManager.Init();
         base.Initialize();
@@ -63,8 +65,16 @@ public class Game1 : Core
     {
         PlayGameButton.ButtonTexture = Content.Load<Texture2D>("Images/play-button");
         ExitGameButton.ButtonTexture = Content.Load<Texture2D>("Images/exit-button");
-        //TODO: Remove this once game play actually has stuff in it
-        GameplaySceneController.Mario = Content.Load<Texture2D>("Images/mario");
+        
+        // Placeholder Sprites
+        StoneBlock.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/stoneBlock");
+        Rock.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/rock");
+        StoneWall.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/stoneWall");
+        Bomb.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/bomb");
+        ExitDoor.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/exitDoor");
+        Pylon.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/pylon");
+        Vine.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/vines");
+        TimedBomb.ObjectTexture = Content.Load<Texture2D>("ObjectSprites/timedBomb");
     }
 
     private void LoadAudio()
