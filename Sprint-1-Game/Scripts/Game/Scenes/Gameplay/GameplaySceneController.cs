@@ -4,7 +4,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class GameplaySceneController(ISceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, IAnimationAtlas aniAtlas) : ISceneController
+public class GameplaySceneController(ISceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas texAtlas) : ISceneController
 {
     public readonly static string Name = "GamePlay";
     private Object _exampleObject;
@@ -17,7 +17,7 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
     {
         _exampleObject = new StoneBlock(new Vector2(300, 300), audioManager);
 
-        Sprout = new AnimatedSprite(aniAtlas);
+        Sprout = new AnimatedSprite(texAtlas);
         Sprout.SetAnimation("SproutWalkRight");
 
         // placeholder song to play in the background of the gameplay scene

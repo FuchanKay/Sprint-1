@@ -3,21 +3,21 @@ using Microsoft.Xna.Framework;
 namespace Scripts.GameComponents;
 public class AnimatedSprite
 {
-    private IAnimationAtlas AniAtlas;
+    private ITextureAtlas TexAtlas;
     private Animation CurrentAnimation;
     private int CurrentFrameIndex;
     private int Elapsed;
     private Rectangle CurrentFrame;
     public bool IsFinished { get; private set; }
 
-    public AnimatedSprite(IAnimationAtlas aniAtlas)
+    public AnimatedSprite(ITextureAtlas texAtlas)
     {
-        AniAtlas = aniAtlas;
+        TexAtlas = texAtlas;
         IsFinished = false;
     }
-    public AnimatedSprite(AnimationAtlas aniAtlas, Animation animation)
+    public AnimatedSprite(TextureAtlas texAtlas, Animation animation)
     {
-        AniAtlas = aniAtlas;
+        TexAtlas = texAtlas;
         CurrentAnimation = animation;
         IsFinished = false;
     }
@@ -49,7 +49,7 @@ public class AnimatedSprite
 
     public void SetAnimation(string animationName)
     {
-        CurrentAnimation = AniAtlas.GetAnimation(animationName);
+        CurrentAnimation = TexAtlas.GetAnimation(animationName);
         CurrentFrameIndex = 0;
         CurrentFrame = CurrentAnimation.Frames[CurrentFrameIndex];
     }
