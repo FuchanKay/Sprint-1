@@ -41,7 +41,7 @@ public class Setup(Microsoft.Xna.Framework.Content.ContentManager content)
         Vine.ObjectTexture = content.Load<Texture2D>("ObjectSprites/vines");
         TimedBomb.ObjectTexture = content.Load<Texture2D>("ObjectSprites/timedBomb");
 
-        //TODO: Remove this
+        //TODO: Remove this when sprite becomes its own thing
         GameplaySceneController.SproutTexture = content.Load<Texture2D>("Images/player-sprites");
     }
     private void LoadAudio()

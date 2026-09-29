@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Scripts.GameComponents;
 
-namespace Scripts.Game;
+namespace Scripts.GameComponents;
 public class AnimationAtlas : IAnimationAtlas
 {
     private const int Delay = 100;

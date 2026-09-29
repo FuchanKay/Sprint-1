@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-namespace Scripts.Game;
+namespace Scripts.GameComponents;
 public class Animation
 {
     public int Delay { get; set; }

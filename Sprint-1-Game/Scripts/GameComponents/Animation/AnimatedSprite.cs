@@ -1,7 +1,6 @@
 using Microsoft.Xna.Framework;
-using Scripts.GameComponents;
 
-namespace Scripts.Game;
+namespace Scripts.GameComponents;
 public class AnimatedSprite
 {
     private IAnimationAtlas AniAtlas;
