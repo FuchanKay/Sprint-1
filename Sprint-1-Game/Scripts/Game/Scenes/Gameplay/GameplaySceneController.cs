@@ -4,12 +4,14 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class GameplaySceneController(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager) : ISceneController
+public class GameplaySceneController(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, IAnimationAtlas aniAtlas) : ISceneController
 {
     private ISceneManager SceneManager;
     public readonly static string Name = "GamePlay";
     private Object _exampleObject;
     private int timer = 0;
+    private AnimatedSprite Sprout;
+    public static Texture2D SproutTexture;
 
     public void Init(ISceneManager sm)
     {
@@ -17,12 +19,32 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
 
         _exampleObject = new StoneBlock(new Vector2(300, 300), audioManager);
 
+        Sprout = new AnimatedSprite(aniAtlas);
+        Sprout.SetAnimation("SproutWalkRight");
+
         // placeholder song to play in the background of the gameplay scene
         audioManager.PlaySong("song");
     }
 
     public void Update(int dtMs)
     {
+
+        // TEST
+        
+        Sprout.Update(dtMs);
+        if(timer == 100)
+        {
+            Sprout.SetAnimation("SproutWalkDown");
+        } 
+        else if(timer == 200)
+        {
+            Sprout.SetAnimation("SproutWalkLeft");
+        } 
+        else if(timer == 300) {
+            Sprout.SetAnimation("SproutWalkRight");
+            timer = 0; 
+        }
+
         // This is placeholder code that cycles an object through each object type for demonstration purposes
         Vector2 currentPosition = _exampleObject.Position;
         timer++;
@@ -92,5 +114,7 @@ public class GameplaySceneController(IInputManager buttonInput, IInputManager mo
     public void Draw(SpriteBatch sb)
     {
         _exampleObject.Draw(sb);
+        var rect = Sprout.GetFrame();
+        sb.Draw(SproutTexture, new Vector2(800, 500), rect, Color.White);
     }
 }

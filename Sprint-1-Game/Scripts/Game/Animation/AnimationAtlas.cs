@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Scripts.GameComponents;
 
 namespace Scripts.Game;
-public class AnimationAtlas
+public class AnimationAtlas : IAnimationAtlas
 {
     private const int Delay = 100;
     private readonly Dictionary<string, Animation> Animations = [];

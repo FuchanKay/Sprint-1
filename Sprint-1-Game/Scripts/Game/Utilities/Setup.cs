@@ -12,10 +12,11 @@ public class Setup(Microsoft.Xna.Framework.Content.ContentManager content)
 
     public void Initialize(out SceneManager sceneManager)
     {
-        KeyboardInputManager KeyboardInput = new();
-        MouseInputManager MouseInput = new();
+        KeyboardInputManager keyboardInput = new();
+        MouseInputManager mouseInput = new();
+        AnimationAtlas aniAtlas = new();
         AudioManager = new();
-        sceneManager = new(KeyboardInput, MouseInput, AudioManager);
+        sceneManager = new(keyboardInput, mouseInput, AudioManager, aniAtlas);
         sceneManager.Init();
     }
 
@@ -39,6 +40,9 @@ public class Setup(Microsoft.Xna.Framework.Content.ContentManager content)
         Pylon.ObjectTexture = content.Load<Texture2D>("ObjectSprites/pylon");
         Vine.ObjectTexture = content.Load<Texture2D>("ObjectSprites/vines");
         TimedBomb.ObjectTexture = content.Load<Texture2D>("ObjectSprites/timedBomb");
+
+        //TODO: Remove this
+        GameplaySceneController.SproutTexture = content.Load<Texture2D>("Images/player-sprites");
     }
     private void LoadAudio()
     {

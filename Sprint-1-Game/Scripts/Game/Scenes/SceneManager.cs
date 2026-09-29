@@ -5,7 +5,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager) : ISceneManager
+public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, IAnimationAtlas aniAtlas) : ISceneManager
 {
     private readonly Dictionary<string, ISceneController> NameSceneMap = [];
     private ISceneController CurrentScene;
@@ -18,6 +18,8 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         MapDefaultInputs();
 
         AddScenesToMap();
+
+        AddAnimations();
 
         CurrentScene = NameSceneMap[MainMenuSceneController.Name];
         CurrentScene.Init(this);
@@ -81,7 +83,15 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         var mainMenuScene = new MainMenuSceneController(mouseInput, audioManager);
         NameSceneMap.TryAdd(MainMenuSceneController.Name, mainMenuScene);
 
-        var gameplayScene = new GameplaySceneController(buttonInput, mouseInput, audioManager);
+        var gameplayScene = new GameplaySceneController(buttonInput, mouseInput, audioManager, aniAtlas);
         NameSceneMap.TryAdd(GameplaySceneController.Name, gameplayScene);
+    }
+
+    private void AddAnimations()
+    {
+        aniAtlas.AddAnimation("SproutWalkDown", 3, 6, 64, 64);
+        aniAtlas.AddAnimation("SproutWalkRight",0, 6, 64, 64);
+        // AddAnimation(name, numFrames, row, width, height, delay)
+        aniAtlas.AddAnimation("SproutWalkLeft", 1, 6, 64, 64, 100);
     }
 }
