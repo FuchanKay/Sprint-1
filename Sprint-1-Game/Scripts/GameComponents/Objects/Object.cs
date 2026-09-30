@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace Scripts.GameComponents;
+
 public abstract class Object(Vector2 pos, IAudioManager am) : IObject
 {
     protected IAudioManager AudioManager { get; } = am;
@@ -31,16 +32,16 @@ public abstract class Object(Vector2 pos, IAudioManager am) : IObject
     }
     public void Draw(SpriteBatch sb)
     {
-        if(IsDestroyed) return;
+        if (IsDestroyed) return;
         sb.Draw(
-            Texture, 
-            Position, 
-            SourceRectangle, 
-            Color, 
-            Rotation, 
-            Origin, 
-            Scale, 
-            Effects, 
+            Texture,
+            Position,
+            SourceRectangle,
+            Color,
+            Rotation,
+            Origin,
+            Scale,
+            Effects,
             LayerDepth
         );
     }
