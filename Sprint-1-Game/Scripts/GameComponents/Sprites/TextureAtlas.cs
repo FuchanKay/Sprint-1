@@ -19,7 +19,7 @@ public class TextureAtlas : ITextureAtlas
     {
         if(!Regions.TryGetValue(name, out Rectangle region)) 
         {
-            throw new ArgumentException("Name does not exist in Regions", nameof(name));
+            throw new ArgumentException("Name " + name + " does not exist in Regions");
         }
         return region;
     }
@@ -40,7 +40,7 @@ public class TextureAtlas : ITextureAtlas
     {
         if(!Animations.TryGetValue(name, out Animation animation)) 
         {
-            throw new ArgumentException("Name does not exist in Animations", nameof(name));
+            throw new ArgumentException("Name " + name + " does not exist in Animations");
         }
         return animation;
     }
