@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.Game;
 namespace Scripts.GameComponents;
+
 public abstract class Object(Vector2 pos, IAudioManager am) : IObject
 {
     protected IAudioManager AudioManager { get; } = am;
@@ -28,27 +29,27 @@ public abstract class Object(Vector2 pos, IAudioManager am) : IObject
         if (Pushable)
         {
             Position = new Vector2(Position.X + XSpeed * dtMs, Position.Y + YSpeed * dtMs);
-            XSpeed = 0.0f; YSpeed = 0.0f;   
+            XSpeed = 0.0f; YSpeed = 0.0f;
         }
     }
     public void Draw(SpriteBatch sb)
     {
-        if(IsDestroyed) return;
+        if (IsDestroyed) return;
         sb.Draw(
-            Texture, 
-            Position, 
-            SourceRectangle, 
-            Color, 
-            Rotation, 
-            Origin, 
-            Scale, 
-            Effects, 
+            Texture,
+            Position,
+            SourceRectangle,
+            Color,
+            Rotation,
+            Origin,
+            Scale,
+            Effects,
             LayerDepth
         );
     }
     public void Destroy()
     {
-        if(IsDestroyed || !Destructible) return;
+        if (IsDestroyed || !Destructible) return;
         // TODO: Play destroy animation and sound effect
         IsDestroyed = true;
     }
@@ -71,5 +72,5 @@ public abstract class Object(Vector2 pos, IAudioManager am) : IObject
     {
         XSpeed = MoveSpeed;
     }
-    
+
 }

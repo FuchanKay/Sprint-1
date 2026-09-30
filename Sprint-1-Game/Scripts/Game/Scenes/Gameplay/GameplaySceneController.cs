@@ -52,8 +52,8 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
                 Sprout = Sprout.ConvertToAnimated("SproutWalkRight");
                 break;
             case 100:
-                 Sprout.SetState("SproutWalkDown");
-                 break;
+                Sprout.SetState("SproutWalkDown");
+                break;
             case 200:
                 Sprout.SetState("SproutWalkLeft");
                 break;

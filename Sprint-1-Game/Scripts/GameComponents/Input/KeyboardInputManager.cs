@@ -51,7 +51,7 @@ public class KeyboardInputManager : IInputManager
 
     public void MapInput(string input, int key)
     {
-        var keyEnum = (Keys) key;
+        var keyEnum = (Keys)key;
         if (!InputKeyStateMap.TryAdd(input, new KeyStatus(keyEnum)))
         {
             InputKeyStateMap[input] = new KeyStatus(keyEnum);

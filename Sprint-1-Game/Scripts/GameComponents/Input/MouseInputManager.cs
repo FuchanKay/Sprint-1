@@ -19,7 +19,7 @@ public class MouseInputManager : IInputManager
         {
             var buttonStatus = inputButtonState.Value;
             var mouse = Mouse.GetState();
-            
+
             buttonStatus.Previous = buttonStatus.Current;
             switch (buttonStatus.Button)
             {
@@ -32,7 +32,7 @@ public class MouseInputManager : IInputManager
                 case MouseButtons.Middle:
                     buttonStatus.Current = mouse.MiddleButton == ButtonState.Pressed;
                     break;
-                default: 
+                default:
                     break;
             }
         }
@@ -53,7 +53,7 @@ public class MouseInputManager : IInputManager
         {
             return !buttonState.Previous && buttonState.Current;
         }
-        return false;   
+        return false;
     }
 
     public bool IsReleased(string input)
@@ -67,7 +67,7 @@ public class MouseInputManager : IInputManager
 
     public void MapInput(string input, int button)
     {
-        var buttonEnum = (MouseButtons) button;
+        var buttonEnum = (MouseButtons)button;
         if (!InputButtonStateMap.TryAdd(input, new MouseButtonStatus(buttonEnum)))
         {
             InputButtonStateMap[input] = new MouseButtonStatus(buttonEnum);
