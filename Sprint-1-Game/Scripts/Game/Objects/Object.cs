@@ -28,7 +28,7 @@ public abstract class Object : IObject
     public abstract void SnapBehavior();
     public void Update(int dtMs)
     {
-        if (Pushable)
+        if (Pushable && !IsDestroyed)
         {
             Sprite.Position = new Vector2(Sprite.Position.X + XSpeed * dtMs, Sprite.Position.Y + YSpeed * dtMs);
         }
@@ -39,13 +39,13 @@ public abstract class Object : IObject
     {
         if(IsDestroyed && Sprite.IsFinished) destroyPlayed = true;
         if (destroyPlayed) return;
-        Sprite.Texture ??= Texture;
+        if(Sprite.Texture == null) Sprite.Texture ??= Texture;
         Sprite.Draw(sb);
     }
     public void Destroy()
     {
         if(IsDestroyed || !Destructible) return;
-        Sprite = Sprite.ConvertToAnimated("Explode");
+        Sprite = Sprite.ConvertToAnimated("Destroy");
         AudioManager.PlaySound("destroy");
         IsDestroyed = true;
     }

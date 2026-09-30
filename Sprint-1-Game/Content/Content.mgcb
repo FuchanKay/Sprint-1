@@ -106,19 +106,6 @@
 /processorParam:Version=3.8.5.1
 /build:ObjectSprites/bombSprites.png
 
-#begin ObjectSprites/bombSprites.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.1
-/build:ObjectSprites/bombSprites.png
-
 #begin ObjectSprites/exitDoor.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -158,6 +145,19 @@
 /processorParam:Version=3.8.5.1
 /build:ObjectSprites/rock.png
 
+#begin ObjectSprites/rockSprites.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:ObjectSprites/rockSprites.png
+
 #begin ObjectSprites/stoneBlock.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -170,6 +170,19 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.1
 /build:ObjectSprites/stoneBlock.jpg
+
+#begin ObjectSprites/stoneBlockSprites.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:ObjectSprites/stoneBlockSprites.png
 
 #begin ObjectSprites/stoneWall.png
 /importer:TextureImporter
@@ -196,6 +209,19 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.1
 /build:ObjectSprites/timedBomb.jpg
+
+#begin ObjectSprites/timedBombSprites.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:ObjectSprites/timedBombSprites.png
 
 #begin ObjectSprites/vines.png
 /importer:TextureImporter

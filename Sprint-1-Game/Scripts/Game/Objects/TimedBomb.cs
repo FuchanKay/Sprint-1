@@ -7,7 +7,7 @@ public class TimedBomb(Vector2 pos, IAudioManager am, ITextureAtlas textureAtlas
 {
     public static Texture2D ObjectTexture { get; set; }
     protected override Texture2D Texture => ObjectTexture;
-    protected override string IdleState => "BombIdle";
+    protected override string IdleState => "TimedBombIdle";
     protected override bool Pushable => true;
     protected override bool Destructible => false;
     public int RemainingTime = 1;

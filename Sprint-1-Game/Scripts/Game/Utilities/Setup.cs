@@ -33,14 +33,14 @@ public class Setup(ContentManager content)
         ExitGameButton.ButtonTexture = content.Load<Texture2D>("Images/exit-button");
 
         // Placeholder Sprites
-        StoneBlock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneBlock");
-        Rock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/rock");
+        StoneBlock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneBlockSprites");
+        Rock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/rockSprites");
         StoneWall.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneWall");
         Bomb.ObjectTexture = content.Load<Texture2D>("ObjectSprites/bombSprites");
         ExitDoor.ObjectTexture = content.Load<Texture2D>("ObjectSprites/exitDoor");
         Pylon.ObjectTexture = content.Load<Texture2D>("ObjectSprites/pylon");
         Vine.ObjectTexture = content.Load<Texture2D>("ObjectSprites/vines");
-        TimedBomb.ObjectTexture = content.Load<Texture2D>("ObjectSprites/timedBomb");
+        TimedBomb.ObjectTexture = content.Load<Texture2D>("ObjectSprites/timedBombSprites");
 
         //TODO: Remove this when sprite becomes its own thing
         GameplaySceneController.SproutTexture = content.Load<Texture2D>("Images/player-sprites");

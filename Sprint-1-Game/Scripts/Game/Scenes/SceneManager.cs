@@ -113,7 +113,11 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         // AddAnimation(name, row, numFrames, width, height, delay)
         texAtlas.AddAnimation("SproutWalkLeft", 1, 6, 64, 64, 100);
         texAtlas.AddAnimation("Explode", 1, 4, 105, 96, 150);
+        texAtlas.AddAnimation("Destroy", 1, 4, 105, 96, 150);
         texAtlas.AddAnimation("BombIdle", 0, 1, 86, 96, 0);
+        texAtlas.AddAnimation("TimedBombIdle", 0, 1, 57, 96, 0);
+        texAtlas.AddAnimation("StoneBlockIdle", 0, 1, 96, 96, 0);
+        texAtlas.AddAnimation("RockIdle", 0, 1, 96, 96, 0);
         // AddRegion(name, column, row, width, height)
         texAtlas.AddRegion("SproutIdle", 0, 5, 64, 64);
         
