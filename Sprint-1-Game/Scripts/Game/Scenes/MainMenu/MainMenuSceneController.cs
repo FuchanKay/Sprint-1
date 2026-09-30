@@ -7,8 +7,8 @@ namespace Scripts.Game;
 public class MainMenuSceneController(ISceneManager sceneManager, IInputManager mouseInput, IAudioManager audioManager) : ISceneController
 {
     public readonly static string Name = "Main Menu";
-    private readonly static int PlayGameButtonX = 200, PlayGameButtonY = 200;
-    private readonly static int ExitGameButtonX = 200, ExitGameButtonY = 300;
+    private readonly static int PlayGameButtonX = 500, PlayGameButtonY = 200;
+    private readonly static int ExitGameButtonX = 500, ExitGameButtonY = 300;
     private Button PlayGameButton;
     private Button ExitGameButton;
 

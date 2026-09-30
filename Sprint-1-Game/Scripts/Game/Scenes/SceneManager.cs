@@ -15,10 +15,26 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
     {
         ShouldExit = false;
 
-        MapDefaultInputs();
-
         AddScenesToMap();
 
+        MapDefaultInputs();
+
+        AddAnimations();
+
+        CurrentScene = NameSceneMap[MainMenuSceneController.Name];
+        CurrentScene.Init();
+    }
+
+    public void Restart()
+    {
+        NameSceneMap.Clear();
+        AddScenesToMap();
+
+        buttonInput.ClearMapping();
+        mouseInput.ClearMapping();
+        MapDefaultInputs();
+
+        aniAtlas.ClearMapping();
         AddAnimations();
 
         CurrentScene = NameSceneMap[MainMenuSceneController.Name];
@@ -30,11 +46,15 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         UpdateInputs();
 
         //Later on in development exiting game should not be mapped to a key but decent temporary solution for now. 
+        if (buttonInput.IsPressed("Restart Game"))
+        {
+            Restart();
+        }
+
         if (buttonInput.IsPressed("Exit Game"))
         {
             ExitGame();
         }
-
         CurrentScene.Update(dtMs);
     }
 
@@ -72,8 +92,11 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         buttonInput.MapInput("Move West", (int) Keys.A);
         buttonInput.MapInput("Destroy", (int) Keys.Space); 
         buttonInput.MapInput("Snap", (int) Keys.E);
+        buttonInput.MapInput("Cycle Block Left", (int) Keys.T);
+        buttonInput.MapInput("Cycle Block Right", (int) Keys.Y);
 
-        buttonInput.MapInput("Exit Game", (int) Keys.Escape);
+        buttonInput.MapInput("Exit Game", (int) Keys.Q);
+        buttonInput.MapInput("Restart Game", (int) Keys.R);
         
         mouseInput.MapInput("Select", (int) MouseButtons.Left);
     }

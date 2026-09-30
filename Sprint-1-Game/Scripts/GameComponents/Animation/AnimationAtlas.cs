@@ -34,4 +34,8 @@ public class AnimationAtlas : IAnimationAtlas
         Animations.TryAdd(name, animation);
     }
 
+    public void ClearMapping()
+    {
+        Animations.Clear();
+    }
 }

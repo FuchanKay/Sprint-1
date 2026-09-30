@@ -11,14 +11,13 @@ public class Setup(ContentManager content)
     //TODO: If there are any save file stuff that needs to be resolved it should be done here. 
     private AudioManager AudioManager;
 
-
     public void Initialize(out SceneManager sceneManager)
     {
         KeyboardInputManager keyboardInput = new();
         MouseInputManager mouseInput = new();
-        AnimationAtlas aniAtlas = new();
+        AnimationAtlas animationAtlas = new();
         AudioManager = new();
-        sceneManager = new(keyboardInput, mouseInput, AudioManager, aniAtlas);
+        sceneManager = new(keyboardInput, mouseInput, AudioManager, animationAtlas);
         sceneManager.Init();
     }
 
