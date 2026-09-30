@@ -1,9 +1,10 @@
 namespace Scripts.GameComponents;
 
-public class StaticSprite(ITextureAtlas textureAtlas) : Sprite
+public class StaticSprite(ITextureAtlas textureAtlas) : Sprite(textureAtlas)
 {
-    public void SetRegion(string name)
+    public override void Update(int dtMs) {}
+    public override void SetState(string name)
     {
-        CurrentRegion = textureAtlas.GetRegion(name);
+        CurrentRegion = TexAtlas.GetRegion(name);
     }
 }

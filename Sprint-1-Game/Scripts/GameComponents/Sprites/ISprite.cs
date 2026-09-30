@@ -14,6 +14,10 @@ public interface ISprite
     public float Scale { get; set; }
     public SpriteEffects Effects { get; set; }
     public float LayerDepth { get; set; }
+    void Update(int dtMs);
     void Draw(SpriteBatch sb);
+    void SetState(string name);
+    StaticSprite ConvertToStatic(string name);
+    AnimatedSprite ConvertToAnimated(string name);
 
 }

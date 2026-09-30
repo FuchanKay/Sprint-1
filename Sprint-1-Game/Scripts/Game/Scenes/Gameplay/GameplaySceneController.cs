@@ -11,27 +11,19 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
     private int timer = 0;
 
     // SPRITE TESTS
-    private bool isMoving = false;
     private int SproutTimer = 0;
-    private AnimatedSprite AnimatedSprout;
-    private StaticSprite StaticSprout;
+    private ISprite Sprout;
     public static Texture2D SproutTexture;
 
     public void Init()
     {
         _exampleObject = new StoneBlock(new Vector2(300, 300), audioManager);
 
-        AnimatedSprout = new AnimatedSprite(texAtlas);
-        AnimatedSprout.SetAnimation("SproutWalkRight");
-        AnimatedSprout.Position = new Vector2(800, 500);
-        AnimatedSprout.Texture = SproutTexture;
+        Sprout = new AnimatedSprite(texAtlas);
+        Sprout.SetState("SproutWalkRight");
+        Sprout.Position = new Vector2(800, 500);
+        Sprout.Texture = SproutTexture;
 
-        StaticSprout = new StaticSprite(texAtlas);
-        StaticSprout.SetRegion("SproutIdle");
-        StaticSprout.Position = new Vector2(800, 500);
-        StaticSprout.Texture = SproutTexture;
-
-        // placeholder song to play in the background of the gameplay scene
         audioManager.PlaySong("song");
     }
 
@@ -39,22 +31,21 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
     {
 
         // TEST
-        AnimatedSprout.Update(dtMs);
+        Sprout.Update(dtMs);
         SproutTimer++;
         switch (SproutTimer)
         {
             case 1:
-                isMoving = true;
-                AnimatedSprout.SetAnimation("SproutWalkRight");
+                Sprout = Sprout.ConvertToAnimated("SproutWalkRight");
                 break;
             case 100:
-                 AnimatedSprout.SetAnimation("SproutWalkDown");
+                 Sprout.SetState("SproutWalkDown");
                  break;
             case 200:
-                AnimatedSprout.SetAnimation("SproutWalkLeft");
+                Sprout.SetState("SproutWalkLeft");
                 break;
             case 300:
-                isMoving = false;
+                Sprout = Sprout.ConvertToStatic("SproutIdle");
                 break;
             case 400:
                 SproutTimer = 0;
@@ -132,12 +123,6 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
     public void Draw(SpriteBatch sb)
     {
         _exampleObject.Draw(sb);
-        if(isMoving)
-        {
-            AnimatedSprout.Draw(sb);
-        } else
-        {
-            StaticSprout.Draw(sb);
-        }
+        Sprout.Draw(sb);
     }
 }

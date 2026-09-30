@@ -1,12 +1,15 @@
+using System.ComponentModel.Design;
+using System.Diagnostics;
+
 namespace Scripts.GameComponents;
-public class AnimatedSprite(ITextureAtlas textureAtlas) : Sprite
+public class AnimatedSprite(ITextureAtlas textureAtlas) : Sprite(textureAtlas)
 {
     private Animation CurrentAnimation;
     private int CurrentFrameIndex;
     private int Elapsed;
     public bool IsFinished { get; private set; } = false;
 
-    public void Update(int dtMs)
+    public override void Update(int dtMs)
     {
         Elapsed += dtMs;
         IsFinished = false;
@@ -26,9 +29,9 @@ public class AnimatedSprite(ITextureAtlas textureAtlas) : Sprite
         CurrentRegion = CurrentAnimation.Frames[CurrentFrameIndex];
     }
 
-    public void SetAnimation(string animationName)
+    public override void SetState(string animationName)
     {
-        CurrentAnimation = textureAtlas.GetAnimation(animationName);
+        CurrentAnimation = TexAtlas.GetAnimation(animationName);
         CurrentFrameIndex = 0;
         CurrentRegion = CurrentAnimation.Frames[CurrentFrameIndex];
     }
