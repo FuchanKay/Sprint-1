@@ -15,9 +15,9 @@ public class Setup(ContentManager content)
     {
         KeyboardInputManager keyboardInput = new();
         MouseInputManager mouseInput = new();
-        AnimationAtlas animationAtlas = new();
+        TextureAtlas texAtlas = new();
         AudioManager = new();
-        sceneManager = new(keyboardInput, mouseInput, AudioManager, animationAtlas);
+        sceneManager = new(keyboardInput, mouseInput, AudioManager, texAtlas);
         sceneManager.Init();
     }
 
