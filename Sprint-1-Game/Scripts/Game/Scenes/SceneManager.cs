@@ -93,5 +93,6 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         texAtlas.AddAnimation("SproutWalkRight",0, 6, 64, 64);
         // AddAnimation(name, numFrames, row, width, height, delay)
         texAtlas.AddAnimation("SproutWalkLeft", 1, 6, 64, 64, 100);
+        texAtlas.AddRegion("SproutIdle", 0, 320, 64, 64);
     }
 }
