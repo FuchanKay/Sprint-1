@@ -1,7 +1,6 @@
 using Microsoft.Xna.Framework;
 public interface ICharacter
 {
-    public int Health { get; set; }
     public float Speed { get; set; }
     public Vector2 Pos { get; set; }
     public void MoveNorth();

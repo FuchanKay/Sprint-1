@@ -44,6 +44,7 @@ public class Setup(ContentManager content)
         TimedBomb.ObjectTexture = content.Load<Texture2D>("ObjectSprites/timedBomb");
 
         //TODO: Remove this when sprite becomes its own thing
+        Sprout.SproutTexture1 = content.Load<Texture2D>("Images/player-sprites");
         GameplaySceneController.SproutTexture = content.Load<Texture2D>("Images/player-sprites");
     }
     private void LoadAudio()

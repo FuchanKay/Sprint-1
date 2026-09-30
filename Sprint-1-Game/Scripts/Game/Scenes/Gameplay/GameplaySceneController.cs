@@ -12,11 +12,13 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
     private int SproutTimer = 0;
     private AnimatedSprite Sprout;
     public static Texture2D SproutTexture;
+    private Sprout ExampleSprout;
 
     public void Init()
     {
         _exampleObject = new StoneBlock(new Vector2(300, 300), audioManager);
-
+        ExampleSprout = new Sprout(new Vector2(400, 400), 8, Direction.South);
+        ExampleSprout.initialize();
         Sprout = new AnimatedSprite(aniAtlas);
         Sprout.SetAnimation("SproutWalkRight");
 
@@ -26,7 +28,8 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
 
     public void Update(int dtMs)
     {
-
+        //test
+        ExampleSprout.Update(dtMs);
         // TEST
         SproutTimer++;
         Sprout.Update(dtMs);
@@ -111,6 +114,7 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
 
     public void Draw(SpriteBatch sb)
     {
+        ExampleSprout.Draw(sb);
         _exampleObject.Draw(sb);
         var rect = Sprout.GetFrame();
         sb.Draw(SproutTexture, new Vector2(800, 500), rect, Color.White);
