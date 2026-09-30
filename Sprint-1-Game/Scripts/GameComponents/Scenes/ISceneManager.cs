@@ -11,6 +11,8 @@ public interface ISceneManager
 
     void Init();
 
+    void Restart();
+
     void Update(int dtMs);
 
     void Draw(SpriteBatch sb);

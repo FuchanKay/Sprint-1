@@ -6,7 +6,7 @@ namespace Scripts.GameComponents;
 public class SongController : IAudioController
 {
     private readonly Dictionary<string, SongConfig> SongMap = [];
-    public float Volume {get; set;} = 1.0f;
+    public float Volume { get; set; } = 1.0f;
 
     public void Play(string songName)
     {

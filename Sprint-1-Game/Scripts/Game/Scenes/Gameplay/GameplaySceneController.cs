@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
@@ -7,9 +8,21 @@ namespace Scripts.Game;
 public class GameplaySceneController(ISceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas texAtlas) : ISceneController
 {
     public readonly static string Name = "GamePlay";
-    private Object _exampleObject;
-    private int timer = 0;
-
+    private Object[] Objects =
+    {
+        new StoneBlock(new Vector2(300, 300), audioManager),
+        new Rock(new Vector2(300, 300), audioManager),
+        new Bomb(new Vector2(300, 300), audioManager),
+        new ExitDoor(new Vector2(300, 300), audioManager),
+        new Pylon(new Vector2(300, 300), audioManager),
+        new Rock(new Vector2(300, 300), audioManager),
+        new StoneBlock(new Vector2(300, 300), audioManager),
+        new StoneWall(new Vector2(300, 300), audioManager),
+        new TimedBomb(new Vector2(300, 300), audioManager),
+        new Vine(new Vector2(300, 300), audioManager)
+    };
+    private Object CurrentObject;
+    private int ObjectPointer = 0;
     // SPRITE TESTS
     private int SproutTimer = 0;
     private ISprite Sprout;
@@ -17,7 +30,7 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
 
     public void Init()
     {
-        _exampleObject = new StoneBlock(new Vector2(300, 300), audioManager);
+        CurrentObject = Objects[ObjectPointer];
 
         Sprout = new AnimatedSprite(texAtlas);
         Sprout.SetState("SproutWalkRight");
@@ -39,8 +52,8 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
                 Sprout = Sprout.ConvertToAnimated("SproutWalkRight");
                 break;
             case 100:
-                 Sprout.SetState("SproutWalkDown");
-                 break;
+                Sprout.SetState("SproutWalkDown");
+                break;
             case 200:
                 Sprout.SetState("SproutWalkLeft");
                 break;
@@ -54,75 +67,23 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
                 break;
         }
 
-        // This is placeholder code that cycles an object through each object type for demonstration purposes
-        Vector2 currentPosition = _exampleObject.Position;
-        timer++;
-        switch (timer)
+        if (buttonInput.IsPressed("Cycle Block Left"))
         {
-            case 1:
-                _exampleObject = new StoneBlock(currentPosition, audioManager);
-                break;
-            case 50:
-                _exampleObject.Destroy();
-                break;
-            case 100:
-                _exampleObject = new Rock(currentPosition, audioManager);
-                break;
-            case 125:
-                _exampleObject.MoveLeft();
-                break;
-            case 150:
-                _exampleObject.MoveRight();
-                break;
-            case 175:
-                _exampleObject.Destroy();
-                break;
-            case 200:
-                _exampleObject = new StoneWall(currentPosition, audioManager);
-                break;
-            case 300:
-                _exampleObject = new Bomb(currentPosition, audioManager);
-                break;
-            case 325:
-                _exampleObject.MoveLeft();
-                break;
-            case 350:
-                _exampleObject.MoveRight();
-                break;
-            case 375:
-                _exampleObject.SnapBehavior();
-                break;
-            case 400:
-                _exampleObject = new TimedBomb(currentPosition, audioManager);
-                break;
-            case 425:
-                _exampleObject.MoveLeft();
-                break;
-            case 450:
-                _exampleObject.MoveRight();
-                break;
-            case 500:
-                _exampleObject = new ExitDoor(currentPosition, audioManager);
-                break;
-            case 600:
-                _exampleObject = new Pylon(currentPosition, audioManager);
-                break;
-            case 700:
-                _exampleObject = new Vine(currentPosition, audioManager);
-                break;
-            case 800:
-                timer = 0;
-                break;
-            default:
-                break;
+            ObjectPointer--;
+            if (ObjectPointer < 0) ObjectPointer = Objects.Length - 1;
         }
-
-        _exampleObject.Update(dtMs);
+        if (buttonInput.IsPressed("Cycle Block Right"))
+        {
+            ObjectPointer++;
+            if (ObjectPointer >= Objects.Length) ObjectPointer = 0;
+        }
+        CurrentObject = Objects[ObjectPointer];
+        CurrentObject.Update(dtMs);
     }
 
     public void Draw(SpriteBatch sb)
     {
-        _exampleObject.Draw(sb);
+        CurrentObject.Draw(sb);
         Sprout.Draw(sb);
     }
 }

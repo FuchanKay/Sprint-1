@@ -11,7 +11,6 @@ public class Setup(ContentManager content)
     //TODO: If there are any save file stuff that needs to be resolved it should be done here. 
     private AudioManager AudioManager;
 
-
     public void Initialize(out SceneManager sceneManager)
     {
         KeyboardInputManager keyboardInput = new();
@@ -32,7 +31,7 @@ public class Setup(ContentManager content)
     {
         PlayGameButton.ButtonTexture = content.Load<Texture2D>("Images/play-button");
         ExitGameButton.ButtonTexture = content.Load<Texture2D>("Images/exit-button");
-        
+
         // Placeholder Sprites
         StoneBlock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneBlock");
         Rock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/rock");
