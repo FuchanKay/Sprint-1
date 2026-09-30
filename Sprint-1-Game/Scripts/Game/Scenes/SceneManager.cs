@@ -34,7 +34,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         mouseInput.ClearMapping();
         MapDefaultInputs();
 
-        aniAtlas.ClearMapping();
+        texAtlas.ClearMapping();
         AddAnimations();
 
         CurrentScene = NameSceneMap[MainMenuSceneController.Name];
