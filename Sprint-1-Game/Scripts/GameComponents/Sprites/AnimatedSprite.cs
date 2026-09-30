@@ -2,6 +2,7 @@ using System.ComponentModel.Design;
 using System.Diagnostics;
 
 namespace Scripts.GameComponents;
+
 public class AnimatedSprite(ITextureAtlas textureAtlas) : Sprite(textureAtlas)
 {
     private Animation CurrentAnimation;

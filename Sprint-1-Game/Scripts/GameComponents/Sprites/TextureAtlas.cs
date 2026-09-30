@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 
 namespace Scripts.GameComponents;
+
 public class TextureAtlas : ITextureAtlas
 {
     private const int Delay = 100;
@@ -17,7 +18,7 @@ public class TextureAtlas : ITextureAtlas
 
     public Rectangle GetRegion(string name)
     {
-        if(!Regions.TryGetValue(name, out Rectangle region)) 
+        if (!Regions.TryGetValue(name, out Rectangle region))
         {
             throw new ArgumentException("Name " + name + " does not exist in Regions");
         }
@@ -38,7 +39,7 @@ public class TextureAtlas : ITextureAtlas
 
     public Animation GetAnimation(string name)
     {
-        if(!Animations.TryGetValue(name, out Animation animation)) 
+        if (!Animations.TryGetValue(name, out Animation animation))
         {
             throw new ArgumentException("Name " + name + " does not exist in Animations");
         }
@@ -55,4 +56,8 @@ public class TextureAtlas : ITextureAtlas
         Animations.TryAdd(name, animation);
     }
 
+    public void ClearMapping()
+    {
+        Animations.Clear();
+    }
 }

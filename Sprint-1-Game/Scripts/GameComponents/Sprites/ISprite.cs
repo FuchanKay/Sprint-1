@@ -10,7 +10,7 @@ public interface ISprite
     public Rectangle CurrentRegion { get; set; }
     public Color Color { get; set; }
     public float Rotation { get; set; }
-    public Vector2 Origin => new Vector2(CurrentRegion.Width/2, CurrentRegion.Height/2);
+    public Vector2 Origin => new Vector2(CurrentRegion.Width / 2, CurrentRegion.Height / 2);
     public float Scale { get; set; }
     public SpriteEffects Effects { get; set; }
     public float LayerDepth { get; set; }

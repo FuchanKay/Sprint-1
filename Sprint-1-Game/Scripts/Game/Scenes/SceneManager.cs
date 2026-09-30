@@ -15,9 +15,9 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
     {
         ShouldExit = false;
 
-        MapDefaultInputs();
-
         AddScenesToMap();
+
+        MapDefaultInputs();
 
         AddAnimations();
 
@@ -25,16 +25,32 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         CurrentScene.Init();
     }
 
+    public void Restart()
+    {
+        NameSceneMap.Clear();
+
+        buttonInput.ClearMapping();
+        mouseInput.ClearMapping();
+
+        texAtlas.ClearMapping();
+
+        Init();
+    }
+
     public void Update(int dtMs)
     {
         UpdateInputs();
 
         //Later on in development exiting game should not be mapped to a key but decent temporary solution for now. 
+        if (buttonInput.IsPressed("Restart Game"))
+        {
+            Restart();
+        }
+
         if (buttonInput.IsPressed("Exit Game"))
         {
             ExitGame();
         }
-
         CurrentScene.Update(dtMs);
     }
 
@@ -51,7 +67,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
             scene.Init();
         }
     }
-    
+
     public void ExitGame()
     {
         ShouldExit = true;
@@ -66,16 +82,19 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
     private void MapDefaultInputs()
     {
         //TODO: mapping input example. Should be removed
-        buttonInput.MapInput("Move North", (int) Keys.W);
-        buttonInput.MapInput("Move East", (int) Keys.D);
-        buttonInput.MapInput("Move South", (int) Keys.S);
-        buttonInput.MapInput("Move West", (int) Keys.A);
-        buttonInput.MapInput("Destroy", (int) Keys.Space); 
-        buttonInput.MapInput("Snap", (int) Keys.E);
+        buttonInput.MapInput("Move North", (int)Keys.W);
+        buttonInput.MapInput("Move East", (int)Keys.D);
+        buttonInput.MapInput("Move South", (int)Keys.S);
+        buttonInput.MapInput("Move West", (int)Keys.A);
+        buttonInput.MapInput("Destroy", (int)Keys.Space);
+        buttonInput.MapInput("Snap", (int)Keys.E);
+        buttonInput.MapInput("Cycle Block Left", (int)Keys.T);
+        buttonInput.MapInput("Cycle Block Right", (int)Keys.Y);
 
-        buttonInput.MapInput("Exit Game", (int) Keys.Escape);
-        
-        mouseInput.MapInput("Select", (int) MouseButtons.Left);
+        buttonInput.MapInput("Exit Game", (int)Keys.Q);
+        buttonInput.MapInput("Restart Game", (int)Keys.R);
+
+        mouseInput.MapInput("Select", (int)MouseButtons.Left);
     }
 
     private void AddScenesToMap()
@@ -90,7 +109,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
     private void AddAnimations()
     {
         texAtlas.AddAnimation("SproutWalkDown", 3, 6, 64, 64);
-        texAtlas.AddAnimation("SproutWalkRight",0, 6, 64, 64);
+        texAtlas.AddAnimation("SproutWalkRight", 0, 6, 64, 64);
         // AddAnimation(name, numFrames, row, width, height, delay)
         texAtlas.AddAnimation("SproutWalkLeft", 1, 6, 64, 64, 100);
         // AddRegion(name, column, row, width, height)
