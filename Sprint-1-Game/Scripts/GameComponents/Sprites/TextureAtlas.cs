@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 
 namespace Scripts.GameComponents;
@@ -8,14 +10,18 @@ public class TextureAtlas : ITextureAtlas
     private readonly Dictionary<string, Rectangle> Regions = [];
     private readonly Dictionary<string, Animation> Animations = [];
 
-    public void AddRegion(string name, int x, int y, int width, int height)
+    public void AddRegion(string name, int column, int row, int width, int height)
     {
-        Regions.TryAdd(name, new Rectangle(x, y, width, height));
+        Regions.TryAdd(name, new Rectangle(column * width, row * height, width, height));
     }
 
     public Rectangle GetRegion(string name)
     {
-        return Regions[name];
+        if(!Regions.TryGetValue(name, out Rectangle region)) 
+        {
+            throw new ArgumentException("Name does not exist in Regions", nameof(name));
+        }
+        return region;
     }
 
     public void AddAnimation(string name, int row, int numFrames, int width, int height)
@@ -30,9 +36,13 @@ public class TextureAtlas : ITextureAtlas
         LoadAnimation(name, row, numFrames, width, height, animation);
     }
 
-    public Animation GetAnimation(string animationName)
+    public Animation GetAnimation(string name)
     {
-        return Animations[animationName];
+        if(!Animations.TryGetValue(name, out Animation animation)) 
+        {
+            throw new ArgumentException("Name does not exist in Animations", nameof(name));
+        }
+        return animation;
     }
 
     private void LoadAnimation(string name, int row, int numFrames, int width, int height, Animation animation)
