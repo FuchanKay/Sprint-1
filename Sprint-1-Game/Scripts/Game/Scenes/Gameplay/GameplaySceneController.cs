@@ -10,19 +10,19 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
     public readonly static string Name = "GamePlay";
     private Object[] Objects =
     {
-        new StoneBlock(new Vector2(300, 300), audioManager),
-        new Rock(new Vector2(300, 300), audioManager),
-        new Bomb(new Vector2(300, 300), audioManager),
-        new ExitDoor(new Vector2(300, 300), audioManager),
-        new Pylon(new Vector2(300, 300), audioManager),
-        new Rock(new Vector2(300, 300), audioManager),
-        new StoneBlock(new Vector2(300, 300), audioManager),
-        new StoneWall(new Vector2(300, 300), audioManager),
-        new TimedBomb(new Vector2(300, 300), audioManager),
-        new Vine(new Vector2(300, 300), audioManager)
+        new StoneBlock(new Vector2(300, 300), audioManager, texAtlas),
+        new Rock(new Vector2(300, 300), audioManager, texAtlas),
+        new Bomb(new Vector2(300, 300), audioManager, texAtlas),
+        new ExitDoor(new Vector2(300, 300), audioManager, texAtlas),
+        new Pylon(new Vector2(300, 300), audioManager, texAtlas),
+        new Rock(new Vector2(300, 300), audioManager, texAtlas),
+        new StoneBlock(new Vector2(300, 300), audioManager, texAtlas),
+        new StoneWall(new Vector2(300, 300), audioManager, texAtlas),
+        new TimedBomb(new Vector2(300, 300), audioManager, texAtlas),
+        new Vine(new Vector2(300, 300), audioManager, texAtlas)
     };
     private Object CurrentObject;
-    private int ObjectPointer = 0;
+    private int ObjectPointer = 2;
     // SPRITE TESTS
     private int SproutTimer = 0;
     private ISprite Sprout;
@@ -78,6 +78,8 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
             if (ObjectPointer >= Objects.Length) ObjectPointer = 0;
         }
         CurrentObject = Objects[ObjectPointer];
+        if(buttonInput.IsPressed("Destroy")) CurrentObject.Destroy();
+        if(buttonInput.IsPressed("Snap")) CurrentObject.SnapBehavior();
         CurrentObject.Update(dtMs);
     }
 

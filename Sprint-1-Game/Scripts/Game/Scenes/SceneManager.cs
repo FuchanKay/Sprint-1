@@ -15,11 +15,11 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
     {
         ShouldExit = false;
 
+        AddAnimations();
+
         AddScenesToMap();
 
         MapDefaultInputs();
-
-        AddAnimations();
 
         CurrentScene = NameSceneMap[MainMenuSceneController.Name];
         CurrentScene.Init();
@@ -110,9 +110,12 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
     {
         texAtlas.AddAnimation("SproutWalkDown", 3, 6, 64, 64);
         texAtlas.AddAnimation("SproutWalkRight", 0, 6, 64, 64);
-        // AddAnimation(name, numFrames, row, width, height, delay)
+        // AddAnimation(name, row, numFrames, width, height, delay)
         texAtlas.AddAnimation("SproutWalkLeft", 1, 6, 64, 64, 100);
+        texAtlas.AddAnimation("Explode", 1, 4, 115, 96, 150);
+        texAtlas.AddAnimation("BombIdle", 0, 1, 86, 96, 0);
         // AddRegion(name, column, row, width, height)
         texAtlas.AddRegion("SproutIdle", 0, 5, 64, 64);
+        
     }
 }
