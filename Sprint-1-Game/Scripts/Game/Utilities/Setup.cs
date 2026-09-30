@@ -50,5 +50,7 @@ public class Setup(ContentManager content)
     {
         AudioManager.MapSound("snap", content.Load<SoundEffect>("audio/snap"), 1.0f);
         AudioManager.MapSong("song", content.Load<Song>("audio/song"), 0.2f);
+        AudioManager.MapSound("explosion", content.Load<SoundEffect>("audio/explosion"), 0.5f);
+        AudioManager.MapSound("destroy", content.Load<SoundEffect>("audio/stoneDestroy"), 0.5f);
     }
 }

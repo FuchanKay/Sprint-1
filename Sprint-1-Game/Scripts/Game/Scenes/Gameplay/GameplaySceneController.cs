@@ -58,49 +58,52 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
             case 100:
                 _exampleObject = new Rock(currentPosition, audioManager);
                 break;
-            case 125:
-                _exampleObject.MoveLeft();
-                break;
             case 150:
-                _exampleObject.MoveRight();
-                break;
-            case 175:
-                _exampleObject.Destroy();
+                _exampleObject.MoveLeft();
                 break;
             case 200:
-                _exampleObject = new StoneWall(currentPosition, audioManager);
+                _exampleObject.MoveRight();
+                break;
+            case 250:
+                _exampleObject.Destroy();
                 break;
             case 300:
-                _exampleObject = new Bomb(currentPosition, audioManager);
-                break;
-            case 325:
-                _exampleObject.MoveLeft();
-                break;
-            case 350:
-                _exampleObject.MoveRight();
-                break;
-            case 375:
-                _exampleObject.SnapBehavior();
+                _exampleObject = new StoneWall(currentPosition, audioManager);
                 break;
             case 400:
-                _exampleObject = new TimedBomb(currentPosition, audioManager);
-                break;
-            case 425:
-                _exampleObject.MoveLeft();
+                _exampleObject = new Bomb(currentPosition, audioManager);
                 break;
             case 450:
-                _exampleObject.MoveRight();
+                _exampleObject.MoveLeft();
                 break;
             case 500:
-                _exampleObject = new ExitDoor(currentPosition, audioManager);
+                _exampleObject.MoveRight();
+                break;
+            case 550:
+                _exampleObject.SnapBehavior();
                 break;
             case 600:
-                _exampleObject = new Pylon(currentPosition, audioManager);
+                _exampleObject = new TimedBomb(currentPosition, audioManager);
+                break;
+            case 650:
+                _exampleObject.MoveLeft();
                 break;
             case 700:
-                _exampleObject = new Vine(currentPosition, audioManager);
+                _exampleObject.MoveRight();
+                break;
+            case 750:
+                _exampleObject.SnapBehavior();
                 break;
             case 800:
+                _exampleObject = new ExitDoor(currentPosition, audioManager);
+                break;
+            case 900:
+                _exampleObject = new Pylon(currentPosition, audioManager);
+                break;
+            case 1000:
+                _exampleObject = new Vine(currentPosition, audioManager);
+                break;
+            case 1100:
                 timer = 0;
                 break;
             default:
