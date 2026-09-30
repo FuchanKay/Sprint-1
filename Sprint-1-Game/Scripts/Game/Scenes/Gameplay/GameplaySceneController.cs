@@ -4,23 +4,26 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class GameplaySceneController(ISceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, IAnimationAtlas aniAtlas) : ISceneController
+public class GameplaySceneController(ISceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas texAtlas) : ISceneController
 {
     public readonly static string Name = "GamePlay";
     private Object _exampleObject;
     private int timer = 0;
+
+    // SPRITE TESTS
     private int SproutTimer = 0;
-    private AnimatedSprite Sprout;
+    private ISprite Sprout;
     public static Texture2D SproutTexture;
 
     public void Init()
     {
         _exampleObject = new StoneBlock(new Vector2(300, 300), audioManager);
 
-        Sprout = new AnimatedSprite(aniAtlas);
-        Sprout.SetAnimation("SproutWalkRight");
+        Sprout = new AnimatedSprite(texAtlas);
+        Sprout.SetState("SproutWalkRight");
+        Sprout.Position = new Vector2(800, 500);
+        Sprout.Texture = SproutTexture;
 
-        // placeholder song to play in the background of the gameplay scene
         audioManager.PlaySong("song");
     }
 
@@ -28,19 +31,27 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
     {
 
         // TEST
-        SproutTimer++;
         Sprout.Update(dtMs);
-        if(SproutTimer == 100)
+        SproutTimer++;
+        switch (SproutTimer)
         {
-            Sprout.SetAnimation("SproutWalkDown");
-        } 
-        else if(SproutTimer == 200)
-        {
-            Sprout.SetAnimation("SproutWalkLeft");
-        } 
-        else if(SproutTimer == 300) {
-            Sprout.SetAnimation("SproutWalkRight");
-            SproutTimer = 0; 
+            case 1:
+                Sprout = Sprout.ConvertToAnimated("SproutWalkRight");
+                break;
+            case 100:
+                 Sprout.SetState("SproutWalkDown");
+                 break;
+            case 200:
+                Sprout.SetState("SproutWalkLeft");
+                break;
+            case 300:
+                Sprout = Sprout.ConvertToStatic("SproutIdle");
+                break;
+            case 400:
+                SproutTimer = 0;
+                break;
+            default:
+                break;
         }
 
         // This is placeholder code that cycles an object through each object type for demonstration purposes
@@ -112,7 +123,6 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
     public void Draw(SpriteBatch sb)
     {
         _exampleObject.Draw(sb);
-        var rect = Sprout.GetFrame();
-        sb.Draw(SproutTexture, new Vector2(800, 500), rect, Color.White);
+        Sprout.Draw(sb);
     }
 }
