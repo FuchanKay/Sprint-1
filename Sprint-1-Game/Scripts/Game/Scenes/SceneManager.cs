@@ -28,17 +28,13 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
     public void Restart()
     {
         NameSceneMap.Clear();
-        AddScenesToMap();
 
         buttonInput.ClearMapping();
         mouseInput.ClearMapping();
-        MapDefaultInputs();
 
         texAtlas.ClearMapping();
-        AddAnimations();
 
-        CurrentScene = NameSceneMap[MainMenuSceneController.Name];
-        CurrentScene.Init();
+        Init();
     }
 
     public void Update(int dtMs)
