@@ -15,6 +15,7 @@ public class Sprout : Character
     }
     public void initialize()
     {
+        /*
         AnimationAtlas aniAtlas = new();
         // AddAnimation(name, numFrames, row, width, height, delay)
         aniAtlas.AddAnimation("SproutWalkSouth", 3, 6, 64, 64);
@@ -23,11 +24,12 @@ public class Sprout : Character
         aniAtlas.AddAnimation("SproutWalkWest", 1, 6, 64, 64);
         Sprout1 = new AnimatedSprite(aniAtlas);
         Sprout1.SetAnimation("SproutWalkSouth");
+        */
     }   
     
     public void Update(int dtMs)
     {
-        
+        /*
         //switch()
         switch (Direction)
         {
@@ -45,10 +47,10 @@ public class Sprout : Character
                 break;
         }
         Sprout1.Update(dtMs);
+        */
     }
     public void Draw(SpriteBatch sb)
     {
-        var rect = Sprout1.GetFrame();
-        sb.Draw(SproutTexture1, Pos, rect, Color.White);
+     //   sb.Draw(SproutTexture1, Pos, rect, Color.White);
     }
 }

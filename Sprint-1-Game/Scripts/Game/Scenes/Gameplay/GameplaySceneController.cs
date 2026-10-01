@@ -33,9 +33,6 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
     {
         CurrentObject = Objects[ObjectPointer];
 
-        Sprout = new AnimatedSprite(aniAtlas);
-        Sprout.SetAnimation("SproutWalkRight");
-
         // placeholder song to play in the background of the gameplay scene
         audioManager.PlaySong("song");
     }
@@ -84,7 +81,6 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
 
     public void Draw(SpriteBatch sb)
     {
-        _exampleObject.Draw(sb);
         Sprout.Draw(sb);
     }
 }
