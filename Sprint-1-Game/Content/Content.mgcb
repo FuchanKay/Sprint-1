@@ -13,19 +13,19 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Audio/14 Big Fat Bitchie's Blueberry Pie C.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/processorParam:Version=3.8.5.1
-/build:Audio/song.mp3;Audio/song.mp3
-
-#begin Audio/soundreality-finger-snap-sound-423220.mp3
+#begin Audio/snap.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /processorParam:Version=3.8.5.1
-/build:Audio/snap.mp3;Audio/snap.mp3
+/build:Audio/snap.mp3
+
+#begin Audio/song.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.1
+/build:Audio/song.mp3
 
 #begin Images/Exit game button.png
 /importer:TextureImporter
@@ -182,4 +182,56 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.1
 /build:ObjectSprites/vines.png
+
+#begin TileSprites/conveyor_sprites.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:TileSprites/conveyor_sprites.png
+
+#begin TileSprites/Fences.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:TileSprites/Fences.png
+
+#begin TileSprites/Grass.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:TileSprites/Grass.png
+
+#begin TileSprites/Water.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:TileSprites/Water.png
 
