@@ -13,16 +13,16 @@ public class Sprout : Character
         : base(pos, speed, direction)
     {
     }
-    public void initialize()
+    public void Init()
     {
-        AnimationAtlas aniAtlas = new();
+        TextureAtlas aniAtlas = new();
         // AddAnimation(name, numFrames, row, width, height, delay)
         aniAtlas.AddAnimation("SproutWalkSouth", 3, 6, 64, 64);
         aniAtlas.AddAnimation("SproutWalkEast",0, 6, 64, 64);
         aniAtlas.AddAnimation("SproutWalkNorth", 2, 6, 64, 64);
         aniAtlas.AddAnimation("SproutWalkWest", 1, 6, 64, 64);
         Sprout1 = new AnimatedSprite(aniAtlas);
-        Sprout1.SetAnimation("SproutWalkSouth");
+        Sprout1.SetState("SproutWalkSouth");
     }   
     
     public void Update(int dtMs)
@@ -32,23 +32,22 @@ public class Sprout : Character
         switch (Direction)
         {
             case Direction.North:
-                Sprout1.SetAnimation("SproutWalkNorth");
+                Sprout1.SetState("SproutWalkNorth");
                 break;
             case Direction.East:
-                Sprout1.SetAnimation("SproutWalkEast");
+                Sprout1.SetState("SproutWalkEast");
                 break;
             case Direction.South:
-                Sprout1.SetAnimation("SproutWalkSouth");
+                Sprout1.SetState("SproutWalkSouth");
                 break;
             case Direction.West:
-                Sprout1.SetAnimation("SproutWalkWest");
+                Sprout1.SetState("SproutWalkWest");
                 break;
         }
         Sprout1.Update(dtMs);
     }
     public void Draw(SpriteBatch sb)
     {
-        var rect = Sprout1.GetFrame();
-        sb.Draw(SproutTexture1, Pos, rect, Color.White);
+        Sprout1.Draw(sb);
     }
 }

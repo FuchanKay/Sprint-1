@@ -5,7 +5,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class GameplaySceneController(ISceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas texAtlas) : ISceneController
+public class GameplaySceneController(ISceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas) : ISceneController
 {
     public readonly static string Name = "GamePlay";
     private Object[] Objects =
@@ -27,14 +27,14 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
     private int SproutTimer = 0;
     private ISprite Sprout;
     public static Texture2D SproutTexture;
-    private Sprout ExampleSprout;
+    // private Sprout ExampleSprout;
 
     public void Init()
     {
         CurrentObject = Objects[ObjectPointer];
 
-        Sprout = new AnimatedSprite(aniAtlas);
-        Sprout.SetAnimation("SproutWalkRight");
+        Sprout = new AnimatedSprite(textureAtlas);
+        Sprout.SetState("SproutWalkRight");
 
         // placeholder song to play in the background of the gameplay scene
         audioManager.PlaySong("song");
@@ -43,7 +43,7 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
     public void Update(int dtMs)
     {
         //test
-        ExampleSprout.Update(dtMs);
+        // ExampleSprout.Update(dtMs);
         // TEST
         Sprout.Update(dtMs);
         SproutTimer++;
@@ -84,7 +84,7 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
 
     public void Draw(SpriteBatch sb)
     {
-        _exampleObject.Draw(sb);
+        CurrentObject.Draw(sb);
         Sprout.Draw(sb);
     }
 }
