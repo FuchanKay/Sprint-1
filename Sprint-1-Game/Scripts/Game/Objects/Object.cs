@@ -1,11 +1,10 @@
-using System.Diagnostics.Contracts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Scripts.Game;
 namespace Scripts.GameComponents;
 
-public abstract class Object(Vector2 pos, IAudioManager am) : IObject
+public abstract class Object(Vector2 pos, IAudioManager am, ITextureAtlas textureAtlas) : IObject
 {
+    protected string TextureName { get; }
     protected IAudioManager AudioManager { get; } = am;
     public Vector2 Position { get; set; } = pos;
     protected abstract bool Pushable { get; }
@@ -15,15 +14,27 @@ public abstract class Object(Vector2 pos, IAudioManager am) : IObject
     protected float XSpeed = 0.0f;
     protected float YSpeed = 0.0f;
     // Sprite Properties (Potentially moved to a Sprite class in the future)
-    protected abstract Texture2D Texture { get; }
-    protected virtual Rectangle SourceRectangle { get; }
-    protected virtual float Scale { get; } = 1.0f;
-    protected virtual float Rotation { get; } = 0f;
-    protected virtual Color Color { get; } = Color.White;
-    protected virtual Vector2 Origin { get; } = Vector2.Zero;
-    protected virtual float LayerDepth { get; } = 0f;
-    protected virtual SpriteEffects Effects { get; } = SpriteEffects.None;
+
+    ISprite Sprite { get; set; }
+
+    // protected abstract Texture2D Texture { get; }
+    // protected virtual Rectangle SourceRectangle { get; }
+    // protected virtual float Scale { get; } = 1.0f;
+    // protected virtual float Rotation { get; } = 0f;
+    // protected virtual Color Color { get; } = Color.White;
+    // protected virtual Vector2 Origin { get; } = Vector2.Zero;
+    // protected virtual float LayerDepth { get; } = 0f;
+    // protected virtual SpriteEffects Effects { get; } = SpriteEffects.None;
     public abstract void SnapBehavior();
+
+    public void Init()
+    {
+        Sprite = new AnimatedSprite(textureAtlas);
+        Sprite.SetState("SproutWalkRight");
+        Sprite.Position = new Vector2(800, 500);
+        Sprite.Texture = textureAtlas.GetTexture(TextureName);
+    }
+
     public void Update(int dtMs)
     {
         if (Pushable)
@@ -35,17 +46,7 @@ public abstract class Object(Vector2 pos, IAudioManager am) : IObject
     public void Draw(SpriteBatch sb)
     {
         if (IsDestroyed) return;
-        sb.Draw(
-            Texture,
-            Position,
-            SourceRectangle,
-            Color,
-            Rotation,
-            Origin,
-            Scale,
-            Effects,
-            LayerDepth
-        );
+        Sprite.Draw(sb);
     }
     public void Destroy()
     {

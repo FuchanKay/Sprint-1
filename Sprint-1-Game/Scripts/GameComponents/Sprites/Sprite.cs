@@ -6,7 +6,7 @@ namespace Scripts.GameComponents;
 public abstract class Sprite(ITextureAtlas textureAtlas) : ISprite
 {
     protected ITextureAtlas TexAtlas => textureAtlas;
-    public Texture2D Texture { get; set; }
+    private Texture2D Texture;
     public Vector2 Position { get; set; }
     public Rectangle CurrentRegion { get; set; }
     public Color Color { get; set; } = Color.White;
@@ -22,6 +22,11 @@ public abstract class Sprite(ITextureAtlas textureAtlas) : ISprite
     public void Draw(SpriteBatch sb)
     {
         sb.Draw(Texture, Position, CurrentRegion, Color, Rotation, Origin, Scale, Effects, LayerDepth);
+    }
+
+    public void SetTexture(string name)
+    {
+        Texture = textureAtlas.GetTexture(name);
     }
 
     public StaticSprite ConvertToStatic(string name)

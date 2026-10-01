@@ -5,7 +5,6 @@ namespace Scripts.GameComponents;
 
 public interface ISprite
 {
-    public Texture2D Texture { get; set; }
     public Vector2 Position { get; set; }
     public Rectangle CurrentRegion { get; set; }
     public Color Color { get; set; }
@@ -17,6 +16,7 @@ public interface ISprite
     void Update(int dtMs);
     void Draw(SpriteBatch sb);
     void SetState(string name);
+    void SetTexture(string name);
     StaticSprite ConvertToStatic(string name);
     AnimatedSprite ConvertToAnimated(string name);
 

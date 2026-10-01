@@ -51,6 +51,7 @@ public class Setup(ContentManager content)
 
         //TODO: Remove this when sprite becomes its own thing
         GameplaySceneController.SproutTexture = content.Load<Texture2D>("Images/player-sprites");
+        TextureAtlas.AddTexture("Sprout", "Images/player-sprites");
     }
     private void LoadAudio()
     {

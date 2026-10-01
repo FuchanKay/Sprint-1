@@ -1,4 +1,3 @@
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
@@ -10,16 +9,16 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
     public readonly static string Name = "GamePlay";
     private Object[] Objects =
     {
-        new StoneBlock(new Vector2(300, 300), audioManager),
-        new Rock(new Vector2(300, 300), audioManager),
-        new Bomb(new Vector2(300, 300), audioManager),
-        new ExitDoor(new Vector2(300, 300), audioManager),
-        new Pylon(new Vector2(300, 300), audioManager),
-        new Rock(new Vector2(300, 300), audioManager),
-        new StoneBlock(new Vector2(300, 300), audioManager),
-        new StoneWall(new Vector2(300, 300), audioManager),
-        new TimedBomb(new Vector2(300, 300), audioManager),
-        new Vine(new Vector2(300, 300), audioManager)
+        new StoneBlock(new Vector2(300, 300), audioManager, textureAtlas),
+        new Rock(new Vector2(300, 300), audioManager, textureAtlas),
+        new Bomb(new Vector2(300, 300), audioManager, textureAtlas),
+        new ExitDoor(new Vector2(300, 300), audioManager, textureAtlas),
+        new Pylon(new Vector2(300, 300), audioManager, textureAtlas),
+        new Rock(new Vector2(300, 300), audioManager, textureAtlas),
+        new StoneBlock(new Vector2(300, 300), audioManager, textureAtlas),
+        new StoneWall(new Vector2(300, 300), audioManager, textureAtlas),
+        new TimedBomb(new Vector2(300, 300), audioManager, textureAtlas),
+        new Vine(new Vector2(300, 300), audioManager, textureAtlas)
     };
     private Object CurrentObject;
     private int ObjectPointer = 0;
@@ -35,7 +34,7 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
         Sprout = new AnimatedSprite(textureAtlas);
         Sprout.SetState("SproutWalkRight");
         Sprout.Position = new Vector2(800, 500);
-        Sprout.Texture = SproutTexture;
+        Sprout.SetTexture("Sprout");
 
         audioManager.PlaySong("song");
     }
