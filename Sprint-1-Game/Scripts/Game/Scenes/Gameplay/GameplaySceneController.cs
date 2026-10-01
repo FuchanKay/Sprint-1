@@ -27,23 +27,22 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
     private int SproutTimer = 0;
     private ISprite Sprout;
     public static Texture2D SproutTexture;
-    // private Sprout ExampleSprout;
 
     public void Init()
     {
         CurrentObject = Objects[ObjectPointer];
-
-        Sprout = new AnimatedSprite(textureAtlas);
+        
+        Sprout = new AnimatedSprite(texAtlas);
         Sprout.SetState("SproutWalkRight");
+        Sprout.Position = new Vector2(800, 500);
+        Sprout.Texture = SproutTexture;
 
-        // placeholder song to play in the background of the gameplay scene
         audioManager.PlaySong("song");
     }
 
     public void Update(int dtMs)
     {
-        //test
-        // ExampleSprout.Update(dtMs);
+        
         // TEST
         Sprout.Update(dtMs);
         SproutTimer++;
