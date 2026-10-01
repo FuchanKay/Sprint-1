@@ -32,7 +32,7 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
     {
         CurrentObject = Objects[ObjectPointer];
         
-        Sprout = new AnimatedSprite(texAtlas);
+        Sprout = new AnimatedSprite(textureAtlas);
         Sprout.SetState("SproutWalkRight");
         Sprout.Position = new Vector2(800, 500);
         Sprout.Texture = SproutTexture;
