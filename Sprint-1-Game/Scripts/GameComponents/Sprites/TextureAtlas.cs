@@ -31,9 +31,9 @@ public class TextureAtlas(ContentManager content) : ITextureAtlas
         return texture;
     }
 
-    public void AddRegion(string name, int column, int row, int width, int height)
+    public void AddRegion(string name, int row, int column, int width, int height)
     {
-        Regions.TryAdd(name, new Rectangle(column * width, row * height, width, height));
+        Regions.TryAdd(name, new Rectangle(row * width, column * height, width, height));
     }
 
     public Rectangle GetRegion(string name)

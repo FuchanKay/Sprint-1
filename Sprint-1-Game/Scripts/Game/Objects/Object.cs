@@ -2,11 +2,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace Scripts.GameComponents;
 
-public abstract class Object(Vector2 pos, IAudioManager am, ITextureAtlas textureAtlas) : IObject
+public abstract class Object(IAudioManager am, ITextureAtlas textureAtlas) : IObject
 {
-    protected string TextureName { get; }
+    protected abstract string TextureName { get; }
+    protected abstract string InitialSpriteState { get; }
     protected IAudioManager AudioManager { get; } = am;
-    public Vector2 Position { get; set; } = pos;
+    public Vector2 Position { get; set; }
     protected abstract bool Pushable { get; }
     protected abstract bool Destructible { get; }
     protected bool IsDestroyed { get; set; } = false;
@@ -15,7 +16,7 @@ public abstract class Object(Vector2 pos, IAudioManager am, ITextureAtlas textur
     protected float YSpeed = 0.0f;
     // Sprite Properties (Potentially moved to a Sprite class in the future)
 
-    ISprite Sprite { get; set; }
+    Sprite Sprite { get; set; }
 
     // protected abstract Texture2D Texture { get; }
     // protected virtual Rectangle SourceRectangle { get; }
@@ -27,12 +28,12 @@ public abstract class Object(Vector2 pos, IAudioManager am, ITextureAtlas textur
     // protected virtual SpriteEffects Effects { get; } = SpriteEffects.None;
     public abstract void SnapBehavior();
 
-    public void Init()
+    public void Init(Vector2 position)
     {
-        Sprite = new AnimatedSprite(textureAtlas);
-        Sprite.SetState("SproutWalkRight");
-        Sprite.Position = new Vector2(800, 500);
-        Sprite.Texture = textureAtlas.GetTexture(TextureName);
+        Sprite = new StaticSprite(textureAtlas);
+        Sprite.SetState(InitialSpriteState);
+        Sprite.Position = position;
+        Sprite.SetTexture(TextureName);
     }
 
     public void Update(int dtMs)

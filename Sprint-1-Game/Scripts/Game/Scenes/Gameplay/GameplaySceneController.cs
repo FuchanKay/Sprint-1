@@ -9,16 +9,16 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
     public readonly static string Name = "GamePlay";
     private Object[] Objects =
     {
-        new StoneBlock(new Vector2(300, 300), audioManager, textureAtlas),
-        new Rock(new Vector2(300, 300), audioManager, textureAtlas),
-        new Bomb(new Vector2(300, 300), audioManager, textureAtlas),
-        new ExitDoor(new Vector2(300, 300), audioManager, textureAtlas),
-        new Pylon(new Vector2(300, 300), audioManager, textureAtlas),
-        new Rock(new Vector2(300, 300), audioManager, textureAtlas),
-        new StoneBlock(new Vector2(300, 300), audioManager, textureAtlas),
-        new StoneWall(new Vector2(300, 300), audioManager, textureAtlas),
-        new TimedBomb(new Vector2(300, 300), audioManager, textureAtlas),
-        new Vine(new Vector2(300, 300), audioManager, textureAtlas)
+        // new StoneBlock(audioManager, textureAtlas),
+        // new Rock(audioManager, textureAtlas),
+        new Bomb(audioManager, textureAtlas),
+        // new ExitDoor(audioManager, textureAtlas),
+        // new Pylon(audioManager, textureAtlas),
+        // new Rock(audioManager, textureAtlas),
+        // new StoneBlock(audioManager, textureAtlas),
+        // new StoneWall(audioManager, textureAtlas),
+        // new TimedBomb(audioManager, textureAtlas),
+        // new Vine(audioManager, textureAtlas)
     };
     private Object CurrentObject;
     private int ObjectPointer = 0;
@@ -30,6 +30,10 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
     public void Init()
     {
         CurrentObject = Objects[ObjectPointer];
+        foreach (var obj in Objects)
+        {
+            obj.Init(new Vector2(300, 300));
+        }
         
         Sprout = new AnimatedSprite(textureAtlas);
         Sprout.SetState("SproutWalkRight");
