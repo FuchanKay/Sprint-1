@@ -9,15 +9,16 @@ namespace Scripts.Game;
 public class Setup(ContentManager content)
 {
     //TODO: If there are any save file stuff that needs to be resolved it should be done here. 
-    private AudioManager AudioManager;
+    private IAudioManager AudioManager;
+    private ITextureAtlas TextureAtlas;
 
     public void Initialize(out SceneManager sceneManager)
     {
         KeyboardInputManager keyboardInput = new();
         MouseInputManager mouseInput = new();
-        TextureAtlas texAtlas = new();
-        AudioManager = new();
-        sceneManager = new(keyboardInput, mouseInput, AudioManager, texAtlas);
+        TextureAtlas = new TextureAtlas(content);
+        AudioManager = new AudioManager();
+        sceneManager = new(keyboardInput, mouseInput, AudioManager, TextureAtlas);
         sceneManager.Init();
     }
 
@@ -29,6 +30,7 @@ public class Setup(ContentManager content)
 
     private void BindAllTextures()
     {
+        
         PlayGameButton.ButtonTexture = content.Load<Texture2D>("Images/play-button");
         ExitGameButton.ButtonTexture = content.Load<Texture2D>("Images/exit-button");
 

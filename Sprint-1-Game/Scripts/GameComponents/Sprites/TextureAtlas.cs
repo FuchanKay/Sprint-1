@@ -1,15 +1,35 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Scripts.GameComponents;
 
-public class TextureAtlas : ITextureAtlas
+public class TextureAtlas(ContentManager content) : ITextureAtlas
 {
     private const int Delay = 100;
+    private readonly Dictionary<string, Texture2D> Textures = [];
     private readonly Dictionary<string, Rectangle> Regions = [];
     private readonly Dictionary<string, Animation> Animations = [];
+
+    public void AddTexture(string name, string fileName)
+    {
+        var texture = content.Load<Texture2D>(fileName);
+        if (!Textures.TryAdd(name, texture))
+        {
+            Textures[name] = texture;
+        }
+    }
+
+    public Texture2D GetTexture(string name)
+    {
+        if (!Textures.TryGetValue(name, out var texture))
+        {
+            throw new ArgumentException($"{name} could not be found");
+        }
+        return texture;
+    }
 
     public void AddRegion(string name, int column, int row, int width, int height)
     {
@@ -20,7 +40,7 @@ public class TextureAtlas : ITextureAtlas
     {
         if (!Regions.TryGetValue(name, out Rectangle region))
         {
-            throw new ArgumentException("Name " + name + " does not exist in Regions");
+            throw new ArgumentException($"{name} could not be found");
         }
         return region;
     }
