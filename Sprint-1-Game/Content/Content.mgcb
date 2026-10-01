@@ -106,6 +106,19 @@
 /processorParam:Version=3.8.5.1
 /build:ObjectSprites/bombSprites.png
 
+#begin ObjectSprites/doorSprites.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:ObjectSprites/doorSprites.png
+
 #begin ObjectSprites/exitDoor.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -131,6 +144,19 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.1
 /build:ObjectSprites/pylon.jpg
+
+#begin ObjectSprites/pylonSprites.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:ObjectSprites/pylonSprites.png
 
 #begin ObjectSprites/rock.png
 /importer:TextureImporter
@@ -197,6 +223,19 @@
 /processorParam:Version=3.8.5.1
 /build:ObjectSprites/stoneWall.png
 
+#begin ObjectSprites/stoneWallSprite.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:ObjectSprites/stoneWallSprite.png
+
 #begin ObjectSprites/timedBomb.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -235,4 +274,17 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.1
 /build:ObjectSprites/vines.png
+
+#begin ObjectSprites/vineSprites.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:ObjectSprites/vineSprites.png
 

@@ -7,7 +7,7 @@ public class StoneWall(Vector2 pos, IAudioManager am, ITextureAtlas textureAtlas
 {
     public static Texture2D ObjectTexture { get; set; }
     protected override Texture2D Texture => ObjectTexture;
-    protected override string IdleState => "BombIdle";
+    protected override string InitialState => "StoneWallIdle";
     protected override bool Pushable => false;
     protected override bool Destructible => false;
 

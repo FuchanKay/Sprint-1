@@ -118,6 +118,12 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         texAtlas.AddAnimation("TimedBombIdle", 0, 1, 57, 96, 0);
         texAtlas.AddAnimation("StoneBlockIdle", 0, 1, 96, 96, 0);
         texAtlas.AddAnimation("RockIdle", 0, 1, 96, 96, 0);
+        texAtlas.AddAnimation("DoorIdle", 0, 1, 53, 96, 0);
+        texAtlas.AddAnimation("StoneWallIdle", 0, 1, 96, 96, 0);
+        texAtlas.AddAnimation("PylonFullPower", 0, 1, 99, 192, 0);
+        texAtlas.AddAnimation("PylonHalfPower", 1, 1, 99, 192, 0);
+        texAtlas.AddAnimation("PylonNoPower", 2, 1, 99, 192, 0);
+        texAtlas.AddAnimation("VineIdle", 0, 1, 96, 96, 0);
         // AddRegion(name, column, row, width, height)
         texAtlas.AddRegion("SproutIdle", 0, 5, 64, 64);
         

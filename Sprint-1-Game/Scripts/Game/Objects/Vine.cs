@@ -7,8 +7,8 @@ public class Vine(Vector2 pos, IAudioManager am, ITextureAtlas textureAtlas) : O
 {
     public static Texture2D ObjectTexture { get; set; }
     protected override Texture2D Texture => ObjectTexture;
-    protected override string IdleState => "BombIdle";
-    protected override bool Pushable => true;
+    protected override string InitialState => "VineIdle";
+    protected override bool Pushable => false;
     protected override bool Destructible => false;
     public bool Grown = false;
 
@@ -22,7 +22,7 @@ public class Vine(Vector2 pos, IAudioManager am, ITextureAtlas textureAtlas) : O
         } else
         {
             Sprite = Sprite.ConvertToAnimated("Explode");
-            AudioManager.PlaySound("destroy");
+            AudioManager.PlaySound("explosion");
             IsDestroyed = true;
         }
     }

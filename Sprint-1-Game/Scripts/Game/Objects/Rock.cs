@@ -7,7 +7,7 @@ public class Rock(Vector2 pos, IAudioManager am, ITextureAtlas textureAtlas) : O
 {
     public static Texture2D ObjectTexture { get; set; }
     protected override Texture2D Texture => ObjectTexture;
-    protected override string IdleState => "RockIdle";
+    protected override string InitialState => "RockIdle";
     protected override bool Pushable => true;
     protected override bool Destructible => true;
 

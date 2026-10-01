@@ -7,7 +7,7 @@ public class StoneBlock(Vector2 pos, IAudioManager am, ITextureAtlas textureAtla
 {
     public static Texture2D ObjectTexture { get; set; }
     protected override Texture2D Texture => ObjectTexture;
-    protected override string IdleState => "StoneBlockIdle";
+    protected override string InitialState => "StoneBlockIdle";
     protected override bool Pushable => false;
     protected override bool Destructible => true;
 

@@ -7,8 +7,8 @@ public class ExitDoor(Vector2 pos, IAudioManager am, ITextureAtlas textureAtlas)
 {
     public static Texture2D ObjectTexture { get; set; }
     protected override Texture2D Texture => ObjectTexture;
-    protected override string IdleState => "BombIdle";
-    protected override bool Pushable => true;
+    protected override string InitialState => "DoorIdle";
+    protected override bool Pushable => false;
     protected override bool Destructible => false;
 
     public override void SnapBehavior()

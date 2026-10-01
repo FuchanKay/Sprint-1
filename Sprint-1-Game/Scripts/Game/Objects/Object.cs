@@ -14,7 +14,7 @@ public abstract class Object : IObject
     protected AnimatedSprite Sprite;
     private bool destroyPlayed = false;
     protected abstract Texture2D Texture { get; }
-    protected abstract string IdleState { get; }
+    protected abstract string InitialState { get; }
     public Object(Vector2 pos, IAudioManager am, ITextureAtlas textureAtlas)
     {
         Sprite = new AnimatedSprite(textureAtlas)
@@ -22,7 +22,7 @@ public abstract class Object : IObject
             Position = pos,
             Texture = Texture
         };
-        Sprite.SetState(IdleState);
+        Sprite.SetState(InitialState);
         AudioManager = am;
     }
     public abstract void SnapBehavior();

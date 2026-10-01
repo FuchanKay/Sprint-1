@@ -35,11 +35,11 @@ public class Setup(ContentManager content)
         // Placeholder Sprites
         StoneBlock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneBlockSprites");
         Rock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/rockSprites");
-        StoneWall.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneWall");
+        StoneWall.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneWallSprite");
         Bomb.ObjectTexture = content.Load<Texture2D>("ObjectSprites/bombSprites");
-        ExitDoor.ObjectTexture = content.Load<Texture2D>("ObjectSprites/exitDoor");
-        Pylon.ObjectTexture = content.Load<Texture2D>("ObjectSprites/pylon");
-        Vine.ObjectTexture = content.Load<Texture2D>("ObjectSprites/vines");
+        ExitDoor.ObjectTexture = content.Load<Texture2D>("ObjectSprites/doorSprites");
+        Pylon.ObjectTexture = content.Load<Texture2D>("ObjectSprites/pylonSprites");
+        Vine.ObjectTexture = content.Load<Texture2D>("ObjectSprites/vineSprites");
         TimedBomb.ObjectTexture = content.Load<Texture2D>("ObjectSprites/timedBombSprites");
 
         //TODO: Remove this when sprite becomes its own thing
