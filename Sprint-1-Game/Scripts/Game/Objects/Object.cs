@@ -39,7 +39,7 @@ public abstract class Object : IObject
     {
         if(IsDestroyed && Sprite.IsFinished) destroyPlayed = true;
         if (destroyPlayed) return;
-        if(Sprite.Texture == null) Sprite.Texture ??= Texture;
+        Sprite.Texture ??= Texture;
         Sprite.Draw(sb);
     }
     public void Destroy()
