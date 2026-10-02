@@ -23,9 +23,6 @@ public class PuzzleLevel
 
     public void Draw()
     {
-        
-
-
 
     }   
 
@@ -39,6 +36,8 @@ public class PuzzleLevel
 
     public void ExecuteEvent()
     {
-        
+        var first = EventQueue[0];
+        EventQueue.RemoveAt(0);
+        // first.execute();
     }
 }
