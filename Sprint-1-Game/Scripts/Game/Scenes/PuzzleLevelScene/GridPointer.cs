@@ -102,6 +102,10 @@ public class GridPointer
     public Vector2 GetPlayerCoord()
     {
         var playerPointers = ObjectPointers[ObjectIds.Player];
+        if (playerPointers.Count != 1)
+        {
+            throw new ArgumentException("Number of player objects is not equal to one");
+        }
         foreach (var coordToObj in playerPointers)
         {
             return coordToObj.Key;

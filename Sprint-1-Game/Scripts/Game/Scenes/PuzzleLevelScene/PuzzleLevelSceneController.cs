@@ -6,10 +6,12 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
 {
     public static readonly string Name = "Puzzle Level";
     private PuzzleLevel Level; 
+    private ObjectFactory ObjectFactory = new(textureAtlas);
+    private TileFactory TileFactory = new(textureAtlas);
 
     public void Init()
     {
-        Level = new();
+        Level = new(ObjectFactory, TileFactory);
         Level.Init();
     }
     public void Update(int dtMs)
@@ -46,6 +48,6 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     }
     public void Draw(SpriteBatch sb)
     {
-        
+        Level.Draw(sb);
     }
 }

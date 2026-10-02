@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Scripts.Game;
 
-public class PuzzleLevel
+public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory)
 {
     private List<ILevelEvent> EventQueue = [];
     private LevelContext Context = new();
@@ -14,11 +14,6 @@ public class PuzzleLevel
     private readonly int LevelWidth = 10;
     private readonly int LevelHeight = 10;
     public bool IsIdle = true;
-
-    public PuzzleLevel()
-    {
-        
-    }
 
     public void Init()
     {
@@ -42,7 +37,7 @@ public class PuzzleLevel
         GridPointer.SetObject(new Vector2(4, 4), new PlayerObject());
     }
 
-    public void Draw()
+    public void Draw(SpriteBatch sb)
     {
         for (int i = 0; i < LevelWidth * LevelHeight; i++)
         {
@@ -50,7 +45,7 @@ public class PuzzleLevel
             var y = i / LevelHeight;
             var coord = new Vector2(x, y);
 
-            
+
 
 
         }
