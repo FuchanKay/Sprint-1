@@ -32,18 +32,18 @@ public class Setup(ContentManager content)
         PlayGameButton.ButtonTexture = content.Load<Texture2D>("Images/play-button");
         ExitGameButton.ButtonTexture = content.Load<Texture2D>("Images/exit-button");
 
-        // Placeholder Sprites
-        StoneBlock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneBlock");
-        Rock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/rock");
-        StoneWall.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneWall");
-        Bomb.ObjectTexture = content.Load<Texture2D>("ObjectSprites/bomb");
-        ExitDoor.ObjectTexture = content.Load<Texture2D>("ObjectSprites/exitDoor");
-        Pylon.ObjectTexture = content.Load<Texture2D>("ObjectSprites/pylon");
-        Vine.ObjectTexture = content.Load<Texture2D>("ObjectSprites/vines");
-        TimedBomb.ObjectTexture = content.Load<Texture2D>("ObjectSprites/timedBomb");
+        // // Placeholder Sprites
+        // StoneBlock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneBlock");
+        // Rock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/rock");
+        // StoneWall.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneWall");
+        // Bomb.ObjectTexture = content.Load<Texture2D>("ObjectSprites/bomb");
+        // ExitDoor.ObjectTexture = content.Load<Texture2D>("ObjectSprites/exitDoor");
+        // Pylon.ObjectTexture = content.Load<Texture2D>("ObjectSprites/pylon");
+        // Vine.ObjectTexture = content.Load<Texture2D>("ObjectSprites/vines");
+        // TimedBomb.ObjectTexture = content.Load<Texture2D>("ObjectSprites/timedBomb");
 
-        //TODO: Remove this when sprite becomes its own thing
-        GameplaySceneController.SproutTexture = content.Load<Texture2D>("Images/player-sprites");
+        // //TODO: Remove this when sprite becomes its own thing
+        // GameplaySceneController.SproutTexture = content.Load<Texture2D>("Images/player-sprites");
     }
     private void LoadAudio()
     {

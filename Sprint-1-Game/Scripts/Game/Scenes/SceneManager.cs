@@ -5,7 +5,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas texAtlas) : ISceneManager
+public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas) : ISceneManager
 {
     private readonly Dictionary<string, ISceneController> NameSceneMap = [];
     private ISceneController CurrentScene;
@@ -32,7 +32,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         buttonInput.ClearMapping();
         mouseInput.ClearMapping();
 
-        texAtlas.ClearMapping();
+        textureAtlas.ClearMapping();
 
         Init();
     }
@@ -102,17 +102,20 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager);
         NameSceneMap.TryAdd(MainMenuSceneController.Name, mainMenuScene);
 
-        var gameplayScene = new GameplaySceneController(this, buttonInput, mouseInput, audioManager, texAtlas);
-        NameSceneMap.TryAdd(GameplaySceneController.Name, gameplayScene);
+        // var gameplayScene = new GameplaySceneController(this, buttonInput, mouseInput, audioManager, texAtlas);
+        // NameSceneMap.TryAdd(GameplaySceneController.Name, gameplayScene);
+
+        var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas);
+        NameSceneMap.TryAdd(PuzzleLevelSceneController.Name, puzzleLevelScene);
     }
 
     private void AddAnimations()
     {
-        texAtlas.AddAnimation("SproutWalkDown", 3, 6, 64, 64);
-        texAtlas.AddAnimation("SproutWalkRight", 0, 6, 64, 64);
+        textureAtlas.AddAnimation("SproutWalkDown", 3, 6, 64, 64);
+        textureAtlas.AddAnimation("SproutWalkRight", 0, 6, 64, 64);
         // AddAnimation(name, numFrames, row, width, height, delay)
-        texAtlas.AddAnimation("SproutWalkLeft", 1, 6, 64, 64, 100);
+        textureAtlas.AddAnimation("SproutWalkLeft", 1, 6, 64, 64, 100);
         // AddRegion(name, column, row, width, height)
-        texAtlas.AddRegion("SproutIdle", 0, 5, 64, 64);
+        textureAtlas.AddRegion("SproutIdle", 0, 5, 64, 64);
     }
 }

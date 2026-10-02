@@ -4,6 +4,7 @@ using Scripts.GameComponents;
 namespace Scripts.Game;
 public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ITextureAtlas textureAtlas) : ISceneController
 {
+    public static readonly string Name = "Puzzle Level";
     private PuzzleLevel Level; 
 
     public void Init()
@@ -18,30 +19,31 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         }
         else if (buttonInput.IsPressed(InputNames.MoveEast))
         {
-            
+            Level.EnqueueEvent(new MoveEastEvent());
         }
         else if (buttonInput.IsPressed(InputNames.MoveSouth))
         {
-            
+            Level.EnqueueEvent(new MoveSouthEvent());
         }
         else if (buttonInput.IsPressed(InputNames.MoveWest))
         {
-            
+            Level.EnqueueEvent(new MoveWestEvent());
         }
         else if (buttonInput.IsPressed(InputNames.Snap))
         {
-            
+            Level.EnqueueEvent(new SnapEvent());
         }
         else if (buttonInput.IsPressed(InputNames.UseItem))
         {
-            
+            Level.EnqueueEvent(new UseItemEventEvent());
         }
         else if (buttonInput.IsPressed(InputNames.Undo))
         {
-            
+            Level.EnqueueEvent(new UndoEvent());
         }
     }
     public void Draw(SpriteBatch sb)
     {
+        
     }
 }

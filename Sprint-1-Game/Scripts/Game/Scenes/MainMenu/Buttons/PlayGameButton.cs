@@ -10,7 +10,7 @@ public class PlayGameButton(ISceneManager sm, IAudioManager audioManager) : Butt
 
     protected override void OnClick()
     {
-        sm.SwapScene(GameplaySceneController.Name);
+        sm.SwapScene(PuzzleLevelSceneController.Name);
         // Placeholder sound effect to indicate that the button was clicked.
         audioManager.PlaySound("snap");
     }
