@@ -10,6 +10,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     public void Init()
     {
         Level = new();
+        Level.Init();
     }
     public void Update(int dtMs)
     {   

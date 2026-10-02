@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.ComponentModel.Design;
+using Microsoft.Xna.Framework;
 
 namespace Scripts.Game;
 
@@ -19,7 +19,23 @@ public class PuzzleLevel
 
     public void Init()
     {
-        
+        GridPointer.Init();
+        for (int i = 0; i < LevelWidth * LevelHeight; i++)
+        {
+            var x = i % LevelWidth;
+            var y = i / LevelHeight;
+            var coord = new Vector2(x, y);
+
+            var emptyGrid = new Grid
+            {
+                Object = new EmptyObject(),
+                Tile = new EmptyTile()
+            };
+
+            GridPointer.SetGrid(coord, emptyGrid);
+        }
+
+        GridPointer.SetObject(new Vector2(3, 3), new RockObject());
     }
 
     public void Draw()
