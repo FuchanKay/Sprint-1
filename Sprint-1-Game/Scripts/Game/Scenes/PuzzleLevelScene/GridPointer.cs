@@ -88,4 +88,24 @@ public class GridPointer
         }
         return grid.Tile;
     }
+
+    public Dictionary<Vector2, IObject> GetObjectPointer(ObjectIds id)
+    {
+        return ObjectPointers[id];
+    }
+
+    public Dictionary<Vector2, ITile> GetTilePointer(TileIds id)
+    {
+        return TilePointers[id];
+    }
+
+    public Vector2 GetPlayerCoord()
+    {
+        var playerPointers = ObjectPointers[ObjectIds.Player];
+        foreach (var coordToObj in playerPointers)
+        {
+            return coordToObj.Key;
+        }
+        return new Vector2(0, 0);
+    }
 }

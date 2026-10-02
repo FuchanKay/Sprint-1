@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Runtime;
 using Microsoft.Xna.Framework;
 
 namespace Scripts.Game;
@@ -42,8 +44,17 @@ public class PuzzleLevel
 
     public void Draw()
     {
+        for (int i = 0; i < LevelWidth * LevelHeight; i++)
+        {
+            var x = i % LevelWidth;
+            var y = i / LevelHeight;
+            var coord = new Vector2(x, y);
 
-    }   
+            
+
+
+        }
+    }
 
     public void EnqueueEvent(ILevelEvent levelEvent)
     {
@@ -55,11 +66,18 @@ public class PuzzleLevel
 
     public void ExecuteEvent()
     {
-        if (IsIdle)
+        if (IsIdle && EventQueue.Count > 0)
         {
             var first = EventQueue[0];
             EventQueue.RemoveAt(0);
             first.Execute(GridPointer, Context);
+            var playerCoord = GridPointer.GetPlayerCoord();
+            var x = playerCoord.X;
+            var y = playerCoord.Y;
+
+            var playerObj = GridPointer.GetObject(playerCoord) as PlayerObject;
+            Console.WriteLine($"Coordinate: {x}, {y}");
+            Console.WriteLine($"Direction: {playerObj.Direction}");
         }
     }
 }

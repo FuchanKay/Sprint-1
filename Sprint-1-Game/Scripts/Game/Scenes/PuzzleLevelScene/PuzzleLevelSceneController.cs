@@ -42,6 +42,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         {
             Level.EnqueueEvent(new UndoEvent());
         }
+        Level.ExecuteEvent();
     }
     public void Draw(SpriteBatch sb)
     {
