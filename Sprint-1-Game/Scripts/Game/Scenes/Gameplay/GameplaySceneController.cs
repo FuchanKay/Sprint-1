@@ -11,11 +11,11 @@ public class GameplaySceneController(ISceneManager sceneManager, IInputManager b
     private Object[] Objects =
     {
         new StoneBlock(new Vector2(300, 300), audioManager),
-        new Rock(new Vector2(300, 300), audioManager),
+        // new Rock(new Vector2(300, 300), audioManager),
         new Bomb(new Vector2(300, 300), audioManager),
         new ExitDoor(new Vector2(300, 300), audioManager),
         new Pylon(new Vector2(300, 300), audioManager),
-        new Rock(new Vector2(300, 300), audioManager),
+        // new Rock(new Vector2(300, 300), audioManager),
         new StoneBlock(new Vector2(300, 300), audioManager),
         new StoneWall(new Vector2(300, 300), audioManager),
         new TimedBomb(new Vector2(300, 300), audioManager),

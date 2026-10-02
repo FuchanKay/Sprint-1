@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
-namespace Scripts.Game;
+namespace Scripts.Game.Objects;
 
 public class Rock(Vector2 pos, IAudioManager am) : Object(pos, am)
 {
