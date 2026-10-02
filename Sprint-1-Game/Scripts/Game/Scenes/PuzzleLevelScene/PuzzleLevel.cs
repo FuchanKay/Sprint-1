@@ -8,8 +8,8 @@ namespace Scripts.Game;
 public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory)
 {
     private List<ILevelEvent> EventQueue = [];
-    private LevelContext Context = new();
-    private GridPointer GridPointer = new();
+    private readonly LevelContext Context = new();
+    private readonly GridPointer GridPointer = new();
     private readonly int MaxEventsQueued = 3; 
     private readonly int LevelWidth = 10;
     private readonly int LevelHeight = 10;
@@ -26,8 +26,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory)
 
             var emptyGrid = new Grid
             {
-                Object = new EmptyObject(),
-                Tile = new EmptyTile()
+                Object = objectFactory.CreateEmpty(),
+                Tile = tileFactory.CreateEmptyTile()
             };
 
             GridPointer.SetGrid(coord, emptyGrid);

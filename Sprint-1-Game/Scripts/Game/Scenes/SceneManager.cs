@@ -17,11 +17,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
 
         AddScenesToMap();
 
-        MapDefaultInputs();
-
-        AddAnimations();
-
-        CurrentScene = NameSceneMap[MainMenuSceneController.Name];
+        CurrentScene = NameSceneMap[SceneNames.MainMenu];
         CurrentScene.Init();
     }
 
@@ -79,43 +75,15 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         mouseInput.Update();
     }
 
-    private void MapDefaultInputs()
-    {
-        //TODO: mapping input example. Should be removed
-        buttonInput.MapInput("Move North", (int)Keys.W);
-        buttonInput.MapInput("Move East", (int)Keys.D);
-        buttonInput.MapInput("Move South", (int)Keys.S);
-        buttonInput.MapInput("Move West", (int)Keys.A);
-        buttonInput.MapInput("Destroy", (int)Keys.Space);
-        buttonInput.MapInput("Snap", (int)Keys.E);
-        buttonInput.MapInput("Cycle Block Left", (int)Keys.T);
-        buttonInput.MapInput("Cycle Block Right", (int)Keys.Y);
-
-        buttonInput.MapInput("Exit Game", (int)Keys.Q);
-        buttonInput.MapInput("Restart Game", (int)Keys.R);
-
-        mouseInput.MapInput("Select", (int)MouseButtons.Left);
-    }
-
     private void AddScenesToMap()
     {
-        var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager);
-        NameSceneMap.TryAdd(MainMenuSceneController.Name, mainMenuScene);
+        var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas);
+        NameSceneMap.TryAdd(SceneNames.MainMenu, mainMenuScene);
 
         // var gameplayScene = new GameplaySceneController(this, buttonInput, mouseInput, audioManager, texAtlas);
         // NameSceneMap.TryAdd(GameplaySceneController.Name, gameplayScene);
 
         var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas);
-        NameSceneMap.TryAdd(PuzzleLevelSceneController.Name, puzzleLevelScene);
-    }
-
-    private void AddAnimations()
-    {
-        textureAtlas.AddAnimation("SproutWalkDown", 3, 6, 64, 64);
-        textureAtlas.AddAnimation("SproutWalkRight", 0, 6, 64, 64);
-        // AddAnimation(name, numFrames, row, width, height, delay)
-        textureAtlas.AddAnimation("SproutWalkLeft", 1, 6, 64, 64, 100);
-        // AddRegion(name, column, row, width, height)
-        textureAtlas.AddRegion("SproutIdle", 0, 5, 64, 64);
+        NameSceneMap.TryAdd(SceneNames.PuzzleLevel, puzzleLevelScene);
     }
 }

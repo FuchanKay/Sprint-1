@@ -4,7 +4,6 @@ using Scripts.GameComponents;
 namespace Scripts.Game;
 public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ITextureAtlas textureAtlas) : ISceneController
 {
-    public static readonly string Name = "Puzzle Level";
     private PuzzleLevel Level; 
     private ObjectFactory ObjectFactory = new(textureAtlas);
     private TileFactory TileFactory = new(textureAtlas);
