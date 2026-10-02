@@ -6,6 +6,7 @@ namespace Scripts.Game;
 public class PuzzleLevel
 {
     private List<ILevelEvent> EventQueue = [];
+    private LevelContext Context = new();
     private GridPointer GridPointer = new();
     private readonly int MaxEventsQueued = 3; 
     private readonly int LevelWidth = 10;
@@ -36,6 +37,7 @@ public class PuzzleLevel
         }
 
         GridPointer.SetObject(new Vector2(3, 3), new RockObject());
+        GridPointer.SetObject(new Vector2(4, 4), new PlayerObject());
     }
 
     public void Draw()
@@ -57,7 +59,7 @@ public class PuzzleLevel
         {
             var first = EventQueue[0];
             EventQueue.RemoveAt(0);
-            //first.execute()
+            first.Execute(GridPointer, Context);
         }
     }
 }

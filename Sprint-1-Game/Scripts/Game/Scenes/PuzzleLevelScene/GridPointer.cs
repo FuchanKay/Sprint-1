@@ -9,11 +9,11 @@ public class GridPointer
     private readonly Dictionary<ObjectIds, Dictionary<Vector2, IObject>> ObjectPointers = [];
     private readonly Dictionary<TileIds, Dictionary<Vector2, ITile>> TilePointers = [];
 
-
     public void Init()
     {
         ObjectPointers.Add(ObjectIds.Empty, []);
         ObjectPointers.Add(ObjectIds.Rock, []);
+        ObjectPointers.Add(ObjectIds.Player, []);
 
         TilePointers.Add(TileIds.Empty, []);
     }
@@ -71,4 +71,21 @@ public class GridPointer
         return grid;
     }
 
+    public IObject GetObject(Vector2 coord)
+    {
+        if (!CoordToGrid.TryGetValue(coord, out var grid))
+        {
+            throw new ArgumentException("Grid could not be found");
+        }
+        return grid.Object;
+    }
+
+    public ITile GetTile(Vector2 coord)
+    {
+        if (!CoordToGrid.TryGetValue(coord, out var grid))
+        {
+            throw new ArgumentException("Grid could not be found");
+        }
+        return grid.Tile;
+    }
 }

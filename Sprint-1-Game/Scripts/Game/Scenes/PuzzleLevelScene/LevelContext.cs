@@ -1,5 +1,6 @@
 namespace Scripts.Game;
-public interface ILevelEvent
+
+public class LevelContext
 {
     
 }
