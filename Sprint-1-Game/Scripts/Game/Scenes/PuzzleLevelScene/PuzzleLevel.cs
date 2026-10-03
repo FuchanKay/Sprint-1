@@ -37,8 +37,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory)
             GridPointer.SetGrid(coord, emptyGrid);
         }
 
-        GridPointer.SetObject(new Vector2(0, 0), objectFactory.CreateRock());
-        GridPointer.SetObject(new Vector2(1, 0), objectFactory.CreatePlayer());
+        GridPointer.SetObject(new Vector2(5, 5), objectFactory.CreateRock());
+        GridPointer.SetObject(new Vector2(6, 6), objectFactory.CreatePlayer());
     }
 
     public void Draw(SpriteBatch sb)

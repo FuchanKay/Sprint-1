@@ -14,13 +14,15 @@ public class MoveEastEvent : ILevelEvent
         }
         else
         {
-            var eastCoord = new Vector2(playerCoord.X + 1, playerCoord.Y);
-            var eastGrid = gridPointer.GetGrid(eastCoord);
-            if (eastGrid.Object.Id == ObjectIds.Empty)
+            var coordXPlus1 = playerCoord + new Vector2(1, 0);
+            var xPlus1Grid = gridPointer.GetGrid(coordXPlus1);
+
+            if (xPlus1Grid.Object.Id == ObjectIds.Empty)
             {
                 gridPointer.SetObject(playerCoord, new EmptyObject());
-                gridPointer.SetObject(eastCoord, playerObj);
+                gridPointer.SetObject(coordXPlus1, playerObj);
             }
+
             context.ShouldUpdate = true;
         }
     }

@@ -17,7 +17,7 @@ public class ObjectFactory(ITextureAtlas textureAtlas)
         var sprite = new StaticSprite(textureAtlas);
         sprite.SetState(RegionNames.Rock);
         sprite.Texture = textureAtlas.GetTexture(TextureNames.Rock);
-        sprite.Scale = 0.1f;
+        sprite.Scale = 0.2f;
         return new PlayerObject
         {
             Direction = Directions.South,
@@ -30,7 +30,7 @@ public class ObjectFactory(ITextureAtlas textureAtlas)
         var sprite = new StaticSprite(textureAtlas);
         sprite.SetState(RegionNames.Rock);
         sprite.Texture = textureAtlas.GetTexture(TextureNames.Rock);
-        sprite.Scale = 0.1f;
+        sprite.Scale = 0.2f;
         return new RockObject
         {
             Direction = Directions.South,
