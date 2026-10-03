@@ -6,7 +6,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class SpriteGrid (ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, ITextureAtlas textureAtlas)
+public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, ITextureAtlas textureAtlas)
 {
     private readonly Dictionary<Vector2, ISprite> ObjectSprites = [];
     private readonly Dictionary<Vector2, ISprite> TileSprites = [];
@@ -25,9 +25,9 @@ public class SpriteGrid (ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
             var obj = grid.Object;
             var tile = grid.Tile;
 
-            var spriteWidth = (int) (context.GridWidthPx * context.GridScale);
+            var spriteWidth = (int)(context.GridWidthPx * context.GridScale);
             var spriteX = spriteWidth * coord.X + context.PuzzleOffsetX;
-            var spriteHeight = (int) (context.GridHeightPx * context.GridScale);
+            var spriteHeight = (int)(context.GridHeightPx * context.GridScale);
             var spriteY = spriteHeight * coord.Y + context.PuzzleOffsetY;
 
             var spriteCoord = new Vector2(spriteX, spriteY);
@@ -61,7 +61,7 @@ public class SpriteGrid (ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
 
     public void Update(int dtMs)
     {
-        
+
     }
 
     public void Draw(SpriteBatch sb)

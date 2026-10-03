@@ -8,7 +8,8 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
     public ISprite CreateObjectSprite(ObjectIds id, LevelContext context)
     {
         ISprite sprite;
-        switch (id) {
+        switch (id)
+        {
             case ObjectIds.Rock:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.Rock);

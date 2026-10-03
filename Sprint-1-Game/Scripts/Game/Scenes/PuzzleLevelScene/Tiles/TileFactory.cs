@@ -8,7 +8,7 @@ public class TileFactory(ITextureAtlas textureAtlas)
     {
         return new EmptyTile
         {
-            
+
         };
     }
 

@@ -20,7 +20,7 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
                 break;
         }
         sprite.Scale = context.GridScale;
-        
+
         return sprite;
     }
 }
