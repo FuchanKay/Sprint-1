@@ -3,7 +3,7 @@ using Scripts.Game;
 
 public class MoveWestEvent : ILevelEvent
 {
-    public void Execute(GridPointer gridPointer, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerGrid = gridPointer.GetGrid(playerCoord);

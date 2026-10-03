@@ -13,6 +13,8 @@ public class SpriteGrid (ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
 
     public void Init(GridPointer gridPointer, LevelContext context)
     {
+        ObjectSprites.Clear();
+        TileSprites.Clear();
         for (int i = 0; i < context.LevelWidth * context.LevelHeight; i++)
         {
             var x = i % context.LevelWidth;
@@ -24,12 +26,28 @@ public class SpriteGrid (ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
             var tile = grid.Tile;
 
             var spriteWidth = (int) (context.GridWidthPx * context.GridScale);
-            var spriteX = spriteWidth * x + context.PuzzleOffsetX;
+            var spriteX = spriteWidth * coord.X + context.PuzzleOffsetX;
             var spriteHeight = (int) (context.GridHeightPx * context.GridScale);
-            var spriteY = spriteHeight * y + context.PuzzleOffsetY;
+            var spriteY = spriteHeight * coord.Y + context.PuzzleOffsetY;
 
             var spriteCoord = new Vector2(spriteX, spriteY);
 
+            /*
+                Currently, this dictionary holds the literal window position corresponding to an ISprite object. 
+                {
+                    V the key where it is literally drawn V
+                    (234, 234) => ISprite
+                }
+                ideally, the map should look like this:
+                {
+                    V the key can be used to lookup the sprite and cause some animation V
+                    (2, 2) => {
+                        Isprite,
+                        LiteralPosition = (234 234),
+                        ...
+                    }
+                }
+            */
             if (obj.Id != ObjectIds.Empty)
             {
                 ObjectSprites.Add(spriteCoord, objectSpriteFactory.CreateObjectSprite(obj.Id, context));
