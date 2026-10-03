@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using System.Net.Mime;
-using System.Numerics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, ITextureAtlas textureAtlas)
+public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory)
 {
     private readonly Dictionary<Vector2, ISprite> ObjectSprites = [];
     private readonly Dictionary<Vector2, ISprite> TileSprites = [];

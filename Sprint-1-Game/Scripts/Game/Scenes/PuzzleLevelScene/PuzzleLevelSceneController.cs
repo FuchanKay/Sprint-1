@@ -6,14 +6,14 @@ namespace Scripts.Game;
 public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ITextureAtlas textureAtlas) : ISceneController
 {
     private PuzzleLevel Level;
-    private ObjectFactory ObjectFactory = new(textureAtlas);
-    private TileFactory TileFactory = new(textureAtlas);
+    private ObjectFactory ObjectFactory = new();
+    private TileFactory TileFactory = new();
     private ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
     private TileSpriteFactory TileSpriteFactory = new(textureAtlas);
 
     public void Init()
     {
-        Level = new(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory, textureAtlas);
+        Level = new(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory);
         Level.Init();
     }
     public void Update(int dtMs)

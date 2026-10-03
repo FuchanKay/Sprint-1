@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, ITextureAtlas textureAtlas)
+public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory)
 {
     private readonly List<ILevelEvent> EventQueue = [];
     //TODO: Some constants regarding the width and height of each grid, the size of hte level, etc. probably should be moved somewhere else idk where
@@ -21,7 +20,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         IsIdle = true
     };
     private readonly GridPointer GridPointer = new();
-    private readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory, textureAtlas);
+    private readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
     private readonly int MaxEventsQueued = 3;
     public bool IsIdle = true;
 

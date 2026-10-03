@@ -1,5 +1,3 @@
-using Scripts.GameComponents;
-
 namespace Scripts.Game;
 
 public class RockObject() : IObject

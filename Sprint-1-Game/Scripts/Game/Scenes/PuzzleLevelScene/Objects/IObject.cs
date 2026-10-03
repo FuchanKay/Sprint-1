@@ -1,5 +1,4 @@
-using Scripts.Game;
-using Scripts.GameComponents;
+namespace Scripts.Game;
 
 public interface IObject
 {

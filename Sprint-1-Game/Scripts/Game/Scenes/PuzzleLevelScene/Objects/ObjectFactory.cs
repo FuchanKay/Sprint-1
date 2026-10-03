@@ -1,7 +1,5 @@
-using Scripts.Game;
-using Scripts.GameComponents;
-
-public class ObjectFactory(ITextureAtlas textureAtlas)
+namespace Scripts.Game;
+public class ObjectFactory()
 {
     public IObject CreateEmpty()
     {

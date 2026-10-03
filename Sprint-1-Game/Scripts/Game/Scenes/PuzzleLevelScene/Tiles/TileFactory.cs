@@ -1,8 +1,6 @@
-using Scripts.GameComponents;
-
 namespace Scripts.Game;
 
-public class TileFactory(ITextureAtlas textureAtlas)
+public class TileFactory()
 {
     public ITile CreateEmptyTile()
     {
