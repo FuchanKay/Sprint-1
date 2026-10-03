@@ -2,9 +2,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
+
 public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ITextureAtlas textureAtlas) : ISceneController
 {
-    private PuzzleLevel Level; 
+    private PuzzleLevel Level;
     private ObjectFactory ObjectFactory = new(textureAtlas);
     private TileFactory TileFactory = new(textureAtlas);
 
@@ -14,7 +15,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         Level.Init();
     }
     public void Update(int dtMs)
-    {   
+    {
         if (buttonInput.IsPressed(InputNames.MoveNorth))
         {
             Level.EnqueueEvent(new MoveNorthEvent());

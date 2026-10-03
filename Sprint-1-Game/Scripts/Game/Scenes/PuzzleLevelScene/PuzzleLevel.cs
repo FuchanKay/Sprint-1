@@ -17,7 +17,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory)
         IsIdle = true
     };
     private readonly GridPointer GridPointer = new();
-    private readonly int MaxEventsQueued = 3; 
+    private readonly int MaxEventsQueued = 3;
     public bool IsIdle = true;
 
     public void Init()
@@ -98,12 +98,6 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory)
             EventQueue.RemoveAt(0);
             first.Execute(GridPointer, Context);
             var playerCoord = GridPointer.GetPlayerCoord();
-            var x = playerCoord.X;
-            var y = playerCoord.Y;
-
-            var playerObj = GridPointer.GetObject(playerCoord) as PlayerObject;
-            Console.WriteLine($"Coordinate: {x}, {y}");
-            Console.WriteLine($"Direction: {playerObj.Direction}");
         }
     }
 }

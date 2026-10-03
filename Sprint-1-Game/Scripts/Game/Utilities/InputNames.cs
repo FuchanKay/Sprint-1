@@ -1,4 +1,5 @@
 namespace Scripts.Game;
+
 public class InputNames
 {
     public readonly static string MoveNorth = "Move North";
