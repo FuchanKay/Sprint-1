@@ -14,20 +14,27 @@ public class ObjectFactory(ITextureAtlas textureAtlas)
 
     public IObject CreatePlayer()
     {
+        var sprite = new StaticSprite(textureAtlas);
+        sprite.SetState(RegionNames.Rock);
+        sprite.Texture = textureAtlas.GetTexture(TextureNames.Rock);
+        sprite.Scale = 0.1f;
         return new PlayerObject
         {
             Direction = Directions.South,
-            Sprite = new AnimatedSprite(textureAtlas)
+            Sprite = sprite
         };
     }
 
     public IObject CreateRock()
     {
+        var sprite = new StaticSprite(textureAtlas);
+        sprite.SetState(RegionNames.Rock);
+        sprite.Texture = textureAtlas.GetTexture(TextureNames.Rock);
+        sprite.Scale = 0.1f;
         return new RockObject
         {
             Direction = Directions.South,
-            Sprite = new StaticSprite(textureAtlas)
+            Sprite = sprite
         };
     }
-
 }

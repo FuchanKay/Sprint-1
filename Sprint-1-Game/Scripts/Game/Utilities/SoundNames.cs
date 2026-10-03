@@ -2,8 +2,7 @@ namespace Scripts.Game;
 
 public class SoundNames
 {
-    public static string Song = "Song";
-    
-    public static string Snap = "Snap";
+    public readonly static string Song = "Song";    
+    public readonly static string Snap = "Snap";
 
 }

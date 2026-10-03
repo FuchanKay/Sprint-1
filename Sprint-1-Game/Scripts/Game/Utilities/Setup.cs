@@ -61,13 +61,15 @@ public class Setup(ContentManager content)
         // AddRegion(name, column, row, width, height)
         TextureAtlas.AddRegion("SproutIdle", 0, 5, 64, 64);
 
-        TextureAtlas.AddRegion("Rock", 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 256, 256);
     }
 
     private void BindAllTextures()
     {
         TextureAtlas.AddTexture(TextureNames.PlayGameButton, "Images/play-button");
         TextureAtlas.AddTexture(TextureNames.ExitGameButton, "Images/exit-button");
+
+        TextureAtlas.AddTexture(TextureNames.Rock, "Images/rock");
 
         // StoneBlock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneBlock");
         // Rock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/rock");

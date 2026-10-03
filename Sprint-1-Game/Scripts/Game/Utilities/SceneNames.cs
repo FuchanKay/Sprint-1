@@ -2,8 +2,8 @@ namespace Scripts.Game;
 
 public class SceneNames
 {
-    public static string PuzzleLevel = "Puzzle Level";
-    public static string GameplayScene = "Gameplay Scene";
-    public static string MainMenu = "Main Menu";
+    public readonly static string PuzzleLevel = "Puzzle Level";
+    public readonly static string GameplayScene = "Gameplay Scene";
+    public readonly static string MainMenu = "Main Menu";
 
 }

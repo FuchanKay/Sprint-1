@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -8,20 +9,23 @@ namespace Scripts.Game;
 public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory)
 {
     private List<ILevelEvent> EventQueue = [];
-    private readonly LevelContext Context = new();
+    private readonly LevelContext Context = new()
+    {
+        LevelWidth = 10,
+        LevelHeight = 10,
+        IsIdle = true
+    };
     private readonly GridPointer GridPointer = new();
     private readonly int MaxEventsQueued = 3; 
-    private readonly int LevelWidth = 10;
-    private readonly int LevelHeight = 10;
     public bool IsIdle = true;
 
     public void Init()
     {
         GridPointer.Init();
-        for (int i = 0; i < LevelWidth * LevelHeight; i++)
+        for (int i = 0; i < Context.LevelWidth * Context.LevelHeight; i++)
         {
-            var x = i % LevelWidth;
-            var y = i / LevelHeight;
+            var x = i % Context.LevelWidth;
+            var y = i / Context.LevelHeight;
             var coord = new Vector2(x, y);
 
             var emptyGrid = new Grid
@@ -33,21 +37,31 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory)
             GridPointer.SetGrid(coord, emptyGrid);
         }
 
-        GridPointer.SetObject(new Vector2(3, 3), new RockObject());
-        GridPointer.SetObject(new Vector2(4, 4), new PlayerObject());
+        GridPointer.SetObject(new Vector2(0, 0), objectFactory.CreateRock());
+        GridPointer.SetObject(new Vector2(1, 0), objectFactory.CreatePlayer());
     }
 
     public void Draw(SpriteBatch sb)
     {
-        for (int i = 0; i < LevelWidth * LevelHeight; i++)
+        for (int i = 0; i < Context.LevelWidth * Context.LevelHeight; i++)
         {
-            var x = i % LevelWidth;
-            var y = i / LevelHeight;
+            var x = i % Context.LevelWidth;
+            var y = i / Context.LevelHeight;
             var coord = new Vector2(x, y);
 
-
-
-
+            var grid = GridPointer.GetGrid(coord);
+            var obj = grid.Object;
+            var tile = grid.Tile;
+            if (tile.Id != TileIds.Empty)
+            {
+                tile.Sprite.Position = new Vector2(x * 50, y * 50);
+                tile.Sprite.Draw(sb);
+            }
+            if (obj.Id != ObjectIds.Empty)
+            {
+                obj.Sprite.Position = new Vector2(x * 50, y * 50);
+                obj.Sprite.Draw(sb);
+            }
         }
     }
 
@@ -61,7 +75,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory)
 
     public void ExecuteEvent()
     {
-        if (IsIdle && EventQueue.Count > 0)
+        if (Context.IsIdle && EventQueue.Count > 0)
         {
             var first = EventQueue[0];
             EventQueue.RemoveAt(0);
