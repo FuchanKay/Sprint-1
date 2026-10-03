@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.AccessControl;
 using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -28,15 +29,31 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory)
             var y = i / Context.LevelHeight;
             var coord = new Vector2(x, y);
 
-            var emptyGrid = new Grid
+            var defaultGrid = new Grid
             {
                 Object = objectFactory.CreateEmpty(),
-                Tile = tileFactory.CreateEmptyTile()
+                Tile = tileFactory.CreateBrickTile()
             };
 
-            GridPointer.SetGrid(coord, emptyGrid);
+            GridPointer.SetGrid(coord, defaultGrid);
         }
 
+        for (int x = 0; x < Context.LevelWidth; x++)
+        {
+            var topCoord = new Vector2(x, 0);
+            var bottomCoord = new Vector2(x, Context.LevelHeight - 1);
+
+            GridPointer.SetObject(topCoord, objectFactory.CreateWall());
+            GridPointer.SetObject(bottomCoord, objectFactory.CreateWall());
+        }
+        for (int y = 0; y < Context.LevelWidth; y++)
+        {
+            var leftCoord = new Vector2(0, y);
+            var rightCoord = new Vector2(Context.LevelWidth - 1, y);
+
+            GridPointer.SetObject(leftCoord, objectFactory.CreateWall());
+            GridPointer.SetObject(rightCoord, objectFactory.CreateWall());
+        }
         GridPointer.SetObject(new Vector2(5, 5), objectFactory.CreateRock());
         GridPointer.SetObject(new Vector2(6, 6), objectFactory.CreatePlayer());
     }

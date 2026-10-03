@@ -62,6 +62,9 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion("SproutIdle", 0, 5, 64, 64);
 
         TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.BrickTile, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.Wall, 0, 0, 256, 256);
+
     }
 
     private void BindAllTextures()
@@ -70,6 +73,8 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.ExitGameButton, "Images/exit-button");
 
         TextureAtlas.AddTexture(TextureNames.Rock, "Images/rock");
+        TextureAtlas.AddTexture(TextureNames.BrickTile, "Images/bricktile");
+        TextureAtlas.AddTexture(TextureNames.Wall, "Images/stonewall");
 
         // StoneBlock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneBlock");
         // Rock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/rock");

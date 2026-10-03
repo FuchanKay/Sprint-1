@@ -14,8 +14,10 @@ public class GridPointer
         ObjectPointers.Add(ObjectIds.Empty, []);
         ObjectPointers.Add(ObjectIds.Rock, []);
         ObjectPointers.Add(ObjectIds.Player, []);
+        ObjectPointers.Add(ObjectIds.Wall, []);
 
         TilePointers.Add(TileIds.Empty, []);
+        TilePointers.Add(TileIds.Brick, []);
     }
 
     public void SetGrid(Vector2 coord, Grid grid)

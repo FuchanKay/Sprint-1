@@ -37,4 +37,17 @@ public class ObjectFactory(ITextureAtlas textureAtlas)
             Sprite = sprite
         };
     }
+
+    public IObject CreateWall()
+    {
+        var sprite = new StaticSprite(textureAtlas);
+        sprite.SetState(RegionNames.Wall);
+        sprite.Texture = textureAtlas.GetTexture(TextureNames.Wall);
+        sprite.Scale = 0.2f;
+        return new WallObject
+        {
+            Direction = Directions.South,
+            Sprite = sprite
+        };
+    }
 }
