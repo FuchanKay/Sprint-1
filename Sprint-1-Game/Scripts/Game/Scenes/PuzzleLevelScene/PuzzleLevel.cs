@@ -5,7 +5,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, ITextureAtlas textureAtlas)
+public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, ITextureAtlas textureAtlas)
 {
     private readonly List<ILevelEvent> EventQueue = [];
     private readonly LevelContext Context = new()
@@ -20,7 +20,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, I
         IsIdle = true
     };
     private readonly GridPointer GridPointer = new();
-    private readonly SpriteGrid SpriteGrid = new(textureAtlas);
+    private readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory, textureAtlas);
     private readonly int MaxEventsQueued = 3;
     public bool IsIdle = true;
 
@@ -71,26 +71,27 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, I
 
     public void Draw(SpriteBatch sb)
     {
-        for (int i = 0; i < Context.LevelWidth * Context.LevelHeight; i++)
-        {
-            var x = i % Context.LevelWidth;
-            var y = i / Context.LevelHeight;
-            var coord = new Vector2(x, y);
+        // for (int i = 0; i < Context.LevelWidth * Context.LevelHeight; i++)
+        // {
+        //     var x = i % Context.LevelWidth;
+        //     var y = i / Context.LevelHeight;
+        //     var coord = new Vector2(x, y);
 
-            var grid = GridPointer.GetGrid(coord);
-            var obj = grid.Object;
-            var tile = grid.Tile;
-            if (tile.Id != TileIds.Empty)
-            {
-                tile.Sprite.Position = new Vector2(x * 50, y * 50);
-                tile.Sprite.Draw(sb);
-            }
-            if (obj.Id != ObjectIds.Empty)
-            {
-                obj.Sprite.Position = new Vector2(x * 50, y * 50);
-                obj.Sprite.Draw(sb);
-            }
-        }
+        //     var grid = GridPointer.GetGrid(coord);
+        //     var obj = grid.Object;
+        //     var tile = grid.Tile;
+        //     if (tile.Id != TileIds.Empty)
+        //     {
+        //         tile.Sprite.Position = new Vector2(x * 50, y * 50);
+        //         tile.Sprite.Draw(sb);
+        //     }
+        //     if (obj.Id != ObjectIds.Empty)
+        //     {
+        //         obj.Sprite.Position = new Vector2(x * 50, y * 50);
+        //         obj.Sprite.Draw(sb);
+        //     }
+        // }
+        SpriteGrid.Draw(sb);
     }
 
     public void EnqueueEvent(ILevelEvent levelEvent)

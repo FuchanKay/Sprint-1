@@ -8,10 +8,12 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private PuzzleLevel Level;
     private ObjectFactory ObjectFactory = new(textureAtlas);
     private TileFactory TileFactory = new(textureAtlas);
+    private ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
+    private TileSpriteFactory TileSpriteFactory = new(textureAtlas);
 
     public void Init()
     {
-        Level = new(ObjectFactory, TileFactory, textureAtlas);
+        Level = new(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory, textureAtlas);
         Level.Init();
     }
     public void Update(int dtMs)

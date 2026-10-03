@@ -8,12 +8,9 @@ public class MoveWestEvent : ILevelEvent
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerGrid = gridPointer.GetGrid(playerCoord);
         var playerObj = playerGrid.Object as PlayerObject;
-        if (playerObj.Direction != Directions.West)
-        {
-            playerObj.Direction = Directions.West;
-            context.ShouldUpdate = true;
-        }
-        else
+
+        var isFacingWest = playerObj.Direction == Directions.West;
+        if (isFacingWest)
         {
             var eastCoord = new Vector2(playerCoord.X - 1, playerCoord.Y);
             var eastGrid = gridPointer.GetGrid(eastCoord);
@@ -22,6 +19,11 @@ public class MoveWestEvent : ILevelEvent
                 gridPointer.SetObject(playerCoord, new EmptyObject());
                 gridPointer.SetObject(eastCoord, playerObj);
             }
+            context.ShouldUpdate = true;
+        }
+        else
+        {
+            playerObj.Direction = Directions.West;
             context.ShouldUpdate = true;
         }
     }

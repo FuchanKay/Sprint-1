@@ -8,12 +8,9 @@ public class MoveNorthEvent : ILevelEvent
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerGrid = gridPointer.GetGrid(playerCoord);
         var playerObj = playerGrid.Object as PlayerObject;
-        if (playerObj.Direction != Directions.North)
-        {
-            playerObj.Direction = Directions.North;
-            context.ShouldUpdate = true;
-        }
-        else
+
+        var isFacingNorth = playerObj.Direction == Directions.North;
+        if (isFacingNorth)
         {
             var eastCoord = new Vector2(playerCoord.X, playerCoord.Y - 1);
             var eastGrid = gridPointer.GetGrid(eastCoord);
@@ -22,6 +19,11 @@ public class MoveNorthEvent : ILevelEvent
                 gridPointer.SetObject(playerCoord, new EmptyObject());
                 gridPointer.SetObject(eastCoord, playerObj);
             }
+            context.ShouldUpdate = true;
+        }
+        else
+        {
+            playerObj.Direction = Directions.North;
             context.ShouldUpdate = true;
         }
     }
