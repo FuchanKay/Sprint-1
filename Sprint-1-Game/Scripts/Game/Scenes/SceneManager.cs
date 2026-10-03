@@ -37,12 +37,12 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         UpdateInputs();
 
         //Later on in development exiting game should not be mapped to a key but decent temporary solution for now. 
-        if (buttonInput.IsPressed("Restart Game"))
+        if (buttonInput.IsPressed(InputNames.ResetGame))
         {
             Restart();
         }
 
-        if (buttonInput.IsPressed("Exit Game"))
+        if (buttonInput.IsPressed(InputNames.ExitGame))
         {
             ExitGame();
         }
@@ -82,7 +82,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         // var gameplayScene = new GameplaySceneController(this, buttonInput, mouseInput, audioManager, texAtlas);
         // NameSceneMap.TryAdd(GameplaySceneController.Name, gameplayScene);
 
-        var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas);
+        var puzzleLevelScene = new PuzzleLevelSceneController(buttonInput, textureAtlas);
         NameSceneMap.TryAdd(SceneNames.PuzzleLevel, puzzleLevelScene);
     }
 }

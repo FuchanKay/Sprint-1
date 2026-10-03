@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Scripts.GameComponents;
@@ -41,10 +40,10 @@ public class Setup(ContentManager content)
         ButtonInput.MapInput(InputNames.MoveEast, (int)Keys.D);
         ButtonInput.MapInput(InputNames.MoveSouth, (int)Keys.S);
         ButtonInput.MapInput(InputNames.MoveWest, (int)Keys.A);
-        ButtonInput.MapInput("Destroy", (int)Keys.Space);
+        ButtonInput.MapInput(InputNames.Destroy, (int)Keys.Space);
         ButtonInput.MapInput(InputNames.Snap, (int)Keys.F);
-        ButtonInput.MapInput("Cycle Block Left", (int)Keys.T);
-        ButtonInput.MapInput("Cycle Block Right", (int)Keys.Y);
+        ButtonInput.MapInput(InputNames.CycleObjectLeft, (int)Keys.T);
+        ButtonInput.MapInput(InputNames.CycleObjectRight, (int)Keys.Y);
 
         ButtonInput.MapInput(InputNames.ExitGame, (int)Keys.Q);
         ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.R);
@@ -54,12 +53,12 @@ public class Setup(ContentManager content)
 
     private void AddAnimations()
     {
-        TextureAtlas.AddAnimation("SproutWalkDown", 3, 6, 64, 64);
-        TextureAtlas.AddAnimation("SproutWalkRight", 0, 6, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.SproutWalkDown, 3, 6, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.SproutWalkRight, 0, 6, 64, 64);
         // AddAnimation(name, numFrames, row, width, height, delay)
-        TextureAtlas.AddAnimation("SproutWalkLeft", 1, 6, 64, 64, 100);
+        TextureAtlas.AddAnimation(AnimationNames.SproutWalkLeft, 1, 6, 64, 64, 100);
         // AddRegion(name, column, row, width, height)
-        TextureAtlas.AddRegion("SproutIdle", 0, 5, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.SproutIdle, 0, 5, 64, 64);
 
         TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.BrickTile, 0, 0, 256, 256);
@@ -69,12 +68,12 @@ public class Setup(ContentManager content)
 
     private void BindAllTextures()
     {
-        TextureAtlas.AddTexture(TextureNames.PlayGameButton, "Images/play-button");
-        TextureAtlas.AddTexture(TextureNames.ExitGameButton, "Images/exit-button");
+        TextureAtlas.AddTexture(TextureNames.PlayGameButton, FileNames.PlayGameButtonTexture);
+        TextureAtlas.AddTexture(TextureNames.ExitGameButton, FileNames.ExitGameButtonTexture);
 
-        TextureAtlas.AddTexture(TextureNames.Rock, "Images/rock");
-        TextureAtlas.AddTexture(TextureNames.BrickTile, "Images/bricktile");
-        TextureAtlas.AddTexture(TextureNames.Wall, "Images/stonewall");
+        TextureAtlas.AddTexture(TextureNames.Rock, FileNames.RockTexture);
+        TextureAtlas.AddTexture(TextureNames.BrickTile, FileNames.BrickTileTexture);
+        TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
 
         // StoneBlock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneBlock");
         // Rock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/rock");
@@ -90,7 +89,7 @@ public class Setup(ContentManager content)
     }
     private void LoadAudio()
     {
-        AudioManager.MapSound(SoundNames.Snap, content.Load<SoundEffect>("audio/snap"), 1.0f);
-        AudioManager.MapSong(SoundNames.Song, content.Load<Song>("audio/song"), 0.2f);
+        AudioManager.MapSound(SoundNames.Snap, content.Load<SoundEffect>(FileNames.SnapAudio), 1.0f);
+        AudioManager.MapSong(SoundNames.Song, content.Load<Song>(FileNames.SongAudio), 0.2f);
     }
 }
