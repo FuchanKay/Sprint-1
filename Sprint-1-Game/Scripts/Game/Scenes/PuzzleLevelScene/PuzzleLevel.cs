@@ -58,6 +58,11 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory)
         GridPointer.SetObject(new Vector2(6, 6), objectFactory.CreatePlayer());
     }
 
+    public void Update(int dtMs)
+    {
+        
+    }
+
     public void Draw(SpriteBatch sb)
     {
         for (int i = 0; i < Context.LevelWidth * Context.LevelHeight; i++)
