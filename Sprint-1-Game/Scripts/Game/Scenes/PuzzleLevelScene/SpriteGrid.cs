@@ -11,7 +11,6 @@ public class SpriteGrid (ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
     private readonly Dictionary<Vector2, ISprite> ObjectSprites = [];
     private readonly Dictionary<Vector2, ISprite> TileSprites = [];
 
-
     public void Init(GridPointer gridPointer, LevelContext context)
     {
         for (int i = 0; i < context.LevelWidth * context.LevelHeight; i++)

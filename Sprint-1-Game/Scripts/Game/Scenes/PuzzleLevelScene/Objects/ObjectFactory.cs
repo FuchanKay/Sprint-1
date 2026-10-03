@@ -8,7 +8,6 @@ public class ObjectFactory(ITextureAtlas textureAtlas)
         return new EmptyObject
         {
             Direction = Directions.South,
-            Sprite = new StaticSprite(textureAtlas)
         };
     }
 

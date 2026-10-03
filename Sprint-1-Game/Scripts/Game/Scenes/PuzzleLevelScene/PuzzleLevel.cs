@@ -26,6 +26,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
     public void Init()
     {
+        //Temporary level initialization code
         GridPointer.Init();
         for (int i = 0; i < Context.LevelWidth * Context.LevelHeight; i++)
         {

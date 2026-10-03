@@ -5,5 +5,4 @@ public interface IObject
 {
     ObjectIds Id { get; }
     Directions Direction { get; set; }
-    ISprite Sprite { get; set; }
 }
