@@ -1,22 +1,26 @@
-using System;
 using System.Collections.Generic;
-using System.Security.AccessControl;
-using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory)
+public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, ITextureAtlas textureAtlas)
 {
-    private List<ILevelEvent> EventQueue = [];
+    private readonly List<ILevelEvent> EventQueue = [];
     private readonly LevelContext Context = new()
     {
         LevelWidth = 10,
         LevelHeight = 10,
+        GridWidthPx = 256,
+        GridHeightPx = 256,
+        GridScale = 0.2f,
+        PuzzleOffsetX = 100,
+        PuzzleOffsetY = 100,
         IsIdle = true
     };
     private readonly GridPointer GridPointer = new();
+    private readonly SpriteGrid SpriteGrid = new(textureAtlas);
     private readonly int MaxEventsQueued = 3;
     public bool IsIdle = true;
 
@@ -56,6 +60,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory)
         }
         GridPointer.SetObject(new Vector2(5, 5), objectFactory.CreateRock());
         GridPointer.SetObject(new Vector2(6, 6), objectFactory.CreatePlayer());
+
+        SpriteGrid.Init(GridPointer, Context);
     }
 
     public void Update(int dtMs)
