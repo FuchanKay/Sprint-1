@@ -14,9 +14,9 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         LevelHeight = 10,
         GridWidthPx = 256,
         GridHeightPx = 256,
-        GridScale = 0.2f,
-        PuzzleOffsetX = 100,
-        PuzzleOffsetY = 100,
+        GridScale = 0.15f,
+        PuzzleOffsetX = 400,
+        PuzzleOffsetY = 50,
         IsIdle = true
     };
     private readonly GridPointer GridPointer = new();
