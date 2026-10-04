@@ -15,6 +15,7 @@ public abstract class Sprite(ITextureAtlas textureAtlas) : ISprite
     public float Scale { get; set; } = 1.0f;
     public SpriteEffects Effects { get; set; } = SpriteEffects.None;
     public float LayerDepth { get; set; } = 0f;
+    public abstract bool IsFinished { get; protected set; }
 
     public abstract void Update(int dtMs);
     public abstract void SetState(string name);

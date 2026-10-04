@@ -1,9 +1,9 @@
 // using Microsoft.Xna.Framework;
 // using Microsoft.Xna.Framework.Graphics;
 // using Scripts.GameComponents;
-// namespace Scripts.Game;
+// namespace Scripts.Game.Objects;
 
-// public class Rock(IAudioManager am, ITextureAtlas textureAtlas) : Object(am, textureAtlas)
+// public class Rock(Vector2 pos, IAudioManager am) : Object(pos, am)
 // {
 //     public static Texture2D ObjectTexture { get; set; }
 //     protected override Texture2D Texture => ObjectTexture;

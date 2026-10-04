@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas texAtlas) : ISceneManager
+public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas) : ISceneManager
 {
     private readonly Dictionary<string, ISceneController> NameSceneMap = [];
     private ISceneController CurrentScene;
@@ -17,7 +16,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
 
         AddScenesToMap();
 
-        CurrentScene = NameSceneMap[MainMenuSceneController.Name];
+        CurrentScene = NameSceneMap[SceneNames.MainMenu];
         CurrentScene.Init();
     }
 
@@ -28,7 +27,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         buttonInput.ClearMapping();
         mouseInput.ClearMapping();
 
-        texAtlas.ClearMapping();
+        textureAtlas.ClearMapping();
 
         Init();
     }
@@ -38,12 +37,12 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         UpdateInputs();
 
         //Later on in development exiting game should not be mapped to a key but decent temporary solution for now. 
-        if (buttonInput.IsPressed("Restart Game"))
+        if (buttonInput.IsPressed(InputNames.ResetGame))
         {
             Restart();
         }
 
-        if (buttonInput.IsPressed("Exit Game"))
+        if (buttonInput.IsPressed(InputNames.ExitGame))
         {
             ExitGame();
         }
@@ -77,10 +76,13 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
 
     private void AddScenesToMap()
     {
-        var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager);
-        NameSceneMap.TryAdd(MainMenuSceneController.Name, mainMenuScene);
+        var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas);
+        NameSceneMap.TryAdd(SceneNames.MainMenu, mainMenuScene);
 
-        var gameplayScene = new GameplaySceneController(this, buttonInput, mouseInput, audioManager, texAtlas);
-        NameSceneMap.TryAdd(GameplaySceneController.Name, gameplayScene);
+        // var gameplayScene = new GameplaySceneController(this, buttonInput, mouseInput, audioManager, texAtlas);
+        // NameSceneMap.TryAdd(GameplaySceneController.Name, gameplayScene);
+
+        var puzzleLevelScene = new PuzzleLevelSceneController(buttonInput, textureAtlas);
+        NameSceneMap.TryAdd(SceneNames.PuzzleLevel, puzzleLevelScene);
     }
 }

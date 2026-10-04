@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Scripts.GameComponents;
@@ -11,16 +10,19 @@ public class Setup(ContentManager content)
 {
     //TODO: If there are any save file stuff that needs to be resolved it should be done here. 
     private IAudioManager AudioManager;
-    private ITextureAtlas TextureAtlas;
     private IInputManager ButtonInput;
     private IInputManager MouseInput;
-
+    private ITextureAtlas TextureAtlas;
     public void Initialize(out SceneManager sceneManager)
     {
         ButtonInput = new KeyboardInputManager();
         MouseInput = new MouseInputManager();
-        TextureAtlas = new TextureAtlas(content);
         AudioManager = new AudioManager();
+
+        TextureAtlas = new TextureAtlas(content);
+        MapDefaultInputs();
+        AddAnimations();
+
         sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas);
         sceneManager.Init();
     }
@@ -33,31 +35,64 @@ public class Setup(ContentManager content)
         MapDefaultInputs();
     }
 
+
+    private void MapDefaultInputs()
+    {
+        ButtonInput.MapInput(InputNames.MoveNorth, (int)Keys.W);
+        ButtonInput.MapInput(InputNames.MoveEast, (int)Keys.D);
+        ButtonInput.MapInput(InputNames.MoveSouth, (int)Keys.S);
+        ButtonInput.MapInput(InputNames.MoveWest, (int)Keys.A);
+        ButtonInput.MapInput(InputNames.Destroy, (int)Keys.Space);
+        ButtonInput.MapInput(InputNames.Snap, (int)Keys.F);
+        ButtonInput.MapInput(InputNames.CycleObjectLeft, (int)Keys.T);
+        ButtonInput.MapInput(InputNames.CycleObjectRight, (int)Keys.Y);
+
+        ButtonInput.MapInput(InputNames.ExitGame, (int)Keys.Q);
+        ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.R);
+
+        MouseInput.MapInput(InputNames.Select, (int)MouseButtons.Left);
+    }
+
+    private void AddAnimations()
+    {
+        TextureAtlas.AddAnimation(AnimationNames.SproutWalkDown, 3, 6, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.SproutWalkRight, 0, 6, 64, 64);
+        // AddAnimation(name, numFrames, row, width, height, delay)
+        TextureAtlas.AddAnimation(AnimationNames.SproutWalkLeft, 1, 6, 64, 64, 100);
+        // AddRegion(name, column, row, width, height)
+        TextureAtlas.AddRegion(RegionNames.SproutIdle, 0, 5, 64, 64);
+
+        TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.BrickTile, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.Wall, 0, 0, 256, 256);
+
+    }
+
     private void BindAllTextures()
     {
-        
-        PlayGameButton.ButtonTexture = content.Load<Texture2D>("Images/play-button");
-        ExitGameButton.ButtonTexture = content.Load<Texture2D>("Images/exit-button");
+        TextureAtlas.AddTexture(TextureNames.PlayGameButton, FileNames.PlayGameButtonTexture);
+        TextureAtlas.AddTexture(TextureNames.ExitGameButton, FileNames.ExitGameButtonTexture);
 
-        // Placeholder Sprites
+        TextureAtlas.AddTexture(TextureNames.Rock, FileNames.RockTexture);
+        TextureAtlas.AddTexture(TextureNames.BrickTile, FileNames.BrickTileTexture);
+        TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
+
         // StoneBlock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneBlock");
         // Rock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/rock");
         // StoneWall.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneWall");
-        Bomb.ObjectTexture = content.Load<Texture2D>("ObjectSprites/bomb");
-        TextureAtlas.AddTexture("Bomb", "ObjectSprites/bomb");
+        // Bomb.ObjectTexture = content.Load<Texture2D>("ObjectSprites/bomb");
         // ExitDoor.ObjectTexture = content.Load<Texture2D>("ObjectSprites/exitDoor");
         // Pylon.ObjectTexture = content.Load<Texture2D>("ObjectSprites/pylon");
         // Vine.ObjectTexture = content.Load<Texture2D>("ObjectSprites/vines");
         // TimedBomb.ObjectTexture = content.Load<Texture2D>("ObjectSprites/timedBomb");
 
-        //TODO: Remove this when sprite becomes its own thing
-        GameplaySceneController.SproutTexture = content.Load<Texture2D>("Images/player-sprites");
-        TextureAtlas.AddTexture("Sprout", "Images/player-sprites");
+        // //TODO: Remove this when sprite becomes its own thing
+        // GameplaySceneController.SproutTexture = content.Load<Texture2D>("Images/player-sprites");
     }
     private void LoadAudio()
     {
-        AudioManager.MapSound("snap", content.Load<SoundEffect>("audio/snap"), 1.0f);
-        AudioManager.MapSong("song", content.Load<Song>("audio/song"), 0.2f);
+        AudioManager.MapSound(SoundNames.Snap, content.Load<SoundEffect>(FileNames.SnapAudio), 1.0f);
+        AudioManager.MapSong(SoundNames.Song, content.Load<Song>(FileNames.SongAudio), 0.2f);
     }
 
     private void AddAnimations()

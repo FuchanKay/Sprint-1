@@ -3,7 +3,7 @@
 // using Scripts.GameComponents;
 // namespace Scripts.Game;
 
-// public class Vine(IAudioManager am, ITextureAtlas textureAtlas) : Object(am, textureAtlas)
+// public class Vine(Vector2 pos, IAudioManager am) : Object(pos, am)
 // {
 //     public static Texture2D ObjectTexture { get; set; }
 //     protected override Texture2D Texture => ObjectTexture;
