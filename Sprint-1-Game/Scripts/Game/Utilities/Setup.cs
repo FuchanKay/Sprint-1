@@ -63,6 +63,8 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.BrickTile, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Wall, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.Bomb, 0, 0, 256, 228);
+        TextureAtlas.AddRegion(RegionNames.Explosion, 0, 0, 256, 246);
 
     }
 
@@ -74,6 +76,8 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.Rock, FileNames.RockTexture);
         TextureAtlas.AddTexture(TextureNames.BrickTile, FileNames.BrickTileTexture);
         TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
+        TextureAtlas.AddTexture(TextureNames.Bomb, FileNames.BombTexture);
+        TextureAtlas.AddTexture(TextureNames.Explosion, FileNames.ExplosionTexture);
 
         // StoneBlock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneBlock");
         // Rock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/rock");

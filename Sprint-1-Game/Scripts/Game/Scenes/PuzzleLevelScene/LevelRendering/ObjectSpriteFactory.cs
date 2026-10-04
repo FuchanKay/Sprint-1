@@ -25,6 +25,11 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.SetState(RegionNames.Wall);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Wall);
                 break;
+            case ObjectIds.Bomb:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.Bomb);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Bomb);
+                break;
             default:
                 sprite = new StaticSprite(textureAtlas);
                 break;

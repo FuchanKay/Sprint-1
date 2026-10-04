@@ -15,6 +15,8 @@ public class GridPointer
         ObjectPointersCollection.Add(ObjectIds.Rock, []);
         ObjectPointersCollection.Add(ObjectIds.Player, []);
         ObjectPointersCollection.Add(ObjectIds.Wall, []);
+        ObjectPointersCollection.Add(ObjectIds.Bomb, []);
+        ObjectPointersCollection.Add(ObjectIds.Explosion, []);
 
         TilePointersCollection.Add(TileIds.Empty, []);
         TilePointersCollection.Add(TileIds.Brick, []);

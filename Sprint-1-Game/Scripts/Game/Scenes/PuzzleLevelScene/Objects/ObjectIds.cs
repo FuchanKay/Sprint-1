@@ -5,5 +5,7 @@ public enum ObjectIds
     Empty,
     Rock,
     Player,
-    Wall
+    Wall,
+    Bomb,
+    Explosion
 }

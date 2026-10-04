@@ -32,4 +32,20 @@ public class ObjectFactory()
             Direction = Directions.South,
         };
     }
+
+    public IObject CreateBomb()
+    {
+        return new BombObject
+        {
+            Direction = Directions.South,
+        };
+    }
+
+    public IObject CreateExplosion()
+    {
+        return new ExplosionObject
+        {
+            Direction = Directions.South,
+        };
+    }
 }
