@@ -8,8 +8,8 @@ public class AnimatedSprite(ITextureAtlas textureAtlas) : Sprite(textureAtlas)
     private Animation CurrentAnimation;
     private int CurrentFrameIndex;
     private int Elapsed;
-    public bool IsFinished { get; private set; } = false;
 
+    public override bool IsFinished { get; protected set; }
     public override void Update(int dtMs)
     {
         Elapsed += dtMs;

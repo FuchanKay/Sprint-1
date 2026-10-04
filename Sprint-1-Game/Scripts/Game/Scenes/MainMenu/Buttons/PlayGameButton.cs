@@ -3,15 +3,14 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class PlayGameButton(ISceneManager sm, IAudioManager audioManager) : Button
+public class PlayGameButton(ISceneManager sm, IAudioManager audioManager, ITextureAtlas textureAtlas) : Button
 {
-    public static Texture2D ButtonTexture { get; set; }
-    protected override Texture2D Texture => ButtonTexture;
+    protected override Texture2D Texture => textureAtlas.GetTexture(TextureNames.PlayGameButton);
 
     protected override void OnClick()
     {
-        sm.SwapScene(GameplaySceneController.Name);
+        sm.SwapScene(SceneNames.PuzzleLevel);
         // Placeholder sound effect to indicate that the button was clicked.
-        audioManager.PlaySound("snap");
+        audioManager.PlaySound(SoundNames.Snap);
     }
 }

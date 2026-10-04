@@ -13,19 +13,32 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Audio/14 Big Fat Bitchie's Blueberry Pie C.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/processorParam:Version=3.8.5.1
-/build:Audio/song.mp3;Audio/song.mp3
-
-#begin Audio/soundreality-finger-snap-sound-423220.mp3
+#begin Audio/snap.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /processorParam:Version=3.8.5.1
-/build:Audio/snap.mp3;Audio/snap.mp3
+/build:Audio/snap.mp3
+
+#begin Audio/song.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.1
+/build:Audio/song.mp3
+
+#begin Images/bricktile.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:Images/bricktile.png;Images/bricktile
 
 #begin Images/Exit game button.png
 /importer:TextureImporter
@@ -53,6 +66,19 @@
 /processorParam:Version=3.8.5.1
 /build:Images/mario.png;Images/mario
 
+#begin Images/placeholder-player.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:Images/placeholder-player.png;Images/player
+
 #begin Images/Play game button.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -78,6 +104,32 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.1
 /build:Images/player-sprites.png;Images/player-sprites
+
+#begin Images/rock.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:Images/rock.png;Images/rock
+
+#begin Images/stonewall.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:Images/stonewall.png;Images/stonewall
 
 #begin ObjectSprites/bomb.png
 /importer:TextureImporter
