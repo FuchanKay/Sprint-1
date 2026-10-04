@@ -32,22 +32,22 @@ public class GridPointer
             CoordToGrid.Remove(coord);
         }
 
-        var newObjPointer = ObjectPointersCollection[grid.Object.Id];
-        var newTilePointer = TilePointersCollection[grid.Tile.Id];
+        var newObjPointers = ObjectPointersCollection[grid.Object.Id];
+        var newTilePointers = TilePointersCollection[grid.Tile.Id];
 
-        newObjPointer[coord] = grid.Object;
-        newTilePointer[coord] = grid.Tile;
+        newObjPointers[coord] = grid.Object;
+        newTilePointers[coord] = grid.Tile;
         CoordToGrid[coord] = grid;
     }
 
     public void SetObject(Vector2 coord, IObject obj)
     {
         var gridToSetObj = CoordToGrid[coord];
-        var oldObjPointer = ObjectPointersCollection[gridToSetObj.Object.Id];
-        oldObjPointer.Remove(coord);
+        var oldObjPointers = ObjectPointersCollection[gridToSetObj.Object.Id];
+        oldObjPointers.Remove(coord);
 
-        var newObjPointer = ObjectPointersCollection[obj.Id];
-        newObjPointer[coord] = obj;
+        var newObjPointers = ObjectPointersCollection[obj.Id];
+        newObjPointers[coord] = obj;
 
         CoordToGrid[coord].Object = obj;
     }
@@ -55,11 +55,11 @@ public class GridPointer
     public void SetTile(Vector2 coord, ITile tile)
     {
         var gridToSetTile = CoordToGrid[coord];
-        var oldTilePointer = TilePointersCollection[gridToSetTile.Tile.Id];
-        oldTilePointer.Remove(coord);
+        var oldTilePointers = TilePointersCollection[gridToSetTile.Tile.Id];
+        oldTilePointers.Remove(coord);
 
-        var newTilePointer = TilePointersCollection[tile.Id];
-        newTilePointer[coord] = tile;
+        var newTilePointers = TilePointersCollection[tile.Id];
+        newTilePointers[coord] = tile;
 
         CoordToGrid[coord].Tile = tile;
     }
@@ -91,12 +91,12 @@ public class GridPointer
         return grid.Tile;
     }
 
-    public Dictionary<Vector2, IObject> GetObjectPointer(ObjectIds id)
+    public Dictionary<Vector2, IObject> GetObjectPointers(ObjectIds id)
     {
         return ObjectPointersCollection[id];
     }
 
-    public Dictionary<Vector2, ITile> GetTilePointer(TileIds id)
+    public Dictionary<Vector2, ITile> GetTilePointers(TileIds id)
     {
         return TilePointersCollection[id];
     }

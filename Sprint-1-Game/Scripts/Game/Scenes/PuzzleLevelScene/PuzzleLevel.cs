@@ -50,7 +50,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         }
     }
 
-    public void ExecuteEvent()
+    public bool TryExecuteEvent()
     {
         //TODO: An event should only execute once all animations and movements are finished from the previous event. IsIdle should keep track of that
         var shouldExecute = Context.IsIdle && EventQueue.Count > 0;
@@ -63,6 +63,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
             //TODO: THE SPRITE GRID SHOULD NOT INITIATE EVERY SINGLE TIME AN EVENT HAPPENS! THIS *MUST* BE CHANGED
             SpriteGrid.Init(GridPointer, Context);
         }
+        return shouldExecute;
     }
 
     private void CreateLevel()

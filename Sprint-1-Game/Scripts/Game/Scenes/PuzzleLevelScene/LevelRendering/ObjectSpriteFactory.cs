@@ -4,6 +4,7 @@ namespace Scripts.Game;
 
 public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
 {
+    private readonly static float ObjectLayerDepth = 3.0f;
     public ISprite CreateObjectSprite(ObjectIds id, LevelContext context)
     {
         ISprite sprite;
@@ -29,6 +30,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 break;
         }
         sprite.Scale = context.GridScale;
+        sprite.LayerDepth = ObjectLayerDepth;
 
         return sprite;
     }

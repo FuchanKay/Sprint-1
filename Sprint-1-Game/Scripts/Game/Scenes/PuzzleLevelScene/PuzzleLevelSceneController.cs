@@ -46,7 +46,7 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
         {
             Level.EnqueueEvent(new UndoEvent());
         }
-        Level.ExecuteEvent();
+        Level.TryExecuteEvent();
 
         Level.Update(dtMs);
     }

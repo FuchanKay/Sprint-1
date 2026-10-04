@@ -4,7 +4,7 @@ namespace Scripts.Game;
 
 public class TileSpriteFactory(ITextureAtlas textureAtlas)
 {
-
+    private readonly static float TileLayerDepth = -1;
     public ISprite CreateTileSprite(TileIds id, LevelContext context)
     {
         StaticSprite sprite;
@@ -20,6 +20,7 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
                 break;
         }
         sprite.Scale = context.GridScale;
+        sprite.LayerDepth = TileLayerDepth;
 
         return sprite;
     }
