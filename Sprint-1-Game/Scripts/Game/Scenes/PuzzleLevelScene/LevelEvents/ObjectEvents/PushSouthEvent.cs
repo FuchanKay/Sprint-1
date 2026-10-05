@@ -16,12 +16,10 @@ public class PushSouthEvent : ILevelEvent
             var southGrid = gridPointer.GetGrid(southCoord);
             var southObj = southGrid.Object;
 
-            bool southIsPushable = Enum.IsDefined(typeof(PushableObjectIds), southObj.Id);
-
             var southCoordPlus1 = southCoord + new Vector2(0, 1);
             var southGridPlus1 = gridPointer.GetGrid(southCoordPlus1);
 
-            if (southIsPushable && southGridPlus1.Object.Id == ObjectIds.Empty)
+            if (southObj.isPushable && southGridPlus1.Object.Id == ObjectIds.Empty)
             {
                 gridPointer.SetObject(southCoord, new EmptyObject());
                 gridPointer.SetObject(southCoordPlus1, southObj);
