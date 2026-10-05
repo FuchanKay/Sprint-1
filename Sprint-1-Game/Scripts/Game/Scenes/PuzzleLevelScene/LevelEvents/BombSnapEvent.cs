@@ -11,6 +11,6 @@ public class BombSnapEvent : ILevelEvent
             var bombCoord = bombPointer.Key;
             gridPointer.SetObject(bombCoord, new ExplosionObject());
         }
-        new DestroyObjectEvent().Execute(spriteGrid, gridPointer, context);
+        new ExplodeObjectEvent().Execute(spriteGrid, gridPointer, context);
     }
 }

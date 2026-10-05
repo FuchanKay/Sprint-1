@@ -6,5 +6,6 @@ public class SnapEvent : ILevelEvent
     {
         // Only executes snap behavior for bomb objects
         new BombSnapEvent().Execute(spriteGrid, gridPointer, context);
+        new TimedBombSnapEvent().Execute(spriteGrid, gridPointer, context);
     }
 }

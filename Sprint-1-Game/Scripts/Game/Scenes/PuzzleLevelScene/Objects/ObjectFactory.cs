@@ -41,6 +41,14 @@ public class ObjectFactory()
         };
     }
 
+    public IObject CreateTimedBomb()
+    {
+        return new TimedBombObject
+        {
+            Direction = Directions.South,
+        };
+    }
+
     public IObject CreateExplosion()
     {
         return new ExplosionObject

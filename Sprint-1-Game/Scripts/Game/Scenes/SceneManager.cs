@@ -14,8 +14,6 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
     {
         ShouldExit = false;
 
-        AddAnimations();
-
         AddScenesToMap();
 
         CurrentScene = NameSceneMap[SceneNames.MainMenu];

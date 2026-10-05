@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Scripts.Game;
 
-public class DestroyObjectEvent : ILevelEvent
+public class ExplodeObjectEvent : ILevelEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {

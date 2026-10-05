@@ -7,5 +7,6 @@ public enum ObjectIds
     Player,
     Wall,
     Bomb,
+    TimedBomb,
     Explosion
 }
