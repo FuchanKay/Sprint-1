@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary;
 using Scripts.Game;
+using Scripts.GameComponents;
 
 namespace Sprint_1_Game.Scripts;
 

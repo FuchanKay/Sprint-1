@@ -12,12 +12,12 @@ public class MoveWestEvent : ILevelEvent
         var isFacingWest = playerObj.Direction == Directions.West;
         if (isFacingWest)
         {
-            var eastCoord = new Vector2(playerCoord.X - 1, playerCoord.Y);
-            var eastGrid = gridPointer.GetGrid(eastCoord);
-            if (eastGrid.Object.Id == ObjectIds.Empty)
+            var westCoord = new Vector2(playerCoord.X - 1, playerCoord.Y);
+            var westGrid = gridPointer.GetGrid(westCoord);
+            if (westGrid.Object.Id == ObjectIds.Empty)
             {
                 gridPointer.SetObject(playerCoord, new EmptyObject());
-                gridPointer.SetObject(eastCoord, playerObj);
+                gridPointer.SetObject(westCoord, playerObj);
             }
             context.ShouldUpdate = true;
         }
