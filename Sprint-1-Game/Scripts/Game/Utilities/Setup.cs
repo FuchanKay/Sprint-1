@@ -58,7 +58,10 @@ public class Setup(ContentManager content)
         TextureAtlas.AddAnimation(AnimationNames.PlayerWalkEast, 0, 6, 64, 64);
         TextureAtlas.AddAnimation(AnimationNames.PlayerWalkWest, 1, 6, 64, 64, 100);
         TextureAtlas.AddAnimation(AnimationNames.PlayerSnap, 4, 6, 64, 64, 200);
-        TextureAtlas.AddRegion(RegionNames.PlayerIdle, 0, 5, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.PlayerIdleNorth, 1, 5, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.PlayerIdleSouth, 0, 5, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.PlayerIdleEast, 2, 5, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.PlayerIdleWest, 3, 5, 64, 64);
 
         TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.BrickTile, 0, 0, 256, 256);

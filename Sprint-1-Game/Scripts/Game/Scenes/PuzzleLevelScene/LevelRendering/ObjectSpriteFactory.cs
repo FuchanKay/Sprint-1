@@ -17,7 +17,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 break;
             case ObjectIds.Player:
                 sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.PlayerIdle);
+                sprite.SetState(RegionNames.PlayerIdleSouth);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Player);
                 sprite.Scale = 4f;
                 break;
