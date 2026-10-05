@@ -12,12 +12,12 @@ public class MoveNorthEvent : ILevelEvent
         var isFacingNorth = playerObj.Direction == Directions.North;
         if (isFacingNorth)
         {
-            var eastCoord = new Vector2(playerCoord.X, playerCoord.Y - 1);
-            var eastGrid = gridPointer.GetGrid(eastCoord);
-            if (eastGrid.Object.Id == ObjectIds.Empty)
+            var northCoord = new Vector2(playerCoord.X, playerCoord.Y - 1);
+            var northGrid = gridPointer.GetGrid(northCoord);
+            if (northGrid.Object.Id == ObjectIds.Empty)
             {
                 gridPointer.SetObject(playerCoord, new EmptyObject());
-                gridPointer.SetObject(eastCoord, playerObj);
+                gridPointer.SetObject(northCoord, playerObj);
             }
             context.ShouldUpdate = true;
         }
