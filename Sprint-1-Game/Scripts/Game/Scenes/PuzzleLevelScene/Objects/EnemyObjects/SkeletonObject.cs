@@ -7,7 +7,7 @@ Dead
 */
 public class SkeletonObject : IObject
 {
-    public ObjectIds Id => ObjectIds.Empty;
-    public Directions Direction { get; set; }
+    public ObjectIds Id => ObjectIds.Enemy;
+    public Directions Direction { get; set; } = Directions.South;
 
 }
