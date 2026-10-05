@@ -16,12 +16,10 @@ public class PushWestEvent : ILevelEvent
             var westGrid = gridPointer.GetGrid(westCoord);
             var westObj = westGrid.Object;
 
-            bool westIsPushable = Enum.IsDefined(typeof(PushableObjectIds), westObj.Id);
-
             var westCoordPlus1 = westCoord + new Vector2(-1, 0);
             var westGridPlus1 = gridPointer.GetGrid(westCoordPlus1);
 
-            if (westIsPushable && westGridPlus1.Object.Id == ObjectIds.Empty)
+            if (westObj.isPushable && westGridPlus1.Object.Id == ObjectIds.Empty)
             {
                 gridPointer.SetObject(westCoord, new EmptyObject());
                 gridPointer.SetObject(westCoordPlus1, westObj);
