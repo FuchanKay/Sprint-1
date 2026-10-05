@@ -10,5 +10,7 @@ public class RedLizardObject : IObject
 {
     public ObjectIds Id => ObjectIds.Enemy;
     public Directions Direction { get; set; } = Directions.South;
+    public bool isPushable => true;
+    public bool isDestructible => true;
 
 }
