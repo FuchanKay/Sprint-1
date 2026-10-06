@@ -53,12 +53,15 @@ public class Setup(ContentManager content)
 
     private void AddAnimations()
     {
-        TextureAtlas.AddAnimation(AnimationNames.SproutWalkDown, 3, 6, 64, 64);
-        TextureAtlas.AddAnimation(AnimationNames.SproutWalkRight, 0, 6, 64, 64);
-        // AddAnimation(name, numFrames, row, width, height, delay)
-        TextureAtlas.AddAnimation(AnimationNames.SproutWalkLeft, 1, 6, 64, 64, 100);
-        // AddRegion(name, column, row, width, height)
-        TextureAtlas.AddRegion(RegionNames.SproutIdle, 0, 5, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkNorth, 2, 6, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkSouth, 3, 6, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkEast, 0, 6, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkWest, 1, 6, 64, 64, 100);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerSnap, 4, 6, 64, 64, 200);
+        TextureAtlas.AddRegion(RegionNames.PlayerIdleNorth, 1, 5, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.PlayerIdleSouth, 0, 5, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.PlayerIdleEast, 2, 5, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.PlayerIdleWest, 3, 5, 64, 64);
 
         TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.BrickTile, 0, 0, 256, 256);
@@ -74,6 +77,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.PlayGameButton, FileNames.PlayGameButtonTexture);
         TextureAtlas.AddTexture(TextureNames.ExitGameButton, FileNames.ExitGameButtonTexture);
 
+        TextureAtlas.AddTexture(TextureNames.Player, FileNames.PlayerTexture);
         TextureAtlas.AddTexture(TextureNames.Rock, FileNames.RockTexture);
         TextureAtlas.AddTexture(TextureNames.BrickTile, FileNames.BrickTileTexture);
         TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
