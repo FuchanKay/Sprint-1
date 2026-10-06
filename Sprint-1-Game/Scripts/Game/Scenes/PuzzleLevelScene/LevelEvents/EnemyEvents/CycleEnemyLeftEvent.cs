@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Scripts.Game;
 
@@ -26,6 +27,9 @@ public class CycleEnemyLeftEvent : ILevelEvent
                 gridPointer.SetObject(EnemyCoord, new BlueLizardObject());
                 break;
         }
+        spriteGrid.CycleObjectSprite(EnemyCoord, gridPointer);
+        var newObject = gridPointer.GetObject(EnemyCoord);
         context.ShouldUpdate = true;
+        Console.WriteLine($"Cycled object to {gridPointer.GetObject(EnemyCoord).Id}");
     }
 }

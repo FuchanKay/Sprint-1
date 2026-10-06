@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Scripts.Game;
 
@@ -20,12 +21,17 @@ public class CycleEnemyRightEvent : ILevelEvent
                 gridPointer.SetObject(EnemyCoord, new WarlockObject());
                 break;
             case ObjectIds.Warlock:
-                gridPointer.SetObject(EnemyCoord, new BlueLizardObject());
+                gridPointer.SetObject(EnemyCoord, new RedLizardObject());
                 break;
             default:
                 gridPointer.SetObject(EnemyCoord, new BlueLizardObject());
                 break;
         }
+
+        spriteGrid.CycleObjectSprite(EnemyCoord, gridPointer);
+        var newObject = gridPointer.GetObject(EnemyCoord);
         context.ShouldUpdate = true;
+        Console.WriteLine($"Cycled object to {gridPointer.GetObject(EnemyCoord).Id}");
+
     }
 }
