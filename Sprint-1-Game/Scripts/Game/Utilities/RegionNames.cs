@@ -8,5 +8,6 @@ public class RegionNames
     public readonly static string TimedBomb = "Timed Bomb";
     public readonly static string Explosion = "Explosion";
     public readonly static string BrickTile = "Brick Tile";
+    public readonly static string WaterTile = "Water Tile";
     public readonly static string SproutIdle = "Sprout Idle";
 }

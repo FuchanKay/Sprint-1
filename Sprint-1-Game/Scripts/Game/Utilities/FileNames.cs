@@ -7,6 +7,7 @@ public class FileNames
     public readonly static string RockTexture = "Images/rock";
     public readonly static string BrickTileTexture = "Images/bricktile";
     public readonly static string WallTexture = "Images/stonewall";
+    public readonly static string WaterTileTexture = "Images/watertile";
     public readonly static string BombTexture = "Images/bomb";
     public readonly static string ExplosionTexture = "Images/explosion";
 
