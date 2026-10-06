@@ -82,6 +82,14 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         sprite.SetTargetPosition(realTargetCoord);
     }
 
+    public void CycleObjectSprite(Vector2 coord, GridPointer gridPointer)
+    {
+        var realCoord = CalculateLiteralPos(coord);
+        ObjectSprites.Remove(realCoord);
+        var sprite = objectSpriteFactory.CreateObjectSprite(gridPointer.GetObject(coord).Id, realCoord, Context);
+        ObjectSprites.Add(realCoord, sprite);
+    }
+
     public void SetTileSprite(Vector2 currentCoord, Vector2 targetCoord, ISprite sprite)
     {
         var realCurrentCoord = CalculateLiteralPos(currentCoord);
