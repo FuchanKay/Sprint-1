@@ -34,7 +34,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
     public void Update(int dtMs)
     {
-
+        SpriteGrid.Update(dtMs);
+        Context.IsIdle = SpriteGrid.IsIdle;
     }
 
     public void Draw(SpriteBatch sb)
@@ -52,16 +53,12 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
     public bool TryExecuteEvent()
     {
-        //TODO: An event should only execute once all animations and movements are finished from the previous event. IsIdle should keep track of that
         var shouldExecute = Context.IsIdle && EventQueue.Count > 0;
         if (shouldExecute)
         {
             var first = EventQueue[0];
             EventQueue.RemoveAt(0);
             first.Execute(SpriteGrid, GridPointer, Context);
-
-            //TODO: THE SPRITE GRID SHOULD NOT INITIATE EVERY SINGLE TIME AN EVENT HAPPENS! THIS *MUST* BE CHANGED
-            SpriteGrid.Init(GridPointer, Context);
         }
         return shouldExecute;
     }
@@ -85,8 +82,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
         CreateWallBorders();
 
-        GridPointer.SetObject(new Vector2(5, 5), objectFactory.CreateRock());
-        GridPointer.SetObject(new Vector2(6, 6), objectFactory.CreatePlayer());
+        GridPointer.SetObject(new Vector2(7, 2), objectFactory.CreateBomb());
+        GridPointer.SetObject(new Vector2(2, 2), objectFactory.CreatePlayer());
     }
 
     private void CreateWallBorders()

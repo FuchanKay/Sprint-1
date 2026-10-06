@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Scripts.Game;
 
-public class MoveSouthEvent : ILevelEvent
+public class MoveWestEvent : ILevelEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
@@ -9,21 +9,21 @@ public class MoveSouthEvent : ILevelEvent
         var playerGrid = gridPointer.GetGrid(playerCoord);
         var playerObj = playerGrid.Object as PlayerObject;
 
-        var isFacingSouth = playerObj.Direction == Directions.South;
-        if (isFacingSouth)
+        var isFacingWest = playerObj.Direction == Directions.West;
+        if (isFacingWest)
         {
-            var eastCoord = new Vector2(playerCoord.X, playerCoord.Y + 1);
-            var eastGrid = gridPointer.GetGrid(eastCoord);
-            if (eastGrid.Object.Id == ObjectIds.Empty)
+            var westCoord = new Vector2(playerCoord.X - 1, playerCoord.Y);
+            var westGrid = gridPointer.GetGrid(westCoord);
+            if (westGrid.Object.Id == ObjectIds.Empty)
             {
                 gridPointer.SetObject(playerCoord, new EmptyObject());
-                gridPointer.SetObject(eastCoord, playerObj);
+                gridPointer.SetObject(westCoord, playerObj);
             }
             context.ShouldUpdate = true;
         }
         else
         {
-            playerObj.Direction = Directions.South;
+            playerObj.Direction = Directions.West;
             context.ShouldUpdate = true;
         }
     }
