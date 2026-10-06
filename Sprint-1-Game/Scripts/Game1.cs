@@ -41,6 +41,12 @@ public class Game1 : Core
         {
             Exit();
         }
+        if (SceneManager.ShouldRestart)
+        {
+            Setup.Initialize(out var sm);
+            SceneManager = sm;
+            Setup.LoadContent();
+        }
         base.Update(gameTime);
     }
 
