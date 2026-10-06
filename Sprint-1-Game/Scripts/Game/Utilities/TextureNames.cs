@@ -10,4 +10,6 @@ public class TextureNames
     public readonly static string Bomb = "Bomb";
     public readonly static string Explosion = "Explosion";
     public readonly static string BrickTile = "Brick Tile";
+    public readonly static string GrassTile = "Grass Tile";
+    public readonly static string WaterTile = "Water Tile";
 }
