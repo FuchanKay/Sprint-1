@@ -27,7 +27,7 @@
 /processorParam:Version=3.8.5.1
 /build:Audio/song.mp3
 
-#begin Images/blue_lizard_front_transparent.png
+#begin Images/blueLizard.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -38,7 +38,7 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.1
-/build:Images/blue_lizard_front_transparent.png
+/build:Images/blueLizard.png
 
 #begin Images/bomb.png
 /importer:TextureImporter
@@ -157,7 +157,7 @@
 /processorParam:Version=3.8.5.1
 /build:Images/player-sprites.png;Images/player-sprites
 
-#begin Images/red_lizard_front_transparent.png
+#begin Images/redLizard.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -168,7 +168,7 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.1
-/build:Images/red_lizard_front_transparent.png
+/build:Images/redLizard.png
 
 #begin Images/rock.png
 /importer:TextureImporter
@@ -183,7 +183,7 @@
 /processorParam:Version=3.8.5.1
 /build:Images/rock.png;Images/rock
 
-#begin Images/skeleton_front_transparent.png
+#begin Images/skeleton.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -194,7 +194,7 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.1
-/build:Images/skeleton_front_transparent.png
+/build:Images/skeleton.png
 
 #begin Images/stonewall.png
 /importer:TextureImporter
@@ -209,7 +209,7 @@
 /processorParam:Version=3.8.5.1
 /build:Images/stonewall.png;Images/stonewall
 
-#begin Images/warlock_front_transparent.png
+#begin Images/warlock.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -220,5 +220,5 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.1
-/build:Images/warlock_front_transparent.png
+/build:Images/warlock.png
 
