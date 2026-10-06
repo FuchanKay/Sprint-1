@@ -6,7 +6,7 @@ Hands raised to do magic?
 */
 public class WarlockObject : IObject
 {
-    public ObjectIds Id => ObjectIds.Enemy;
+    public ObjectIds Id => ObjectIds.Warlock;
     public Directions Direction { get; set; } = Directions.South;
     public bool isPushable => true;
     public bool isDestructible => true;

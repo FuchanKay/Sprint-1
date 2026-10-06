@@ -19,6 +19,11 @@ public class GridPointer
         ObjectPointersCollection.Add(ObjectIds.Explosion, []);
         ObjectPointersCollection.Add(ObjectIds.TimedBomb, []);
 
+        ObjectPointersCollection.Add(ObjectIds.BlueLizard, []);
+        ObjectPointersCollection.Add(ObjectIds.RedLizard, []);
+        ObjectPointersCollection.Add(ObjectIds.Skeleton, []);
+        ObjectPointersCollection.Add(ObjectIds.Warlock, []);
+
         TilePointersCollection.Add(TileIds.Empty, []);
         TilePointersCollection.Add(TileIds.Brick, []);
     }

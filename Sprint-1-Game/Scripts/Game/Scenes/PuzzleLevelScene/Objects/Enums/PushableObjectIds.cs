@@ -4,5 +4,9 @@ public enum PushableObjectIds
 {
     Rock,
     TimedBomb,
-    Bomb
+    Bomb,
+    BlueLizard,
+    RedLizard,
+    Skeleton,
+    Warlock
 }
