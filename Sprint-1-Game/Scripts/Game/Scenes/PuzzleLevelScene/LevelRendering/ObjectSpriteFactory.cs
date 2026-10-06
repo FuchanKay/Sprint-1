@@ -49,7 +49,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.Explosion);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
-                sprite.Scale = context.GridScale;
+                sprite.Scale = context.GridScale * 2.0f;
                 break;
             default:
                 sprite = new StaticSprite(textureAtlas);
