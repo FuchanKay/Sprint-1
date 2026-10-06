@@ -16,12 +16,10 @@ public class PushNorthEvent : ILevelEvent
             var northGrid = gridPointer.GetGrid(northCoord);
             var northObj = northGrid.Object;
 
-            bool northIsPushable = Enum.IsDefined(typeof(PushableObjectIds), northObj.Id);
-
             var northCoordPlus1 = northCoord + new Vector2(0, -1);
             var northGridPlus1 = gridPointer.GetGrid(northCoordPlus1);
 
-            if (northIsPushable && northGridPlus1.Object.Id == ObjectIds.Empty)
+            if (northObj.isPushable && northGridPlus1.Object.Id == ObjectIds.Empty)
             {
                 gridPointer.SetObject(northCoord, new EmptyObject());
                 gridPointer.SetObject(northCoordPlus1, northObj);

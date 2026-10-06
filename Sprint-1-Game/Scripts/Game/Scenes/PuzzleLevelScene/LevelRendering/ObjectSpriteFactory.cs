@@ -40,7 +40,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 break;
             case ObjectIds.TimedBomb:
                 sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.Bomb);
+                sprite.SetState(RegionNames.TimedBomb);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Bomb);
                 sprite.Scale = context.GridScale;
                 sprite.Color = Color.Red;
