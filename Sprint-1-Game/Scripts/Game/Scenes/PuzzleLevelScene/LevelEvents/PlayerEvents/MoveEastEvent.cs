@@ -1,9 +1,6 @@
 using Microsoft.Xna.Framework;
 using Scripts.Game;
-<<<<<<< HEAD
-=======
 using Scripts.GameComponents;
->>>>>>> origin/main
 
 public class MoveEastEvent : ILevelEvent
 {
@@ -12,26 +9,6 @@ public class MoveEastEvent : ILevelEvent
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerObj = gridPointer.GetObject(playerCoord) as PlayerObject;
 
-<<<<<<< HEAD
-        var isFacingEast = playerObj.Direction == Directions.East;
-        if (isFacingEast)
-        {
-            var eastCoord = playerCoord + new Vector2(1, 0);
-            var eastGrid = gridPointer.GetGrid(eastCoord);
-
-            if (eastGrid.Object.Id == ObjectIds.Empty)
-            {
-                gridPointer.SetObject(playerCoord, new EmptyObject());
-                gridPointer.SetObject(eastCoord, playerObj);
-            }
-            context.ShouldUpdate = true;
-        }
-        else
-        {
-            playerObj.Direction = Directions.East;
-            context.ShouldUpdate = true;
-        }
-=======
         var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
 
         var isFacingEast = playerObj.Direction == Directions.East;
@@ -78,6 +55,5 @@ public class MoveEastEvent : ILevelEvent
         // replace old sprite with new static player sprite at pos
         spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
         context.IsIdle = true;
->>>>>>> origin/main
     }
 }

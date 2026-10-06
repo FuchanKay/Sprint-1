@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Scripts.Game;
 
@@ -29,6 +30,9 @@ public class CycleObjectRightEvent : ILevelEvent
                 gridPointer.SetObject(objDemoCoord, new BombObject());
                 break;
         }
+        spriteGrid.CycleObjectSprite(objDemoCoord, gridPointer);
         context.ShouldUpdate = true;
+        Console.WriteLine($"Cycled object at {objDemoCoord} to {gridPointer.GetObject(objDemoCoord).Id}");
+        Console.WriteLine($"Object sprite at {objDemoCoord} is now {spriteGrid.GetObjectSprite(objDemoCoord).Texture.Name}");
     }
 }
