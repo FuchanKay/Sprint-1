@@ -1,5 +1,5 @@
-using Scripts.GameComponents;
 using Microsoft.Xna.Framework;
+using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
@@ -30,6 +30,25 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.SetState(RegionNames.Wall);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Wall);
                 sprite.IdleName = RegionNames.Wall;
+                sprite.Scale = context.GridScale;
+                break;
+            case ObjectIds.Bomb:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.Bomb);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Bomb);
+                sprite.Scale = context.GridScale;
+                break;
+            case ObjectIds.TimedBomb:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.Bomb);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Bomb);
+                sprite.Scale = context.GridScale;
+                sprite.Color = Color.Red;
+                break;
+            case ObjectIds.Explosion:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.Explosion);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
                 sprite.Scale = context.GridScale;
                 break;
             default:

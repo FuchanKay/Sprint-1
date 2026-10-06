@@ -12,12 +12,12 @@ public class MoveSouthEvent : ILevelEvent
         var isFacingSouth = playerObj.Direction == Directions.South;
         if (isFacingSouth)
         {
-            var eastCoord = new Vector2(playerCoord.X, playerCoord.Y + 1);
-            var eastGrid = gridPointer.GetGrid(eastCoord);
-            if (eastGrid.Object.Id == ObjectIds.Empty)
+            var southCoord = new Vector2(playerCoord.X, playerCoord.Y + 1);
+            var southGrid = gridPointer.GetGrid(southCoord);
+            if (southGrid.Object.Id == ObjectIds.Empty)
             {
                 gridPointer.SetObject(playerCoord, new EmptyObject());
-                gridPointer.SetObject(eastCoord, playerObj);
+                gridPointer.SetObject(southCoord, playerObj);
             }
             context.ShouldUpdate = true;
         }
