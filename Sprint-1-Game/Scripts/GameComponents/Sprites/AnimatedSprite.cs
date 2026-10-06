@@ -27,9 +27,6 @@ public class AnimatedSprite(ITextureAtlas textureAtlas) : Sprite(textureAtlas)
             // update current position based on progress through animation
             float xPos = StartPosition.X + (TargetPosition.X - StartPosition.X) * Progress;
             float yPos = StartPosition.Y + (TargetPosition.Y - StartPosition.Y) * Progress;
-            Console.WriteLine("TargetX: " + TargetPosition.X + " CurrentX: " + xPos);
-            Console.WriteLine("TargetY: " + TargetPosition.Y + " CurrentY: " + yPos);
-            Console.WriteLine("Frame Index: " + CurrentFrameIndex);
 
             CurrentPosition = new Vector2(xPos, yPos);
         } else

@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Scripts.Game;
+using Scripts.GameComponents;
 
 public class MoveWestEvent : ILevelEvent
 {
@@ -9,22 +10,44 @@ public class MoveWestEvent : ILevelEvent
         var playerGrid = gridPointer.GetGrid(playerCoord);
         var playerObj = playerGrid.Object as PlayerObject;
 
+        var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
+
         var isFacingWest = playerObj.Direction == Directions.West;
         if (isFacingWest)
         {
-            var westCoord = new Vector2(playerCoord.X - 1, playerCoord.Y);
-            var westGrid = gridPointer.GetGrid(westCoord);
-            if (westGrid.Object.Id == ObjectIds.Empty)
-            {
-                gridPointer.SetObject(playerCoord, new EmptyObject());
-                gridPointer.SetObject(westCoord, playerObj);
-            }
-            context.ShouldUpdate = true;
+            MoveWest(spriteGrid, gridPointer, context, playerCoord, playerObj, playerSprite);
         }
         else
         {
-            playerObj.Direction = Directions.West;
-            context.ShouldUpdate = true;
+            FaceWest(spriteGrid, context, playerCoord, playerObj, playerSprite);
         }
+    }
+
+        private static void MoveWest(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, Vector2 playerCoord, IObject playerObj, ISprite playerSprite)
+    {
+        var westCoord = new Vector2(playerCoord.X - 1, playerCoord.Y);
+        var westGrid = gridPointer.GetGrid(westCoord);
+
+        if (westGrid.Object.Id == ObjectIds.Empty)
+        {
+            playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerWalkWest);
+            spriteGrid.SetObjectSprite(playerCoord, westCoord, playerSprite);
+            spriteGrid.StartObjectAnimation(playerSprite);
+
+            gridPointer.SetObject(playerCoord, new EmptyObject());
+            gridPointer.SetObject(westCoord, playerObj);
+        }
+        context.IsIdle = false;
+    }
+
+    private static void FaceWest(SpriteGrid spriteGrid, LevelContext context, Vector2 playerCoord, IObject playerObj, ISprite playerSprite)
+    {
+        playerObj.Direction = Directions.West;
+
+        playerSprite = playerSprite.ConvertToStatic(RegionNames.PlayerIdleWest);
+        playerSprite.IdleName = RegionNames.PlayerIdleWest;
+        spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
+        
+        context.IsIdle = true;
     }
 }
