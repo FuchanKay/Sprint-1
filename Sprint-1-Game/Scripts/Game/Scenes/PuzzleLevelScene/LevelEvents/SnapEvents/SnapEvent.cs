@@ -11,9 +11,8 @@ public class SnapEvent : ILevelEvent
         spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
         spriteGrid.StartObjectAnimation(playerSprite);
 
-        // Only executes snap behavior for bomb objects
-        new BombSnapEvent().Execute(spriteGrid, gridPointer, context);
-        new TimedBombSnapEvent().Execute(spriteGrid, gridPointer, context);
+        // new BombSnapEvent().Execute(spriteGrid, gridPointer, context);
+        // new TimedBombSnapEvent().Execute(spriteGrid, gridPointer, context);
 
         context.IsIdle = false;
     }
