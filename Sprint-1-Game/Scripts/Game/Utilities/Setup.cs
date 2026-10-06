@@ -71,7 +71,9 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.Wall, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Bomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
-        TextureAtlas.AddRegion(RegionNames.Explosion, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.Explosion, 2, 0, 105, 96);
+        TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 4, 105, 96);
+    
 
     }
 

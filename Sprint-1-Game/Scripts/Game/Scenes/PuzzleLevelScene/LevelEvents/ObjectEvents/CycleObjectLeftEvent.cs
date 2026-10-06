@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Scripts.Game;
 
@@ -29,6 +30,17 @@ public class CycleObjectLeftEvent : ILevelEvent
                 gridPointer.SetObject(objDemoCoord, new BombObject());
                 break;
         }
+        spriteGrid.CycleObjectSprite(objDemoCoord, gridPointer);
+        var newObject = gridPointer.GetObject(objDemoCoord);
+        if(newObject.Id == ObjectIds.Explosion)
+        {
+            var explosionSprite = spriteGrid.GetObjectSprite(objDemoCoord);
+            explosionSprite = explosionSprite.ConvertToAnimated(AnimationNames.Explosion);
+            spriteGrid.SetObjectSprite(objDemoCoord, objDemoCoord, explosionSprite);
+            spriteGrid.StartObjectAnimation(explosionSprite);
+            
+        }
         context.ShouldUpdate = true;
+        Console.WriteLine($"Cycled object to {gridPointer.GetObject(objDemoCoord).Id}");
     }
 }
