@@ -45,11 +45,11 @@ public class Setup(ContentManager content)
         ButtonInput.MapInput(InputNames.CycleObjectLeft, (int)Keys.T);
         ButtonInput.MapInput(InputNames.CycleObjectRight, (int)Keys.Y);
 
-        ButtonInput.MapInput(InputNames.CycleEnemyLeft, (int)Keys.T);
-        ButtonInput.MapInput(InputNames.CycleEnemyRight, (int)Keys.Y);
+        ButtonInput.MapInput(InputNames.CycleEnemyLeft, (int)Keys.O);
+        ButtonInput.MapInput(InputNames.CycleEnemyRight, (int)Keys.P);
 
-        ButtonInput.MapInput(InputNames.ExitGame, (int)Keys.O);
-        ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.P);
+        //ButtonInput.MapInput(InputNames.ExitGame, (int)Keys.O);
+        //ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.P);
 
         MouseInput.MapInput(InputNames.Select, (int)MouseButtons.Left);
     }
