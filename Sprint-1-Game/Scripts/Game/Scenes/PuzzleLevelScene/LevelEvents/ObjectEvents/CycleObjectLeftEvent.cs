@@ -31,6 +31,15 @@ public class CycleObjectLeftEvent : ILevelEvent
                 break;
         }
         spriteGrid.CycleObjectSprite(objDemoCoord, gridPointer);
+        var newObject = gridPointer.GetObject(objDemoCoord);
+        if(newObject.Id == ObjectIds.Explosion)
+        {
+            var explosionSprite = spriteGrid.GetObjectSprite(objDemoCoord);
+            explosionSprite = explosionSprite.ConvertToAnimated(AnimationNames.Explosion);
+            spriteGrid.SetObjectSprite(objDemoCoord, objDemoCoord, explosionSprite);
+            spriteGrid.StartObjectAnimation(explosionSprite);
+            
+        }
         context.ShouldUpdate = true;
         Console.WriteLine($"Cycled object at {objDemoCoord} to {gridPointer.GetObject(objDemoCoord).Id}");
         Console.WriteLine($"Object sprite at {objDemoCoord} is now {spriteGrid.GetObjectSprite(objDemoCoord).Texture.Name}");
