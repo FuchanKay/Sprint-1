@@ -12,4 +12,9 @@ public class RegionNames
     public readonly static string PlayerIdleNorth = "Player Idle North";
     public readonly static string PlayerIdleEast = "Player Idle East";
     public readonly static string PlayerIdleWest = "PlayerIdleWest";
+
+    public readonly static string RedLizard = "RedLizard";
+    public readonly static string BlueLizard = "BlueLizard";
+    public readonly static string Skeleton = "Skeleton";
+    public readonly static string Warlock = "Warlock";
 }

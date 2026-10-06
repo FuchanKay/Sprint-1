@@ -87,6 +87,14 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.Bomb, FileNames.BombTexture);
         TextureAtlas.AddTexture(TextureNames.Explosion, FileNames.ExplosionTexture);
 
+        TextureAtlas.AddTexture(TextureNames.Skeleton, FileNames.SkeletonTexture);
+        TextureAtlas.AddTexture(TextureNames.Warlock, FileNames.WarlockTexture);
+        TextureAtlas.AddTexture(TextureNames.RedLizard, FileNames.RedLizardTexture);
+        TextureAtlas.AddTexture(TextureNames.BlueLizard, FileNames.BlueLizardTexture);
+
+
+        
+
         // StoneBlock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneBlock");
         // Rock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/rock");
         // StoneWall.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneWall");

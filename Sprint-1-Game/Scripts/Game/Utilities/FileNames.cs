@@ -11,6 +11,12 @@ public class FileNames
     public readonly static string BombTexture = "Images/bomb";
     public readonly static string ExplosionTexture = "Images/explosion";
 
+    public readonly static string SkeletonTexture = "Images/skeleton_front_transparent";
+    public readonly static string WarlockTexture = "Images/warlock_front_transparent";
+    public readonly static string BlueLizardTexture = "Images/blue_lizard_front_transparent";
+    public readonly static string RedLizardTexture = "Images/red_lizard_front_transparent";
+
     public readonly static string SnapAudio = "audio/snap";
     public readonly static string SongAudio = "audio/song";
+
 }
