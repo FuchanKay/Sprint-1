@@ -37,22 +37,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
 
             var spriteCoord = CalculateLiteralPos(coord);
 
-            /*
-                Currently, this dictionary holds the literal window position corresponding to an ISprite object. 
-                {
-                    V the key where it is literally drawn V
-                    (234, 234) => ISprite
-                }
-                ideally, the map should look like this:
-                {
-                    V the key can be used to lookup the sprite and cause some animation V
-                    (2, 2) => {
-                        Isprite,
-                        LiteralPosition = (234 234),
-                        ...
-                    }
-                }
-            */
             if (obj.Id != ObjectIds.Empty)
             {
                 ObjectSprites.Add(spriteCoord, objectSpriteFactory.CreateObjectSprite(obj.Id, spriteCoord, context));
@@ -95,10 +79,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         ObjectSprites.Remove(realCurrentCoord);
         ObjectSprites.Add(realCurrentCoord, sprite);
 
-        if(currentCoord != targetCoord)
-        {
-            sprite.SetTargetPosition(realTargetCoord);
-        }
+        sprite.SetTargetPosition(realTargetCoord);
     }
 
     public void SetTileSprite(Vector2 currentCoord, Vector2 targetCoord, ISprite sprite)
@@ -108,10 +89,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         ObjectSprites.Remove(realCurrentCoord);
         ObjectSprites.Add(realCurrentCoord, sprite);
 
-        if(currentCoord != targetCoord)
-        {
-            sprite.SetTargetPosition(realTargetCoord);
-        }
+        sprite.SetTargetPosition(realTargetCoord);
     }
 
     public void StartObjectAnimation(ISprite sprite)
@@ -146,13 +124,11 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         }
     }
 
-    private bool UpdateAnimatingList(int dtMs, List<ISprite> currentList, Dictionary<Vector2, ISprite> currentDict)
+    private static bool UpdateAnimatingList(int dtMs, List<ISprite> currentList, Dictionary<Vector2, ISprite> currentDict)
     {
         foreach(var sprite in currentList)
         {
-            Vector2 currPos = sprite.CurrentPosition;
-            currentDict.Remove(currPos);
-
+            currentDict.Remove(sprite.CurrentPosition);
             sprite.Update(dtMs);
             currentDict.Add(sprite.CurrentPosition, sprite);
         }
