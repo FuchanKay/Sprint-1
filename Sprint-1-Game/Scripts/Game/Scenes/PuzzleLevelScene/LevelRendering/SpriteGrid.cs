@@ -72,8 +72,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     {
         var realCurrentCoord = CalculateLiteralPos(currentCoord);
         var realTargetCoord = CalculateLiteralPos(targetCoord);
-        sprite.CurrentPosition = realCurrentCoord;
-        sprite.SetTargetPosition(realTargetCoord);
         /* 
         Must remove and add each time a sprite is set in case 
         the type (static or animated) changed
