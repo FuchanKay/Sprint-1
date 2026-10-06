@@ -21,6 +21,8 @@ public class GridPointer
 
         TilePointersCollection.Add(TileIds.Empty, []);
         TilePointersCollection.Add(TileIds.Brick, []);
+        TilePointersCollection.Add(TileIds.Grass, []);
+        TilePointersCollection.Add(TileIds.Water, []);
     }
 
     public void SetGrid(Vector2 coord, Grid grid)
