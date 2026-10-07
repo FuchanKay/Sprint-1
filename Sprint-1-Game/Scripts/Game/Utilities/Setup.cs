@@ -48,8 +48,8 @@ public class Setup(ContentManager content)
         ButtonInput.MapInput(InputNames.CycleEnemyLeft, (int)Keys.O);
         ButtonInput.MapInput(InputNames.CycleEnemyRight, (int)Keys.P);
 
-        //ButtonInput.MapInput(InputNames.ExitGame, (int)Keys.O);
-        //ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.P);
+        ButtonInput.MapInput(InputNames.ExitGame, (int)Keys.Q);
+        ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.R);
 
         MouseInput.MapInput(InputNames.Select, (int)MouseButtons.Left);
     }
