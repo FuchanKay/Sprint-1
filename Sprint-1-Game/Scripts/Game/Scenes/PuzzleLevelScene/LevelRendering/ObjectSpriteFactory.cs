@@ -52,6 +52,30 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.IdleName = RegionNames.Explosion;
                 sprite.Scale = context.GridScale * 4.0f;
                 break;
+            case ObjectIds.Skeleton:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.Skeleton);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Skeleton);
+                sprite.Scale = context.GridScale;
+                break;
+            case ObjectIds.Warlock:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.Warlock);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Warlock);
+                sprite.Scale = context.GridScale;
+                break;
+            case ObjectIds.BlueLizard:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.BlueLizard);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.BlueLizard);
+                sprite.Scale = context.GridScale;
+                break;
+            case ObjectIds.RedLizard:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.RedLizard);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.RedLizard);
+                sprite.Scale = context.GridScale;
+                break;
             default:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.Scale = context.GridScale;

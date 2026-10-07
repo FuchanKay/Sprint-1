@@ -62,6 +62,14 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
         {
             Level.EnqueueEvent(new CycleTileRightEvent());
         }
+        else if (buttonInput.IsPressed(InputNames.CycleEnemyLeft))
+        {
+            Level.EnqueueEvent(new CycleEnemyLeftEvent());
+        }
+        else if (buttonInput.IsPressed(InputNames.CycleEnemyRight))
+        {
+            Level.EnqueueEvent(new CycleEnemyRightEvent());
+        }
         Level.TryExecuteEvent();
 
         Level.Update(dtMs);
