@@ -6,6 +6,3 @@ U/I are used to switch between game objects such as rock, bomb and wall.
 O/P are used to switch between game enemies such as skeleton, wizard and lizards.
 R resets the game to the main menu scene 
 Q exits the game
-
-Known bugs:
-Resetting the game breaks the main menu buttons
