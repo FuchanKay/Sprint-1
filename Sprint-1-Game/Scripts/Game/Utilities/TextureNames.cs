@@ -14,4 +14,7 @@ public class TextureNames
     public readonly static string BlueLizard = "BlueLizard";
     public readonly static string Skeleton = "Skeleton";
     public readonly static string Warlock = "Warlock";
+    public readonly static string GrassTile = "Grass Tile";
+    public readonly static string WaterTile = "Water Tile";
+    public readonly static string LavaTile = "Lava Tile";
 }

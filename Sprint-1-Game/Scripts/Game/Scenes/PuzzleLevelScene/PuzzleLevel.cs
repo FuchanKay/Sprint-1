@@ -85,6 +85,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         GridPointer.SetObject(new Vector2(7, 5), objectFactory.CreateSkeleton());
         GridPointer.SetObject(new Vector2(7, 2), objectFactory.CreateBomb());
         GridPointer.SetObject(new Vector2(2, 2), objectFactory.CreatePlayer());
+        GridPointer.SetTile(new Vector2(5, 5), tileFactory.CreateGrassTile());
     }
 
     private void CreateWallBorders()

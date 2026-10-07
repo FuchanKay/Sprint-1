@@ -17,6 +17,24 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.IdleName = RegionNames.BrickTile;
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.BrickTile);
                 break;
+            case TileIds.Grass:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.GrassTile);
+                sprite.IdleName = RegionNames.GrassTile;
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.GrassTile);
+                break;
+            case TileIds.Water:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.WaterTile);
+                sprite.IdleName = RegionNames.WaterTile;
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.WaterTile);
+                break;
+            case TileIds.Lava:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.LavaTile);
+                sprite.IdleName = RegionNames.LavaTile;
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.LavaTile);
+                break;
             default:
                 sprite = new StaticSprite(textureAtlas);
                 break;

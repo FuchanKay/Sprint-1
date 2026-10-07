@@ -16,4 +16,25 @@ public class TileFactory()
         {
         };
     }
+
+    public ITile CreateGrassTile()
+    {
+        return new GrassTile
+        {
+        };
+    }
+
+    public ITile CreateWaterTile()
+    {
+        return new WaterTile
+        {
+        };
+    }
+
+    public ITile CreateLavaTile()
+    {
+        return new LavaTile
+        {
+        };
+    }
 }

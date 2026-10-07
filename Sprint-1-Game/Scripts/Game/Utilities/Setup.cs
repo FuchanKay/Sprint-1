@@ -47,8 +47,10 @@ public class Setup(ContentManager content)
 
         ButtonInput.MapInput(InputNames.Destroy, (int)Keys.Space);
         ButtonInput.MapInput(InputNames.Snap, (int)Keys.F);
-        ButtonInput.MapInput(InputNames.CycleObjectLeft, (int)Keys.T);
-        ButtonInput.MapInput(InputNames.CycleObjectRight, (int)Keys.Y);
+        ButtonInput.MapInput(InputNames.CycleObjectLeft, (int)Keys.U);
+        ButtonInput.MapInput(InputNames.CycleObjectRight, (int)Keys.I);
+        ButtonInput.MapInput(InputNames.CycleTileLeft, (int)Keys.T);
+        ButtonInput.MapInput(InputNames.CycleTileRight, (int)Keys.Y);
 
         ButtonInput.MapInput(InputNames.CycleEnemyLeft, (int)Keys.O);
         ButtonInput.MapInput(InputNames.CycleEnemyRight, (int)Keys.P);
@@ -73,6 +75,9 @@ public class Setup(ContentManager content)
 
         TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.BrickTile, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.GrassTile, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.WaterTile, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.LavaTile, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Wall, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Bomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
@@ -95,6 +100,9 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.Player, FileNames.PlayerTexture);
         TextureAtlas.AddTexture(TextureNames.Rock, FileNames.RockTexture);
         TextureAtlas.AddTexture(TextureNames.BrickTile, FileNames.BrickTileTexture);
+        TextureAtlas.AddTexture(TextureNames.GrassTile, FileNames.GrassTileTexture);
+        TextureAtlas.AddTexture(TextureNames.WaterTile, FileNames.WaterTileTexture);
+        TextureAtlas.AddTexture(TextureNames.LavaTile, FileNames.LavaTileTexture);
         TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
         TextureAtlas.AddTexture(TextureNames.Bomb, FileNames.BombTexture);
         TextureAtlas.AddTexture(TextureNames.Explosion, FileNames.ExplosionTexture);

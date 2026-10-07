@@ -22,5 +22,7 @@ public class InputNames
     public readonly static string CycleEnemyRight = "Cycle Enemy Right";
     public readonly static string CycleEnemyLeft = "Cycle Enemy Left";
 
+    public readonly static string CycleTileRight = "Cycle Tile Right";
+    public readonly static string CycleTileLeft = "Cycle Tile Left";
 
 }
