@@ -45,6 +45,9 @@ public class Setup(ContentManager content)
         ButtonInput.MapInput(InputNames.CycleObjectLeft, (int)Keys.T);
         ButtonInput.MapInput(InputNames.CycleObjectRight, (int)Keys.Y);
 
+        ButtonInput.MapInput(InputNames.CycleEnemyLeft, (int)Keys.O);
+        ButtonInput.MapInput(InputNames.CycleEnemyRight, (int)Keys.P);
+
         ButtonInput.MapInput(InputNames.ExitGame, (int)Keys.Q);
         ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.R);
 
@@ -70,6 +73,11 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Explosion, 2, 0, 105, 96);
         TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 4, 105, 96);
+
+        TextureAtlas.AddRegion(RegionNames.Skeleton, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.Warlock, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.BlueLizard, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.RedLizard, 0, 0, 256, 256);
     
 
     }
@@ -85,6 +93,14 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
         TextureAtlas.AddTexture(TextureNames.Bomb, FileNames.BombTexture);
         TextureAtlas.AddTexture(TextureNames.Explosion, FileNames.ExplosionTexture);
+
+        TextureAtlas.AddTexture(TextureNames.Skeleton, FileNames.SkeletonTexture);
+        TextureAtlas.AddTexture(TextureNames.Warlock, FileNames.WarlockTexture);
+        TextureAtlas.AddTexture(TextureNames.RedLizard, FileNames.RedLizardTexture);
+        TextureAtlas.AddTexture(TextureNames.BlueLizard, FileNames.BlueLizardTexture);
+
+
+        
 
         // StoneBlock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneBlock");
         // Rock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/rock");

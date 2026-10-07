@@ -27,6 +27,19 @@
 /processorParam:Version=3.8.5.1
 /build:Audio/song.mp3
 
+#begin Images/blueLizard.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:Images/blueLizard.png
+
 #begin Images/bomb.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -144,6 +157,19 @@
 /processorParam:Version=3.8.5.1
 /build:Images/player-sprites.png;Images/player-sprites
 
+#begin Images/redLizard.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:Images/redLizard.png
+
 #begin Images/rock.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -157,6 +183,19 @@
 /processorParam:Version=3.8.5.1
 /build:Images/rock.png;Images/rock
 
+#begin Images/skeleton.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:Images/skeleton.png
+
 #begin Images/stonewall.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -169,4 +208,17 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.1
 /build:Images/stonewall.png;Images/stonewall
+
+#begin Images/warlock.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:Images/warlock.png
 

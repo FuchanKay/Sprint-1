@@ -15,5 +15,8 @@ public class InputNames
     public readonly static string Destroy = "Destroy";
     public readonly static string CycleObjectRight = "Cycle Object Right";
     public readonly static string CycleObjectLeft = "Cycle Object Left";
+    public readonly static string CycleEnemyRight = "Cycle Enemy Right";
+    public readonly static string CycleEnemyLeft = "Cycle Enemy Left";
+
 
 }
