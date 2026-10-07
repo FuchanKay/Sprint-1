@@ -27,6 +27,7 @@ public class CycleTileLeftEvent : ILevelEvent
                 gridPointer.SetTile(objDemoCoord, new BrickTile());
                 break;
         }
+        spriteGrid.CycleTileSprite(objDemoCoord, gridPointer);
         context.ShouldUpdate = true;
         Console.WriteLine($"Cycled tile to {gridPointer.GetTile(objDemoCoord).Id}");
     }
