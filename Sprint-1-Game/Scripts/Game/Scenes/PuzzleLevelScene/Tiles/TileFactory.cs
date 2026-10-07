@@ -30,4 +30,11 @@ public class TileFactory()
         {
         };
     }
+
+    public ITile CreateLavaTile()
+    {
+        return new LavaTile
+        {
+        };
+    }
 }
