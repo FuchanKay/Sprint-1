@@ -8,7 +8,8 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
 {
     private readonly Dictionary<string, ISceneController> NameSceneMap = [];
     private ISceneController CurrentScene;
-    public bool ShouldExit;
+    public bool ShouldExit { get; private set; }
+    public bool ShouldRestart { get; private set; }
 
     public void Init()
     {
@@ -23,11 +24,6 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
     public void Restart()
     {
         NameSceneMap.Clear();
-
-        buttonInput.ClearMapping();
-        mouseInput.ClearMapping();
-
-        textureAtlas.ClearMapping();
 
         Init();
     }
