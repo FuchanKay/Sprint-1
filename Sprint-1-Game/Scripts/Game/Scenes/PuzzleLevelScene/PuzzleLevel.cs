@@ -21,7 +21,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     };
     private readonly GridPointer GridPointer = new();
     private readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
-    private readonly int MaxEventsQueued = 3;
+    private readonly int MaxEventsQueued = 2;
     public bool IsIdle = true;
 
     public void Init()

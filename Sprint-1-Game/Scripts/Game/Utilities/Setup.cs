@@ -40,6 +40,11 @@ public class Setup(ContentManager content)
         ButtonInput.MapInput(InputNames.MoveEast, (int)Keys.D);
         ButtonInput.MapInput(InputNames.MoveSouth, (int)Keys.S);
         ButtonInput.MapInput(InputNames.MoveWest, (int)Keys.A);
+        ButtonInput.MapInput(InputNames.MoveNorthAlt, (int)Keys.Up);
+        ButtonInput.MapInput(InputNames.MoveEastAlt, (int)Keys.Right);
+        ButtonInput.MapInput(InputNames.MoveSouthAlt, (int)Keys.Down);
+        ButtonInput.MapInput(InputNames.MoveWestAlt, (int)Keys.Left);
+
         ButtonInput.MapInput(InputNames.Destroy, (int)Keys.Space);
         ButtonInput.MapInput(InputNames.Snap, (int)Keys.F);
         ButtonInput.MapInput(InputNames.CycleObjectLeft, (int)Keys.T);
@@ -56,10 +61,10 @@ public class Setup(ContentManager content)
 
     private void AddAnimations()
     {
-        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkNorth, 2, 6, 64, 64);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkSouth, 3, 6, 64, 64);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkEast, 0, 6, 64, 64);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkWest, 1, 6, 64, 64, 100);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkNorth, 2, 6, 64, 64, 50);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkSouth, 3, 6, 64, 64, 50);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkEast, 0, 6, 64, 64, 50);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkWest, 1, 6, 64, 64, 50);
         TextureAtlas.AddAnimation(AnimationNames.PlayerSnap, 4, 6, 64, 64, 200);
         TextureAtlas.AddRegion(RegionNames.PlayerIdleNorth, 1, 5, 64, 64);
         TextureAtlas.AddRegion(RegionNames.PlayerIdleSouth, 0, 5, 64, 64);
