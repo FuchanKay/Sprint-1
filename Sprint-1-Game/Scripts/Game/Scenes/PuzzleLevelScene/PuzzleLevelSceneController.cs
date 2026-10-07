@@ -18,19 +18,19 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
     }
     public void Update(int dtMs)
     {
-        if (buttonInput.IsPressed(InputNames.MoveNorth))
+        if (buttonInput.IsPressed(InputNames.MoveNorth) || buttonInput.IsPressed(InputNames.MoveNorthAlt))
         {
             Level.EnqueueEvent(new MoveNorthEvent());
         }
-        else if (buttonInput.IsPressed(InputNames.MoveEast))
+        else if (buttonInput.IsPressed(InputNames.MoveEast) || buttonInput.IsPressed(InputNames.MoveEastAlt))
         {
             Level.EnqueueEvent(new MoveEastEvent());
         }
-        else if (buttonInput.IsPressed(InputNames.MoveSouth))
+        else if (buttonInput.IsPressed(InputNames.MoveSouth) || buttonInput.IsPressed(InputNames.MoveSouthAlt))
         {
             Level.EnqueueEvent(new MoveSouthEvent());
         }
-        else if (buttonInput.IsPressed(InputNames.MoveWest))
+        else if (buttonInput.IsPressed(InputNames.MoveWest) || buttonInput.IsPressed(InputNames.MoveWestAlt))
         {
             Level.EnqueueEvent(new MoveWestEvent());
         }
