@@ -23,6 +23,7 @@ public class GridPointer
         TilePointersCollection.Add(TileIds.Brick, []);
         TilePointersCollection.Add(TileIds.Grass, []);
         TilePointersCollection.Add(TileIds.Water, []);
+        TilePointersCollection.Add(TileIds.Lava, []);
     }
 
     public void SetGrid(Vector2 coord, Grid grid)

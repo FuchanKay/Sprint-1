@@ -67,6 +67,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.BrickTile, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.GrassTile, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.WaterTile, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.LavaTile, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Wall, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Bomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
