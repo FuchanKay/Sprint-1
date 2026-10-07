@@ -86,6 +86,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.BrickTile, FileNames.BrickTileTexture);
         TextureAtlas.AddTexture(TextureNames.GrassTile, FileNames.GrassTileTexture);
         TextureAtlas.AddTexture(TextureNames.WaterTile, FileNames.WaterTileTexture);
+        TextureAtlas.AddTexture(TextureNames.LavaTile, FileNames.LavaTileTexture);
         TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
         TextureAtlas.AddTexture(TextureNames.Bomb, FileNames.BombTexture);
         TextureAtlas.AddTexture(TextureNames.Explosion, FileNames.ExplosionTexture);

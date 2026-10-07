@@ -5,5 +5,6 @@ public enum TileIds
     Empty,
     Brick,
     Grass,
-    Water
+    Water,
+    Lava
 }
