@@ -42,8 +42,10 @@ public class Setup(ContentManager content)
         ButtonInput.MapInput(InputNames.MoveWest, (int)Keys.A);
         ButtonInput.MapInput(InputNames.Destroy, (int)Keys.Space);
         ButtonInput.MapInput(InputNames.Snap, (int)Keys.F);
-        ButtonInput.MapInput(InputNames.CycleObjectLeft, (int)Keys.T);
-        ButtonInput.MapInput(InputNames.CycleObjectRight, (int)Keys.Y);
+        ButtonInput.MapInput(InputNames.CycleObjectLeft, (int)Keys.U);
+        ButtonInput.MapInput(InputNames.CycleObjectRight, (int)Keys.I);
+        ButtonInput.MapInput(InputNames.CycleTileLeft, (int)Keys.T);
+        ButtonInput.MapInput(InputNames.CycleTileRight, (int)Keys.Y);
 
         ButtonInput.MapInput(InputNames.ExitGame, (int)Keys.Q);
         ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.R);
