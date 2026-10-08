@@ -32,5 +32,10 @@ public struct Coordinate
         return new Coordinate(a.X - b.X, a.Y + b.Y);
     }
 
+    public static Coordinate operator *(Coordinate a, int b)
+    {
+        return new Coordinate(a.X * b, a.Y * b);
+    }
+
     public override string ToString() => $"({X}, {Y})";
 }
