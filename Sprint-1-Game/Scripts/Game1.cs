@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary;
 using Scripts.Game;
+using Scripts.GameComponents;
 
 namespace Sprint_1_Game.Scripts;
 
@@ -39,6 +40,12 @@ public class Game1 : Core
         if (SceneManager.ShouldExit)
         {
             Exit();
+        }
+        if (SceneManager.ShouldRestart)
+        {
+            Setup.Initialize(out var sm);
+            SceneManager = sm;
+            Setup.LoadContent();
         }
         base.Update(gameTime);
     }
