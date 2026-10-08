@@ -3,8 +3,13 @@ namespace Scripts.Game;
 
 public struct Coordinate
 {
-    public int X { get; }
-    public int Y { get; }
+    public static Coordinate Zero => new(0, 0);
+    public static Coordinate North => new(0, -1);
+    public static Coordinate East => new(1, 0);
+    public static Coordinate South => new(0, 1);
+    public static Coordinate West => new(-1, 0);
+    public int X { get; set; }
+    public int Y { get; set; }
 
     public Coordinate(int x, int y)
     {
@@ -20,6 +25,11 @@ public struct Coordinate
     public static Coordinate operator +(Coordinate a, Coordinate b)
     {
         return new Coordinate(a.X + b.X, a.Y + b.Y);
+    }
+
+    public static Coordinate operator -(Coordinate a, Coordinate b)
+    {
+        return new Coordinate(a.X - b.X, a.Y + b.Y);
     }
 
     public override string ToString() => $"({X}, {Y})";
