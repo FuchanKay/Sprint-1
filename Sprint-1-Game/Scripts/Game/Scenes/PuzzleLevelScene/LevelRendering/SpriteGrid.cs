@@ -90,6 +90,12 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         ObjectSprites.Add(realCoord, sprite);
     }
 
+    public void RemoveObjectSprite(Vector2 coord)
+    {
+        var realCoord = CalculateLiteralPos(coord);
+        if (ObjectSprites.ContainsKey(realCoord)) ObjectSprites.Remove(realCoord);
+    }
+
     public void SetTileSprite(Vector2 currentCoord, Vector2 targetCoord, ISprite sprite)
     {
         var realCurrentCoord = CalculateLiteralPos(currentCoord);

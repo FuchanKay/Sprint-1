@@ -67,7 +67,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddAnimation(AnimationNames.PlayerWalkSouth, 3, 6, 64, 64, 50);
         TextureAtlas.AddAnimation(AnimationNames.PlayerWalkEast, 0, 6, 64, 64, 50);
         TextureAtlas.AddAnimation(AnimationNames.PlayerWalkWest, 1, 6, 64, 64, 50);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerSnap, 4, 6, 64, 64, 200);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerSnap, 4, 6, 64, 64, 100);
         TextureAtlas.AddRegion(RegionNames.PlayerIdleNorth, 1, 5, 64, 64);
         TextureAtlas.AddRegion(RegionNames.PlayerIdleSouth, 0, 5, 64, 64);
         TextureAtlas.AddRegion(RegionNames.PlayerIdleEast, 2, 5, 64, 64);
@@ -82,7 +82,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.Bomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Explosion, 2, 0, 105, 96);
-        TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 4, 105, 96);
+        TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 4, 105, 96, 150);
 
         TextureAtlas.AddRegion(RegionNames.Skeleton, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Warlock, 0, 0, 256, 256);
