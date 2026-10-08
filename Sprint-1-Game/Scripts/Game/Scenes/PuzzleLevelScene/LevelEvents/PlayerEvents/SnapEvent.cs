@@ -15,10 +15,23 @@ public class SnapEvent : ILevelEvent
         spriteGrid.StartObjectAnimation(playerSprite);
 
         var bombCoords = gridPointer.GetObjectPointers(ObjectIds.Bomb).Keys.ToList();
+        var timedBombCoords = gridPointer.GetObjectPointers(ObjectIds.TimedBomb).Keys.ToList();
         foreach (var bombCoord in bombCoords)
         {
             Console.WriteLine($"Exploding bomb at {bombCoord}");
             ExplodeBomb(bombCoord,spriteGrid, gridPointer, context);
+        }
+
+        foreach (var timedBombCoord in timedBombCoords)
+        {
+            TimedBombObject timedBomb = gridPointer.GetObject(timedBombCoord) as TimedBombObject;
+            if (timedBomb.timeRemaining == 1)
+            {
+                Console.WriteLine($"Exploding timed bomb at {timedBombCoord}");
+                ExplodeBomb(timedBombCoord, spriteGrid, gridPointer, context);
+            }
+            timedBomb.timeRemaining--;
+            Console.WriteLine($"Timed bomb at {timedBombCoord} has {timedBomb.timeRemaining} time remaining");
         }
 
         context.IsIdle = false;
