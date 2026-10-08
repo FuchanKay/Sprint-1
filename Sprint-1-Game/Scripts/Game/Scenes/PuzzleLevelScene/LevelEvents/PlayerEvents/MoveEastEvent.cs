@@ -9,7 +9,7 @@ public class MoveEastEvent : ILevelEvent
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerObj = gridPointer.GetObject(playerCoord) as PlayerObject;
 
-        var playerSprite = spriteGrid.GetObjectSprite(playerCoord.ToVector2());
+        var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
 
         var isFacingEast = playerObj.Direction == Directions.East;
         if (isFacingEast)
@@ -37,7 +37,7 @@ public class MoveEastEvent : ILevelEvent
             // convert sprite to animated sprite and set target coord
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerWalkEast);
             // set target coordinate
-            spriteGrid.SetObjectSprite(playerCoord.ToVector2(), playerEast.ToVector2(), playerSprite);
+            spriteGrid.SetObjectSprite(playerCoord, playerEast, playerSprite);
             // start animating toward target coord
             spriteGrid.StartObjectAnimation(playerSprite);
 
@@ -54,7 +54,7 @@ public class MoveEastEvent : ILevelEvent
         playerSprite = playerSprite.ConvertToStatic(RegionNames.PlayerIdleEast);
         playerSprite.IdleName = RegionNames.PlayerIdleEast;
         // replace old sprite with new static player sprite at pos
-        spriteGrid.SetObjectSprite(playerCoord.ToVector2(), playerCoord.ToVector2(), playerSprite);
+        spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
         context.IsIdle = true;
     }
 }

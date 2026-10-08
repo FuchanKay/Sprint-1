@@ -35,7 +35,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
             var obj = grid.Object;
             var tile = grid.Tile;
 
-            var spriteCoord = CalculateLiteralPos(coord.ToVector2());
+            var spriteCoord = CalculateLiteralPos(coord);
 
             if (obj.Id != ObjectIds.Empty)
             {
@@ -48,7 +48,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         }
     }
 
-    public ISprite GetObjectSprite(Vector2 coord)
+    public ISprite GetObjectSprite(Coordinate coord)
     {
         var realCoord = CalculateLiteralPos(coord);
         if (!ObjectSprites.TryGetValue(realCoord, out var sprite))
@@ -58,7 +58,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         return sprite;
     }
 
-    public ISprite GetTileSprite(Vector2 coord)
+    public ISprite GetTileSprite(Coordinate coord)
     {
         var realCoord = CalculateLiteralPos(coord);
         if (!TileSprites.TryGetValue(realCoord, out var sprite))
@@ -68,7 +68,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         return sprite;
     }
 
-    public void SetObjectSprite(Vector2 currentCoord, Vector2 targetCoord, ISprite sprite)
+    public void SetObjectSprite(Coordinate currentCoord, Coordinate targetCoord, ISprite sprite)
     {
         var realCurrentCoord = CalculateLiteralPos(currentCoord);
         var realTargetCoord = CalculateLiteralPos(targetCoord);
@@ -84,13 +84,13 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
 
     public void CycleObjectSprite(Coordinate coord, GridPointer gridPointer)
     {
-        var realCoord = CalculateLiteralPos(coord.ToVector2());
+        var realCoord = CalculateLiteralPos(coord);
         ObjectSprites.Remove(realCoord);
         var sprite = objectSpriteFactory.CreateObjectSprite(gridPointer.GetObject(coord).Id, realCoord, Context);
         ObjectSprites.Add(realCoord, sprite);
     }
 
-    public void SetTileSprite(Vector2 currentCoord, Vector2 targetCoord, ISprite sprite)
+    public void SetTileSprite(Coordinate currentCoord, Coordinate targetCoord, ISprite sprite)
     {
         var realCurrentCoord = CalculateLiteralPos(currentCoord);
         var realTargetCoord = CalculateLiteralPos(targetCoord);
@@ -102,7 +102,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
 
     public void CycleTileSprite(Coordinate coord, GridPointer gridPointer)
     {
-        var realCoord = CalculateLiteralPos(coord.ToVector2());
+        var realCoord = CalculateLiteralPos(coord);
         TileSprites.Remove(realCoord);
         var sprite = tileSpriteFactory.CreateTileSprite(gridPointer.GetTile(coord).Id, realCoord, Context);
         TileSprites.Add(realCoord, sprite);
@@ -171,7 +171,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         finishedSprites.Clear();
     }
 
-    private Vector2 CalculateLiteralPos(Vector2 coord)
+    private Vector2 CalculateLiteralPos(Coordinate coord)
     {
         var spriteWidth = (int)(Context.GridWidthPx * Context.GridScale);
         var spriteX = spriteWidth * coord.X + Context.PuzzleOffsetX;

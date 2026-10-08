@@ -9,7 +9,7 @@ public class MoveWestEvent : ILevelEvent
         var playerGrid = gridPointer.GetGrid(playerCoord);
         var playerObj = playerGrid.Object as PlayerObject;
 
-        var playerSprite = spriteGrid.GetObjectSprite(playerCoord.ToVector2());
+        var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
 
         var isFacingWest = playerObj.Direction == Directions.West;
         if (isFacingWest)
@@ -31,7 +31,7 @@ public class MoveWestEvent : ILevelEvent
         if (westGrid.Object.Id == ObjectIds.Empty)
         {
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerWalkWest);
-            spriteGrid.SetObjectSprite(playerCoord.ToVector2(), playerWest.ToVector2(), playerSprite);
+            spriteGrid.SetObjectSprite(playerCoord, playerWest, playerSprite);
             spriteGrid.StartObjectAnimation(playerSprite);
 
             gridPointer.SetObject(playerCoord, new EmptyObject());
@@ -46,7 +46,7 @@ public class MoveWestEvent : ILevelEvent
 
         playerSprite = playerSprite.ConvertToStatic(RegionNames.PlayerIdleWest);
         playerSprite.IdleName = RegionNames.PlayerIdleWest;
-        spriteGrid.SetObjectSprite(playerCoord.ToVector2(), playerCoord.ToVector2(), playerSprite);
+        spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
         
         context.IsIdle = true;
     }

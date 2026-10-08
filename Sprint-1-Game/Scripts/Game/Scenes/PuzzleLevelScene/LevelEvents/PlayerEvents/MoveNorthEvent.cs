@@ -10,7 +10,7 @@ public class MoveNorthEvent : ILevelEvent
         var playerGrid = gridPointer.GetGrid(playerCoord);
         var playerObj = playerGrid.Object as PlayerObject;
 
-        var playerSprite = spriteGrid.GetObjectSprite(playerCoord.ToVector2());
+        var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
 
         var isFacingNorth = playerObj.Direction == Directions.North;
         if (isFacingNorth)
@@ -33,7 +33,7 @@ public class MoveNorthEvent : ILevelEvent
         if (northGrid.Object.Id == ObjectIds.Empty)
         {
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerWalkNorth);
-            spriteGrid.SetObjectSprite(playerCoord.ToVector2(), playerNorth.ToVector2(), playerSprite);
+            spriteGrid.SetObjectSprite(playerCoord, playerNorth, playerSprite);
             spriteGrid.StartObjectAnimation(playerSprite);
 
             gridPointer.SetObject(playerCoord, new EmptyObject());
@@ -48,7 +48,7 @@ public class MoveNorthEvent : ILevelEvent
 
         playerSprite = playerSprite.ConvertToStatic(RegionNames.PlayerIdleNorth);
         playerSprite.IdleName = RegionNames.PlayerIdleNorth;
-        spriteGrid.SetObjectSprite(playerCoord.ToVector2(), playerCoord.ToVector2(), playerSprite);
+        spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
         
         context.IsIdle = true;
     }

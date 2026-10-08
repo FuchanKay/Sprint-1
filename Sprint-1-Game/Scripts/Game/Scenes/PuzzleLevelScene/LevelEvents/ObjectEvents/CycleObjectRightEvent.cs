@@ -33,9 +33,9 @@ public class CycleObjectRightEvent : ILevelEvent
         var newObject = gridPointer.GetObject(objDemoCoord);
         if(newObject.Id == ObjectIds.Explosion)
         {
-            var explosionSprite = spriteGrid.GetObjectSprite(objDemoCoord.ToVector2());
+            var explosionSprite = spriteGrid.GetObjectSprite(objDemoCoord);
             explosionSprite = explosionSprite.ConvertToAnimated(AnimationNames.Explosion);
-            spriteGrid.SetObjectSprite(objDemoCoord.ToVector2(), objDemoCoord.ToVector2(), explosionSprite);
+            spriteGrid.SetObjectSprite(objDemoCoord, objDemoCoord, explosionSprite);
             spriteGrid.StartObjectAnimation(explosionSprite);
             
         }

@@ -10,7 +10,7 @@ public class MoveSouthEvent : ILevelEvent
         var playerGrid = gridPointer.GetGrid(playerCoord);
         var playerObj = playerGrid.Object as PlayerObject;
 
-        var playerSprite = spriteGrid.GetObjectSprite(playerCoord.ToVector2());
+        var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
 
         var isFacingSouth = playerObj.Direction == Directions.South;
         if (isFacingSouth)
@@ -32,7 +32,7 @@ public class MoveSouthEvent : ILevelEvent
         if (southGrid.Object.Id == ObjectIds.Empty)
         {
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerWalkSouth);
-            spriteGrid.SetObjectSprite(playerCoord.ToVector2(), playerSouth.ToVector2(), playerSprite);
+            spriteGrid.SetObjectSprite(playerCoord, playerSouth, playerSprite);
             spriteGrid.StartObjectAnimation(playerSprite);
 
             gridPointer.SetObject(playerCoord, new EmptyObject());
@@ -47,7 +47,7 @@ public class MoveSouthEvent : ILevelEvent
 
         playerSprite = playerSprite.ConvertToStatic(RegionNames.PlayerIdleSouth);
         playerSprite.IdleName = RegionNames.PlayerIdleSouth;
-        spriteGrid.SetObjectSprite(playerCoord.ToVector2(), playerCoord.ToVector2(), playerSprite);
+        spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
         
         context.IsIdle = true;
     }
