@@ -12,11 +12,11 @@ public class PushWestEvent : ILevelEvent
         var isFacingWest = playerObj.Direction == Directions.West;
         if (isFacingWest)
         {
-            var westCoord = playerCoord + new Vector2(-1, 0);
+            var westCoord = playerCoord + new Coordinate(-1, 0);
             var westGrid = gridPointer.GetGrid(westCoord);
             var westObj = westGrid.Object;
 
-            var westCoordPlus1 = westCoord + new Vector2(-1, 0);
+            var westCoordPlus1 = westCoord + new Coordinate(-1, 0);
             var westGridPlus1 = gridPointer.GetGrid(westCoordPlus1);
 
             if (westObj.isPushable && westGridPlus1.Object.Id == ObjectIds.Empty)

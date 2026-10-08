@@ -10,7 +10,7 @@ public class MoveSouthEvent : ILevelEvent
         var playerGrid = gridPointer.GetGrid(playerCoord);
         var playerObj = playerGrid.Object as PlayerObject;
 
-        var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
+        var playerSprite = spriteGrid.GetObjectSprite(playerCoord.ToVector2());
 
         var isFacingSouth = playerObj.Direction == Directions.South;
         if (isFacingSouth)
@@ -23,30 +23,31 @@ public class MoveSouthEvent : ILevelEvent
         }
     }
 
-    private static void MoveSouth(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, Vector2 playerCoord, IObject playerObj, ISprite playerSprite)
+    private static void MoveSouth(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, Coordinate playerCoord, IObject playerObj, ISprite playerSprite)
     {
-        var southCoord = new Vector2(playerCoord.X, playerCoord.Y + 1);
-        var southGrid = gridPointer.GetGrid(southCoord);
+        var south = new Coordinate(0, -1);
+        var playerSouth = playerCoord + south;
+        var southGrid = gridPointer.GetGrid(playerSouth);
 
         if (southGrid.Object.Id == ObjectIds.Empty)
         {
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerWalkSouth);
-            spriteGrid.SetObjectSprite(playerCoord, southCoord, playerSprite);
+            spriteGrid.SetObjectSprite(playerCoord.ToVector2(), playerSouth.ToVector2(), playerSprite);
             spriteGrid.StartObjectAnimation(playerSprite);
 
             gridPointer.SetObject(playerCoord, new EmptyObject());
-            gridPointer.SetObject(southCoord, playerObj);
+            gridPointer.SetObject(playerSouth, playerObj);
         }
         context.IsIdle = false;
     }
 
-    private static void FaceSouth(SpriteGrid spriteGrid, LevelContext context, Vector2 playerCoord, IObject playerObj, ISprite playerSprite)
+    private static void FaceSouth(SpriteGrid spriteGrid, LevelContext context, Coordinate playerCoord, IObject playerObj, ISprite playerSprite)
     {
         playerObj.Direction = Directions.South;
 
         playerSprite = playerSprite.ConvertToStatic(RegionNames.PlayerIdleSouth);
         playerSprite.IdleName = RegionNames.PlayerIdleSouth;
-        spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
+        spriteGrid.SetObjectSprite(playerCoord.ToVector2(), playerCoord.ToVector2(), playerSprite);
         
         context.IsIdle = true;
     }

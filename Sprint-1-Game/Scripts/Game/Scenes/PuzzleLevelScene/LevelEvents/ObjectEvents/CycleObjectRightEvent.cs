@@ -1,12 +1,11 @@
 using System;
-using Microsoft.Xna.Framework;
 using Scripts.Game;
 
 public class CycleObjectRightEvent : ILevelEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
-        Vector2 objDemoCoord = new Vector2(7, 2);
+        var objDemoCoord = new Coordinate(7, 2);
         var currentObject = gridPointer.GetObject(objDemoCoord);
 
         switch (currentObject.Id)
@@ -34,9 +33,9 @@ public class CycleObjectRightEvent : ILevelEvent
         var newObject = gridPointer.GetObject(objDemoCoord);
         if(newObject.Id == ObjectIds.Explosion)
         {
-            var explosionSprite = spriteGrid.GetObjectSprite(objDemoCoord);
+            var explosionSprite = spriteGrid.GetObjectSprite(objDemoCoord.ToVector2());
             explosionSprite = explosionSprite.ConvertToAnimated(AnimationNames.Explosion);
-            spriteGrid.SetObjectSprite(objDemoCoord, objDemoCoord, explosionSprite);
+            spriteGrid.SetObjectSprite(objDemoCoord.ToVector2(), objDemoCoord.ToVector2(), explosionSprite);
             spriteGrid.StartObjectAnimation(explosionSprite);
             
         }

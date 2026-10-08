@@ -6,7 +6,7 @@ public class CycleTileRightEvent : ILevelEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
-        Vector2 objDemoCoord = new Vector2(5, 5);
+        var objDemoCoord = new Coordinate(5, 5);
         var currentTile = gridPointer.GetTile(objDemoCoord);
 
         switch (currentTile.Id)

@@ -1,7 +1,4 @@
-using System;
-using Microsoft.Xna.Framework;
 using Scripts.Game;
-
 public class PushEastEvent : ILevelEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
@@ -12,11 +9,11 @@ public class PushEastEvent : ILevelEvent
         var isFacingEast = playerObj.Direction == Directions.East;
         if (isFacingEast)
         {
-            var eastCoord = playerCoord + new Vector2(1, 0);
+            var eastCoord = playerCoord + new Coordinate(1, 0);
             var eastGrid = gridPointer.GetGrid(eastCoord);
             var eastObj = eastGrid.Object;
 
-            var eastCoordPlus1 = eastCoord + new Vector2(1, 0);
+            var eastCoordPlus1 = eastCoord + new Coordinate(1, 0);
             var eastGridPlus1 = gridPointer.GetGrid(eastCoordPlus1);
 
             if (eastObj.isPushable && eastGridPlus1.Object.Id == ObjectIds.Empty)

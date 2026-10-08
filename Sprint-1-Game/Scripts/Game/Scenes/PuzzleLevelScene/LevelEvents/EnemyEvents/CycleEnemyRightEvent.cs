@@ -1,12 +1,11 @@
 using System;
-using Microsoft.Xna.Framework;
 using Scripts.Game;
 
 public class CycleEnemyRightEvent : ILevelEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
-        Vector2 EnemyCoord = new Vector2(7, 5);
+        var EnemyCoord = new Coordinate(7, 5);
         var currentEnemy = gridPointer.GetObject(EnemyCoord);
 
         switch (currentEnemy.Id)

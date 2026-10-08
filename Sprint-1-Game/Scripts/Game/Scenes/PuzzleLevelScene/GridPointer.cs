@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 namespace Scripts.Game;
 
 public class GridPointer
 {
-    private readonly Dictionary<Vector2, Grid> CoordToGrid = [];
-    private readonly Dictionary<ObjectIds, Dictionary<Vector2, IObject>> ObjectPointersCollection = [];
-    private readonly Dictionary<TileIds, Dictionary<Vector2, ITile>> TilePointersCollection = [];
+    private readonly Dictionary<Coordinate, Grid> CoordToGrid = [];
+    private readonly Dictionary<ObjectIds, Dictionary<Coordinate, IObject>> ObjectPointersCollection = [];
+    private readonly Dictionary<TileIds, Dictionary<Coordinate, ITile>> TilePointersCollection = [];
 
     public void Init()
     {
@@ -31,7 +30,7 @@ public class GridPointer
         TilePointersCollection.Add(TileIds.Lava, []);
     }
 
-    public void SetGrid(Vector2 coord, Grid grid)
+    public void SetGrid(Coordinate coord, Grid grid)
     {
         if (CoordToGrid.TryGetValue(coord, out var oldGrid))
         {
@@ -51,7 +50,7 @@ public class GridPointer
         CoordToGrid[coord] = grid;
     }
 
-    public void SetObject(Vector2 coord, IObject obj)
+    public void SetObject(Coordinate coord, IObject obj)
     {
         var gridToSetObj = CoordToGrid[coord];
         var oldObjPointers = ObjectPointersCollection[gridToSetObj.Object.Id];
@@ -63,7 +62,7 @@ public class GridPointer
         CoordToGrid[coord].Object = obj;
     }
 
-    public void SetTile(Vector2 coord, ITile tile)
+    public void SetTile(Coordinate coord, ITile tile)
     {
         var gridToSetTile = CoordToGrid[coord];
         var oldTilePointers = TilePointersCollection[gridToSetTile.Tile.Id];
@@ -75,7 +74,7 @@ public class GridPointer
         CoordToGrid[coord].Tile = tile;
     }
 
-    public Grid GetGrid(Vector2 coord)
+    public Grid GetGrid(Coordinate coord)
     {
         if (!CoordToGrid.TryGetValue(coord, out var grid))
         {
@@ -84,7 +83,7 @@ public class GridPointer
         return grid;
     }
 
-    public IObject GetObject(Vector2 coord)
+    public IObject GetObject(Coordinate coord)
     {
         if (!CoordToGrid.TryGetValue(coord, out var grid))
         {
@@ -93,7 +92,7 @@ public class GridPointer
         return grid.Object;
     }
 
-    public ITile GetTile(Vector2 coord)
+    public ITile GetTile(Coordinate coord)
     {
         if (!CoordToGrid.TryGetValue(coord, out var grid))
         {
@@ -102,17 +101,17 @@ public class GridPointer
         return grid.Tile;
     }
 
-    public Dictionary<Vector2, IObject> GetObjectPointers(ObjectIds id)
+    public Dictionary<Coordinate, IObject> GetObjectPointers(ObjectIds id)
     {
         return ObjectPointersCollection[id];
     }
 
-    public Dictionary<Vector2, ITile> GetTilePointers(TileIds id)
+    public Dictionary<Coordinate, ITile> GetTilePointers(TileIds id)
     {
         return TilePointersCollection[id];
     }
 
-    public Vector2 GetPlayerCoord()
+    public Coordinate GetPlayerCoord()
     {
         var playerPointers = ObjectPointersCollection[ObjectIds.Player];
         if (playerPointers.Count != 1)
@@ -123,6 +122,6 @@ public class GridPointer
         {
             return coordToObj.Key;
         }
-        return new Vector2(0, 0);
+        return new Coordinate(0, 0);
     }
 }

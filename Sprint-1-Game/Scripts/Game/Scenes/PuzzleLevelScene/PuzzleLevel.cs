@@ -69,7 +69,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         {
             var x = i % Context.LevelWidth;
             var y = i / Context.LevelHeight;
-            var coord = new Vector2(x, y);
+            var coord = new Coordinate(x, y);
 
             var defaultGrid = new Grid
             {
@@ -82,26 +82,26 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
         CreateWallBorders();
 
-        GridPointer.SetObject(new Vector2(7, 5), objectFactory.CreateSkeleton());
-        GridPointer.SetObject(new Vector2(7, 2), objectFactory.CreateBomb());
-        GridPointer.SetObject(new Vector2(2, 2), objectFactory.CreatePlayer());
-        GridPointer.SetTile(new Vector2(5, 5), tileFactory.CreateGrassTile());
+        GridPointer.SetObject(new Coordinate(7, 5), objectFactory.CreateSkeleton());
+        GridPointer.SetObject(new Coordinate(7, 2), objectFactory.CreateBomb());
+        GridPointer.SetObject(new Coordinate(2, 2), objectFactory.CreatePlayer());
+        GridPointer.SetTile(new Coordinate(5, 5), tileFactory.CreateGrassTile());
     }
 
     private void CreateWallBorders()
     {
         for (int x = 0; x < Context.LevelWidth; x++)
         {
-            var topCoord = new Vector2(x, 0);
-            var bottomCoord = new Vector2(x, Context.LevelHeight - 1);
+            var topCoord = new Coordinate(x, 0);
+            var bottomCoord = new Coordinate(x, Context.LevelHeight - 1);
 
             GridPointer.SetObject(topCoord, objectFactory.CreateWall());
             GridPointer.SetObject(bottomCoord, objectFactory.CreateWall());
         }
         for (int y = 0; y < Context.LevelWidth; y++)
         {
-            var leftCoord = new Vector2(0, y);
-            var rightCoord = new Vector2(Context.LevelWidth - 1, y);
+            var leftCoord = new Coordinate(0, y);
+            var rightCoord = new Coordinate(Context.LevelWidth - 1, y);
 
             GridPointer.SetObject(leftCoord, objectFactory.CreateWall());
             GridPointer.SetObject(rightCoord, objectFactory.CreateWall());
