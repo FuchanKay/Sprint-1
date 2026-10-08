@@ -27,8 +27,7 @@ public class MoveEastEvent : ILevelEvent
     private static void MoveEast(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, Coordinate playerCoord, IObject playerObj, ISprite playerSprite)
     {
         // get box east of player
-        var east = new Coordinate(1, 0);
-        var playerEast = playerCoord + east;
+        var playerEast = playerCoord + Coordinate.East;
         var eastGrid = gridPointer.GetGrid(playerEast);
 
         // if box east of player is empty,

@@ -26,7 +26,7 @@ public class MoveNorthEvent : ILevelEvent
 
     private static void MoveNorth(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, Coordinate playerCoord, IObject playerObj, ISprite playerSprite)
     {
-        var north = new Coordinate(0, -1);
+        var north = Coordinate.North;
         var playerNorth = playerCoord + north;
         var northGrid = gridPointer.GetGrid(playerNorth);
 

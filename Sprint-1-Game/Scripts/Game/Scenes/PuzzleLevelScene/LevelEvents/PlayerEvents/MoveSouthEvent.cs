@@ -25,7 +25,7 @@ public class MoveSouthEvent : ILevelEvent
 
     private static void MoveSouth(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, Coordinate playerCoord, IObject playerObj, ISprite playerSprite)
     {
-        var south = new Coordinate(0, 1);
+        var south = Coordinate.South;
         var playerSouth = playerCoord + south;
         var southGrid = gridPointer.GetGrid(playerSouth);
 

@@ -24,7 +24,7 @@ public class MoveWestEvent : ILevelEvent
 
     private static void MoveWest(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, Coordinate playerCoord, IObject playerObj, ISprite playerSprite)
     {
-        var west = new Coordinate(-1, 0);
+        var west = Coordinate.West;
         var playerWest = playerCoord + west;
         var westGrid = gridPointer.GetGrid(playerWest);
 
