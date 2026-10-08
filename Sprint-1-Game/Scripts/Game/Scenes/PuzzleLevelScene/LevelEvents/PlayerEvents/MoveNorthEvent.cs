@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework;
 using Scripts.Game;
 using Scripts.GameComponents;
 
