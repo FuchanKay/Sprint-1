@@ -48,7 +48,7 @@ public class MoveSouthEvent : ILevelEvent
         playerSprite = playerSprite.ConvertToStatic(RegionNames.PlayerIdleSouth);
         playerSprite.IdleName = RegionNames.PlayerIdleSouth;
         spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
-        
+
         context.IsIdle = true;
     }
 }

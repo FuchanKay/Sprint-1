@@ -49,7 +49,7 @@ public class MoveNorthEvent : ILevelEvent
         playerSprite = playerSprite.ConvertToStatic(RegionNames.PlayerIdleNorth);
         playerSprite.IdleName = RegionNames.PlayerIdleNorth;
         spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
-        
+
         context.IsIdle = true;
     }
 }

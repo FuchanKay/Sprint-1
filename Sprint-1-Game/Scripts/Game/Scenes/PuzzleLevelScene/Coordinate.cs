@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 namespace Scripts.Game;
+
 public struct Coordinate
 {
     public int X { get; }
@@ -18,7 +19,7 @@ public struct Coordinate
     }
 
     // Operator overloading for vector addition
-    public static Coordinate operator + (Coordinate a, Coordinate b)
+    public static Coordinate operator +(Coordinate a, Coordinate b)
     {
         return new Coordinate(a.X + b.X, a.Y + b.Y);
     }

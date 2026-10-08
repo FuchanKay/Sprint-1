@@ -24,7 +24,7 @@ public class ExplodeObjectEvent : ILevelEvent
             }
             // gridPointer.SetObject(explosionCoord, new EmptyObject());
         }
-        if(explosionCoords.Count > 0)
+        if (explosionCoords.Count > 0)
         {
             context.ShouldUpdate = true;
         }

@@ -22,7 +22,7 @@ public class MoveWestEvent : ILevelEvent
         }
     }
 
-        private static void MoveWest(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, Coordinate playerCoord, IObject playerObj, ISprite playerSprite)
+    private static void MoveWest(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, Coordinate playerCoord, IObject playerObj, ISprite playerSprite)
     {
         var west = new Coordinate(-1, 0);
         var playerWest = playerCoord + west;
@@ -47,7 +47,7 @@ public class MoveWestEvent : ILevelEvent
         playerSprite = playerSprite.ConvertToStatic(RegionNames.PlayerIdleWest);
         playerSprite.IdleName = RegionNames.PlayerIdleWest;
         spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
-        
+
         context.IsIdle = true;
     }
 }

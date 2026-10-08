@@ -142,7 +142,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
 
     private static bool UpdateAnimatingList(int dtMs, List<ISprite> currentList, Dictionary<Vector2, ISprite> currentDict)
     {
-        foreach(var sprite in currentList)
+        foreach (var sprite in currentList)
         {
             currentDict.Remove(sprite.CurrentPosition);
             sprite.Update(dtMs);
@@ -158,7 +158,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
 
     private static void ResetToIdle(List<ISprite> finishedSprites, Dictionary<Vector2, ISprite> currentDict)
     {
-        foreach(var sprite in finishedSprites)
+        foreach (var sprite in finishedSprites)
         {
             var staticSprite = sprite.ConvertToStatic(sprite.IdleName);
 
