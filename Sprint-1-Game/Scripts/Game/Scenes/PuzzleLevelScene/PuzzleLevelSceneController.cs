@@ -48,19 +48,19 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
         }
         else if (buttonInput.IsPressed(InputNames.CycleObjectLeft))
         {
-            Level.EnqueueEvent(new CycleObjectLeftEvent());
+            Level.EnqueueEvent(new CycleObjectLeftEvent(ObjectFactory));
         }
         else if (buttonInput.IsPressed(InputNames.CycleObjectRight))
         {
-            Level.EnqueueEvent(new CycleObjectRightEvent());
+            Level.EnqueueEvent(new CycleObjectRightEvent(ObjectFactory));
         }
         else if (buttonInput.IsPressed(InputNames.CycleTileLeft))
         {
-            Level.EnqueueEvent(new CycleTileLeftEvent());
+            Level.EnqueueEvent(new CycleTileLeftEvent(TileFactory));
         }
         else if (buttonInput.IsPressed(InputNames.CycleTileRight))
         {
-            Level.EnqueueEvent(new CycleTileRightEvent());
+            Level.EnqueueEvent(new CycleTileRightEvent(TileFactory));
         }
         else if (buttonInput.IsPressed(InputNames.CycleEnemyLeft))
         {

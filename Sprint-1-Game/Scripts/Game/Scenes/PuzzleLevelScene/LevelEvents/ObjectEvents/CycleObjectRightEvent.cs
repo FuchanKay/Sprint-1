@@ -1,7 +1,7 @@
 using System;
 using Scripts.Game;
 
-public class CycleObjectRightEvent : ILevelEvent
+public class CycleObjectRightEvent(ObjectFactory objectFactory) : ILevelEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
@@ -11,22 +11,22 @@ public class CycleObjectRightEvent : ILevelEvent
         switch (currentObject.Id)
         {
             case ObjectIds.Bomb:
-                gridPointer.SetObject(objDemoCoord, new WallObject());
+                gridPointer.SetObject(objDemoCoord, objectFactory.CreateWall());
                 break;
             case ObjectIds.TimedBomb:
-                gridPointer.SetObject(objDemoCoord, new BombObject());
+                gridPointer.SetObject(objDemoCoord, objectFactory.CreateBomb());
                 break;
             case ObjectIds.Explosion:
-                gridPointer.SetObject(objDemoCoord, new TimedBombObject());
+                gridPointer.SetObject(objDemoCoord, objectFactory.CreateTimedBomb());
                 break;
             case ObjectIds.Rock:
-                gridPointer.SetObject(objDemoCoord, new ExplosionObject());
+                gridPointer.SetObject(objDemoCoord, objectFactory.CreateExplosion());
                 break;
             case ObjectIds.Wall:
-                gridPointer.SetObject(objDemoCoord, new RockObject());
+                gridPointer.SetObject(objDemoCoord, objectFactory.CreateRock());
                 break;
             default:
-                gridPointer.SetObject(objDemoCoord, new BombObject());
+                gridPointer.SetObject(objDemoCoord, objectFactory.CreateBomb());
                 break;
         }
         spriteGrid.CycleObjectSprite(objDemoCoord, gridPointer);
