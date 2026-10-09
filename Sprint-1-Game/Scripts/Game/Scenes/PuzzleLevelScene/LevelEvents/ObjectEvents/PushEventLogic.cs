@@ -4,7 +4,7 @@ public class PushEventLogic
 {
     public static void Push(Directions direction, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, ObjectFactory objectFactory)
     {
-        var directionAsCoordinate = Utilities.ToCoordinate(direction);
+        var directionAsCoordinate = Coordinate.ToCoordinate(direction);
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerObj = gridPointer.GetObject(playerCoord);
 

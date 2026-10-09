@@ -1,4 +1,3 @@
-using Scripts.GameComponents;
 namespace Scripts.Game;
 
 public class MoveEventLogic
@@ -7,7 +6,7 @@ public class MoveEventLogic
     {
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
-        var playerDestination = playerCoord + Utilities.ToCoordinate(direction);
+        var playerDestination = playerCoord + Coordinate.ToCoordinate(direction);
         var destinationGrid = gridPointer.GetGrid(playerDestination);
         
         var playerObj = gridPointer.GetObject(playerCoord);
