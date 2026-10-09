@@ -122,6 +122,6 @@ public class GridPointer
         {
             return coordToObj.Key;
         }
-        return new Coordinate(0, 0);
+        return Coordinate.Zero;
     }
 }

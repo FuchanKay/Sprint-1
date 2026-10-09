@@ -1,8 +1,7 @@
 using System;
-using Microsoft.Xna.Framework;
 using Scripts.Game;
 
-public class CycleTileRightEvent : ILevelEvent
+public class CycleTileRightEvent(TileFactory tileFactory) : ILevelEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
@@ -12,19 +11,19 @@ public class CycleTileRightEvent : ILevelEvent
         switch (currentTile.Id)
         {
             case TileIds.Brick:
-                gridPointer.SetTile(objDemoCoord, new GrassTile());
+                gridPointer.SetTile(objDemoCoord, tileFactory.CreateGrassTile());
                 break;
             case TileIds.Grass:
-                gridPointer.SetTile(objDemoCoord, new WaterTile());
+                gridPointer.SetTile(objDemoCoord, tileFactory.CreateWaterTile());
                 break;
             case TileIds.Water:
-                gridPointer.SetTile(objDemoCoord, new LavaTile());
+                gridPointer.SetTile(objDemoCoord, tileFactory.CreateLavaTile());
                 break;
             case TileIds.Lava:
-                gridPointer.SetTile(objDemoCoord, new BrickTile());
+                gridPointer.SetTile(objDemoCoord, tileFactory.CreateBrickTile());
                 break;
             default:
-                gridPointer.SetTile(objDemoCoord, new BrickTile());
+                gridPointer.SetTile(objDemoCoord, tileFactory.CreateBrickTile());
                 break;
         }
         spriteGrid.CycleTileSprite(objDemoCoord, gridPointer);

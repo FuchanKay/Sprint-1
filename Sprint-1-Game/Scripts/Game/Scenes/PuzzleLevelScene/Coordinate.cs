@@ -36,6 +36,17 @@ public struct Coordinate
     {
         return new Coordinate(a.X * b, a.Y * b);
     }
+    public static Coordinate ToCoordinate(Directions direction)
+    {
+        return direction switch
+        {
+            Directions.North => North,
+            Directions.East => East,
+            Directions.South => South,
+            Directions.West => West,
+            _ => Zero,
+        };
+    }
 
     public override string ToString() => $"({X}, {Y})";
 }

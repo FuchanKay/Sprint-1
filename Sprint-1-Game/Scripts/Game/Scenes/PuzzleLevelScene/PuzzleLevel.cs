@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Scripts.Game;
@@ -12,8 +11,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     {
         LevelWidth = 10,
         LevelHeight = 10,
-        GridWidthPx = 256,
-        GridHeightPx = 256,
+        GridSpriteWidthPx = 256,
+        GridSpriteHeightPx = 256,
         GridScale = 0.15f,
         PuzzleOffsetX = 400,
         PuzzleOffsetY = 50,
@@ -92,19 +91,19 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     {
         for (int x = 0; x < Context.LevelWidth; x++)
         {
-            var topCoord = new Coordinate(x, 0);
-            var bottomCoord = new Coordinate(x, Context.LevelHeight - 1);
+            var topOfLevel = new Coordinate(x, 0);
+            var bottomOfLevel = new Coordinate(x, Context.LevelHeight - 1);
 
-            GridPointer.SetObject(topCoord, objectFactory.CreateWall());
-            GridPointer.SetObject(bottomCoord, objectFactory.CreateWall());
+            GridPointer.SetObject(topOfLevel, objectFactory.CreateWall());
+            GridPointer.SetObject(bottomOfLevel, objectFactory.CreateWall());
         }
         for (int y = 0; y < Context.LevelWidth; y++)
         {
-            var leftCoord = new Coordinate(0, y);
-            var rightCoord = new Coordinate(Context.LevelWidth - 1, y);
+            var leftOfLevel = new Coordinate(0, y);
+            var rightOfLevel = new Coordinate(Context.LevelWidth - 1, y);
 
-            GridPointer.SetObject(leftCoord, objectFactory.CreateWall());
-            GridPointer.SetObject(rightCoord, objectFactory.CreateWall());
+            GridPointer.SetObject(leftOfLevel, objectFactory.CreateWall());
+            GridPointer.SetObject(rightOfLevel, objectFactory.CreateWall());
         }
     }
 }
