@@ -21,7 +21,7 @@ public class PushEventLogic
             var canPush = eastObj.isPushable && eastGridPlus1.Object.Id == ObjectIds.Empty;
             if (canPush)
             {
-                gridPointer.SetObject(eastCoord, new EmptyObject());
+                gridPointer.SetObject(eastCoord, objectFactory.CreateEmpty());
                 gridPointer.SetObject(eastCoordPlus1, eastObj);
             }
             context.ShouldUpdate = true;

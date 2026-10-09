@@ -1,5 +1,4 @@
 using System;
-using Microsoft.Xna.Framework;
 using Scripts.Game;
 
 public class CycleTileLeftEvent : ILevelEvent
