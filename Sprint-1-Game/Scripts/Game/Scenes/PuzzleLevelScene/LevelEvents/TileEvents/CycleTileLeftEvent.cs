@@ -1,30 +1,29 @@
 using System;
-using Microsoft.Xna.Framework;
 using Scripts.Game;
 
-public class CycleTileLeftEvent : ILevelEvent
+public class CycleTileLeftEvent(TileFactory tileFactory) : ILevelEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
-        Vector2 objDemoCoord = new Vector2(5, 5);
+        var objDemoCoord = new Coordinate(5, 5);
         var currentTile = gridPointer.GetTile(objDemoCoord);
 
         switch (currentTile.Id)
         {
             case TileIds.Brick:
-                gridPointer.SetTile(objDemoCoord, new LavaTile());
+                gridPointer.SetTile(objDemoCoord, tileFactory.CreateLavaTile());
                 break;
             case TileIds.Grass:
-                gridPointer.SetTile(objDemoCoord, new BrickTile());
+                gridPointer.SetTile(objDemoCoord, tileFactory.CreateBrickTile());
                 break;
             case TileIds.Water:
-                gridPointer.SetTile(objDemoCoord, new GrassTile());
+                gridPointer.SetTile(objDemoCoord, tileFactory.CreateGrassTile());
                 break;
             case TileIds.Lava:
-                gridPointer.SetTile(objDemoCoord, new WaterTile());
+                gridPointer.SetTile(objDemoCoord, tileFactory.CreateWaterTile());
                 break;
             default:
-                gridPointer.SetTile(objDemoCoord, new BrickTile());
+                gridPointer.SetTile(objDemoCoord, tileFactory.CreateBrickTile());
                 break;
         }
         spriteGrid.CycleTileSprite(objDemoCoord, gridPointer);

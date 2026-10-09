@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Scripts.Game;
@@ -12,8 +11,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     {
         LevelWidth = 10,
         LevelHeight = 10,
-        GridWidthPx = 256,
-        GridHeightPx = 256,
+        GridSpriteWidthPx = 256,
+        GridSpriteHeightPx = 256,
         GridScale = 0.15f,
         PuzzleOffsetX = 400,
         PuzzleOffsetY = 50,
@@ -69,7 +68,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         {
             var x = i % Context.LevelWidth;
             var y = i / Context.LevelHeight;
-            var coord = new Vector2(x, y);
+            var coord = new Coordinate(x, y);
 
             var defaultGrid = new Grid
             {
@@ -82,31 +81,29 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
         CreateWallBorders();
 
-        GridPointer.SetObject(new Vector2(7, 5), objectFactory.CreateSkeleton());
-        GridPointer.SetObject(new Vector2(7, 2), objectFactory.CreateBomb());
-        GridPointer.SetObject(new Vector2(2, 2), objectFactory.CreatePlayer());
-        GridPointer.SetTile(new Vector2(5, 5), tileFactory.CreateGrassTile());
-        GridPointer.SetObject(new Vector2(2, 5), objectFactory.CreateTimedBomb());
-        GridPointer.SetObject(new Vector2(3, 5), objectFactory.CreateRock());
+        GridPointer.SetObject(new Coordinate(7, 5), objectFactory.CreateSkeleton());
+        GridPointer.SetObject(new Coordinate(7, 2), objectFactory.CreateBomb());
+        GridPointer.SetObject(new Coordinate(2, 2), objectFactory.CreatePlayer());
+        GridPointer.SetTile(new Coordinate(5, 5), tileFactory.CreateGrassTile());
     }
 
     private void CreateWallBorders()
     {
         for (int x = 0; x < Context.LevelWidth; x++)
         {
-            var topCoord = new Vector2(x, 0);
-            var bottomCoord = new Vector2(x, Context.LevelHeight - 1);
+            var topOfLevel = new Coordinate(x, 0);
+            var bottomOfLevel = new Coordinate(x, Context.LevelHeight - 1);
 
-            GridPointer.SetObject(topCoord, objectFactory.CreateWall());
-            GridPointer.SetObject(bottomCoord, objectFactory.CreateWall());
+            GridPointer.SetObject(topOfLevel, objectFactory.CreateWall());
+            GridPointer.SetObject(bottomOfLevel, objectFactory.CreateWall());
         }
         for (int y = 0; y < Context.LevelWidth; y++)
         {
-            var leftCoord = new Vector2(0, y);
-            var rightCoord = new Vector2(Context.LevelWidth - 1, y);
+            var leftOfLevel = new Coordinate(0, y);
+            var rightOfLevel = new Coordinate(Context.LevelWidth - 1, y);
 
-            GridPointer.SetObject(leftCoord, objectFactory.CreateWall());
-            GridPointer.SetObject(rightCoord, objectFactory.CreateWall());
+            GridPointer.SetObject(leftOfLevel, objectFactory.CreateWall());
+            GridPointer.SetObject(rightOfLevel, objectFactory.CreateWall());
         }
     }
 }

@@ -88,7 +88,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.Warlock, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.BlueLizard, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.RedLizard, 0, 0, 256, 256);
-    
+
 
     }
 
@@ -113,7 +113,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.BlueLizard, FileNames.BlueLizardTexture);
 
 
-        
+
 
         // StoneBlock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneBlock");
         // Rock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/rock");
