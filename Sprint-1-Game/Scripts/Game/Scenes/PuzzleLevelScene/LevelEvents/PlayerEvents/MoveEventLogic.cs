@@ -10,22 +10,19 @@ public class MoveEventLogic
         var destinationGrid = gridPointer.GetGrid(playerDestination);
         
         var playerObj = gridPointer.GetObject(playerCoord);
-        var isFacingAlready = playerObj.Direction == direction;
-        if (isFacingAlready)
+        var isFacingDirection = playerObj.Direction == direction;
+        var isDestinationEmpty = destinationGrid.Object.Id == ObjectIds.Empty;
+        if (isFacingDirection && isDestinationEmpty)
         {
-            var canMove = destinationGrid.Object.Id == ObjectIds.Empty;
-            if (canMove)
-            {
-                playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerWalkEast);
-                spriteGrid.SetObjectSprite(playerCoord, playerDestination, playerSprite);
-                spriteGrid.StartObjectAnimation(playerSprite);
+            playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerWalkEast);
+            spriteGrid.SetObjectSprite(playerCoord, playerDestination, playerSprite);
+            spriteGrid.StartObjectAnimation(playerSprite);
 
-                gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
-                gridPointer.SetObject(playerDestination, playerObj);
-            }
+            gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(playerDestination, playerObj);
             context.IsIdle = false;
         }
-        else
+        else if (!isFacingDirection)
         {
             playerObj.Direction = direction;
             var playerIdleSpriteRegion = RegionNames.ToPlayerIdleRegionName(direction);

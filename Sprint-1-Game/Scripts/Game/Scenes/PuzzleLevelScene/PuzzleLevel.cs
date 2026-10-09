@@ -11,8 +11,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     {
         LevelWidth = 10,
         LevelHeight = 10,
-        GridWidthPx = 256,
-        GridHeightPx = 256,
+        GridSpriteWidthPx = 256,
+        GridSpriteHeightPx = 256,
         GridScale = 0.15f,
         PuzzleOffsetX = 400,
         PuzzleOffsetY = 50,
