@@ -1,8 +1,8 @@
 namespace Scripts.Game;
 
-public class MoveEventLogic
+public class MovePlayerEvent(Directions direction, ObjectFactory objectFactory) : ILevelEvent
 {
-    public static void Move(Directions direction, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, ObjectFactory objectFactory)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
