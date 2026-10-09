@@ -12,7 +12,7 @@ public class BombSnapEvent : ILevelEvent
             gridPointer.SetObject(bombCoord, new ExplosionObject());
             spriteGrid.CycleObjectSprite(bombCoord, gridPointer);
         }
-        if(bombCoords.Count > 0)
+        if (bombCoords.Count > 0)
         {
             context.ShouldUpdate = true;
             new ExplodeObjectEvent().Execute(spriteGrid, gridPointer, context);

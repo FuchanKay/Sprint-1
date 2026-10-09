@@ -1,4 +1,5 @@
 namespace Scripts.Game;
+
 public class ObjectFactory()
 {
     public IObject CreateEmpty()

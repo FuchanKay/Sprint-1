@@ -29,7 +29,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         {
             var x = i % context.LevelWidth;
             var y = i / context.LevelHeight;
-            var coord = new Vector2(x, y);
+            var coord = new Coordinate(x, y);
 
             var grid = gridPointer.GetGrid(coord);
             var obj = grid.Object;
@@ -48,7 +48,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         }
     }
 
-    public ISprite GetObjectSprite(Vector2 coord)
+    public ISprite GetObjectSprite(Coordinate coord)
     {
         var realCoord = CalculateLiteralPos(coord);
         if (!ObjectSprites.TryGetValue(realCoord, out var sprite))
@@ -58,7 +58,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         return sprite;
     }
 
-    public ISprite GetTileSprite(Vector2 coord)
+    public ISprite GetTileSprite(Coordinate coord)
     {
         var realCoord = CalculateLiteralPos(coord);
         if (!TileSprites.TryGetValue(realCoord, out var sprite))
@@ -68,7 +68,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         return sprite;
     }
 
-    public void SetObjectSprite(Vector2 currentCoord, Vector2 targetCoord, ISprite sprite)
+    public void SetObjectSprite(Coordinate currentCoord, Coordinate targetCoord, ISprite sprite)
     {
         var realCurrentCoord = CalculateLiteralPos(currentCoord);
         var realTargetCoord = CalculateLiteralPos(targetCoord);
@@ -82,7 +82,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         sprite.SetTargetPosition(realTargetCoord);
     }
 
-    public void CycleObjectSprite(Vector2 coord, GridPointer gridPointer)
+    public void CycleObjectSprite(Coordinate coord, GridPointer gridPointer)
     {
         var realCoord = CalculateLiteralPos(coord);
         ObjectSprites.Remove(realCoord);
@@ -90,7 +90,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         ObjectSprites.Add(realCoord, sprite);
     }
 
-    public void SetTileSprite(Vector2 currentCoord, Vector2 targetCoord, ISprite sprite)
+    public void SetTileSprite(Coordinate currentCoord, Coordinate targetCoord, ISprite sprite)
     {
         var realCurrentCoord = CalculateLiteralPos(currentCoord);
         var realTargetCoord = CalculateLiteralPos(targetCoord);
@@ -100,7 +100,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         sprite.SetTargetPosition(realTargetCoord);
     }
 
-    public void CycleTileSprite(Vector2 coord, GridPointer gridPointer)
+    public void CycleTileSprite(Coordinate coord, GridPointer gridPointer)
     {
         var realCoord = CalculateLiteralPos(coord);
         TileSprites.Remove(realCoord);
@@ -142,7 +142,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
 
     private static bool UpdateAnimatingList(int dtMs, List<ISprite> currentList, Dictionary<Vector2, ISprite> currentDict)
     {
-        foreach(var sprite in currentList)
+        foreach (var sprite in currentList)
         {
             currentDict.Remove(sprite.CurrentPosition);
             sprite.Update(dtMs);
@@ -158,7 +158,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
 
     private static void ResetToIdle(List<ISprite> finishedSprites, Dictionary<Vector2, ISprite> currentDict)
     {
-        foreach(var sprite in finishedSprites)
+        foreach (var sprite in finishedSprites)
         {
             var staticSprite = sprite.ConvertToStatic(sprite.IdleName);
 
@@ -171,7 +171,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         finishedSprites.Clear();
     }
 
-    private Vector2 CalculateLiteralPos(Vector2 coord)
+    private Vector2 CalculateLiteralPos(Coordinate coord)
     {
         var spriteWidth = (int)(Context.GridWidthPx * Context.GridScale);
         var spriteX = spriteWidth * coord.X + Context.PuzzleOffsetX;

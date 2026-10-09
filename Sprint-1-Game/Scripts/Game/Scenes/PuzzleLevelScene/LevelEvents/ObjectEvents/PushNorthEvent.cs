@@ -1,5 +1,3 @@
-using System;
-using Microsoft.Xna.Framework;
 using Scripts.Game;
 
 public class PushNorthEvent : ILevelEvent
@@ -12,11 +10,11 @@ public class PushNorthEvent : ILevelEvent
         var isFacingNorth = playerObj.Direction == Directions.North;
         if (isFacingNorth)
         {
-            var northCoord = playerCoord + new Vector2(0, -1);
+            var northCoord = playerCoord + new Coordinate(0, -1);
             var northGrid = gridPointer.GetGrid(northCoord);
             var northObj = northGrid.Object;
 
-            var northCoordPlus1 = northCoord + new Vector2(0, -1);
+            var northCoordPlus1 = northCoord + new Coordinate(0, -1);
             var northGridPlus1 = gridPointer.GetGrid(northCoordPlus1);
 
             if (northObj.isPushable && northGridPlus1.Object.Id == ObjectIds.Empty)

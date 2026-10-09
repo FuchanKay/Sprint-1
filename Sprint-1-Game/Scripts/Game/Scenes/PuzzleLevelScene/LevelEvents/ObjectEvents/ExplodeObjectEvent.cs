@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Xna.Framework;
 using Scripts.Game;
 
 public class ExplodeObjectEvent : ILevelEvent
@@ -16,7 +14,7 @@ public class ExplodeObjectEvent : ILevelEvent
             {
                 for (int y = -explosionRadius; y <= explosionRadius; y++)
                 {
-                    var targetCoord = explosionCoord + new Vector2(x, y);
+                    var targetCoord = explosionCoord + new Coordinate(x, y);
                     var targetGrid = gridPointer.GetGrid(targetCoord);
                     if (targetGrid.Object.isDestructible)
                     {
@@ -26,7 +24,7 @@ public class ExplodeObjectEvent : ILevelEvent
             }
             // gridPointer.SetObject(explosionCoord, new EmptyObject());
         }
-        if(explosionCoords.Count > 0)
+        if (explosionCoords.Count > 0)
         {
             context.ShouldUpdate = true;
         }
