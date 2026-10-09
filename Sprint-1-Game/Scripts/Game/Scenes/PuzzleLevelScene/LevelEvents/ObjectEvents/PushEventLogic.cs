@@ -6,7 +6,7 @@ public class PushEventLogic
     {
         var directionAsCoordinate = Utilities.ToCoordinate(direction);
         var playerCoord = gridPointer.GetPlayerCoord();
-        var playerObj = gridPointer.GetObject(playerCoord) as PlayerObject;
+        var playerObj = gridPointer.GetObject(playerCoord);
 
         var isFacingEast = playerObj.Direction == direction;
         if (isFacingEast)
