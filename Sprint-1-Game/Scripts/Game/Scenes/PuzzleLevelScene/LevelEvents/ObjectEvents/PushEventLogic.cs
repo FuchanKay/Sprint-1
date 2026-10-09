@@ -1,4 +1,5 @@
 namespace Scripts.Game;
+
 public class PushEventLogic
 {
     public static void Push(Directions direction, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, ObjectFactory objectFactory)
@@ -29,7 +30,7 @@ public class PushEventLogic
         {
             playerObj.Direction = direction;
             context.ShouldUpdate = true;
-        }   
+        }
     }
 
 

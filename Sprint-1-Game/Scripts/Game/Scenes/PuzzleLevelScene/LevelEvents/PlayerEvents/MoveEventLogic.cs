@@ -1,5 +1,6 @@
 using Scripts.GameComponents;
 namespace Scripts.Game;
+
 public class MoveEventLogic
 {
     public static void Move(Directions direction, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, ObjectFactory objectFactory)
@@ -20,7 +21,7 @@ public class MoveEventLogic
         }
 
         context.ShouldUpdate = true;
-    }        
+    }
 
     private static void Move(Directions direction, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, Coordinate playerCoord, IObject playerObj, ISprite playerSprite)
     {
