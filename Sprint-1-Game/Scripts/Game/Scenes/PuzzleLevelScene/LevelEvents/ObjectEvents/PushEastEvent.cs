@@ -1,32 +1,8 @@
 using Scripts.Game;
-public class PushEastEvent : ILevelEvent
+public class PushEastEvent(ObjectFactory objectFactory) : ILevelEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
-        var playerCoord = gridPointer.GetPlayerCoord();
-        var playerObj = gridPointer.GetObject(playerCoord) as PlayerObject;
-
-        var isFacingEast = playerObj.Direction == Directions.East;
-        if (isFacingEast)
-        {
-            var eastCoord = playerCoord + new Coordinate(1, 0);
-            var eastGrid = gridPointer.GetGrid(eastCoord);
-            var eastObj = eastGrid.Object;
-
-            var eastCoordPlus1 = eastCoord + new Coordinate(1, 0);
-            var eastGridPlus1 = gridPointer.GetGrid(eastCoordPlus1);
-
-            if (eastObj.isPushable && eastGridPlus1.Object.Id == ObjectIds.Empty)
-            {
-                gridPointer.SetObject(eastCoord, new EmptyObject());
-                gridPointer.SetObject(eastCoordPlus1, eastObj);
-            }
-            context.ShouldUpdate = true;
-        }
-        else
-        {
-            playerObj.Direction = Directions.East;
-            context.ShouldUpdate = true;
-        }
+        PushEventLogic.Push(Directions.East, spriteGrid, gridPointer, context, objectFactory);
     }
 }
