@@ -21,4 +21,16 @@ public class AnimationNames
     public readonly static string PlayerSnap = "Player Snap";
     public readonly static string Explosion = "Explosion";
 
+    public static string ToPlayerMovingAnimationName(Directions direction)
+    {
+        return direction switch
+        {
+            Directions.North => AnimationNames.PlayerWalkNorth,
+            Directions.East => AnimationNames.PlayerWalkEast,
+            Directions.South => AnimationNames.PlayerWalkSouth,
+            Directions.West => AnimationNames.PlayerWalkWest,
+            _ => AnimationNames.PlayerWalkEast,
+        };
+    }
+
 }
