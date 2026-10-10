@@ -22,6 +22,7 @@ public class Setup(ContentManager content)
         TextureAtlas = new TextureAtlas(content);
         MapDefaultInputs();
         AddAnimations();
+        AddRegions();
 
         sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas);
         sceneManager.Init();
@@ -63,15 +64,42 @@ public class Setup(ContentManager content)
 
     private void AddAnimations()
     {
-        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkNorth, 2, 6, 64, 64, 50);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkSouth, 3, 6, 64, 64, 50);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkEast, 0, 6, 64, 64, 50);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkWest, 1, 6, 64, 64, 50);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerSnap, 4, 6, 64, 64, 200);
-        TextureAtlas.AddRegion(RegionNames.PlayerIdleNorth, 1, 5, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.PlayerIdleSouth, 0, 5, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.PlayerIdleEast, 2, 5, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.PlayerIdleWest, 3, 5, 64, 64);
+        int pushFrames = 4;
+        int rotateFrames = 2;
+        // walk
+        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkNorth, 2, 0, 6, 64, 64, 50);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkSouth, 3, 0, 6, 64, 64, 50);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkEast, 0, 0, 6, 64, 64, 50);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkWest, 1, 0, 6, 64, 64, 50);
+        // snap
+        TextureAtlas.AddAnimation(AnimationNames.PlayerSnap, 4, 0, 6, 64, 64);
+        // rotate counterclockwise
+        TextureAtlas.AddAnimation(AnimationNames.PlayerRotateSE, 5, 0, rotateFrames, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerRotateEN, 5, 2, rotateFrames, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerRotateNW, 5, 4, rotateFrames, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerRotateWS, 5, 6, rotateFrames, 64, 64);
+        // rotate clockwise
+        TextureAtlas.AddAnimation(AnimationNames.PlayerRotateSW, 6, 0, rotateFrames, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerRotateWN, 6, 2, rotateFrames, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerRotateNE, 6, 4, rotateFrames, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerRotateES, 6, 6, rotateFrames, 64, 64);
+
+        // push
+        TextureAtlas.AddAnimation(AnimationNames.PlayerPushNorth, 8, 4, pushFrames, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerPushSouth, 8, 0, pushFrames, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerPushEast, 7, 0, pushFrames, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerPushWest, 7, 4, pushFrames, 64, 64);
+
+        // obj explode
+        TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 0, 4, 105, 96);
+    }
+
+    private void AddRegions()
+    {
+        TextureAtlas.AddRegion(RegionNames.PlayerIdleNorth, 3, 5, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.PlayerIdleSouth, 7, 5, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.PlayerIdleEast, 1, 5, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.PlayerIdleWest, 5, 5, 64, 64);
 
         TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.BrickTile, 0, 0, 256, 256);
@@ -82,14 +110,11 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.Bomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Explosion, 2, 0, 105, 96);
-        TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 4, 105, 96);
 
         TextureAtlas.AddRegion(RegionNames.Skeleton, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Warlock, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.BlueLizard, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.RedLizard, 0, 0, 256, 256);
-    
-
     }
 
     private void BindAllTextures()
