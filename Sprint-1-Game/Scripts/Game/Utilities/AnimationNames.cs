@@ -10,7 +10,7 @@ public class AnimationNames
     public readonly static string PlayerPushSouth = "Player Push South";
     public readonly static string PlayerPushEast = "Player Push East";
     public readonly static string PlayerPushWest = "Player Push West";
-    public readonly static string PlayerRotateSE = "Player Rotate CC SE";
+    public readonly static string PlayerRotateSE = "Player Rotate SE";
     public readonly static string PlayerRotateEN = "Player Rotate EN";
     public readonly static string PlayerRotateNW = "Player Rotate NW";
     public readonly static string PlayerRotateWS = "Player Rotate WS";
