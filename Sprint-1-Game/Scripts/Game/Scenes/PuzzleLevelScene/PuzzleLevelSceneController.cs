@@ -20,19 +20,19 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
     {
         if (buttonInput.IsPressed(InputNames.MoveNorth) || buttonInput.IsPressed(InputNames.MoveNorthAlt))
         {
-            Level.EnqueueEvent(new MoveNorthEvent());
+            Level.EnqueueEvent(new MovePlayerEvent(Directions.North, ObjectFactory));
         }
         else if (buttonInput.IsPressed(InputNames.MoveEast) || buttonInput.IsPressed(InputNames.MoveEastAlt))
         {
-            Level.EnqueueEvent(new MoveEastEvent());
+            Level.EnqueueEvent(new MovePlayerEvent(Directions.East, ObjectFactory));
         }
         else if (buttonInput.IsPressed(InputNames.MoveSouth) || buttonInput.IsPressed(InputNames.MoveSouthAlt))
         {
-            Level.EnqueueEvent(new MoveSouthEvent());
+            Level.EnqueueEvent(new MovePlayerEvent(Directions.South, ObjectFactory));
         }
         else if (buttonInput.IsPressed(InputNames.MoveWest) || buttonInput.IsPressed(InputNames.MoveWestAlt))
         {
-            Level.EnqueueEvent(new MoveWestEvent());
+            Level.EnqueueEvent(new MovePlayerEvent(Directions.West, ObjectFactory));
         }
         else if (buttonInput.IsPressed(InputNames.Snap))
         {
@@ -48,19 +48,19 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
         }
         else if (buttonInput.IsPressed(InputNames.CycleObjectLeft))
         {
-            Level.EnqueueEvent(new CycleObjectLeftEvent());
+            Level.EnqueueEvent(new CycleObjectLeftEvent(ObjectFactory));
         }
         else if (buttonInput.IsPressed(InputNames.CycleObjectRight))
         {
-            Level.EnqueueEvent(new CycleObjectRightEvent());
+            Level.EnqueueEvent(new CycleObjectRightEvent(ObjectFactory));
         }
         else if (buttonInput.IsPressed(InputNames.CycleTileLeft))
         {
-            Level.EnqueueEvent(new CycleTileLeftEvent());
+            Level.EnqueueEvent(new CycleTileLeftEvent(TileFactory));
         }
         else if (buttonInput.IsPressed(InputNames.CycleTileRight))
         {
-            Level.EnqueueEvent(new CycleTileRightEvent());
+            Level.EnqueueEvent(new CycleTileRightEvent(TileFactory));
         }
         else if (buttonInput.IsPressed(InputNames.CycleEnemyLeft))
         {

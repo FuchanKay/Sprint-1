@@ -1,7 +1,7 @@
 using System.Linq;
 using Scripts.Game;
 
-public class BombSnapEvent : ILevelEvent
+public class BombSnapEvent(ObjectFactory objectFactory) : ILevelEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
@@ -9,10 +9,10 @@ public class BombSnapEvent : ILevelEvent
         var bombCoords = bombPointers.Keys.ToList();
         foreach (var bombCoord in bombCoords)
         {
-            gridPointer.SetObject(bombCoord, new ExplosionObject());
+            gridPointer.SetObject(bombCoord, objectFactory.CreateExplosion());
             spriteGrid.CycleObjectSprite(bombCoord, gridPointer);
         }
-        if(bombCoords.Count > 0)
+        if (bombCoords.Count > 0)
         {
             context.ShouldUpdate = true;
             new ExplodeObjectEvent().Execute(spriteGrid, gridPointer, context);

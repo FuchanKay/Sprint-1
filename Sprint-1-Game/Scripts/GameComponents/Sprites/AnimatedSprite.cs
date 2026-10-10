@@ -21,15 +21,16 @@ public class AnimatedSprite(ITextureAtlas textureAtlas) : Sprite(textureAtlas)
         TotalElapsed += dtMs;
 
         Vector2 diff = CurrentPosition - TargetPosition;
-        bool shouldMove = diff.Length() > 0.01f; 
-        if(shouldMove)
+        bool shouldMove = diff.Length() > 0.01f;
+        if (shouldMove)
         {
             // update current position based on progress through animation
             float xPos = StartPosition.X + (TargetPosition.X - StartPosition.X) * Progress;
             float yPos = StartPosition.Y + (TargetPosition.Y - StartPosition.Y) * Progress;
 
             CurrentPosition = new Vector2(xPos, yPos);
-        } else
+        }
+        else
         {
             CurrentPosition = TargetPosition;
         }

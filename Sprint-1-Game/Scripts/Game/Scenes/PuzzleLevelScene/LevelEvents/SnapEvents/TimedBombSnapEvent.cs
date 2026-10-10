@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Scripts.Game;
 
-public class TimedBombSnapEvent : ILevelEvent
+public class TimedBombSnapEvent(ObjectFactory objectFactory) : ILevelEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
@@ -14,20 +14,20 @@ public class TimedBombSnapEvent : ILevelEvent
             var timedBombObject = gridPointer.GetObject(timedBombCoord) as TimedBombObject;
             if (timedBombObject.timeRemaining == 1)
             {
-                gridPointer.SetObject(timedBombCoord, new ExplosionObject());
+                gridPointer.SetObject(timedBombCoord, objectFactory.CreateExplosion());
                 anyBombsExploded = true;
             }
             timedBombObject.timeRemaining--;
             Console.WriteLine($"Timed bomb at {timedBombCoord} has {timedBombObject.timeRemaining} time remaining.");
         }
-        if(timedBombCoords.Count > 0)
+        if (timedBombCoords.Count > 0)
         {
             context.ShouldUpdate = true;
         }
-        if(anyBombsExploded)
+        if (anyBombsExploded)
         {
             new ExplodeObjectEvent().Execute(spriteGrid, gridPointer, context);
         }
-        
+
     }
 }

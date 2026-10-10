@@ -138,7 +138,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.BlueLizard, FileNames.BlueLizardTexture);
 
 
-        
+
 
         // StoneBlock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneBlock");
         // Rock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/rock");

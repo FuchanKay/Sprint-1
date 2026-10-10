@@ -20,4 +20,16 @@ public class RegionNames
     public readonly static string BlueLizard = "BlueLizard";
     public readonly static string Skeleton = "Skeleton";
     public readonly static string Warlock = "Warlock";
+
+    public static string ToPlayerIdleRegionName(Directions direction)
+    {
+        return direction switch
+        {
+            Directions.North => RegionNames.PlayerIdleNorth,
+            Directions.East => RegionNames.PlayerIdleEast,
+            Directions.South => RegionNames.PlayerIdleSouth,
+            Directions.West => RegionNames.PlayerIdleWest,
+            _ => RegionNames.PlayerIdleEast,
+        };
+    }
 }
