@@ -82,6 +82,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         }
         ObjectSprites.Add(realCurrentCoord, sprite);
 
+        sprite.SetCurrentPosition(realCurrentCoord);
         sprite.SetTargetPosition(realTargetCoord);
     }
 

@@ -34,7 +34,7 @@ public class CycleObjectLeftEvent(ObjectFactory objectFactory) : ILevelEvent
         if (newObject.Id == ObjectIds.Explosion)
         {
             var explosionSprite = spriteGrid.GetObjectSprite(objDemoCoord);
-            // explosionSprite = explosionSprite.ConvertToAnimated(AnimationNames.Explosion);
+            explosionSprite = explosionSprite.ConvertToAnimated(AnimationNames.Explosion);
             spriteGrid.SetObjectSprite(objDemoCoord, objDemoCoord, explosionSprite);
             spriteGrid.StartObjectAnimation(explosionSprite);
 

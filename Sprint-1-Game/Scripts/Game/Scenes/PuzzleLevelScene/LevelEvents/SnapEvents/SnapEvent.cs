@@ -19,7 +19,7 @@ public class SnapEvent : ILevelEvent
         foreach (var bombCoord in bombCoords)
         {
             Console.WriteLine($"Exploding bomb at {bombCoord}");
-            ExplodeBomb(bombCoord,spriteGrid, gridPointer, context);
+            ExplodeBomb(bombCoord, spriteGrid, gridPointer, context);
         }
 
         foreach (var timedBombCoord in timedBombCoords)
@@ -42,6 +42,8 @@ public class SnapEvent : ILevelEvent
         gridPointer.SetObject(bombCoord, new ExplosionObject());
         spriteGrid.CycleObjectSprite(bombCoord, gridPointer);
         var explosionSprite = spriteGrid.GetObjectSprite(bombCoord);
+        
+        explosionSprite = explosionSprite.ConvertToAnimated(AnimationNames.Explosion);
         spriteGrid.SetObjectSprite(bombCoord, bombCoord, explosionSprite);
         spriteGrid.StartObjectAnimation(explosionSprite);
 
