@@ -127,8 +127,11 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
 
     public void Update(int dtMs)
     {
-        bool animObjEmpty = UpdateAnimatingList(dtMs, AnimatingObjectSprites, ObjectSprites);
-        bool animTileEmpty = UpdateAnimatingList(dtMs, AnimatingTileSprites, TileSprites);
+        UpdateAnimatingList(dtMs, AnimatingObjectSprites, ObjectSprites);
+        UpdateAnimatingList(dtMs, AnimatingTileSprites, TileSprites);
+
+        bool animObjEmpty = AnimatingObjectSprites.Count == 0;
+        bool animTileEmpty = AnimatingTileSprites.Count == 0;
 
         IsIdle = animObjEmpty && animTileEmpty;
     }
@@ -147,7 +150,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         }
     }
 
-    private static bool UpdateAnimatingList(int dtMs, List<ISprite> currentList, Dictionary<Vector2, ISprite> currentDict)
+    private static void UpdateAnimatingList(int dtMs, List<ISprite> currentList, Dictionary<Vector2, ISprite> currentDict)
     {
         foreach (var sprite in currentList)
         {
@@ -159,8 +162,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         ResetToIdle(finishedSprites, currentDict);
 
         currentList.RemoveAll(sprite => sprite.IsFinished);
-
-        return currentList.Count == 0;
     }
 
     private static void ResetToIdle(List<ISprite> finishedSprites, Dictionary<Vector2, ISprite> currentDict)
