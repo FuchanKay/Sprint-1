@@ -1,19 +1,22 @@
 using System;
+using System.Linq;
 using Scripts.Game;
 
-public class WarlockSwapeEvent : ILevelEvent
+public class WarlockSwapEvent(ObjectFactory objectFactory) : ILevelEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
-        var Warlock = new Coordinate(7, 5);
-        var currentEnemy = gridPointer.GetObject(Warlock);
-        var currentPlayer = gridPointer.GetPlayerCoord();
-        
+        var WarlockPointer = gridPointer.GetObjectPointers(ObjectIds.Warlock);
+        var WarlockCoords = WarlockPointer.Keys.ToList();
+        var PlayerCood = gridPointer.GetPlayerCoord();
+        foreach (var WarlockCoord in WarlockCoords){
+            var tempCoord = PlayerCood;
+            PlayerCood = WarlockCoord;
 
-        spriteGrid.CycleObjectSprite(Warlock, gridPointer);
-        var newObject = gridPointer.GetObject(Warlock);
+        }
+
+        
         context.ShouldUpdate = true;
-        Console.WriteLine($"Cycled object to {gridPointer.GetObject(Warlock).Id}");
 
     }
 }
