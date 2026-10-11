@@ -13,7 +13,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     private readonly List<ISprite> AnimatingObjectSprites = [];
     private readonly List<ISprite> AnimatingTileSprites = [];
     public bool IsIdle { get; private set; }
-    public LevelContext Context;
+    private LevelContext Context;
 
     public void Init(GridPointer gridPointer, LevelContext context)
     {
@@ -76,7 +76,10 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         Must remove and add each time a sprite is set in case 
         the type (static or animated) changed
         */
-        ObjectSprites.Remove(realCurrentCoord);
+        if(!ObjectSprites.Remove(realCurrentCoord))
+        {
+            throw new ArgumentException("Object sprite not found at current coord");
+        }
         ObjectSprites.Add(realCurrentCoord, sprite);
 
         sprite.SetTargetPosition(realTargetCoord);
@@ -100,7 +103,11 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     {
         var realCurrentCoord = CalculateLiteralPos(currentCoord);
         var realTargetCoord = CalculateLiteralPos(targetCoord);
-        TileSprites.Remove(realCurrentCoord);
+
+        if(!TileSprites.Remove(realCurrentCoord))
+        {
+            throw new ArgumentException("Tile sprite not found at current coord");
+        }
         TileSprites.Add(realCurrentCoord, sprite);
 
         sprite.SetTargetPosition(realTargetCoord);
@@ -126,8 +133,11 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
 
     public void Update(int dtMs)
     {
-        bool animObjEmpty = UpdateAnimatingList(dtMs, AnimatingObjectSprites, ObjectSprites);
-        bool animTileEmpty = UpdateAnimatingList(dtMs, AnimatingTileSprites, TileSprites);
+        UpdateAnimatingList(dtMs, AnimatingObjectSprites, ObjectSprites);
+        UpdateAnimatingList(dtMs, AnimatingTileSprites, TileSprites);
+
+        bool animObjEmpty = AnimatingObjectSprites.Count == 0;
+        bool animTileEmpty = AnimatingTileSprites.Count == 0;
 
         IsIdle = animObjEmpty && animTileEmpty;
     }
@@ -146,7 +156,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         }
     }
 
-    private static bool UpdateAnimatingList(int dtMs, List<ISprite> currentList, Dictionary<Vector2, ISprite> currentDict)
+    private static void UpdateAnimatingList(int dtMs, List<ISprite> currentList, Dictionary<Vector2, ISprite> currentDict)
     {
         foreach (var sprite in currentList)
         {
@@ -158,8 +168,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         ResetToIdle(finishedSprites, currentDict);
 
         currentList.RemoveAll(sprite => sprite.IsFinished);
-
-        return currentList.Count == 0;
     }
 
     private static void ResetToIdle(List<ISprite> finishedSprites, Dictionary<Vector2, ISprite> currentDict)
