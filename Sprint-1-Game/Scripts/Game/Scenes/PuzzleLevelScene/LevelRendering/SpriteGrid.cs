@@ -151,9 +151,9 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     {
         foreach (var sprite in currentList)
         {
-            currentDict.Remove(sprite.GetCurrentPosition());
+            currentDict.Remove(sprite.CurrentPosition);
             sprite.Update(dtMs);
-            currentDict.Add(sprite.GetCurrentPosition(), sprite);
+            currentDict.Add(sprite.CurrentPosition, sprite);
         }
         var finishedSprites = currentList.FindAll(sprite => sprite.IsFinished);
         ResetToIdle(finishedSprites, currentDict);
@@ -170,7 +170,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
             var staticSprite = sprite.ConvertToStatic(sprite.IdleName);
 
             // reset sprite stored at pos to new static sprite
-            Vector2 currPos = staticSprite.GetCurrentPosition();
+            Vector2 currPos = staticSprite.CurrentPosition;
             currentDict.Remove(currPos);
             currentDict.Add(currPos, staticSprite);
         }

@@ -7,6 +7,7 @@ namespace Scripts.GameComponents;
 public interface ISprite
 {
     public Texture2D Texture { get; set; }
+    public Vector2 CurrentPosition { get; }
     public Rectangle CurrentRegion { get; set; }
     public Color Color { get; set; }
     public float Rotation { get; set; }
@@ -20,7 +21,6 @@ public interface ISprite
     void Draw(SpriteBatch sb);
     void SetState(string name);
     void SetTargetPosition(Vector2 position);
-    Vector2 GetCurrentPosition();
     StaticSprite ConvertToStatic(string name);
     AnimatedSprite ConvertToAnimated(string name);
 

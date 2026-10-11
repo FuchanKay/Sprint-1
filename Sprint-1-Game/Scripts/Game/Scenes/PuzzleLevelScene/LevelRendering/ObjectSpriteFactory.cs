@@ -9,6 +9,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
     public ISprite CreateObjectSprite(ObjectIds id, Vector2 coord, LevelContext context)
     {
         ISprite sprite;
+        var spriteScale = context.GridScale;
         switch (id)
         {
             case ObjectIds.Rock:
@@ -22,6 +23,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.SetState(RegionNames.PlayerIdleSouth);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Player);
                 sprite.IdleName = RegionNames.PlayerIdleSouth;
+                spriteScale = context.GridScale * 4.0f;
                 break;
             case ObjectIds.Wall:
                 sprite = new StaticSprite(textureAtlas);
@@ -45,6 +47,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.SetState(RegionNames.Explosion);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
                 sprite.IdleName = RegionNames.Explosion;
+                spriteScale = context.GridScale * 8.0f;
                 break;
             case ObjectIds.Skeleton:
                 sprite = new StaticSprite(textureAtlas);
@@ -72,15 +75,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
         }
         sprite.SetTargetPosition(coord);
         sprite.LayerDepth = ObjectLayerDepth;
-        sprite.Scale = context.GridScale;
-
-        if (id == ObjectIds.Player)
-        {
-            sprite.Scale = context.GridScale * 4.0f;
-        } else if (id == ObjectIds.Explosion)
-        {
-            sprite.Scale = context.GridScale * 8.0f;
-        }
+        sprite.Scale = spriteScale;
 
         return sprite;
     }

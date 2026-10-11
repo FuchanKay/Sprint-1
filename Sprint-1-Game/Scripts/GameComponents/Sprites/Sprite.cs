@@ -7,7 +7,7 @@ public abstract class Sprite(ITextureAtlas textureAtlas) : ISprite
 {
     protected ITextureAtlas TexAtlas => textureAtlas;
     public Texture2D Texture { get; set; }
-    protected Vector2 CurrentPosition { get; set; }
+    public Vector2 CurrentPosition { get; protected set; }
     protected Vector2 TargetPosition { get; set; }
     public Rectangle CurrentRegion { get; set; }
     public Color Color { get; set; } = Color.White;
@@ -26,11 +26,6 @@ public abstract class Sprite(ITextureAtlas textureAtlas) : ISprite
     public void Draw(SpriteBatch sb)
     {
         sb.Draw(Texture, CurrentPosition, CurrentRegion, Color, Rotation, Origin, Scale, Effects, LayerDepth);
-    }
-
-    public Vector2 GetCurrentPosition()
-    {
-        return CurrentPosition;
     }
 
     public StaticSprite ConvertToStatic(string name)
