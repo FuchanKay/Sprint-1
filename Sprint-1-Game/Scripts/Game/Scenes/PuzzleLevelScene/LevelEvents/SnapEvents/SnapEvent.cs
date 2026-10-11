@@ -37,7 +37,7 @@ public class SnapEvent : ILevelEvent
         context.IsIdle = false;
     }
 
-    private void ExplodeBomb(Vector2 bombCoord, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    private void ExplodeBomb(Coordinate bombCoord, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         gridPointer.SetObject(bombCoord, new ExplosionObject());
         spriteGrid.CycleObjectSprite(bombCoord, gridPointer);
@@ -50,7 +50,7 @@ public class SnapEvent : ILevelEvent
         {
             for (int y = -explosionRadius; y <= explosionRadius; y++)
             {
-                var targetCoord = new Vector2(bombCoord.X + x, bombCoord.Y + y);
+                var targetCoord = new Coordinate(bombCoord.X + x, bombCoord.Y + y);
                 if (gridPointer.GetObject(targetCoord).isDestructible)
                 {
                     gridPointer.SetObject(targetCoord, new EmptyObject());
