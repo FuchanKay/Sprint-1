@@ -15,7 +15,7 @@ public class MovePlayerEvent(Directions direction, ObjectFactory objectFactory) 
         if (isFacingDirection && isDestinationEmpty)
         {
             SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack));
-            SubEventStack.Push(new MovePlayerSubEvent(direction, objectFactory, SubEventStack));
+            SubEventStack.Push(new MovePlayerSubEvent(direction, objectFactory));
         }
         else if (!isFacingDirection)
         {
