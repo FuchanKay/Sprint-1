@@ -13,7 +13,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         LevelHeight = 10,
         GridSpriteWidthPx = 256,
         GridSpriteHeightPx = 256,
-        GridScale = 0.15f,
+        GridScale = 0.25f,
         PuzzleOffsetX = 400,
         PuzzleOffsetY = 50,
         IsIdle = true
@@ -86,7 +86,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
             var defaultGrid = new Grid
             {
                 Object = objectFactory.CreateEmpty(),
-                Tile = tileFactory.CreateBrickTile()
+                Tile = tileFactory.CreateDirtTile()
             };
 
             GridPointer.SetGrid(coord, defaultGrid);
@@ -97,7 +97,24 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         GridPointer.SetObject(new Coordinate(7, 5), objectFactory.CreateSkeleton());
         GridPointer.SetObject(new Coordinate(7, 2), objectFactory.CreateBomb());
         GridPointer.SetObject(new Coordinate(2, 2), objectFactory.CreatePlayer());
-        GridPointer.SetTile(new Coordinate(5, 5), tileFactory.CreateGrassTile());
+
+        GridPointer.SetTile(new Coordinate(2, 2), tileFactory.CreateWaterTile());
+        GridPointer.SetTile(new Coordinate(2, 3), tileFactory.CreateWaterTile());
+        GridPointer.SetTile(new Coordinate(3, 2), tileFactory.CreateWaterTile());
+        GridPointer.SetTile(new Coordinate(3, 3), tileFactory.CreateWaterTile());
+        GridPointer.SetTile(new Coordinate(4, 3), tileFactory.CreateLavaTile());
+
+        GridPointer.SetTile(new Coordinate(5, 5), tileFactory.CreateBrickTile());
+        GridPointer.SetTile(new Coordinate(6, 5), tileFactory.CreateBrickTile());
+        GridPointer.SetTile(new Coordinate(5, 6), tileFactory.CreateBrickTile());
+        GridPointer.SetTile(new Coordinate(6, 6), tileFactory.CreatePitTile());
+        GridPointer.SetTile(new Coordinate(6, 7), tileFactory.CreateMossyBrickTile());
+        GridPointer.SetTile(new Coordinate(7, 6), tileFactory.CreateMossyBrickTile());
+        GridPointer.SetTile(new Coordinate(2, 2), tileFactory.CreateWaterTile());
+        GridPointer.SetTile(new Coordinate(7, 7), tileFactory.CreateGrassTile());
+
+        GridPointer.SetTile(new Coordinate(2, 7), tileFactory.CreateBugTile());
+        GridPointer.SetTile(new Coordinate(3, 7), tileFactory.CreateCCBugTile());
     }
 
     private void CreateWallBorders()

@@ -16,4 +16,9 @@ public class StaticSprite(ITextureAtlas textureAtlas) : Sprite(textureAtlas)
         TargetPosition = position;
         CurrentPosition = TargetPosition;
     }
+
+    public override void SetCurrentPosition(Vector2 position)
+    {
+        CurrentPosition = position;
+    }
 }

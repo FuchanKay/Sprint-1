@@ -50,6 +50,11 @@ public class AnimatedSprite(ITextureAtlas textureAtlas) : Sprite(textureAtlas)
         StartPosition = CurrentPosition;
     }
 
+    public override void SetCurrentPosition(Vector2 position)
+    {
+        CurrentPosition = position;
+    }
+
     private void UpdateFrame(int dtMs)
     {
         Elapsed += dtMs;

@@ -82,6 +82,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         }
         ObjectSprites.Add(realCurrentCoord, sprite);
 
+        sprite.SetCurrentPosition(realCurrentCoord);
         sprite.SetTargetPosition(realTargetCoord);
     }
 
@@ -91,6 +92,12 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         ObjectSprites.Remove(realCoord);
         var sprite = objectSpriteFactory.CreateObjectSprite(gridPointer.GetObject(coord).Id, realCoord, Context);
         ObjectSprites.Add(realCoord, sprite);
+    }
+
+    public void RemoveObjectSprite(Coordinate coord)
+    {
+        var realCoord = CalculateLiteralPos(coord);
+        if (ObjectSprites.ContainsKey(realCoord)) ObjectSprites.Remove(realCoord);
     }
 
     public void SetTileSprite(Coordinate currentCoord, Coordinate targetCoord, ISprite sprite)
@@ -159,9 +166,15 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
             currentDict.Add(sprite.CurrentPosition, sprite);
         }
         var finishedSprites = currentList.FindAll(sprite => sprite.IsFinished);
+        var finsihedExplosions = finishedSprites.FindAll(sprite => sprite.IdleName == RegionNames.Explosion);
         ResetToIdle(finishedSprites, currentDict);
 
         currentList.RemoveAll(sprite => sprite.IsFinished);
+
+        foreach (var explosion in finsihedExplosions)
+        {
+            currentDict.Remove(explosion.CurrentPosition);
+        }
     }
 
     private static void ResetToIdle(List<ISprite> finishedSprites, Dictionary<Vector2, ISprite> currentDict)

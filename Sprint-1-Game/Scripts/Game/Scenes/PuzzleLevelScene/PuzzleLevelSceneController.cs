@@ -36,7 +36,7 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
         }
         else if (buttonInput.IsPressed(InputNames.Snap))
         {
-            Level.EnqueueEvent(new SnapEvent());
+            Level.EnqueueEvent(new SnapEvent(ObjectFactory));
         }
         else if (buttonInput.IsPressed(InputNames.UseItem))
         {

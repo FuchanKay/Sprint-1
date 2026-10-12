@@ -24,10 +24,15 @@ public class GridPointer
         ObjectPointersCollection.Add(ObjectIds.Warlock, []);
 
         TilePointersCollection.Add(TileIds.Empty, []);
-        TilePointersCollection.Add(TileIds.Brick, []);
+        TilePointersCollection.Add(TileIds.Dirt, []);
         TilePointersCollection.Add(TileIds.Grass, []);
+        TilePointersCollection.Add(TileIds.Brick, []);
+        TilePointersCollection.Add(TileIds.MossyBrick, []);
+        TilePointersCollection.Add(TileIds.Pit, []);
         TilePointersCollection.Add(TileIds.Water, []);
         TilePointersCollection.Add(TileIds.Lava, []);
+        TilePointersCollection.Add(TileIds.Bug, []);
+        TilePointersCollection.Add(TileIds.CCBug, []);
     }
 
     public void SetGrid(Coordinate coord, Grid grid)

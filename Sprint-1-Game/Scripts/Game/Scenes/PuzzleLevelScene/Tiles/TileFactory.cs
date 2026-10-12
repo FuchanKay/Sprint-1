@@ -10,6 +10,22 @@ public class TileFactory()
         };
     }
 
+    public ITile CreateDirtTile()
+    {
+        return new DirtTile
+        {
+            
+        };
+    }
+
+    public ITile CreateGrassTile()
+    {
+        return new GrassTile
+        {
+            
+        };
+    }
+
     public ITile CreateBrickTile()
     {
         return new BrickTile
@@ -17,9 +33,17 @@ public class TileFactory()
         };
     }
 
-    public ITile CreateGrassTile()
+    public ITile CreateMossyBrickTile()
     {
-        return new GrassTile
+        return new MossyBrickTile
+        {
+            
+        };
+    }
+
+    public ITile CreatePitTile()
+    {
+        return new PitTile
         {
         };
     }
@@ -35,6 +59,22 @@ public class TileFactory()
     {
         return new LavaTile
         {
+        };
+    }
+
+    public ITile CreateBugTile()
+    {
+        return new BugTile
+        {
+            
+        };
+    }
+
+    public ITile CreateCCBugTile()
+    {
+        return new CCBugTile
+        {
+            
         };
     }
 }

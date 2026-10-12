@@ -22,6 +22,7 @@ public abstract class Sprite(ITextureAtlas textureAtlas) : ISprite
     public abstract void Update(int dtMs);
     public abstract void SetState(string name);
     public abstract void SetTargetPosition(Vector2 position);
+    public abstract void SetCurrentPosition(Vector2 position);
 
     public void Draw(SpriteBatch sb)
     {

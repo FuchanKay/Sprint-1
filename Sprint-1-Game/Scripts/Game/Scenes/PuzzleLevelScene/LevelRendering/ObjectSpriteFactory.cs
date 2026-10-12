@@ -43,8 +43,8 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.Color = Color.Red;
                 break;
             case ObjectIds.Explosion:
-                sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.Explosion);
+                sprite = new AnimatedSprite(textureAtlas);
+                sprite.SetState(AnimationNames.Explosion);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
                 sprite.IdleName = RegionNames.Explosion;
                 spriteScale = context.GridScale * 8.0f;
