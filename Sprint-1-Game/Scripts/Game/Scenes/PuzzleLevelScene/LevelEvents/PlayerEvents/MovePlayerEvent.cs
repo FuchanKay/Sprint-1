@@ -21,8 +21,6 @@ public class MovePlayerEvent(Directions direction, ObjectFactory objectFactory) 
         {
             SubEventStack.Push(new PlayerChangeDirectionSubEvent(direction));
         }
-
-        context.ShouldUpdate = true;
     }
     public bool IsFinished()
     {

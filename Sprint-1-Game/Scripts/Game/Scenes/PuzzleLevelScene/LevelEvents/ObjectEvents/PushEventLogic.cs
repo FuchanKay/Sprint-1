@@ -25,12 +25,10 @@ public class PushEventLogic
                 gridPointer.SetObject(eastCoord, objectFactory.CreateEmpty());
                 gridPointer.SetObject(eastCoordPlus1, eastObj);
             }
-            context.ShouldUpdate = true;
         }
         else
         {
             playerObj.Direction = direction;
-            context.ShouldUpdate = true;
         }
     }
     public bool IsFinished()

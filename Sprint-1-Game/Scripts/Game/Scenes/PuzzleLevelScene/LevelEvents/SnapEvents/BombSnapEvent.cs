@@ -15,7 +15,6 @@ public class BombSnapEvent(ObjectFactory objectFactory) : ILevelEvent
         }
         if (bombCoords.Count > 0)
         {
-            context.ShouldUpdate = true;
             new ExplodeObjectEvent().Execute(spriteGrid, gridPointer, context);
         }
     }

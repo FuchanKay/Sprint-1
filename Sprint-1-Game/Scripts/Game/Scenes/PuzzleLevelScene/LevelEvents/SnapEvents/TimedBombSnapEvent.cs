@@ -21,10 +21,6 @@ public class TimedBombSnapEvent(ObjectFactory objectFactory) : ILevelEvent
             timedBombObject.timeRemaining--;
             Console.WriteLine($"Timed bomb at {timedBombCoord} has {timedBombObject.timeRemaining} time remaining.");
         }
-        if (timedBombCoords.Count > 0)
-        {
-            context.ShouldUpdate = true;
-        }
         if (anyBombsExploded)
         {
             new ExplodeObjectEvent().Execute(spriteGrid, gridPointer, context);
