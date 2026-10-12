@@ -15,6 +15,8 @@ public class RegionNames
     public readonly static string PlayerIdleNorth = "Player Idle North";
     public readonly static string PlayerIdleEast = "Player Idle East";
     public readonly static string PlayerIdleWest = "PlayerIdleWest";
+    public readonly static string PumpkinSeed = "Pumpkin Seed";
+    public readonly static string GrownPumpkin = "Grown Pumpkin";
 
     public readonly static string RedLizard = "RedLizard";
     public readonly static string BlueLizard = "BlueLizard";

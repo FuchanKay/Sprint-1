@@ -92,6 +92,8 @@ public class Setup(ContentManager content)
 
         // obj explode
         TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 0, 4, 105, 96);
+
+        TextureAtlas.AddAnimation(AnimationNames.PumpkinGrowth, 0, 0, 6, 256, 256);
     }
 
     private void AddRegions()
@@ -111,6 +113,8 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Explosion, 2, 0, 105, 96);
         TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 4, 105, 96, 150);
+        TextureAtlas.AddRegion(RegionNames.PumpkinSeed, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.GrownPumpkin, 5, 0, 256, 256);
 
         TextureAtlas.AddRegion(RegionNames.Skeleton, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Warlock, 0, 0, 256, 256);
@@ -132,6 +136,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
         TextureAtlas.AddTexture(TextureNames.Bomb, FileNames.BombTexture);
         TextureAtlas.AddTexture(TextureNames.Explosion, FileNames.ExplosionTexture);
+        TextureAtlas.AddTexture(TextureNames.Pumpkin, FileNames.PumpkinTexture);
 
         TextureAtlas.AddTexture(TextureNames.Skeleton, FileNames.SkeletonTexture);
         TextureAtlas.AddTexture(TextureNames.Warlock, FileNames.WarlockTexture);

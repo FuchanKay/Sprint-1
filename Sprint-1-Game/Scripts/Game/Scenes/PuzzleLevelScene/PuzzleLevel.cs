@@ -83,6 +83,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
         GridPointer.SetObject(new Coordinate(7, 5), objectFactory.CreateSkeleton());
         GridPointer.SetObject(new Coordinate(7, 2), objectFactory.CreateBomb());
+        GridPointer.SetObject(new Coordinate(4, 5), objectFactory.CreatePumpkin());
         GridPointer.SetObject(new Coordinate(2, 2), objectFactory.CreatePlayer());
         GridPointer.SetTile(new Coordinate(5, 5), tileFactory.CreateGrassTile());
     }

@@ -50,6 +50,14 @@ public class ObjectFactory()
         };
     }
 
+    public IObject CreatePumpkin()
+    {
+        return new PumpkinObject
+        {
+            Direction = Directions.South,
+        };
+    }
+
     public IObject CreateExplosion()
     {
         return new ExplosionObject

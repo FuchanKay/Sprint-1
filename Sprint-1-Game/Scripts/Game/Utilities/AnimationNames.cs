@@ -20,6 +20,7 @@ public class AnimationNames
     public readonly static string PlayerRotateES = "Player Rotate ES";
     public readonly static string PlayerSnap = "Player Snap";
     public readonly static string Explosion = "Explosion";
+    public readonly static string PumpkinGrowth = "Pumpkin Growth";
 
     public static string ToPlayerMovingAnimationName(Directions direction)
     {

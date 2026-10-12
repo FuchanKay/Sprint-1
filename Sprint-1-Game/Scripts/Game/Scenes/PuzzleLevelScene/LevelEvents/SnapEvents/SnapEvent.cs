@@ -16,22 +16,28 @@ public class SnapEvent : ILevelEvent
 
         var bombCoords = gridPointer.GetObjectPointers(ObjectIds.Bomb).Keys.ToList();
         var timedBombCoords = gridPointer.GetObjectPointers(ObjectIds.TimedBomb).Keys.ToList();
+        var pumpkinCoords = gridPointer.GetObjectPointers(ObjectIds.Pumpkin).Keys.ToList();
         foreach (var bombCoord in bombCoords)
         {
-            Console.WriteLine($"Exploding bomb at {bombCoord}");
             ExplodeBomb(bombCoord, spriteGrid, gridPointer, context);
         }
 
         foreach (var timedBombCoord in timedBombCoords)
         {
             TimedBombObject timedBomb = gridPointer.GetObject(timedBombCoord) as TimedBombObject;
-            if (timedBomb.timeRemaining == 1)
-            {
-                Console.WriteLine($"Exploding timed bomb at {timedBombCoord}");
-                ExplodeBomb(timedBombCoord, spriteGrid, gridPointer, context);
-            }
+            if (timedBomb.timeRemaining == 1) ExplodeBomb(timedBombCoord, spriteGrid, gridPointer, context);
             timedBomb.timeRemaining--;
             Console.WriteLine($"Timed bomb at {timedBombCoord} has {timedBomb.timeRemaining} time remaining");
+        }
+
+        foreach (var pumpkinCoord in pumpkinCoords)
+        {
+            var pumpkin = gridPointer.GetObject(pumpkinCoord) as PumpkinObject;
+            if(!pumpkin.isGrown) 
+            {
+                GrowPumpkin(pumpkinCoord, spriteGrid, gridPointer, context);
+                pumpkin.isGrown = true;
+            }
         }
 
         context.IsIdle = false;
@@ -64,5 +70,14 @@ public class SnapEvent : ILevelEvent
         gridPointer.SetObject(bombCoord, new EmptyObject());
 
         context.ShouldUpdate = true;
+    }
+
+    private void GrowPumpkin(Coordinate pumpkinCoord, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    {
+        var pumpkinSprite = spriteGrid.GetObjectSprite(pumpkinCoord);
+        pumpkinSprite = pumpkinSprite.ConvertToAnimated(AnimationNames.PumpkinGrowth);
+        spriteGrid.SetObjectSprite(pumpkinCoord, pumpkinCoord, pumpkinSprite);
+        spriteGrid.StartObjectAnimation(pumpkinSprite);
+        pumpkinSprite.IdleName = RegionNames.GrownPumpkin;
     }
 }

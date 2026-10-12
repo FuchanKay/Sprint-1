@@ -170,6 +170,19 @@
 /processorParam:Version=3.8.5.1
 /build:Images/player-sprites.png;Images/player-sprites
 
+#begin Images/pumpkin.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:Images/pumpkin.png
+
 #begin Images/redLizard.png
 /importer:TextureImporter
 /processor:TextureProcessor

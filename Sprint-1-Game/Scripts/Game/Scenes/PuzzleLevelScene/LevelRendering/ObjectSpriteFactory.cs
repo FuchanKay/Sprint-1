@@ -42,6 +42,12 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Bomb);
                 sprite.Color = Color.Red;
                 break;
+            case ObjectIds.Pumpkin:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.PumpkinSeed);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Pumpkin);
+                sprite.IdleName = RegionNames.PumpkinSeed;
+                break;
             case ObjectIds.Explosion:
                 sprite = new AnimatedSprite(textureAtlas);
                 sprite.SetState(AnimationNames.Explosion);
