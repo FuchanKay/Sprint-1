@@ -3,6 +3,7 @@ using Scripts.Game;
 
 public class CycleTileRightEvent(TileFactory tileFactory) : ILevelEvent
 {
+    public SubEventCallStack SubEventStack { get; } = new();
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         var objDemoCoord = new Coordinate(5, 5);

@@ -4,6 +4,7 @@ using Scripts.Game;
 
 public class TimedBombSnapEvent(ObjectFactory objectFactory) : ILevelEvent
 {
+    public SubEventCallStack SubEventStack { get; } = new();
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         var timedBombPointers = gridPointer.GetObjectPointers(ObjectIds.TimedBomb);

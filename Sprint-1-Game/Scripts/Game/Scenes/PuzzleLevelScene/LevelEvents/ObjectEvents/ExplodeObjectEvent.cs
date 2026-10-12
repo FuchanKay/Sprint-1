@@ -3,6 +3,7 @@ using Scripts.Game;
 
 public class ExplodeObjectEvent : ILevelEvent
 {
+    public SubEventCallStack SubEventStack { get; } = new();
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         var explosionPointers = gridPointer.GetObjectPointers(ObjectIds.Explosion);

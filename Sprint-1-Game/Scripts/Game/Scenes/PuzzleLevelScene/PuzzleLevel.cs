@@ -22,6 +22,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     private readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
     private readonly int MaxEventsQueued = 2;
     public bool IsIdle = true;
+    private ILevelEvent CurrentEvent;
 
     public void Init()
     {
@@ -53,10 +54,12 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     public bool TryExecuteEvent()
     {
         var shouldExecute = Context.IsIdle && EventQueue.Count > 0;
+
         if (shouldExecute)
         {
             var first = EventQueue[0];
             EventQueue.RemoveAt(0);
+
             first.Execute(SpriteGrid, GridPointer, Context);
         }
         return shouldExecute;

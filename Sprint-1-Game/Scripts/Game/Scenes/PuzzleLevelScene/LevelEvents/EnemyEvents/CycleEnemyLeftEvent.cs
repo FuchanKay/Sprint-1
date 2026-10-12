@@ -3,6 +3,8 @@ using Scripts.Game;
 
 public class CycleEnemyLeftEvent : ILevelEvent
 {
+    public SubEventCallStack SubEventStack { get; } = new();
+
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         var EnemyCoord = new Coordinate(7, 5);

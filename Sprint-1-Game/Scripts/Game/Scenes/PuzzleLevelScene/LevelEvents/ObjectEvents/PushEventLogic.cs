@@ -2,6 +2,7 @@ namespace Scripts.Game;
 
 public class PushEventLogic
 {
+    public SubEventCallStack SubEventStack { get; } = new();
     public static void Push(Directions direction, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, ObjectFactory objectFactory)
     {
         var directionAsCoordinate = Coordinate.ToCoordinate(direction);

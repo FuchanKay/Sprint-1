@@ -2,6 +2,7 @@ using Scripts.Game;
 
 public class SnapEvent : ILevelEvent
 {
+    public SubEventCallStack SubEventStack { get; } = new();
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         var playerCoord = gridPointer.GetPlayerCoord();
