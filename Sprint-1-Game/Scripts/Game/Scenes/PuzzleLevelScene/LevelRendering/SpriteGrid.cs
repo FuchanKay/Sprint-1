@@ -166,9 +166,15 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
             currentDict.Add(sprite.CurrentPosition, sprite);
         }
         var finishedSprites = currentList.FindAll(sprite => sprite.IsFinished);
+        var finsihedExplosions = finishedSprites.FindAll(sprite => sprite.IdleName == RegionNames.Explosion);
         ResetToIdle(finishedSprites, currentDict);
 
         currentList.RemoveAll(sprite => sprite.IsFinished);
+
+        foreach (var explosion in finsihedExplosions)
+        {
+            currentDict.Remove(explosion.CurrentPosition);
+        }
     }
 
     private static void ResetToIdle(List<ISprite> finishedSprites, Dictionary<Vector2, ISprite> currentDict)
