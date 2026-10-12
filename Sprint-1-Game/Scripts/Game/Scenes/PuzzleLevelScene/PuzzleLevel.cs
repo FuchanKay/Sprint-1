@@ -22,7 +22,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     private readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
     private readonly int MaxEventsQueued = 2;
     public bool IsIdle = true;
-    private ILevelEvent CurrentEvent;
+    private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, objectFactory);
 
     public void Init()
     {
@@ -58,22 +58,20 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
         if (CurrentEvent.IsFinished() && EventQueue.Count > 0)
         {
-            var first = EventQueue[0];
+            CurrentEvent = EventQueue[0];
             EventQueue.RemoveAt(0);
 
-            first.Execute(SpriteGrid, GridPointer, Context);
+            CurrentEvent.Execute(SpriteGrid, GridPointer, Context);
+            return true;
         } 
 
-        
-
-
-        var shouldExecute = Context.IsIdle && EventQueue.Count > 0;
-
-        if (shouldExecute)
+        if (!CurrentEvent.IsFinished())
         {
-
+            var subEvent = CurrentEvent.SubEventStack.Pop();
+            subEvent.Execute(SpriteGrid, GridPointer, Context);
         }
-        return shouldExecute;
+
+        return false;
     }
 
     private void CreateLevel()

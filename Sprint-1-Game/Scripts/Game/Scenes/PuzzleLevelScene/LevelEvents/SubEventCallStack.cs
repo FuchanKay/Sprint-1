@@ -4,14 +4,14 @@ namespace Scripts.Game;
 
 public class SubEventCallStack
 {
-    private List<ILevelEvent> SubEventStack = [];
+    private List<ILevelSubEvent> SubEventStack = [];
 
-    public void Push(ILevelEvent subEvent)
+    public void Push(ILevelSubEvent subEvent)
     {
         SubEventStack.Add(subEvent);
     }
 
-    public ILevelEvent Pop()
+    public ILevelSubEvent Pop()
     {
         var end = SubEventStack.Count - 1;
         var topEvent = SubEventStack[end];

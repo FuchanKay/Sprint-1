@@ -6,7 +6,6 @@ public class MovePlayerEvent(Directions direction, ObjectFactory objectFactory) 
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         var playerCoord = gridPointer.GetPlayerCoord();
-        var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
         var playerDestination = playerCoord + Coordinate.ToCoordinate(direction);
         var destinationGrid = gridPointer.GetGrid(playerDestination);
         
@@ -15,22 +14,12 @@ public class MovePlayerEvent(Directions direction, ObjectFactory objectFactory) 
         var isDestinationEmpty = destinationGrid.Object.Id == ObjectIds.Empty;
         if (isFacingDirection && isDestinationEmpty)
         {
-            playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerWalkEast);
-            spriteGrid.SetObjectSprite(playerCoord, playerDestination, playerSprite);
-            spriteGrid.StartObjectAnimation(playerSprite);
-
-            gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
-            gridPointer.SetObject(playerDestination, playerObj);
-            context.IsIdle = false;
+            SubEventStack.Push(new MovePlayerSubEvent(direction, objectFactory));
+            SubEventStack.Push(new MovePlayerSubEvent(direction, objectFactory));
         }
         else if (!isFacingDirection)
         {
-            playerObj.Direction = direction;
-            var playerIdleSpriteRegion = RegionNames.ToPlayerIdleRegionName(direction);
-            playerSprite = playerSprite.ConvertToStatic(playerIdleSpriteRegion);
-            playerSprite.IdleName = playerIdleSpriteRegion;
-            spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
-            context.IsIdle = true;
+            SubEventStack.Push(new PlayerChangeDirectionSubEvent(direction));
         }
 
         context.ShouldUpdate = true;
