@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Scripts.Game;
 
-public class SnapEvent : ILevelEvent
+public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
@@ -39,7 +39,7 @@ public class SnapEvent : ILevelEvent
 
     private void ExplodeBomb(Coordinate bombCoord, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
-        gridPointer.SetObject(bombCoord, new ExplosionObject());
+        gridPointer.SetObject(bombCoord, objectFactory.CreateExplosion());
         spriteGrid.CycleObjectSprite(bombCoord, gridPointer);
         var explosionSprite = spriteGrid.GetObjectSprite(bombCoord);
         
@@ -55,13 +55,13 @@ public class SnapEvent : ILevelEvent
                 var targetCoord = new Coordinate(bombCoord.X + x, bombCoord.Y + y);
                 if (gridPointer.GetObject(targetCoord).isDestructible)
                 {
-                    gridPointer.SetObject(targetCoord, new EmptyObject());
+                    gridPointer.SetObject(targetCoord, objectFactory.CreateEmpty());
                     spriteGrid.RemoveObjectSprite(targetCoord);
                 }
             }
         }
 
-        gridPointer.SetObject(bombCoord, new EmptyObject());
+        gridPointer.SetObject(bombCoord, objectFactory.CreateEmpty());
 
         context.ShouldUpdate = true;
     }
