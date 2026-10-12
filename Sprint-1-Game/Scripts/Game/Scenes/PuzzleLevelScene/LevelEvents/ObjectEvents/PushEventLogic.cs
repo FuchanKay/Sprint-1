@@ -31,8 +31,4 @@ public class PushEventLogic
             playerObj.Direction = direction;
         }
     }
-    public bool IsFinished()
-    {
-        return SubEventStack.Count() == 0;
-    }
 }

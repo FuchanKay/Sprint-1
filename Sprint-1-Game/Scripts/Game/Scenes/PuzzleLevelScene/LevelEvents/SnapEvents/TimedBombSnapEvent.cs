@@ -26,8 +26,4 @@ public class TimedBombSnapEvent(ObjectFactory objectFactory) : ILevelEvent
             new ExplodeObjectEvent().Execute(spriteGrid, gridPointer, context);
         }
     }
-    public bool IsFinished()
-    {
-        return SubEventStack.Count() == 0;
-    }
 }

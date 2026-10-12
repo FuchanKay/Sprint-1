@@ -56,7 +56,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         if (CurrentEvent == null) return false;
         if (!Context.IsIdle) return false;
 
-        if (CurrentEvent.IsFinished() && EventQueue.Count > 0)
+        var CurrentEventIsFinished = CurrentEvent.SubEventStack.Count() == 0;
+        if (CurrentEventIsFinished && EventQueue.Count > 0)
         {
             CurrentEvent = EventQueue[0];
             EventQueue.RemoveAt(0);
@@ -65,7 +66,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
             return true;
         } 
 
-        if (!CurrentEvent.IsFinished())
+        if (!CurrentEventIsFinished)
         {
             var subEvent = CurrentEvent.SubEventStack.Pop();
             subEvent.Execute(SpriteGrid, GridPointer, Context);

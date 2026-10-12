@@ -6,8 +6,4 @@ public class PushEastEvent(ObjectFactory objectFactory) : ILevelEvent
     {
         PushEventLogic.Push(Directions.East, spriteGrid, gridPointer, context, objectFactory);
     }
-    public bool IsFinished()
-    {
-        return SubEventStack.Count() == 0;
-    }
 }

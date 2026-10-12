@@ -26,9 +26,4 @@ public class ExplodeObjectEvent : ILevelEvent
             // gridPointer.SetObject(explosionCoord, new EmptyObject());
         }
     }
-    
-    public bool IsFinished()
-    {
-        return SubEventStack.Count() == 0;
-    }
 }
