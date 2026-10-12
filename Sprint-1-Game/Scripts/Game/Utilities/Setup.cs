@@ -124,6 +124,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.Bomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Explosion, 2, 0, 105, 96);
+        TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 4, 105, 96, 150);
 
         TextureAtlas.AddRegion(RegionNames.Skeleton, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Warlock, 0, 0, 256, 256);
