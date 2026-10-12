@@ -86,7 +86,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         sprite.SetTargetPosition(realTargetCoord);
     }
 
-    public void CycleObjectSprite(Coordinate coord, GridPointer gridPointer)
+    public void ReplaceObjectSprite(Coordinate coord, GridPointer gridPointer)
     {
         var realCoord = CalculateLiteralPos(coord);
         ObjectSprites.Remove(realCoord);

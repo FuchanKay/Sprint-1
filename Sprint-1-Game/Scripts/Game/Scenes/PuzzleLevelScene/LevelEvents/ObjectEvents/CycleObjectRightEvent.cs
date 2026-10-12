@@ -29,7 +29,7 @@ public class CycleObjectRightEvent(ObjectFactory objectFactory) : ILevelEvent
                 gridPointer.SetObject(objDemoCoord, objectFactory.CreateBomb());
                 break;
         }
-        spriteGrid.CycleObjectSprite(objDemoCoord, gridPointer);
+        spriteGrid.ReplaceObjectSprite(objDemoCoord, gridPointer);
         var newObject = gridPointer.GetObject(objDemoCoord);
         if (newObject.Id == ObjectIds.Explosion)
         {

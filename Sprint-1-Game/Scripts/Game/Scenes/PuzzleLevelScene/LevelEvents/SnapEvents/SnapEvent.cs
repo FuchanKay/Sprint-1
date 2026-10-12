@@ -39,7 +39,7 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
     private void ExplodeBomb(Coordinate bombCoord, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         gridPointer.SetObject(bombCoord, objectFactory.CreateExplosion());
-        spriteGrid.CycleObjectSprite(bombCoord, gridPointer);
+        spriteGrid.ReplaceObjectSprite(bombCoord, gridPointer);
         var explosionSprite = spriteGrid.GetObjectSprite(bombCoord);
         
         explosionSprite = explosionSprite.ConvertToAnimated(AnimationNames.Explosion);
