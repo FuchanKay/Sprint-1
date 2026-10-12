@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Microsoft.Xna.Framework;
 using Scripts.Game;
 
 public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
