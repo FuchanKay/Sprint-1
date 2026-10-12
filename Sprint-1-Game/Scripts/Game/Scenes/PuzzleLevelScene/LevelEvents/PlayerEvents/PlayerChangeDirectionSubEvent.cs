@@ -6,11 +6,12 @@ public class PlayerChangeDirectionSubEvent(Directions direction) : ILevelSubEven
     {
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerObj = gridPointer.GetObject(playerCoord);
-        playerObj.Direction = direction;
 
         var isFacingDirection = playerObj.Direction == direction;
         if (!isFacingDirection)
         {
+            playerObj.Direction = direction;
+
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
             var playerIdleSpriteRegion = RegionNames.ToPlayerIdleRegionName(direction);
             playerSprite = playerSprite.ConvertToStatic(playerIdleSpriteRegion);

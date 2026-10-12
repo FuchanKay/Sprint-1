@@ -1,6 +1,6 @@
 namespace Scripts.Game;
 
-public class MovePlayerSubEvent(Directions direction, ObjectFactory objectFactory) : ILevelSubEvent
+public class MovePlayerSubEvent(Directions direction, ObjectFactory objectFactory, SubEventCallStack subEventStack) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
@@ -21,6 +21,9 @@ public class MovePlayerSubEvent(Directions direction, ObjectFactory objectFactor
 
             gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(playerDestination, playerObj);
+
+            subEventStack.Push(new EvaluateLevelSubEvent(subEventStack));
+
             context.IsIdle = false;
         }
     }
