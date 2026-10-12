@@ -81,12 +81,11 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
             throw new ArgumentException("Object sprite not found at current coord");
         }
         ObjectSprites.Add(realCurrentCoord, sprite);
-
-        sprite.SetCurrentPosition(realCurrentCoord);
+        
         sprite.SetTargetPosition(realTargetCoord);
     }
 
-    public void ReplaceObjectSprite(Coordinate coord, GridPointer gridPointer)
+    public void SyncObjectSprite(Coordinate coord, GridPointer gridPointer)
     {
         var realCoord = CalculateLiteralPos(coord);
         ObjectSprites.Remove(realCoord);

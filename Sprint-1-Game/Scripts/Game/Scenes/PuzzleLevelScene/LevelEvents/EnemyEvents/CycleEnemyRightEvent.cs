@@ -27,7 +27,7 @@ public class CycleEnemyRightEvent : ILevelEvent
                 break;
         }
 
-        spriteGrid.ReplaceObjectSprite(EnemyCoord, gridPointer);
+        spriteGrid.SyncObjectSprite(EnemyCoord, gridPointer);
         var newObject = gridPointer.GetObject(EnemyCoord);
         context.ShouldUpdate = true;
         Console.WriteLine($"Cycled object to {gridPointer.GetObject(EnemyCoord).Id}");
