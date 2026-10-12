@@ -1,3 +1,4 @@
+using System.Reflection.PortableExecutable;
 using Microsoft.Xna.Framework;
 using Scripts.GameComponents;
 
@@ -48,6 +49,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
                 sprite.IdleName = RegionNames.Explosion;
                 spriteScale = context.GridScale * 8.0f;
+                sprite.CurrentPosition = coord;
                 break;
             case ObjectIds.Skeleton:
                 sprite = new StaticSprite(textureAtlas);
