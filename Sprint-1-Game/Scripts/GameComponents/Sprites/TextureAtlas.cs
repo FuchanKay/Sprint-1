@@ -46,16 +46,16 @@ public class TextureAtlas(ContentManager content) : ITextureAtlas
         return region;
     }
 
-    public void AddAnimation(string name, int row, int numFrames, int width, int height)
+    public void AddAnimation(string name, int row, int startColumn, int numFrames, int width, int height)
     {
         Animation animation = new Animation(Delay);
-        LoadAnimation(name, row, numFrames, width, height, animation);
+        LoadAnimation(name, row, startColumn, numFrames, width, height, animation);
     }
 
-    public void AddAnimation(string name, int row, int numFrames, int width, int height, int delay)
+    public void AddAnimation(string name, int row, int startColumn, int numFrames, int width, int height, int delay)
     {
         Animation animation = new Animation(delay);
-        LoadAnimation(name, row, numFrames, width, height, animation);
+        LoadAnimation(name, row, startColumn, numFrames, width, height, animation);
     }
 
     public Animation GetAnimation(string name)
@@ -67,9 +67,9 @@ public class TextureAtlas(ContentManager content) : ITextureAtlas
         return animation;
     }
 
-    private void LoadAnimation(string name, int row, int numFrames, int width, int height, Animation animation)
+    private void LoadAnimation(string name, int row, int startColumn, int numFrames, int width, int height, Animation animation)
     {
-        for (int col = 0; col < numFrames; col++)
+        for (int col = startColumn; col < numFrames + startColumn; col++)
         {
             animation.Frames.Add(new Rectangle(width * col, height * row, width, height));
         }

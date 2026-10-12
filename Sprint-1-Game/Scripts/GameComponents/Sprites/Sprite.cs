@@ -7,7 +7,7 @@ public abstract class Sprite(ITextureAtlas textureAtlas) : ISprite
 {
     protected ITextureAtlas TexAtlas => textureAtlas;
     public Texture2D Texture { get; set; }
-    public Vector2 CurrentPosition { get; set; }
+    public Vector2 CurrentPosition { get; protected set; }
     protected Vector2 TargetPosition { get; set; }
     public Rectangle CurrentRegion { get; set; }
     public Color Color { get; set; } = Color.White;
