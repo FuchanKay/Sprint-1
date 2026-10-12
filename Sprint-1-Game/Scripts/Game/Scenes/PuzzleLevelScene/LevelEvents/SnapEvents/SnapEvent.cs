@@ -13,7 +13,7 @@ public class SnapEvent : ILevelEvent
 
         // new BombSnapEvent().Execute(spriteGrid, gridPointer, context);
         // new TimedBombSnapEvent().Execute(spriteGrid, gridPointer, context);
-
+        //new WarlockSwapEvent().Execute(spriteGrid, gridPointer, context);
         context.IsIdle = false;
     }
 }
