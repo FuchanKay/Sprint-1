@@ -17,4 +17,8 @@ public class SnapEvent : ILevelEvent
 
         context.IsIdle = false;
     }
+    public bool IsFinished()
+    {
+        return SubEventStack.Count() == 0;
+    }
 }

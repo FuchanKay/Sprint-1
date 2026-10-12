@@ -7,4 +7,8 @@ public class UndoEvent : ILevelEvent
     {
 
     }
+    public bool IsFinished()
+    {
+        return SubEventStack.Count() == 0;
+    }
 }

@@ -53,14 +53,25 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
     public bool TryExecuteEvent()
     {
-        var shouldExecute = Context.IsIdle && EventQueue.Count > 0;
+        if (CurrentEvent == null) return false;
+        if (!Context.IsIdle) return false;
 
-        if (shouldExecute)
+        if (CurrentEvent.IsFinished() && EventQueue.Count > 0)
         {
             var first = EventQueue[0];
             EventQueue.RemoveAt(0);
 
             first.Execute(SpriteGrid, GridPointer, Context);
+        } 
+
+        
+
+
+        var shouldExecute = Context.IsIdle && EventQueue.Count > 0;
+
+        if (shouldExecute)
+        {
+
         }
         return shouldExecute;
     }

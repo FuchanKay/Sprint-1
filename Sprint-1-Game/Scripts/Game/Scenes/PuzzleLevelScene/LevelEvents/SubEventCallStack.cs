@@ -18,4 +18,9 @@ public class SubEventCallStack
         SubEventStack.RemoveAt(end);
         return topEvent;
     }
+
+    public int Count()
+    {
+        return SubEventStack.Count;
+    }
 }

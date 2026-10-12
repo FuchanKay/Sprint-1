@@ -35,4 +35,8 @@ public class MovePlayerEvent(Directions direction, ObjectFactory objectFactory) 
 
         context.ShouldUpdate = true;
     }
+    public bool IsFinished()
+    {
+        return SubEventStack.Count() == 0;
+    }
 }

@@ -7,4 +7,8 @@ public class UseItemEventEvent : ILevelEvent
     {
 
     }
+    public bool IsFinished()
+    {
+        return SubEventStack.Count() == 0;
+    }
 }

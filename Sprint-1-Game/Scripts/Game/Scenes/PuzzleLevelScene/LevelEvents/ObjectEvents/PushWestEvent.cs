@@ -7,4 +7,8 @@ public class PushWestEvent(ObjectFactory objectFactory) : ILevelEvent
     {
         PushEventLogic.Push(Directions.West, spriteGrid, gridPointer, context, objectFactory);
     }
+    public bool IsFinished()
+    {
+        return SubEventStack.Count() == 0;
+    }
 }

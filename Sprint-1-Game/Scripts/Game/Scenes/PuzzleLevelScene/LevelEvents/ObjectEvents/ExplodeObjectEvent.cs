@@ -30,4 +30,9 @@ public class ExplodeObjectEvent : ILevelEvent
             context.ShouldUpdate = true;
         }
     }
+    
+    public bool IsFinished()
+    {
+        return SubEventStack.Count() == 0;
+    }
 }

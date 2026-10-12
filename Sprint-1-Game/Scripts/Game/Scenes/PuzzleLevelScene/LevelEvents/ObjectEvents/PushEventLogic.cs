@@ -33,7 +33,8 @@ public class PushEventLogic
             context.ShouldUpdate = true;
         }
     }
-
-
-
+    public bool IsFinished()
+    {
+        return SubEventStack.Count() == 0;
+    }
 }
