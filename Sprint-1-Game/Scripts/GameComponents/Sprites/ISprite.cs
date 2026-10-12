@@ -21,6 +21,7 @@ public interface ISprite
     void Draw(SpriteBatch sb);
     void SetState(string name);
     void SetTargetPosition(Vector2 position);
+    void SetCurrentPosition(Vector2 position);
     StaticSprite ConvertToStatic(string name);
     AnimatedSprite ConvertToAnimated(string name);
 
