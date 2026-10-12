@@ -14,7 +14,7 @@ public class MovePlayerEvent(Directions direction, ObjectFactory objectFactory) 
         var isDestinationEmpty = destinationGrid.Object.Id == ObjectIds.Empty;
         if (isFacingDirection && isDestinationEmpty)
         {
-            SubEventStack.Push(new MovePlayerSubEvent(direction, objectFactory, SubEventStack));
+            SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack));
             SubEventStack.Push(new MovePlayerSubEvent(direction, objectFactory, SubEventStack));
         }
         else if (!isFacingDirection)

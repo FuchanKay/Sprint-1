@@ -22,8 +22,6 @@ public class MovePlayerSubEvent(Directions direction, ObjectFactory objectFactor
             gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(playerDestination, playerObj);
 
-            subEventStack.Push(new EvaluateLevelSubEvent(subEventStack));
-
             context.IsIdle = false;
         }
     }
