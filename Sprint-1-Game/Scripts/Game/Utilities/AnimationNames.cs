@@ -25,11 +25,11 @@ public class AnimationNames
     {
         return direction switch
         {
-            Directions.North => AnimationNames.PlayerWalkNorth,
-            Directions.East => AnimationNames.PlayerWalkEast,
-            Directions.South => AnimationNames.PlayerWalkSouth,
-            Directions.West => AnimationNames.PlayerWalkWest,
-            _ => AnimationNames.PlayerWalkEast,
+            Directions.North => PlayerWalkNorth,
+            Directions.East => PlayerWalkEast,
+            Directions.South => PlayerWalkSouth,
+            Directions.West => PlayerWalkWest,
+            _ => PlayerWalkEast,
         };
     }
 
