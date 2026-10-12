@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Scripts.Game;
 
-public class TimedBombSnapEvent(ObjectFactory objectFactory) : ILevelEvent
+public class TimedBombSnapEvent(ObjectFactory objectFactory) : ILevelSubEvent
 {
     public SubEventCallStack SubEventStack { get; } = new();
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)

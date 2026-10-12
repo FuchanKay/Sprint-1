@@ -1,9 +1,8 @@
 using System.Linq;
 using Scripts.Game;
 
-public class BombSnapEvent(ObjectFactory objectFactory) : ILevelEvent
+public class BombSnapEvent(ObjectFactory objectFactory) : ILevelSubEvent
 {
-    public SubEventCallStack SubEventStack { get; } = new();
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         var bombPointers = gridPointer.GetObjectPointers(ObjectIds.Bomb);

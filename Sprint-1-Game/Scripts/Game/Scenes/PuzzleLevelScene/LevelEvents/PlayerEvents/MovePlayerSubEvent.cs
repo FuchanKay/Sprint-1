@@ -15,7 +15,7 @@ public class MovePlayerSubEvent(Directions direction, ObjectFactory objectFactor
         if (isFacingDirection && isDestinationEmpty)
         {
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
-            playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerWalkEast);
+            playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));
             spriteGrid.SetObjectSprite(playerCoord, playerDestination, playerSprite);
             spriteGrid.StartObjectAnimation(playerSprite);
 
