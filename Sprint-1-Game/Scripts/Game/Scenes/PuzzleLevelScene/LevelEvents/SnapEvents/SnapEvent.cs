@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Scripts.Game;
+using Scripts.GameComponents;
 
 public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
 {
@@ -15,6 +16,7 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
 
         var bombCoords = gridPointer.GetObjectPointers(ObjectIds.Bomb).Keys.ToList();
         var timedBombCoords = gridPointer.GetObjectPointers(ObjectIds.TimedBomb).Keys.ToList();
+        var pumpkinCoords = gridPointer.GetObjectPointers(ObjectIds.Pumpkin).Keys.ToList();
         foreach (var bombCoord in bombCoords)
         {
             Console.WriteLine($"Exploding bomb at {bombCoord}");
@@ -31,6 +33,12 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
             }
             timedBomb.timeRemaining--;
             Console.WriteLine($"Timed bomb at {timedBombCoord} has {timedBomb.timeRemaining} time remaining");
+        }
+
+        foreach (var pumpkinCoord in pumpkinCoords)
+        {
+            var pumpkin = gridPointer.GetObject(pumpkinCoord) as PumpkinObject;
+            if(!pumpkin.isGrown) GrowPumpkin(pumpkinCoord, spriteGrid, gridPointer, context);
         }
 
         context.IsIdle = false;
