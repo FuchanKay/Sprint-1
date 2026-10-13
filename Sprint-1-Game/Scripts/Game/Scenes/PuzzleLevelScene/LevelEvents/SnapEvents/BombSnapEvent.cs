@@ -10,7 +10,7 @@ public class BombSnapEvent(ObjectFactory objectFactory) : ILevelSubEvent
         foreach (var bombCoord in bombCoords)
         {
             gridPointer.SetObject(bombCoord, objectFactory.CreateExplosion());
-            spriteGrid.CycleObjectSprite(bombCoord, gridPointer);
+            spriteGrid.SyncObjectSprite(bombCoord, gridPointer);
         }
         if (bombCoords.Count > 0)
         {
