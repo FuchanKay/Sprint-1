@@ -1,7 +1,7 @@
 using System.Linq;
 using Scripts.Game;
 
-public class ExplodeObjectEvent : ILevelEvent
+public class ExplodeObjectEvent : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
@@ -23,10 +23,6 @@ public class ExplodeObjectEvent : ILevelEvent
                 }
             }
             // gridPointer.SetObject(explosionCoord, new EmptyObject());
-        }
-        if (explosionCoords.Count > 0)
-        {
-            context.ShouldUpdate = true;
         }
     }
 }

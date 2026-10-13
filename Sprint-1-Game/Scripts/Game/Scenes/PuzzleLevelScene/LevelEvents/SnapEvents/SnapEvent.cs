@@ -4,6 +4,7 @@ using Scripts.Game;
 
 public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
 {
+    public SubEventCallStack SubEventStack { get; } = new();
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         var playerCoord = gridPointer.GetPlayerCoord();
@@ -59,6 +60,5 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
 
         gridPointer.SetObject(bombCoord, objectFactory.CreateEmpty());
 
-        context.ShouldUpdate = true;
     }
 }

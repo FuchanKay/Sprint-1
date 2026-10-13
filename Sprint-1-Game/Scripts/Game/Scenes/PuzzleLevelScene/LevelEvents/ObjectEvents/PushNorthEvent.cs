@@ -1,6 +1,6 @@
 using Scripts.Game;
 
-public class PushNorthEvent(ObjectFactory objectFactory) : ILevelEvent
+public class PushNorthEvent(ObjectFactory objectFactory) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
