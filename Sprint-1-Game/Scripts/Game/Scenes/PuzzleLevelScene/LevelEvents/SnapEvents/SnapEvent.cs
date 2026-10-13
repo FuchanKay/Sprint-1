@@ -60,6 +60,5 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
 
         gridPointer.SetObject(bombCoord, objectFactory.CreateEmpty());
 
-        context.ShouldUpdate = true;
     }
 }
