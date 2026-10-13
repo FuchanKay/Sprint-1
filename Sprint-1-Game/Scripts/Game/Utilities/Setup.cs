@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Scripts.GameComponents;
@@ -90,6 +91,10 @@ public class Setup(ContentManager content)
         TextureAtlas.AddAnimation(AnimationNames.PlayerPushEast, 7, 0, pushFrames, 64, 64);
         TextureAtlas.AddAnimation(AnimationNames.PlayerPushWest, 7, 4, pushFrames, 64, 64);
 
+        // tiles
+        TextureAtlas.AddAnimation(AnimationNames.BugTileRotate, 2, 0, rotateFrames, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.BugTileRotateCC, 2, 2, rotateFrames, 64, 64);
+
         // obj explode
         TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 0, 4, 105, 96);
 
@@ -98,16 +103,25 @@ public class Setup(ContentManager content)
 
     private void AddRegions()
     {
+        // player
         TextureAtlas.AddRegion(RegionNames.PlayerIdleNorth, 3, 5, 64, 64);
         TextureAtlas.AddRegion(RegionNames.PlayerIdleSouth, 7, 5, 64, 64);
         TextureAtlas.AddRegion(RegionNames.PlayerIdleEast, 1, 5, 64, 64);
         TextureAtlas.AddRegion(RegionNames.PlayerIdleWest, 5, 5, 64, 64);
 
+        // tiles
+        TextureAtlas.AddRegion(RegionNames.DirtTile, 0, 0, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.GrassTile, 1, 0, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.BrickTile, 2, 0, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.MossyBrickTile, 3, 0, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.PitTile, 0, 1, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.LavaTile, 1, 1, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.WaterTile, 2, 1, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.BugTile, 1, 2, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.BugTileCC, 3, 2, 64, 64);
+
+        // objects
         TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 256, 256);
-        TextureAtlas.AddRegion(RegionNames.BrickTile, 0, 0, 256, 256);
-        TextureAtlas.AddRegion(RegionNames.GrassTile, 0, 0, 256, 256);
-        TextureAtlas.AddRegion(RegionNames.WaterTile, 0, 0, 256, 256);
-        TextureAtlas.AddRegion(RegionNames.LavaTile, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Wall, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Bomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
@@ -128,11 +142,8 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.ExitGameButton, FileNames.ExitGameButtonTexture);
 
         TextureAtlas.AddTexture(TextureNames.Player, FileNames.PlayerTexture);
+        TextureAtlas.AddTexture(TextureNames.TileSprites, FileNames.TileTextures);
         TextureAtlas.AddTexture(TextureNames.Rock, FileNames.RockTexture);
-        TextureAtlas.AddTexture(TextureNames.BrickTile, FileNames.BrickTileTexture);
-        TextureAtlas.AddTexture(TextureNames.GrassTile, FileNames.GrassTileTexture);
-        TextureAtlas.AddTexture(TextureNames.WaterTile, FileNames.WaterTileTexture);
-        TextureAtlas.AddTexture(TextureNames.LavaTile, FileNames.LavaTileTexture);
         TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
         TextureAtlas.AddTexture(TextureNames.Bomb, FileNames.BombTexture);
         TextureAtlas.AddTexture(TextureNames.Explosion, FileNames.ExplosionTexture);
