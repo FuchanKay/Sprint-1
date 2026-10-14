@@ -20,6 +20,19 @@ public class GridPointer
         }
     }
 
+    public Dictionary<Coordinate, Grid> DuplicateAllGrids()
+    {
+        Dictionary<Coordinate, Grid> all = [];
+
+        foreach(var coordAndGrid in CoordToGrid)
+        {
+            var coord = coordAndGrid.Key;
+            var grid = coordAndGrid.Value;
+            all.Add(coord, grid);
+        }
+
+    }
+
     public void SetGrid(Coordinate coord, Grid grid)
     {
         if (CoordToGrid.TryGetValue(coord, out var oldGrid))
