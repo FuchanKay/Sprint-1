@@ -39,26 +39,27 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
 
     private void ExplodeBomb(Coordinate bombCoord, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
-        gridPointer.SetObject(bombCoord, objectFactory.CreateExplosion());
-        spriteGrid.SyncObjectSprite(bombCoord, gridPointer);
-        var explosionSprite = spriteGrid.GetObjectSprite(bombCoord);
-        spriteGrid.StartObjectAnimation(explosionSprite);
-
-        const int explosionRadius = 1;
-        for (int x = -explosionRadius; x <= explosionRadius; x++)
-        {
-            for (int y = -explosionRadius; y <= explosionRadius; y++)
-            {
-                var targetCoord = new Coordinate(bombCoord.X + x, bombCoord.Y + y);
-                if (gridPointer.GetObject(targetCoord).IsDestructible)
-                {
-                    gridPointer.SetObject(targetCoord, objectFactory.CreateEmpty());
-                    spriteGrid.RemoveObjectSprite(targetCoord);
-                }
-            }
-        }
-
+        spriteGrid.PlayEffect(EffectIds.Explosion, bombCoord);
         gridPointer.SetObject(bombCoord, objectFactory.CreateEmpty());
+        spriteGrid.RemoveObjectSprite(bombCoord);
+        // var explosionSprite = spriteGrid.GetObjectSprite(bombCoord);
+        // spriteGrid.StartObjectAnimation(explosionSprite);
+
+        // const int explosionRadius = 1;
+        // for (int x = -explosionRadius; x <= explosionRadius; x++)
+        // {
+        //     for (int y = -explosionRadius; y <= explosionRadius; y++)
+        //     {
+        //         var targetCoord = new Coordinate(bombCoord.X + x, bombCoord.Y + y);
+        //         if (gridPointer.GetObject(targetCoord).IsDestructible)
+        //         {
+        //             gridPointer.SetObject(targetCoord, objectFactory.CreateEmpty());
+        //             spriteGrid.RemoveObjectSprite(targetCoord);
+        //         }
+        //     }
+        // }
+
+        // gridPointer.SetObject(bombCoord, objectFactory.CreateEmpty());
 
     }
 }
