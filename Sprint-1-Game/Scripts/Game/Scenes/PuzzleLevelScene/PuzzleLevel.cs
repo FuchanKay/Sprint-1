@@ -57,6 +57,10 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         if (!Context.IsIdle) return false;
 
         var CurrentEventIsFinished = CurrentEvent.SubEventStack.Count() == 0;
+        if (CurrentEventIsFinished)
+        {
+            
+        }
         if (CurrentEventIsFinished && EventQueue.Count > 0)
         {
             CurrentEvent = EventQueue[0];
@@ -73,6 +77,12 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         }
 
         return false;
+    }
+
+    public void Undo()
+    {
+        EventQueue.Clear();
+
     }
 
     private void CreateLevel()
