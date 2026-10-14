@@ -115,15 +115,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         sprite.SetTargetPosition(realTargetCoord);
     }
 
-    public void CycleTileSprite(Coordinate coord, GridPointer gridPointer)
-    {
-        var realCoord = CalculateLiteralPos(coord);
-        TileSprites.Remove(realCoord);
-        var tile = gridPointer.GetTile(coord);
-        var sprite = tileSpriteFactory.CreateTileSprite(tile, realCoord, Context);
-        TileSprites.Add(realCoord, sprite);
-    }
-
     public void StartObjectAnimation(ISprite sprite)
     {
         AnimatingObjectSprites.Add(sprite);
