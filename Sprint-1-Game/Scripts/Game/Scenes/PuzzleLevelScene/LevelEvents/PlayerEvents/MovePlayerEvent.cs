@@ -8,7 +8,7 @@ public class MovePlayerEvent(Directions direction, ObjectFactory objectFactory) 
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerDestination = playerCoord + Coordinate.ToCoordinate(direction);
         var destinationGrid = gridPointer.GetGrid(playerDestination);
-        
+
         var playerObj = gridPointer.GetObject(playerCoord);
         var isFacingDirection = playerObj.Direction == direction;
         var isDestinationEmpty = destinationGrid.Object.Id == ObjectIds.Empty;

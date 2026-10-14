@@ -76,12 +76,12 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         Must remove and add each time a sprite is set in case 
         the type (static or animated) changed
         */
-        if(!ObjectSprites.Remove(realCurrentCoord))
+        if (!ObjectSprites.Remove(realCurrentCoord))
         {
             throw new ArgumentException("Object sprite not found at current coord");
         }
         ObjectSprites.Add(realCurrentCoord, sprite);
-        
+
         sprite.SetTargetPosition(realTargetCoord);
     }
 
@@ -105,7 +105,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         var realCurrentCoord = CalculateLiteralPos(currentCoord);
         var realTargetCoord = CalculateLiteralPos(targetCoord);
 
-        if(!TileSprites.Remove(realCurrentCoord))
+        if (!TileSprites.Remove(realCurrentCoord))
         {
             throw new ArgumentException("Tile sprite not found at current coord");
         }

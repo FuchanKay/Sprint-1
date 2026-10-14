@@ -41,7 +41,7 @@ public class TileFactory()
     {
         return new PitTile
         {
-            
+
         };
     }
 
@@ -63,7 +63,7 @@ public class TileFactory()
     {
         return new BugTile
         {
-            
+
         };
     }
 
@@ -71,7 +71,7 @@ public class TileFactory()
     {
         return new CCBugTile
         {
-            
+
         };
     }
 }
