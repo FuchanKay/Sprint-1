@@ -1,6 +1,5 @@
 using Scripts.GameComponents;
 using Microsoft.Xna.Framework;
-using System.Collections.Concurrent;
 
 namespace Scripts.Game;
 
