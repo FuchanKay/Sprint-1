@@ -9,42 +9,39 @@ public class TileFactory()
 
         };
     }
+    private ITile CreateFloorTile(string regionName)
+    {
+        return new FloorTile
+        {
+            RegionName = regionName
+        };
+    }
 
     public ITile CreateDirtTile()
     {
-        return new DirtTile
-        {
-            
-        };
+        return CreateFloorTile(RegionNames.DirtTile);
     }
 
     public ITile CreateGrassTile()
     {
-        return new GrassTile
-        {
-            
-        };
+        return CreateFloorTile(RegionNames.GrassTile);
     }
 
     public ITile CreateBrickTile()
     {
-        return new BrickTile
-        {
-        };
+        return CreateFloorTile(RegionNames.BrickTile);
     }
 
     public ITile CreateMossyBrickTile()
     {
-        return new MossyBrickTile
-        {
-            
-        };
+        return CreateFloorTile(RegionNames.MossyBrickTile);
     }
 
     public ITile CreatePitTile()
     {
         return new PitTile
         {
+
         };
     }
 
@@ -66,7 +63,7 @@ public class TileFactory()
     {
         return new BugTile
         {
-            
+
         };
     }
 
@@ -74,7 +71,7 @@ public class TileFactory()
     {
         return new CCBugTile
         {
-            
+
         };
     }
 }

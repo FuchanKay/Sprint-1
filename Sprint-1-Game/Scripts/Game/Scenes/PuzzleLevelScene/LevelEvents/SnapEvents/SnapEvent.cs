@@ -5,6 +5,7 @@ using Scripts.GameComponents;
 
 public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
 {
+    public SubEventCallStack SubEventStack { get; } = new();
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         var playerCoord = gridPointer.GetPlayerCoord();
@@ -26,13 +27,13 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
         foreach (var timedBombCoord in timedBombCoords)
         {
             TimedBombObject timedBomb = gridPointer.GetObject(timedBombCoord) as TimedBombObject;
-            if (timedBomb.timeRemaining == 1)
+            if (timedBomb.TimeRemaining == 1)
             {
                 Console.WriteLine($"Exploding timed bomb at {timedBombCoord}");
                 ExplodeBomb(timedBombCoord, spriteGrid, gridPointer, context);
             }
-            timedBomb.timeRemaining--;
-            Console.WriteLine($"Timed bomb at {timedBombCoord} has {timedBomb.timeRemaining} time remaining");
+            timedBomb.TimeRemaining--;
+            Console.WriteLine($"Timed bomb at {timedBombCoord} has {timedBomb.TimeRemaining} time remaining");
         }
 
         foreach (var pumpkinCoord in pumpkinCoords)
@@ -57,7 +58,7 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
             for (int y = -explosionRadius; y <= explosionRadius; y++)
             {
                 var targetCoord = new Coordinate(bombCoord.X + x, bombCoord.Y + y);
-                if (gridPointer.GetObject(targetCoord).isDestructible)
+                if (gridPointer.GetObject(targetCoord).IsDestructible)
                 {
                     gridPointer.SetObject(targetCoord, objectFactory.CreateEmpty());
                     spriteGrid.RemoveObjectSprite(targetCoord);
@@ -67,7 +68,6 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
 
         gridPointer.SetObject(bombCoord, objectFactory.CreateEmpty());
 
-        context.ShouldUpdate = true;
     }
 
     private void GrowPumpkin(Coordinate pumpkinCoord, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)

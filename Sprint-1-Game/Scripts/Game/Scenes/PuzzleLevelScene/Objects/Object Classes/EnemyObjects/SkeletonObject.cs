@@ -9,7 +9,7 @@ public class SkeletonObject : IObject
 {
     public ObjectIds Id => ObjectIds.Skeleton;
     public Directions Direction { get; set; } = Directions.South;
-    public bool isPushable => true;
-    public bool isDestructible => true;
+    public bool IsPushable => true;
+    public bool IsDestructible => true;
 
 }
