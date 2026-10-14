@@ -39,27 +39,23 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
 
     private void ExplodeBomb(Coordinate bombCoord, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
-        spriteGrid.PlayEffect(EffectIds.Explosion, bombCoord);
+       
         gridPointer.SetObject(bombCoord, objectFactory.CreateEmpty());
         spriteGrid.RemoveObjectSprite(bombCoord);
-        // var explosionSprite = spriteGrid.GetObjectSprite(bombCoord);
-        // spriteGrid.StartObjectAnimation(explosionSprite);
+        spriteGrid.PlayEffect(EffectIds.Explosion, bombCoord);
 
-        // const int explosionRadius = 1;
-        // for (int x = -explosionRadius; x <= explosionRadius; x++)
-        // {
-        //     for (int y = -explosionRadius; y <= explosionRadius; y++)
-        //     {
-        //         var targetCoord = new Coordinate(bombCoord.X + x, bombCoord.Y + y);
-        //         if (gridPointer.GetObject(targetCoord).IsDestructible)
-        //         {
-        //             gridPointer.SetObject(targetCoord, objectFactory.CreateEmpty());
-        //             spriteGrid.RemoveObjectSprite(targetCoord);
-        //         }
-        //     }
-        // }
-
-        // gridPointer.SetObject(bombCoord, objectFactory.CreateEmpty());
-
+        const int explosionRadius = 1;
+        for (int x = -explosionRadius; x <= explosionRadius; x++)
+        {
+            for (int y = -explosionRadius; y <= explosionRadius; y++)
+            {
+                var targetCoord = new Coordinate(bombCoord.X + x, bombCoord.Y + y);
+                if (gridPointer.GetObject(targetCoord).IsDestructible)
+                {
+                    gridPointer.SetObject(targetCoord, objectFactory.CreateEmpty());
+                    spriteGrid.RemoveObjectSprite(targetCoord);
+                }
+            }
+        }
     }
 }

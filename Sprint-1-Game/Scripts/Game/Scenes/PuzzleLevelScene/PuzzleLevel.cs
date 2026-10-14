@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Scripts.Game;
@@ -96,6 +97,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
         GridPointer.SetObject(new Coordinate(7, 5), objectFactory.CreateSkeleton());
         GridPointer.SetObject(new Coordinate(7, 2), objectFactory.CreateBomb());
+        GridPointer.SetObject(new Coordinate(6, 2), objectFactory.CreateDefaultRock());
         GridPointer.SetObject(new Coordinate(2, 2), objectFactory.CreatePlayer());
 
         GridPointer.SetTile(new Coordinate(2, 2), tileFactory.CreateWaterTile());
