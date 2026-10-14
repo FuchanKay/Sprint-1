@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
@@ -14,6 +15,8 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     private readonly List<ISprite> AnimatingTileSprites = [];
     public bool IsIdle { get; private set; }
     private LevelContext Context;
+
+    public readonly int PushDuration = 400;
 
     public void Init(GridPointer gridPointer, LevelContext context)
     {
@@ -168,8 +171,8 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         }
         var finishedSprites = currentList.FindAll(sprite => sprite.IsFinished);
         var finishedExplosions = finishedSprites.FindAll(sprite => sprite.IdleName == RegionNames.Explosion);
-        ResetToIdle(finishedSprites, currentDict);
 
+        ResetToIdle(finishedSprites, currentDict);
         currentList.RemoveAll(sprite => sprite.IsFinished);
 
         foreach (var explosion in finishedExplosions)

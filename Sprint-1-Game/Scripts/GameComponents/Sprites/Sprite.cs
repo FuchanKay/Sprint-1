@@ -5,6 +5,7 @@ namespace Scripts.GameComponents;
 
 public abstract class Sprite(ITextureAtlas textureAtlas) : ISprite
 {
+    // DRAW VARIABLES
     protected ITextureAtlas TexAtlas => textureAtlas;
     public Texture2D Texture { get; set; }
     public Vector2 CurrentPosition { get; set; }
@@ -16,13 +17,24 @@ public abstract class Sprite(ITextureAtlas textureAtlas) : ISprite
     public float Scale { get; set; } = 1.0f;
     public SpriteEffects Effects { get; set; } = SpriteEffects.None;
     public float LayerDepth { get; set; } = 0f;
+
+    // UPDATE VARIABLES
+    public int Duration { get; set; }
+    protected int TotalElapsed;
+    protected Vector2 StartPosition;
+    protected readonly float Complete = 1.0f;
+
     public string IdleName { get; set; }
     public abstract bool IsFinished { get; protected set; }
 
     public abstract void Update(int dtMs);
     public abstract void SetState(string name);
-    public abstract void SetTargetPosition(Vector2 position);
-    public abstract void SetCurrentPosition(Vector2 position);
+
+    public void SetTargetPosition(Vector2 position)
+    {
+        TargetPosition = position;
+        StartPosition = CurrentPosition;
+    }
 
     public void Draw(SpriteBatch sb)
     {
