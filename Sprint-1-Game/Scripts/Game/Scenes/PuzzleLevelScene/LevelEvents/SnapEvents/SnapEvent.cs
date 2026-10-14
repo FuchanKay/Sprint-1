@@ -39,10 +39,10 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
 
     private void ExplodeBomb(Coordinate bombCoord, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
-        gridPointer.SetObject(bombCoord, objectFactory.CreateExplosion());
-        spriteGrid.SyncObjectSprite(bombCoord, gridPointer);
-        var explosionSprite = spriteGrid.GetObjectSprite(bombCoord);
-        spriteGrid.StartObjectAnimation(explosionSprite);
+       
+        gridPointer.SetObject(bombCoord, objectFactory.CreateEmpty());
+        spriteGrid.RemoveObjectSprite(bombCoord);
+        spriteGrid.PlayEffect(EffectIds.Explosion, bombCoord);
 
         const int explosionRadius = 1;
         for (int x = -explosionRadius; x <= explosionRadius; x++)
@@ -57,8 +57,5 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
                 }
             }
         }
-
-        gridPointer.SetObject(bombCoord, objectFactory.CreateEmpty());
-
     }
 }

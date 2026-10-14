@@ -1,3 +1,4 @@
+using System.Data;
 using Microsoft.Xna.Framework;
 using Scripts.GameComponents;
 
@@ -6,6 +7,7 @@ namespace Scripts.Game;
 public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
 {
     private readonly static float ObjectLayerDepth = 1.0f;
+    private readonly static float EffectLayerDepth = 0.5f;
     public ISprite CreateObjectSprite(IObject obj, Vector2 coord, LevelContext context)
     {
         ISprite sprite;
@@ -47,13 +49,6 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.Color = Color.Red;
                 sprite.IdleName = RegionNames.TimedBomb;
                 break;
-            case ObjectIds.Explosion:
-                sprite = new AnimatedSprite(textureAtlas);
-                sprite.SetState(AnimationNames.Explosion);
-                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
-                sprite.IdleName = RegionNames.Explosion;
-                spriteScale = context.GridScale * 8.0f;
-                break;
             case ObjectIds.Skeleton:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.Skeleton);
@@ -83,6 +78,29 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
         sprite.LayerDepth = ObjectLayerDepth;
         sprite.Scale = spriteScale;
 
+        return sprite;
+    }
+
+    public ISprite CreateEffectSprite(EffectIds effectId, Vector2 coord, LevelContext context)
+    {
+        ISprite sprite = new AnimatedSprite(textureAtlas);
+        var spriteScale = context.GridScale;
+        switch (effectId)
+        {
+            case EffectIds.Explosion:
+                sprite.SetState(AnimationNames.Explosion);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
+                sprite.IdleName = RegionNames.Explosion;
+                spriteScale = context.GridScale * 8.0f;
+                
+                break;
+            default:
+                break;
+        }
+        sprite.CurrentPosition = coord;
+        sprite.SetTargetPosition(coord);
+        sprite.LayerDepth = EffectLayerDepth;
+        sprite.Scale = spriteScale;
         return sprite;
     }
 }
