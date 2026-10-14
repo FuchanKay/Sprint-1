@@ -15,13 +15,14 @@ public interface ISprite
     public float Scale { get; set; }
     public SpriteEffects Effects { get; set; }
     public float LayerDepth { get; set; }
+
+    public int Duration { get; set; }
     public string IdleName { get; set; }
     public bool IsFinished { get; }
     void Update(int dtMs);
     void Draw(SpriteBatch sb);
     void SetState(string name);
     void SetTargetPosition(Vector2 position);
-    void SetCurrentPosition(Vector2 position);
     StaticSprite ConvertToStatic(string name);
     AnimatedSprite ConvertToAnimated(string name);
 

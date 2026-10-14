@@ -17,6 +17,8 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     public bool IsIdle { get; private set; }
     private LevelContext Context;
 
+    public readonly int PushDuration = 400;
+
     public void Init(GridPointer gridPointer, LevelContext context)
     {
         ObjectSprites.Clear();
@@ -171,7 +173,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         }
         var finishedSprites = currentList.FindAll(sprite => sprite.IsFinished);
         ResetToIdle(finishedSprites, currentDict);
-
         currentList.RemoveAll(sprite => sprite.IsFinished);
     }
 
