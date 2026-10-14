@@ -4,7 +4,7 @@ public class PumpkinObject : IObject
 {
     public ObjectIds Id => ObjectIds.Pumpkin;
     public Directions Direction { get; set; } = Directions.South;
-    public bool isPushable => true;
-    public bool isDestructible => true;
-    public bool isGrown { get; set; } = false;
+    public bool IsPushable => true;
+    public bool IsDestructible => true;
+    public bool IsGrown { get; set; } = false;
 }

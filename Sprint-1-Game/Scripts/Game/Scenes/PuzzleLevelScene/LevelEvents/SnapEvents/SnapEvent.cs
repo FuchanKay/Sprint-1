@@ -39,7 +39,7 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
         foreach (var pumpkinCoord in pumpkinCoords)
         {
             var pumpkin = gridPointer.GetObject(pumpkinCoord) as PumpkinObject;
-            if(!pumpkin.isGrown) GrowPumpkin(pumpkinCoord, spriteGrid, gridPointer, context);
+            if(!pumpkin.IsGrown) GrowPumpkin(pumpkinCoord, spriteGrid, gridPointer, context);
         }
 
         context.IsIdle = false;
