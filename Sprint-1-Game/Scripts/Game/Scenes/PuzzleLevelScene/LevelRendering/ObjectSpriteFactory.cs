@@ -1,4 +1,3 @@
-using System.Reflection.PortableExecutable;
 using Microsoft.Xna.Framework;
 using Scripts.GameComponents;
 
@@ -16,9 +15,9 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
         {
             case ObjectIds.Rock:
                 sprite = new StaticSprite(textureAtlas);
-                //TODO: pumpkin
-                sprite.SetState(RegionNames.Rock);
-                sprite.Texture = textureAtlas.GetTexture(TextureNames.Rock);
+                var rock = obj as RockObject;
+                sprite.SetState(rock.RegionName);
+                sprite.Texture = textureAtlas.GetTexture(rock.TextureName);
                 sprite.IdleName = RegionNames.Rock;
                 break;
             case ObjectIds.Player:

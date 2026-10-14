@@ -9,11 +9,11 @@ public class TileFactory()
 
         };
     }
-    private ITile CreateFloorTile(string textureName)
+    private ITile CreateFloorTile(string regionName)
     {
         return new FloorTile
         {
-            TextureName = textureName
+            RegionName = regionName
         };
     }
 

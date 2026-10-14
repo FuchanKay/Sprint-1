@@ -15,7 +15,7 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
             case TileIds.Floor:
                 sprite = new StaticSprite(textureAtlas);
                 var floor = tile as FloorTile;
-                sprite.SetState(floor.TextureName);
+                sprite.SetState(floor.RegionName);
                 break;
             case TileIds.Pit:
                 sprite = new StaticSprite(textureAtlas);
