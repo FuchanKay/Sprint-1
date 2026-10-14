@@ -71,6 +71,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite = new StaticSprite(textureAtlas);
                 break;
         }
+        sprite.CurrentPosition = coord;
         sprite.SetTargetPosition(coord);
         sprite.LayerDepth = ObjectLayerDepth;
         sprite.Scale = spriteScale;
@@ -89,11 +90,18 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
                 sprite.IdleName = RegionNames.Explosion;
                 spriteScale = context.GridScale * 8.0f;
-                sprite.CurrentPosition = coord;
+                break;
+            case EffectIds.PlayerDeath:
+                sprite.SetState(AnimationNames.Explosion);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
+                sprite.IdleName = RegionNames.Explosion;
+                spriteScale = context.GridScale * 3.5f;
+                sprite.Color = Color.Green;
                 break;
             default:
                 break;
         }
+        sprite.CurrentPosition = coord;
         sprite.SetTargetPosition(coord);
         sprite.LayerDepth = EffectLayerDepth;
         sprite.Scale = spriteScale;
