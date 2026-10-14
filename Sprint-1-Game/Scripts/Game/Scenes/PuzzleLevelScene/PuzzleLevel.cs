@@ -64,7 +64,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
             CurrentEvent.Execute(SpriteGrid, GridPointer, Context);
             return true;
-        } 
+        }
 
         if (!CurrentEventIsFinished)
         {

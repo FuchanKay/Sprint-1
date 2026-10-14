@@ -10,29 +10,14 @@ public class GridPointer
 
     public void Init()
     {
-        ObjectPointersCollection.Add(ObjectIds.Empty, []);
-        ObjectPointersCollection.Add(ObjectIds.Rock, []);
-        ObjectPointersCollection.Add(ObjectIds.Player, []);
-        ObjectPointersCollection.Add(ObjectIds.Wall, []);
-        ObjectPointersCollection.Add(ObjectIds.Bomb, []);
-        ObjectPointersCollection.Add(ObjectIds.Explosion, []);
-        ObjectPointersCollection.Add(ObjectIds.TimedBomb, []);
-
-        ObjectPointersCollection.Add(ObjectIds.BlueLizard, []);
-        ObjectPointersCollection.Add(ObjectIds.RedLizard, []);
-        ObjectPointersCollection.Add(ObjectIds.Skeleton, []);
-        ObjectPointersCollection.Add(ObjectIds.Warlock, []);
-
-        TilePointersCollection.Add(TileIds.Empty, []);
-        TilePointersCollection.Add(TileIds.Dirt, []);
-        TilePointersCollection.Add(TileIds.Grass, []);
-        TilePointersCollection.Add(TileIds.Brick, []);
-        TilePointersCollection.Add(TileIds.MossyBrick, []);
-        TilePointersCollection.Add(TileIds.Pit, []);
-        TilePointersCollection.Add(TileIds.Water, []);
-        TilePointersCollection.Add(TileIds.Lava, []);
-        TilePointersCollection.Add(TileIds.Bug, []);
-        TilePointersCollection.Add(TileIds.CCBug, []);
+        foreach (var id in Enum.GetValues<ObjectIds>())
+        {
+            ObjectPointersCollection.Add(id, []);
+        }
+        foreach (var id in Enum.GetValues<TileIds>())
+        {
+            TilePointersCollection.Add(id, []);
+        }
     }
 
     public void SetGrid(Coordinate coord, Grid grid)

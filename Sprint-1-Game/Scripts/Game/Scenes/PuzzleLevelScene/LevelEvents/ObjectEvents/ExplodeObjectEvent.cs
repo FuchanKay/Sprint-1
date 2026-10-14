@@ -16,7 +16,7 @@ public class ExplodeObjectEvent : ILevelSubEvent
                 {
                     var targetCoord = explosionCoord + new Coordinate(x, y);
                     var targetGrid = gridPointer.GetGrid(targetCoord);
-                    if (targetGrid.Object.isDestructible)
+                    if (targetGrid.Object.IsDestructible)
                     {
                         gridPointer.SetObject(targetCoord, new EmptyObject());
                     }

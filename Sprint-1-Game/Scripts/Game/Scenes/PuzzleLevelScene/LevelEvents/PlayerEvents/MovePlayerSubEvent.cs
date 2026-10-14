@@ -7,11 +7,11 @@ public class MovePlayerSubEvent(Directions direction, ObjectFactory objectFactor
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerDestination = playerCoord + Coordinate.ToCoordinate(direction);
         var destinationGrid = gridPointer.GetGrid(playerDestination);
-    
+
         var playerObj = gridPointer.GetObject(playerCoord);
         var isFacingDirection = playerObj.Direction == direction;
         var isDestinationEmpty = destinationGrid.Object.Id == ObjectIds.Empty;
-    
+
         if (isFacingDirection && isDestinationEmpty)
         {
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);

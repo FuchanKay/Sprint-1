@@ -18,7 +18,7 @@ public class PushEventLogic
             var eastCoordPlus1 = eastCoord + directionAsCoordinate;
             var eastGridPlus1 = gridPointer.GetGrid(eastCoordPlus1);
 
-            var canPush = eastObj.isPushable && eastGridPlus1.Object.Id == ObjectIds.Empty;
+            var canPush = eastObj.IsPushable && eastGridPlus1.Object.Id == ObjectIds.Empty;
             if (canPush)
             {
                 gridPointer.SetObject(eastCoord, objectFactory.CreateEmpty());

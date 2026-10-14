@@ -4,6 +4,6 @@ public class PlayerObject : IObject
 {
     public ObjectIds Id => ObjectIds.Player;
     public Directions Direction { get; set; } = Directions.South;
-    public bool isPushable => false;
-    public bool isDestructible => false;
+    public bool IsPushable => false;
+    public bool IsDestructible => false;
 }
