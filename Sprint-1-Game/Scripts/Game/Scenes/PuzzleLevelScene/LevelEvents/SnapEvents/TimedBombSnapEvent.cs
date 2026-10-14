@@ -12,13 +12,13 @@ public class TimedBombSnapEvent(ObjectFactory objectFactory) : ILevelSubEvent
         foreach (var timedBombCoord in timedBombCoords)
         {
             var timedBombObject = gridPointer.GetObject(timedBombCoord) as TimedBombObject;
-            if (timedBombObject.timeRemaining == 1)
+            if (timedBombObject.TimeRemaining == 1)
             {
                 gridPointer.SetObject(timedBombCoord, objectFactory.CreateExplosion());
                 anyBombsExploded = true;
             }
-            timedBombObject.timeRemaining--;
-            Console.WriteLine($"Timed bomb at {timedBombCoord} has {timedBombObject.timeRemaining} time remaining.");
+            timedBombObject.TimeRemaining--;
+            Console.WriteLine($"Timed bomb at {timedBombCoord} has {timedBombObject.TimeRemaining} time remaining.");
         }
         if (anyBombsExploded)
         {

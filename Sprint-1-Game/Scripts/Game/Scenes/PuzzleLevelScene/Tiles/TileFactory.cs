@@ -9,42 +9,39 @@ public class TileFactory()
 
         };
     }
+    public ITile CreateFloorTile(string textureName)
+    {
+        return new FloorTile
+        {
+            TextureName = textureName
+        };
+    }
 
     public ITile CreateDirtTile()
     {
-        return new DirtTile
-        {
-            
-        };
+        return CreateFloorTile(RegionNames.DirtTile);
     }
 
     public ITile CreateGrassTile()
     {
-        return new GrassTile
-        {
-            
-        };
+        return CreateFloorTile(RegionNames.GrassTile);
     }
 
     public ITile CreateBrickTile()
     {
-        return new BrickTile
-        {
-        };
+        return CreateFloorTile(RegionNames.BrickTile);
     }
 
     public ITile CreateMossyBrickTile()
     {
-        return new MossyBrickTile
-        {
-            
-        };
+        return CreateFloorTile(RegionNames.MossyBrickTile);
     }
 
     public ITile CreatePitTile()
     {
         return new PitTile
         {
+            
         };
     }
 

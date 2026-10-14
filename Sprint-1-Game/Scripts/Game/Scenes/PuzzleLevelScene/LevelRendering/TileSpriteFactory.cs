@@ -6,26 +6,16 @@ namespace Scripts.Game;
 public class TileSpriteFactory(ITextureAtlas textureAtlas)
 {
     private readonly static float TileLayerDepth = 0.0f;
-    public ISprite CreateTileSprite(TileIds id, Vector2 coord, LevelContext context)
+    public ISprite CreateTileSprite(ITile tile, Vector2 coord, LevelContext context)
     {
         StaticSprite sprite;
+        var id = tile.Id;
         switch (id)
         {
-            case TileIds.Dirt:
+            case TileIds.Floor:
                 sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.DirtTile);
-                break;
-            case TileIds.Grass:
-                sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.GrassTile);
-                break;
-            case TileIds.Brick:
-                sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.BrickTile);
-                break;
-            case TileIds.MossyBrick:
-                sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.MossyBrickTile);
+                var floor = tile as FloorTile;
+                sprite.SetState(floor.TextureName);
                 break;
             case TileIds.Pit:
                 sprite = new StaticSprite(textureAtlas);

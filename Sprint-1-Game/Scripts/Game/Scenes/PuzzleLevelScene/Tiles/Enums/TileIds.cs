@@ -3,6 +3,7 @@ namespace Scripts.Game;
 public enum TileIds
 {
     Empty,
+    Floor,
     Dirt,
     Grass,
     Brick,
