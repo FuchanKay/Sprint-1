@@ -9,7 +9,7 @@ public class TileFactory()
 
         };
     }
-    public ITile CreateFloorTile(string textureName)
+    private ITile CreateFloorTile(string textureName)
     {
         return new FloorTile
         {

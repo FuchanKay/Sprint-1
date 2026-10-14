@@ -18,13 +18,25 @@ public class ObjectFactory()
         };
     }
 
-    public IObject CreateRock()
+    private IObject CreateRock(string textureName)
     {
         return new RockObject
         {
-            Direction = Directions.South
+            Direction = Directions.South,
+            TextureName = textureName
         };
     }
+
+    public IObject CreateDefaultRock()
+    {
+        return CreateRock(RegionNames.Rock);
+    }
+
+    //TODO: implement this
+    // public IObject CreatePumpkin()
+    // {
+    //     return CreateRock(RegionNames.pumpkin);
+    // }
 
     public IObject CreateWall()
     {

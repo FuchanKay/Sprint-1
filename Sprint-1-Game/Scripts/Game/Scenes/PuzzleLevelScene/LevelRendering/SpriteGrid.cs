@@ -39,7 +39,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
 
             if (obj.Id != ObjectIds.Empty)
             {
-                ObjectSprites.Add(spriteCoord, objectSpriteFactory.CreateObjectSprite(obj.Id, spriteCoord, context));
+                ObjectSprites.Add(spriteCoord, objectSpriteFactory.CreateObjectSprite(obj, spriteCoord, context));
             }
             if (tile.Id != TileIds.Empty)
             {
@@ -89,7 +89,8 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     {
         var realCoord = CalculateLiteralPos(coord);
         ObjectSprites.Remove(realCoord);
-        var sprite = objectSpriteFactory.CreateObjectSprite(gridPointer.GetObject(coord).Id, realCoord, Context);
+        var obj = gridPointer.GetObject(coord);
+        var sprite = objectSpriteFactory.CreateObjectSprite(obj, realCoord, Context);
         ObjectSprites.Add(realCoord, sprite);
     }
 

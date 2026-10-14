@@ -7,23 +7,26 @@ namespace Scripts.Game;
 public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
 {
     private readonly static float ObjectLayerDepth = 1.0f;
-    public ISprite CreateObjectSprite(ObjectIds id, Vector2 coord, LevelContext context)
+    public ISprite CreateObjectSprite(IObject obj, Vector2 coord, LevelContext context)
     {
         ISprite sprite;
         var spriteScale = context.GridScale;
+        var id = obj.Id;
         switch (id)
         {
             case ObjectIds.Rock:
                 sprite = new StaticSprite(textureAtlas);
+                //TODO: pumpkin
                 sprite.SetState(RegionNames.Rock);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Rock);
                 sprite.IdleName = RegionNames.Rock;
                 break;
             case ObjectIds.Player:
                 sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.PlayerIdleSouth);
+                var idleState = RegionNames.ToPlayerIdleRegionName(obj.Direction);
+                sprite.SetState(idleState);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Player);
-                sprite.IdleName = RegionNames.PlayerIdleSouth;
+                sprite.IdleName = idleState;
                 spriteScale = context.GridScale * 4.0f;
                 break;
             case ObjectIds.Wall:
