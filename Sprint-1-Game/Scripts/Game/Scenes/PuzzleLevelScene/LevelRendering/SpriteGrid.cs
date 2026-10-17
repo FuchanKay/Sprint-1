@@ -17,6 +17,8 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     public bool IsIdle { get; private set; }
     private LevelContext Context;
 
+    public readonly int PushDuration = 400;
+
     public void Init(GridPointer gridPointer, LevelContext context)
     {
         ObjectSprites.Clear();
@@ -115,15 +117,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         sprite.SetTargetPosition(realTargetCoord);
     }
 
-    public void CycleTileSprite(Coordinate coord, GridPointer gridPointer)
-    {
-        var realCoord = CalculateLiteralPos(coord);
-        TileSprites.Remove(realCoord);
-        var tile = gridPointer.GetTile(coord);
-        var sprite = tileSpriteFactory.CreateTileSprite(tile, realCoord, Context);
-        TileSprites.Add(realCoord, sprite);
-    }
-
     public void StartObjectAnimation(ISprite sprite)
     {
         AnimatingObjectSprites.Add(sprite);
@@ -180,7 +173,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         }
         var finishedSprites = currentList.FindAll(sprite => sprite.IsFinished);
         ResetToIdle(finishedSprites, currentDict);
-
         currentList.RemoveAll(sprite => sprite.IsFinished);
     }
 

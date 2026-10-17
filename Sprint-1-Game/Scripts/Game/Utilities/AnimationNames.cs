@@ -35,4 +35,16 @@ public class AnimationNames
         };
     }
 
+    public static string ToPlayerPushAnimationName(Directions direction)
+    {
+        return direction switch
+        {
+            Directions.North => PlayerPushNorth,
+            Directions.East => PlayerPushEast,
+            Directions.South => PlayerPushSouth,
+            Directions.West => PlayerPushWest,
+            _ => PlayerPushEast,
+        };
+    }
+
 }

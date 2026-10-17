@@ -40,12 +40,14 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.Bomb);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Bomb);
+                sprite.IdleName = RegionNames.Bomb;
                 break;
             case ObjectIds.TimedBomb:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.TimedBomb);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Bomb);
                 sprite.Color = Color.Red;
+                sprite.IdleName = RegionNames.TimedBomb;
                 break;
             case ObjectIds.Skeleton:
                 sprite = new StaticSprite(textureAtlas);

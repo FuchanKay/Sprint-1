@@ -44,6 +44,7 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
                 break;
         }
         sprite.Texture = textureAtlas.GetTexture(TextureNames.TileSprites);
+        sprite.CurrentPosition = coord;
         sprite.SetTargetPosition(coord);
         sprite.Scale = context.GridScale * 4.0f;
         sprite.LayerDepth = TileLayerDepth;
