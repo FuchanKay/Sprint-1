@@ -92,7 +92,13 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
                 sprite.IdleName = RegionNames.Explosion;
                 spriteScale = context.GridScale * 8.0f;
-                
+                break;
+            case EffectIds.PlayerDeath:
+                sprite.SetState(AnimationNames.Explosion);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
+                sprite.IdleName = RegionNames.Explosion;
+                spriteScale = context.GridScale * 3.5f;
+                sprite.Color = Color.SpringGreen;
                 break;
             default:
                 break;
