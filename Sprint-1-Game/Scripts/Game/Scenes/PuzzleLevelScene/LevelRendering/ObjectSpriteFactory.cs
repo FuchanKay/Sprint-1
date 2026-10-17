@@ -98,7 +98,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
                 sprite.IdleName = RegionNames.Explosion;
                 spriteScale = context.GridScale * 3.5f;
-                sprite.Color = Color.Green;
+                sprite.Color = Color.SpringGreen;
                 break;
             default:
                 break;
