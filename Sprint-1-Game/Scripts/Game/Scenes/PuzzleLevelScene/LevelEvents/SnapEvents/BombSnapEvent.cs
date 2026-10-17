@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using Scripts.Game;
 
-public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectFactory) : ILevelSubEvent
+public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectFactory, SubEventCallStack subEventStack) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
@@ -25,10 +26,14 @@ public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectF
             for (int y = -explosionRadius; y <= explosionRadius; y++)
             {
                 var targetCoord = new Coordinate(bombCoord.X + x, bombCoord.Y + y);
-                if (gridPointer.GetObject(targetCoord).IsDestructible)
+                var targetObj = gridPointer.GetObject(targetCoord);
+                if (targetObj.IsDestructible)
                 {
                     gridPointer.SetObject(targetCoord, objectFactory.CreateEmpty());
                     spriteGrid.RemoveObjectSprite(targetCoord);
+                } else if (targetObj.Id == ObjectIds.Player)
+                {
+                    subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
                 }
             }
         }
