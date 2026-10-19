@@ -16,6 +16,8 @@ public class FileNames
     public readonly static string BlueLizardTexture = "Images/blueLizard";
     public readonly static string RedLizardTexture = "Images/redLizard";
 
+    public readonly static string Level1File = "Content/Levels/level1.csv";
+
     public readonly static string SnapAudio = "audio/snap";
     public readonly static string SongAudio = "audio/song";
 
