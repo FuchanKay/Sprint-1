@@ -1,36 +1,37 @@
 using System.Linq;
 using Scripts.Game;
+using System;
 
-public class WarlockSwapEvent() : ILevelEvent
+public class WarlockSwapEvent() : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         var warlockPointer = gridPointer.GetObjectPointers(ObjectIds.Warlock);
-        var targetWarLockCoord = warlockPointer.Keys.First();
+        bool warlockExists = warlockPointer.Count > 0;
         
-        var playerCoord = gridPointer.GetPlayerCoord();
-        var playerObj = gridPointer.GetObject(playerCoord);
-        var targetWarLockObj = gridPointer.GetObject(targetWarLockCoord);
-        
-        
-        var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
-        var warlockSprite = spriteGrid.GetObjectSprite(targetWarLockCoord);
+        if (warlockExists) {
+            var warLockCoord = warlockPointer.Keys.First();
+            var warLockObj = gridPointer.GetObject(warLockCoord);
+            var playerCoord = gridPointer.GetPlayerCoord();
+            var playerObj = gridPointer.GetObject(playerCoord);
 
-        gridPointer.SetObject(targetWarLockCoord, playerObj);
-        gridPointer.SetObject(playerCoord, targetWarLockObj);
+            var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
+            var warlockSprite = spriteGrid.GetObjectSprite(warLockCoord);
 
-        spriteGrid.CycleObjectSprite(targetWarLockCoord, gridPointer);
-        spriteGrid.CycleObjectSprite(playerCoord, gridPointer);
+            gridPointer.SetObject(warLockCoord, playerObj);
+            gridPointer.SetObject(playerCoord, warLockObj);
+            
+            var testObj = gridPointer.GetObject(warLockCoord);
+            Console.WriteLine($"testObj.Idf is {testObj.Id}");
+            var testObj2 = gridPointer.GetObject(playerCoord);
+            Console.WriteLine($"testObj2.Idf is {testObj2.Id}");
 
-
-        // gridPointer.SetObject(playerCoord, targetWarLockObj);
-        // gridPointer.SetObject(targetWarLockCoord, playerObj);
-
-        // spriteGrid.SetObjectSprite(playerCoord, targetWarLockCoord, playerSprite);
-        // spriteGrid.SetObjectSprite(targetWarLockCoord, playerCoord, warlockSprite);
-
-        context.IsIdle = true;
-        context.ShouldUpdate = true;
-
+            spriteGrid.RemoveObjectSprite(playerCoord);
+            spriteGrid.RemoveObjectSprite(warLockCoord);
+            playerSprite.CurrentPosition = spriteGrid.CalculateLiteralPos(warLockCoord);
+            warlockSprite.CurrentPosition = spriteGrid.CalculateLiteralPos(playerCoord);
+            spriteGrid.SetObjectSprite(warLockCoord, warLockCoord, playerSprite);
+            spriteGrid.SetObjectSprite(playerCoord, playerCoord, warlockSprite);
+        }
     }
 }
