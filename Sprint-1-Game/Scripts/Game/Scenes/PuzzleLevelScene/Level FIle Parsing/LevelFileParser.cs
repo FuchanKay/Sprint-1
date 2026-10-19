@@ -26,11 +26,7 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
 
         currentLine += SpacerRow;
 
-        parseTileGrid(lines, currentLine, levelWidth, levelHeight);
-
-        currentLine += levelHeight + SpacerRow;
-
-        parseObjectGrid(lines, currentLine, levelWidth, levelHeight);
+        parseGrids(lines, currentLine, levelWidth, levelHeight);
 
         return level;
     }
@@ -40,21 +36,25 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
         return headerParts[..2];
     }
 
-    private void parseTileGrid(string[] lines, int currentLine, int levelWidth, int levelHeight)
+    private void parseGrids(string[] lines, int currentLine, int levelWidth, int levelHeight)
     {
         for (int i = 0; i < levelHeight; i++)
         {
-            string line = lines[currentLine + i];
-            string[] tileValues = line.Split(Delimiter);
+            string tileLine = lines[currentLine + i];
+            string objectLine = lines[currentLine + levelHeight + SpacerRow + i];
+            string[] tileValues = tileLine.Split(Delimiter);
+            string[] objectValues = objectLine.Split(Delimiter);
             for (int j = 0; j < levelWidth; j++)
             {
                 string tileValue = tileValues[j];
-                ProcessTile(tileValue, j, i);
+                string objectValue = objectValues[j];
+                ITile tile = ProcessTile(tileValue, j, i);
+                IObject @object = ProcessObject(objectValue, j, i);
             }
         }
     }
 
-    private void ProcessTile(string tileValue, int x, int y)
+    private ITile ProcessTile(string tileValue, int x, int y)
     {
         ITile tile = tileValue switch
         {
@@ -70,14 +70,25 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
             "CCBug" => tileFactory.CreateCCBugTile(),
             _ => throw new Exception($"Unknown tile value: {tileValue} at position ({x}, {y})")
         };
+        return tile;
     }
 
-    private void parseObjectGrid(string[] lines, int currentLine, int levelWidth, int levelHeight)
+    private IObject ProcessObject(string objectValue, int x, int y)
     {
-        for (int i = 0; i < levelHeight; i++)
+        IObject @object = objectValue switch
         {
-            string line = lines[currentLine + i];
-            string[] objectValues = line.Split(Delimiter);
-        }
+            "_" => objectFactory.CreateEmpty(),
+            "Player" => objectFactory.CreatePlayer(),
+            "Rock" => objectFactory.CreateDefaultRock(),
+            "Wall" => objectFactory.CreateWall(),
+            "Bomb" => objectFactory.CreateBomb(),
+            "TimedBomb" => objectFactory.CreateTimedBomb(),
+            "Skeleton" => objectFactory.CreateSkeleton(),
+            "Warlock" => objectFactory.CreateWarlock(),
+            "BlueLizard" => objectFactory.CreateBlueLizard(),
+            "RedLizard" => objectFactory.CreateRedLizard(),
+            _ => throw new Exception($"Unknown object value: {objectValue} at position ({x}, {y})")
+        };
+        return @object;
     }
 }
