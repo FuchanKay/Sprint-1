@@ -6,6 +6,7 @@ namespace Scripts.Game;
 public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactory, ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory)
 {
     private readonly string Delimiter = ",";
+    private readonly string ObjectDelimiter = ".";
     private readonly int NameIdx = 0;
     private readonly int WidthIdx = 1;
     private readonly int HeightIdx = 2;
@@ -81,7 +82,11 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
 
     private IObject ProcessObject(string objectValue, int x, int y)
     {
-        IObject @object = objectValue switch
+        string[] objectParts = objectValue.Split(ObjectDelimiter);
+        string objectType = objectParts[0];
+        string direction = objectParts.Length > 1 ? objectParts[1] : null;
+
+        IObject @object = objectType switch
         {
             "_" => objectFactory.CreateEmpty(),
             "Player" => objectFactory.CreatePlayer(),
