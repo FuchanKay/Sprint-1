@@ -10,9 +10,12 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
 
-        playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerSnap);
-        spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
-        spriteGrid.StartObjectAnimation(playerSprite);
+        // playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerSnap);
+        // spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
+        // spriteGrid.StartObjectAnimation(playerSprite);
+
+        var rotationSubEvent = new BugRotateSubEvent();
+        rotationSubEvent.Execute(spriteGrid, gridPointer, context);
 
         var bombCoords = gridPointer.GetObjectPointers(ObjectIds.Bomb).Keys.ToList();
         var timedBombCoords = gridPointer.GetObjectPointers(ObjectIds.TimedBomb).Keys.ToList();
