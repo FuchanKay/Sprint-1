@@ -1,6 +1,6 @@
 namespace Scripts.Game;
 
-public class MovePlayerEvent(Directions direction, ObjectFactory objectFactory) : ILevelEvent
+public class MovePlayerEvent(Directions direction, bool lockMove, ObjectFactory objectFactory) : ILevelEvent
 {
     public SubEventCallStack SubEventStack { get; } = new();
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Net;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Scripts.Game;
@@ -23,7 +22,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     private readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
     private readonly int MaxEventsQueued = 2;
     public bool IsIdle = true;
-    private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, objectFactory);
+    private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, false, objectFactory);
 
     public void Init()
     {

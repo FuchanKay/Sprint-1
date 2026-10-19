@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using Scripts.Game;
+namespace Scripts.Game;
 
 public class TimedBombSnapEvent(ObjectFactory objectFactory) : ILevelSubEvent
 {

@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Scripts.GameComponents;
@@ -46,6 +45,7 @@ public class Setup(ContentManager content)
         ButtonInput.MapInput(InputNames.MoveEastAlt, (int)Keys.Right);
         ButtonInput.MapInput(InputNames.MoveSouthAlt, (int)Keys.Down);
         ButtonInput.MapInput(InputNames.MoveWestAlt, (int)Keys.Left);
+        ButtonInput.MapInput(InputNames.LShift, (int)Keys.LeftShift);
 
         ButtonInput.MapInput(InputNames.Snap, (int)Keys.F);
 
