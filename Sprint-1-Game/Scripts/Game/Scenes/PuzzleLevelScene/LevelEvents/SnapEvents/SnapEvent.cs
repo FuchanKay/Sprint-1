@@ -36,7 +36,8 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
             timedBomb.TimeRemaining--;
             Console.WriteLine($"Timed bomb at {timedBombCoord} has {timedBomb.TimeRemaining} time remaining");
         }
-
+        WarlockSwapEvent warlockSwapEvent = new WarlockSwapEvent();
+        warlockSwapEvent.Execute( spriteGrid,  gridPointer,  context);
         context.IsIdle = false;
     }
 
