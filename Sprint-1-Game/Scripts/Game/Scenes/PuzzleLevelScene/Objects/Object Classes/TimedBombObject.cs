@@ -7,4 +7,5 @@ public class TimedBombObject : IObject
     public int TimeRemaining { get; set; } = 3;
     public bool IsPushable => true;
     public bool IsDestructible => false;
+    public bool IsRotatable => false;
 }

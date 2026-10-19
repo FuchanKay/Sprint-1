@@ -24,7 +24,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 break;
             case ObjectIds.Player:
                 sprite = new StaticSprite(textureAtlas);
-                var idleState = RegionNames.ToPlayerIdleRegionName(obj.Direction);
+                var idleState = RegionNames.ToIdleRegionName(obj.Direction);
                 sprite.SetState(idleState);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Player);
                 sprite.IdleName = idleState;
@@ -53,6 +53,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.Skeleton);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Skeleton);
+                sprite.IdleName = RegionNames.Skeleton;
                 break;
             case ObjectIds.Warlock:
                 sprite = new StaticSprite(textureAtlas);
@@ -98,7 +99,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
                 sprite.IdleName = RegionNames.Explosion;
                 spriteScale = context.GridScale * 3.5f;
-                sprite.Color = Color.Green;
+                sprite.Color = Color.SpringGreen;
                 break;
             default:
                 break;
