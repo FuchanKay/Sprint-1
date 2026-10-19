@@ -6,5 +6,6 @@ public class EmptyObject : IObject
     public Directions Direction { get; set; }
     public bool IsPushable => false;
     public bool IsDestructible => false;
+    public bool IsRotatable => false;
 
 }

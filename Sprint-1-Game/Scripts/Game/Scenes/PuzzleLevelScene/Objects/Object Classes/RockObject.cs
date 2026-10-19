@@ -8,4 +8,5 @@ public class RockObject() : IObject
     public string TextureName { get; set; }
     public bool IsPushable => true;
     public bool IsDestructible => true;
+    public bool IsRotatable => false;
 }
