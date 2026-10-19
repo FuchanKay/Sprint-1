@@ -17,7 +17,7 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
         var bombCoords = gridPointer.GetObjectPointers(ObjectIds.Bomb).Keys.ToList();
         var timedBombCoords = gridPointer.GetObjectPointers(ObjectIds.TimedBomb).Keys.ToList();
 
-        SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack));
+        SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack, objectFactory));
         if(bombCoords.Count > 0) SubEventStack.Push(new BombSnapSubEvent(bombCoords, objectFactory, SubEventStack));
         if(timedBombCoords.Count > 0) SubEventStack.Push(new TimedBombSnapSubEvent(timedBombCoords, objectFactory, SubEventStack));
 

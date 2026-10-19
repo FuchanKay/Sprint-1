@@ -16,11 +16,11 @@ public class MovePlayerEvent(Directions direction, ObjectFactory objectFactory) 
         var isDestinationPushable = destinationGrid.Object.IsPushable;
         if (isFacingDirection && isDestinationEmpty && isDestinationWalkable)
         {
-            SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack));
+            SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack, objectFactory));
             SubEventStack.Push(new MovePlayerSubEvent(direction, objectFactory));
         } else if(isFacingDirection && isDestinationPushable && isDestinationWalkable)
         {
-            SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack));
+            SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack, objectFactory));
             SubEventStack.Push(new PushSubEvent(direction, objectFactory));
         }
         else if (!isFacingDirection)
