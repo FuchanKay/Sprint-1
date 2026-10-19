@@ -18,7 +18,7 @@ public class SkeletonAttackSubEvent(Coordinate skeletonCoord, ObjectFactory obje
             {
                 // Change skeleton facing direction and sprite
                 // Play attack animation
-                Console.WriteLine("Skeleton Attack!");
+                Console.WriteLine($"Skeleton Attacking {direction}!");
                 subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
             }
         }
