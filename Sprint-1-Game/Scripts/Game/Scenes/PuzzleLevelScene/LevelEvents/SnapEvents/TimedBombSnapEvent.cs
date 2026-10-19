@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Scripts.Game;
 
-public class TimedBombSnapSubEvent(List<Coordinate> timedBombCoords, ObjectFactory objectFactory, SubEventCallStack subEventStack) : ILevelSubEvent
+public class TimedBombSnapSubEvent(List<Coordinate> timedBombCoords, ObjectFactory objectFactory, SubEventCallStack subEventStack)
+    : BombSnapSubEvent(timedBombCoords, objectFactory, subEventStack)
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    public override void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
-         foreach (var timedBombCoord in timedBombCoords)
+         foreach (var timedBombCoord in BombCoords)
         {
             TimedBombObject timedBomb = gridPointer.GetObject(timedBombCoord) as TimedBombObject;
             if (timedBomb.TimeRemaining == 1)
@@ -16,32 +16,6 @@ public class TimedBombSnapSubEvent(List<Coordinate> timedBombCoords, ObjectFacto
             }
             timedBomb.TimeRemaining--;
             Console.WriteLine($"Timed bomb at {timedBombCoord} has {timedBomb.TimeRemaining} time remaining");
-        }
-    }
-
-    private void ExplodeBomb(Coordinate bombCoord, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
-    {
-       
-        gridPointer.SetObject(bombCoord, objectFactory.CreateEmpty());
-        spriteGrid.RemoveObjectSprite(bombCoord);
-        spriteGrid.PlayEffect(EffectIds.Explosion, bombCoord);
-
-        const int explosionRadius = 1;
-        for (int x = -explosionRadius; x <= explosionRadius; x++)
-        {
-            for (int y = -explosionRadius; y <= explosionRadius; y++)
-            {
-                var targetCoord = new Coordinate(bombCoord.X + x, bombCoord.Y + y);
-                var targetObj = gridPointer.GetObject(targetCoord);
-                if (targetObj.IsDestructible)
-                {
-                    gridPointer.SetObject(targetCoord, objectFactory.CreateEmpty());
-                    spriteGrid.RemoveObjectSprite(targetCoord);
-                } else if (targetObj.Id == ObjectIds.Player)
-                {
-                    subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
-                }
-            }
         }
     }
 }
