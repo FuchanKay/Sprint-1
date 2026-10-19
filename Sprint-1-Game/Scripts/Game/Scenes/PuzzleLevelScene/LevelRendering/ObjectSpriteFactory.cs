@@ -1,3 +1,4 @@
+using System.Data;
 using Microsoft.Xna.Framework;
 using Scripts.GameComponents;
 
@@ -6,23 +7,27 @@ namespace Scripts.Game;
 public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
 {
     private readonly static float ObjectLayerDepth = 1.0f;
-    public ISprite CreateObjectSprite(ObjectIds id, Vector2 coord, LevelContext context)
+    private readonly static float EffectLayerDepth = 0.5f;
+    public ISprite CreateObjectSprite(IObject obj, Vector2 coord, LevelContext context)
     {
         ISprite sprite;
         var spriteScale = context.GridScale;
+        var id = obj.Id;
         switch (id)
         {
             case ObjectIds.Rock:
                 sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.Rock);
-                sprite.Texture = textureAtlas.GetTexture(TextureNames.Rock);
+                var rock = obj as RockObject;
+                sprite.SetState(rock.RegionName);
+                sprite.Texture = textureAtlas.GetTexture(rock.TextureName);
                 sprite.IdleName = RegionNames.Rock;
                 break;
             case ObjectIds.Player:
                 sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.PlayerIdleSouth);
+                var idleState = RegionNames.ToPlayerIdleRegionName(obj.Direction);
+                sprite.SetState(idleState);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Player);
-                sprite.IdleName = RegionNames.PlayerIdleSouth;
+                sprite.IdleName = idleState;
                 spriteScale = context.GridScale * 4.0f;
                 break;
             case ObjectIds.Wall:
@@ -35,19 +40,14 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.Bomb);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Bomb);
+                sprite.IdleName = RegionNames.Bomb;
                 break;
             case ObjectIds.TimedBomb:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.TimedBomb);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Bomb);
                 sprite.Color = Color.Red;
-                break;
-            case ObjectIds.Explosion:
-                sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.Explosion);
-                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
-                sprite.IdleName = RegionNames.Explosion;
-                spriteScale = context.GridScale * 8.0f;
+                sprite.IdleName = RegionNames.TimedBomb;
                 break;
             case ObjectIds.Skeleton:
                 sprite = new StaticSprite(textureAtlas);
@@ -73,10 +73,34 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite = new StaticSprite(textureAtlas);
                 break;
         }
+        sprite.CurrentPosition = coord;
         sprite.SetTargetPosition(coord);
         sprite.LayerDepth = ObjectLayerDepth;
         sprite.Scale = spriteScale;
 
+        return sprite;
+    }
+
+    public ISprite CreateEffectSprite(EffectIds effectId, Vector2 coord, LevelContext context)
+    {
+        ISprite sprite = new AnimatedSprite(textureAtlas);
+        var spriteScale = context.GridScale;
+        switch (effectId)
+        {
+            case EffectIds.Explosion:
+                sprite.SetState(AnimationNames.Explosion);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
+                sprite.IdleName = RegionNames.Explosion;
+                spriteScale = context.GridScale * 8.0f;
+                
+                break;
+            default:
+                break;
+        }
+        sprite.CurrentPosition = coord;
+        sprite.SetTargetPosition(coord);
+        sprite.LayerDepth = EffectLayerDepth;
+        sprite.Scale = spriteScale;
         return sprite;
     }
 }

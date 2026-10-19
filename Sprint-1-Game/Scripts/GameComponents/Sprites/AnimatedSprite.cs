@@ -1,5 +1,5 @@
-using System;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace Scripts.GameComponents;
 
@@ -7,13 +7,10 @@ public class AnimatedSprite(ITextureAtlas textureAtlas) : Sprite(textureAtlas)
 {
     private Animation CurrentAnimation;
     private int CurrentFrameIndex;
-    private int TotalElapsed;
     private int Elapsed;
-    private Vector2 StartPosition;
     private int NumFrames => CurrentAnimation.Frames.Count;
-    private int Duration => NumFrames * CurrentAnimation.Delay;
-    private readonly float Complete = 1.0f;
-    private float Progress => Math.Min((float)TotalElapsed / (float)Duration, Complete);
+    private int Length => NumFrames * CurrentAnimation.Delay;
+    private float Progress => Math.Min((float)TotalElapsed / (float)Length, Complete);
     public override bool IsFinished { get; protected set; }
 
     public override void Update(int dtMs)
@@ -42,12 +39,6 @@ public class AnimatedSprite(ITextureAtlas textureAtlas) : Sprite(textureAtlas)
         CurrentAnimation = TexAtlas.GetAnimation(animationName);
         CurrentFrameIndex = 0;
         CurrentRegion = CurrentAnimation.Frames[CurrentFrameIndex];
-    }
-
-    public override void SetTargetPosition(Vector2 position)
-    {
-        TargetPosition = position;
-        StartPosition = CurrentPosition;
     }
 
     private void UpdateFrame(int dtMs)

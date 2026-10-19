@@ -7,7 +7,7 @@ namespace Scripts.GameComponents;
 public interface ISprite
 {
     public Texture2D Texture { get; set; }
-    public Vector2 CurrentPosition { get; }
+    public Vector2 CurrentPosition { get; set; }
     public Rectangle CurrentRegion { get; set; }
     public Color Color { get; set; }
     public float Rotation { get; set; }
@@ -15,6 +15,8 @@ public interface ISprite
     public float Scale { get; set; }
     public SpriteEffects Effects { get; set; }
     public float LayerDepth { get; set; }
+
+    public int Duration { get; set; }
     public string IdleName { get; set; }
     public bool IsFinished { get; }
     void Update(int dtMs);

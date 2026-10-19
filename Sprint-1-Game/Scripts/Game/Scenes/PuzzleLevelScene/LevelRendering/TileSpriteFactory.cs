@@ -6,41 +6,47 @@ namespace Scripts.Game;
 public class TileSpriteFactory(ITextureAtlas textureAtlas)
 {
     private readonly static float TileLayerDepth = 0.0f;
-    public ISprite CreateTileSprite(TileIds id, Vector2 coord, LevelContext context)
+    public ISprite CreateTileSprite(ITile tile, Vector2 coord, LevelContext context)
     {
         StaticSprite sprite;
+        var id = tile.Id;
         switch (id)
         {
-            case TileIds.Brick:
+            case TileIds.Floor:
                 sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.BrickTile);
-                sprite.IdleName = RegionNames.BrickTile;
-                sprite.Texture = textureAtlas.GetTexture(TextureNames.BrickTile);
+                var floor = tile as FloorTile;
+                sprite.SetState(floor.RegionName);
                 break;
-            case TileIds.Grass:
+            case TileIds.Pit:
                 sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.GrassTile);
-                sprite.IdleName = RegionNames.GrassTile;
-                sprite.Texture = textureAtlas.GetTexture(TextureNames.GrassTile);
+                sprite.SetState(RegionNames.PitTile);
                 break;
             case TileIds.Water:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.WaterTile);
-                sprite.IdleName = RegionNames.WaterTile;
-                sprite.Texture = textureAtlas.GetTexture(TextureNames.WaterTile);
                 break;
             case TileIds.Lava:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.LavaTile);
-                sprite.IdleName = RegionNames.LavaTile;
-                sprite.Texture = textureAtlas.GetTexture(TextureNames.LavaTile);
+                break;
+            case TileIds.Bug:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.BugTile);
+                sprite.IdleName = RegionNames.BugTile;
+                break;
+            case TileIds.CCBug:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.BugTileCC);
+                sprite.IdleName = RegionNames.BugTileCC;
                 break;
             default:
                 sprite = new StaticSprite(textureAtlas);
                 break;
         }
+        sprite.Texture = textureAtlas.GetTexture(TextureNames.TileSprites);
+        sprite.CurrentPosition = coord;
         sprite.SetTargetPosition(coord);
-        sprite.Scale = context.GridScale;
+        sprite.Scale = context.GridScale * 4.0f;
         sprite.LayerDepth = TileLayerDepth;
 
         return sprite;

@@ -19,17 +19,31 @@ public class AnimationNames
     public readonly static string PlayerRotateNE = "Player Rotate NE";
     public readonly static string PlayerRotateES = "Player Rotate ES";
     public readonly static string PlayerSnap = "Player Snap";
+    public readonly static string BugTileRotate = "Bug Tile Rotate";
+    public readonly static string BugTileRotateCC = "Bug Tile Rotate Counterclockwise";
     public readonly static string Explosion = "Explosion";
 
     public static string ToPlayerMovingAnimationName(Directions direction)
     {
         return direction switch
         {
-            Directions.North => AnimationNames.PlayerWalkNorth,
-            Directions.East => AnimationNames.PlayerWalkEast,
-            Directions.South => AnimationNames.PlayerWalkSouth,
-            Directions.West => AnimationNames.PlayerWalkWest,
-            _ => AnimationNames.PlayerWalkEast,
+            Directions.North => PlayerWalkNorth,
+            Directions.East => PlayerWalkEast,
+            Directions.South => PlayerWalkSouth,
+            Directions.West => PlayerWalkWest,
+            _ => PlayerWalkEast,
+        };
+    }
+
+    public static string ToPlayerPushAnimationName(Directions direction)
+    {
+        return direction switch
+        {
+            Directions.North => PlayerPushNorth,
+            Directions.East => PlayerPushEast,
+            Directions.South => PlayerPushSouth,
+            Directions.West => PlayerPushWest,
+            _ => PlayerPushEast,
         };
     }
 

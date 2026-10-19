@@ -4,6 +4,6 @@ public interface IObject
 {
     ObjectIds Id { get; }
     Directions Direction { get; set; }
-    bool isDestructible { get; }
-    bool isPushable { get; }
+    bool IsDestructible { get; }
+    bool IsPushable { get; }
 }
