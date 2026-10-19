@@ -15,7 +15,7 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
         // spriteGrid.StartObjectAnimation(playerSprite);
 
         var warlockSwapEvent = new WarlockSwapEvent();
-        warlockSwapEvent.Execute( spriteGrid,  gridPointer,  context);
+        warlockSwapEvent.Execute(spriteGrid, gridPointer, context);
 
         var rotationSubEvent = new BugRotateSubEvent();
         rotationSubEvent.Execute(spriteGrid, gridPointer, context);
