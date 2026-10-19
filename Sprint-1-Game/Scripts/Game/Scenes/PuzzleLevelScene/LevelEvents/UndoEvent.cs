@@ -1,4 +1,4 @@
-using Scripts.Game;
+namespace Scripts.Game;
 
 public class UndoEvent : ILevelEvent
 {

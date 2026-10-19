@@ -1,5 +1,3 @@
-using Scripts.GameComponents;
-
 namespace Scripts.Game;
 
 public class PushSubEvent(Directions direction, ObjectFactory objectFactory) : ILevelSubEvent
