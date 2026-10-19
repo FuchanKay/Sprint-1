@@ -7,8 +7,8 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
 {
     private readonly string Delimiter = ",";
     private readonly int NameIdx = 0;
-    private readonly int DimensionsIdx = 1;
-    private readonly string DimensionsDelimiter = "x";
+    private readonly int WidthIdx = 1;
+    private readonly int HeightIdx = 2;
     private readonly int SpacerRow = 1;
     public PuzzleLevel ParseLevelFile(string levelFilePath)
     {
@@ -19,8 +19,8 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
 
         string[] headerValues = ParseHeader(lines[currentLine++]);
         level.Context.LevelName = headerValues[NameIdx];
-        int levelWidth = int.Parse(headerValues[DimensionsIdx].Substring(0, headerValues[DimensionsIdx].IndexOf(DimensionsDelimiter)));
-        int levelHeight = int.Parse(headerValues[DimensionsIdx].Substring(headerValues[DimensionsIdx].IndexOf(DimensionsDelimiter) + 1));
+        int levelWidth = int.Parse(headerValues[WidthIdx]);
+        int levelHeight = int.Parse(headerValues[HeightIdx]);
         level.Context.LevelWidth = levelWidth;
         level.Context.LevelHeight = levelHeight;
 
@@ -33,7 +33,7 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
     private string[] ParseHeader(string headerLine)
     {
         string[] headerParts = headerLine.Split(Delimiter);
-        return headerParts[..2];
+        return headerParts[..3];
     }
 
     private void ParseGrids(PuzzleLevel level, string[] lines, int currentLine, int levelWidth, int levelHeight)
