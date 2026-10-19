@@ -26,7 +26,7 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
 
         currentLine += SpacerRow;
 
-        parseGrids(lines, currentLine, levelWidth, levelHeight);
+        parseGrids(level,lines, currentLine, levelWidth, levelHeight);
 
         return level;
     }
@@ -36,7 +36,7 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
         return headerParts[..2];
     }
 
-    private void parseGrids(string[] lines, int currentLine, int levelWidth, int levelHeight)
+    private void parseGrids(PuzzleLevel level, string[] lines, int currentLine, int levelWidth, int levelHeight)
     {
         for (int i = 0; i < levelHeight; i++)
         {
@@ -50,6 +50,12 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
                 string objectValue = objectValues[j];
                 ITile tile = ProcessTile(tileValue, j, i);
                 IObject @object = ProcessObject(objectValue, j, i);
+                Grid grid = new()
+                {
+                    Tile = tile,
+                    Object = @object
+                };
+                level.GridPointer.SetGrid(new Coordinate(j, i), grid);
             }
         }
     }
