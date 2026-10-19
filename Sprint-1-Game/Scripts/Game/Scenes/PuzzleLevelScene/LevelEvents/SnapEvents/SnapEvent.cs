@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using Scripts.Game;
+namespace Scripts.Game;
 
 public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
 {
@@ -44,7 +44,7 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
     private void ExplodeBomb(Coordinate bombCoord, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         context.IsIdle = false;
-       
+
         gridPointer.SetObject(bombCoord, objectFactory.CreateEmpty());
         spriteGrid.RemoveObjectSprite(bombCoord);
         spriteGrid.PlayEffect(EffectIds.Explosion, bombCoord);

@@ -179,8 +179,8 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
             effectSprites.Add(sprite.CurrentPosition, sprite);
         }
         var finishedSprites = animatingEffects.FindAll(sprite => sprite.IsFinished);
-        
-        foreach(var sprite in finishedSprites)
+
+        foreach (var sprite in finishedSprites)
         {
             effectSprites.Remove(sprite.CurrentPosition);
         }

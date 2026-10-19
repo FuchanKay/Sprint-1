@@ -1,6 +1,4 @@
-using System.Linq;
-using Scripts.Game;
-
+namespace Scripts.Game;
 public class ExplodeObjectEvent : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
