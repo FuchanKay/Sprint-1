@@ -5,15 +5,16 @@ using Scripts.Game;
 
 public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectFactory, SubEventCallStack subEventStack) : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    protected List<Coordinate> BombCoords = bombCoords;
+    public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
-        foreach (var bombCoord in bombCoords)
+        foreach (var bombCoord in BombCoords)
         {
             ExplodeBomb(bombCoord, spriteGrid, gridPointer, context);
         }
     }
 
-    private void ExplodeBomb(Coordinate bombCoord, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    protected void ExplodeBomb(Coordinate bombCoord, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
        
         gridPointer.SetObject(bombCoord, objectFactory.CreateEmpty());
