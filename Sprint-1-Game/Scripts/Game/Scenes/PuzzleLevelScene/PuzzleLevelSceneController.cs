@@ -16,7 +16,6 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
     {
         LevelFileParser = new(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory);
         Level = LevelFileParser.ParseLevelFile("Content/Levels/Level1.csv");
-        Level.Init();
     }
     public void Update(int dtMs)
     {

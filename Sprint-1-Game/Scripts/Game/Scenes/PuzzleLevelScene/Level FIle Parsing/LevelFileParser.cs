@@ -15,6 +15,7 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
     public PuzzleLevel ParseLevelFile(string levelFilePath)
     {
         PuzzleLevel level = new(objectFactory, tileFactory, objectSpriteFactory, tileSpriteFactory);
+        level.Init();
         string[] lines = File.ReadAllLines(levelFilePath);
         int currentLine = 0;
 

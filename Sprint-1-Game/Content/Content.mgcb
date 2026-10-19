@@ -210,7 +210,5 @@
 /build:Images/warlock.png
 
 #begin Levels/Level1.csv
-/importer:
-/processor:
-/build:Levels/Level1.csv
+/copy:Levels/Level1.csv
 
