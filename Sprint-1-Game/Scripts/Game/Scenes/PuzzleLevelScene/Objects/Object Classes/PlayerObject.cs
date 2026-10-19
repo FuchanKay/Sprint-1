@@ -6,4 +6,5 @@ public class PlayerObject : IObject
     public Directions Direction { get; set; } = Directions.South;
     public bool IsPushable => false;
     public bool IsDestructible => false;
+    public bool IsRotatable => true;
 }

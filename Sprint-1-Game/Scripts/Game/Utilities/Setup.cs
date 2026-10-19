@@ -59,6 +59,7 @@ public class Setup(ContentManager content)
     {
         int pushFrames = 4;
         int rotateFrames = 2;
+        int rotateDelay = 200;
         // walk
         TextureAtlas.AddAnimation(AnimationNames.PlayerWalkNorth, 2, 0, 6, 64, 64, 50);
         TextureAtlas.AddAnimation(AnimationNames.PlayerWalkSouth, 3, 0, 6, 64, 64, 50);
@@ -67,15 +68,15 @@ public class Setup(ContentManager content)
         // snap
         TextureAtlas.AddAnimation(AnimationNames.PlayerSnap, 4, 0, 6, 64, 64);
         // rotate counterclockwise
-        TextureAtlas.AddAnimation(AnimationNames.PlayerRotateSE, 5, 0, rotateFrames, 64, 64);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerRotateEN, 5, 2, rotateFrames, 64, 64);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerRotateNW, 5, 4, rotateFrames, 64, 64);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerRotateWS, 5, 6, rotateFrames, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.RotateSE, 5, 0, rotateFrames, 64, 64, rotateDelay);
+        TextureAtlas.AddAnimation(AnimationNames.RotateEN, 5, 2, rotateFrames, 64, 64, rotateDelay);
+        TextureAtlas.AddAnimation(AnimationNames.RotateNW, 5, 4, rotateFrames, 64, 64, rotateDelay);
+        TextureAtlas.AddAnimation(AnimationNames.RotateWS, 5, 6, rotateFrames, 64, 64, rotateDelay);
         // rotate clockwise
-        TextureAtlas.AddAnimation(AnimationNames.PlayerRotateSW, 6, 0, rotateFrames, 64, 64);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerRotateWN, 6, 2, rotateFrames, 64, 64);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerRotateNE, 6, 4, rotateFrames, 64, 64);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerRotateES, 6, 6, rotateFrames, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.RotateSW, 6, 0, rotateFrames, 64, 64, rotateDelay);
+        TextureAtlas.AddAnimation(AnimationNames.RotateWN, 6, 2, rotateFrames, 64, 64, rotateDelay);
+        TextureAtlas.AddAnimation(AnimationNames.RotateNE, 6, 4, rotateFrames, 64, 64, rotateDelay);
+        TextureAtlas.AddAnimation(AnimationNames.RotateES, 6, 6, rotateFrames, 64, 64, rotateDelay);
 
         // push
         TextureAtlas.AddAnimation(AnimationNames.PlayerPushNorth, 8, 4, pushFrames, 64, 64);
@@ -84,8 +85,8 @@ public class Setup(ContentManager content)
         TextureAtlas.AddAnimation(AnimationNames.PlayerPushWest, 7, 4, pushFrames, 64, 64);
 
         // tiles
-        TextureAtlas.AddAnimation(AnimationNames.BugTileRotate, 2, 0, rotateFrames, 64, 64);
-        TextureAtlas.AddAnimation(AnimationNames.BugTileRotateCC, 2, 2, rotateFrames, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.BugTileRotate, 2, 0, rotateFrames, 64, 64, rotateDelay);
+        TextureAtlas.AddAnimation(AnimationNames.BugTileRotateCC, 2, 2, rotateFrames, 64, 64, rotateDelay);
 
         // obj explode
         TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 0, 4, 105, 96);
@@ -94,10 +95,10 @@ public class Setup(ContentManager content)
     private void AddRegions()
     {
         // player
-        TextureAtlas.AddRegion(RegionNames.PlayerIdleNorth, 3, 5, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.PlayerIdleSouth, 7, 5, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.PlayerIdleEast, 1, 5, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.PlayerIdleWest, 5, 5, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.IdleNorth, 3, 5, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.IdleSouth, 7, 5, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.IdleEast, 1, 5, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.IdleWest, 5, 5, 64, 64);
 
         // tiles
         TextureAtlas.AddRegion(RegionNames.DirtTile, 0, 0, 64, 64);
