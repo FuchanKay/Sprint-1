@@ -12,13 +12,13 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
     private const int DimensionsIdx = 1;
     private const string DimensionsDelimiter = "x";
     private const int SpacerRow = 1;
-    public PuzzleLevel parseLevelFile(string levelFilePath)
+    public PuzzleLevel ParseLevelFile(string levelFilePath)
     {
         PuzzleLevel level = new(objectFactory, tileFactory, objectSpriteFactory, tileSpriteFactory);
         string[] lines = File.ReadAllLines(levelFilePath);
         int currentLine = 0;
 
-        string[] headerValues = parseHeader(lines[currentLine++]);
+        string[] headerValues = ParseHeader(lines[currentLine++]);
         string levelName = headerValues[NameIdx];
         int levelWidth = int.Parse(headerValues[DimensionsIdx].Substring(0, headerValues[DimensionsIdx].IndexOf(DimensionsDelimiter)));
         int levelHeight = int.Parse(headerValues[DimensionsIdx].Substring(headerValues[DimensionsIdx].IndexOf(DimensionsDelimiter) + 1));
@@ -28,17 +28,17 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
 
         currentLine += SpacerRow;
 
-        parseGrids(level,lines, currentLine, levelWidth, levelHeight);
+        ParseGrids(level,lines, currentLine, levelWidth, levelHeight);
 
         return level;
     }
-    private string[] parseHeader(string headerLine)
+    private string[] ParseHeader(string headerLine)
     {
         string[] headerParts = headerLine.Split(Delimiter);
         return headerParts[..2];
     }
 
-    private void parseGrids(PuzzleLevel level, string[] lines, int currentLine, int levelWidth, int levelHeight)
+    private void ParseGrids(PuzzleLevel level, string[] lines, int currentLine, int levelWidth, int levelHeight)
     {
         for (int i = 0; i < levelHeight; i++)
         {

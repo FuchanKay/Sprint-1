@@ -6,6 +6,7 @@ namespace Scripts.Game;
 public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas textureAtlas) : ISceneController
 {
     private PuzzleLevel Level;
+    private LevelFileParser LevelFileParser;
     private ObjectFactory ObjectFactory = new();
     private TileFactory TileFactory = new();
     private ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
@@ -13,7 +14,8 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
 
     public void Init()
     {
-        Level = new(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory);
+        LevelFileParser = new(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory);
+        Level = LevelFileParser.ParseLevelFile("Content/Levels/Level1.csv");
         Level.Init();
     }
     public void Update(int dtMs)
