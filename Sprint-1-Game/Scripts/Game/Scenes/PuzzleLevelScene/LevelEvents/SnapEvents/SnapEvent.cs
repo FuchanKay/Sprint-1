@@ -10,9 +10,9 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
 
-        playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerSnap);
-        spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
-        spriteGrid.StartObjectAnimation(playerSprite);
+        // playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerSnap);
+        // spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
+        // spriteGrid.StartObjectAnimation(playerSprite);
 
         var bombCoords = gridPointer.GetObjectPointers(ObjectIds.Bomb).Keys.ToList();
         var timedBombCoords = gridPointer.GetObjectPointers(ObjectIds.TimedBomb).Keys.ToList();
@@ -33,7 +33,8 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
             timedBomb.TimeRemaining--;
             Console.WriteLine($"Timed bomb at {timedBombCoord} has {timedBomb.TimeRemaining} time remaining");
         }
-
+        WarlockSwapEvent warlockSwapEvent = new WarlockSwapEvent();
+        warlockSwapEvent.Execute( spriteGrid,  gridPointer,  context);
         context.IsIdle = false;
     }
 
