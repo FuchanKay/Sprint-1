@@ -26,8 +26,6 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
         level.Context.LevelHeight = levelHeight;
         level.Context.LevelName = levelName;
 
-        currentLine += SpacerRow;
-
         ParseGrids(level,lines, currentLine, levelWidth, levelHeight);
 
         return level;
