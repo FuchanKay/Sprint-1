@@ -1,5 +1,6 @@
+using System.Collections.Generic;
 namespace Scripts.Game;
-public class BombSnapEvent(ObjectFactory objectFactory) : ILevelSubEvent
+public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectFactory, SubEventCallStack subEventStack) : ILevelSubEvent
 {
     protected List<Coordinate> BombCoords = bombCoords;
     public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
