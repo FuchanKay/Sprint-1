@@ -17,7 +17,8 @@ public class MovePlayerEvent(Directions direction, ObjectFactory objectFactory) 
         {
             SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack));
             SubEventStack.Push(new MovePlayerSubEvent(direction, objectFactory));
-        } else if(isFacingDirection && isDestinationPushable)
+        }
+        else if (isFacingDirection && isDestinationPushable)
         {
             SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack));
             SubEventStack.Push(new PushSubEvent(direction, objectFactory));

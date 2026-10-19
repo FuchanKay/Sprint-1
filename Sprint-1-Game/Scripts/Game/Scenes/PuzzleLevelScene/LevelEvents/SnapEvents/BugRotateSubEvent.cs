@@ -62,6 +62,6 @@ public class BugRotateSubEvent : ILevelSubEvent
             spriteGrid.SetObjectSprite(bugCoord, bugCoord, sprite);
             spriteGrid.StartObjectAnimation(sprite);
         }
-        
+
     }
 }
