@@ -19,10 +19,12 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
         int currentLine = 0;
 
         string[] headerValues = parseHeader(lines[currentLine++]);
+        string levelName = headerValues[NameIdx];
         int levelWidth = int.Parse(headerValues[DimensionsIdx].Substring(0, headerValues[DimensionsIdx].IndexOf(DimensionsDelimiter)));
         int levelHeight = int.Parse(headerValues[DimensionsIdx].Substring(headerValues[DimensionsIdx].IndexOf(DimensionsDelimiter) + 1));
         level.Context.LevelWidth = levelWidth;
         level.Context.LevelHeight = levelHeight;
+        level.Context.LevelName = levelName;
 
         currentLine += SpacerRow;
 

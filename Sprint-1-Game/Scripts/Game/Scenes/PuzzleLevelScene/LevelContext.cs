@@ -2,6 +2,7 @@ namespace Scripts.Game;
 
 public class LevelContext
 {
+    public string LevelName { get; set; }
     public int LevelWidth { get; set; }
     public int LevelHeight { get; set; }
     public int GridSpriteWidthPx { get; set; }
