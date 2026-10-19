@@ -12,12 +12,13 @@ public class MovePlayerEvent(Directions direction, ObjectFactory objectFactory) 
 
         var isFacingDirection = playerObj.Direction == direction;
         var isDestinationEmpty = destinationGrid.Object.Id == ObjectIds.Empty;
+        var isDestinationWalkable = destinationGrid.Tile.IsWalkable;
         var isDestinationPushable = destinationGrid.Object.IsPushable;
-        if (isFacingDirection && isDestinationEmpty)
+        if (isFacingDirection && isDestinationEmpty && isDestinationWalkable)
         {
             SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack));
             SubEventStack.Push(new MovePlayerSubEvent(direction, objectFactory));
-        } else if(isFacingDirection && isDestinationPushable)
+        } else if(isFacingDirection && isDestinationPushable && isDestinationWalkable)
         {
             SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack));
             SubEventStack.Push(new PushSubEvent(direction, objectFactory));
