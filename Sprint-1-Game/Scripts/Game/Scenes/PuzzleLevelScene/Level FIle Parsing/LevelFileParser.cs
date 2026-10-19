@@ -1,33 +1,32 @@
 using System;
 using System.IO;
-using Microsoft.Xna.Framework.Graphics;
-using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
 public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactory, ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory)
 {
     private readonly string Delimiter = ",";
-    private const int NameIdx = 0;
-    private const int DimensionsIdx = 1;
-    private const string DimensionsDelimiter = "x";
-    private const int SpacerRow = 1;
+    private readonly int NameIdx = 0;
+    private readonly int DimensionsIdx = 1;
+    private readonly string DimensionsDelimiter = "x";
+    private readonly int SpacerRow = 1;
     public PuzzleLevel ParseLevelFile(string levelFilePath)
     {
         PuzzleLevel level = new(objectFactory, tileFactory, objectSpriteFactory, tileSpriteFactory);
-        level.Init();
+        level.GridPointer.Init();
         string[] lines = File.ReadAllLines(levelFilePath);
         int currentLine = 0;
 
         string[] headerValues = ParseHeader(lines[currentLine++]);
-        string levelName = headerValues[NameIdx];
+        level.Context.LevelName = headerValues[NameIdx];
         int levelWidth = int.Parse(headerValues[DimensionsIdx].Substring(0, headerValues[DimensionsIdx].IndexOf(DimensionsDelimiter)));
         int levelHeight = int.Parse(headerValues[DimensionsIdx].Substring(headerValues[DimensionsIdx].IndexOf(DimensionsDelimiter) + 1));
         level.Context.LevelWidth = levelWidth;
         level.Context.LevelHeight = levelHeight;
-        level.Context.LevelName = levelName;
 
         ParseGrids(level,lines, currentLine, levelWidth, levelHeight);
+
+        level.SpriteGrid.Init(level.GridPointer, level.Context);
 
         return level;
     }
@@ -39,24 +38,24 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
 
     private void ParseGrids(PuzzleLevel level, string[] lines, int currentLine, int levelWidth, int levelHeight)
     {
-        for (int i = 0; i < levelHeight; i++)
+        for (int y = 0; y < levelHeight; y++)
         {
-            string tileLine = lines[currentLine + i];
-            string objectLine = lines[currentLine + levelHeight + SpacerRow + i];
+            string tileLine = lines[currentLine + y];
+            string objectLine = lines[currentLine + levelHeight + SpacerRow + y];
             string[] tileValues = tileLine.Split(Delimiter);
             string[] objectValues = objectLine.Split(Delimiter);
-            for (int j = 0; j < levelWidth; j++)
+            for (int x = 0; x < levelWidth; x++)
             {
-                string tileValue = tileValues[j];
-                string objectValue = objectValues[j];
-                ITile tile = ProcessTile(tileValue, j, i);
-                IObject @object = ProcessObject(objectValue, j, i);
+                string tileValue = tileValues[x];
+                string objectValue = objectValues[x];
+                ITile tile = ProcessTile(tileValue, x, y);
+                IObject @object = ProcessObject(objectValue, x, y);
                 Grid grid = new()
                 {
                     Tile = tile,
                     Object = @object
                 };
-                level.GridPointer.SetGrid(new Coordinate(j, i), grid);
+                level.GridPointer.SetGrid(new Coordinate(x, y), grid);
             }
         }
     }
