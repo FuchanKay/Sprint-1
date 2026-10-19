@@ -1,3 +1,5 @@
+using System;
+
 namespace Scripts.Game;
 
 public class AnimationNames
@@ -10,19 +12,44 @@ public class AnimationNames
     public readonly static string PlayerPushSouth = "Player Push South";
     public readonly static string PlayerPushEast = "Player Push East";
     public readonly static string PlayerPushWest = "Player Push West";
-    public readonly static string PlayerRotateSE = "Player Rotate SE";
-    public readonly static string PlayerRotateEN = "Player Rotate EN";
-    public readonly static string PlayerRotateNW = "Player Rotate NW";
-    public readonly static string PlayerRotateWS = "Player Rotate WS";
-    public readonly static string PlayerRotateSW = "Player Rotate SW";
-    public readonly static string PlayerRotateWN = "Player Rotate WN";
-    public readonly static string PlayerRotateNE = "Player Rotate NE";
-    public readonly static string PlayerRotateES = "Player Rotate ES";
+
+    public readonly static string RotateSE = "Object Rotate SE";
+    public readonly static string RotateEN = "Object Rotate EN";
+    public readonly static string RotateNW = "Object Rotate NW";
+    public readonly static string RotateWS = "Object Rotate WS";
+    public readonly static string RotateSW = "Object Rotate SW";
+    public readonly static string RotateWN = "Object Rotate WN";
+    public readonly static string RotateNE = "Object Rotate NE";
+    public readonly static string RotateES = "Object Rotate ES";
     public readonly static string PlayerSnap = "Player Snap";
     public readonly static string BugTileRotate = "Bug Tile Rotate";
     public readonly static string BugTileRotateCC = "Bug Tile Rotate Counterclockwise";
     public readonly static string Explosion = "Explosion";
     public readonly static string PumpkinGrowth = "Pumpkin Growth";
+
+    public static string ObjectRotateClockwiseFrom(Directions direction)
+    {
+        return direction switch
+        {
+            Directions.North => RotateNE,
+            Directions.East => RotateES,
+            Directions.South => RotateSW,
+            Directions.West => RotateWN,
+            _ => throw new ArgumentException("Direction not valid"),
+        };
+    }
+
+    public static string ObjectRotateCounterclockwiseFrom(Directions direction)
+    {
+        return direction switch
+        {
+            Directions.North => RotateNW,
+            Directions.West => RotateWS,
+            Directions.South => RotateSE,
+            Directions.East => RotateEN,
+            _ => throw new ArgumentException("Direction not valid"),
+        };
+    }
 
     public static string ToPlayerMovingAnimationName(Directions direction)
     {
@@ -33,6 +60,18 @@ public class AnimationNames
             Directions.South => PlayerWalkSouth,
             Directions.West => PlayerWalkWest,
             _ => PlayerWalkEast,
+        };
+    }
+
+    public static string ToPlayerPushAnimationName(Directions direction)
+    {
+        return direction switch
+        {
+            Directions.North => PlayerPushNorth,
+            Directions.East => PlayerPushEast,
+            Directions.South => PlayerPushSouth,
+            Directions.West => PlayerPushWest,
+            _ => PlayerPushEast,
         };
     }
 

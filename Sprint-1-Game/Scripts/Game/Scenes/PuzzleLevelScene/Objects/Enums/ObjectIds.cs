@@ -12,6 +12,5 @@ public enum ObjectIds
     Wall,
     Bomb,
     TimedBomb,
-    Pumpkin,
-    Explosion
+    Pumpkin
 }

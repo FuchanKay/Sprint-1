@@ -10,10 +10,14 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
 {
     private readonly Dictionary<Vector2, ISprite> ObjectSprites = [];
     private readonly Dictionary<Vector2, ISprite> TileSprites = [];
+    private readonly Dictionary<Vector2, ISprite> EffectSprites = [];
     private readonly List<ISprite> AnimatingObjectSprites = [];
     private readonly List<ISprite> AnimatingTileSprites = [];
+    private readonly List<ISprite> AnimatingEffectSprites = [];
     public bool IsIdle { get; private set; }
     private LevelContext Context;
+
+    public readonly int PushDuration = 400;
 
     public void Init(GridPointer gridPointer, LevelContext context)
     {
@@ -76,22 +80,18 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         Must remove and add each time a sprite is set in case 
         the type (static or animated) changed
         */
-        if (!ObjectSprites.Remove(realCurrentCoord))
-        {
-            throw new ArgumentException("Object sprite not found at current coord");
-        }
+        ObjectSprites.Remove(realCurrentCoord);
         ObjectSprites.Add(realCurrentCoord, sprite);
 
         sprite.SetTargetPosition(realTargetCoord);
     }
 
-    public void SyncObjectSprite(Coordinate coord, GridPointer gridPointer)
+    public void PlayEffect(EffectIds effectId, Coordinate coord)
     {
         var realCoord = CalculateLiteralPos(coord);
-        ObjectSprites.Remove(realCoord);
-        var obj = gridPointer.GetObject(coord);
-        var sprite = objectSpriteFactory.CreateObjectSprite(obj, realCoord, Context);
-        ObjectSprites.Add(realCoord, sprite);
+        ISprite sprite = objectSpriteFactory.CreateEffectSprite(effectId, realCoord, Context);
+        EffectSprites.Add(realCoord, sprite);
+        StartEffectAnimation(sprite);
     }
 
     public void RemoveObjectSprite(Coordinate coord)
@@ -105,22 +105,10 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         var realCurrentCoord = CalculateLiteralPos(currentCoord);
         var realTargetCoord = CalculateLiteralPos(targetCoord);
 
-        if (!TileSprites.Remove(realCurrentCoord))
-        {
-            throw new ArgumentException("Tile sprite not found at current coord");
-        }
+        TileSprites.Remove(realCurrentCoord);
         TileSprites.Add(realCurrentCoord, sprite);
 
         sprite.SetTargetPosition(realTargetCoord);
-    }
-
-    public void CycleTileSprite(Coordinate coord, GridPointer gridPointer)
-    {
-        var realCoord = CalculateLiteralPos(coord);
-        TileSprites.Remove(realCoord);
-        var tile = gridPointer.GetTile(coord);
-        var sprite = tileSpriteFactory.CreateTileSprite(tile, realCoord, Context);
-        TileSprites.Add(realCoord, sprite);
     }
 
     public void StartObjectAnimation(ISprite sprite)
@@ -133,10 +121,16 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         AnimatingTileSprites.Add(sprite);
     }
 
+    public void StartEffectAnimation(ISprite sprite)
+    {
+        AnimatingEffectSprites.Add(sprite);
+    }
+
     public void Update(int dtMs)
     {
         UpdateAnimatingList(dtMs, AnimatingObjectSprites, ObjectSprites);
         UpdateAnimatingList(dtMs, AnimatingTileSprites, TileSprites);
+        UpdateEffectsList(dtMs, AnimatingEffectSprites, EffectSprites);
 
         bool animObjEmpty = AnimatingObjectSprites.Count == 0;
         bool animTileEmpty = AnimatingTileSprites.Count == 0;
@@ -156,6 +150,11 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
             var objectSprite = coordAndObjSprite.Value;
             objectSprite.Draw(sb);
         }
+        foreach (var coordAndEffectSprite in EffectSprites)
+        {
+            var effectSprite = coordAndEffectSprite.Value;
+            effectSprite.Draw(sb);
+        }
     }
 
     private static void UpdateAnimatingList(int dtMs, List<ISprite> currentList, Dictionary<Vector2, ISprite> currentDict)
@@ -167,15 +166,26 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
             currentDict.Add(sprite.CurrentPosition, sprite);
         }
         var finishedSprites = currentList.FindAll(sprite => sprite.IsFinished);
-        var finishedExplosions = finishedSprites.FindAll(sprite => sprite.IdleName == RegionNames.Explosion);
         ResetToIdle(finishedSprites, currentDict);
-
         currentList.RemoveAll(sprite => sprite.IsFinished);
+    }
 
-        foreach (var explosion in finishedExplosions)
+    private static void UpdateEffectsList(int dtMs, List<ISprite> animatingEffects, Dictionary<Vector2, ISprite> effectSprites)
+    {
+        foreach (var sprite in animatingEffects)
         {
-            currentDict.Remove(explosion.CurrentPosition);
+            effectSprites.Remove(sprite.CurrentPosition);
+            sprite.Update(dtMs);
+            effectSprites.Add(sprite.CurrentPosition, sprite);
         }
+        var finishedSprites = animatingEffects.FindAll(sprite => sprite.IsFinished);
+        
+        foreach(var sprite in finishedSprites)
+        {
+            effectSprites.Remove(sprite.CurrentPosition);
+        }
+
+        animatingEffects.RemoveAll(sprite => sprite.IsFinished);
     }
 
     private static void ResetToIdle(List<ISprite> finishedSprites, Dictionary<Vector2, ISprite> currentDict)
@@ -193,7 +203,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         finishedSprites.Clear();
     }
 
-    private Vector2 CalculateLiteralPos(Coordinate coord)
+    public Vector2 CalculateLiteralPos(Coordinate coord)
     {
         var spriteWidth = (int)(Context.GridSpriteWidthPx * Context.GridScale);
         var spriteX = spriteWidth * coord.X + Context.PuzzleOffsetX;

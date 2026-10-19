@@ -11,5 +11,6 @@ public class BlueLizardObject : IObject
     public Directions Direction { get; set; } = Directions.South;
     public bool IsPushable => true;
     public bool IsDestructible => true;
+    public bool IsRotatable => false;
 
 }

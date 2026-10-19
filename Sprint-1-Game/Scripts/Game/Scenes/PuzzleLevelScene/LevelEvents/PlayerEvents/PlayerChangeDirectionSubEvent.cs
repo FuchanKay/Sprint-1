@@ -13,7 +13,7 @@ public class PlayerChangeDirectionSubEvent(Directions direction) : ILevelSubEven
             playerObj.Direction = direction;
 
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
-            var playerIdleSpriteRegion = RegionNames.ToPlayerIdleRegionName(direction);
+            var playerIdleSpriteRegion = RegionNames.ToIdleRegionName(direction);
             playerSprite = playerSprite.ConvertToStatic(playerIdleSpriteRegion);
             playerSprite.IdleName = playerIdleSpriteRegion;
             spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);

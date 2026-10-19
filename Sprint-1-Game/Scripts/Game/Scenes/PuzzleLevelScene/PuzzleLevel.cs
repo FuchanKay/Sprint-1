@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Scripts.Game;
@@ -16,7 +17,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         GridScale = 0.25f,
         PuzzleOffsetX = 400,
         PuzzleOffsetY = 50,
-        IsIdle = true
+        IsIdle = true,
+        PlayerIsDead = false
     };
     private readonly GridPointer GridPointer = new();
     private readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
@@ -55,6 +57,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     {
         if (CurrentEvent == null) return false;
         if (!Context.IsIdle) return false;
+        if(Context.PlayerIsDead) return false;
 
         var CurrentEventIsFinished = CurrentEvent.SubEventStack.Count() == 0;
         if (CurrentEventIsFinished && EventQueue.Count > 0)
@@ -94,9 +97,11 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
         CreateWallBorders();
 
+        GridPointer.SetObject(new Coordinate(7, 6), objectFactory.CreateWarlock());
+
         GridPointer.SetObject(new Coordinate(7, 5), objectFactory.CreateSkeleton());
         GridPointer.SetObject(new Coordinate(7, 2), objectFactory.CreateBomb());
-        GridPointer.SetObject(new Coordinate(4, 5), objectFactory.CreatePumpkin());
+        GridPointer.SetObject(new Coordinate(6, 2), objectFactory.CreateDefaultRock());
         GridPointer.SetObject(new Coordinate(2, 2), objectFactory.CreatePlayer());
 
         GridPointer.SetTile(new Coordinate(2, 2), tileFactory.CreateWaterTile());

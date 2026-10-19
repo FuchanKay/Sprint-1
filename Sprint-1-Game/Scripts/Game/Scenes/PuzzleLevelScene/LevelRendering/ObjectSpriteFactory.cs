@@ -1,3 +1,4 @@
+using System.Data;
 using Microsoft.Xna.Framework;
 using Scripts.GameComponents;
 
@@ -6,6 +7,7 @@ namespace Scripts.Game;
 public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
 {
     private readonly static float ObjectLayerDepth = 1.0f;
+    private readonly static float EffectLayerDepth = 0.5f;
     public ISprite CreateObjectSprite(IObject obj, Vector2 coord, LevelContext context)
     {
         ISprite sprite;
@@ -22,7 +24,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 break;
             case ObjectIds.Player:
                 sprite = new StaticSprite(textureAtlas);
-                var idleState = RegionNames.ToPlayerIdleRegionName(obj.Direction);
+                var idleState = RegionNames.ToIdleRegionName(obj.Direction);
                 sprite.SetState(idleState);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Player);
                 sprite.IdleName = idleState;
@@ -38,6 +40,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.Bomb);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Bomb);
+                sprite.IdleName = RegionNames.Bomb;
                 break;
             case ObjectIds.TimedBomb:
                 sprite = new StaticSprite(textureAtlas);
@@ -51,18 +54,11 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Pumpkin);
                 sprite.IdleName = RegionNames.PumpkinSeed;
                 break;
-            case ObjectIds.Explosion:
-                sprite = new AnimatedSprite(textureAtlas);
-                sprite.SetState(AnimationNames.Explosion);
-                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
-                sprite.IdleName = RegionNames.Explosion;
-                spriteScale = context.GridScale * 8.0f;
-                sprite.CurrentPosition = coord;
-                break;
             case ObjectIds.Skeleton:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.Skeleton);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Skeleton);
+                sprite.IdleName = RegionNames.Skeleton;
                 break;
             case ObjectIds.Warlock:
                 sprite = new StaticSprite(textureAtlas);
@@ -83,10 +79,40 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite = new StaticSprite(textureAtlas);
                 break;
         }
+        sprite.CurrentPosition = coord;
         sprite.SetTargetPosition(coord);
         sprite.LayerDepth = ObjectLayerDepth;
         sprite.Scale = spriteScale;
 
+        return sprite;
+    }
+
+    public ISprite CreateEffectSprite(EffectIds effectId, Vector2 coord, LevelContext context)
+    {
+        ISprite sprite = new AnimatedSprite(textureAtlas);
+        var spriteScale = context.GridScale;
+        switch (effectId)
+        {
+            case EffectIds.Explosion:
+                sprite.SetState(AnimationNames.Explosion);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
+                sprite.IdleName = RegionNames.Explosion;
+                spriteScale = context.GridScale * 8.0f;
+                break;
+            case EffectIds.PlayerDeath:
+                sprite.SetState(AnimationNames.Explosion);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
+                sprite.IdleName = RegionNames.Explosion;
+                spriteScale = context.GridScale * 3.5f;
+                sprite.Color = Color.SpringGreen;
+                break;
+            default:
+                break;
+        }
+        sprite.CurrentPosition = coord;
+        sprite.SetTargetPosition(coord);
+        sprite.LayerDepth = EffectLayerDepth;
+        sprite.Scale = spriteScale;
         return sprite;
     }
 }

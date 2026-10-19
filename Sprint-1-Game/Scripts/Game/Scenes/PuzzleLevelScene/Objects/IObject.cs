@@ -6,4 +6,5 @@ public interface IObject
     Directions Direction { get; set; }
     bool IsDestructible { get; }
     bool IsPushable { get; }
+    bool IsRotatable { get; }
 }

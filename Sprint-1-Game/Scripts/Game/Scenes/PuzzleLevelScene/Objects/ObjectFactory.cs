@@ -71,14 +71,6 @@ public class ObjectFactory()
         };
     }
 
-    public IObject CreateExplosion()
-    {
-        return new ExplosionObject
-        {
-            Direction = Directions.South,
-        };
-    }
-
     public IObject CreateSkeleton()
     {
         return new SkeletonObject

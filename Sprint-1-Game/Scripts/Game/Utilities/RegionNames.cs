@@ -18,10 +18,10 @@ public class RegionNames
     public readonly static string BugTile = "Bug Tile";
     public readonly static string BugTileCC = "Bug Tile Counterclockwise";
 
-    public readonly static string PlayerIdleSouth = "Player Idle South";
-    public readonly static string PlayerIdleNorth = "Player Idle North";
-    public readonly static string PlayerIdleEast = "Player Idle East";
-    public readonly static string PlayerIdleWest = "PlayerIdleWest";
+    public readonly static string IdleSouth = "Object Idle South";
+    public readonly static string IdleNorth = "Object Idle North";
+    public readonly static string IdleEast = "Object Idle East";
+    public readonly static string IdleWest = "Object Idle West";
     public readonly static string PumpkinSeed = "Pumpkin Seed";
     public readonly static string GrownPumpkin = "Grown Pumpkin";
 
@@ -30,15 +30,15 @@ public class RegionNames
     public readonly static string Skeleton = "Skeleton";
     public readonly static string Warlock = "Warlock";
 
-    public static string ToPlayerIdleRegionName(Directions direction)
+    public static string ToIdleRegionName(Directions direction)
     {
         return direction switch
         {
-            Directions.North => RegionNames.PlayerIdleNorth,
-            Directions.East => RegionNames.PlayerIdleEast,
-            Directions.South => RegionNames.PlayerIdleSouth,
-            Directions.West => RegionNames.PlayerIdleWest,
-            _ => RegionNames.PlayerIdleEast,
+            Directions.North => RegionNames.IdleNorth,
+            Directions.East => RegionNames.IdleEast,
+            Directions.South => RegionNames.IdleSouth,
+            Directions.West => RegionNames.IdleWest,
+            _ => RegionNames.IdleEast,
         };
     }
 }

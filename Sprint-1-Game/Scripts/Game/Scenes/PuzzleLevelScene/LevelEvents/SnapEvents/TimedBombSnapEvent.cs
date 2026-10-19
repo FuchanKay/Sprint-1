@@ -1,28 +1,21 @@
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using Scripts.Game;
 
-public class TimedBombSnapEvent(ObjectFactory objectFactory) : ILevelSubEvent
+public class TimedBombSnapSubEvent(List<Coordinate> timedBombCoords, ObjectFactory objectFactory, SubEventCallStack subEventStack)
+    : BombSnapSubEvent(timedBombCoords, objectFactory, subEventStack)
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    public override void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
-        var timedBombPointers = gridPointer.GetObjectPointers(ObjectIds.TimedBomb);
-        var timedBombCoords = timedBombPointers.Keys.ToList();
-        bool anyBombsExploded = false;
-        foreach (var timedBombCoord in timedBombCoords)
+         foreach (var timedBombCoord in BombCoords)
         {
-            var timedBombObject = gridPointer.GetObject(timedBombCoord) as TimedBombObject;
-            if (timedBombObject.TimeRemaining == 1)
+            TimedBombObject timedBomb = gridPointer.GetObject(timedBombCoord) as TimedBombObject;
+            if (timedBomb.TimeRemaining == 1)
             {
-                gridPointer.SetObject(timedBombCoord, objectFactory.CreateExplosion());
-                anyBombsExploded = true;
+                ExplodeBomb(timedBombCoord, spriteGrid, gridPointer, context);
             }
-            timedBombObject.TimeRemaining--;
-            Console.WriteLine($"Timed bomb at {timedBombCoord} has {timedBombObject.TimeRemaining} time remaining.");
-        }
-        if (anyBombsExploded)
-        {
-            new ExplodeObjectEvent().Execute(spriteGrid, gridPointer, context);
+            timedBomb.TimeRemaining--;
+            Console.WriteLine($"Timed bomb at {timedBombCoord} has {timedBomb.TimeRemaining} time remaining");
         }
     }
 }
