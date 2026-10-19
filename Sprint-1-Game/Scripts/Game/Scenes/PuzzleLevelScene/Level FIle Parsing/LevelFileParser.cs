@@ -21,6 +21,8 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
         string[] headerValues = parseHeader(lines[currentLine++]);
         int levelWidth = int.Parse(headerValues[DimensionsIdx].Substring(0, headerValues[DimensionsIdx].IndexOf(DimensionsDelimiter)));
         int levelHeight = int.Parse(headerValues[DimensionsIdx].Substring(headerValues[DimensionsIdx].IndexOf(DimensionsDelimiter) + 1));
+        level.Context.LevelWidth = levelWidth;
+        level.Context.LevelHeight = levelHeight;
 
         currentLine += SpacerRow;
 
@@ -58,10 +60,14 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
         {
             "_" => tileFactory.CreateEmptyTile(),
             "Dirt" => tileFactory.CreateDirtTile(),
+            "Grass" => tileFactory.CreateGrassTile(),
+            "Brick" => tileFactory.CreateBrickTile(),
+            "MossyBrick" => tileFactory.CreateMossyBrickTile(),
             "Pit" => tileFactory.CreatePitTile(),
             "Lava" => tileFactory.CreateLavaTile(),
             "Water" => tileFactory.CreateWaterTile(),
             "Bug" => tileFactory.CreateBugTile(),
+            "CCBug" => tileFactory.CreateCCBugTile(),
             _ => throw new Exception($"Unknown tile value: {tileValue} at position ({x}, {y})")
         };
     }

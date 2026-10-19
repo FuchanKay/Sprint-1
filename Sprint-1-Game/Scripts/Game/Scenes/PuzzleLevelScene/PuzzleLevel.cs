@@ -8,10 +8,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 {
     private readonly List<ILevelEvent> EventQueue = [];
     //TODO: Some constants regarding the width and height of each grid, the size of hte level, etc. probably should be moved somewhere else idk where
-    private readonly LevelContext Context = new()
+    public  LevelContext Context = new()
     {
-        LevelWidth = 10,
-        LevelHeight = 10,
         GridSpriteWidthPx = 256,
         GridSpriteHeightPx = 256,
         GridScale = 0.25f,
