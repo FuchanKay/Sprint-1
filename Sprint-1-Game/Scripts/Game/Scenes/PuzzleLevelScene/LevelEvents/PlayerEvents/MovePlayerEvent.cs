@@ -16,7 +16,7 @@ public class MovePlayerEvent(Directions direction, bool lockMove, ObjectFactory 
         if (isFacingDirection && isDestinationEmpty)
         {
             SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack));
-            SubEventStack.Push(new MovePlayerSubEvent(direction, objectFactory));
+            SubEventStack.Push(new DirectionalInputSubEvent(direction, objectFactory));
         } else if(isFacingDirection && isDestinationPushable)
         {
             SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack));
@@ -26,5 +26,6 @@ public class MovePlayerEvent(Directions direction, bool lockMove, ObjectFactory 
         {
             SubEventStack.Push(new PlayerChangeDirectionSubEvent(direction));
         }
+        if (!lockMove) SubEventStack.Push(new WarlockSwapEvent());
     }
 }

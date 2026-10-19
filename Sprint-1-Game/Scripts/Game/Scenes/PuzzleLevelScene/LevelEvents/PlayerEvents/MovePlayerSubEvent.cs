@@ -1,6 +1,6 @@
 namespace Scripts.Game;
 
-public class MovePlayerSubEvent(Directions direction, ObjectFactory objectFactory) : ILevelSubEvent
+public class DirectionalInputSubEvent(Directions direction, ObjectFactory objectFactory) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
