@@ -17,8 +17,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         PlayerIsDead = false
     };
     public GridPointer CurrentGridPointer;
-    public List<GridPointer> GridPointerCollection = [];
-    private readonly int MaxGridPointerCollectionCount = 4;
+    public List<GridPointer> UndoHistory = [];
+    private readonly int UndoHistoryMaxLength = 200;
     public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
     private readonly int MaxEventsQueued = 2;
     public bool IsIdle = true;
@@ -64,8 +64,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         if (CurrentEventIsFinished && EventQueue.Count > 0)
         {
             var clone = CurrentGridPointer.Clone();
-            GridPointerCollection.Add(clone);
-            if (GridPointerCollection.Count > MaxGridPointerCollectionCount) GridPointerCollection.RemoveAt(0);
+            UndoHistory.Add(clone);
+            if (UndoHistory.Count > UndoHistoryMaxLength) UndoHistory.RemoveAt(0);
 
             CurrentEvent = EventQueue[0];
             EventQueue.RemoveAt(0);
@@ -84,14 +84,14 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
     public void Undo()
     {
-        var canUndo = GridPointerCollection.Count > 0;
+        var canUndo = UndoHistory.Count > 0;
         if (!canUndo)
         {
             return;
         }
-        var top = GridPointerCollection.Count - 1;
-        CurrentGridPointer = GridPointerCollection[top];
-        GridPointerCollection.RemoveAt(top);
+        var top = UndoHistory.Count - 1;
+        CurrentGridPointer = UndoHistory[top];
+        UndoHistory.RemoveAt(top);
         SpriteGrid.Init(CurrentGridPointer, Context);
 
         CurrentEvent.SubEventStack.Clear();
