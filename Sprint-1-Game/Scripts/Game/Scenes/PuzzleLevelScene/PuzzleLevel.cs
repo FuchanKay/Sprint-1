@@ -63,9 +63,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         var CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
         if (CurrentEventIsFinished && EventQueue.Count > 0)
         {
-            var clone = CurrentGridPointer.Clone();
-            UndoHistory.Add(clone);
-            if (UndoHistory.Count > UndoHistoryMaxLength) UndoHistory.RemoveAt(0);
+            PushCurrentGridPointerClone();
 
             CurrentEvent = EventQueue[0];
             EventQueue.RemoveAt(0);
@@ -98,5 +96,24 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         EventQueue.Clear();
 
         Context.PlayerIsDead = false;
+    }
+
+    public void RestartLevel()
+    {
+        PushCurrentGridPointerClone();
+
+        CurrentGridPointer = levelFileParser.CreateGrids(LevelFile);
+        SpriteGrid.Init(CurrentGridPointer, Context);
+
+        CurrentEvent.SubEventStack.Clear();
+        EventQueue.Clear();
+        Context.PlayerIsDead = false;
+    }
+
+    private void PushCurrentGridPointerClone()
+    {
+        var clone = CurrentGridPointer.Clone();
+        UndoHistory.Add(clone);
+        if (UndoHistory.Count > UndoHistoryMaxLength) UndoHistory.RemoveAt(0);
     }
 }
