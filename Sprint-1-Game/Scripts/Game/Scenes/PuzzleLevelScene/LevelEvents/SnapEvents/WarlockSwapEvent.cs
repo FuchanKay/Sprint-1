@@ -23,11 +23,6 @@ public class WarlockSwapEvent() : ILevelSubEvent
             gridPointer.SetObject(warLockCoord, playerObj);
             gridPointer.SetObject(playerCoord, warLockObj);
 
-            var testObj = gridPointer.GetObject(warLockCoord);
-            Console.WriteLine($"testObj.Idf is {testObj.Id}");
-            var testObj2 = gridPointer.GetObject(playerCoord);
-            Console.WriteLine($"testObj2.Idf is {testObj2.Id}");
-
             spriteGrid.RemoveObjectSprite(playerCoord);
             spriteGrid.RemoveObjectSprite(warLockCoord);
             playerSprite.CurrentPosition = spriteGrid.CalculateLiteralPos(warLockCoord);

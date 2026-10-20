@@ -5,13 +5,8 @@ public class MovePlayerEvent(Directions direction, bool lockMove, ObjectFactory 
     public SubEventCallStack SubEventStack { get; } = new();
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
-        var playerCoord = gridPointer.GetPlayerCoord();
-        var playerDestination = playerCoord + Coordinate.ToCoordinate(direction);
-        var destinationGrid = gridPointer.GetGrid(playerDestination);
-        var playerObj = gridPointer.GetObject(playerCoord);
-
         SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack, objectFactory));
-        SubEventStack.Push(new DirectionalInputSubEvent(direction, objectFactory));
+        if (!lockMove) SubEventStack.Push(new DirectionalInputSubEvent(direction, objectFactory));
         SubEventStack.Push(new PlayerChangeDirectionSubEvent(direction));
     }
 }

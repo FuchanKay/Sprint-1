@@ -12,10 +12,15 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
         var isFacingDirection = playerObj.Direction == direction;
         var isDestinationEmpty = destinationGrid.Object.Id == ObjectIds.Empty;
         var destinationObject = destinationGrid.Object;
+        var destinationTile = destinationGrid.Tile;
 
-        var onePastDestinationCoord = destinationCoord + Coordinate.ToCoordinate(direction) * 2;
+        var destinationPlus1Object = gridPointer.GetObject(playerCoord + Coordinate.ToCoordinate(direction) * 2);
+        var destinationPlus1ObjectIsEmpty = destinationPlus1Object.Id == ObjectIds.Empty;
 
-        var canPush = destinationObject.IsPushable && destinationGrid.Object.Id == ObjectIds.Empty;
+        var onePastDestinationCoord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
+
+        var canPush = destinationObject.IsPushable && destinationTile.IsWalkable && destinationPlus1ObjectIsEmpty;
+        var canMove = destinationTile.IsWalkable && isFacingDirection && isDestinationEmpty;
         if (canPush)
         {
             // set object sprite moving towards dest
@@ -36,8 +41,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
             gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
         }
-
-        if (isFacingDirection && isDestinationEmpty)
+        else if (canMove)
         {
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));
