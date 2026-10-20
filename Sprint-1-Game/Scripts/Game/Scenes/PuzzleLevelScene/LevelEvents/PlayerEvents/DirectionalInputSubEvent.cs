@@ -8,13 +8,14 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
         var playerObj = gridPointer.GetObject(playerCoord);
 
         var destinationCoord = playerCoord + Coordinate.ToCoordinate(direction);
-        var destinationGrid = gridPointer.GetGrid(destinationCoord);
-        var destinationObject = destinationGrid.Object;
+        var destinationCoordIsWithinBounds = CoordIsWithinBounds(destinationCoord, context.LevelWidth, context.LevelHeight);
 
-        var destinationPlus1Object = gridPointer.GetObject(playerCoord + Coordinate.ToCoordinate(direction) * 2);
-
-        if (CanPush(destinationGrid, destinationPlus1Object))
+        var destinationPlus1Coord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
+        var destinationPlus1CoordIsWithinBounds = CoordIsWithinBounds(destinationPlus1Coord, context.LevelWidth, context.LevelHeight);
+        if (destinationCoordIsWithinBounds && destinationPlus1CoordIsWithinBounds && CanPush(gridPointer.GetGrid(destinationCoord), gridPointer.GetObject(destinationPlus1Coord)))
         {
+            var destinationGrid = gridPointer.GetGrid(destinationCoord);
+            var destinationObject = destinationGrid.Object;
             var objectSprite = spriteGrid.GetObjectSprite(destinationCoord);
             objectSprite.Duration = spriteGrid.PushDuration;
             var onePastDestinationCoord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
@@ -32,7 +33,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
             gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
         }
-        else if (CanMove(playerObj, destinationGrid))
+        else if (destinationCoordIsWithinBounds && CanMove(playerObj, gridPointer.GetGrid(destinationCoord)))
         {
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));
@@ -56,7 +57,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
         return destinationTile.IsWalkable && isFacingDirection && isDestinationEmpty;
     }
 
-    private bool CanPush(Grid destinationGrid, IObject destinationPlus1Object)
+    private static bool CanPush(Grid destinationGrid, IObject destinationPlus1Object)
     {
         var destinationObject = destinationGrid.Object;
         var destinationTile = destinationGrid.Tile;
@@ -64,5 +65,11 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
         var destinationPlus1ObjectIsEmpty = destinationPlus1Object.Id == ObjectIds.Empty;
 
         return destinationObject.IsPushable && destinationTile.IsWalkable && destinationPlus1ObjectIsEmpty;
+    }
+
+    private static bool CoordIsWithinBounds(Coordinate coord, int width, int height)
+    {
+        return coord.X >= 0 && coord.X < width
+            && coord.Y >= 0 && coord.Y < height;
     }
 }
