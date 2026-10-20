@@ -6,7 +6,6 @@ namespace Scripts.Game;
 public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, LevelFileParser levelFileParser)
 {
     private readonly List<ILevelEvent> EventQueue = [];
-    //TODO: Some constants regarding the width and height of each grid, the size of hte level, etc. probably should be moved somewhere else idk where
     public  LevelContext Context = new()
     {
         GridSpriteWidthPx = 256,
@@ -18,7 +17,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         PlayerIsDead = false
     };
     public GridPointer CurrentGridPointer;
-    public Stack<GridPointer> GridPointerStack = [];
+    public List<GridPointer> GridPointerCollection = [];
+    private readonly int MaxGridPointerCollectionCount = 4;
     public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
     private readonly int MaxEventsQueued = 2;
     public bool IsIdle = true;
@@ -64,7 +64,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         if (CurrentEventIsFinished && EventQueue.Count > 0)
         {
             var clone = CurrentGridPointer.Clone();
-            GridPointerStack.Push(clone);
+            GridPointerCollection.Add(clone);
+            if (GridPointerCollection.Count > MaxGridPointerCollectionCount) GridPointerCollection.RemoveAt(0);
 
             CurrentEvent = EventQueue[0];
             EventQueue.RemoveAt(0);
@@ -83,12 +84,14 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
     public void Undo()
     {
-        var canUndo = GridPointerStack.Count > 0;
+        var canUndo = GridPointerCollection.Count > 0;
         if (!canUndo)
         {
             return;
         }
-        CurrentGridPointer = GridPointerStack.Pop();
+        var top = GridPointerCollection.Count - 1;
+        CurrentGridPointer = GridPointerCollection[top];
+        GridPointerCollection.RemoveAt(top);
         SpriteGrid.Init(CurrentGridPointer, Context);
 
         CurrentEvent.SubEventStack.Clear();
