@@ -6,7 +6,7 @@ public class BugTile : ITile
     {
         return new BugTile
         {
-            
+
         };
     }
     public TileIds Id => TileIds.Bug;

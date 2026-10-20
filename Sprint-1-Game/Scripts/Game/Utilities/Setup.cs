@@ -67,7 +67,7 @@ public class Setup(ContentManager content)
 
         // snap
         TextureAtlas.AddAnimation(AnimationNames.PlayerSnap, 4, 0, 6, 64, 64);
-        
+
         // rotate counterclockwise
         int rotateDelay = 200;
         int rotateFrames = 2;

@@ -6,7 +6,7 @@ public class PitTile : ITile
     {
         return new PitTile
         {
-            
+
         };
     }
     public TileIds Id => TileIds.Pit;

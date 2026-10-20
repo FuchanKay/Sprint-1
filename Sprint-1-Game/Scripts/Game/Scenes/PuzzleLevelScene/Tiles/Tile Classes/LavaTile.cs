@@ -6,7 +6,7 @@ public class LavaTile : ITile
     {
         return new LavaTile
         {
-            
+
         };
     }
     public TileIds Id => TileIds.Lava;

@@ -6,7 +6,7 @@ public class EmptyTile : ITile
     {
         return new EmptyTile
         {
-            
+
         };
     }
     public TileIds Id => TileIds.Empty;

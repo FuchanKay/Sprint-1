@@ -6,7 +6,7 @@ public class CCBugTile : ITile
     {
         return new CCBugTile
         {
-            
+
         };
     }
     public TileIds Id => TileIds.CCBug;

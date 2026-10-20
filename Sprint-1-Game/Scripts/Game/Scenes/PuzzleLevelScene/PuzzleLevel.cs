@@ -6,7 +6,7 @@ namespace Scripts.Game;
 public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, LevelFileParser levelFileParser)
 {
     private readonly List<ILevelEvent> EventQueue = [];
-    public  LevelContext Context = new()
+    public LevelContext Context = new()
     {
         GridSpriteWidthPx = 256,
         GridSpriteHeightPx = 256,
@@ -58,7 +58,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     {
         if (CurrentEvent == null) return;
         if (!Context.IsIdle) return;
-        if(Context.PlayerIsDead) return;
+        if (Context.PlayerIsDead) return;
 
         var CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
         if (CurrentEventIsFinished && EventQueue.Count > 0)

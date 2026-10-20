@@ -6,7 +6,7 @@ public class WaterTile : ITile
     {
         return new WaterTile
         {
-            
+
         };
     }
     public TileIds Id => TileIds.Water;
