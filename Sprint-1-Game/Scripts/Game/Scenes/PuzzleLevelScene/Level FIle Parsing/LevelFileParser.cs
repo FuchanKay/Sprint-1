@@ -44,7 +44,7 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
 
         int tileGridIdx = SpacerRow;
         int objectGridIdx = SpacerRow * 2 + levelHeight;
-        
+
         for (int y = 0; y < levelHeight; y++)
         {
             string tileLine = levelFile[tileGridIdx + y];
