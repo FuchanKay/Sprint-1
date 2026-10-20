@@ -57,11 +57,11 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
                 string tileValue = tileValues[x];
                 string objectValue = objectValues[x];
                 ITile tile = ProcessTile(tileValue, x, y);
-                IObject @object = ProcessObject(objectValue, x, y);
+                IObject obj = ProcessObject(objectValue, x, y);
                 Grid grid = new()
                 {
                     Tile = tile,
-                    Object = @object
+                    Object = obj
                 };
                 gridPointer.SetGrid(new Coordinate(x, y), grid);
             }
@@ -92,9 +92,8 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
     {
         string[] objectParts = objectValue.Split(ObjectDelimiter);
         string objectType = objectParts[0];
-        string direction = objectParts.Length > 1 ? objectParts[1] : null;
 
-        IObject @object = objectType switch
+        IObject obj = objectType switch
         {
             "_" => objectFactory.CreateEmpty(),
             "Player" => objectFactory.CreatePlayer(),
@@ -108,6 +107,6 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
             "RedLizard" => objectFactory.CreateRedLizard(),
             _ => throw new Exception($"Unknown object value: {objectValue} at position ({x}, {y})")
         };
-        return @object;
+        return obj;
     }
 }
