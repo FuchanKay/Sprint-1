@@ -21,7 +21,6 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     public Stack<GridPointer> GridPointerStack = [];
     public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
     private readonly int MaxEventsQueued = 2;
-    private readonly int MaximumGridPointerStackSize = 100;
     public bool IsIdle = true;
     private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, false, objectFactory);
     private string[] LevelFile;
@@ -94,5 +93,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
         CurrentEvent.SubEventStack.Clear();
         EventQueue.Clear();
+
+        Context.PlayerIsDead = false;
     }
 }
