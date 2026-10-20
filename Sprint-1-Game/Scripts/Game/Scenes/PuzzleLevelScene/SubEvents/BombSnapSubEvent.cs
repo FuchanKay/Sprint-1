@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 namespace Scripts.Game;
-public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectFactory, SubEventCallStack subEventStack) : ILevelSubEvent
+
+public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     protected List<Coordinate> BombCoords = bombCoords;
     public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
@@ -13,7 +14,7 @@ public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectF
 
     protected void ExplodeBomb(Coordinate bombCoord, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
-       
+
         gridPointer.SetObject(bombCoord, objectFactory.CreateEmpty());
         spriteGrid.RemoveObjectSprite(bombCoord);
         spriteGrid.PlayEffect(EffectIds.Explosion, bombCoord);
@@ -29,7 +30,8 @@ public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectF
                 {
                     gridPointer.SetObject(targetCoord, objectFactory.CreateEmpty());
                     spriteGrid.RemoveObjectSprite(targetCoord);
-                } else if (targetObj.Id == ObjectIds.Player)
+                }
+                else if (targetObj.Id == ObjectIds.Player)
                 {
                     subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
                 }

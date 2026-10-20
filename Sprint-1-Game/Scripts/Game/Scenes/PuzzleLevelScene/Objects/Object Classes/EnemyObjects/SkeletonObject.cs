@@ -7,6 +7,13 @@ Dead
 */
 public class SkeletonObject : IObject
 {
+    public IObject Clone()
+    {
+        return new SkeletonObject
+        {
+            Direction = Direction
+        };
+    }
     public ObjectIds Id => ObjectIds.Skeleton;
     public Directions Direction { get; set; } = Directions.South;
     public bool IsPushable => true;

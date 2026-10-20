@@ -47,7 +47,7 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
         }
         else if (buttonInput.IsPressed(InputNames.Undo))
         {
-            Level.EnqueueEvent(new UndoEvent());
+            Level.Undo();
         }
         Level.TryExecuteEvent();
 

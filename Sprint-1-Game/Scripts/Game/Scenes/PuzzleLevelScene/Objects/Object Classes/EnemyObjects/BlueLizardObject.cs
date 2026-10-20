@@ -7,6 +7,13 @@ Dead (squished?)
 */
 public class BlueLizardObject : IObject
 {
+    public IObject Clone()
+    {
+        return new BlueLizardObject
+        {
+            Direction = Direction
+        };
+    }
     public ObjectIds Id => ObjectIds.BlueLizard;
     public Directions Direction { get; set; } = Directions.South;
     public bool IsPushable => true;

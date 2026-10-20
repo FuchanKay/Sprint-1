@@ -51,6 +51,8 @@ public class Setup(ContentManager content)
 
         ButtonInput.MapInput(InputNames.ExitGame, (int)Keys.Q);
         ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.R);
+        ButtonInput.MapInput(InputNames.Undo, (int)Keys.Z);
+
 
         MouseInput.MapInput(InputNames.Select, (int)MouseButtons.Left);
     }
@@ -65,7 +67,7 @@ public class Setup(ContentManager content)
 
         // snap
         TextureAtlas.AddAnimation(AnimationNames.PlayerSnap, 4, 0, 6, 64, 64);
-        
+
         // rotate counterclockwise
         int rotateDelay = 200;
         int rotateFrames = 2;
