@@ -45,14 +45,17 @@ public class Setup(ContentManager content)
         ButtonInput.MapInput(InputNames.MoveEastAlt, (int)Keys.Right);
         ButtonInput.MapInput(InputNames.MoveSouthAlt, (int)Keys.Down);
         ButtonInput.MapInput(InputNames.MoveWestAlt, (int)Keys.Left);
+
+        ButtonInput.MapInput(InputNames.LCtrl, (int) Keys.LeftControl);
         ButtonInput.MapInput(InputNames.LShift, (int)Keys.LeftShift);
 
         ButtonInput.MapInput(InputNames.Snap, (int)Keys.F);
 
         ButtonInput.MapInput(InputNames.ExitGame, (int)Keys.Q);
         ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.R);
-        ButtonInput.MapInput(InputNames.Undo, (int)Keys.Z);
+        ButtonInput.MapInput(InputNames.ResetLevel, (int)Keys.R);
 
+        ButtonInput.MapInput(InputNames.Undo, (int)Keys.Z);
 
         MouseInput.MapInput(InputNames.Select, (int)MouseButtons.Left);
     }
