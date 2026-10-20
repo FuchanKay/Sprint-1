@@ -25,6 +25,8 @@ public class WarlockSwapEvent() : ILevelSubEvent
 
             spriteGrid.RemoveObjectSprite(playerCoord);
             spriteGrid.RemoveObjectSprite(warLockCoord);
+            spriteGrid.PlayEffect(EffectIds.WarlockSpell, warLockCoord);
+            spriteGrid.PlayEffect(EffectIds.WarlockSpell, playerCoord);
             playerSprite.CurrentPosition = spriteGrid.CalculateLiteralPos(warLockCoord);
             warlockSprite.CurrentPosition = spriteGrid.CalculateLiteralPos(playerCoord);
             spriteGrid.SetObjectSprite(warLockCoord, warLockCoord, playerSprite);
