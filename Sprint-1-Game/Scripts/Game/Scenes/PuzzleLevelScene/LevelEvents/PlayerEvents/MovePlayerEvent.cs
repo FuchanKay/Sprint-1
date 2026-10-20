@@ -10,7 +10,7 @@ public class MovePlayerEvent(Directions direction, bool lockMove, ObjectFactory 
         var destinationGrid = gridPointer.GetGrid(playerDestination);
         var playerObj = gridPointer.GetObject(playerCoord);
 
-        SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack));
+        SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack, objectFactory));
         SubEventStack.Push(new DirectionalInputSubEvent(direction, objectFactory));
         SubEventStack.Push(new PlayerChangeDirectionSubEvent(direction));
     }
