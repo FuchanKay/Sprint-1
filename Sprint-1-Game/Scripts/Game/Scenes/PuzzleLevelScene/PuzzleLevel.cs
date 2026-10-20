@@ -21,7 +21,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
     private readonly int MaxEventsQueued = 2;
     public bool IsIdle = true;
-    private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, objectFactory);
+    private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, false, objectFactory);
     private string[] LevelFile;
 
     public void Init(string levelFilePath)
