@@ -11,40 +11,47 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
     private readonly int WidthIdx = 1;
     private readonly int HeightIdx = 2;
     private readonly int SpacerRow = 1;
-    public PuzzleLevel ParseLevelFile(string levelFilePath)
+    public string[] ParseLevelFile(string levelFilePath)
     {
-        PuzzleLevel level = new(objectFactory, tileFactory, objectSpriteFactory, tileSpriteFactory);
-        level.GridPointer.Init();
-        string[] lines = File.ReadAllLines(levelFilePath);
-        int currentLine = 0;
-
-        string[] headerValues = ParseHeader(lines[currentLine++]);
-        level.Context.LevelName = headerValues[NameIdx];
-        int levelWidth = int.Parse(headerValues[WidthIdx]);
-        int levelHeight = int.Parse(headerValues[HeightIdx]);
-        level.Context.LevelWidth = levelWidth;
-        level.Context.LevelHeight = levelHeight;
-
-        ParseGrids(level,lines, currentLine, levelWidth, levelHeight);
-
-        level.SpriteGrid.Init(level.GridPointer, level.Context);
-
-        return level;
-    }
-    private string[] ParseHeader(string headerLine)
-    {
-        string[] headerParts = headerLine.Split(Delimiter);
-        return headerParts[..3];
+        return File.ReadAllLines(levelFilePath);
     }
 
-    private void ParseGrids(PuzzleLevel level, string[] lines, int currentLine, int levelWidth, int levelHeight)
+    public string GetLevelName(string[] levelFile)
     {
+        string[] headerParts = levelFile[0].Split(Delimiter);
+        return headerParts[NameIdx];
+    }
+
+    public int GetLevelWidth(string[] levelFile)
+    {
+        string[] headerParts = levelFile[0].Split(Delimiter);
+        return int.Parse(headerParts[WidthIdx]);
+    }
+
+    public int GetLevelHeight(string[] levelFile)
+    {
+        string[] headerParts = levelFile[0].Split(Delimiter);
+        return int.Parse(headerParts[HeightIdx]);
+    }
+
+    public GridPointer CreateGrids(string[] levelFile)
+    {
+        var gridPointer = new GridPointer();
+        gridPointer.Init();
+
+        int levelHeight = GetLevelHeight(levelFile);
+        int levelWidth = GetLevelWidth(levelFile);
+
+        int tileGridIdx = SpacerRow;
+        int objectGridIdx = SpacerRow * 2 + levelHeight;
+        
         for (int y = 0; y < levelHeight; y++)
         {
-            string tileLine = lines[currentLine + y];
-            string objectLine = lines[currentLine + levelHeight + SpacerRow + y];
+            string tileLine = levelFile[tileGridIdx + y];
+            string objectLine = levelFile[objectGridIdx + y];
             string[] tileValues = tileLine.Split(Delimiter);
             string[] objectValues = objectLine.Split(Delimiter);
+
             for (int x = 0; x < levelWidth; x++)
             {
                 string tileValue = tileValues[x];
@@ -56,9 +63,10 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
                     Tile = tile,
                     Object = @object
                 };
-                level.GridPointer.SetGrid(new Coordinate(x, y), grid);
+                gridPointer.SetGrid(new Coordinate(x, y), grid);
             }
         }
+        return gridPointer;
     }
 
     private ITile ProcessTile(string tileValue, int x, int y)

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Scripts.Game;
 
-public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory)
+public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, LevelFileParser levelFileParser)
 {
     private readonly List<ILevelEvent> EventQueue = [];
     //TODO: Some constants regarding the width and height of each grid, the size of hte level, etc. probably should be moved somewhere else idk where
@@ -16,19 +16,22 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         PuzzleOffsetY = 50,
         IsIdle = true
     };
-    public readonly GridPointer GridPointer = new();
+    public GridPointer GridPointer;
     public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
     private readonly int MaxEventsQueued = 2;
     public bool IsIdle = true;
     private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, objectFactory);
+    private string[] LevelFile;
 
-    // public void Init()
-    // {
-    //     //Temporary level initialization code
-    //     GridPointer.Init();
-    //     // CreateLevel();
-    //     SpriteGrid.Init(GridPointer, Context);
-    // }
+    public void Init(string levelFilePath)
+    {
+        LevelFile = levelFileParser.ParseLevelFile(levelFilePath);
+        Context.LevelName = levelFileParser.GetLevelName(LevelFile);
+        Context.LevelWidth = levelFileParser.GetLevelWidth(LevelFile);
+        Context.LevelHeight = levelFileParser.GetLevelHeight(LevelFile);
+        GridPointer = levelFileParser.CreateGrids(LevelFile);
+        SpriteGrid.Init(GridPointer, Context);
+    }
 
     public void Update(int dtMs)
     {
@@ -72,67 +75,4 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
         return false;
     }
-
-    // private void CreateLevel()
-    // {
-    //     for (int i = 0; i < Context.LevelWidth * Context.LevelHeight; i++)
-    //     {
-    //         var x = i % Context.LevelWidth;
-    //         var y = i / Context.LevelHeight;
-    //         var coord = new Coordinate(x, y);
-
-    //         var defaultGrid = new Grid
-    //         {
-    //             Object = objectFactory.CreateEmpty(),
-    //             Tile = tileFactory.CreateDirtTile()
-    //         };
-
-    //         GridPointer.SetGrid(coord, defaultGrid);
-    //     }
-
-    //     CreateWallBorders();
-
-    //     GridPointer.SetObject(new Coordinate(7, 5), objectFactory.CreateSkeleton());
-    //     GridPointer.SetObject(new Coordinate(7, 2), objectFactory.CreateBomb());
-    //     GridPointer.SetObject(new Coordinate(6, 2), objectFactory.CreateDefaultRock());
-    //     GridPointer.SetObject(new Coordinate(2, 2), objectFactory.CreatePlayer());
-
-    //     GridPointer.SetTile(new Coordinate(2, 2), tileFactory.CreateWaterTile());
-    //     GridPointer.SetTile(new Coordinate(2, 3), tileFactory.CreateWaterTile());
-    //     GridPointer.SetTile(new Coordinate(3, 2), tileFactory.CreateWaterTile());
-    //     GridPointer.SetTile(new Coordinate(3, 3), tileFactory.CreateWaterTile());
-    //     GridPointer.SetTile(new Coordinate(4, 3), tileFactory.CreateLavaTile());
-
-    //     GridPointer.SetTile(new Coordinate(5, 5), tileFactory.CreateBrickTile());
-    //     GridPointer.SetTile(new Coordinate(6, 5), tileFactory.CreateBrickTile());
-    //     GridPointer.SetTile(new Coordinate(5, 6), tileFactory.CreateBrickTile());
-    //     GridPointer.SetTile(new Coordinate(6, 6), tileFactory.CreatePitTile());
-    //     GridPointer.SetTile(new Coordinate(6, 7), tileFactory.CreateMossyBrickTile());
-    //     GridPointer.SetTile(new Coordinate(7, 6), tileFactory.CreateMossyBrickTile());
-    //     GridPointer.SetTile(new Coordinate(2, 2), tileFactory.CreateWaterTile());
-    //     GridPointer.SetTile(new Coordinate(7, 7), tileFactory.CreateGrassTile());
-
-    //     GridPointer.SetTile(new Coordinate(2, 7), tileFactory.CreateBugTile());
-    //     GridPointer.SetTile(new Coordinate(3, 7), tileFactory.CreateCCBugTile());
-    // }
-
-    // private void CreateWallBorders()
-    // {
-    //     for (int x = 0; x < Context.LevelWidth; x++)
-    //     {
-    //         var topOfLevel = new Coordinate(x, 0);
-    //         var bottomOfLevel = new Coordinate(x, Context.LevelHeight - 1);
-
-    //         GridPointer.SetObject(topOfLevel, objectFactory.CreateWall());
-    //         GridPointer.SetObject(bottomOfLevel, objectFactory.CreateWall());
-    //     }
-    //     for (int y = 0; y < Context.LevelWidth; y++)
-    //     {
-    //         var leftOfLevel = new Coordinate(0, y);
-    //         var rightOfLevel = new Coordinate(Context.LevelWidth - 1, y);
-
-    //         GridPointer.SetObject(leftOfLevel, objectFactory.CreateWall());
-    //         GridPointer.SetObject(rightOfLevel, objectFactory.CreateWall());
-    //     }
-    // }
 }
