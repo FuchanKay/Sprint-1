@@ -1,7 +1,6 @@
 namespace Scripts.Game;
 using System;
 using System.Collections.Generic;
-using Scripts.Game;
 
 public class TimedBombSnapSubEvent(List<Coordinate> timedBombCoords, ObjectFactory objectFactory, SubEventCallStack subEventStack)
     : BombSnapSubEvent(timedBombCoords, objectFactory, subEventStack)

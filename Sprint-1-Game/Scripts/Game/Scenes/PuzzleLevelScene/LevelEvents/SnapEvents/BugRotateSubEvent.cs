@@ -21,14 +21,12 @@ public class BugRotateSubEvent : ILevelSubEvent
     {
         var bug = spriteGrid.GetTileSprite(bugCoord);
         bug = bug.ConvertToAnimated(AnimationNames.BugTileRotate);
-        spriteGrid.SetTileSprite(bugCoord, bugCoord, bug);
-        spriteGrid.StartTileAnimation(bug);
+        spriteGrid.AnimateTileSprite(bugCoord, bug);
 
         var grid = gridPointer.GetGrid(bugCoord);
         var gridObj = grid.Object;
         if (gridObj.IsRotatable)
         {
-
             var currDirection = gridObj.Direction;
             var nextDirection = (Directions)(((int)currDirection + 1) % 4);
             gridObj.Direction = nextDirection;
@@ -36,8 +34,7 @@ public class BugRotateSubEvent : ILevelSubEvent
             var sprite = spriteGrid.GetObjectSprite(bugCoord);
             sprite = sprite.ConvertToAnimated(AnimationNames.ObjectRotateClockwiseFrom(currDirection));
             sprite.IdleName = RegionNames.ToIdleRegionName(nextDirection);
-            spriteGrid.SetObjectSprite(bugCoord, bugCoord, sprite);
-            spriteGrid.StartObjectAnimation(sprite);
+            spriteGrid.AnimateObjectSprite(bugCoord, bugCoord, sprite);
         }
     }
 
@@ -45,8 +42,7 @@ public class BugRotateSubEvent : ILevelSubEvent
     {
         var bug = spriteGrid.GetTileSprite(bugCoord);
         bug = bug.ConvertToAnimated(AnimationNames.BugTileRotateCC);
-        spriteGrid.SetTileSprite(bugCoord, bugCoord, bug);
-        spriteGrid.StartTileAnimation(bug);
+        spriteGrid.AnimateTileSprite(bugCoord, bug);
 
         var grid = gridPointer.GetGrid(bugCoord);
         var gridObj = grid.Object;
@@ -59,8 +55,7 @@ public class BugRotateSubEvent : ILevelSubEvent
             var sprite = spriteGrid.GetObjectSprite(bugCoord);
             sprite = sprite.ConvertToAnimated(AnimationNames.ObjectRotateCounterclockwiseFrom(currDirection));
             sprite.IdleName = RegionNames.ToIdleRegionName(nextDirection);
-            spriteGrid.SetObjectSprite(bugCoord, bugCoord, sprite);
-            spriteGrid.StartObjectAnimation(sprite);
+            spriteGrid.AnimateObjectSprite(bugCoord, bugCoord, sprite);
         }
 
     }

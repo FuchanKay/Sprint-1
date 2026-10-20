@@ -12,6 +12,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
 
         var destinationPlus1Coord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
         var destinationPlus1CoordIsWithinBounds = CoordIsWithinBounds(destinationPlus1Coord, context.LevelWidth, context.LevelHeight);
+        
         if (destinationCoordIsWithinBounds && destinationPlus1CoordIsWithinBounds && CanPush(gridPointer.GetGrid(destinationCoord), gridPointer.GetObject(destinationPlus1Coord)))
         {
             var destinationGrid = gridPointer.GetGrid(destinationCoord);
@@ -19,16 +20,14 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
             var objectSprite = spriteGrid.GetObjectSprite(destinationCoord);
             objectSprite.Duration = spriteGrid.PushDuration;
             var onePastDestinationCoord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
-            spriteGrid.SetObjectSprite(destinationCoord, onePastDestinationCoord, objectSprite);
-            spriteGrid.StartObjectAnimation(objectSprite);
+            spriteGrid.AnimateObjectSprite(destinationCoord, onePastDestinationCoord, objectSprite);
 
             gridPointer.SetObject(destinationCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(onePastDestinationCoord, destinationObject);
 
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerPushAnimationName(direction));
-            spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
-            spriteGrid.StartObjectAnimation(playerSprite);
+            spriteGrid.AnimateObjectSprite(playerCoord, destinationCoord, playerSprite);
 
             gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
@@ -37,8 +36,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
         {
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));
-            spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
-            spriteGrid.StartObjectAnimation(playerSprite);
+            spriteGrid.AnimateObjectSprite(playerCoord, destinationCoord, playerSprite);
 
             gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);

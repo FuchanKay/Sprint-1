@@ -72,7 +72,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         return sprite;
     }
 
-    public void SetObjectSprite(Coordinate currentCoord, Coordinate targetCoord, ISprite sprite)
+    public void AnimateObjectSprite(Coordinate currentCoord, Coordinate targetCoord, ISprite sprite)
     {
         var realCurrentCoord = CalculateLiteralPos(currentCoord);
         var realTargetCoord = CalculateLiteralPos(targetCoord);
@@ -84,6 +84,26 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         ObjectSprites.Add(realCurrentCoord, sprite);
 
         sprite.SetTargetPosition(realTargetCoord);
+
+        AnimatingObjectSprites.Add(sprite);
+    }
+
+    public void SetNewObjectSprite(Coordinate coord, ISprite sprite)
+    {
+        var realCoord = CalculateLiteralPos(coord);
+        sprite.CurrentPosition = realCoord;
+        sprite.SetTargetPosition(realCoord);
+        ObjectSprites.Remove(realCoord);
+        ObjectSprites.Add(realCoord, sprite);
+    }
+
+    public void SetNewTileSprite(Coordinate coord, ISprite sprite)
+    {
+        var realCoord = CalculateLiteralPos(coord);
+        sprite.CurrentPosition = realCoord;
+        sprite.SetTargetPosition(realCoord);
+        TileSprites.Remove(realCoord);
+        TileSprites.Add(realCoord, sprite);
     }
 
     public void PlayEffect(EffectIds effectId, Coordinate coord)
@@ -100,24 +120,15 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         ObjectSprites.Remove(realCoord);
     }
 
-    public void SetTileSprite(Coordinate currentCoord, Coordinate targetCoord, ISprite sprite)
+    public void AnimateTileSprite(Coordinate coord, ISprite sprite)
     {
-        var realCurrentCoord = CalculateLiteralPos(currentCoord);
-        var realTargetCoord = CalculateLiteralPos(targetCoord);
+        var realCoord = CalculateLiteralPos(coord);
 
-        TileSprites.Remove(realCurrentCoord);
-        TileSprites.Add(realCurrentCoord, sprite);
+        TileSprites.Remove(realCoord);
+        TileSprites.Add(realCoord, sprite);
 
-        sprite.SetTargetPosition(realTargetCoord);
-    }
+        sprite.SetTargetPosition(realCoord);
 
-    public void StartObjectAnimation(ISprite sprite)
-    {
-        AnimatingObjectSprites.Add(sprite);
-    }
-
-    public void StartTileAnimation(ISprite sprite)
-    {
         AnimatingTileSprites.Add(sprite);
     }
 
@@ -161,8 +172,10 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     {
         foreach (var sprite in currentList)
         {
+            Console.WriteLine(sprite.CurrentPosition);
             currentDict.Remove(sprite.CurrentPosition);
             sprite.Update(dtMs);
+            Console.WriteLine(sprite.CurrentPosition);
             currentDict.Add(sprite.CurrentPosition, sprite);
         }
         var finishedSprites = currentList.FindAll(sprite => sprite.IsFinished);
