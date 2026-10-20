@@ -17,9 +17,11 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         IsIdle = true,
         PlayerIsDead = false
     };
-    public GridPointer GridPointer;
+    public GridPointer CurrentGridPointer;
+    public List<GridPointer> GridPointerStack;
     public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
     private readonly int MaxEventsQueued = 2;
+    private readonly int MaximumGridPointerStackSize = 100;
     public bool IsIdle = true;
     private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, false, objectFactory);
     private string[] LevelFile;
@@ -30,8 +32,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         Context.LevelName = levelFileParser.GetLevelName(LevelFile);
         Context.LevelWidth = levelFileParser.GetLevelWidth(LevelFile);
         Context.LevelHeight = levelFileParser.GetLevelHeight(LevelFile);
-        GridPointer = levelFileParser.CreateGrids(LevelFile);
-        SpriteGrid.Init(GridPointer, Context);
+        CurrentGridPointer = levelFileParser.CreateGrids(LevelFile);
+        SpriteGrid.Init(CurrentGridPointer, Context);
     }
 
     public void Update(int dtMs)
@@ -53,28 +55,46 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         }
     }
 
-    public bool TryExecuteEvent()
+    public void TryExecuteEvent()
     {
-        if (CurrentEvent == null) return false;
-        if (!Context.IsIdle) return false;
-        if(Context.PlayerIsDead) return false;
+        if (CurrentEvent == null) return;
+        if (!Context.IsIdle) return;
+        if(Context.PlayerIsDead) return;
 
         var CurrentEventIsFinished = CurrentEvent.SubEventStack.Count() == 0;
         if (CurrentEventIsFinished && EventQueue.Count > 0)
         {
+            PushCopyOfGridPointer();
+
             CurrentEvent = EventQueue[0];
             EventQueue.RemoveAt(0);
 
-            CurrentEvent.Execute(SpriteGrid, GridPointer, Context);
-            return true;
+            CurrentEvent.Execute(SpriteGrid, CurrentGridPointer, Context);
+            return;
         }
 
         if (!CurrentEventIsFinished)
         {
             var subEvent = CurrentEvent.SubEventStack.Pop();
-            subEvent.Execute(SpriteGrid, GridPointer, Context);
+            subEvent.Execute(SpriteGrid, CurrentGridPointer, Context);
+        }
+        return;
+    }
+
+    public void Undo()
+    {
+        
+    }
+
+    private void PushCopyOfGridPointer()
+    {
+        var clone = CurrentGridPointer.Clone();
+        if (GridPointerStack.Count >= MaximumGridPointerStackSize)
+        {
+            GridPointerStack.RemoveAt(GridPointerStack.Count - 1);
         }
 
-        return false;
+        
+
     }
 }

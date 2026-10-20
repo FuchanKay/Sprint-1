@@ -6,6 +6,13 @@ Hands raised to do magic?
 */
 public class WarlockObject : IObject
 {
+    public IObject Clone()
+    {
+        return new WarlockObject
+        {
+            Direction = Direction
+        };
+    }
     public ObjectIds Id => ObjectIds.Warlock;
     public Directions Direction { get; set; } = Directions.South;
     public bool IsPushable => true;
