@@ -15,8 +15,6 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         PuzzleOffsetY = 50,
         IsIdle = true,
         PlayerIsDead = false
-        IsIdle = true,
-        PlayerIsDead = false
     };
     public GridPointer CurrentGridPointer;
     public List<GridPointer> UndoHistory = [];
