@@ -51,6 +51,8 @@ public class Setup(ContentManager content)
 
         ButtonInput.MapInput(InputNames.ExitGame, (int)Keys.Q);
         ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.R);
+        ButtonInput.MapInput(InputNames.Undo, (int)Keys.Z);
+
 
         MouseInput.MapInput(InputNames.Select, (int)MouseButtons.Left);
     }

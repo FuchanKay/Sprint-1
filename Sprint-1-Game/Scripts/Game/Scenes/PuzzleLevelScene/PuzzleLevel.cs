@@ -18,7 +18,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         PlayerIsDead = false
     };
     public GridPointer CurrentGridPointer;
-    public List<GridPointer> GridPointerStack;
+    public Stack<GridPointer> GridPointerStack = [];
     public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
     private readonly int MaxEventsQueued = 2;
     private readonly int MaximumGridPointerStackSize = 100;
@@ -61,10 +61,11 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         if (!Context.IsIdle) return;
         if(Context.PlayerIsDead) return;
 
-        var CurrentEventIsFinished = CurrentEvent.SubEventStack.Count() == 0;
+        var CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
         if (CurrentEventIsFinished && EventQueue.Count > 0)
         {
-            PushCopyOfGridPointer();
+            var clone = CurrentGridPointer.Clone();
+            GridPointerStack.Push(clone);
 
             CurrentEvent = EventQueue[0];
             EventQueue.RemoveAt(0);
@@ -83,18 +84,15 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
     public void Undo()
     {
-        
-    }
-
-    private void PushCopyOfGridPointer()
-    {
-        var clone = CurrentGridPointer.Clone();
-        if (GridPointerStack.Count >= MaximumGridPointerStackSize)
+        var canUndo = GridPointerStack.Count > 0;
+        if (!canUndo)
         {
-            GridPointerStack.RemoveAt(GridPointerStack.Count - 1);
+            return;
         }
+        CurrentGridPointer = GridPointerStack.Pop();
+        SpriteGrid.Init(CurrentGridPointer, Context);
 
-        
-
+        CurrentEvent.SubEventStack.Clear();
+        EventQueue.Clear();
     }
 }

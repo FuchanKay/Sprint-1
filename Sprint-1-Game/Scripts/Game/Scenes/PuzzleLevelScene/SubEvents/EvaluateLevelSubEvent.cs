@@ -1,8 +1,9 @@
 using System;
+using System.Collections.Generic;
 
 namespace Scripts.Game;
 
-public class EvaluateLevelSubEvent(SubEventCallStack subEventStack, ObjectFactory objectFactory) : ILevelSubEvent
+public class EvaluateLevelSubEvent(Stack<ILevelSubEvent> subEventStack, ObjectFactory objectFactory) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
