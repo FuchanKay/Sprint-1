@@ -11,8 +11,9 @@ public class MovePlayerSubEvent(Directions direction, ObjectFactory objectFactor
         var playerObj = gridPointer.GetObject(playerCoord);
         var isFacingDirection = playerObj.Direction == direction;
         var isDestinationEmpty = destinationGrid.Object.Id == ObjectIds.Empty;
+        var isDestinationWalkable = destinationGrid.Tile.IsWalkable;
 
-        if (isFacingDirection && isDestinationEmpty)
+        if (isFacingDirection && isDestinationEmpty && isDestinationWalkable)
         {
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));

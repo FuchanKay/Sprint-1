@@ -14,7 +14,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         GridScale = 0.25f,
         PuzzleOffsetX = 400,
         PuzzleOffsetY = 50,
-        IsIdle = true
+        IsIdle = true,
+        PlayerIsDead = false
     };
     public GridPointer GridPointer;
     public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
@@ -56,6 +57,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     {
         if (CurrentEvent == null) return false;
         if (!Context.IsIdle) return false;
+        if(Context.PlayerIsDead) return false;
 
         var CurrentEventIsFinished = CurrentEvent.SubEventStack.Count() == 0;
         if (CurrentEventIsFinished && EventQueue.Count > 0)

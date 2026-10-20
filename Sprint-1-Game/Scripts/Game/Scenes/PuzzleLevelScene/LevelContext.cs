@@ -11,4 +11,5 @@ public class LevelContext
     public int PuzzleOffsetY { get; set; }
     public float GridScale { get; set; }
     public bool IsIdle { get; set; }
+    public bool PlayerIsDead { get; set; }
 }

@@ -1,5 +1,3 @@
-using Scripts.GameComponents;
-
 namespace Scripts.Game;
 
 public class PushSubEvent(Directions direction, ObjectFactory objectFactory) : ILevelSubEvent
@@ -13,14 +11,15 @@ public class PushSubEvent(Directions direction, ObjectFactory objectFactory) : I
 
         // get object east of player
         var destCoord = playerCoord + directionAsCoordinate;
-        var eastGrid = gridPointer.GetGrid(destCoord);
-        var destObj = eastGrid.Object;
+        var destGrid = gridPointer.GetGrid(destCoord);
+        var destObj = destGrid.Object;
+        var destTile = destGrid.Tile;
 
         // get grid east of east object
         var destCoordPlus1 = destCoord + directionAsCoordinate;
         var destGridPlus1 = gridPointer.GetGrid(destCoordPlus1);
 
-        var canPush = destObj.IsPushable && destGridPlus1.Object.Id == ObjectIds.Empty;
+        var canPush = destObj.IsPushable && destTile.IsWalkable && destGridPlus1.Object.Id == ObjectIds.Empty;
         if (canPush)
         {
             // set object sprite moving towards dest

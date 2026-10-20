@@ -6,4 +6,5 @@ public class WallObject() : IObject
     public Directions Direction { get; set; }
     public bool IsPushable => false;
     public bool IsDestructible => false;
+    public bool IsRotatable => false;
 }

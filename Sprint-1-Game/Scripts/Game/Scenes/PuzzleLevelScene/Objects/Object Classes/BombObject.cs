@@ -6,4 +6,5 @@ public class BombObject : IObject
     public Directions Direction { get; set; } = Directions.South;
     public bool IsPushable => true;
     public bool IsDestructible => false;
+    public bool IsRotatable => false;
 }
