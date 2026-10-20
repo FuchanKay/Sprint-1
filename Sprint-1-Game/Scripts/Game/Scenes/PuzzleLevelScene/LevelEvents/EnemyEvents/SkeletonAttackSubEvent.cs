@@ -4,7 +4,7 @@ using System.Data;
 
 namespace Scripts.Game;
 
-public class SkeletonAttackSubEvent(Coordinate skeletonCoord, ObjectFactory objectFactory, SubEventCallStack subEventStack) : ILevelSubEvent
+public class SkeletonAttackSubEvent(Coordinate skeletonCoord, ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {

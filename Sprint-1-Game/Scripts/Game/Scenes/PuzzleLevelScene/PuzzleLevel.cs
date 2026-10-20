@@ -69,7 +69,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
             EventQueue.RemoveAt(0);
 
             CurrentEvent.Execute(SpriteGrid, CurrentGridPointer, Context);
-            return;
+            return true;
         }
 
         if (!CurrentEventIsFinished)
@@ -77,7 +77,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
             var subEvent = CurrentEvent.SubEventStack.Pop();
             subEvent.Execute(SpriteGrid, CurrentGridPointer, Context);
         }
-        return;
+        return false;
     }
 
     public void Undo()
