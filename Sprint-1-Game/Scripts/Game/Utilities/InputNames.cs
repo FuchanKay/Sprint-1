@@ -10,10 +10,13 @@ public class InputNames
     public readonly static string MoveEastAlt = "Move East Alt";
     public readonly static string MoveSouthAlt = "Move South Alt";
     public readonly static string MoveWestAlt = "Move West Alt";
+    public readonly static string LShift = "Left Shift";
+    public readonly static string LCtrl = "Left Ctrl";
     public readonly static string Snap = "Snap";
     public readonly static string Undo = "Undo";
     public readonly static string UseItem = "Use Item";
     public readonly static string ExitGame = "Exit Game";
     public readonly static string ResetGame = "Reset Game";
+    public readonly static string ResetLevel = "Reset Level";
     public readonly static string Select = "Select";
 }

@@ -59,6 +59,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.Warlock);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Warlock);
+                sprite.IdleName = RegionNames.Warlock;
                 break;
             case ObjectIds.BlueLizard:
                 sprite = new StaticSprite(textureAtlas);
@@ -100,6 +101,13 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.IdleName = RegionNames.Explosion;
                 spriteScale = context.GridScale * 3.5f;
                 sprite.Color = Color.SpringGreen;
+                break;
+            case EffectIds.WarlockSpell:
+                sprite.SetState(AnimationNames.Explosion);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
+                sprite.IdleName = RegionNames.Explosion;
+                spriteScale = context.GridScale * 3.5f;
+                sprite.Color = Color.Purple;
                 break;
             default:
                 break;

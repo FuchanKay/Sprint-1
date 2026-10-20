@@ -6,6 +6,7 @@ namespace Scripts.Game;
 public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas textureAtlas) : ISceneController
 {
     private PuzzleLevel Level;
+    private LevelFileParser LevelFileParser;
     private ObjectFactory ObjectFactory = new();
     private TileFactory TileFactory = new();
     private ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
@@ -13,26 +14,28 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
 
     public void Init()
     {
-        Level = new(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory);
-        Level.Init();
+        LevelFileParser = new LevelFileParser(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory);
+        Level = new PuzzleLevel(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory, LevelFileParser);
+        Level.Init(FileNames.Level1File);
     }
     public void Update(int dtMs)
     {
+        var lockMove = buttonInput.IsHeld(InputNames.LShift);
         if (buttonInput.IsPressed(InputNames.MoveNorth) || buttonInput.IsPressed(InputNames.MoveNorthAlt))
         {
-            Level.EnqueueEvent(new MovePlayerEvent(Directions.North, ObjectFactory));
+            Level.EnqueueEvent(new MovePlayerEvent(Directions.North, lockMove, ObjectFactory));
         }
         else if (buttonInput.IsPressed(InputNames.MoveEast) || buttonInput.IsPressed(InputNames.MoveEastAlt))
         {
-            Level.EnqueueEvent(new MovePlayerEvent(Directions.East, ObjectFactory));
+            Level.EnqueueEvent(new MovePlayerEvent(Directions.East, lockMove, ObjectFactory));
         }
         else if (buttonInput.IsPressed(InputNames.MoveSouth) || buttonInput.IsPressed(InputNames.MoveSouthAlt))
         {
-            Level.EnqueueEvent(new MovePlayerEvent(Directions.South, ObjectFactory));
+            Level.EnqueueEvent(new MovePlayerEvent(Directions.South, lockMove, ObjectFactory));
         }
         else if (buttonInput.IsPressed(InputNames.MoveWest) || buttonInput.IsPressed(InputNames.MoveWestAlt))
         {
-            Level.EnqueueEvent(new MovePlayerEvent(Directions.West, ObjectFactory));
+            Level.EnqueueEvent(new MovePlayerEvent(Directions.West, lockMove, ObjectFactory));
         }
         else if (buttonInput.IsPressed(InputNames.Snap))
         {
@@ -42,9 +45,13 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
         {
             Level.EnqueueEvent(new UseItemEventEvent());
         }
+        else if (buttonInput.IsPressed(InputNames.ResetLevel))
+        {
+            Level.RestartLevel();
+        }
         else if (buttonInput.IsPressed(InputNames.Undo))
         {
-            Level.EnqueueEvent(new UndoEvent());
+            Level.Undo();
         }
         Level.TryExecuteEvent();
 

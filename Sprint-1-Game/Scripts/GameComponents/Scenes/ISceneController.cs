@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework.Graphics;
-using Scripts.Game;
 
 namespace Scripts.GameComponents;
 

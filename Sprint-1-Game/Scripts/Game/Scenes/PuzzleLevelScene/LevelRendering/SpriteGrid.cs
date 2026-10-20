@@ -23,6 +23,13 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     {
         ObjectSprites.Clear();
         TileSprites.Clear();
+        EffectSprites.Clear();
+        AnimatingObjectSprites.Clear();
+        AnimatingTileSprites.Clear();
+        AnimatingEffectSprites.Clear();
+
+        IsIdle = true;
+
         Context = context;
 
         /*
@@ -179,8 +186,8 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
             effectSprites.Add(sprite.CurrentPosition, sprite);
         }
         var finishedSprites = animatingEffects.FindAll(sprite => sprite.IsFinished);
-        
-        foreach(var sprite in finishedSprites)
+
+        foreach (var sprite in finishedSprites)
         {
             effectSprites.Remove(sprite.CurrentPosition);
         }

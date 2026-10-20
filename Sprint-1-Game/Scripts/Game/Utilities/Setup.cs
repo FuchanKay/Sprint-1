@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Scripts.GameComponents;
@@ -47,27 +46,34 @@ public class Setup(ContentManager content)
         ButtonInput.MapInput(InputNames.MoveSouthAlt, (int)Keys.Down);
         ButtonInput.MapInput(InputNames.MoveWestAlt, (int)Keys.Left);
 
+        ButtonInput.MapInput(InputNames.LCtrl, (int) Keys.LeftControl);
+        ButtonInput.MapInput(InputNames.LShift, (int)Keys.LeftShift);
+
         ButtonInput.MapInput(InputNames.Snap, (int)Keys.F);
 
         ButtonInput.MapInput(InputNames.ExitGame, (int)Keys.Q);
         ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.R);
+        ButtonInput.MapInput(InputNames.ResetLevel, (int)Keys.R);
+
+        ButtonInput.MapInput(InputNames.Undo, (int)Keys.Z);
 
         MouseInput.MapInput(InputNames.Select, (int)MouseButtons.Left);
     }
 
     private void AddAnimations()
     {
-        int pushFrames = 4;
-        int rotateFrames = 2;
-        int rotateDelay = 200;
-        // walk
-        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkNorth, 2, 0, 6, 64, 64, 50);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkSouth, 3, 0, 6, 64, 64, 50);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkEast, 0, 0, 6, 64, 64, 50);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkWest, 1, 0, 6, 64, 64, 50);
+        int walkDelay = 50;
+        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkNorth, 2, 0, 6, 64, 64, walkDelay);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkSouth, 3, 0, 6, 64, 64, walkDelay);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkEast, 0, 0, 6, 64, 64, walkDelay);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerWalkWest, 1, 0, 6, 64, 64, walkDelay);
+
         // snap
         TextureAtlas.AddAnimation(AnimationNames.PlayerSnap, 4, 0, 6, 64, 64);
+
         // rotate counterclockwise
+        int rotateDelay = 200;
+        int rotateFrames = 2;
         TextureAtlas.AddAnimation(AnimationNames.RotateSE, 5, 0, rotateFrames, 64, 64, rotateDelay);
         TextureAtlas.AddAnimation(AnimationNames.RotateEN, 5, 2, rotateFrames, 64, 64, rotateDelay);
         TextureAtlas.AddAnimation(AnimationNames.RotateNW, 5, 4, rotateFrames, 64, 64, rotateDelay);
@@ -79,10 +85,12 @@ public class Setup(ContentManager content)
         TextureAtlas.AddAnimation(AnimationNames.RotateES, 6, 6, rotateFrames, 64, 64, rotateDelay);
 
         // push
-        TextureAtlas.AddAnimation(AnimationNames.PlayerPushNorth, 8, 4, pushFrames, 64, 64);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerPushSouth, 8, 0, pushFrames, 64, 64);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerPushEast, 7, 0, pushFrames, 64, 64);
-        TextureAtlas.AddAnimation(AnimationNames.PlayerPushWest, 7, 4, pushFrames, 64, 64);
+        int pushDelay = 64;
+        int pushFrames = 4;
+        TextureAtlas.AddAnimation(AnimationNames.PlayerPushNorth, 8, 4, pushFrames, 64, pushDelay);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerPushSouth, 8, 0, pushFrames, 64, pushDelay);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerPushEast, 7, 0, pushFrames, 64, pushDelay);
+        TextureAtlas.AddAnimation(AnimationNames.PlayerPushWest, 7, 4, pushFrames, 64, pushDelay);
 
         // tiles
         TextureAtlas.AddAnimation(AnimationNames.BugTileRotate, 2, 0, rotateFrames, 64, 64, rotateDelay);
@@ -141,21 +149,6 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.Warlock, FileNames.WarlockTexture);
         TextureAtlas.AddTexture(TextureNames.RedLizard, FileNames.RedLizardTexture);
         TextureAtlas.AddTexture(TextureNames.BlueLizard, FileNames.BlueLizardTexture);
-
-
-
-
-        // StoneBlock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneBlock");
-        // Rock.ObjectTexture = content.Load<Texture2D>("ObjectSprites/rock");
-        // StoneWall.ObjectTexture = content.Load<Texture2D>("ObjectSprites/stoneWall");
-        // Bomb.ObjectTexture = content.Load<Texture2D>("ObjectSprites/bomb");
-        // ExitDoor.ObjectTexture = content.Load<Texture2D>("ObjectSprites/exitDoor");
-        // Pylon.ObjectTexture = content.Load<Texture2D>("ObjectSprites/pylon");
-        // Vine.ObjectTexture = content.Load<Texture2D>("ObjectSprites/vines");
-        // TimedBomb.ObjectTexture = content.Load<Texture2D>("ObjectSprites/timedBomb");
-
-        // //TODO: Remove this when sprite becomes its own thing
-        // GameplaySceneController.SproutTexture = content.Load<Texture2D>("Images/player-sprites");
     }
     private void LoadAudio()
     {
