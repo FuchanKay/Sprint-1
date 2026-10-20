@@ -5,28 +5,19 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         var playerCoord = gridPointer.GetPlayerCoord();
+        var playerObj = gridPointer.GetObject(playerCoord);
+
         var destinationCoord = playerCoord + Coordinate.ToCoordinate(direction);
         var destinationGrid = gridPointer.GetGrid(destinationCoord);
-
-        var playerObj = gridPointer.GetObject(playerCoord);
-        var isFacingDirection = playerObj.Direction == direction;
-        var isDestinationEmpty = destinationGrid.Object.Id == ObjectIds.Empty;
         var destinationObject = destinationGrid.Object;
-        var destinationTile = destinationGrid.Tile;
 
         var destinationPlus1Object = gridPointer.GetObject(playerCoord + Coordinate.ToCoordinate(direction) * 2);
-        var destinationPlus1ObjectIsEmpty = destinationPlus1Object.Id == ObjectIds.Empty;
 
-        var onePastDestinationCoord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
-
-        var canPush = destinationObject.IsPushable && destinationTile.IsWalkable && destinationPlus1ObjectIsEmpty;
-        var canMove = destinationTile.IsWalkable && isFacingDirection && isDestinationEmpty;
-        if (canPush)
+        if (CanPush(destinationGrid, destinationPlus1Object))
         {
-            // set object sprite moving towards dest
             var objectSprite = spriteGrid.GetObjectSprite(destinationCoord);
-            // set duration for static sprite to move
             objectSprite.Duration = spriteGrid.PushDuration;
+            var onePastDestinationCoord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
             spriteGrid.SetObjectSprite(destinationCoord, onePastDestinationCoord, objectSprite);
             spriteGrid.StartObjectAnimation(objectSprite);
 
@@ -41,7 +32,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
             gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
         }
-        else if (canMove)
+        else if (CanMove(playerObj, destinationGrid))
         {
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));
@@ -53,5 +44,25 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
 
             context.IsIdle = false;
         }
+    }
+
+    private bool CanMove(IObject playerObject, Grid destinationGrid)
+    {
+        var destinationTile = destinationGrid.Tile;
+
+        var isDestinationEmpty = destinationGrid.Object.Id == ObjectIds.Empty;
+        var isFacingDirection = playerObject.Direction == direction;
+
+        return destinationTile.IsWalkable && isFacingDirection && isDestinationEmpty;
+    }
+
+    private bool CanPush(Grid destinationGrid, IObject destinationPlus1Object)
+    {
+        var destinationObject = destinationGrid.Object;
+        var destinationTile = destinationGrid.Tile;
+
+        var destinationPlus1ObjectIsEmpty = destinationPlus1Object.Id == ObjectIds.Empty;
+
+        return destinationObject.IsPushable && destinationTile.IsWalkable && destinationPlus1ObjectIsEmpty;
     }
 }
