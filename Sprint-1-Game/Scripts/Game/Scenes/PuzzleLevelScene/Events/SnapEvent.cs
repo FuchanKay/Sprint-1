@@ -20,13 +20,15 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
 
         // var rotationSubEvent = new BugRotateSubEvent();
         // rotationSubEvent.Execute(spriteGrid, gridPointer, context);
-
+        SubEventStack.Push(new WarlockSwapSubEvent());
+        SubEventStack.Push(new BugRotateSubEvent());
+        
         var bombCoords = gridPointer.GetObjectPointers(ObjectIds.Bomb).Keys.ToList();
         var timedBombCoords = gridPointer.GetObjectPointers(ObjectIds.TimedBomb).Keys.ToList();
         SubEventStack.Push(new BombSnapSubEvent(bombCoords, objectFactory, SubEventStack));
         SubEventStack.Push(new TimedBombSnapSubEvent(timedBombCoords, objectFactory, SubEventStack));
-        SubEventStack.Push(new WarlockSwapSubEvent());
-        SubEventStack.Push(new BugRotateSubEvent());
+        
+        
 
         context.IsIdle = false;
     }
