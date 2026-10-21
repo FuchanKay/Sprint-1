@@ -3,12 +3,22 @@ using System.Collections.Generic;
 
 namespace Scripts.Game;
 
-public class SkeletonAttackSubEvent(Coordinate skeletonCoord, ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
+public class SkeletonsAttackSubEvent(List<Coordinate> skeletonCoords, ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         List<Directions> directions = new List<Directions> {Directions.North, Directions.East, Directions.South, Directions.West};
 
+        foreach(var skeletonCoord in skeletonCoords)
+        {
+            TryAttack(skeletonCoord, gridPointer, spriteGrid);
+        }
+        context.IsIdle = false;
+    }
+
+    private void TryAttack(Coordinate skeletonCoord, GridPointer gridPointer, SpriteGrid spriteGrid)
+    {
+        List<Directions> directions = new List<Directions> {Directions.North, Directions.East, Directions.South, Directions.West};   
         foreach(var direction in directions)
         {
             var targetCoord = skeletonCoord + Coordinate.ToCoordinate(direction);
@@ -21,9 +31,5 @@ public class SkeletonAttackSubEvent(Coordinate skeletonCoord, ObjectFactory obje
                 subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
             }
         }
-
-        
-
-        context.IsIdle = false;
     }
 }

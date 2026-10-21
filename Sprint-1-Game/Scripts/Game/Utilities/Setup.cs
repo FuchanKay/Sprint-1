@@ -100,7 +100,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 0, 4, 105, 96);
 
         // slash attack effect
-        TextureAtlas.AddAnimation(AnimationNames.Slash, 0, 0, 6, 102, 440);
+        TextureAtlas.AddAnimation(AnimationNames.Slash, 0, 0, 6, 102, 440, 50);
     }
 
     private void AddRegions()

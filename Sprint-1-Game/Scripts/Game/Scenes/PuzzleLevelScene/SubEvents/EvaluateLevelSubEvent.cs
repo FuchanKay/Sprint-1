@@ -12,10 +12,7 @@ public class EvaluateLevelSubEvent(Stack<ILevelSubEvent> subEventStack, ObjectFa
         if (gridPointer.GetTile(playerCoord).Id == TileIds.Lava) subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
 
         var skeletonCoords = gridPointer.GetObjectPointers(ObjectIds.Skeleton).Keys.ToList();
-        foreach (var skeletonCoord in skeletonCoords)
-        {
-            subEventStack.Push(new SkeletonAttackSubEvent(skeletonCoord, objectFactory, subEventStack));
-        }
+        subEventStack.Push(new SkeletonsAttackSubEvent(skeletonCoords, objectFactory, subEventStack));
         Console.WriteLine("Evaluated!");
     }
 }
