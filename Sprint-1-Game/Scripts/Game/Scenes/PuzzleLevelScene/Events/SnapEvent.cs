@@ -25,7 +25,7 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
         var timedBombCoords = gridPointer.GetObjectPointers(ObjectIds.TimedBomb).Keys.ToList();
         SubEventStack.Push(new BombSnapSubEvent(bombCoords, objectFactory, SubEventStack));
         SubEventStack.Push(new TimedBombSnapSubEvent(timedBombCoords, objectFactory, SubEventStack));
-        SubEventStack.Push(new WarlockSwapEvent());
+        SubEventStack.Push(new WarlockSwapSubEvent());
         SubEventStack.Push(new BugRotateSubEvent());
 
         context.IsIdle = false;

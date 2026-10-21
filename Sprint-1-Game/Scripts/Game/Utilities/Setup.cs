@@ -56,8 +56,12 @@ public class Setup(ContentManager content)
         ButtonInput.MapInput(InputNames.ResetLevel, (int)Keys.R);
 
         ButtonInput.MapInput(InputNames.Undo, (int)Keys.Z);
+        
+        MouseInput.MapInput(InputNames.PickItem, (int)Keys.G);
 
         MouseInput.MapInput(InputNames.Select, (int)MouseButtons.Left);
+        
+
     }
 
     private void AddAnimations()

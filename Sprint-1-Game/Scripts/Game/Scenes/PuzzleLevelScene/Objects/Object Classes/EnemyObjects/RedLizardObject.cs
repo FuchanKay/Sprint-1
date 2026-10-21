@@ -20,5 +20,7 @@ public class RedLizardObject : IObject
     public bool IsPushable => true;
     public bool IsDestructible => true;
     public bool IsRotatable => false;
+    public bool IsPickable => false;
+
 
 }

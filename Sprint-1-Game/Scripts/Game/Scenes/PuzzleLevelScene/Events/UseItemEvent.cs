@@ -1,11 +1,13 @@
+using System;
 using System.Collections.Generic;
 namespace Scripts.Game;
 
-public class UseItemEventEvent : ILevelEvent
+public class UseItemEvent : ILevelEvent
 {
     public Stack<ILevelSubEvent> SubEventStack { get; } = [];
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
+        Console.WriteLine($"use item ");
 
     }
 }
