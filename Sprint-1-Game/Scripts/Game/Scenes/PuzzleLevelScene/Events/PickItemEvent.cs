@@ -30,11 +30,11 @@ public class PickItemEvent(ObjectFactory objectFactory) : ILevelEvent
 
         Console.WriteLine($"itemObj Is Pickable  {itemObj.IsPickable} ");
 
-        if (itemObj.IsPickable)
-        {
-            gridPointer.SetObject(itemCoord, objectFactory.CreateEmpty());
-            spriteGrid.RemoveObjectSprite(itemCoord);
-        }
+        if (!itemObj.IsPickable) return;
+        
+        gridPointer.SetObject(itemCoord, objectFactory.CreateEmpty());
+        spriteGrid.RemoveObjectSprite(itemCoord);
+    
         context.IsIdle = false;
     }
 }
