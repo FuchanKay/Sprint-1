@@ -20,14 +20,16 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
             var objectSprite = spriteGrid.GetObjectSprite(destinationCoord);
             objectSprite.Duration = spriteGrid.PushDuration;
             var onePastDestinationCoord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
-            spriteGrid.AnimateObjectSprite(destinationCoord, onePastDestinationCoord, objectSprite);
+            spriteGrid.SetObjectSprite(destinationCoord, onePastDestinationCoord, objectSprite);
+            spriteGrid.StartObjectAnimation(destinationCoord);
 
             gridPointer.SetObject(destinationCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(onePastDestinationCoord, destinationObject);
 
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerPushAnimationName(direction));
-            spriteGrid.AnimateObjectSprite(playerCoord, destinationCoord, playerSprite);
+            spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
+            spriteGrid.StartObjectAnimation(playerCoord);
 
             gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
@@ -36,7 +38,8 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
         {
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));
-            spriteGrid.AnimateObjectSprite(playerCoord, destinationCoord, playerSprite);
+            spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
+            spriteGrid.StartObjectAnimation(playerCoord);
 
             gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
