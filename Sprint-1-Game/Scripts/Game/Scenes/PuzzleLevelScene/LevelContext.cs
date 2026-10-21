@@ -1,4 +1,5 @@
 namespace Scripts.Game;
+using Microsoft.Xna.Framework;
 
 public class LevelContext
 {
@@ -9,7 +10,7 @@ public class LevelContext
     public int GridSpriteHeightPx { get; set; }
     public int PuzzleOffsetX { get; set; }
     public int PuzzleOffsetY { get; set; }
-    public float GridScale { get; set; }
+    public Vector2 GridScale { get; set; }
     public bool IsIdle { get; set; }
     public bool PlayerIsDead { get; set; }
 }
