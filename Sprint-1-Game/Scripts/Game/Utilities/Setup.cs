@@ -57,7 +57,10 @@ public class Setup(ContentManager content)
 
         ButtonInput.MapInput(InputNames.Undo, (int)Keys.Z);
         
-        MouseInput.MapInput(InputNames.PickItem, (int)Keys.G);
+        ButtonInput.MapInput(InputNames.PickItem, (int)Keys.G);
+        ButtonInput.MapInput(InputNames.UseItem1, (int)Keys.D1);
+        ButtonInput.MapInput(InputNames.UseItem2, (int)Keys.D2);
+        ButtonInput.MapInput(InputNames.UseItem3, (int)Keys.D3);
 
         MouseInput.MapInput(InputNames.Select, (int)MouseButtons.Left);
         
