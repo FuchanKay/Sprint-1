@@ -109,6 +109,13 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 spriteScale = context.GridScale * 3.5f;
                 sprite.Color = Color.Purple;
                 break;
+            case EffectIds.Slash:
+                sprite.SetState(AnimationNames.Slash);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Slash);
+                sprite.IdleName = RegionNames.Slash;
+                spriteScale = context.GridScale * 0.8f;
+                sprite.Color = Color.White;
+                break;
             default:
                 break;
         }

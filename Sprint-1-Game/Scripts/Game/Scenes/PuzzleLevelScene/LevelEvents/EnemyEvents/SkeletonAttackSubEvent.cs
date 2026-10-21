@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Scripts.Game;
 
@@ -16,12 +17,14 @@ public class SkeletonAttackSubEvent(Coordinate skeletonCoord, ObjectFactory obje
             var targetObj = gridPointer.GetObject(targetCoord);
             if(targetObj.Id == ObjectIds.Player)
             {
-                // Change skeleton facing direction and sprite
-                // Play attack animation
+                // TODO: Change skeleton facing direction and sprite
+                spriteGrid.PlayEffect(EffectIds.Slash, targetCoord);
                 Console.WriteLine($"Skeleton Attacking {direction}!");
                 subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
             }
         }
+
+        
 
         context.IsIdle = false;
     }
