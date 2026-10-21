@@ -27,11 +27,21 @@ public class PickItemEvent(ObjectFactory objectFactory) : ILevelEvent
             break;
         }
         var itemObj = gridPointer.GetObject(itemCoord);
-
+        var itemObjId = itemObj.Id;
         Console.WriteLine($"itemObj Is Pickable  {itemObj.IsPickable} ");
 
         if (!itemObj.IsPickable) return;
-        
+        for (int i = 0; i < PlayerItemsComponent.playerItems.Length; i++)
+        {
+            if(PlayerItemsComponent.playerItems[i] == ObjectIds.Empty)
+            {
+                PlayerItemsComponent.playerItems[i] = itemObjId;
+                break;
+            }
+        }
+        Console.WriteLine($"player items are {PlayerItemsComponent.playerItems[0]}, {PlayerItemsComponent.playerItems[1]}, {PlayerItemsComponent.playerItems[2]}");
+
+
         gridPointer.SetObject(itemCoord, objectFactory.CreateEmpty());
         spriteGrid.RemoveObjectSprite(itemCoord);
     

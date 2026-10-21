@@ -27,9 +27,9 @@ public class UseItemEvent1(ObjectFactory objectFactory, ObjectSpriteFactory obje
             break;
         }
         var targetObj = gridPointer.GetObject(targetCoord);
-        bool itemEquiped = true;
-        bool isUsable = targetObj.Id == ObjectIds.Empty;
-        if (!(itemEquiped && isUsable)) return;
+        bool itemEquiped = PlayerItemsComponent.playerItems[0] != ObjectIds.Empty;
+        bool isFrontCleared = targetObj.Id == ObjectIds.Empty;
+        if (!(itemEquiped && isFrontCleared)) return;
         gridPointer.SetObject(targetCoord, objectFactory.CreateBomb());
         targetObj = gridPointer.GetObject(targetCoord);
 
