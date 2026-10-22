@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 namespace Scripts.Game;
 
-public class SnapAnimationSubEvent(Stack<ILevelSubEvent> subeventStack) : ILevelSubEvent
+public class SnapAnimationSubEvent() : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
