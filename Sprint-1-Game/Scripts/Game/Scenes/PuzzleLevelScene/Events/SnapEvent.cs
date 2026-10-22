@@ -1,12 +1,18 @@
-using System;
+using System.Collections.Generic;
 using System.Linq;
 namespace Scripts.Game;
 
 public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
 {
-    public SubEventCallStack SubEventStack { get; } = new();
+    public Stack<ILevelSubEvent> SubEventStack { get; } = [];
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
+        var playerCoord = gridPointer.GetPlayerCoord();
+        var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
+        playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerSnap);
+        spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
+        spriteGrid.StartObjectAnimation(playerCoord);
+
         SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack, objectFactory));
 
         var bombCoords = gridPointer.GetObjectPointers(ObjectIds.Bomb).Keys.ToList();

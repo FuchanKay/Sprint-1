@@ -34,6 +34,7 @@ public class RegionNames
     public readonly static string LizardMouthOpenWest = "Lizard Mouth Open West";
 
     public readonly static string Skeleton = "Skeleton";
+    public readonly static string Slash = "Slash";
     public readonly static string Warlock = "Warlock";
 
     public static string ToIdleRegionName(Directions direction)

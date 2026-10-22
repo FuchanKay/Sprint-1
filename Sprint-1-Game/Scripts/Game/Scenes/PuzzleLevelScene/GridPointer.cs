@@ -114,4 +114,17 @@ public class GridPointer
         }
         return Coordinate.Zero;
     }
+
+    public GridPointer Clone()
+    {
+        var clone = new GridPointer();
+        clone.Init();
+        foreach (var kvp in CoordToGrid)
+        {
+            var coord = kvp.Key;
+            var gridClone = kvp.Value.Clone();
+            clone.SetGrid(coord, gridClone);
+        }
+        return clone;
+    }
 }

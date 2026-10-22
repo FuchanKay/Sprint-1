@@ -109,6 +109,20 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.IdleName = RegionNames.LaserBeam;
                 spriteScale = context.GridScale * 4.0f;
                 break;
+            case EffectIds.WarlockSpell:
+                sprite.SetState(AnimationNames.Explosion);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
+                sprite.IdleName = RegionNames.Explosion;
+                spriteScale = context.GridScale * 3.5f;
+                sprite.Color = Color.Purple;
+                break;
+            case EffectIds.Slash:
+                sprite.SetState(AnimationNames.Slash);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Slash);
+                sprite.IdleName = RegionNames.Slash;
+                spriteScale = context.GridScale * 0.8f;
+                sprite.Color = Color.White;
+                break;
             default:
                 break;
         }

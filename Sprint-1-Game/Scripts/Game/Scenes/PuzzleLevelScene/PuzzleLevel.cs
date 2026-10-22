@@ -7,8 +7,7 @@ namespace Scripts.Game;
 public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, LevelFileParser levelFileParser)
 {
     private readonly List<ILevelEvent> EventQueue = [];
-    //TODO: Some constants regarding the width and height of each grid, the size of hte level, etc. probably should be moved somewhere else idk where
-    public  LevelContext Context = new()
+    public LevelContext Context = new()
     {
         GridSpriteWidthPx = 256,
         GridSpriteHeightPx = 256,
@@ -18,7 +17,9 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         IsIdle = true,
         PlayerIsDead = false
     };
-    public GridPointer GridPointer;
+    public GridPointer CurrentGridPointer;
+    public List<GridPointer> UndoHistory = [];
+    private readonly int UndoHistoryMaxLength = 200;
     public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
     private readonly int MaxEventsQueued = 2;
     public bool IsIdle = true;
@@ -31,8 +32,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         Context.LevelName = levelFileParser.GetLevelName(LevelFile);
         Context.LevelWidth = levelFileParser.GetLevelWidth(LevelFile);
         Context.LevelHeight = levelFileParser.GetLevelHeight(LevelFile);
-        GridPointer = levelFileParser.CreateGrids(LevelFile);
-        SpriteGrid.Init(GridPointer, Context);
+        CurrentGridPointer = levelFileParser.CreateGrids(LevelFile);
+        SpriteGrid.Init(CurrentGridPointer, Context);
     }
 
     public void Update(int dtMs)
@@ -60,22 +61,60 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         if (!Context.IsIdle) return false;
         if(Context.PlayerIsDead) return false;
 
-        var CurrentEventIsFinished = CurrentEvent.SubEventStack.Count() == 0;
+        var CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
         if (CurrentEventIsFinished && EventQueue.Count > 0)
         {
+            PushCurrentGridPointerClone();
+
             CurrentEvent = EventQueue[0];
             EventQueue.RemoveAt(0);
 
-            CurrentEvent.Execute(SpriteGrid, GridPointer, Context);
+            CurrentEvent.Execute(SpriteGrid, CurrentGridPointer, Context);
             return true;
         }
 
         if (!CurrentEventIsFinished)
         {
             var subEvent = CurrentEvent.SubEventStack.Pop();
-            subEvent.Execute(SpriteGrid, GridPointer, Context);
+            subEvent.Execute(SpriteGrid, CurrentGridPointer, Context);
         }
-
         return false;
+    }
+
+    public void Undo()
+    {
+        var canUndo = UndoHistory.Count > 0;
+        if (!canUndo)
+        {
+            return;
+        }
+        var top = UndoHistory.Count - 1;
+        CurrentGridPointer = UndoHistory[top];
+        UndoHistory.RemoveAt(top);
+        SpriteGrid.Init(CurrentGridPointer, Context);
+
+        CurrentEvent.SubEventStack.Clear();
+        EventQueue.Clear();
+
+        Context.PlayerIsDead = false;
+    }
+
+    public void RestartLevel()
+    {
+        PushCurrentGridPointerClone();
+
+        CurrentGridPointer = levelFileParser.CreateGrids(LevelFile);
+        SpriteGrid.Init(CurrentGridPointer, Context);
+
+        CurrentEvent.SubEventStack.Clear();
+        EventQueue.Clear();
+        Context.PlayerIsDead = false;
+    }
+
+    private void PushCurrentGridPointerClone()
+    {
+        var clone = CurrentGridPointer.Clone();
+        UndoHistory.Add(clone);
+        if (UndoHistory.Count > UndoHistoryMaxLength) UndoHistory.RemoveAt(0);
     }
 }

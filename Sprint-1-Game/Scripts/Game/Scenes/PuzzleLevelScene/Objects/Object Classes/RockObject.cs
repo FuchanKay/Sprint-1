@@ -2,6 +2,15 @@ namespace Scripts.Game;
 
 public class RockObject() : IObject
 {
+    public IObject Clone()
+    {
+        return new RockObject
+        {
+            Direction = Direction,
+            RegionName = RegionName,
+            TextureName = TextureName
+        };
+    }
     public ObjectIds Id => ObjectIds.Rock;
     public Directions Direction { get; set; }
     public string RegionName { get; set; }

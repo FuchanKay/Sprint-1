@@ -45,12 +45,17 @@ public class Setup(ContentManager content)
         ButtonInput.MapInput(InputNames.MoveEastAlt, (int)Keys.Right);
         ButtonInput.MapInput(InputNames.MoveSouthAlt, (int)Keys.Down);
         ButtonInput.MapInput(InputNames.MoveWestAlt, (int)Keys.Left);
+
+        ButtonInput.MapInput(InputNames.LCtrl, (int) Keys.LeftControl);
         ButtonInput.MapInput(InputNames.LShift, (int)Keys.LeftShift);
 
         ButtonInput.MapInput(InputNames.Snap, (int)Keys.F);
 
         ButtonInput.MapInput(InputNames.ExitGame, (int)Keys.Q);
         ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.R);
+        ButtonInput.MapInput(InputNames.ResetLevel, (int)Keys.R);
+
+        ButtonInput.MapInput(InputNames.Undo, (int)Keys.Z);
 
         MouseInput.MapInput(InputNames.Select, (int)MouseButtons.Left);
     }
@@ -93,6 +98,9 @@ public class Setup(ContentManager content)
 
         // obj explode
         TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 0, 4, 105, 96);
+
+        // slash attack effect
+        TextureAtlas.AddAnimation(AnimationNames.Slash, 0, 0, 6, 102, 440, 50);
     }
 
     private void AddRegions()
@@ -123,6 +131,7 @@ public class Setup(ContentManager content)
         // effects
         TextureAtlas.AddRegion(RegionNames.LaserBeam, 4, 2, 64, 64);
         TextureAtlas.AddRegion(RegionNames.Explosion, 2, 0, 105, 96);
+        TextureAtlas.AddRegion(RegionNames.Slash, 0, 0, 102, 440);
 
         // lizard mouth open states
         TextureAtlas.AddRegion(RegionNames.LizardMouthOpenWest, 0, 2, 64, 64);
@@ -145,6 +154,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
         TextureAtlas.AddTexture(TextureNames.Bomb, FileNames.BombTexture);
         TextureAtlas.AddTexture(TextureNames.Explosion, FileNames.ExplosionTexture);
+        TextureAtlas.AddTexture(TextureNames.Slash, FileNames.SlashTexture);
 
         TextureAtlas.AddTexture(TextureNames.Skeleton, FileNames.SkeletonTexture);
         TextureAtlas.AddTexture(TextureNames.Warlock, FileNames.WarlockTexture);

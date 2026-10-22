@@ -33,7 +33,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         UpdateInputs();
 
         //Later on in development exiting game should not be mapped to a key but decent temporary solution for now. 
-        if (buttonInput.IsPressed(InputNames.ResetGame))
+        if (buttonInput.IsHeld(InputNames.LCtrl) && buttonInput.IsPressed(InputNames.ResetGame))
         {
             Restart();
         }
