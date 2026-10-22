@@ -62,7 +62,7 @@ public class Setup(ContentManager content)
 
     private void AddAnimations()
     {
-        int walkDelay = 50;
+        int walkDelay = 40;
         TextureAtlas.AddAnimation(AnimationNames.PlayerWalkNorth, 2, 0, 6, 64, 64, walkDelay);
         TextureAtlas.AddAnimation(AnimationNames.PlayerWalkSouth, 3, 0, 6, 64, 64, walkDelay);
         TextureAtlas.AddAnimation(AnimationNames.PlayerWalkEast, 0, 0, 6, 64, 64, walkDelay);
