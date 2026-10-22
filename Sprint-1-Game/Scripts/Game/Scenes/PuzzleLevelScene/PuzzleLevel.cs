@@ -13,7 +13,6 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         GridScale = 0.25f,
         PuzzleOffsetX = 400,
         PuzzleOffsetY = 50,
-        IsIdle = true,
         PlayerIsDead = false
     };
     public GridPointer CurrentGridPointer;
@@ -55,7 +54,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     public bool TryExecuteEvent()
     {
         if (CurrentEvent == null) return false;
-        if (!Context.IsIdle) return false;
+        if (!SpriteGrid.IsIdle()) return false;
         if (Context.PlayerIsDead) return false;
 
         var CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
@@ -70,7 +69,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
             return true;
         }
 
-        while (!CurrentEventIsFinished && Context.IsIdle)
+        while (!CurrentEventIsFinished && SpriteGrid.IsIdle())
         {
             var subEvent = CurrentEvent.SubEventStack.Pop();
             subEvent.Execute(SpriteGrid, CurrentGridPointer, Context);

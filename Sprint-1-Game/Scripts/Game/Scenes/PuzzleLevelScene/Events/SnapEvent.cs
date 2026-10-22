@@ -21,7 +21,5 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
         SubEventStack.Push(new BombSnapSubEvent(bombCoords, objectFactory, SubEventStack));
         SubEventStack.Push(new TimedBombSnapSubEvent(timedBombCoords, objectFactory, SubEventStack));
         SubEventStack.Push(new WarlockSwapEvent());
-
-        context.IsIdle = false;
     }
 }
