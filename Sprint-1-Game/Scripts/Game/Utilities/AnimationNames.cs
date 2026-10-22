@@ -25,6 +25,7 @@ public class AnimationNames
     public readonly static string BugTileRotate = "Bug Tile Rotate";
     public readonly static string BugTileRotateCC = "Bug Tile Rotate Counterclockwise";
     public readonly static string Explosion = "Explosion";
+    public readonly static string Slash = "Slash";
 
     public static string ObjectRotateClockwiseFrom(Directions direction)
     {

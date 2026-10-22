@@ -54,11 +54,11 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         }
     }
 
-    public void TryExecuteEvent()
+    public bool TryExecuteEvent()
     {
-        if (CurrentEvent == null) return;
-        if (!Context.IsIdle) return;
-        if (Context.PlayerIsDead) return;
+        if (CurrentEvent == null) return false;
+        if (!Context.IsIdle) return false;
+        if(Context.PlayerIsDead) return false;
 
         var CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
         if (CurrentEventIsFinished && EventQueue.Count > 0)
@@ -69,7 +69,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
             EventQueue.RemoveAt(0);
 
             CurrentEvent.Execute(SpriteGrid, CurrentGridPointer, Context);
-            return;
+            return true;
         }
 
         if (!CurrentEventIsFinished)
@@ -77,7 +77,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
             var subEvent = CurrentEvent.SubEventStack.Pop();
             subEvent.Execute(SpriteGrid, CurrentGridPointer, Context);
         }
-        return;
+        return false;
     }
 
     public void Undo()
