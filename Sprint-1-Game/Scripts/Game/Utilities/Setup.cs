@@ -105,6 +105,9 @@ public class Setup(ContentManager content)
 
         // obj explode
         TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 0, 4, 105, 96);
+
+        // slash attack effect
+        TextureAtlas.AddAnimation(AnimationNames.Slash, 0, 0, 6, 102, 440, 50);
     }
 
     private void AddRegions()
@@ -131,8 +134,10 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.Wall, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Bomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
+
+        // effects
         TextureAtlas.AddRegion(RegionNames.Explosion, 2, 0, 105, 96);
-        TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 4, 105, 96, 150);
+        TextureAtlas.AddRegion(RegionNames.Slash, 0, 0, 102, 440);
 
         TextureAtlas.AddRegion(RegionNames.Skeleton, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Warlock, 0, 0, 256, 256);
@@ -151,6 +156,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
         TextureAtlas.AddTexture(TextureNames.Bomb, FileNames.BombTexture);
         TextureAtlas.AddTexture(TextureNames.Explosion, FileNames.ExplosionTexture);
+        TextureAtlas.AddTexture(TextureNames.Slash, FileNames.SlashTexture);
 
         TextureAtlas.AddTexture(TextureNames.Skeleton, FileNames.SkeletonTexture);
         TextureAtlas.AddTexture(TextureNames.Warlock, FileNames.WarlockTexture);

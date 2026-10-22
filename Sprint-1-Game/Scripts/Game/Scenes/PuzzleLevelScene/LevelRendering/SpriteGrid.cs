@@ -141,8 +141,9 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
 
         bool animObjEmpty = AnimatingObjectSprites.Count == 0;
         bool animTileEmpty = AnimatingTileSprites.Count == 0;
+        bool animEffectsEmpty = AnimatingEffectSprites.Count == 0;
 
-        IsIdle = animObjEmpty && animTileEmpty;
+        IsIdle = animObjEmpty && animTileEmpty && animEffectsEmpty;
     }
 
     public void Draw(SpriteBatch sb)
