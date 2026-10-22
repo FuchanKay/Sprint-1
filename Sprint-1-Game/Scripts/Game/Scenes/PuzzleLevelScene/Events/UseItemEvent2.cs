@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 namespace Scripts.Game;
 
-public class UseItemEvent2(ObjectFactory objectFactory, ObjectSpriteFactory objectSpriteFactory) : ILevelEvent
+public class UseItemEvent2(ObjectFactory objectFactory) : ILevelEvent
 {
     public Stack<ILevelSubEvent> SubEventStack { get; } = [];
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
@@ -27,10 +27,18 @@ public class UseItemEvent2(ObjectFactory objectFactory, ObjectSpriteFactory obje
             break;
         }
         var targetObj = gridPointer.GetObject(targetCoord);
-        bool itemEquiped = true;
-        bool isUsable = targetObj.Id == ObjectIds.Empty;
-        if (!(itemEquiped && isUsable)) return;
-        Console.WriteLine($"use item 2");
-
+        bool itemEquiped = PlayerItemsComponent.playerItems[1].Id != ObjectIds.Empty;
+        bool isFrontCleared = targetObj.Id == ObjectIds.Empty;
+        if (!(itemEquiped && isFrontCleared)) return;
+        switch (PlayerItemsComponent.playerItems[1].Id)
+        {
+            case ObjectIds.Bomb:
+            gridPointer.SetObject(targetCoord, objectFactory.CreateBomb());
+            break;
+        }
+        
+        spriteGrid.SetObjectSprite(targetCoord,targetCoord,PlayerItemsComponent.playerItemSprites[0]);
+        PlayerItemsComponent.playerItems[1] = objectFactory.CreateEmpty();
+        Console.WriteLine($"use item 1");
     }
 }

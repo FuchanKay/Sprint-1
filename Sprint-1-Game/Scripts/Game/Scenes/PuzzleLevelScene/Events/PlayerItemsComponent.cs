@@ -6,6 +6,7 @@ using Scripts.GameComponents;
 namespace Scripts.Game;
 public class PlayerItemsComponent
 {
-        public static ObjectIds[] playerItems= [ObjectIds.Empty, ObjectIds.Empty, ObjectIds.Empty]; 
+        public static IObject[] playerItems= [new EmptyObject(), new EmptyObject(), new EmptyObject()]; 
+        public static ISprite[] playerItemSprites = new ISprite[3];
 
 }
