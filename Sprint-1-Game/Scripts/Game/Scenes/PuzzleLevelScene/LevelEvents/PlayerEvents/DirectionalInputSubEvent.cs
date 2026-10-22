@@ -17,9 +17,18 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
         {
             var destinationGrid = gridPointer.GetGrid(destinationCoord);
             var destinationObject = destinationGrid.Object;
+
+            if(destinationGrid.Object.Id == ObjectIds.RedLizard)
+            {
+                var removeLaser = new RemoveRedLaserSubEvent(objectFactory, destinationCoord);
+                removeLaser.Execute(spriteGrid, gridPointer, context);
+            }
+            
+            var onePastDestinationCoord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
+
             var objectSprite = spriteGrid.GetObjectSprite(destinationCoord);
             objectSprite.Duration = spriteGrid.PushDuration;
-            var onePastDestinationCoord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
+
             spriteGrid.SetObjectSprite(destinationCoord, onePastDestinationCoord, objectSprite);
             spriteGrid.StartObjectAnimation(destinationCoord);
 

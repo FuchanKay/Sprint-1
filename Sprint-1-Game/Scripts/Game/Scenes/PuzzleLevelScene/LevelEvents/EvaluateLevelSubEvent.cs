@@ -9,5 +9,8 @@ public class EvaluateLevelSubEvent(SubEventCallStack subEventStack, ObjectFactor
         var playerCoord = gridPointer.GetPlayerCoord();
         if(gridPointer.GetTile(playerCoord).Id == TileIds.Lava) subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
         Console.WriteLine("Evaluated!");
+        subEventStack.Push(new RedLizardBlastSubEvent(objectFactory));
+        subEventStack.Push(new RedLizardBlastSubEvent(objectFactory));
     }
+
 }

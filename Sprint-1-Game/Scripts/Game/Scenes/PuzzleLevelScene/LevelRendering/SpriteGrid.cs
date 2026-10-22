@@ -214,9 +214,9 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         UpdateAnimatingList(dtMs, AnimatingObjectSprites, ObjectSprites);
         UpdateAnimatingList(dtMs, AnimatingTileSprites, TileSprites);
         UpdateAnimatingEffectsList(dtMs, AnimatingEffectSprites, EffectSprites);
+        UpdateIterableEffects();
         if(iterableTimer % 3 == 0)
         {
-            UpdateIterableEffects();
             UpdateIterableTiles();
         }
 
@@ -289,12 +289,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
             if(sprite.IdleName == RegionNames.Explosion)
             {
                 AnimatingEffectSprites.Add(sprite);
-
-                ObjectSprites.TryGetValue(sprite.CurrentPosition, out var objectSprite);
-                if(objectSprite.IdleName != RegionNames.Wall)
-                {
-                    ObjectSprites.Remove(sprite.CurrentPosition);
-                }
             } else
             {
                 // add sprite to effect sprites so that it'll be drawn
