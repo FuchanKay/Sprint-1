@@ -9,6 +9,15 @@ public class TileFactory()
 
         };
     }
+
+    public ITile CreateUnsolvedLevelSelectionTile()
+    {
+        return new LevelSelectionTile{
+            
+        };
+        
+    }
+
     private ITile CreateFloorTile(string regionName)
     {
         return new FloorTile

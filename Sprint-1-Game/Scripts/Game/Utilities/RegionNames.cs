@@ -17,6 +17,8 @@ public class RegionNames
     public readonly static string LavaTile = "Lava Tile";
     public readonly static string BugTile = "Bug Tile";
     public readonly static string BugTileCC = "Bug Tile Counterclockwise";
+    public readonly static string UnsolvedLevelTile = "Unsolved Level Tile";
+    public readonly static string SolvedLevelTile = "Solved Level Tile";
 
     public readonly static string IdleSouth = "Object Idle South";
     public readonly static string IdleNorth = "Object Idle North";

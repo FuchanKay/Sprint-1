@@ -118,6 +118,8 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.WaterTile, 2, 1, 64, 64);
         TextureAtlas.AddRegion(RegionNames.BugTile, 1, 2, 64, 64);
         TextureAtlas.AddRegion(RegionNames.BugTileCC, 3, 2, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.UnsolvedLevelTile, 1, 3, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.SolvedLevelTile, 2, 3, 64, 64);
 
         // objects
         TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 256, 256);

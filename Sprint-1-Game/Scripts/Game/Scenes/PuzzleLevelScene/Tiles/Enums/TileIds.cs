@@ -8,5 +8,6 @@ public enum TileIds
     Water,
     Lava,
     Bug,
-    CCBug
+    CCBug,
+    LevelSelection
 }
