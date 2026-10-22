@@ -10,10 +10,12 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
     private ObjectFactory ObjectFactory = new();
     private TileFactory TileFactory = new();
     private ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
-    private TileSpriteFactory TileSpriteFactory = new(textureAtlas);
+    private TileSpriteFactory TileSpriteFactory;
 
     public void Init()
     {
+        TileSpriteFactory = new(textureAtlas, TileFactory);
+        
         LevelFileParser = new LevelFileParser(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory);
         Level = new PuzzleLevel(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory, LevelFileParser);
         Level.Init(FileNames.Level1File);
