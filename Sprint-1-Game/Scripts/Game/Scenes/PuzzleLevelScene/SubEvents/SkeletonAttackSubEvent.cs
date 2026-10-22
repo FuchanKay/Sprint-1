@@ -9,16 +9,21 @@ public class SkeletonsAttackSubEvent(List<Coordinate> skeletonCoords, ObjectFact
     {
         List<Directions> directions = new List<Directions> {Directions.North, Directions.East, Directions.South, Directions.West};
 
+        var attackOccurred = false;
         foreach(var skeletonCoord in skeletonCoords)
         {
-            TryAttack(skeletonCoord, gridPointer, spriteGrid);
+            if (TryAttack(skeletonCoord, gridPointer, spriteGrid))
+            {
+                attackOccurred = true;
+            }
         }
-        context.IsIdle = false;
+        context.IsIdle = attackOccurred;
     }
 
-    private void TryAttack(Coordinate skeletonCoord, GridPointer gridPointer, SpriteGrid spriteGrid)
+    private bool TryAttack(Coordinate skeletonCoord, GridPointer gridPointer, SpriteGrid spriteGrid)
     {
         List<Directions> directions = new List<Directions> {Directions.North, Directions.East, Directions.South, Directions.West};   
+        var attackOccurred = false;
         foreach(var direction in directions)
         {
             var targetCoord = skeletonCoord + Coordinate.ToCoordinate(direction);
@@ -29,7 +34,9 @@ public class SkeletonsAttackSubEvent(List<Coordinate> skeletonCoords, ObjectFact
                 spriteGrid.PlayEffect(EffectIds.Slash, targetCoord);
                 Console.WriteLine($"Skeleton Attacking {direction}!");
                 subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
+                attackOccurred = true;
             }
         }
+        return attackOccurred;
     }
-}
+}   

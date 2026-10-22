@@ -14,7 +14,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     private readonly List<ISprite> AnimatingObjectSprites = [];
     private readonly List<ISprite> AnimatingTileSprites = [];
     private readonly List<ISprite> AnimatingEffectSprites = [];
-    public bool IsIdle { get; private set; }
     private LevelContext Context;
 
     public readonly int PushDuration = 400;
@@ -27,8 +26,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         AnimatingObjectSprites.Clear();
         AnimatingTileSprites.Clear();
         AnimatingEffectSprites.Clear();
-
-        IsIdle = true;
 
         Context = context;
 
@@ -143,7 +140,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         bool animTileEmpty = AnimatingTileSprites.Count == 0;
         bool animEffectsEmpty = AnimatingEffectSprites.Count == 0;
 
-        IsIdle = animObjEmpty && animTileEmpty && animEffectsEmpty;
+        Context.IsIdle = animObjEmpty && animTileEmpty && animEffectsEmpty;
     }
 
     public void Draw(SpriteBatch sb)

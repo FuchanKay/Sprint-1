@@ -21,7 +21,6 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     private readonly int UndoHistoryMaxLength = 200;
     public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
     private readonly int MaxEventsQueued = 2;
-    public bool IsIdle = true;
     private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, false, objectFactory);
     private string[] LevelFile;
 
@@ -38,7 +37,6 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     public void Update(int dtMs)
     {
         SpriteGrid.Update(dtMs);
-        Context.IsIdle = SpriteGrid.IsIdle;
     }
 
     public void Draw(SpriteBatch sb)
@@ -58,7 +56,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     {
         if (CurrentEvent == null) return false;
         if (!Context.IsIdle) return false;
-        if(Context.PlayerIsDead) return false;
+        if (Context.PlayerIsDead) return false;
 
         var CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
         if (CurrentEventIsFinished && EventQueue.Count > 0)
@@ -72,11 +70,13 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
             return true;
         }
 
-        if (!CurrentEventIsFinished)
+        while (!CurrentEventIsFinished && Context.IsIdle)
         {
             var subEvent = CurrentEvent.SubEventStack.Pop();
             subEvent.Execute(SpriteGrid, CurrentGridPointer, Context);
+            CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
         }
+    
         return false;
     }
 
