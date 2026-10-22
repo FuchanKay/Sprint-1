@@ -33,7 +33,6 @@ public class RedLizardBlastSubEvent(ObjectFactory objectFactory) : ILevelSubEven
         var dirCoord = lizardCoord + Coordinate.ToCoordinate(lizardDirection);
         var dirGrid = gridPointer.GetGrid(dirCoord);
 
-        // if something is destructible, will stop
         while (dirGrid.Object.Id == ObjectIds.Empty)
         {
             dirCoord += Coordinate.ToCoordinate(lizardDirection);

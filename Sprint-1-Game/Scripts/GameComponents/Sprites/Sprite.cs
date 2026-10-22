@@ -14,7 +14,7 @@ public abstract class Sprite(ITextureAtlas textureAtlas) : ISprite
     public Color Color { get; set; } = Color.White;
     public float Rotation { get; set; } = 0f;
     public Vector2 Origin => new Vector2(CurrentRegion.Width / 2, CurrentRegion.Height / 2);
-    public Vector2 Scale { get; set; } = new Vector2(1.0f, 1.0f);
+    public float Scale { get; set; }
     public SpriteEffects Effects { get; set; } = SpriteEffects.None;
     public float LayerDepth { get; set; } = 0f;
 

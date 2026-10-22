@@ -339,9 +339,9 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
 
     private Vector2 CalculateLiteralPos(Coordinate coord)
     {
-        var spriteWidth = (int)(Context.GridSpriteWidthPx * Context.GridScale).X;
+        var spriteWidth = (int)(Context.GridSpriteWidthPx * Context.GridScale);
         var spriteX = spriteWidth * coord.X + Context.PuzzleOffsetX;
-        var spriteHeight = (int)(Context.GridSpriteHeightPx * Context.GridScale).Y;
+        var spriteHeight = (int)(Context.GridSpriteHeightPx * Context.GridScale);
         var spriteY = spriteHeight * coord.Y + Context.PuzzleOffsetY;
 
         return new Vector2(spriteX, spriteY);

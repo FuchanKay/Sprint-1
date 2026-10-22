@@ -11,7 +11,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     {
         GridSpriteWidthPx = 256,
         GridSpriteHeightPx = 256,
-        GridScale = new Vector2(0.25f, 0.25f),
+        GridScale = 0.25f,
         PuzzleOffsetX = 400,
         PuzzleOffsetY = 50,
         IsIdle = true,
