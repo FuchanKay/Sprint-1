@@ -1,4 +1,3 @@
-using System.Data;
 using Microsoft.Xna.Framework;
 using Scripts.GameComponents;
 
@@ -63,13 +62,15 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 break;
             case ObjectIds.BlueLizard:
                 sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.BlueLizard);
+                sprite.SetState(RegionNames.IdleSouth);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.BlueLizard);
                 break;
             case ObjectIds.RedLizard:
                 sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.RedLizard);
+                sprite.SetState(RegionNames.IdleSouth);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.RedLizard);
+                spriteScale = context.GridScale * 4.0f;
+                sprite.IdleName = RegionNames.IdleSouth;
                 break;
             default:
                 sprite = new StaticSprite(textureAtlas);
@@ -100,7 +101,13 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
                 sprite.IdleName = RegionNames.Explosion;
                 spriteScale = context.GridScale * 3.5f;
-                sprite.Color = Color.SpringGreen;
+                break;
+            case EffectIds.LaserBeam:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.LaserBeam);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.RedLizard);
+                sprite.IdleName = RegionNames.LaserBeam;
+                spriteScale = context.GridScale * 4.0f;
                 break;
             case EffectIds.WarlockSpell:
                 sprite.SetState(AnimationNames.Explosion);

@@ -30,7 +30,7 @@ public class StaticSprite(ITextureAtlas textureAtlas) : Sprite(textureAtlas)
     }
     public override void SetState(string name)
     {
-        CurrentRegion = TexAtlas.GetRegion(name);
+        CurrentRegion = textureAtlas.GetRegion(name);
     }
 
 }

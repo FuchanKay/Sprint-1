@@ -4,6 +4,7 @@ public enum EffectIds
 {
     Explosion,
     PlayerDeath,
+    LaserBeam,
     WarlockSpell,
     Slash
 }

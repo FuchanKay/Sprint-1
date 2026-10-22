@@ -15,7 +15,7 @@ public class FileNames
     public readonly static string SkeletonTexture = "Images/skeleton";
     public readonly static string WarlockTexture = "Images/warlock";
     public readonly static string BlueLizardTexture = "Images/blueLizard";
-    public readonly static string RedLizardTexture = "Images/redLizard";
+    public readonly static string RedLizardTexture = "Images/red-lizard-sprites";
 
     public readonly static string Level1File = "Content/Levels/level1.csv";
 

@@ -11,17 +11,17 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
         var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
         playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerSnap);
         spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
-        spriteGrid.StartObjectAnimation(playerSprite);
+        spriteGrid.StartObjectAnimation(playerCoord);
 
         SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack, objectFactory));
 
         var bombCoords = gridPointer.GetObjectPointers(ObjectIds.Bomb).Keys.ToList();
         var timedBombCoords = gridPointer.GetObjectPointers(ObjectIds.TimedBomb).Keys.ToList();
-        SubEventStack.Push(new BugRotateSubEvent());
         SubEventStack.Push(new BombSnapSubEvent(bombCoords, objectFactory, SubEventStack));
         SubEventStack.Push(new TimedBombSnapSubEvent(timedBombCoords, objectFactory, SubEventStack));
+        SubEventStack.Push(new RedLizardBlastSubEvent(objectFactory));
+        SubEventStack.Push(new BugRotateSubEvent(objectFactory));
         SubEventStack.Push(new WarlockSwapEvent());
-        
 
         context.IsIdle = false;
     }

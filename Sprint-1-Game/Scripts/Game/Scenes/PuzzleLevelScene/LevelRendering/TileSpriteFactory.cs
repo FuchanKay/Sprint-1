@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace Scripts.Game;
 
-public class TileSpriteFactory(ITextureAtlas textureAtlas)
+public class TileSpriteFactory(ITextureAtlas textureAtlas, TileFactory tileFactory)
 {
     private readonly static float TileLayerDepth = 0.0f;
     public ISprite CreateTileSprite(ITile tile, Vector2 coord, LevelContext context)
@@ -51,4 +51,27 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
 
         return sprite;
     }
+
+    public ISprite CreateTileSpriteFromID(TileIds tileId, string tileSkin, Vector2 coord, LevelContext context)
+    {
+        StaticSprite sprite;
+        switch (tileId)
+        {
+            case TileIds.Floor:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(tileSkin);
+                break;
+            default:
+                sprite = new StaticSprite(textureAtlas);
+                break;
+        }
+        sprite.Texture = textureAtlas.GetTexture(TextureNames.TileSprites);
+        sprite.CurrentPosition = coord;
+        sprite.SetTargetPosition(coord);
+        sprite.Scale = context.GridScale * 4.0f;
+        sprite.LayerDepth = TileLayerDepth;
+
+        return sprite;
+    }
+
 }
