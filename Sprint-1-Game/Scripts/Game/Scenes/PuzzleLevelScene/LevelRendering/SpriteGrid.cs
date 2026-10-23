@@ -14,7 +14,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     private readonly List<ISprite> AnimatingObjectSprites = [];
     private readonly List<ISprite> AnimatingTileSprites = [];
     private readonly List<ISprite> AnimatingEffectSprites = [];
-    public bool IsIdle { get; private set; }
     private LevelContext Context;
 
     public readonly int PushDuration = 400;
@@ -27,8 +26,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         AnimatingObjectSprites.Clear();
         AnimatingTileSprites.Clear();
         AnimatingEffectSprites.Clear();
-
-        IsIdle = true;
 
         Context = context;
 
@@ -138,12 +135,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         UpdateAnimatingList(dtMs, AnimatingObjectSprites, ObjectSprites);
         UpdateAnimatingList(dtMs, AnimatingTileSprites, TileSprites);
         UpdateEffectsList(dtMs, AnimatingEffectSprites, EffectSprites);
-
-        bool animObjEmpty = AnimatingObjectSprites.Count == 0;
-        bool animTileEmpty = AnimatingTileSprites.Count == 0;
-        bool animEffectsEmpty = AnimatingEffectSprites.Count == 0;
-
-        IsIdle = animObjEmpty && animTileEmpty && animEffectsEmpty;
     }
 
     public void Draw(SpriteBatch sb)
@@ -163,6 +154,16 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
             var effectSprite = coordAndEffectSprite.Value;
             effectSprite.Draw(sb);
         }
+    }
+
+    public bool IsIdle()
+    {
+
+        bool animObjEmpty = AnimatingObjectSprites.Count == 0;
+        bool animTileEmpty = AnimatingTileSprites.Count == 0;
+        bool animEffectsEmpty = AnimatingEffectSprites.Count == 0;
+
+        return animObjEmpty && animTileEmpty && animEffectsEmpty;
     }
 
     private static void UpdateAnimatingList(int dtMs, List<ISprite> currentList, Dictionary<Vector2, ISprite> currentDict)
