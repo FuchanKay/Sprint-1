@@ -10,25 +10,12 @@ public class UseItemEvent1(ObjectFactory objectFactory) : ILevelEvent
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerObj = gridPointer.GetObject(playerCoord);
         var playerDirection = playerObj.Direction;
-        var targetCoord = new Coordinate();
-        switch (playerDirection)
-        {
-            case Directions.North:
-                targetCoord = playerCoord + Coordinate.North;
-            break;
-            case Directions.East:
-                targetCoord = playerCoord + Coordinate.East;
-            break;
-            case Directions.South:
-                targetCoord = playerCoord + Coordinate.South;
-            break;
-            case Directions.West:
-                targetCoord = playerCoord + Coordinate.West;
-            break;
-        }
+        var targetCoord = PlayerItemsComponent.aquireTarget(playerCoord,playerDirection);
+
         var targetObj = gridPointer.GetObject(targetCoord);
         bool itemEquiped = PlayerItemsComponent.playerItems[0].Id != ObjectIds.Empty;
         bool isFrontCleared = targetObj.Id == ObjectIds.Empty;
+        
         if (!(itemEquiped && isFrontCleared)) return;
         switch (PlayerItemsComponent.playerItems[0].Id)
         {
@@ -36,7 +23,7 @@ public class UseItemEvent1(ObjectFactory objectFactory) : ILevelEvent
             gridPointer.SetObject(targetCoord, objectFactory.CreateBomb());
             break;
         }
-        
+        PlayerItemsComponent.playerItemSprites[0].CurrentPosition = spriteGrid.CalculateLiteralPos(targetCoord);
         spriteGrid.SetObjectSprite(targetCoord,targetCoord,PlayerItemsComponent.playerItemSprites[0]);
         PlayerItemsComponent.playerItems[0] = objectFactory.CreateEmpty();
         Console.WriteLine($"use item 1");

@@ -10,28 +10,12 @@ public class PickItemEvent(ObjectFactory objectFactory) : ILevelEvent
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerObj = gridPointer.GetObject(playerCoord);
         var playerDirection = playerObj.Direction;
-        var itemCoord = new Coordinate();
-        switch (playerDirection)
-        {
-            case Directions.North:
-                itemCoord = playerCoord + Coordinate.North;
-            break;
-            case Directions.East:
-                itemCoord = playerCoord + Coordinate.East;
-            break;
-            case Directions.South:
-                itemCoord = playerCoord + Coordinate.South;
-            break;
-            case Directions.West:
-                itemCoord = playerCoord + Coordinate.West;
-            break;
-        }
-        var itemObj = gridPointer.GetObject(itemCoord);
-        Console.WriteLine($"itemObj Is Pickable  {itemObj.IsPickable} ");
-        Console.WriteLine($"player items are {PlayerItemsComponent.playerItems[0]}, {PlayerItemsComponent.playerItems[1]}, {PlayerItemsComponent.playerItems[2]}");
+        var targetCoord = PlayerItemsComponent.aquireTarget(playerCoord,playerDirection);
+
+        var itemObj = gridPointer.GetObject(targetCoord);
 
         if (!itemObj.IsPickable) return;
-        var itemSprite = spriteGrid.GetObjectSprite(itemCoord);
+        var itemSprite = spriteGrid.GetObjectSprite(targetCoord);
 
         for (int i = 0; i < PlayerItemsComponent.playerItems.Length; i++)
         {
@@ -42,11 +26,8 @@ public class PickItemEvent(ObjectFactory objectFactory) : ILevelEvent
                 break;
             }
         }
-        Console.WriteLine($"player items are {PlayerItemsComponent.playerItems[0]}, {PlayerItemsComponent.playerItems[1]}, {PlayerItemsComponent.playerItems[2]}");
-
-
-        gridPointer.SetObject(itemCoord, objectFactory.CreateEmpty());
-        spriteGrid.RemoveObjectSprite(itemCoord);
+        gridPointer.SetObject(targetCoord, objectFactory.CreateEmpty());
+        spriteGrid.RemoveObjectSprite(targetCoord);
     
         context.IsIdle = false;
     }
