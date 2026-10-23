@@ -46,7 +46,7 @@ public class Setup(ContentManager content)
         ButtonInput.MapInput(InputNames.MoveSouthAlt, (int)Keys.Down);
         ButtonInput.MapInput(InputNames.MoveWestAlt, (int)Keys.Left);
 
-        ButtonInput.MapInput(InputNames.LCtrl, (int) Keys.LeftControl);
+        ButtonInput.MapInput(InputNames.LCtrl, (int)Keys.LeftControl);
         ButtonInput.MapInput(InputNames.LShift, (int)Keys.LeftShift);
 
         ButtonInput.MapInput(InputNames.Snap, (int)Keys.F);
@@ -69,7 +69,7 @@ public class Setup(ContentManager content)
 
     private void AddAnimations()
     {
-        int walkDelay = 50;
+        int walkDelay = 40;
         TextureAtlas.AddAnimation(AnimationNames.PlayerWalkNorth, 2, 0, 6, 64, 64, walkDelay);
         TextureAtlas.AddAnimation(AnimationNames.PlayerWalkSouth, 3, 0, 6, 64, 64, walkDelay);
         TextureAtlas.AddAnimation(AnimationNames.PlayerWalkEast, 0, 0, 6, 64, 64, walkDelay);

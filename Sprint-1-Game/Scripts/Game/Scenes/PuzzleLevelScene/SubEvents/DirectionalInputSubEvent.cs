@@ -42,8 +42,6 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
 
             gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
-
-            context.IsIdle = false;
         }
     }
 
