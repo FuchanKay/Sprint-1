@@ -29,6 +29,5 @@ public class PickItemEvent(ObjectFactory objectFactory) : ILevelEvent
         gridPointer.SetObject(targetCoord, objectFactory.CreateEmpty());
         spriteGrid.RemoveObjectSprite(targetCoord);
     
-        context.IsIdle = false;
     }
 }

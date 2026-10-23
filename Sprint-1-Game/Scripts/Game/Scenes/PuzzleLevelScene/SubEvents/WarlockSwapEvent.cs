@@ -3,7 +3,7 @@ using System;
 
 namespace Scripts.Game;
 
-public class WarlockSwapSubEvent() : ILevelSubEvent
+public class WarlockSwapEvent() : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
