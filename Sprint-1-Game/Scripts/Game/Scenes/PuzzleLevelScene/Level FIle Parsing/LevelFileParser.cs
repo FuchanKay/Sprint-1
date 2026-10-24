@@ -100,6 +100,7 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
             "Rock" => objectFactory.CreateDefaultRock(),
             "Wall" => objectFactory.CreateWall(),
             "Bomb" => objectFactory.CreateBomb(),
+            "Door" => objectFactory.CreateDoor(),
             "TimedBomb" => objectFactory.CreateTimedBomb(),
             "Skeleton" => objectFactory.CreateSkeleton(),
             "Warlock" => objectFactory.CreateWarlock(),

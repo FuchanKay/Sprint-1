@@ -10,7 +10,7 @@ Dirt,Dirt,Bug,CCBug,Dirt,Dirt,MossyBrick,Grass,Dirt,Dirt
 Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 _,_,_,_,_,_,_,_,_,_
-Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall
+Wall,Wall,Wall,Wall,Door,Wall,Wall,Wall,Wall,Wall
 Wall,_,_,_,_,_,_,_,_,Wall
 Wall,_,Player,_,_,_,Rock,Bomb,_,Wall
 Wall,_,_,_,_,_,_,_,_,Wall

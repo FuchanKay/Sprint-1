@@ -48,6 +48,13 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.IdleName = RegionNames.Key;
                 spriteScale = context.GridScale * 0.25f;
                 break;
+            case ObjectIds.Door:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.ClosedDoor);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Door);
+                sprite.IdleName = RegionNames.ClosedDoor;
+                spriteScale = context.GridScale * 12.0f;
+                break;
             case ObjectIds.TimedBomb:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.TimedBomb);

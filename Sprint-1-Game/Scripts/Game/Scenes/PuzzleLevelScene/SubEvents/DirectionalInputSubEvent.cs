@@ -48,7 +48,6 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
     private bool CanMove(IObject playerObject, Grid destinationGrid)
     {
         var destinationTile = destinationGrid.Tile;
-
         var isDestinationEmpty = destinationGrid.Object.Id == ObjectIds.Empty;
         var isFacingDirection = playerObject.Direction == direction;
 

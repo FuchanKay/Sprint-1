@@ -4,6 +4,8 @@ public class RegionNames
 {
     public readonly static string Rock = "Rock";
     public readonly static string Wall = "Wall";
+    public readonly static string ClosedDoor = "Closed Door";
+    public readonly static string OpenDoor = "Open Door";
     public readonly static string Bomb = "Bomb";
     public readonly static string Key = "Key";
     public readonly static string TimedBomb = "Timed Bomb";

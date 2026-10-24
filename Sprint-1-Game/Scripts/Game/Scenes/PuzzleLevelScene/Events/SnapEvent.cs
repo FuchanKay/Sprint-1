@@ -9,6 +9,9 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
     {
         SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack, objectFactory));
 
+        //TEST
+        SubEventStack.Push(new OpenExitSubEvent());
+
         var bombCoords = gridPointer.GetObjectPointers(ObjectIds.Bomb).Keys.ToList();
         var timedBombCoords = gridPointer.GetObjectPointers(ObjectIds.TimedBomb).Keys.ToList();
         SubEventStack.Push(new BugRotateSubEvent());

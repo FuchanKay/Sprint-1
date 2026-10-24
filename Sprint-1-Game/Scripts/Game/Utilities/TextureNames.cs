@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace Scripts.Game;
 
 public class TextureNames
@@ -7,6 +9,7 @@ public class TextureNames
     public readonly static string ExitGameButton = "Exit Game Button";
     public readonly static string Rock = "Rock";
     public readonly static string Wall = "Wall";
+    public readonly static string Door = "Door";
     public readonly static string Bomb = "Bomb";
     public readonly static string Key = "Key";
     public readonly static string Explosion = "Explosion";

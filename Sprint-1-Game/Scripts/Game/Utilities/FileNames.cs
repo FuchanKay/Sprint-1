@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace Scripts.Game;
 
 public class FileNames
@@ -7,6 +9,7 @@ public class FileNames
     public readonly static string TileTextures = "Images/tile-sprites";
     public readonly static string RockTexture = "Images/rock";
     public readonly static string WallTexture = "Images/stonewall";
+    public readonly static string DoorTexture = "Images/door";
     public readonly static string PlayerTexture = "Images/player-sprites";
     public readonly static string BombTexture = "Images/bomb";
     public readonly static string KeyTexture = "Images/key";

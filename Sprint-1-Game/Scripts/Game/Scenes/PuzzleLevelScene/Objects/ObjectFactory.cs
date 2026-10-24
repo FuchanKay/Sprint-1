@@ -63,6 +63,14 @@ public class ObjectFactory()
         };
     }
 
+    public IObject CreateDoor()
+    {
+        return new DoorObject
+        {
+            Direction = Directions.South,
+        };
+    }
+
     public IObject CreateTimedBomb()
     {
         return new TimedBombObject

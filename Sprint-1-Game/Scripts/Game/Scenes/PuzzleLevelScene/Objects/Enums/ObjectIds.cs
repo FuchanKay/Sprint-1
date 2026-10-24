@@ -12,5 +12,6 @@ public enum ObjectIds
     Wall,
     Bomb,
     TimedBomb,
+    Door,
     Key
 }
