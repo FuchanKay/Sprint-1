@@ -7,10 +7,10 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
 {
     private PuzzleLevel Level;
     private LevelFileParser LevelFileParser;
-    private ObjectFactory ObjectFactory = new();
-    private TileFactory TileFactory = new();
-    private ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
-    private TileSpriteFactory TileSpriteFactory = new(textureAtlas);
+    private readonly ObjectFactory ObjectFactory = new();
+    private readonly TileFactory TileFactory = new();
+    private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
+    private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
 
     public void Init()
     {
@@ -53,7 +53,6 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
         {
             Level.Undo();
         }
-        Level.TryExecuteEvent();
 
         Level.Update(dtMs);
     }

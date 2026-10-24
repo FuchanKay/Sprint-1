@@ -25,6 +25,9 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
     public void Init(string levelFilePath)
     {
+        UndoHistory.Clear();
+        CurrentEvent.SubEventStack.Clear();
+
         LevelFile = levelFileParser.ParseLevelFile(levelFilePath);
         Context.LevelName = levelFileParser.GetLevelName(LevelFile);
         Context.LevelWidth = levelFileParser.GetLevelWidth(LevelFile);
@@ -35,6 +38,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
     public void Update(int dtMs)
     {
+        TryExecuteEvent();
         SpriteGrid.Update(dtMs);
     }
 
@@ -51,7 +55,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         }
     }
 
-    public void TryExecuteEvent()
+    private void TryExecuteEvent()
     {
         if (!SpriteGrid.IsIdle() || Context.PlayerIsDead) return;
 
