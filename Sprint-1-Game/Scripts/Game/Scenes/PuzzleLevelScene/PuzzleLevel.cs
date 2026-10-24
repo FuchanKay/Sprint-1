@@ -23,12 +23,13 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, false, objectFactory);
     private string[] LevelFile;
 
-    public void Init(string levelFilePath)
+    public void Init(int levelIndex)
     {
         UndoHistory.Clear();
         CurrentEvent.SubEventStack.Clear();
 
-        LevelFile = levelFileParser.ParseLevelFile(levelFilePath);
+        var levelFileName = FileNames.LevelFileNames[levelIndex];
+        LevelFile = levelFileParser.ParseLevelFile(levelFileName);
         Context.LevelName = levelFileParser.GetLevelName(LevelFile);
         Context.LevelWidth = levelFileParser.GetLevelWidth(LevelFile);
         Context.LevelHeight = levelFileParser.GetLevelHeight(LevelFile);

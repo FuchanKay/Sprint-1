@@ -1,6 +1,6 @@
 # Sprint-1 Game
 
-Sprint-1 Game is a grid-based puzzle game built with C# and MonoGame. Move through the level, push objects, and use the special tiles and objects to solve the room.
+*Name Pending* is a grid-based puzzle game built with C# and MonoGame. Move through the level, push objects, and use the special tiles and objects to solve the room.
 
 ## Controls
 
@@ -8,6 +8,7 @@ W, A, S, D or arrow keys => Face and move in that direction
 Left Shift + direction => Turn to face that direction without moving
 F => Snap: activate bombs, rotate bug tiles, and trigger the other snap interactions
 Z => Undo the previous move
+B => Change Level
 R => Restart the current level (can be undone)
 Ctrl + R => Restart the entire game
 Q => Exit the game
@@ -23,7 +24,7 @@ Lava => Walkable, but dangerous: after a move, the player is defeated if standin
 Clockwise bug tile => Walkable. When you snap, it rotates rotatable objects on its tile clockwise.
 Counterclockwise bug tile => Walkable. When you snap, it rotates rotatable objects on its tile counterclockwise.
 
-### Objects and characters
+### Objects, Enemies, and Characters
 
 Player => The character you control.
 Rock => Pushable and destructible. Push it into an empty tile; bombs can destroy it.
