@@ -7,16 +7,17 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
 {
     private PuzzleLevel Level;
     private LevelFileParser LevelFileParser;
-    private ObjectFactory ObjectFactory = new();
-    private TileFactory TileFactory = new();
-    private ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
-    private TileSpriteFactory TileSpriteFactory = new(textureAtlas);
+    private readonly ObjectFactory ObjectFactory = new();
+    private readonly TileFactory TileFactory = new();
+    private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
+    private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
+    public int CurrentLevelIndex = 0;
 
     public void Init()
     {
         LevelFileParser = new LevelFileParser(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory);
         Level = new PuzzleLevel(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory, LevelFileParser);
-        Level.Init(FileNames.Level1File);
+        Level.Init(CurrentLevelIndex);
     }
     public void Update(int dtMs)
     {
@@ -37,6 +38,11 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
         {
             Level.EnqueueEvent(new MovePlayerEvent(Directions.West, lockMove, ObjectFactory));
         }
+        else if (buttonInput.IsPressed(InputNames.ChangeLevel))
+        {
+            CurrentLevelIndex = (CurrentLevelIndex + 1) % FileNames.LevelFileNames.Length;
+            Level.Init(CurrentLevelIndex);
+        }
         else if (buttonInput.IsPressed(InputNames.Snap))
         {
             Level.EnqueueEvent(new SnapEvent(ObjectFactory));
@@ -53,7 +59,6 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
         {
             Level.Undo();
         }
-        Level.TryExecuteEvent();
 
         Level.Update(dtMs);
     }
