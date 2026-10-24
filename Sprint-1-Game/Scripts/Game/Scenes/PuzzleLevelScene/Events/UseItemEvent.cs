@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 namespace Scripts.Game;
 
-public class UseItemEvent1(ObjectFactory objectFactory) : ILevelEvent
+public class UseItemEvent(Inventory inventory, ObjectFactory objectFactory) : ILevelEvent
 {
     public Stack<ILevelSubEvent> SubEventStack { get; } = [];
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
@@ -10,22 +10,22 @@ public class UseItemEvent1(ObjectFactory objectFactory) : ILevelEvent
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerObj = gridPointer.GetObject(playerCoord);
         var playerDirection = playerObj.Direction;
-        var targetCoord = PlayerItemsComponent.aquireTarget(playerCoord,playerDirection);
+        var targetCoord = playerCoord + Coordinate.ToCoordinate(playerDirection);
 
         var targetObj = gridPointer.GetObject(targetCoord);
-        bool itemEquiped = PlayerItemsComponent.playerItems[0].Id != ObjectIds.Empty;
+        bool itemEquiped = PlayerItemsComponent.playerItems[(int) inventory].Id != ObjectIds.Empty;
         bool isFrontCleared = targetObj.Id == ObjectIds.Empty;
         
         if (!(itemEquiped && isFrontCleared)) return;
-        switch (PlayerItemsComponent.playerItems[0].Id)
+        switch (PlayerItemsComponent.playerItems[(int) inventory].Id)
         {
             case ObjectIds.Bomb:
             gridPointer.SetObject(targetCoord, objectFactory.CreateBomb());
             break;
         }
-        PlayerItemsComponent.playerItemSprites[0].CurrentPosition = spriteGrid.CalculateLiteralPos(targetCoord);
-        spriteGrid.SetObjectSprite(targetCoord,targetCoord,PlayerItemsComponent.playerItemSprites[0]);
-        PlayerItemsComponent.playerItems[0] = objectFactory.CreateEmpty();
+        PlayerItemsComponent.playerItemSprites[(int) inventory].CurrentPosition = spriteGrid.CalculateLiteralPos(targetCoord);
+        spriteGrid.SetObjectSprite(targetCoord,targetCoord,PlayerItemsComponent.playerItemSprites[(int) inventory]);
+        PlayerItemsComponent.playerItems[(int) inventory] = objectFactory.CreateEmpty();
         Console.WriteLine($"use item 1");
 
     }

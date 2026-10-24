@@ -10,7 +10,7 @@ public class PickItemEvent(ObjectFactory objectFactory) : ILevelEvent
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerObj = gridPointer.GetObject(playerCoord);
         var playerDirection = playerObj.Direction;
-        var targetCoord = PlayerItemsComponent.aquireTarget(playerCoord,playerDirection);
+        var targetCoord = playerCoord + Coordinate.ToCoordinate(playerDirection);
 
         var itemObj = gridPointer.GetObject(targetCoord);
 
