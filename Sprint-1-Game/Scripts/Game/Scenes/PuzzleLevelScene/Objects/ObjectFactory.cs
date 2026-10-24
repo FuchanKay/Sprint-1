@@ -65,7 +65,7 @@ public class ObjectFactory()
 
     public IObject CreateSkeleton()
     {
-        return new SkeletonObject
+        return new Skeleton
         {
             Direction = Directions.South,
         };
@@ -73,7 +73,7 @@ public class ObjectFactory()
 
     public IObject CreateWarlock()
     {
-        return new WarlockObject
+        return new Warlock
         {
             Direction = Directions.South,
         };
@@ -81,7 +81,7 @@ public class ObjectFactory()
 
     public IObject CreateBlueLizard()
     {
-        return new BlueLizardObject
+        return new BlueLizard
         {
             Direction = Directions.South,
         };
@@ -89,7 +89,7 @@ public class ObjectFactory()
 
     public IObject CreateRedLizard()
     {
-        return new RedLizardObject
+        return new RedLizard
         {
             Direction = Directions.South,
         };

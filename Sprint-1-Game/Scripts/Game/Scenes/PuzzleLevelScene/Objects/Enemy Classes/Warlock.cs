@@ -1,23 +1,22 @@
 namespace Scripts.Game;
 
-/*Blue Lizards (Hard): Blue lizards will shoot a beam of fire in the direction it is facing when the player snaps. Pushable. 
-Up/Down/Left/Right
-Shooting fire
-Dead (squished?)
+/*Warlock (Easy): When the player snaps, the player and the warlock will swap positions. Warlock does not attack. Pushable?
+Idle
+Hands raised to do magic?
 */
-public class BlueLizardObject : IObject
+public class Warlock : IEnemy
 {
     public IObject Clone()
     {
-        return new BlueLizardObject
+        return new Warlock
         {
             Direction = Direction
         };
     }
-    public ObjectIds Id => ObjectIds.BlueLizard;
+    public ObjectIds Id => ObjectIds.Warlock;
     public Directions Direction { get; set; } = Directions.South;
     public bool IsPushable => true;
     public bool IsDestructible => true;
     public bool IsRotatable => false;
-
+    public int Health { get; set; } = 1;
 }

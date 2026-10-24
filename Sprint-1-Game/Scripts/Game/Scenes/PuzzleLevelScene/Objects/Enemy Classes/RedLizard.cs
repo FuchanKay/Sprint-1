@@ -6,11 +6,11 @@ Shooting fire
 Dead (squished?)
 */
 
-public class RedLizardObject : IObject
+public class RedLizard : IEnemy
 {
     public IObject Clone()
     {
-        return new RedLizardObject
+        return new RedLizard
         {
             Direction = Direction
         };
@@ -20,5 +20,5 @@ public class RedLizardObject : IObject
     public bool IsPushable => true;
     public bool IsDestructible => true;
     public bool IsRotatable => false;
-
+    public int Health { get; set; } = 1;
 }

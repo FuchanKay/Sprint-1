@@ -1,22 +1,23 @@
 namespace Scripts.Game;
 
-/*Warlock (Easy): When the player snaps, the player and the warlock will swap positions. Warlock does not attack. Pushable?
-Idle
-Hands raised to do magic?
+/*Skeletons (Medium): Skeletons will automatically attack the player if they are within a 1 grid radius. 
+Up/Down/Left/Right
+Attacking
+Dead 
 */
-public class WarlockObject : IObject
+public class Skeleton : IEnemy
 {
     public IObject Clone()
     {
-        return new WarlockObject
+        return new Skeleton
         {
             Direction = Direction
         };
     }
-    public ObjectIds Id => ObjectIds.Warlock;
+    public ObjectIds Id => ObjectIds.Skeleton;
     public Directions Direction { get; set; } = Directions.South;
     public bool IsPushable => true;
     public bool IsDestructible => true;
     public bool IsRotatable => false;
-
+    public int Health { get; set; } = 1;
 }

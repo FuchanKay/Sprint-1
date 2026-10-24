@@ -1,23 +1,23 @@
 namespace Scripts.Game;
 
-/*Skeletons (Medium): Skeletons will automatically attack the player if they are within a 1 grid radius. 
+/*Blue Lizards (Hard): Blue lizards will shoot a beam of fire in the direction it is facing when the player snaps. Pushable. 
 Up/Down/Left/Right
-Attacking
-Dead 
+Shooting fire
+Dead (squished?)
 */
-public class SkeletonObject : IObject
+public class BlueLizard : IEnemy
 {
     public IObject Clone()
     {
-        return new SkeletonObject
+        return new BlueLizard
         {
             Direction = Direction
         };
     }
-    public ObjectIds Id => ObjectIds.Skeleton;
+    public ObjectIds Id => ObjectIds.BlueLizard;
     public Directions Direction { get; set; } = Directions.South;
     public bool IsPushable => true;
     public bool IsDestructible => true;
     public bool IsRotatable => false;
-
+    public int Health { get; set; } = 1;
 }

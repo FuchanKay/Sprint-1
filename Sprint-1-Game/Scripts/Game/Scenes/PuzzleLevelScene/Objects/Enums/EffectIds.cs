@@ -5,6 +5,7 @@ public enum EffectIds
     LavaExplosion,
     Explosion,
     PlayerDeath,
+    EnemyDeath,
     WarlockSpell,
     Slash
 }

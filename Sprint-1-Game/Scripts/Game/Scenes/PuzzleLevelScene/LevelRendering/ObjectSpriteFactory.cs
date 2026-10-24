@@ -101,6 +101,13 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 spriteScale = context.GridScale * 3.5f;
                 sprite.Color = Color.SpringGreen;
                 break;
+            case EffectIds.EnemyDeath:
+                sprite.SetState(AnimationNames.Explosion);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
+                sprite.IdleName = RegionNames.Explosion;
+                spriteScale = context.GridScale * 3.5f;
+                sprite.Color = Color.Red;
+                break;
             case EffectIds.LavaExplosion:
                 sprite.SetState(AnimationNames.Explosion);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);

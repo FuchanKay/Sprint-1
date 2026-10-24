@@ -7,6 +7,7 @@ public class GridPointer
     private readonly Dictionary<Coordinate, Grid> CoordToGrid = [];
     private readonly Dictionary<ObjectIds, Dictionary<Coordinate, IObject>> ObjectPointersCollection = [];
     private readonly Dictionary<TileIds, Dictionary<Coordinate, ITile>> TilePointersCollection = [];
+    public readonly Dictionary<Coordinate, IEnemy> EnemyCollection = [];
 
     public void Init()
     {
@@ -30,6 +31,8 @@ public class GridPointer
             oldObjPointer.Remove(coord);
             oldTilePointer.Remove(coord);
             CoordToGrid.Remove(coord);
+
+            if(oldGrid.Object is IEnemy) EnemyCollection.Remove(coord);
         }
 
         var newObjPointers = ObjectPointersCollection[grid.Object.Id];
@@ -38,6 +41,8 @@ public class GridPointer
         newObjPointers[coord] = grid.Object;
         newTilePointers[coord] = grid.Tile;
         CoordToGrid[coord] = grid;
+
+        if(grid.Object is IEnemy) EnemyCollection[coord] = grid.Object as IEnemy;
     }
 
     public void SetObject(Coordinate coord, IObject obj)
@@ -45,9 +50,11 @@ public class GridPointer
         var gridToSetObj = CoordToGrid[coord];
         var oldObjPointers = ObjectPointersCollection[gridToSetObj.Object.Id];
         oldObjPointers.Remove(coord);
+        if(gridToSetObj.Object is IEnemy) EnemyCollection.Remove(coord);
 
         var newObjPointers = ObjectPointersCollection[obj.Id];
         newObjPointers[coord] = obj;
+        if(obj is IEnemy) EnemyCollection[coord] = obj as IEnemy;
 
         CoordToGrid[coord].Object = obj;
     }

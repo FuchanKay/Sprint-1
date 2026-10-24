@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,5 +11,6 @@ public class EvaluateLevelSubEvent(Stack<ILevelSubEvent> subEventStack, ObjectFa
         subEventStack.Push(new CheckLavaSubEvent(subEventStack, objectFactory));
         var skeletonCoords = gridPointer.GetObjectPointers(ObjectIds.Skeleton).Keys.ToList();
         subEventStack.Push(new SkeletonsAttackSubEvent(skeletonCoords, objectFactory, subEventStack));
+        Console.WriteLine($"There are {gridPointer.EnemyCollection.Count} enemies on screen");
     }
 }
