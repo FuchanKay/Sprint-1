@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 namespace Scripts.Game;
+using System;
 
-public class UseItemSubEvent(Inventory inventory, ObjectFactory objectFactory) : ILevelSubEvent
+public class UseItemSubEvent(Inventory inventory, InventoryManager inventoryManager, ObjectSpriteFactory objectSpriteFactory) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
@@ -11,18 +11,15 @@ public class UseItemSubEvent(Inventory inventory, ObjectFactory objectFactory) :
         var targetCoord = playerCoord + Coordinate.ToCoordinate(playerDirection);
 
         var targetObj = gridPointer.GetObject(targetCoord);
-        bool itemEquiped = PlayerItemsComponent.playerItems[(int) inventory].Id != ObjectIds.Empty;
+        var itemObj = inventoryManager.GetItem((int) inventory);
+        bool itemEquiped = itemObj.Id != ObjectIds.Empty;
         bool isFrontCleared = targetObj.Id == ObjectIds.Empty;
         
-        if (!(itemEquiped && isFrontCleared)) return;
-        switch (PlayerItemsComponent.playerItems[(int) inventory].Id)
+        if (itemEquiped && isFrontCleared)
         {
-            case ObjectIds.Bomb:
-            gridPointer.SetObject(targetCoord, objectFactory.CreateBomb());
-            break;
+            gridPointer.SetObject(targetCoord, itemObj);
+            var itemSprite = objectSpriteFactory.CreateObjectSprite(itemObj, spriteGrid.CalculateLiteralPos(targetCoord), context);
+            spriteGrid.SetObjectSprite(targetCoord,targetCoord,itemSprite);
         }
-        PlayerItemsComponent.playerItemSprites[(int) inventory].CurrentPosition = spriteGrid.CalculateLiteralPos(targetCoord);
-        spriteGrid.SetObjectSprite(targetCoord,targetCoord,PlayerItemsComponent.playerItemSprites[(int) inventory]);
-        PlayerItemsComponent.playerItems[(int) inventory] = objectFactory.CreateEmpty();
     }
 }

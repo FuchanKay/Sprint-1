@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
-
 namespace Scripts.Game;
 
 public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas textureAtlas) : ISceneController
@@ -11,12 +10,13 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
     private TileFactory TileFactory = new();
     private ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
     private TileSpriteFactory TileSpriteFactory = new(textureAtlas);
-
+    private InventoryManager InventoryManager;
     public void Init()
     {
         LevelFileParser = new LevelFileParser(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory);
         Level = new PuzzleLevel(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory, LevelFileParser);
         Level.Init(FileNames.Level1File);
+        InventoryManager = new InventoryManager(ObjectFactory); 
     }
     public void Update(int dtMs)
     {
@@ -43,15 +43,17 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
         }
         else if (buttonInput.IsPressed(InputNames.UseItem1))
         {
-            Level.EnqueueEvent(new UseItemEvent(Inventory.One, ObjectFactory));
+            Level.EnqueueEvent(new UseItemEvent(Inventory.One, InventoryManager, ObjectSpriteFactory));
         }
         else if (buttonInput.IsPressed(InputNames.UseItem2))
         {
-            Level.EnqueueEvent(new UseItemEvent(Inventory.Two, ObjectFactory));
+            Level.EnqueueEvent(new UseItemEvent(Inventory.Two, InventoryManager, ObjectSpriteFactory));
+
         }
         else if (buttonInput.IsPressed(InputNames.UseItem3))
         {
-            Level.EnqueueEvent(new UseItemEvent(Inventory.Three, ObjectFactory));
+            Level.EnqueueEvent(new UseItemEvent(Inventory.Three, InventoryManager, ObjectSpriteFactory));
+
         }
         else if (buttonInput.IsPressed(InputNames.ResetLevel))
         {
@@ -63,7 +65,8 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
         }
         else if (buttonInput.IsPressed(InputNames.PickItem))
         {
-            Level.EnqueueEvent(new PickItemEvent(ObjectFactory));
+            Level.EnqueueEvent(new PickItemEvent(ObjectFactory, InventoryManager));
+
         }
         Level.TryExecuteEvent();
 
