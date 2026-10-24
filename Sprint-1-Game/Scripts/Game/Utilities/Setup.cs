@@ -46,6 +46,8 @@ public class Setup(ContentManager content)
         ButtonInput.MapInput(InputNames.MoveSouthAlt, (int)Keys.Down);
         ButtonInput.MapInput(InputNames.MoveWestAlt, (int)Keys.Left);
 
+        ButtonInput.MapInput(InputNames.ChangeLevel, (int) Keys.B);
+
         ButtonInput.MapInput(InputNames.LCtrl, (int)Keys.LeftControl);
         ButtonInput.MapInput(InputNames.LShift, (int)Keys.LeftShift);
 
