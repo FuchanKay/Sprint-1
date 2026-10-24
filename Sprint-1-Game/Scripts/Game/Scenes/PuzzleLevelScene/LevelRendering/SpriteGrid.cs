@@ -76,7 +76,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         return sprite;
     }
 
-    public void SwapObjectSprite(Coordinate coord, IObject obj)
+    public void PlaceNewObjectSprite(Coordinate coord, IObject obj)
     {
         var realCoord = CalculateLiteralPos(coord);
         if (ObjectSprites.ContainsKey(realCoord)) ObjectSprites.Remove(realCoord);

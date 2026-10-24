@@ -16,7 +16,7 @@ public class EnemyDamageSubEvent(ObjectFactory objectFactory, Coordinate enemyCo
         {
             var obj = objectFactory.CreateKey();
             gridPointer.SetObject(enemyCoord, obj);
-            spriteGrid.SwapObjectSprite(enemyCoord, obj);
+            spriteGrid.PlaceNewObjectSprite(enemyCoord, obj);
         }    
         else 
         {
