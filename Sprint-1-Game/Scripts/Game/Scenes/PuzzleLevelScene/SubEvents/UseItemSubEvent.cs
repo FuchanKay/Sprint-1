@@ -1,5 +1,4 @@
 namespace Scripts.Game;
-using System;
 
 public class UseItemSubEvent(Inventory inventory, InventoryManager inventoryManager, ObjectSpriteFactory objectSpriteFactory) : ILevelSubEvent
 {
