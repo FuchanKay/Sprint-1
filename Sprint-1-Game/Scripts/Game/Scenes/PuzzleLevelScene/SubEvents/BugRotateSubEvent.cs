@@ -28,12 +28,6 @@ public class BugRotateSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         var gridObj = grid.Object;
         if (gridObj.IsRotatable)
         {
-            if(gridObj.Id == ObjectIds.RedLizard)
-            {
-                var removeLaser = new RemoveRedLaserSubEvent(objectFactory, bugCoord);
-                removeLaser.Execute(spriteGrid, gridPointer, context);
-            }
-
             var currDirection = gridObj.Direction;
             var nextDirection = (Directions)(((int)currDirection + 1) % 4);
             gridObj.Direction = nextDirection;
@@ -57,12 +51,6 @@ public class BugRotateSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         var gridObj = grid.Object;
         if (gridObj.IsRotatable)
         {
-            if(gridObj.Id == ObjectIds.RedLizard)
-            {
-                var removeLaser = new RemoveRedLaserSubEvent(objectFactory, bugCoord);
-                removeLaser.Execute(spriteGrid, gridPointer, context);
-            }
-            
             var currDirection = gridObj.Direction;
             var nextDirection = (Directions)(((int)currDirection + 7) % 4);
             gridObj.Direction = nextDirection;
