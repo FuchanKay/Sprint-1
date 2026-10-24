@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Scripts.Game;
 
-public class EvaluateLevelSubEvent(Stack<ILevelSubEvent> subEventStack, ObjectFactory objectFactory) : ILevelSubEvent
+public class EvaluateLevelSubEvent(Stack<ILevelSubEvent> subEventStack, ObjectFactory objectFactory, List<GridPointer> undoHistory) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
@@ -14,7 +14,7 @@ public class EvaluateLevelSubEvent(Stack<ILevelSubEvent> subEventStack, ObjectFa
         var skeletonCoords = gridPointer.GetObjectPointers(ObjectIds.Skeleton).Keys.ToList();
         subEventStack.Push(new SkeletonsAttackSubEvent(skeletonCoords, objectFactory, subEventStack));
         Console.WriteLine("Evaluated!");
-        subEventStack.Push(new RedLizardBlastSubEvent(objectFactory));
-        subEventStack.Push(new RedLizardBlastSubEvent(objectFactory));
+        subEventStack.Push(new CheckRemoveRedLaserSubEvent(undoHistory));
+        subEventStack.Push(new RedLizardBlastSubEvent(objectFactory, undoHistory));
     }
 }

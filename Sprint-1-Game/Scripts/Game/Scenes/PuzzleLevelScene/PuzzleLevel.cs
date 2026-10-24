@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
 
 namespace Scripts.Game;
 
@@ -69,7 +68,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
             CurrentEvent = EventQueue[0];
             EventQueue.RemoveAt(0);
 
-            CurrentEvent.Execute(SpriteGrid, CurrentGridPointer, Context);
+            CurrentEvent.Execute(SpriteGrid, CurrentGridPointer, Context, UndoHistory);
             return true;
         }
 

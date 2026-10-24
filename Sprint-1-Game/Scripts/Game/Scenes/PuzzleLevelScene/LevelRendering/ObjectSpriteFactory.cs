@@ -62,15 +62,18 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 break;
             case ObjectIds.BlueLizard:
                 sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.IdleSouth);
+                var directionState = RegionNames.ToIdleRegionName(obj.Direction);
+                sprite.SetState(directionState);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.BlueLizard);
+                sprite.IdleName = directionState;
                 break;
             case ObjectIds.RedLizard:
                 sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.IdleSouth);
+                directionState = RegionNames.ToIdleRegionName(obj.Direction);
+                sprite.SetState(directionState);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.RedLizard);
                 spriteScale = context.GridScale * 4.0f;
-                sprite.IdleName = RegionNames.IdleSouth;
+                sprite.IdleName = directionState;
                 break;
             default:
                 sprite = new StaticSprite(textureAtlas);

@@ -253,8 +253,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         }
     }
 
-    // HELPER METHODS
-
     private static void UpdateAnimatingList(int dtMs, List<ISprite> currentList, Dictionary<Vector2, ISprite> currentDict)
     {
         foreach (var sprite in currentList)
@@ -286,12 +284,10 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         animatingEffects.RemoveAll(sprite => sprite.IsFinished);
     }
 
-    // TODO: refactor to reduce levels of if statements
     private void UpdateIterableEffects()
     {
         foreach (var spriteList in IteratingEffectSprites)
         {
-            // get and remove first sprite
             var sprite = spriteList[0];
             spriteList.Remove(sprite);
             if(sprite.IdleName == RegionNames.Explosion)
@@ -299,12 +295,10 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
                 AnimatingEffectSprites.Add(sprite);
             } else
             {
-                // add sprite to effect sprites so that it'll be drawn
                 EffectSprites.Remove(sprite.CurrentPosition);
                 EffectSprites.Add(sprite.CurrentPosition, sprite);
             }
         }
-        // remove lists 
         var finishedIterables = IteratingEffectSprites.RemoveAll(spriteList => spriteList.Count == 0);
     }
 
