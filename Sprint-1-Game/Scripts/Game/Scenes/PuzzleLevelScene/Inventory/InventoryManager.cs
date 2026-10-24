@@ -27,5 +27,14 @@ public class InventoryManager(ObjectFactory objectFactory)
         {
                 PlayerItems[inventoryIdx] = objectFactory.CreateEmpty();
         }
-
+        
+        public InventoryManager Clone()
+        {
+                var clone = new InventoryManager(objectFactory);
+                foreach (var item in PlayerItems)
+                {
+                        clone.AddItem(item);
+                }
+        return clone;
+    }
 }
