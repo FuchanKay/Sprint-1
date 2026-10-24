@@ -1,6 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
+
 namespace Scripts.Game;
 
-public class DirectionalInputSubEvent(Directions direction, ObjectFactory objectFactory) : ILevelSubEvent
+public class DirectionalInputSubEvent(Directions direction, ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
@@ -35,6 +38,21 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
         }
         else if (destinationCoordIsWithinBounds && CanMove(playerObj, gridPointer.GetGrid(destinationCoord)))
         {
+            var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
+            playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));
+            spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
+            spriteGrid.StartObjectAnimation(playerSprite);
+
+            gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(destinationCoord, playerObj);
+        }
+        // placeholder logic to collect a key by walking into it
+        else if (gridPointer.GetObject(destinationCoord).Id == ObjectIds.Key)
+        {
+            subEventStack.Push(new OpenExitSubEvent());
+            gridPointer.SetObject(destinationCoord, objectFactory.CreateEmpty());
+            spriteGrid.RemoveObjectSprite(destinationCoord);
+
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));
             spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
