@@ -3,7 +3,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas textureAtlas) : ISceneController
+public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, ITextureAtlas textureAtlas) : ISceneController
 {
     private PuzzleLevel Level;
     private LevelFileParser LevelFileParser;
@@ -56,6 +56,12 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
         Level.TryExecuteEvent();
 
         Level.Update(dtMs);
+
+        // Exits to the main menu upon a levels completion
+        if (Level.Context.LevelIsCompleted)
+        {
+            sceneManager.SwapScene(SceneNames.MainMenu);
+        }
     }
     public void Draw(SpriteBatch sb)
     {

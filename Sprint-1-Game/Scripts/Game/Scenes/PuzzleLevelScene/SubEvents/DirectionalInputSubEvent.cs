@@ -61,6 +61,14 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
             gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
         }
+        else if (gridPointer.GetObject(destinationCoord).Id == ObjectIds.Door)
+        {
+            var door = gridPointer.GetObject(destinationCoord) as DoorObject;
+            if (door.IsOpen)
+            {
+                context.LevelIsCompleted = true;
+            }
+        }
     }
 
     private bool CanMove(IObject playerObject, Grid destinationGrid)

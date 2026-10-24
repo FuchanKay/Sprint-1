@@ -13,7 +13,8 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         GridScale = 0.25f,
         PuzzleOffsetX = 400,
         PuzzleOffsetY = 50,
-        PlayerIsDead = false
+        PlayerIsDead = false,
+        LevelIsCompleted = false
     };
     public GridPointer CurrentGridPointer;
     public List<GridPointer> UndoHistory = [];
