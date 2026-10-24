@@ -41,6 +41,13 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Bomb);
                 sprite.IdleName = RegionNames.Bomb;
                 break;
+            case ObjectIds.Key:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.Key);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Key);
+                sprite.IdleName = RegionNames.Key;
+                spriteScale = context.GridScale * 0.25f;
+                break;
             case ObjectIds.TimedBomb:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.TimedBomb);
@@ -106,7 +113,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
                 sprite.IdleName = RegionNames.Explosion;
                 spriteScale = context.GridScale * 3.5f;
-                sprite.Color = Color.Red;
+                sprite.Color = Color.DarkRed;
                 break;
             case EffectIds.LavaExplosion:
                 sprite.SetState(AnimationNames.Explosion);

@@ -8,6 +8,7 @@ public class TextureNames
     public readonly static string Rock = "Rock";
     public readonly static string Wall = "Wall";
     public readonly static string Bomb = "Bomb";
+    public readonly static string Key = "Key";
     public readonly static string Explosion = "Explosion";
     public readonly static string Slash = "Slash";
     public readonly static string TileSprites = "Tile Sprites";

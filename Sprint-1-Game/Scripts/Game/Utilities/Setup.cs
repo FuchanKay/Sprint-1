@@ -127,6 +127,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.Wall, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Bomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.Key, 0, 0, 512, 512);
 
         // effects
         TextureAtlas.AddRegion(RegionNames.Explosion, 2, 0, 105, 96);
@@ -148,6 +149,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.Rock, FileNames.RockTexture);
         TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
         TextureAtlas.AddTexture(TextureNames.Bomb, FileNames.BombTexture);
+        TextureAtlas.AddTexture(TextureNames.Key, FileNames.KeyTexture);
         TextureAtlas.AddTexture(TextureNames.Explosion, FileNames.ExplosionTexture);
         TextureAtlas.AddTexture(TextureNames.Slash, FileNames.SlashTexture);
 
@@ -155,6 +157,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.Warlock, FileNames.WarlockTexture);
         TextureAtlas.AddTexture(TextureNames.RedLizard, FileNames.RedLizardTexture);
         TextureAtlas.AddTexture(TextureNames.BlueLizard, FileNames.BlueLizardTexture);
+        
     }
     private void LoadAudio()
     {

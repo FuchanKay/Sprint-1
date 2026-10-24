@@ -9,6 +9,7 @@ public class FileNames
     public readonly static string WallTexture = "Images/stonewall";
     public readonly static string PlayerTexture = "Images/player-sprites";
     public readonly static string BombTexture = "Images/bomb";
+    public readonly static string KeyTexture = "Images/key";
     public readonly static string ExplosionTexture = "Images/explosionAtlas";
     public readonly static string SlashTexture = "Images/skeletonAttackEffect";
 

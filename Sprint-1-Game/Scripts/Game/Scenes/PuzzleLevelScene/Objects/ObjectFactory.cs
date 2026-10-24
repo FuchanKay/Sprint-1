@@ -55,6 +55,14 @@ public class ObjectFactory()
         };
     }
 
+    public IObject CreateKey()
+    {
+        return new KeyObject
+        {
+            Direction = Directions.South,
+        };
+    }
+
     public IObject CreateTimedBomb()
     {
         return new TimedBombObject

@@ -12,14 +12,16 @@ public class EnemyDamageSubEvent(ObjectFactory objectFactory, Coordinate enemyCo
     private void KillEnemy(SpriteGrid spriteGrid, GridPointer gridPointer)
     {
         spriteGrid.PlayEffect(EffectIds.EnemyDeath, enemyCoord);
-        spriteGrid.RemoveObjectSprite(enemyCoord);
         if (gridPointer.EnemyCollection.Count == 1) 
         {
-            gridPointer.SetObject(enemyCoord, objectFactory.CreateEmpty()); // Will be a key object
+            var obj = objectFactory.CreateKey();
+            gridPointer.SetObject(enemyCoord, obj);
+            spriteGrid.SwapObjectSprite(enemyCoord, obj);
         }    
         else 
         {
-            gridPointer.SetObject(enemyCoord, objectFactory.CreateEmpty()); 
+            gridPointer.SetObject(enemyCoord, objectFactory.CreateEmpty());
+            spriteGrid.RemoveObjectSprite(enemyCoord); 
         }
     }
 }

@@ -12,4 +12,5 @@ public enum ObjectIds
     Wall,
     Bomb,
     TimedBomb,
+    Key
 }
