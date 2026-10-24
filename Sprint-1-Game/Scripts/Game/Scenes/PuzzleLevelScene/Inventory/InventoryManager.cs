@@ -21,8 +21,11 @@ public class InventoryManager(ObjectFactory objectFactory)
         public IObject GetItem(int inventoryIdx)
         {
                 var item = PlayerItems[inventoryIdx].Clone();
-                PlayerItems[inventoryIdx] = objectFactory.CreateEmpty();
                 return item;
+        }
+        public void EmptySlot(int inventoryIdx)
+        {
+                PlayerItems[inventoryIdx] = objectFactory.CreateEmpty();
         }
 
 }

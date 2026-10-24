@@ -14,12 +14,12 @@ public class UseItemSubEvent(Inventory inventory, InventoryManager inventoryMana
         var itemObj = inventoryManager.GetItem((int) inventory);
         bool itemEquiped = itemObj.Id != ObjectIds.Empty;
         bool isFrontCleared = targetObj.Id == ObjectIds.Empty;
-        
         if (itemEquiped && isFrontCleared)
         {
             gridPointer.SetObject(targetCoord, itemObj);
             var itemSprite = objectSpriteFactory.CreateObjectSprite(itemObj, spriteGrid.CalculateLiteralPos(targetCoord), context);
             spriteGrid.SetObjectSprite(targetCoord,targetCoord,itemSprite);
+            inventoryManager.EmptySlot((int) inventory);
         }
     }
 }
