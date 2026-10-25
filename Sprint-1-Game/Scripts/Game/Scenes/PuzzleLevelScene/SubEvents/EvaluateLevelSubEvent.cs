@@ -10,7 +10,6 @@ public class EvaluateLevelSubEvent(Stack<ILevelSubEvent> subEventStack, ObjectFa
     {
         subEventStack.Push(new CheckLavaSubEvent(subEventStack, objectFactory));
         subEventStack.Push(new EnemiesAttackSubEvent(objectFactory, subEventStack));
-        subEventStack.Push(new EnemiesMoveSubEvent(objectFactory));
         Console.WriteLine($"There are {gridPointer.EnemyCollection.Count} enemies on screen");
     }
 }

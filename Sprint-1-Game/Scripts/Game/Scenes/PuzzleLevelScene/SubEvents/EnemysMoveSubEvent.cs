@@ -17,7 +17,7 @@ public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         var zombieCoords = gridPointer.GetObjectPointers(ObjectIds.Zombie).Keys.ToList();
         foreach (var batCoord in batCoords)
         {
-            PathFindToPlayer(spriteGrid, gridPointer, batCoord);
+            //PathFindToPlayer(spriteGrid, gridPointer, batCoord);
         }
         foreach(var frogCoord in frogCoords)
         {
@@ -54,7 +54,7 @@ public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
 
         if (!Pathfinder.CanMove(destinationGrid))
         {
-            if (!Pathfinder.CanMove(oppositeGrid)) return;
+            if (!Pathfinder.CanMove(oppositeGrid) || gridPointer.GetObject(destinationCoord).Id == ObjectIds.Player) return;
             enemyObj.Direction = oppositeDirection;
         }
         MoveEnemySprite(spriteGrid, gridPointer, enemyCoord, enemyObj.Direction);

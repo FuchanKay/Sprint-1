@@ -11,9 +11,9 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
         
         var skeletonCoords = gridPointer.GetObjectPointers(ObjectIds.Skeleton).Keys.ToList();
         var batCoords = gridPointer.GetObjectPointers(ObjectIds.Bat).Keys.ToList();
-        List<Coordinate> attackingEnemyCoords = [..skeletonCoords, ..batCoords]; 
+        List<Coordinate> omniDirEnemyCoords = [..skeletonCoords, ..batCoords]; 
 
-        foreach (var attackingEnemyCoord in attackingEnemyCoords)
+        foreach (var attackingEnemyCoord in omniDirEnemyCoords)
         {
             OmniDirectionalAttack(attackingEnemyCoord, gridPointer, spriteGrid);
         }
