@@ -98,6 +98,7 @@ public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         gridPointer.SetObject(destinationCoord, enemyObj); 
     }
 
+    // Overload method to handle the frogs special directional movement sprites.
     private void MoveEnemySprite(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate enemyCoord, Directions direction)
     {
         var enemySprite = spriteGrid.GetObjectSprite(enemyCoord);

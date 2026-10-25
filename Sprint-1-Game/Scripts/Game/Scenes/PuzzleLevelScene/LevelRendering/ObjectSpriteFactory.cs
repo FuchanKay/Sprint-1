@@ -40,6 +40,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.SetState(RegionNames.Bomb);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Bomb);
                 sprite.IdleName = RegionNames.Bomb;
+                spriteScale = context.GridScale * 0.5f;
                 break;
             case ObjectIds.Key:
                 sprite = new StaticSprite(textureAtlas);
@@ -61,6 +62,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Bomb);
                 sprite.Color = Color.Red;
                 sprite.IdleName = RegionNames.TimedBomb;
+                spriteScale = context.GridScale * 0.5f;
                 break;
             case ObjectIds.Skeleton:
                 sprite = new StaticSprite(textureAtlas);
