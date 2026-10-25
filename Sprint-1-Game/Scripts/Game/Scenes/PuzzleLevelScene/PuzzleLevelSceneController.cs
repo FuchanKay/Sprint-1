@@ -60,6 +60,11 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
             Level.EnqueueEvent(new UseItemEvent(2, ObjectSpriteFactory));
 
         }
+        else if (buttonInput.IsPressed(InputNames.PickItem))
+        {
+            Level.EnqueueEvent(new PickItemEvent(ObjectFactory));
+
+        }
         else if (buttonInput.IsPressed(InputNames.ResetLevel))
         {
             Level.RestartLevel();
