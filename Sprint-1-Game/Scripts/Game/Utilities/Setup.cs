@@ -106,6 +106,11 @@ public class Setup(ContentManager content)
         TextureAtlas.AddAnimation(AnimationNames.DoorOpening, 0, 0, 5, 15, 27, 100);
 
         TextureAtlas.AddAnimation(AnimationNames.BatFly, 0, 0, 4, 40, 44, 100);
+
+        TextureAtlas.AddAnimation(AnimationNames.FrogJumpSouth, 0, 0, 3, 32, 32, 100);
+        TextureAtlas.AddAnimation(AnimationNames.FrogJumpWest, 1, 0, 3, 32, 32, 100);
+        TextureAtlas.AddAnimation(AnimationNames.FrogJumpEast, 2, 0, 3, 32, 32, 100);
+        TextureAtlas.AddAnimation(AnimationNames.FrogJumpNorth, 3, 0, 3, 32, 32, 100);
     }
 
     private void AddRegions()
@@ -145,6 +150,10 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.BlueLizard, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.RedLizard, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Bat, 0, 0, 40, 44);
+        TextureAtlas.AddRegion(RegionNames.FrogIdleS, 0, 0, 32, 32);
+        TextureAtlas.AddRegion(RegionNames.FrogIdleW, 0, 1, 32, 32);
+        TextureAtlas.AddRegion(RegionNames.FrogIdleE, 0, 2, 32, 32);
+        TextureAtlas.AddRegion(RegionNames.FrogIdleN, 0, 3, 32, 32);
     }
 
     private void BindAllTextures()
@@ -167,6 +176,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.RedLizard, FileNames.RedLizardTexture);
         TextureAtlas.AddTexture(TextureNames.BlueLizard, FileNames.BlueLizardTexture);
         TextureAtlas.AddTexture(TextureNames.Bat, FileNames.BatTexture);
+        TextureAtlas.AddTexture(TextureNames.Frog, FileNames.FrogTexture);
         
     }
     private void LoadAudio()

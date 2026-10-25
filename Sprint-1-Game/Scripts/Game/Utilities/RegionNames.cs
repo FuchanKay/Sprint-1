@@ -26,6 +26,11 @@ public class RegionNames
     public readonly static string IdleEast = "Object Idle East";
     public readonly static string IdleWest = "Object Idle West";
 
+    public readonly static string FrogIdleN = "Frog Idle North";
+    public readonly static string FrogIdleE = "Frog Idle East";
+    public readonly static string FrogIdleS = "Frog Idle South";
+    public readonly static string FrogIdleW = "Frog Idle West";
+
     public readonly static string RedLizard = "RedLizard";
     public readonly static string BlueLizard = "BlueLizard";
     public readonly static string Skeleton = "Skeleton";
@@ -42,6 +47,18 @@ public class RegionNames
             Directions.South => RegionNames.IdleSouth,
             Directions.West => RegionNames.IdleWest,
             _ => RegionNames.IdleEast,
+        };
+    }
+
+    public static string ToFrogIdleRegionName(Directions direction)
+    {
+        return direction switch
+        {
+            Directions.North => RegionNames.FrogIdleN,
+            Directions.East => RegionNames.FrogIdleE,
+            Directions.South => RegionNames.FrogIdleS,
+            Directions.West => RegionNames.FrogIdleW,
+            _ => RegionNames.FrogIdleS,
         };
     }
 }

@@ -13,6 +13,11 @@ public class AnimationNames
     public readonly static string PlayerPushEast = "Player Push East";
     public readonly static string PlayerPushWest = "Player Push West";
 
+    public readonly static string FrogJumpNorth = "Frog Jump North";
+    public readonly static string FrogJumpEast = "Frog Jump East";
+    public readonly static string FrogJumpSouth = "Frog Jump South";
+    public readonly static string FrogJumpWest = "Frog Jump West";
+
     public readonly static string RotateSE = "Object Rotate SE";
     public readonly static string RotateEN = "Object Rotate EN";
     public readonly static string RotateNW = "Object Rotate NW";
@@ -73,6 +78,18 @@ public class AnimationNames
             Directions.East => PlayerPushEast,
             Directions.South => PlayerPushSouth,
             Directions.West => PlayerPushWest,
+            _ => PlayerPushEast,
+        };
+    }
+
+    public static string ToFrogJumpAnimationName(Directions direction)
+    {
+        return direction switch
+        {
+            Directions.North => FrogJumpNorth,
+            Directions.East => FrogJumpEast,
+            Directions.South => FrogJumpSouth,
+            Directions.West => FrogJumpWest,
             _ => PlayerPushEast,
         };
     }

@@ -91,6 +91,13 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 spriteScale = context.GridScale * 6.0f;
                 sprite.IdleName = RegionNames.Bat;
                 break;
+            case ObjectIds.Frog:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.FrogIdleS);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Frog);
+                spriteScale = context.GridScale * 6.5f;
+                sprite.IdleName = RegionNames.FrogIdleS;
+                break;
             default:
                 sprite = new StaticSprite(textureAtlas);
                 break;

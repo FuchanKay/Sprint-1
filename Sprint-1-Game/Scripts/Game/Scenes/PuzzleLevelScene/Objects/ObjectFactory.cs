@@ -120,4 +120,12 @@ public class ObjectFactory()
           Direction = Directions.South,   
         };
     }
+
+    public IObject CreateFrog()
+    {
+        return new Frog
+        {
+          Direction = Directions.South,   
+        };
+    }
 }
