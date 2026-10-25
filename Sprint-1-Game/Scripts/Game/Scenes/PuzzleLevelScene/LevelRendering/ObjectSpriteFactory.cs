@@ -84,6 +84,13 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.SetState(RegionNames.RedLizard);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.RedLizard);
                 break;
+            case ObjectIds.Bat:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.Bat);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Bat);
+                spriteScale = context.GridScale * 6.0f;
+                sprite.IdleName = RegionNames.Bat;
+                break;
             default:
                 sprite = new StaticSprite(textureAtlas);
                 break;

@@ -19,4 +19,5 @@ public class TextureNames
     public readonly static string BlueLizard = "BlueLizard";
     public readonly static string Skeleton = "Skeleton";
     public readonly static string Warlock = "Warlock";
+    public readonly static string Bat = "Bat";
 }

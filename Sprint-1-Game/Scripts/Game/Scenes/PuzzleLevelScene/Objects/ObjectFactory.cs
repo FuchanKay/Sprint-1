@@ -1,3 +1,5 @@
+using System.Threading.Tasks.Dataflow;
+
 namespace Scripts.Game;
 
 public class ObjectFactory()
@@ -108,6 +110,14 @@ public class ObjectFactory()
         return new RedLizard
         {
             Direction = Directions.South,
+        };
+    }
+
+    public IObject CreateBat()
+    {
+        return new Bat
+        {
+          Direction = Directions.South,   
         };
     }
 }

@@ -22,6 +22,7 @@ public class AnimationNames
     public readonly static string RotateNE = "Object Rotate NE";
     public readonly static string RotateES = "Object Rotate ES";
     public readonly static string PlayerSnap = "Player Snap";
+    public readonly static string BatFly = "Bat Fly";
     public readonly static string BugTileRotate = "Bug Tile Rotate";
     public readonly static string BugTileRotateCC = "Bug Tile Rotate Counterclockwise";
     public readonly static string DoorOpening = "Door Opening";

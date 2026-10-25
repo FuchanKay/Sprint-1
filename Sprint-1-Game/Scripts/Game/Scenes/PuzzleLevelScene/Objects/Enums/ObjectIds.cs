@@ -9,6 +9,7 @@ public enum ObjectIds
     RedLizard,
     Skeleton,
     Warlock,
+    Bat,
     Wall,
     Bomb,
     TimedBomb,

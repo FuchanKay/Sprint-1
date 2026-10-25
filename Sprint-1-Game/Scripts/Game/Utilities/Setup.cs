@@ -104,6 +104,8 @@ public class Setup(ContentManager content)
 
         //door open
         TextureAtlas.AddAnimation(AnimationNames.DoorOpening, 0, 0, 5, 15, 27, 100);
+
+        TextureAtlas.AddAnimation(AnimationNames.BatFly, 0, 0, 4, 40, 44, 100);
     }
 
     private void AddRegions()
@@ -142,6 +144,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.Warlock, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.BlueLizard, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.RedLizard, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.Bat, 0, 0, 40, 44);
     }
 
     private void BindAllTextures()
@@ -163,6 +166,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.Warlock, FileNames.WarlockTexture);
         TextureAtlas.AddTexture(TextureNames.RedLizard, FileNames.RedLizardTexture);
         TextureAtlas.AddTexture(TextureNames.BlueLizard, FileNames.BlueLizardTexture);
+        TextureAtlas.AddTexture(TextureNames.Bat, FileNames.BatTexture);
         
     }
     private void LoadAudio()
