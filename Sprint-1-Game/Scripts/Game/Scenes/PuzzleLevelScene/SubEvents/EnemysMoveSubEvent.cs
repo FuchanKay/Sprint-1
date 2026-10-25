@@ -20,7 +20,7 @@ public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         }
         foreach(var frogCoord in frogCoords)
         {
-            MoveHorizontal(spriteGrid, gridPointer, AnimationNames.FrogJumpSouth, frogCoord);
+            MoveRandom(spriteGrid, gridPointer, AnimationNames.FrogJumpSouth, frogCoord);
         }
     }
 
