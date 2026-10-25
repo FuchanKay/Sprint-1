@@ -4,7 +4,7 @@ namespace Scripts.Game;
 
 public class Pathfinder()
 {
-    public Coordinate FindNextPointTowardsPlayer(GridPointer gridPointer, Coordinate enemyCoord)
+    public static Coordinate FindNextPointTowardsPlayer(GridPointer gridPointer, Coordinate enemyCoord)
     {
         var nullCoord = new Coordinate
         {
@@ -51,7 +51,7 @@ public class Pathfinder()
         {
             var targetGrid = gridPointer.GetGrid(coord + Coordinate.ToCoordinate(direction));
             var targetCoord = coord + Coordinate.ToCoordinate(direction);
-            if(CanMove(targetGrid, direction))
+            if(CanMove(targetGrid))
             {
                 validCoordinates.Add(targetCoord);
             }
@@ -59,14 +59,14 @@ public class Pathfinder()
         return validCoordinates;
     }
 
-    public List<Directions> GetValidDirections(GridPointer gridPointer, Coordinate coord)
+    public static List<Directions> GetValidDirections(GridPointer gridPointer, Coordinate coord)
     {
         List<Directions> directions = [Directions.North, Directions.East, Directions.South, Directions.West];
         List<Directions> validDirections = [];
         foreach (var direction in directions)
         {
             var targetGrid = gridPointer.GetGrid(coord + Coordinate.ToCoordinate(direction));
-            if(CanMove(targetGrid, direction))
+            if(CanMove(targetGrid))
             {
                 validDirections.Add(direction);
             }
@@ -74,7 +74,7 @@ public class Pathfinder()
         return validDirections;
     }
 
-    public static bool CanMove(Grid destinationGrid, Directions direction)
+    public static bool CanMove(Grid destinationGrid)
     {
         var destinationTile = destinationGrid.Tile;
         var isDestinationEmpty = destinationGrid.Object.Id == ObjectIds.Empty || destinationGrid.Object.Id == ObjectIds.Player;

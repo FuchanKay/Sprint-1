@@ -10,7 +10,6 @@ namespace Scripts.Game;
 
 public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
 {
-    private Pathfinder pathfinder = new Pathfinder();
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
         var batCoords = gridPointer.GetObjectPointers(ObjectIds.Bat).Keys.ToList();
@@ -21,13 +20,13 @@ public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         }
         foreach(var frogCoord in frogCoords)
         {
-            MoveEnemyRandom(spriteGrid, gridPointer, AnimationNames.FrogJumpSouth, frogCoord);
+            MoveHorizontal(spriteGrid, gridPointer, AnimationNames.FrogJumpSouth, frogCoord);
         }
     }
 
-    private void MoveEnemyRandom(SpriteGrid spriteGrid, GridPointer gridPointer, string movingAnimation, Coordinate enemyCoord)
+    private void MoveRandom(SpriteGrid spriteGrid, GridPointer gridPointer, string movingAnimation, Coordinate enemyCoord)
     {
-        List<Directions> validDirections = pathfinder.GetValidDirections(gridPointer, enemyCoord);
+        List<Directions> validDirections = Pathfinder.GetValidDirections(gridPointer, enemyCoord);
         int randomInt = Random.Shared.Next(0, validDirections.Count);
         var destination = validDirections[randomInt];
         if (gridPointer.GetObject(enemyCoord).Id == ObjectIds.Frog) MoveEnemySprite(spriteGrid, gridPointer, enemyCoord, destination);
@@ -38,9 +37,37 @@ public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         }
     }
 
+    private void MoveHorizontal(SpriteGrid spriteGrid, GridPointer gridPointer, string movingAnimation, Coordinate enemyCoord)
+    {
+        var enemyObj = gridPointer.GetObject(enemyCoord);
+        bool isFacingHorizontal = enemyObj.Direction == Directions.East || enemyObj.Direction == Directions.West;
+        if (!isFacingHorizontal) enemyObj.Direction = Directions.East;
+
+        var oppositeDirection = Directions.West;
+        if (enemyObj.Direction == Directions.West) oppositeDirection = Directions.East; 
+
+        var destinationCoord = enemyCoord + Coordinate.ToCoordinate(enemyObj.Direction);
+        var destinationGrid = gridPointer.GetGrid(destinationCoord);
+        var oppositeCoord = enemyCoord + Coordinate.ToCoordinate(oppositeDirection);
+        var oppositeGrid = gridPointer.GetGrid(oppositeCoord);
+        
+        if (!Pathfinder.CanMove(destinationGrid) && Pathfinder.CanMove(oppositeGrid))
+        {
+            enemyObj.Direction = oppositeDirection;
+            destinationCoord = oppositeCoord;
+        }
+        else if (!Pathfinder.CanMove(oppositeGrid)) return;
+
+        if (gridPointer.GetObject(enemyCoord).Id == ObjectIds.Frog) MoveEnemySprite(spriteGrid, gridPointer, enemyCoord, enemyObj.Direction);
+        else
+        {
+            MoveEnemySprite(spriteGrid, gridPointer, movingAnimation, enemyCoord, destinationCoord);
+        }
+    }
+
     private void PathFindToPlayer(SpriteGrid spriteGrid, GridPointer gridPointer, string movingAnimation, Coordinate enemyCoord)
     {
-        var destinationCoord = pathfinder.FindNextPointTowardsPlayer(gridPointer, enemyCoord);
+        var destinationCoord = Pathfinder.FindNextPointTowardsPlayer(gridPointer, enemyCoord);
         Console.WriteLine($"Moving to {destinationCoord}");
         if (destinationCoord.X != -1 && destinationCoord.Y != -1)
         {
