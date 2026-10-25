@@ -1,5 +1,5 @@
 namespace Scripts.Game;
-public class PickItemSubEvent(ObjectFactory objectFactory, InventoryManager inventoryManager) : ILevelSubEvent
+public class PickItemSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
