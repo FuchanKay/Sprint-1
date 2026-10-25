@@ -17,7 +17,7 @@ public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         var zombieCoords = gridPointer.GetObjectPointers(ObjectIds.Zombie).Keys.ToList();
         foreach (var batCoord in batCoords)
         {
-            //PathFindToPlayer(spriteGrid, gridPointer, batCoord);
+            PathFindToPlayer(spriteGrid, gridPointer, batCoord);
         }
         foreach(var frogCoord in frogCoords)
         {
