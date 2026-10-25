@@ -15,11 +15,18 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
 
         foreach (var attackingEnemyCoord in attackingEnemyCoords)
         {
-            TryAttack(attackingEnemyCoord, gridPointer, spriteGrid);
+            OmniDirectionalAttack(attackingEnemyCoord, gridPointer, spriteGrid);
+        }
+
+        var zombieCoords = gridPointer.GetObjectPointers(ObjectIds.Zombie).Keys.ToList();
+
+        foreach (var zombieCoord in zombieCoords)
+        {
+            AttackFront(zombieCoord, gridPointer, spriteGrid);
         }
     }
 
-    private void TryAttack(Coordinate enemyCoord, GridPointer gridPointer, SpriteGrid spriteGrid)
+    private void OmniDirectionalAttack(Coordinate enemyCoord, GridPointer gridPointer, SpriteGrid spriteGrid)
     {
         List<Directions> directions = new List<Directions> { Directions.North, Directions.East, Directions.South, Directions.West };
         foreach (var direction in directions)
@@ -31,6 +38,19 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
                 spriteGrid.PlayEffect(EffectIds.Slash, targetCoord);
                 subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
             }
+        }
+    }
+
+    private void AttackFront(Coordinate enemyCoord, GridPointer gridPointer, SpriteGrid spriteGrid)
+    {
+        var enemy = gridPointer.GetObject(enemyCoord);
+        var direction = enemy.Direction;
+        var targetCoord = enemyCoord + Coordinate.ToCoordinate(direction);
+        var targetObj = gridPointer.GetObject(targetCoord);
+        if (targetObj.Id == ObjectIds.Player)
+        {
+            spriteGrid.PlayEffect(EffectIds.Slash, targetCoord);
+            subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
         }
     }
 }

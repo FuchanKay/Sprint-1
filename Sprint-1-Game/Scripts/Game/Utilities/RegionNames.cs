@@ -31,6 +31,11 @@ public class RegionNames
     public readonly static string FrogIdleS = "Frog Idle South";
     public readonly static string FrogIdleW = "Frog Idle West";
 
+    public readonly static string ZombieIdleN = "Zombie Idle North";
+    public readonly static string ZombieIdleE = "Zombie Idle East";
+    public readonly static string ZombieIdleS = "Zombie Idle South";
+    public readonly static string ZombieIdleW = "Zombie Idle West";
+
     public readonly static string RedLizard = "RedLizard";
     public readonly static string BlueLizard = "BlueLizard";
     public readonly static string Skeleton = "Skeleton";
@@ -58,6 +63,18 @@ public class RegionNames
             Directions.East => RegionNames.FrogIdleE,
             Directions.South => RegionNames.FrogIdleS,
             Directions.West => RegionNames.FrogIdleW,
+            _ => RegionNames.FrogIdleS,
+        };
+    }
+
+    public static string ToZombieIdleRegionName(Directions direction)
+    {
+        return direction switch
+        {
+            Directions.North => RegionNames.ZombieIdleN,
+            Directions.East => RegionNames.ZombieIdleE,
+            Directions.South => RegionNames.ZombieIdleS,
+            Directions.West => RegionNames.ZombieIdleW,
             _ => RegionNames.FrogIdleS,
         };
     }

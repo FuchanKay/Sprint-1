@@ -100,6 +100,13 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 spriteScale = context.GridScale * 6.5f;
                 sprite.IdleName = RegionNames.FrogIdleS;
                 break;
+            case ObjectIds.Zombie:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.ZombieIdleS);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Zombie);
+                spriteScale = context.GridScale * 5.0f;
+                sprite.IdleName = RegionNames.ZombieIdleS;
+                break;
             default:
                 sprite = new StaticSprite(textureAtlas);
                 break;

@@ -128,4 +128,12 @@ public class ObjectFactory()
           Direction = Directions.South,   
         };
     }
+
+    public IObject CreateZombie()
+    {
+        return new Zombie
+        {
+          Direction = Directions.South,   
+        };
+    }
 }

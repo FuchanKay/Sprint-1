@@ -21,4 +21,5 @@ public class TextureNames
     public readonly static string Warlock = "Warlock";
     public readonly static string Bat = "Bat";
     public readonly static string Frog = "Frog";
+    public readonly static string Zombie = "Zombie";
 }

@@ -18,6 +18,12 @@ public class AnimationNames
     public readonly static string FrogJumpSouth = "Frog Jump South";
     public readonly static string FrogJumpWest = "Frog Jump West";
 
+    public readonly static string ZombieWalkNorth = "Zombie Walk North";
+    public readonly static string ZombieWalkEast = "Zombie Walk East";
+    public readonly static string ZombieWalkSouth = "Zombie Walk South";
+    public readonly static string ZombieWalkWest = "Zombie Walk West";
+ 
+
     public readonly static string RotateSE = "Object Rotate SE";
     public readonly static string RotateEN = "Object Rotate EN";
     public readonly static string RotateNW = "Object Rotate NW";
@@ -90,6 +96,18 @@ public class AnimationNames
             Directions.East => FrogJumpEast,
             Directions.South => FrogJumpSouth,
             Directions.West => FrogJumpWest,
+            _ => PlayerPushEast,
+        };
+    }
+
+    public static string ToZombieWalkAnimationName(Directions direction)
+    {
+        return direction switch
+        {
+            Directions.North => ZombieWalkNorth,
+            Directions.East => ZombieWalkEast,
+            Directions.South => ZombieWalkSouth,
+            Directions.West => ZombieWalkWest,
             _ => PlayerPushEast,
         };
     }

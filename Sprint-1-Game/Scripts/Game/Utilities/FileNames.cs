@@ -22,6 +22,7 @@ public class FileNames
     public readonly static string RedLizardTexture = "Images/redLizard";
     public readonly static string BatTexture = "Images/bat";
     public readonly static string FrogTexture = "Images/frog";
+    public readonly static string ZombieTexture = "Images/zombie";
 
     public readonly static string Level1File = "Content/Levels/level1.csv";
 

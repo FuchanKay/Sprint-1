@@ -11,6 +11,7 @@ public enum ObjectIds
     Warlock,
     Bat,
     Frog,
+    Zombie,
     Wall,
     Bomb,
     TimedBomb,
