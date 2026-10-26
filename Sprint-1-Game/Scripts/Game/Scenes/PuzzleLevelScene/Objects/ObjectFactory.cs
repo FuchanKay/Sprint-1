@@ -1,3 +1,5 @@
+using System.Threading.Tasks.Dataflow;
+
 namespace Scripts.Game;
 
 public class ObjectFactory()
@@ -55,6 +57,31 @@ public class ObjectFactory()
         };
     }
 
+    public IObject CreateKey()
+    {
+        return new KeyObject
+        {
+            Direction = Directions.South,
+        };
+    }
+
+    public IObject CreateClosedDoor()
+    {
+        return new DoorObject
+        {
+            Direction = Directions.South,
+        };
+    }
+
+    public IObject CreateOpenDoor()
+    {
+        return new DoorObject
+        {
+            Direction = Directions.South,
+            IsOpen = true
+        };
+    }
+
     public IObject CreateTimedBomb()
     {
         return new TimedBombObject
@@ -65,7 +92,7 @@ public class ObjectFactory()
 
     public IObject CreateSkeleton()
     {
-        return new SkeletonObject
+        return new Skeleton
         {
             Direction = Directions.South,
         };
@@ -73,7 +100,7 @@ public class ObjectFactory()
 
     public IObject CreateWarlock()
     {
-        return new WarlockObject
+        return new Warlock
         {
             Direction = Directions.South,
         };
@@ -81,7 +108,7 @@ public class ObjectFactory()
 
     public IObject CreateBlueLizard()
     {
-        return new BlueLizardObject
+        return new BlueLizard
         {
             Direction = Directions.South,
         };
@@ -89,9 +116,33 @@ public class ObjectFactory()
 
     public IObject CreateRedLizard()
     {
-        return new RedLizardObject
+        return new RedLizard
         {
             Direction = Directions.South,
+        };
+    }
+
+    public IObject CreateBat()
+    {
+        return new Bat
+        {
+          Direction = Directions.South,   
+        };
+    }
+
+    public IObject CreateFrog()
+    {
+        return new Frog
+        {
+          Direction = Directions.South,   
+        };
+    }
+
+    public IObject CreateZombie()
+    {
+        return new Zombie
+        {
+          Direction = Directions.South,   
         };
     }
 }

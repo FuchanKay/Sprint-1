@@ -26,14 +26,19 @@ public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectF
             {
                 var targetCoord = new Coordinate(bombCoord.X + x, bombCoord.Y + y);
                 var targetObj = gridPointer.GetObject(targetCoord);
-                if (targetObj.IsDestructible)
+                
+                if (targetObj.Id == ObjectIds.Player)
+                {
+                    subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
+                }
+                else if (targetObj is IEnemy)
+                {
+                    subEventStack.Push(new EnemyDamageSubEvent(objectFactory, targetCoord));
+                }
+                else if (targetObj.IsDestructible)
                 {
                     gridPointer.SetObject(targetCoord, objectFactory.CreateEmpty());
                     spriteGrid.RemoveObjectSprite(targetCoord);
-                }
-                else if (targetObj.Id == ObjectIds.Player)
-                {
-                    subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
                 }
             }
         }

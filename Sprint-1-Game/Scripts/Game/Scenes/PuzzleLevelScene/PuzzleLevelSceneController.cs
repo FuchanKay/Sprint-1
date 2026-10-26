@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 namespace Scripts.Game;
 
-public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas textureAtlas) : ISceneController
+public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, ITextureAtlas textureAtlas) : ISceneController
 {
     private PuzzleLevel Level;
     private LevelFileParser LevelFileParser;
@@ -75,6 +75,14 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
         }
 
         Level.Update(dtMs);
+
+        // Exits to the main menu upon a levels completion
+        if (Level.Context.LevelIsCompleted)
+        {
+            CurrentLevelIndex = (CurrentLevelIndex + 1) % FileNames.LevelFileNames.Length;
+            Level.Init(CurrentLevelIndex);
+            Level.Context.LevelIsCompleted = false;
+        }
     }
     public void Draw(SpriteBatch sb)
     {

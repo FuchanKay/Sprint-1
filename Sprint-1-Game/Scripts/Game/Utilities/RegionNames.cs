@@ -4,7 +4,10 @@ public class RegionNames
 {
     public readonly static string Rock = "Rock";
     public readonly static string Wall = "Wall";
+    public readonly static string ClosedDoor = "Closed Door";
+    public readonly static string OpenDoor = "Open Door";
     public readonly static string Bomb = "Bomb";
+    public readonly static string Key = "Key";
     public readonly static string TimedBomb = "Timed Bomb";
     public readonly static string Explosion = "Explosion";
 
@@ -23,11 +26,25 @@ public class RegionNames
     public readonly static string IdleEast = "Object Idle East";
     public readonly static string IdleWest = "Object Idle West";
 
-    public readonly static string RedLizard = "RedLizard";
+    public readonly static string FrogIdleN = "Frog Idle North";
+    public readonly static string FrogIdleE = "Frog Idle East";
+    public readonly static string FrogIdleS = "Frog Idle South";
+    public readonly static string FrogIdleW = "Frog Idle West";
+
+    public readonly static string ZombieIdleN = "Zombie Idle North";
+    public readonly static string ZombieIdleE = "Zombie Idle East";
+    public readonly static string ZombieIdleS = "Zombie Idle South";
+    public readonly static string ZombieIdleW = "Zombie Idle West";
+
+    public readonly static string RedLizardIdleN = "Red Lizard Idle North";
+    public readonly static string RedLizardIdleE = "Red Lizard Idle East";
+    public readonly static string RedLizardIdleS = "Red Lizard Idle South";
+    public readonly static string RedLizardIdleW = "Red Lizard Idle West";
     public readonly static string BlueLizard = "BlueLizard";
     public readonly static string Skeleton = "Skeleton";
     public readonly static string Slash = "Slash";
     public readonly static string Warlock = "Warlock";
+    public readonly static string Bat = "Bat";
 
     public static string ToIdleRegionName(Directions direction)
     {
@@ -38,6 +55,30 @@ public class RegionNames
             Directions.South => RegionNames.IdleSouth,
             Directions.West => RegionNames.IdleWest,
             _ => RegionNames.IdleEast,
+        };
+    }
+
+    public static string ToFrogIdleRegionName(Directions direction)
+    {
+        return direction switch
+        {
+            Directions.North => RegionNames.FrogIdleN,
+            Directions.East => RegionNames.FrogIdleE,
+            Directions.South => RegionNames.FrogIdleS,
+            Directions.West => RegionNames.FrogIdleW,
+            _ => RegionNames.FrogIdleS,
+        };
+    }
+
+    public static string ToZombieIdleRegionName(Directions direction)
+    {
+        return direction switch
+        {
+            Directions.North => RegionNames.ZombieIdleN,
+            Directions.East => RegionNames.ZombieIdleE,
+            Directions.South => RegionNames.ZombieIdleS,
+            Directions.West => RegionNames.ZombieIdleW,
+            _ => RegionNames.FrogIdleS,
         };
     }
 }

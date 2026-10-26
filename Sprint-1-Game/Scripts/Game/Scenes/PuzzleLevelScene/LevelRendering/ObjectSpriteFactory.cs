@@ -40,6 +40,23 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.SetState(RegionNames.Bomb);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Bomb);
                 sprite.IdleName = RegionNames.Bomb;
+                spriteScale = context.GridScale * 0.5f;
+                break;
+            case ObjectIds.Key:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.Key);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Key);
+                sprite.IdleName = RegionNames.Key;
+                spriteScale = context.GridScale * 0.25f;
+                break;
+            case ObjectIds.Door:
+                sprite = new StaticSprite(textureAtlas);
+                var door = obj as DoorObject;
+                if(door.IsOpen) sprite.SetState(RegionNames.OpenDoor);
+                else sprite.SetState(RegionNames.ClosedDoor);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Door);
+                sprite.IdleName = RegionNames.ClosedDoor;
+                spriteScale = context.GridScale * 12.0f;
                 break;
             case ObjectIds.TimedBomb:
                 sprite = new StaticSprite(textureAtlas);
@@ -47,6 +64,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Bomb);
                 sprite.Color = Color.Red;
                 sprite.IdleName = RegionNames.TimedBomb;
+                spriteScale = context.GridScale * 0.5f;
                 break;
             case ObjectIds.Skeleton:
                 sprite = new StaticSprite(textureAtlas);
@@ -62,13 +80,38 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 break;
             case ObjectIds.BlueLizard:
                 sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.BlueLizard);
+                sprite.SetState(RegionNames.RedLizardIdleS);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.BlueLizard);
+                sprite.IdleName = RegionNames.RedLizardIdleS;
+                spriteScale = context.GridScale * 3.0f;
                 break;
             case ObjectIds.RedLizard:
                 sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.RedLizard);
+                sprite.SetState(RegionNames.RedLizardIdleS);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.RedLizard);
+                sprite.IdleName = RegionNames.RedLizardIdleS;
+                spriteScale = context.GridScale * 3.0f;
+                break;
+            case ObjectIds.Bat:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.Bat);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Bat);
+                spriteScale = context.GridScale * 6.0f;
+                sprite.IdleName = RegionNames.Bat;
+                break;
+            case ObjectIds.Frog:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.FrogIdleS);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Frog);
+                spriteScale = context.GridScale * 6.5f;
+                sprite.IdleName = RegionNames.FrogIdleS;
+                break;
+            case ObjectIds.Zombie:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.ZombieIdleS);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Zombie);
+                spriteScale = context.GridScale * 5.0f;
+                sprite.IdleName = RegionNames.ZombieIdleS;
                 break;
             default:
                 sprite = new StaticSprite(textureAtlas);
@@ -101,12 +144,26 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 spriteScale = context.GridScale * 3.5f;
                 sprite.Color = Color.SpringGreen;
                 break;
+            case EffectIds.EnemyDeath:
+                sprite.SetState(AnimationNames.Explosion);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
+                sprite.IdleName = RegionNames.Explosion;
+                spriteScale = context.GridScale * 3.5f;
+                sprite.Color = Color.DarkRed;
+                break;
             case EffectIds.LavaExplosion:
                 sprite.SetState(AnimationNames.Explosion);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
                 sprite.IdleName = RegionNames.Explosion;
                 spriteScale = context.GridScale * 3.5f;
                 sprite.Color = Color.OrangeRed;
+                break;
+            case EffectIds.BlueFire:
+                sprite.SetState(AnimationNames.Explosion);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
+                sprite.IdleName = RegionNames.Explosion;
+                spriteScale = context.GridScale * 3.5f;
+                sprite.Color = Color.SkyBlue;
                 break;
             case EffectIds.WarlockSpell:
                 sprite.SetState(AnimationNames.Explosion);

@@ -1,6 +1,6 @@
 Level 2,15,10,,,,,,,,,,,,
 MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick
-MossyBrick,Dirt,Dirt,Dirt,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,Brick,MossyBrick,Bug,MossyBrick
+MossyBrick,Dirt,Dirt,Dirt,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,Brick,MossyBrick,Brick,MossyBrick
 MossyBrick,Dirt,Dirt,Dirt,MossyBrick,MossyBrick,Brick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,Brick,MossyBrick,MossyBrick,MossyBrick
 MossyBrick,Dirt,Dirt,Brick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick
 MossyBrick,MossyBrick,MossyBrick,Brick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,Brick,Brick,Brick,Brick,Brick,MossyBrick
@@ -11,7 +11,7 @@ MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,Mos
 MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick,MossyBrick
 _,_,_,_,_,_,_,_,_,_,_,_,_,_,_
 Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall
-Wall,_,_,_,Wall,_,_,_,_,_,Wall,_,Wall,_,Wall
+Wall,_,_,_,Wall,_,_,_,_,_,Wall,_,Wall,OpenDoor,Wall
 Wall,_,Player,_,Wall,_,Rock,Wall,Wall,_,_,Rock,_,_,Wall
 Wall,_,_,_,Wall,_,_,_,Wall,_,Wall,_,Wall,Wall,Wall
 Wall,Wall,Wall,Rock,Wall,Wall,Wall,_,Wall,_,Wall,_,_,Rock,Wall

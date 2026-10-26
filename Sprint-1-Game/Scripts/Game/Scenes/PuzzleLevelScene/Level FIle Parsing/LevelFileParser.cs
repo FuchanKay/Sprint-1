@@ -100,11 +100,16 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
             "Rock" => objectFactory.CreateDefaultRock(),
             "Wall" => objectFactory.CreateWall(),
             "Bomb" => objectFactory.CreateBomb(),
+            "ClosedDoor" => objectFactory.CreateClosedDoor(),
+            "OpenDoor" => objectFactory.CreateOpenDoor(),
             "TimedBomb" => objectFactory.CreateTimedBomb(),
             "Skeleton" => objectFactory.CreateSkeleton(),
             "Warlock" => objectFactory.CreateWarlock(),
             "BlueLizard" => objectFactory.CreateBlueLizard(),
             "RedLizard" => objectFactory.CreateRedLizard(),
+            "Bat" => objectFactory.CreateBat(),
+            "Frog" => objectFactory.CreateFrog(),
+            "Zombie" => objectFactory.CreateZombie(),
             _ => throw new Exception($"Unknown object value: {objectValue} at position ({x}, {y})")
         };
         return obj;

@@ -77,6 +77,14 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         return sprite;
     }
 
+    public void PlaceNewObjectSprite(Coordinate coord, IObject obj)
+    {
+        var realCoord = CalculateLiteralPos(coord);
+        if (ObjectSprites.ContainsKey(realCoord)) ObjectSprites.Remove(realCoord);
+        var newSprite = objectSpriteFactory.CreateObjectSprite(obj, realCoord, Context);
+        ObjectSprites[realCoord] = newSprite;
+    }
+
     public void SetObjectSprite(Coordinate currentCoord, Coordinate targetCoord, ISprite sprite)
     {
         var realCurrentCoord = CalculateLiteralPos(currentCoord);

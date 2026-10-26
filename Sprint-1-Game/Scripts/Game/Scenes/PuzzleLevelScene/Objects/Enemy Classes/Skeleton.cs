@@ -1,26 +1,25 @@
 namespace Scripts.Game;
 
-/*Red Lizards (Hard): Red lizards will shoot a beam of fire in the direction it is facing when the player walks into line of sight. Pushable. 
+/*Skeletons (Medium): Skeletons will automatically attack the player if they are within a 1 grid radius. 
 Up/Down/Left/Right
-Shooting fire
-Dead (squished?)
+Attacking
+Dead 
 */
-
-public class RedLizardObject : IObject
+public class Skeleton : IEnemy
 {
     public IObject Clone()
     {
-        return new RedLizardObject
+        return new Skeleton
         {
             Direction = Direction
         };
     }
-    public ObjectIds Id => ObjectIds.RedLizard;
+    public ObjectIds Id => ObjectIds.Skeleton;
     public Directions Direction { get; set; } = Directions.South;
     public bool IsPushable => true;
     public bool IsDestructible => true;
     public bool IsRotatable => false;
     public bool IsPickable => false;
 
-
+    public int Health { get; set; } = 1;
 }

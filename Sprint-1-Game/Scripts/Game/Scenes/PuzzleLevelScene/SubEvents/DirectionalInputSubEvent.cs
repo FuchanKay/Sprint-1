@@ -1,9 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
+
 namespace Scripts.Game;
 
-public class DirectionalInputSubEvent(Directions direction, ObjectFactory objectFactory) : ILevelSubEvent
+public class DirectionalInputSubEvent(Directions direction, ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
+        ILevelSubEvent enemiesMove = new EnemiesMoveSubEvent(objectFactory);
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerObj = gridPointer.GetObject(playerCoord);
 
@@ -32,6 +36,8 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
 
             gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
+
+            enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context);
         }
         else if (destinationCoordIsWithinBounds && CanMove(playerObj, gridPointer.GetGrid(destinationCoord)))
         {
@@ -42,13 +48,36 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
 
             gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
+            enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context);
+        }
+        // placeholder logic to collect a key by walking into it
+        else if (gridPointer.GetObject(destinationCoord).Id == ObjectIds.Key)
+        {
+            subEventStack.Push(new OpenExitSubEvent());
+            gridPointer.SetObject(destinationCoord, objectFactory.CreateEmpty());
+            spriteGrid.RemoveObjectSprite(destinationCoord);
+
+            var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
+            playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));
+            spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
+            spriteGrid.StartObjectAnimation(playerSprite);
+
+            gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(destinationCoord, playerObj);
+        }
+        else if (gridPointer.GetObject(destinationCoord).Id == ObjectIds.Door)
+        {
+            var door = gridPointer.GetObject(destinationCoord) as DoorObject;
+            if (door.IsOpen)
+            {
+                context.LevelIsCompleted = true;
+            }
         }
     }
 
     private bool CanMove(IObject playerObject, Grid destinationGrid)
     {
         var destinationTile = destinationGrid.Tile;
-
         var isDestinationEmpty = destinationGrid.Object.Id == ObjectIds.Empty;
         var isFacingDirection = playerObject.Direction == direction;
 

@@ -8,7 +8,7 @@ public class MovePlayerEvent(Directions direction, bool lockMove, ObjectFactory 
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
         SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack, objectFactory));
-        if (!lockMove) SubEventStack.Push(new DirectionalInputSubEvent(direction, objectFactory));
+        if (!lockMove) SubEventStack.Push(new DirectionalInputSubEvent(direction, objectFactory, SubEventStack));
         SubEventStack.Push(new PlayerChangeDirectionSubEvent(direction));
     }
 }

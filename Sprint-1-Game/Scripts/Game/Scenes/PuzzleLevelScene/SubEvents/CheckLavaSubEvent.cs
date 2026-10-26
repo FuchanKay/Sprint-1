@@ -15,6 +15,10 @@ public class CheckLavaSubEvent(Stack<ILevelSubEvent> subEventStack, ObjectFactor
             {
                 subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
             }
+            else if (obj is IEnemy)
+            {
+                subEventStack.Push(new EnemyDamageSubEvent(objectFactory, coord));
+            }
             else if (obj.Id != ObjectIds.Empty)
             {
                 gridPointer.SetObject(coord, objectFactory.CreateEmpty());
