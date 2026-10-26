@@ -17,7 +17,6 @@ public class PlayerChangeDirectionSubEvent(Directions direction) : ILevelSubEven
             playerSprite = playerSprite.ConvertToStatic(playerIdleSpriteRegion);
             playerSprite.IdleName = playerIdleSpriteRegion;
             spriteGrid.SetObjectSprite(playerCoord, playerSprite);
-            context.IsIdle = true;
         }
     }
 }

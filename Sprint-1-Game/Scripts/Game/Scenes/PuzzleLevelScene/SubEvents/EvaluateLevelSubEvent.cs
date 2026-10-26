@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,12 +7,9 @@ public class EvaluateLevelSubEvent(Stack<ILevelSubEvent> subEventStack, ObjectFa
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
-        var playerCoord = gridPointer.GetPlayerCoord();
-        if (gridPointer.GetTile(playerCoord).Id == TileIds.Lava) subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
-
+        subEventStack.Push(new CheckLavaSubEvent(subEventStack, objectFactory));
         var skeletonCoords = gridPointer.GetObjectPointers(ObjectIds.Skeleton).Keys.ToList();
         subEventStack.Push(new SkeletonsAttackSubEvent(skeletonCoords, objectFactory, subEventStack));
-        Console.WriteLine("Evaluated!");
         subEventStack.Push(new CheckRemoveRedLaserSubEvent(undoHistory));
         subEventStack.Push(new CheckLaserEntrySubEvent(objectFactory, subEventStack));
         subEventStack.Push(new RedLizardBlastSubEvent(objectFactory, undoHistory, subEventStack));

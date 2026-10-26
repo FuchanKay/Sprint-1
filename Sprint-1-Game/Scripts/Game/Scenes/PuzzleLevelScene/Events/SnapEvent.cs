@@ -7,12 +7,6 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
     public Stack<ILevelSubEvent> SubEventStack { get; } = [];
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, List<GridPointer> undoHistory)
     {
-        var playerCoord = gridPointer.GetPlayerCoord();
-        var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
-        playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerSnap);
-        spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
-        spriteGrid.StartObjectAnimation(playerCoord);
-
         SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack, objectFactory, undoHistory));
 
         var bombCoords = gridPointer.GetObjectPointers(ObjectIds.Bomb).Keys.ToList();
@@ -22,7 +16,6 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
         SubEventStack.Push(new RedLizardBlastSubEvent(objectFactory, undoHistory, SubEventStack));
         SubEventStack.Push(new BugRotateSubEvent(objectFactory));
         SubEventStack.Push(new WarlockSwapEvent());
-
-        context.IsIdle = false;
+        SubEventStack.Push(new SnapAnimationSubEvent());
     }
 }

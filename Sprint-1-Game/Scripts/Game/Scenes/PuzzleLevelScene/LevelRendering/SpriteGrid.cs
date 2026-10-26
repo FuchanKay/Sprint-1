@@ -38,8 +38,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         AnimatingTileSprites.Clear();
         AnimatingEffectSprites.Clear();
 
-        IsIdle = true;
-
         Context = context;
 
         /*
@@ -231,12 +229,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         {
             UpdateIterableTiles();
         }
-
-        bool animObjEmpty = AnimatingObjectSprites.Count == 0;
-        bool animTileEmpty = AnimatingTileSprites.Count == 0;
-        bool animEffectsEmpty = AnimatingEffectSprites.Count == 0;
-
-        IsIdle = animObjEmpty && animTileEmpty && animEffectsEmpty;
     }
 
     public void Draw(SpriteBatch sb)
@@ -256,6 +248,15 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
             var effectSprite = coordAndEffectSprite.Value;
             effectSprite.Draw(sb);
         }
+    }
+
+    public bool IsIdle()
+    {
+        bool animObjEmpty = AnimatingObjectSprites.Count == 0;
+        bool animTileEmpty = AnimatingTileSprites.Count == 0;
+        bool animEffectsEmpty = AnimatingEffectSprites.Count == 0;
+
+        return animObjEmpty && animTileEmpty && animEffectsEmpty;
     }
 
     private static void UpdateAnimatingList(int dtMs, List<ISprite> currentList, Dictionary<Vector2, ISprite> currentDict)
