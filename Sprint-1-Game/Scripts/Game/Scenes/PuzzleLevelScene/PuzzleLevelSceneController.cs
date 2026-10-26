@@ -79,7 +79,9 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         // Exits to the main menu upon a levels completion
         if (Level.Context.LevelIsCompleted)
         {
-            sceneManager.SwapScene(SceneNames.MainMenu);
+            CurrentLevelIndex = (CurrentLevelIndex + 1) % FileNames.LevelFileNames.Length;
+            Level.Init(CurrentLevelIndex);
+            Level.Context.LevelIsCompleted = false;
         }
     }
     public void Draw(SpriteBatch sb)
