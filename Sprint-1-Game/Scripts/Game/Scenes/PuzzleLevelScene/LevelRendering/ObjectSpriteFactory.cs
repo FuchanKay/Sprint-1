@@ -51,7 +51,9 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 break;
             case ObjectIds.Door:
                 sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.ClosedDoor);
+                var door = obj as DoorObject;
+                if(door.IsOpen) sprite.SetState(RegionNames.OpenDoor);
+                else sprite.SetState(RegionNames.ClosedDoor);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Door);
                 sprite.IdleName = RegionNames.ClosedDoor;
                 spriteScale = context.GridScale * 12.0f;

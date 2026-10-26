@@ -65,11 +65,20 @@ public class ObjectFactory()
         };
     }
 
-    public IObject CreateDoor()
+    public IObject CreateClosedDoor()
     {
         return new DoorObject
         {
             Direction = Directions.South,
+        };
+    }
+
+    public IObject CreateOpenDoor()
+    {
+        return new DoorObject
+        {
+            Direction = Directions.South,
+            IsOpen = true
         };
     }
 
