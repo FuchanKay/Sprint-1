@@ -6,7 +6,8 @@ public class DoorObject : IObject
     {
         return new DoorObject
         {
-            Direction = Direction
+            Direction = Direction,
+            IsOpen = IsOpen
         };
     }
     public ObjectIds Id => ObjectIds.Door;

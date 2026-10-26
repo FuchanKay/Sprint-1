@@ -114,17 +114,17 @@ public class Setup(ContentManager content)
         //door open
         TextureAtlas.AddAnimation(AnimationNames.DoorOpening, 0, 0, 5, 15, 27, 100);
 
-        TextureAtlas.AddAnimation(AnimationNames.BatFly, 0, 0, 4, 40, 44, 80);
+        TextureAtlas.AddAnimation(AnimationNames.BatFly, 0, 0, 4, 40, 44, 60);
 
-        TextureAtlas.AddAnimation(AnimationNames.FrogJumpSouth, 0, 0, 3, 32, 32, 60);
-        TextureAtlas.AddAnimation(AnimationNames.FrogJumpWest, 1, 0, 3, 32, 32, 60);
-        TextureAtlas.AddAnimation(AnimationNames.FrogJumpEast, 2, 0, 3, 32, 32, 60);
-        TextureAtlas.AddAnimation(AnimationNames.FrogJumpNorth, 3, 0, 3, 32, 32, 60);
+        TextureAtlas.AddAnimation(AnimationNames.FrogJumpSouth, 0, 0, 3, 32, 32, 80);
+        TextureAtlas.AddAnimation(AnimationNames.FrogJumpWest, 1, 0, 3, 32, 32, 80);
+        TextureAtlas.AddAnimation(AnimationNames.FrogJumpEast, 2, 0, 3, 32, 32, 80);
+        TextureAtlas.AddAnimation(AnimationNames.FrogJumpNorth, 3, 0, 3, 32, 32, 80);
 
-        TextureAtlas.AddAnimation(AnimationNames.ZombieWalkSouth, 0, 0, 3, 32, 64, 60);
-        TextureAtlas.AddAnimation(AnimationNames.ZombieWalkWest, 1, 0, 3, 32, 64, 60);
-        TextureAtlas.AddAnimation(AnimationNames.ZombieWalkEast, 2, 0, 3, 32, 64, 60);
-        TextureAtlas.AddAnimation(AnimationNames.ZombieWalkNorth, 3, 0, 3, 32, 64, 60);
+        TextureAtlas.AddAnimation(AnimationNames.ZombieWalkSouth, 0, 0, 3, 32, 64, 80);
+        TextureAtlas.AddAnimation(AnimationNames.ZombieWalkWest, 1, 0, 3, 32, 64, 80);
+        TextureAtlas.AddAnimation(AnimationNames.ZombieWalkEast, 2, 0, 3, 32, 64, 80);
+        TextureAtlas.AddAnimation(AnimationNames.ZombieWalkNorth, 3, 0, 3, 32, 64, 80);
     }
 
     private void AddRegions()
