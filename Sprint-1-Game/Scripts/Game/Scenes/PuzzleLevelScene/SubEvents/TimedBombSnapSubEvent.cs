@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class TimedBombSnapSubEvent(List<Coordinate> timedBombCoords, ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack)
     : BombSnapSubEvent(timedBombCoords, objectFactory, subEventStack)
 {
-    public override void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    public override void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
         foreach (var timedBombCoord in BombCoords)
         {

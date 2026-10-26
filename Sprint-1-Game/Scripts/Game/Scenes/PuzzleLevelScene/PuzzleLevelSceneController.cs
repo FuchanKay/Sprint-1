@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
-
 namespace Scripts.Game;
 
 public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas textureAtlas) : ISceneController
@@ -47,9 +46,24 @@ public class PuzzleLevelSceneController(IInputManager buttonInput, ITextureAtlas
         {
             Level.EnqueueEvent(new SnapEvent(ObjectFactory));
         }
-        else if (buttonInput.IsPressed(InputNames.UseItem))
+        else if (buttonInput.IsPressed(InputNames.UseItem1))
         {
-            Level.EnqueueEvent(new UseItemEventEvent());
+            Level.EnqueueEvent(new UseItemEvent(0, ObjectSpriteFactory));
+        }
+        else if (buttonInput.IsPressed(InputNames.UseItem2))
+        {
+            Level.EnqueueEvent(new UseItemEvent(1, ObjectSpriteFactory));
+
+        }
+        else if (buttonInput.IsPressed(InputNames.UseItem3))
+        {
+            Level.EnqueueEvent(new UseItemEvent(2, ObjectSpriteFactory));
+
+        }
+        else if (buttonInput.IsPressed(InputNames.PickItem))
+        {
+            Level.EnqueueEvent(new PickItemEvent(ObjectFactory));
+
         }
         else if (buttonInput.IsPressed(InputNames.ResetLevel))
         {
