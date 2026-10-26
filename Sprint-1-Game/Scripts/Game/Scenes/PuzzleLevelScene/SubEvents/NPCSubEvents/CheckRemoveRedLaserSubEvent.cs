@@ -21,7 +21,7 @@ public class CheckRemoveRedLaserSubEvent(List<GridPointer> undoHistory) : ILevel
 
             var objectCoordAhead = RedLizardBlastSubEvent.GetBlastTargetCoord(gridPointer, coord, lizardObj.Direction);
             var objectAhead = gridPointer.GetObject(objectCoordAhead);
-            var nonBlastableObjectAhead = objectAhead.Id == ObjectIds.Wall;
+            var wallAhead = objectAhead.Id == ObjectIds.Wall;
 
             var prevCoord = coord;
             var positionChanged = prevObjAtCoord.Id != ObjectIds.RedLizard;
@@ -31,7 +31,7 @@ public class CheckRemoveRedLaserSubEvent(List<GridPointer> undoHistory) : ILevel
             }
 
             var prevObjectCoordAhead = RedLizardBlastSubEvent.GetBlastTargetCoord(prevGridPointer, coord, lizardObj.Direction);
-            var wasBlastableObjectAhead = prevGridPointer.GetObject(prevObjectCoordAhead).Id != ObjectIds.Empty && objectAhead.Id == ObjectIds.Empty;
+            var newObjectAppeared = objectCoordAhead.X != prevObjectCoordAhead.X || objectCoordAhead.Y != prevObjectCoordAhead.Y;
 
             var directionChanged = false;
             if(prevObjAtCoord.Id == ObjectIds.RedLizard)
@@ -39,12 +39,12 @@ public class CheckRemoveRedLaserSubEvent(List<GridPointer> undoHistory) : ILevel
                 directionChanged = prevObjAtCoord.Direction != lizardObj.Direction;
             }
 
-            if(nonBlastableObjectAhead || positionChanged  || directionChanged && nonBlastableObjectAhead)
+            if(directionChanged && wallAhead)
             {
-                RemoveLaserBeam(spriteGrid, gridPointer, coord, prevCoord, lizardObj.Direction, prevObjAtCoord.Direction);
-            }
-            if(directionChanged && wasBlastableObjectAhead)
-            {
+                RemoveLaserBeam(spriteGrid, gridPointer, coord, coord, lizardObj.Direction, prevObjAtCoord.Direction);
+                RemoveLaserBeam(spriteGrid, gridPointer, coord, coord, lizardObj.Direction, lizardObj.Direction);
+            } else if(wallAhead || positionChanged || newObjectAppeared)
+            { // need to remove bc wall, remove at prev position, or to prep for new blast
                 RemoveLaserBeam(spriteGrid, gridPointer, coord, prevCoord, lizardObj.Direction, lizardObj.Direction);
             }
         }
