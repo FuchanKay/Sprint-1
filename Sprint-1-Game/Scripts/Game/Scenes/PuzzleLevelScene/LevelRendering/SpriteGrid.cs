@@ -182,6 +182,11 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         AnimatingEffectSprites.Add(sprite);
     }
 
+    public Dictionary<Vector2, ISprite> GetEffectSprites()
+    {
+        return EffectSprites;
+    }
+
     public void RemoveEffect(Coordinate coord)
     {
         var realCoord = CalculateLiteralPos(coord);

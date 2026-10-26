@@ -15,6 +15,7 @@ public class EvaluateLevelSubEvent(Stack<ILevelSubEvent> subEventStack, ObjectFa
         subEventStack.Push(new SkeletonsAttackSubEvent(skeletonCoords, objectFactory, subEventStack));
         Console.WriteLine("Evaluated!");
         subEventStack.Push(new CheckRemoveRedLaserSubEvent(undoHistory));
-        subEventStack.Push(new RedLizardBlastSubEvent(objectFactory, undoHistory));
+        subEventStack.Push(new CheckLaserEntrySubEvent(objectFactory, subEventStack));
+        subEventStack.Push(new RedLizardBlastSubEvent(objectFactory, undoHistory, subEventStack));
     }
 }
