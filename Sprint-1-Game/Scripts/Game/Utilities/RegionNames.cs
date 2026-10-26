@@ -36,7 +36,10 @@ public class RegionNames
     public readonly static string ZombieIdleS = "Zombie Idle South";
     public readonly static string ZombieIdleW = "Zombie Idle West";
 
-    public readonly static string RedLizard = "RedLizard";
+    public readonly static string RedLizardIdleN = "Red Lizard Idle North";
+    public readonly static string RedLizardIdleE = "Red Lizard Idle East";
+    public readonly static string RedLizardIdleS = "Red Lizard Idle South";
+    public readonly static string RedLizardIdleW = "Red Lizard Idle West";
     public readonly static string BlueLizard = "BlueLizard";
     public readonly static string Skeleton = "Skeleton";
     public readonly static string Slash = "Slash";

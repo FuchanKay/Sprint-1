@@ -153,7 +153,12 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.Skeleton, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Warlock, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.BlueLizard, 0, 0, 256, 256);
-        TextureAtlas.AddRegion(RegionNames.RedLizard, 0, 0, 256, 256);
+
+        TextureAtlas.AddRegion(RegionNames.RedLizardIdleN, 3, 0, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.RedLizardIdleS, 7, 0, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.RedLizardIdleE, 1, 0, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.RedLizardIdleW, 5, 0, 64, 64);
+
         TextureAtlas.AddRegion(RegionNames.Bat, 0, 0, 40, 44);
         TextureAtlas.AddRegion(RegionNames.FrogIdleS, 0, 0, 32, 32);
         TextureAtlas.AddRegion(RegionNames.FrogIdleW, 0, 1, 32, 32);
