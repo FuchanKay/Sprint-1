@@ -73,7 +73,6 @@ public class RedLizardBlastSubEvent(ObjectFactory objectFactory, List<GridPointe
 
     private void LaserBlast(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate startCoord, Coordinate endCoord, Directions lizardDirection)
     {
-        // set lizard to open mouth animation
         var lizardSprite = spriteGrid.GetObjectSprite(startCoord);
         var mouthOpen = RegionNames.ToLizardMouthOpenName(lizardDirection);
         lizardSprite.SetState(mouthOpen);
@@ -83,7 +82,6 @@ public class RedLizardBlastSubEvent(ObjectFactory objectFactory, List<GridPointe
         // E/W -> rotation = 90
         var rotation = MathHelper.ToRadians(((int)lizardDirection % 2) * 90);
 
-        // while grid in direction is not empty, create a new laser
         var dirCoord = startCoord + Coordinate.ToCoordinate(lizardDirection);
         var startDirCoord = dirCoord;
         var dirGrid = gridPointer.GetGrid(dirCoord);

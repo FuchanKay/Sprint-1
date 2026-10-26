@@ -39,7 +39,6 @@ public class CheckRemoveRedLaserSubEvent(List<GridPointer> undoHistory) : ILevel
                 directionChanged = prevObjAtCoord.Direction != lizardObj.Direction;
             }
 
-            // if direction changed
             if(nonBlastableObjectAhead || positionChanged  || directionChanged && nonBlastableObjectAhead)
             {
                 RemoveLaserBeam(spriteGrid, gridPointer, coord, prevCoord, lizardObj.Direction, prevObjAtCoord.Direction);
