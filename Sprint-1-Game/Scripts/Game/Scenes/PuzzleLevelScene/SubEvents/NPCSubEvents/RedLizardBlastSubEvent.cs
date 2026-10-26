@@ -102,6 +102,12 @@ public class RedLizardBlastSubEvent(ObjectFactory objectFactory, List<GridPointe
             dirGrid = gridPointer.GetGrid(dirCoord);
         }
 
+        if(dirGrid.Object.IsDestructible)
+        {
+            gridPointer.SetObject(dirCoord, objectFactory.CreateEmpty());
+            spriteGrid.RemoveObjectSprite(dirCoord);
+        }
+
         if(dirGrid.Object.Id == ObjectIds.Player)
         {
             subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
