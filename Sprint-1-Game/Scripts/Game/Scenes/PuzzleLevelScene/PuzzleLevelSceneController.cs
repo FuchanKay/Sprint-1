@@ -1,22 +1,22 @@
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
-
 namespace Scripts.Game;
 
 public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, ITextureAtlas textureAtlas) : ISceneController
 {
     private PuzzleLevel Level;
     private LevelFileParser LevelFileParser;
-    private ObjectFactory ObjectFactory = new();
-    private TileFactory TileFactory = new();
-    private ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
-    private TileSpriteFactory TileSpriteFactory = new(textureAtlas);
+    private readonly ObjectFactory ObjectFactory = new();
+    private readonly TileFactory TileFactory = new();
+    private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
+    private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
+    public int CurrentLevelIndex = 0;
 
     public void Init()
     {
         LevelFileParser = new LevelFileParser(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory);
         Level = new PuzzleLevel(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory, LevelFileParser);
-        Level.Init(FileNames.Level1File);
+        Level.Init(CurrentLevelIndex);
     }
     public void Update(int dtMs)
     {
@@ -37,13 +37,33 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         {
             Level.EnqueueEvent(new MovePlayerEvent(Directions.West, lockMove, ObjectFactory));
         }
+        else if (buttonInput.IsPressed(InputNames.ChangeLevel))
+        {
+            CurrentLevelIndex = (CurrentLevelIndex + 1) % FileNames.LevelFileNames.Length;
+            Level.Init(CurrentLevelIndex);
+        }
         else if (buttonInput.IsPressed(InputNames.Snap))
         {
             Level.EnqueueEvent(new SnapEvent(ObjectFactory));
         }
-        else if (buttonInput.IsPressed(InputNames.UseItem))
+        else if (buttonInput.IsPressed(InputNames.UseItem1))
         {
-            Level.EnqueueEvent(new UseItemEventEvent());
+            Level.EnqueueEvent(new UseItemEvent(0, ObjectSpriteFactory));
+        }
+        else if (buttonInput.IsPressed(InputNames.UseItem2))
+        {
+            Level.EnqueueEvent(new UseItemEvent(1, ObjectSpriteFactory));
+
+        }
+        else if (buttonInput.IsPressed(InputNames.UseItem3))
+        {
+            Level.EnqueueEvent(new UseItemEvent(2, ObjectSpriteFactory));
+
+        }
+        else if (buttonInput.IsPressed(InputNames.PickItem))
+        {
+            Level.EnqueueEvent(new PickItemEvent(ObjectFactory));
+
         }
         else if (buttonInput.IsPressed(InputNames.ResetLevel))
         {
@@ -53,7 +73,6 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         {
             Level.Undo();
         }
-        Level.TryExecuteEvent();
 
         Level.Update(dtMs);
 

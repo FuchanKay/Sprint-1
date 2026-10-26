@@ -4,7 +4,7 @@ namespace Scripts.Game;
 public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     protected List<Coordinate> BombCoords = bombCoords;
-    public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
         foreach (var bombCoord in BombCoords)
         {

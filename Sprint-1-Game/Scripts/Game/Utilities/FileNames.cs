@@ -24,7 +24,7 @@ public class FileNames
     public readonly static string FrogTexture = "Images/frog";
     public readonly static string ZombieTexture = "Images/zombie";
 
-    public readonly static string Level1File = "Content/Levels/level1.csv";
+    public readonly static string[] LevelFileNames = ["Content/Levels/level1.csv", "Content/Levels/level1.csv"];
 
     public readonly static string SnapAudio = "audio/snap";
     public readonly static string SongAudio = "audio/song";

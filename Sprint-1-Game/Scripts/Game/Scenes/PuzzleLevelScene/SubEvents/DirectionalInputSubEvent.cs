@@ -5,7 +5,7 @@ namespace Scripts.Game;
 
 public class DirectionalInputSubEvent(Directions direction, ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
         ILevelSubEvent enemiesMove = new EnemiesMoveSubEvent(objectFactory);
         var playerCoord = gridPointer.GetPlayerCoord();

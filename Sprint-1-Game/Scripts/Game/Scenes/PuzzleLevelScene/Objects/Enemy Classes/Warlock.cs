@@ -18,5 +18,7 @@ public class Warlock : IEnemy
     public bool IsPushable => true;
     public bool IsDestructible => true;
     public bool IsRotatable => false;
+    public bool IsPickable => false;
+
     public int Health { get; set; } = 1;
 }

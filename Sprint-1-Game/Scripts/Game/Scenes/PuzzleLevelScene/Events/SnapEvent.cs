@@ -5,7 +5,7 @@ namespace Scripts.Game;
 public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
 {
     public Stack<ILevelSubEvent> SubEventStack { get; } = [];
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
         SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack, objectFactory));
 

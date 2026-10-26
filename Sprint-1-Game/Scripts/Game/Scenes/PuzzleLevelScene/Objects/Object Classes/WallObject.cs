@@ -14,4 +14,5 @@ public class WallObject() : IObject
     public bool IsPushable => false;
     public bool IsDestructible => false;
     public bool IsRotatable => false;
+    public bool IsPickable => false;
 }

@@ -14,4 +14,6 @@ public class PlayerObject : IObject
     public bool IsPushable => false;
     public bool IsDestructible => false;
     public bool IsRotatable => true;
+    public bool IsPickable => false;
+
 }

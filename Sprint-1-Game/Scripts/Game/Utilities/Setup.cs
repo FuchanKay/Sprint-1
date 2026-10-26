@@ -46,6 +46,8 @@ public class Setup(ContentManager content)
         ButtonInput.MapInput(InputNames.MoveSouthAlt, (int)Keys.Down);
         ButtonInput.MapInput(InputNames.MoveWestAlt, (int)Keys.Left);
 
+        ButtonInput.MapInput(InputNames.ChangeLevel, (int)Keys.B);
+
         ButtonInput.MapInput(InputNames.LCtrl, (int)Keys.LeftControl);
         ButtonInput.MapInput(InputNames.LShift, (int)Keys.LeftShift);
 
@@ -57,7 +59,14 @@ public class Setup(ContentManager content)
 
         ButtonInput.MapInput(InputNames.Undo, (int)Keys.Z);
 
+        ButtonInput.MapInput(InputNames.PickItem, (int)Keys.G);
+        ButtonInput.MapInput(InputNames.UseItem1, (int)Keys.D1);
+        ButtonInput.MapInput(InputNames.UseItem2, (int)Keys.D2);
+        ButtonInput.MapInput(InputNames.UseItem3, (int)Keys.D3);
+
         MouseInput.MapInput(InputNames.Select, (int)MouseButtons.Left);
+
+
     }
 
     private void AddAnimations()

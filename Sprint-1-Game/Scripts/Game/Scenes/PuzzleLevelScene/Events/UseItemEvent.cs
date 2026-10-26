@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 namespace Scripts.Game;
 
-public class UseItemEventEvent : ILevelEvent
+public class UseItemEvent(int inventory, ObjectSpriteFactory objectSpriteFactory) : ILevelEvent
 {
     public Stack<ILevelSubEvent> SubEventStack { get; } = [];
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
-
+        SubEventStack.Push(new UseItemSubEvent(inventory, objectSpriteFactory));
     }
 }

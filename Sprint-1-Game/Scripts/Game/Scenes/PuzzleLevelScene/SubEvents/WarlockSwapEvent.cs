@@ -5,7 +5,7 @@ namespace Scripts.Game;
 
 public class WarlockSwapEvent() : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
         var warlockPointer = gridPointer.GetObjectPointers(ObjectIds.Warlock);
         bool warlockExists = warlockPointer.Count > 0;
