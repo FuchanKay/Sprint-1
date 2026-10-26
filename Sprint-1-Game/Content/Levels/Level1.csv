@@ -13,7 +13,7 @@ _,_,_,_,_,_,_,_,_,_
 Wall,Wall,Wall,Wall,Door,Wall,Wall,Wall,Wall,Wall
 Wall,_,_,_,_,_,_,_,_,Wall
 Wall,_,Player,_,_,_,Rock,Bomb,_,Wall
-Wall,RedLizard,_,_,_,_,_,_,_,Wall
+Wall,RedLizard,BlueLizard,_,_,_,_,_,_,Wall
 Wall,_,_,_,_,_,_,_,_,Wall
 Wall,_,_,Warlock,_,_,_,Skeleton,_,Wall
 Wall,_,_,_,_,_,_,_,_,Wall

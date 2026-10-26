@@ -7,5 +7,6 @@ public enum EffectIds
     PlayerDeath,
     EnemyDeath,
     WarlockSpell,
+    BlueFire,
     Slash
 }

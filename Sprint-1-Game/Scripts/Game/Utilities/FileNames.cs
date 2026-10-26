@@ -18,7 +18,7 @@ public class FileNames
 
     public readonly static string SkeletonTexture = "Images/skeleton";
     public readonly static string WarlockTexture = "Images/warlock";
-    public readonly static string BlueLizardTexture = "Images/blueLizard";
+    public readonly static string BlueLizardTexture = "Images/blue-lizard-sprites";
     public readonly static string RedLizardTexture = "Images/red-lizard-sprites";
     public readonly static string BatTexture = "Images/bat";
     public readonly static string FrogTexture = "Images/frog";
