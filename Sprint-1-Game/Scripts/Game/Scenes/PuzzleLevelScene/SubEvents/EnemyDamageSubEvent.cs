@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace Scripts.Game;
 
 public class EnemyDamageSubEvent(ObjectFactory objectFactory, Coordinate enemyCoord) : ILevelSubEvent
@@ -12,7 +14,10 @@ public class EnemyDamageSubEvent(ObjectFactory objectFactory, Coordinate enemyCo
     private void KillEnemy(SpriteGrid spriteGrid, GridPointer gridPointer)
     {
         spriteGrid.PlayEffect(EffectIds.EnemyDeath, enemyCoord);
-        if (gridPointer.EnemyCollection.Count == 1) 
+        var doorPointers = gridPointer.GetObjectPointers(ObjectIds.Door);
+        var door = doorPointers.First().Value as DoorObject;
+        bool closedDoorExists = doorPointers.Count > 0 && !door.IsOpen;
+        if (gridPointer.EnemyCollection.Count == 1 && closedDoorExists) 
         {
             var obj = objectFactory.CreateKey();
             gridPointer.SetObject(enemyCoord, obj);
