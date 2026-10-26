@@ -17,7 +17,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     };
     public GridPointer CurrentGridPointer;
     public InventoryManager CurrentInventoryManager;
-    public LevelStateHistory levelStateHistory;
+    public LevelStateHistory LevelStateHistory;
     public List<LevelStateHistory> UndoHistory = [];
     private readonly int UndoHistoryMaxLength = 200;
     public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
@@ -38,10 +38,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         CurrentGridPointer = levelFileParser.CreateGrids(LevelFile);
         SpriteGrid.Init(CurrentGridPointer, Context);
         CurrentInventoryManager = new InventoryManager(objectFactory);
-        /*it can be simplified as levelStateHistory = new LevelStateHistory(levelFileParser.CreateGrids(LevelFile), new InventoryManager(objectFactory));
-        and then we can call SpriteGrid.Init(levelStateHistory.CridPointer, Context);
-        */
-        levelStateHistory = new LevelStateHistory(CurrentGridPointer, CurrentInventoryManager);
+        LevelStateHistory = new LevelStateHistory(CurrentGridPointer, CurrentInventoryManager);
     }
 
     public void Update(int dtMs)
@@ -70,19 +67,19 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         var CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
         if (CurrentEventIsFinished && EventQueue.Count > 0)
         {
-            PushCurrentGridPointerClone();
+            PushCurrentLevelStateHistory();
 
             CurrentEvent = EventQueue[0];
             EventQueue.RemoveAt(0);
 
-            CurrentEvent.Execute(SpriteGrid, levelStateHistory.GridPointer, levelStateHistory.InventoryManager, Context);
+            CurrentEvent.Execute(SpriteGrid, LevelStateHistory.GridPointer, LevelStateHistory.InventoryManager, Context);
             CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
         }
 
         while (!CurrentEventIsFinished && SpriteGrid.IsIdle())
         {
             var subEvent = CurrentEvent.SubEventStack.Pop();
-            subEvent.Execute(SpriteGrid, levelStateHistory.GridPointer, levelStateHistory.InventoryManager, Context);
+            subEvent.Execute(SpriteGrid, LevelStateHistory.GridPointer, LevelStateHistory.InventoryManager, Context);
             CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
         }
     }
@@ -95,9 +92,9 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
             return;
         }
         var top = UndoHistory.Count - 1;
-        levelStateHistory = UndoHistory[top];
+        LevelStateHistory = UndoHistory[top];
         UndoHistory.RemoveAt(top);
-        SpriteGrid.Init(levelStateHistory.GridPointer, Context);
+        SpriteGrid.Init(LevelStateHistory.GridPointer, Context);
         CurrentEvent.SubEventStack.Clear();
         EventQueue.Clear();
 
@@ -106,20 +103,20 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
 
     public void RestartLevel()
     {
-        PushCurrentGridPointerClone();
+        PushCurrentLevelStateHistory();
 
-        levelStateHistory.GridPointer = levelFileParser.CreateGrids(LevelFile);
-        levelStateHistory.InventoryManager = new InventoryManager(objectFactory);
-        SpriteGrid.Init(levelStateHistory.GridPointer, Context);
+        LevelStateHistory.GridPointer = levelFileParser.CreateGrids(LevelFile);
+        LevelStateHistory.InventoryManager = new InventoryManager(objectFactory);
+        SpriteGrid.Init(LevelStateHistory.GridPointer, Context);
 
         CurrentEvent.SubEventStack.Clear();
         EventQueue.Clear();
         Context.PlayerIsDead = false;
     }
 
-    private void PushCurrentGridPointerClone()
+    private void PushCurrentLevelStateHistory()
     {
-        var clone = levelStateHistory.Clone();
+        var clone = LevelStateHistory.Clone();
         UndoHistory.Add(clone);
         if (UndoHistory.Count > UndoHistoryMaxLength) UndoHistory.RemoveAt(0);
     }

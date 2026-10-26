@@ -8,6 +8,7 @@ public class PickItemEvent(ObjectFactory objectFactory) : ILevelEvent
     {
 
         SubEventStack.Push(new PickItemSubEvent(objectFactory));
+        SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack, objectFactory));
 
     }
 }
