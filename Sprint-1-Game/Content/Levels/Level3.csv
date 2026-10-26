@@ -1,0 +1,22 @@
+Level 3,10,10,,,,,,,
+Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
+Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
+Dirt,Dirt,Brick,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
+Dirt,Dirt,Dirt,Dirt,MossyBrick,MossyBrick,Dirt,Dirt,Dirt,Dirt
+Dirt,Dirt,Dirt,Dirt,Brick,MossyBrick,Dirt,Dirt,Bug,Dirt
+Dirt,Dirt,Dirt,Dirt,MossyBrick,MossyBrick,Dirt,Dirt,Dirt,Dirt
+Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
+Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
+Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
+Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
+_,_,_,_,_,_,_,_,_,_
+Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall
+Wall,_,_,_,Wall,_,_,_,_,Wall
+Wall,_,Bomb,_,Wall,_,_,_,_,Wall
+Wall,_,_,_,Rock,Rock,Wall,_,_,Wall
+Wall,_,_,_,_,Rock,Wall,_,_,Wall
+Wall,_,_,_,Rock,Rock,Wall,_,_,Wall
+Wall,_,_,_,Wall,_,_,_,_,Wall
+Wall,_,Player,_,Wall,_,_,_,_,Wall
+Wall,_,_,_,Wall,_,_,_,_,Wall
+Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall

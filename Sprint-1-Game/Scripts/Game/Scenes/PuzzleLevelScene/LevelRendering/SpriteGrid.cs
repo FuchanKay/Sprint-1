@@ -33,25 +33,26 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         For each grid that contains a nonempty object,
         adds the corresponding sprite to that grid
         */
-        for (int i = 0; i < context.LevelWidth * context.LevelHeight; i++)
+        for (int y = 0; y < context.LevelHeight; y++)
         {
-            var x = i % context.LevelWidth;
-            var y = i / context.LevelHeight;
-            var coord = new Coordinate(x, y);
-
-            var grid = gridPointer.GetGrid(coord);
-            var obj = grid.Object;
-            var tile = grid.Tile;
-
-            var spriteCoord = CalculateLiteralPos(coord);
-
-            if (obj.Id != ObjectIds.Empty)
+            for (int x = 0; x < context.LevelWidth; x++)
             {
-                ObjectSprites.Add(spriteCoord, objectSpriteFactory.CreateObjectSprite(obj, spriteCoord, context));
-            }
-            if (tile.Id != TileIds.Empty)
-            {
-                TileSprites.Add(spriteCoord, tileSpriteFactory.CreateTileSprite(tile, spriteCoord, context));
+                var coord = new Coordinate(x, y);
+
+                var grid = gridPointer.GetGrid(coord);
+                var obj = grid.Object;
+                var tile = grid.Tile;
+
+                var spriteCoord = CalculateLiteralPos(coord);
+
+                if (obj.Id != ObjectIds.Empty)
+                {
+                    ObjectSprites.Add(spriteCoord, objectSpriteFactory.CreateObjectSprite(obj, spriteCoord, context));
+                }
+                if (tile.Id != TileIds.Empty)
+                {
+                    TileSprites.Add(spriteCoord, tileSpriteFactory.CreateTileSprite(tile, spriteCoord, context));
+                }
             }
         }
     }

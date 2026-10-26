@@ -316,3 +316,15 @@
 #begin Levels/Level1.csv
 /copy:Levels/Level1.csv
 
+#begin Levels/Level2.csv
+/copy:Levels/Level2.csv
+
+#begin Levels/Level3.csv
+/copy:Levels/Level3.csv
+
+#begin Levels/Level4.csv
+/copy:Levels/Level4.csv
+
+#begin Levels/Level5.csv
+/copy:Levels/Level5.csv
+
