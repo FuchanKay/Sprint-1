@@ -22,8 +22,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     private readonly Dictionary<Vector2, List<ISprite>> IterableTileSprites = [];
     private readonly List<List<ISprite>> IteratingTileSprites = [];
 
-
-    public bool IsIdle { get; private set; }
     private LevelContext Context;
     private int iterableTimer;
 
@@ -143,12 +141,12 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         AnimatingTileSprites.Add(sprite);
     }
 
-    public void AddIterableTileSprite(TileIds tileId, string tileSkin, Coordinate startCoord, Coordinate currentCoord, float rotation)
+    public void AddIterableTileSprite(string tileSkin, Coordinate startCoord, Coordinate currentCoord, float rotation)
     {
         var realStartCoord = CalculateLiteralPos(startCoord);
         var realCurrentCoord = CalculateLiteralPos(currentCoord);
 
-        var sprite = tileSpriteFactory.CreateTileSpriteFromID(tileId, tileSkin, realCurrentCoord, Context);
+        var sprite = tileSpriteFactory.CreateTileSpriteFromRegionName(tileSkin, realCurrentCoord, Context);
         sprite.Rotation = rotation;
 
         if(!IterableTileSprites.TryGetValue(realStartCoord, out var spriteList))
