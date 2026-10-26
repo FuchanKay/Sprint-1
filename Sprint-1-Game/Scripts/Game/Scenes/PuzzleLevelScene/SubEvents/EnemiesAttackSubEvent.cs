@@ -6,7 +6,7 @@ namespace Scripts.Game;
 
 public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
         
         var skeletonCoords = gridPointer.GetObjectPointers(ObjectIds.Skeleton).Keys.ToList();

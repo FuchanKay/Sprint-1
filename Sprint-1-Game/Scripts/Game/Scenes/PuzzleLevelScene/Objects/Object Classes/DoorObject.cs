@@ -15,4 +15,5 @@ public class DoorObject : IObject
     public bool IsDestructible => false;
     public bool IsRotatable => false;
     public bool IsOpen { get; set; } = false;
+    public bool IsPickable => false;
 }

@@ -37,7 +37,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
             gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
 
-            enemiesMove.Execute(spriteGrid, gridPointer, context);
+            enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context);
         }
         else if (destinationCoordIsWithinBounds && CanMove(playerObj, gridPointer.GetGrid(destinationCoord)))
         {
@@ -48,7 +48,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
 
             gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
-            enemiesMove.Execute(spriteGrid, gridPointer, context);
+            enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context);
         }
         // placeholder logic to collect a key by walking into it
         else if (gridPointer.GetObject(destinationCoord).Id == ObjectIds.Key)

@@ -14,5 +14,6 @@ public class Bat : IEnemy
     public bool IsPushable => false;
     public bool IsDestructible => true;
     public bool IsRotatable => false;
+    public bool IsPickable => false;
     public int Health { get; set; } = 1;
 }

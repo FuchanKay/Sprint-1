@@ -4,7 +4,7 @@ namespace Scripts.Game;
 
 public class BlueLizardAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
-    public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
         var lizardCoords = gridPointer.GetObjectPointers(ObjectIds.BlueLizard).Keys.ToList();
         foreach(var lizardCoord in lizardCoords)

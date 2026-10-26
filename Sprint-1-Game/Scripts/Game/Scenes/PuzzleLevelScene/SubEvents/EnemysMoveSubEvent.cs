@@ -10,7 +10,7 @@ namespace Scripts.Game;
 
 public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
         var batCoords = gridPointer.GetObjectPointers(ObjectIds.Bat).Keys.ToList();
         var frogCoords = gridPointer.GetObjectPointers(ObjectIds.Frog).Keys.ToList();
