@@ -7,8 +7,8 @@ public class PickItemEvent(ObjectFactory objectFactory) : ILevelEvent
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
 
-        SubEventStack.Push(new PickItemSubEvent(objectFactory));
         SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack, objectFactory));
+        SubEventStack.Push(new PickItemSubEvent(objectFactory));
 
     }
 }
