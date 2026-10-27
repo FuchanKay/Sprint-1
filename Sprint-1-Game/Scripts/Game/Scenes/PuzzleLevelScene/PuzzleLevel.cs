@@ -79,11 +79,13 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
             CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
         }
 
-        while (!CurrentEventIsFinished && SpriteGrid.IsIdle())
+        var maxSubEventsToExecute = 500;
+        while (!CurrentEventIsFinished && SpriteGrid.IsIdle() && maxSubEventsToExecute > 0)
         {
             var subEvent = CurrentEvent.SubEventStack.Pop();
             subEvent.Execute(SpriteGrid, LevelStateHistory.GridPointer, LevelStateHistory.InventoryManager, Context);
             CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
+            maxSubEventsToExecute--;
         }
     }
 
