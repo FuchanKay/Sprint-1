@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Xna.Framework;
 namespace Scripts.Game;
 
@@ -36,6 +37,17 @@ public struct Coordinate
     {
         return new Coordinate(a.X * b, a.Y * b);
     }
+
+    public static bool operator ==(Coordinate a, Coordinate b)
+    {
+        return a.X == b.X && a.Y == b.Y;
+    }
+
+    public static bool operator !=(Coordinate a, Coordinate b)
+    {
+        return a.X != b.X || a.Y != b.Y;
+    }
+
     public static Coordinate ToCoordinate(Directions direction)
     {
         return direction switch

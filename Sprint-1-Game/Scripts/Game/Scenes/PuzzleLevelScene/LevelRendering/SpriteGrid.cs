@@ -98,7 +98,14 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         
         ObjectSprites.Remove(realStartCoord);
         ObjectSprites.Add(realStartCoord, sprite);
-        
+    }
+
+    public void SetNewObjectSprite(Coordinate coord, IObject obj)
+    {
+        var realCoord = CalculateLiteralPos(coord);
+        ObjectSprites.Remove(realCoord);
+        var newSprite = objectSpriteFactory.CreateObjectSprite(obj, realCoord, Context);
+        ObjectSprites[realCoord] = newSprite;
     }
 
     public void RemoveObjectSprite(Coordinate coord)
@@ -124,19 +131,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         return sprite;
     }
 
-<<<<<<< HEAD
     public void SetTileSprite(Coordinate coord, ISprite sprite)
-=======
-    public void PlaceNewObjectSprite(Coordinate coord, IObject obj)
-    {
-        var realCoord = CalculateLiteralPos(coord);
-        if (ObjectSprites.ContainsKey(realCoord)) ObjectSprites.Remove(realCoord);
-        var newSprite = objectSpriteFactory.CreateObjectSprite(obj, realCoord, Context);
-        ObjectSprites[realCoord] = newSprite;
-    }
-
-    public void SetObjectSprite(Coordinate currentCoord, Coordinate targetCoord, ISprite sprite)
->>>>>>> main
     {
         var realCoord = CalculateLiteralPos(coord);
 
@@ -154,12 +149,12 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         AnimatingTileSprites.Add(sprite);
     }
 
-    public void AddIterableTileSprite(string tileSkin, Coordinate startCoord, Coordinate currentCoord, float rotation)
+    public void AddIterableTileSprite(ITile tile, Coordinate startCoord, Coordinate currentCoord, float rotation)
     {
         var realStartCoord = CalculateLiteralPos(startCoord);
         var realCurrentCoord = CalculateLiteralPos(currentCoord);
 
-        var sprite = tileSpriteFactory.CreateTileSpriteFromRegionName(tileSkin, realCurrentCoord, Context);
+        var sprite = tileSpriteFactory.CreateTileSprite(tile, realCurrentCoord, Context);
         sprite.Rotation = rotation;
 
         if(!IterableTileSprites.TryGetValue(realStartCoord, out var spriteList))

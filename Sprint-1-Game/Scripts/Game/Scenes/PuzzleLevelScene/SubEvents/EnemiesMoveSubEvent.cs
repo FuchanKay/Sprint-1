@@ -1,10 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
@@ -103,7 +99,7 @@ public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
 
         enemySprite = enemySprite.ConvertToAnimated(movingAnimation);
         spriteGrid.SetObjectSprite(enemyCoord, destinationCoord, enemySprite);
-        spriteGrid.StartObjectAnimation(enemySprite);
+        spriteGrid.StartObjectAnimation(enemyCoord);
         enemySprite.IdleName = newIdleName;
 
         gridPointer.SetObject(enemyCoord, objectFactory.CreateEmpty());

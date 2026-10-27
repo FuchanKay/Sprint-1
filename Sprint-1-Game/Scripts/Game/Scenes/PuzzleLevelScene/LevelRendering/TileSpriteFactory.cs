@@ -51,19 +51,4 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
 
         return sprite;
     }
-
-    public ISprite CreateTileSpriteFromRegionName(string tileSkin, Vector2 coord, LevelContext context)
-    {
-        StaticSprite sprite = new StaticSprite(textureAtlas);
-        sprite.SetState(tileSkin);
-        sprite.IdleName = tileSkin;
-        sprite.Texture = textureAtlas.GetTexture(TextureNames.TileSprites);
-        sprite.CurrentPosition = coord;
-        sprite.SetTargetPosition(coord);
-        sprite.Scale = context.GridScale * 4.0f;
-        sprite.LayerDepth = TileLayerDepth;
-
-        return sprite;
-    }
-
 }

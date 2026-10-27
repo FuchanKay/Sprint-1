@@ -64,7 +64,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));
             spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
-            spriteGrid.StartObjectAnimation(playerSprite);
+            spriteGrid.StartObjectAnimation(playerCoord);
 
             gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);

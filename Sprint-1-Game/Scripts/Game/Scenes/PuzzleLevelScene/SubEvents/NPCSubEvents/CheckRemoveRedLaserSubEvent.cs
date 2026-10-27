@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System;
 
 namespace Scripts.Game;
 
@@ -19,7 +18,7 @@ public class CheckRemoveRedLaserSubEvent(List<LevelStateHistory> undoHistory) : 
             var lizardObj = lizard.Value;
             var prevObjAtCoord = prevGridPointer.GetObject(coord);
 
-            var objectCoordAhead = RedLizardBlastSubEvent.GetBlastTargetCoord(gridPointer, coord, lizardObj.Direction);
+            var objectCoordAhead = Pathfinder.GetFurthestNonWallObjectCoord(gridPointer, coord, lizardObj.Direction);
             var objectAhead = gridPointer.GetObject(objectCoordAhead);
             var wallAhead = objectAhead.Id == ObjectIds.Wall;
 
@@ -27,10 +26,10 @@ public class CheckRemoveRedLaserSubEvent(List<LevelStateHistory> undoHistory) : 
             var positionChanged = prevObjAtCoord.Id != ObjectIds.RedLizard;
             if(positionChanged)
             {
-                prevCoord = GetPlayerCoord(gridPointer, coord);
+                prevCoord = Pathfinder.GetPlayerCoord(gridPointer, coord);
             }
 
-            var prevObjectCoordAhead = RedLizardBlastSubEvent.GetBlastTargetCoord(prevGridPointer, coord, lizardObj.Direction);
+            var prevObjectCoordAhead = Pathfinder.GetFurthestNonWallObjectCoord(prevGridPointer, coord, lizardObj.Direction);
             var newObjectAppeared = objectCoordAhead.X != prevObjectCoordAhead.X || objectCoordAhead.Y != prevObjectCoordAhead.Y;
 
             var directionChanged = false;
@@ -66,22 +65,5 @@ public class CheckRemoveRedLaserSubEvent(List<LevelStateHistory> undoHistory) : 
             dirCoord += Coordinate.ToCoordinate(prevLizardDirection);
             dirGrid = gridPointer.GetGrid(dirCoord);
         }
-    }
-
-
-
-    private static Coordinate GetPlayerCoord(GridPointer gridPointer, Coordinate coord)
-    {
-        var northCoord = coord + Coordinate.North;
-        var eastCoord = coord + Coordinate.East;
-        var southCoord = coord + Coordinate.South;
-        var westCoord = coord + Coordinate.West;
-
-        coord += Coordinate.North * Convert.ToInt32(gridPointer.GetObject(northCoord).Id == ObjectIds.Player);
-        coord += Coordinate.East * Convert.ToInt32(gridPointer.GetObject(eastCoord).Id == ObjectIds.Player);
-        coord += Coordinate.South * Convert.ToInt32(gridPointer.GetObject(southCoord).Id == ObjectIds.Player);
-        coord += Coordinate.West * Convert.ToInt32(gridPointer.GetObject(westCoord).Id == ObjectIds.Player);
-
-        return coord;
     }
 }
