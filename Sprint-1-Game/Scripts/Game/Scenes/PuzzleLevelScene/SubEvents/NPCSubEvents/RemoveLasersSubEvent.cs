@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Scripts.Game;
 
-public class CheckRemoveRedLaserSubEvent(List<LevelStateHistory> undoHistory) : ILevelSubEvent
+public class RemoveLasersSubEvent(List<LevelStateHistory> undoHistory) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
