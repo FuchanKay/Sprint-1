@@ -6,6 +6,7 @@ public class RegionNames
 {
     // objects
     public readonly static string Rock = "Rock";
+    public readonly static string Pumpkin = "Pumpkin";
     public readonly static string Wall = "Wall";
     public readonly static string Bomb = "Bomb";
     public readonly static string TimedBomb = "Timed Bomb";

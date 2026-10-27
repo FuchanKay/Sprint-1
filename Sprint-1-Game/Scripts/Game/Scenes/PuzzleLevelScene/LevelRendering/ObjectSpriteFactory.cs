@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
@@ -18,8 +19,9 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite = new StaticSprite(textureAtlas);
                 var rock = obj as RockObject;
                 sprite.SetState(rock.RegionName);
-                sprite.Texture = textureAtlas.GetTexture(rock.TextureName);
-                sprite.IdleName = RegionNames.Rock;
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.ObjectSprites);
+                sprite.IdleName = rock.RegionName;
+                spriteScale = context.GridScale * 4.0f;
                 break;
             case ObjectIds.Player:
                 sprite = new StaticSprite(textureAtlas);

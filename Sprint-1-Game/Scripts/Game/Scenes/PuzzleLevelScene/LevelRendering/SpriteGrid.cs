@@ -254,7 +254,10 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         bool animTileEmpty = AnimatingTileSprites.Count == 0;
         bool animEffectsEmpty = AnimatingEffectSprites.Count == 0;
 
-        return animObjEmpty && animTileEmpty && animEffectsEmpty;
+        bool iteratingEffectsEmpty = IteratingEffectSprites.Count == 0;
+        bool iteratingTilesEmpty = IteratingTileSprites.Count == 0;
+
+        return animObjEmpty && animTileEmpty && animEffectsEmpty && iteratingEffectsEmpty && iteratingTilesEmpty;
     }
 
     private static void UpdateAnimatingList(int dtMs, List<ISprite> currentList, Dictionary<Vector2, ISprite> currentDict)

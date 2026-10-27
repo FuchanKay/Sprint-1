@@ -157,7 +157,7 @@
 /processorParam:Version=3.8.5.1
 /build:Images/player-sprites.png;Images/player-sprites
 
-#begin Images/rock.png
+#begin Images/object-sprites.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -168,7 +168,7 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.1
-/build:Images/rock.png;Images/rock
+/build:Images/object-sprites.png;Images/object-sprites
 
 #begin Images/skeleton.png
 /importer:TextureImporter

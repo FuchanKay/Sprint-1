@@ -14,9 +14,9 @@ Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall
 Wall,_,_,_,_,_,_,_,_,Wall
 Wall,_,_,_,_,_,_,Bomb,_,Wall
 Wall,_,_,_,_,_,_,_,_,Wall
-Wall,_,_,_,_,Warlock,_,Rock,_,Wall
-Wall,_,_,RedLizard,Player,_,Skeleton,_,Rock,Wall
-Wall,_,_,_,_,_,_,_,_,Wall
+Wall,_,_,_,_,Warlock,_,Pumpkin,_,Wall
+Wall,_,_,RedLizard,_,Skeleton,_,_,Rock,Wall
+Wall,_,_,_,_,_,Player,_,_,Wall
 Wall,_,_,_,_,_,_,_,_,Wall
 Wall,_,_,_,_,_,_,_,_,Wall
 Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall

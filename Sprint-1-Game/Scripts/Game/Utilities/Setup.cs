@@ -125,7 +125,8 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.BugTileCC, 3, 2, 64, 64);
 
         // objects
-        TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.Pumpkin, 1, 0, 64, 64);
         TextureAtlas.AddRegion(RegionNames.Wall, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Bomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
@@ -152,7 +153,7 @@ public class Setup(ContentManager content)
 
         TextureAtlas.AddTexture(TextureNames.Player, FileNames.PlayerTexture);
         TextureAtlas.AddTexture(TextureNames.TileSprites, FileNames.TileTextures);
-        TextureAtlas.AddTexture(TextureNames.Rock, FileNames.RockTexture);
+        TextureAtlas.AddTexture(TextureNames.ObjectSprites, FileNames.ObjectTextures);
         TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
         TextureAtlas.AddTexture(TextureNames.Bomb, FileNames.BombTexture);
         TextureAtlas.AddTexture(TextureNames.Explosion, FileNames.ExplosionTexture);
