@@ -9,7 +9,7 @@ public class BlueLizardAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelS
         var lizardCoords = gridPointer.GetObjectPointers(ObjectIds.BlueLizard).Keys.ToList();
         foreach(var lizardCoord in lizardCoords)
         {
-            LaserBlastAttack(spriteGrid, gridPointer, lizardCoord);
+            LaserBlastAttack(spriteGrid, gridPointer, lizardCoord, EffectIds.BlueLaserBeam);
         }
     }
 }

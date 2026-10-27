@@ -5,7 +5,7 @@ public enum EffectIds
     LavaExplosion,
     Explosion,
     PlayerDeath,
-    LaserBeam,
+    RedLaserBeam,
     BlueLaserBeam,
     EnemyDeath,
     WarlockSpell,

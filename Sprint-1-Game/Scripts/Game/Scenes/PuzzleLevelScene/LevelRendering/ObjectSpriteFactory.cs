@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
@@ -147,7 +146,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.IdleName = RegionNames.Explosion;
                 spriteScale = context.GridScale * 3.5f;
                 break;
-            case EffectIds.LaserBeam:
+            case EffectIds.RedLaserBeam:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.LaserBeam);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.RedLizard);

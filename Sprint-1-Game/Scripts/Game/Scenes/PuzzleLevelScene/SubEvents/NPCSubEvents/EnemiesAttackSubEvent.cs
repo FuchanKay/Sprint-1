@@ -29,7 +29,7 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
         {
             if (ShouldLaserBlast(spriteGrid, gridPointer, levelStateHistory, lizardCoord))
             {
-                LaserBlastAttack(spriteGrid, gridPointer, lizardCoord);
+                LaserBlastAttack(spriteGrid, gridPointer, lizardCoord, EffectIds.RedLaserBeam);
             }
         }
     }
@@ -57,7 +57,7 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
         }
     }
 
-    protected void LaserBlastAttack(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate startCoord)
+    protected void LaserBlastAttack(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate startCoord, EffectIds laserColorId)
     {
         var direction = gridPointer.GetObject(startCoord).Direction;
         var endCoord = Pathfinder.GetBlastTargetCoord(gridPointer, startCoord, direction);
@@ -76,7 +76,7 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
         var dirGrid = gridPointer.GetGrid(dirCoord);
         while (dirCoord != endCoord)
         {
-            spriteGrid.AddIterableEffectSprite(EffectIds.LaserBeam, startDirCoord, dirCoord, rotation);
+            spriteGrid.AddIterableEffectSprite(laserColorId, startDirCoord, dirCoord, rotation);
 
             if(dirGrid.Object.Id == ObjectIds.Player)
             {

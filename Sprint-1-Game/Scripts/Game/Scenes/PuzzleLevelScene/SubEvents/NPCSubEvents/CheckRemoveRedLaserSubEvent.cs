@@ -27,7 +27,7 @@ public class CheckRemoveRedLaserSubEvent(List<LevelStateHistory> undoHistory) : 
 
             var objectCoordAhead = Pathfinder.GetBlastTargetCoord(gridPointer, coord, lizardObj.Direction);
             var objectAhead = gridPointer.GetObject(objectCoordAhead);
-            var wallAhead = objectAhead.Id == ObjectIds.Wall;
+            var wallAhead = objectAhead.Id == ObjectIds.Wall || objectAhead.Id == ObjectIds.Door;
 
             var prevCoord = coord;
             var positionChanged = prevObjAtCoord.Id != ObjectIds.RedLizard;
@@ -37,7 +37,8 @@ public class CheckRemoveRedLaserSubEvent(List<LevelStateHistory> undoHistory) : 
             }
 
             var prevObjectCoordAhead = Pathfinder.GetBlastTargetCoord(prevGridPointer, coord, lizardObj.Direction);
-            var prevNotWall = prevGridPointer.GetObject(prevObjectCoordAhead).Id != ObjectIds.Wall;
+            var prevObj = prevGridPointer.GetObject(prevObjectCoordAhead);
+            var prevNotWall = prevObj.Id != ObjectIds.Wall || prevObj.Id != ObjectIds.Door;
             var newObjectAppeared = prevNotWall && objectCoordAhead != prevObjectCoordAhead;
 
             var directionChanged = false;
@@ -66,7 +67,7 @@ public class CheckRemoveRedLaserSubEvent(List<LevelStateHistory> undoHistory) : 
 
         var dirCoord = prevLizardCoord + Coordinate.ToCoordinate(prevLizardDirection);
         var dirGrid = gridPointer.GetGrid(dirCoord);
-        while (dirGrid.Object.Id != ObjectIds.Wall)
+        while (dirGrid.Object.Id != ObjectIds.Wall && dirGrid.Object.Id != ObjectIds.Door)
         {
             spriteGrid.RemoveEffect(dirCoord);
 

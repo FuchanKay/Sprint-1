@@ -98,7 +98,7 @@ public class Pathfinder()
 
         var obj = gridPointer.GetObject(currCoord);
 
-        while(obj.Id != ObjectIds.Wall && obj.Id != ObjectIds.Rock)
+        while(obj.Id != ObjectIds.Wall && obj.Id != ObjectIds.Rock && obj.Id != ObjectIds.Door)
         {
             prevCoord = currCoord;
             currCoord = GetNextObjectCoord(gridPointer, prevCoord, direction);
