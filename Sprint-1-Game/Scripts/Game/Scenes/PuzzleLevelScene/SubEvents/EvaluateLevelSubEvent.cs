@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Scripts.Game;
 
-public class EvaluateLevelSubEvent(Stack<ILevelSubEvent> subEventStack, ObjectFactory objectFactory, LevelStateHistory levelStateHistory) : ILevelSubEvent
+public class EvaluateLevelSubEvent(Stack<ILevelSubEvent> subEventStack, ObjectFactory objectFactory, List<LevelStateHistory> levelStateHistory) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {

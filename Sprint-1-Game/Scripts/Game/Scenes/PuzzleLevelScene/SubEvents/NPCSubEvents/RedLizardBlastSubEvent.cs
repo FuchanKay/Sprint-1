@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Scripts.Game;
 
-public class RedLizardBlastSubEvent(ObjectFactory objectFactory, List<LevelStateHistory> undoHistory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
+public class RedLizardBlastSubEvent(ObjectFactory objectFactory, List<LevelStateHistory> levelStateHistory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
@@ -19,8 +19,8 @@ public class RedLizardBlastSubEvent(ObjectFactory objectFactory, List<LevelState
             var currObjectAhead = gridPointer.GetObject(furthestObjectCoord);
             var blastableObjectAhead = currObjectAhead.Id != ObjectIds.Wall;
 
-            var prev = undoHistory.Count - 1;
-            var prevGridPointer = undoHistory[prev].GridPointer;
+            var prev = levelStateHistory.Count - 1;
+            var prevGridPointer = levelStateHistory[prev].GridPointer;
             var prevCoord = GetBlastTargetCoord(prevGridPointer, lizardCoord, lizardDirection);
             var prevObject = prevGridPointer.GetObject(furthestObjectCoord);
             var isNewObject = prevObject.Id != currObjectAhead.Id || prevCoord.X != furthestObjectCoord.X || prevCoord.Y != furthestObjectCoord.Y;
