@@ -12,10 +12,9 @@ public class SnapEvent(ObjectFactory objectFactory) : ILevelEvent
         var bombCoords = gridPointer.GetObjectPointers(ObjectIds.Bomb).Keys.ToList();
         var timedBombCoords = gridPointer.GetObjectPointers(ObjectIds.TimedBomb).Keys.ToList();
 
-        SubEventStack.Push(new BlueLizardAttackSubEvent(objectFactory, SubEventStack));
+        SubEventStack.Push(new BlueLizardAttackSubEvent(objectFactory, SubEventStack, levelStateHistory));
         SubEventStack.Push(new BombSnapSubEvent(bombCoords, objectFactory, SubEventStack));
         SubEventStack.Push(new TimedBombSnapSubEvent(timedBombCoords, objectFactory, SubEventStack));
-        SubEventStack.Push(new RedLizardBlastSubEvent(objectFactory, levelStateHistory, SubEventStack));
         SubEventStack.Push(new BugRotateSubEvent());
         SubEventStack.Push(new WarlockSwapEvent());
         SubEventStack.Push(new SnapAnimationSubEvent());

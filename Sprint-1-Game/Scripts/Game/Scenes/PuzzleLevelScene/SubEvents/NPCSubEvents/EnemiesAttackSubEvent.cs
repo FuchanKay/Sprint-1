@@ -6,7 +6,7 @@ namespace Scripts.Game;
 
 public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack, List<LevelStateHistory> levelStateHistory) : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
         var skeletonCoords = gridPointer.GetObjectPointers(ObjectIds.Skeleton).Keys.ToList();
         var batCoords = gridPointer.GetObjectPointers(ObjectIds.Bat).Keys.ToList();
@@ -57,10 +57,10 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
         }
     }
 
-    private void LaserBlastAttack(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate startCoord)
+    protected void LaserBlastAttack(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate startCoord)
     {
         var direction = gridPointer.GetObject(startCoord).Direction;
-        var endCoord = Pathfinder.GetFurthestNonWallObjectCoord(gridPointer, startCoord, direction);
+        var endCoord = Pathfinder.GetBlastTargetCoord(gridPointer, startCoord, direction);
 
         var lizardSprite = spriteGrid.GetObjectSprite(startCoord);
         var mouthOpen = RegionNames.ToLizardMouthOpenName(direction);
@@ -111,13 +111,13 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
     {
         var lizardDirection = gridPointer.GetObject(lizardCoord).Direction;
 
-        var furthestObjectCoord = Pathfinder.GetFurthestNonWallObjectCoord(gridPointer, lizardCoord, lizardDirection);
+        var furthestObjectCoord = Pathfinder.GetBlastTargetCoord(gridPointer, lizardCoord, lizardDirection);
         var currObjectAhead = gridPointer.GetObject(furthestObjectCoord);
         var nonWallObjectAhead = currObjectAhead.Id != ObjectIds.Wall;
 
         var prev = levelStateHistory.Count - 1;
         var prevGridPointer = levelStateHistory[prev].GridPointer;
-        var prevCoord = Pathfinder.GetFurthestNonWallObjectCoord(prevGridPointer, lizardCoord, lizardDirection);
+        var prevCoord = Pathfinder.GetBlastTargetCoord(prevGridPointer, lizardCoord, lizardDirection);
         var prevObject = prevGridPointer.GetObject(furthestObjectCoord);
         var isNewObject = prevObject.Id != currObjectAhead.Id || prevCoord != furthestObjectCoord;
 

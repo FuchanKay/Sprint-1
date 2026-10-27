@@ -85,6 +85,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 var directionState = RegionNames.ToIdleRegionName(obj.Direction);
                 sprite.SetState(directionState);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.BlueLizard);
+                spriteScale = context.GridScale * 4.0f;
                 sprite.IdleName = directionState;
                 break;
             case ObjectIds.RedLizard:
@@ -153,6 +154,13 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.IdleName = RegionNames.LaserBeam;
                 spriteScale = context.GridScale * 4.0f;
                 break;
+            case EffectIds.BlueLaserBeam:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.LaserBeam);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.BlueLizard);
+                sprite.IdleName = RegionNames.LaserBeam;
+                spriteScale = context.GridScale * 4.0f;
+                break;
             case EffectIds.EnemyDeath:
                 sprite.SetState(AnimationNames.Explosion);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
@@ -166,13 +174,6 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.IdleName = RegionNames.Explosion;
                 spriteScale = context.GridScale * 3.5f;
                 sprite.Color = Color.OrangeRed;
-                break;
-            case EffectIds.BlueFire:
-                sprite.SetState(AnimationNames.Explosion);
-                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
-                sprite.IdleName = RegionNames.Explosion;
-                spriteScale = context.GridScale * 3.5f;
-                sprite.Color = Color.SkyBlue;
                 break;
             case EffectIds.WarlockSpell:
                 sprite.SetState(AnimationNames.Explosion);

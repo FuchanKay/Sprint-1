@@ -18,5 +18,5 @@ Wall,_,_,_,_,_,_,_,_,Wall
 Wall,_,_,Warlock,_,_,_,Skeleton,_,Wall
 Wall,_,_,_,_,_,_,_,_,Wall
 Wall,_,_,Bat,_,_,_,Frog,_,Wall
-Wall,_,_,_,Zombie,_,_,_,_,Wall
+Wall,Rock,_,_,Zombie,_,_,_,_,Wall
 Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall

@@ -91,7 +91,7 @@ public class Pathfinder()
         return destinationTile.IsWalkable && destinationTile.Id != TileIds.Lava && isDestinationEmpty;
     }
 
-    public static Coordinate GetFurthestNonWallObjectCoord(GridPointer gridPointer, Coordinate startCoord, Directions direction)
+    public static Coordinate GetBlastTargetCoord(GridPointer gridPointer, Coordinate startCoord, Directions direction)
     {
         var prevCoord = GetNextObjectCoord(gridPointer, startCoord, direction);
         var currCoord = prevCoord;

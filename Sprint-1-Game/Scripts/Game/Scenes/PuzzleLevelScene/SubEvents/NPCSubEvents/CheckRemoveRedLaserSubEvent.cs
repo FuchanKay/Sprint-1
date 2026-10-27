@@ -6,19 +6,26 @@ public class CheckRemoveRedLaserSubEvent(List<LevelStateHistory> undoHistory) : 
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
-        // NOTE: there is ALWAYS a previous gridpointer to access because the clone is made before each event is executed
-        // order of operations: undo clone -> level event executed -> subevents executed
-        var previous = undoHistory.Count - 1;
-        GridPointer prevGridPointer = undoHistory[previous].GridPointer;
+        var redLizards = gridPointer.GetObjectPointers(ObjectIds.RedLizard);
+        var blueLizards = gridPointer.GetObjectPointers(ObjectIds.BlueLizard);
 
-        var lizards = gridPointer.GetObjectPointers(ObjectIds.RedLizard);
-        foreach (var lizard in lizards)
+        foreach (var lizard in blueLizards)
         {
+            var coord = lizard.Key;
+            var direction = gridPointer.GetObject(coord).Direction;
+            RemoveLaserBeam(spriteGrid, gridPointer, coord, coord, direction, direction);
+        }
+
+        foreach (var lizard in redLizards)
+        {
+            var previous = undoHistory.Count - 1;
+            var prevGridPointer = undoHistory[previous].GridPointer;
+
             var coord = lizard.Key;
             var lizardObj = lizard.Value;
             var prevObjAtCoord = prevGridPointer.GetObject(coord);
 
-            var objectCoordAhead = Pathfinder.GetFurthestNonWallObjectCoord(gridPointer, coord, lizardObj.Direction);
+            var objectCoordAhead = Pathfinder.GetBlastTargetCoord(gridPointer, coord, lizardObj.Direction);
             var objectAhead = gridPointer.GetObject(objectCoordAhead);
             var wallAhead = objectAhead.Id == ObjectIds.Wall;
 
@@ -29,8 +36,9 @@ public class CheckRemoveRedLaserSubEvent(List<LevelStateHistory> undoHistory) : 
                 prevCoord = Pathfinder.GetPlayerCoord(gridPointer, coord);
             }
 
-            var prevObjectCoordAhead = Pathfinder.GetFurthestNonWallObjectCoord(prevGridPointer, coord, lizardObj.Direction);
-            var newObjectAppeared = objectCoordAhead.X != prevObjectCoordAhead.X || objectCoordAhead.Y != prevObjectCoordAhead.Y;
+            var prevObjectCoordAhead = Pathfinder.GetBlastTargetCoord(prevGridPointer, coord, lizardObj.Direction);
+            var prevNotWall = prevGridPointer.GetObject(prevObjectCoordAhead).Id != ObjectIds.Wall;
+            var newObjectAppeared = prevNotWall && objectCoordAhead != prevObjectCoordAhead;
 
             var directionChanged = false;
             if(prevObjAtCoord.Id == ObjectIds.RedLizard)
@@ -66,4 +74,6 @@ public class CheckRemoveRedLaserSubEvent(List<LevelStateHistory> undoHistory) : 
             dirGrid = gridPointer.GetGrid(dirCoord);
         }
     }
+
+
 }

@@ -13,10 +13,8 @@ public class EvaluateLevelSubEvent(Stack<ILevelSubEvent> subEventStack, ObjectFa
         subEventStack.Push(new SkeletonsAttackSubEvent(skeletonCoords, objectFactory, subEventStack));
         subEventStack.Push(new CheckRemoveRedLaserSubEvent(levelStateHistory));
         subEventStack.Push(new CheckLaserEntrySubEvent(objectFactory, subEventStack));
-        subEventStack.Push(new RedLizardBlastSubEvent(objectFactory, levelStateHistory, subEventStack));
-
-
-        subEventStack.Push(new EnemiesAttackSubEvent(objectFactory, subEventStack));
+        subEventStack.Push(new EnemiesAttackSubEvent(objectFactory, subEventStack, levelStateHistory));
+        subEventStack.Push(new CheckRemoveRedLaserSubEvent(levelStateHistory));
         Console.WriteLine($"There are {gridPointer.EnemyCollection.Count} enemies on screen");
     }
 }

@@ -6,8 +6,8 @@ public enum EffectIds
     Explosion,
     PlayerDeath,
     LaserBeam,
+    BlueLaserBeam,
     EnemyDeath,
     WarlockSpell,
-    BlueFire,
     Slash
 }
