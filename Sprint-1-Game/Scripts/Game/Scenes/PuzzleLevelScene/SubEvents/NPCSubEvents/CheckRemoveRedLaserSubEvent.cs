@@ -3,14 +3,14 @@ using System;
 
 namespace Scripts.Game;
 
-public class CheckRemoveRedLaserSubEvent(List<GridPointer> undoHistory) : ILevelSubEvent
+public class CheckRemoveRedLaserSubEvent(List<LevelStateHistory> undoHistory) : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
         // NOTE: there is ALWAYS a previous gridpointer to access because the clone is made before each event is executed
         // order of operations: undo clone -> level event executed -> subevents executed
         var previous = undoHistory.Count - 1;
-        GridPointer prevGridPointer = undoHistory[previous];
+        GridPointer prevGridPointer = undoHistory[previous].GridPointer;
 
         var lizards = gridPointer.GetObjectPointers(ObjectIds.RedLizard);
         foreach (var lizard in lizards)

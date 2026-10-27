@@ -8,4 +8,5 @@ public interface IObject
     bool IsDestructible { get; }
     bool IsPushable { get; }
     bool IsRotatable { get; }
+    bool IsPickable { get; }
 }

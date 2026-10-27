@@ -5,5 +5,5 @@ namespace Scripts.Game;
 public interface ILevelEvent
 {
     public Stack<ILevelSubEvent> SubEventStack { get; }
-    void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, List<GridPointer> undoHistory);
+    void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, List<LevelStateHistory> undoHistory);
 }

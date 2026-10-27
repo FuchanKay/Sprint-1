@@ -8,6 +8,8 @@ W, A, S, D or arrow keys => Face and move in that direction
 Left Shift + direction => Turn to face that direction without moving
 F => Snap: activate bombs, rotate bug tiles, and trigger the other snap interactions
 Z => Undo the previous move
+G => Pickup pickable items
+1, 2, 3 => Use items in each inventory slot (Inventory HUD shown in the console for now)
 B => Change Level
 R => Restart the current level (can be undone)
 Ctrl + R => Restart the entire game
@@ -26,14 +28,24 @@ Counterclockwise bug tile => Walkable. When you snap, it rotates rotatable objec
 
 ### Objects, Enemies, and Characters
 
-Player => The character you control.
-Rock => Pushable and destructible. Push it into an empty tile; bombs can destroy it.
-Bomb => Pushable. Snapping detonates it, affecting a 3×3 area centered on the bomb. Destructible objects in that area are removed, and the player is defeated if caught in the blast.
-Timed bomb => Pushable. Its countdown advances when you snap; it detonates when its remaining count reaches one. Its blast follows the same area and destruction rules as a bomb.
+Sprout => The character you control.
 Wall => Blocks movement and cannot be pushed or destroyed.
-Skeleton => Pushable and destructible. It attacks when adjacent to the player; getting hit defeats the player.
-Warlock => Pushable and destructible. When you snap, it swaps positions with the player.
-Blue and red lizards => Present as pushable, destructible objects. Their attack behaviors are not implemented yet.
+Rock => Pushable and destructible. Push it into an empty tile; bombs can destroy it.
+Bomb => Pushable and pickable. Snapping detonates it, affecting a 3×3 area centered on the bomb. Destructible objects in that area are removed, and both players and enemies are defeated if caught in the blast.
+Timed bomb => Pushable. Its countdown advances when you snap; it detonates when its remaining count reaches one. Its blast follows the same area and destruction rules as a bomb.
+Key => Unlocks a closed door present in the level. Dropped once all enemies are defeated.
+Door => When open, acts as the exit to the current screen.
+
+### Enemies
+
+Skeleton => Stationary. It can attack the player in all cardinal directions; getting hit defeats the player.
+Warlock => Pushable and stationary. When you snap, it swaps positions with the player.
+Red lizards => Pushable and stationary. Shoots a ranged fire attack at the player whenever the player enters its line of sight.
+Blue lizards => Pushable and stationary. Shoots a ranged fire attack when the player snaps. This attack can be used by the player to defeat enemies and destroy destructible objects.
+(Both lizards will be rotatable in the future, but currently are not)
+Frog => Moves randomly in a cardinal direction as the player moves. Has no attack behavior.
+Zombie => Moves in a fixed movement pattern (Currently a horizontal line). It attacks the player if they are standing in the direction it is facing.
+Bat => Pathfinds to the player and moves towards their current position. It can attack the player in all cardinal directions.
 
 ## Project
 

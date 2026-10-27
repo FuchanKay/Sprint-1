@@ -14,4 +14,6 @@ public class BombObject : IObject
     public bool IsPushable => true;
     public bool IsDestructible => false;
     public bool IsRotatable => false;
+    public bool IsPickable => true;
+
 }

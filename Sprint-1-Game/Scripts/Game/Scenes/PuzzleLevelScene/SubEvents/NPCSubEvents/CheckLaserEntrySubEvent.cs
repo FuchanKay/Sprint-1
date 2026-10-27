@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 
 public class CheckLaserEntrySubEvent(ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
         var effectSprites = spriteGrid.GetEffectSprites();
         foreach(var sprite in effectSprites.Values)

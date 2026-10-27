@@ -1,0 +1,22 @@
+Level 5,10,10,,,,,,,
+Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
+Dirt,Lava,Lava,Lava,Lava,Lava,Dirt,Dirt,Dirt,Dirt
+Dirt,Lava,Lava,Lava,Lava,Lava,Dirt,Dirt,Dirt,Dirt
+Dirt,Lava,Lava,Lava,Lava,Lava,Dirt,Dirt,Dirt,Dirt
+Dirt,Lava,Lava,Brick,Lava,Lava,Dirt,Dirt,Dirt,Dirt
+Dirt,Lava,Lava,Lava,Lava,Lava,Dirt,Dirt,Dirt,Dirt
+Dirt,Lava,Lava,Lava,Lava,Lava,Dirt,Dirt,Dirt,Dirt
+Dirt,Lava,Lava,Lava,Lava,Lava,Dirt,Dirt,Dirt,Dirt
+Dirt,Lava,Lava,Lava,Lava,Lava,Dirt,Dirt,Dirt,Dirt
+Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
+_,_,_,_,_,_,_,_,_,_
+Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall
+Wall,_,_,_,_,_,_,_,_,Wall
+Wall,_,_,_,_,_,_,OpenDoor,_,Wall
+Wall,_,_,_,_,_,_,_,_,Wall
+Wall,_,_,Player,_,_,_,_,_,Wall
+Wall,_,_,_,_,_,_,_,_,Wall
+Wall,_,_,_,_,_,_,Warlock,_,Wall
+Wall,_,_,_,_,_,_,_,_,Wall
+Wall,_,_,_,_,_,_,_,_,Wall
+Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall

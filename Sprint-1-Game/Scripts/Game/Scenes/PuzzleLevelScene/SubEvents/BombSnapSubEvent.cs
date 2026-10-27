@@ -4,7 +4,7 @@ namespace Scripts.Game;
 public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     protected List<Coordinate> BombCoords = bombCoords;
-    public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
         foreach (var bombCoord in BombCoords)
         {
@@ -26,14 +26,19 @@ public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectF
             {
                 var targetCoord = new Coordinate(bombCoord.X + x, bombCoord.Y + y);
                 var targetObj = gridPointer.GetObject(targetCoord);
-                if (targetObj.IsDestructible)
+                
+                if (targetObj.Id == ObjectIds.Player)
+                {
+                    subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
+                }
+                else if (targetObj is IEnemy)
+                {
+                    subEventStack.Push(new EnemyDamageSubEvent(objectFactory, targetCoord));
+                }
+                else if (targetObj.IsDestructible)
                 {
                     gridPointer.SetObject(targetCoord, objectFactory.CreateEmpty());
                     spriteGrid.RemoveObjectSprite(targetCoord);
-                }
-                else if (targetObj.Id == ObjectIds.Player)
-                {
-                    subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
                 }
             }
         }

@@ -42,25 +42,26 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         For each grid that contains a nonempty object,
         adds the corresponding sprite to that grid
         */
-        for (int i = 0; i < context.LevelWidth * context.LevelHeight; i++)
+        for (int y = 0; y < context.LevelHeight; y++)
         {
-            var x = i % context.LevelWidth;
-            var y = i / context.LevelWidth;
-            var coord = new Coordinate(x, y);
-
-            var grid = gridPointer.GetGrid(coord);
-            var obj = grid.Object;
-            var tile = grid.Tile;
-
-            var spriteCoord = CalculateLiteralPos(coord);
-
-            if (obj.Id != ObjectIds.Empty)
+            for (int x = 0; x < context.LevelWidth; x++)
             {
-                ObjectSprites.Add(spriteCoord, objectSpriteFactory.CreateObjectSprite(obj, spriteCoord, context));
-            }
-            if (tile.Id != TileIds.Empty)
-            {
-                TileSprites.Add(spriteCoord, tileSpriteFactory.CreateTileSprite(tile, spriteCoord, context));
+                var coord = new Coordinate(x, y);
+
+                var grid = gridPointer.GetGrid(coord);
+                var obj = grid.Object;
+                var tile = grid.Tile;
+
+                var spriteCoord = CalculateLiteralPos(coord);
+
+                if (obj.Id != ObjectIds.Empty)
+                {
+                    ObjectSprites.Add(spriteCoord, objectSpriteFactory.CreateObjectSprite(obj, spriteCoord, context));
+                }
+                if (tile.Id != TileIds.Empty)
+                {
+                    TileSprites.Add(spriteCoord, tileSpriteFactory.CreateTileSprite(tile, spriteCoord, context));
+                }
             }
         }
     }
@@ -123,7 +124,19 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         return sprite;
     }
 
+<<<<<<< HEAD
     public void SetTileSprite(Coordinate coord, ISprite sprite)
+=======
+    public void PlaceNewObjectSprite(Coordinate coord, IObject obj)
+    {
+        var realCoord = CalculateLiteralPos(coord);
+        if (ObjectSprites.ContainsKey(realCoord)) ObjectSprites.Remove(realCoord);
+        var newSprite = objectSpriteFactory.CreateObjectSprite(obj, realCoord, Context);
+        ObjectSprites[realCoord] = newSprite;
+    }
+
+    public void SetObjectSprite(Coordinate currentCoord, Coordinate targetCoord, ISprite sprite)
+>>>>>>> main
     {
         var realCoord = CalculateLiteralPos(coord);
 

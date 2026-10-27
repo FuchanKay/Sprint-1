@@ -4,11 +4,11 @@ namespace Scripts.Game;
 Idle
 Hands raised to do magic?
 */
-public class WarlockObject : IObject
+public class Warlock : IEnemy
 {
     public IObject Clone()
     {
-        return new WarlockObject
+        return new Warlock
         {
             Direction = Direction
         };
@@ -18,5 +18,7 @@ public class WarlockObject : IObject
     public bool IsPushable => true;
     public bool IsDestructible => true;
     public bool IsRotatable => false;
+    public bool IsPickable => false;
 
+    public int Health { get; set; } = 1;
 }

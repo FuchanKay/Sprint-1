@@ -1,0 +1,22 @@
+Level 4,10,10,,,,,,,
+Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
+Dirt,Dirt,Dirt,Brick,Dirt,Dirt,Dirt,Dirt,Brick,Dirt
+Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
+Dirt,Dirt,Dirt,Dirt,Dirt,Brick,Dirt,Dirt,Dirt,Dirt
+Dirt,Brick,Dirt,Dirt,Dirt,Brick,Brick,Dirt,Dirt,Dirt
+Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
+Dirt,Dirt,Dirt,Dirt,Brick,Dirt,Dirt,Dirt,Dirt,Dirt
+Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Brick,Dirt
+Dirt,Brick,Dirt,Dirt,Dirt,Dirt,Dirt,Brick,Dirt,Dirt
+Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
+_,_,_,_,_,_,_,_,_,_
+Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall
+Wall,Player,_,Skeleton,_,_,OpenDoor,_,Skeleton,Wall
+Wall,_,_,_,_,_,_,_,_,Wall
+Wall,_,_,_,_,Skeleton,_,_,_,Wall
+Wall,Skeleton,_,_,_,Skeleton,Skeleton,_,_,Wall
+Wall,_,_,_,_,_,_,_,_,Wall
+Wall,_,_,_,Skeleton,_,_,_,_,Wall
+Wall,_,_,_,_,_,_,_,Skeleton,Wall
+Wall,Skeleton,_,_,_,_,_,Skeleton,_,Wall
+Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall

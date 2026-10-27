@@ -27,6 +27,32 @@
 /processorParam:Version=3.8.5.1
 /build:Audio/song.mp3
 
+#begin Images/bat.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:Images/bat.png
+
+#begin Images/blue-lizard-sprites.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:Images/blue-lizard-sprites.png
+
 #begin Images/blueLizard.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -79,6 +105,19 @@
 /processorParam:Version=3.8.5.1
 /build:Images/red-lizard-sprites.png;Images/red-lizard-sprites
 
+#begin Images/door.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:Images/door.png
+
 #begin Images/Exit game button.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -117,6 +156,32 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.1
 /build:Images/explosionAtlas.png
+
+#begin Images/frog.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:Images/frog.png
+
+#begin Images/key.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:Images/key.png
 
 #begin Images/mario.png
 /importer:TextureImporter
@@ -235,6 +300,31 @@
 /processorParam:Version=3.8.5.1
 /build:Images/warlock.png
 
+#begin Images/zombie.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:Images/zombie.png
+
 #begin Levels/Level1.csv
 /copy:Levels/Level1.csv
+
+#begin Levels/Level2.csv
+/copy:Levels/Level2.csv
+
+#begin Levels/Level3.csv
+/copy:Levels/Level3.csv
+
+#begin Levels/Level4.csv
+/copy:Levels/Level4.csv
+
+#begin Levels/Level5.csv
+/copy:Levels/Level5.csv
 

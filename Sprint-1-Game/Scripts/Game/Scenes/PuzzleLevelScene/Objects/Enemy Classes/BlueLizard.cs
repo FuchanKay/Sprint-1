@@ -5,11 +5,11 @@ Up/Down/Left/Right
 Shooting fire
 Dead (squished?)
 */
-public class BlueLizardObject : IObject
+public class BlueLizard : IEnemy
 {
     public IObject Clone()
     {
-        return new BlueLizardObject
+        return new BlueLizard
         {
             Direction = Direction
         };
@@ -19,5 +19,6 @@ public class BlueLizardObject : IObject
     public bool IsPushable => true;
     public bool IsDestructible => true;
     public bool IsRotatable => false;
-
+    public bool IsPickable => false;
+    public int Health { get; set; } = 1;
 }

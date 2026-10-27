@@ -46,7 +46,7 @@ public class Setup(ContentManager content)
         ButtonInput.MapInput(InputNames.MoveSouthAlt, (int)Keys.Down);
         ButtonInput.MapInput(InputNames.MoveWestAlt, (int)Keys.Left);
 
-        ButtonInput.MapInput(InputNames.ChangeLevel, (int) Keys.B);
+        ButtonInput.MapInput(InputNames.ChangeLevel, (int)Keys.B);
 
         ButtonInput.MapInput(InputNames.LCtrl, (int)Keys.LeftControl);
         ButtonInput.MapInput(InputNames.LShift, (int)Keys.LeftShift);
@@ -59,7 +59,14 @@ public class Setup(ContentManager content)
 
         ButtonInput.MapInput(InputNames.Undo, (int)Keys.Z);
 
+        ButtonInput.MapInput(InputNames.PickItem, (int)Keys.G);
+        ButtonInput.MapInput(InputNames.UseItem1, (int)Keys.D1);
+        ButtonInput.MapInput(InputNames.UseItem2, (int)Keys.D2);
+        ButtonInput.MapInput(InputNames.UseItem3, (int)Keys.D3);
+
         MouseInput.MapInput(InputNames.Select, (int)MouseButtons.Left);
+
+
     }
 
     private void AddAnimations()
@@ -103,6 +110,21 @@ public class Setup(ContentManager content)
 
         // slash attack effect
         TextureAtlas.AddAnimation(AnimationNames.Slash, 0, 0, 6, 102, 440, 50);
+
+        //door open
+        TextureAtlas.AddAnimation(AnimationNames.DoorOpening, 0, 0, 5, 15, 27, 100);
+
+        TextureAtlas.AddAnimation(AnimationNames.BatFly, 0, 0, 4, 40, 44, 60);
+
+        TextureAtlas.AddAnimation(AnimationNames.FrogJumpSouth, 0, 0, 3, 32, 32, 80);
+        TextureAtlas.AddAnimation(AnimationNames.FrogJumpWest, 1, 0, 3, 32, 32, 80);
+        TextureAtlas.AddAnimation(AnimationNames.FrogJumpEast, 2, 0, 3, 32, 32, 80);
+        TextureAtlas.AddAnimation(AnimationNames.FrogJumpNorth, 3, 0, 3, 32, 32, 80);
+
+        TextureAtlas.AddAnimation(AnimationNames.ZombieWalkSouth, 0, 0, 3, 32, 64, 80);
+        TextureAtlas.AddAnimation(AnimationNames.ZombieWalkWest, 1, 0, 3, 32, 64, 80);
+        TextureAtlas.AddAnimation(AnimationNames.ZombieWalkEast, 2, 0, 3, 32, 64, 80);
+        TextureAtlas.AddAnimation(AnimationNames.ZombieWalkNorth, 3, 0, 3, 32, 64, 80);
     }
 
     private void AddRegions()
@@ -130,6 +152,9 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.Wall, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Bomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.Key, 0, 0, 512, 512);
+        TextureAtlas.AddRegion(RegionNames.ClosedDoor, 0, 0, 15, 27);
+        TextureAtlas.AddRegion(RegionNames.OpenDoor, 4, 0, 15, 27);
 
         // effects
         TextureAtlas.AddRegion(RegionNames.LaserBeam, 4, 2, 64, 64);
@@ -144,6 +169,16 @@ public class Setup(ContentManager content)
 
         TextureAtlas.AddRegion(RegionNames.Skeleton, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Warlock, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.Bat, 0, 0, 40, 44);
+        TextureAtlas.AddRegion(RegionNames.FrogIdleS, 0, 0, 32, 32);
+        TextureAtlas.AddRegion(RegionNames.FrogIdleW, 0, 1, 32, 32);
+        TextureAtlas.AddRegion(RegionNames.FrogIdleE, 0, 2, 32, 32);
+        TextureAtlas.AddRegion(RegionNames.FrogIdleN, 0, 3, 32, 32);
+
+        TextureAtlas.AddRegion(RegionNames.ZombieIdleS, 1, 0, 32, 64);
+        TextureAtlas.AddRegion(RegionNames.ZombieIdleW, 1, 1, 32, 64);
+        TextureAtlas.AddRegion(RegionNames.ZombieIdleE, 1, 2, 32, 64);
+        TextureAtlas.AddRegion(RegionNames.ZombieIdleN, 1, 3, 32, 64);
     }
 
     private void BindAllTextures()
@@ -155,7 +190,9 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.TileSprites, FileNames.TileTextures);
         TextureAtlas.AddTexture(TextureNames.ObjectSprites, FileNames.ObjectTextures);
         TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
+        TextureAtlas.AddTexture(TextureNames.Door, FileNames.DoorTexture);
         TextureAtlas.AddTexture(TextureNames.Bomb, FileNames.BombTexture);
+        TextureAtlas.AddTexture(TextureNames.Key, FileNames.KeyTexture);
         TextureAtlas.AddTexture(TextureNames.Explosion, FileNames.ExplosionTexture);
         TextureAtlas.AddTexture(TextureNames.Slash, FileNames.SlashTexture);
 
@@ -163,6 +200,9 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.Warlock, FileNames.WarlockTexture);
         TextureAtlas.AddTexture(TextureNames.RedLizard, FileNames.RedLizardTexture);
         TextureAtlas.AddTexture(TextureNames.BlueLizard, FileNames.BlueLizardTexture);
+        TextureAtlas.AddTexture(TextureNames.Bat, FileNames.BatTexture);
+        TextureAtlas.AddTexture(TextureNames.Frog, FileNames.FrogTexture);
+        TextureAtlas.AddTexture(TextureNames.Zombie, FileNames.ZombieTexture);
     }
     private void LoadAudio()
     {

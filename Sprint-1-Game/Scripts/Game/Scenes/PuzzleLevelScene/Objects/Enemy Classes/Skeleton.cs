@@ -5,11 +5,11 @@ Up/Down/Left/Right
 Attacking
 Dead 
 */
-public class SkeletonObject : IObject
+public class Skeleton : IEnemy
 {
     public IObject Clone()
     {
-        return new SkeletonObject
+        return new Skeleton
         {
             Direction = Direction
         };
@@ -19,5 +19,7 @@ public class SkeletonObject : IObject
     public bool IsPushable => true;
     public bool IsDestructible => true;
     public bool IsRotatable => false;
+    public bool IsPickable => false;
 
+    public int Health { get; set; } = 1;
 }
