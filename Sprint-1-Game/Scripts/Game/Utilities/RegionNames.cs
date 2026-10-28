@@ -3,6 +3,7 @@ namespace Scripts.Game;
 public class RegionNames
 {
     public readonly static string Rock = "Rock";
+    public readonly static string Pumpkin = "Pumpkin";
     public readonly static string Wall = "Wall";
     public readonly static string ClosedDoor = "Closed Door";
     public readonly static string OpenDoor = "Open Door";
@@ -15,8 +16,16 @@ public class RegionNames
     public readonly static string GrassTile = "Grass Tile";
     public readonly static string BrickTile = "Brick Tile";
     public readonly static string MossyBrickTile = "Mossy Brick Tile";
+    public readonly static string PumpkinSeedTile = "Pumpkin Seed Tile";
+    public readonly static string VineSeedTile = "Vine Seed Tile";
+    public readonly static string VineStartTile = "Vine Start Tile";
+    public readonly static string VineTile = "Vine Tile";
     public readonly static string PitTile = "Pit Tile";
+    public readonly static string BoulderPitTile = "Boulder Pit Tile";
+    public readonly static string PumpkinPitTile = "Pumpkin Pit Tile";
     public readonly static string WaterTile = "Water Tile";
+    public readonly static string BoulderWaterTile = "Boulder Water Tile";
+    public readonly static string PumpkinWaterTile = "Pumpkin Water Tile";
     public readonly static string LavaTile = "Lava Tile";
     public readonly static string BugTile = "Bug Tile";
     public readonly static string BugTileCC = "Bug Tile Counterclockwise";
