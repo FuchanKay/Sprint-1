@@ -7,7 +7,7 @@ public class PlayerDeathSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         var playerCoord = gridPointer.GetPlayerCoord();
         spriteGrid.PlayEffect(EffectIds.PlayerDeath, playerCoord);
         spriteGrid.RemoveObjectSprite(playerCoord);
-        gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
+        gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
         context.PlayerIsDead = true;
     }
 }

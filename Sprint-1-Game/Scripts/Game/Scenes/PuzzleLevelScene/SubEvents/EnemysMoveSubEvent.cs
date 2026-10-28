@@ -106,7 +106,7 @@ public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         spriteGrid.StartObjectAnimation(enemySprite);
         enemySprite.IdleName = newIdleName;
 
-        gridPointer.SetObject(enemyCoord, objectFactory.CreateEmpty());
+        gridPointer.SetObject(enemyCoord, ObjectFactory.CreateEmpty());
         gridPointer.SetObject(destinationCoord, enemyObj); 
     }
 }

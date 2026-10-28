@@ -4,7 +4,7 @@ namespace Scripts.Game;
 
 public class ObjectFactory()
 {
-    public IObject CreateEmpty()
+    public static IObject CreateEmpty()
     {
         return new EmptyObject
         {
@@ -12,7 +12,7 @@ public class ObjectFactory()
         };
     }
 
-    public IObject CreatePlayer()
+    public static IObject CreatePlayer()
     {
         return new PlayerObject
         {
@@ -20,7 +20,7 @@ public class ObjectFactory()
         };
     }
 
-    private IObject CreateRock(string textureName, string regionName)
+    private static IObject CreateRock(string textureName, string regionName)
     {
         return new RockObject
         {
@@ -30,7 +30,7 @@ public class ObjectFactory()
         };
     }
 
-    public IObject CreateDefaultRock()
+    public static IObject CreateDefaultRock()
     {
         return CreateRock(TextureNames.Rock, RegionNames.Rock);
     }
@@ -41,7 +41,7 @@ public class ObjectFactory()
     //     return CreateRock(TextureNames.Pumpkin, RegionNames.Pumpkin);
     // }
 
-    public IObject CreateWall()
+    public static IObject CreateWall()
     {
         return new WallObject
         {
@@ -49,7 +49,7 @@ public class ObjectFactory()
         };
     }
 
-    public IObject CreateBomb()
+    public static IObject CreateBomb()
     {
         return new BombObject
         {
@@ -57,7 +57,7 @@ public class ObjectFactory()
         };
     }
 
-    public IObject CreateKey()
+    public static IObject CreateKey()
     {
         return new KeyObject
         {
@@ -65,7 +65,7 @@ public class ObjectFactory()
         };
     }
 
-    public IObject CreateClosedDoor()
+    public static IObject CreateClosedDoor()
     {
         return new DoorObject
         {
@@ -73,7 +73,7 @@ public class ObjectFactory()
         };
     }
 
-    public IObject CreateOpenDoor()
+    public static IObject CreateOpenDoor()
     {
         return new DoorObject
         {
@@ -82,7 +82,7 @@ public class ObjectFactory()
         };
     }
 
-    public IObject CreateTimedBomb()
+    public static IObject CreateTimedBomb()
     {
         return new TimedBombObject
         {
@@ -90,7 +90,7 @@ public class ObjectFactory()
         };
     }
 
-    public IObject CreateSkeleton()
+    public static IObject CreateSkeleton()
     {
         return new Skeleton
         {
@@ -98,7 +98,7 @@ public class ObjectFactory()
         };
     }
 
-    public IObject CreateWarlock()
+    public static IObject CreateWarlock()
     {
         return new Warlock
         {
@@ -106,7 +106,7 @@ public class ObjectFactory()
         };
     }
 
-    public IObject CreateBlueLizard()
+    public static IObject CreateBlueLizard()
     {
         return new BlueLizard
         {
@@ -114,7 +114,7 @@ public class ObjectFactory()
         };
     }
 
-    public IObject CreateRedLizard()
+    public static IObject CreateRedLizard()
     {
         return new RedLizard
         {
@@ -122,7 +122,7 @@ public class ObjectFactory()
         };
     }
 
-    public IObject CreateBat()
+    public static IObject CreateBat()
     {
         return new Bat
         {
@@ -130,7 +130,7 @@ public class ObjectFactory()
         };
     }
 
-    public IObject CreateFrog()
+    public static IObject CreateFrog()
     {
         return new Frog
         {
@@ -138,7 +138,7 @@ public class ObjectFactory()
         };
     }
 
-    public IObject CreateZombie()
+    public static IObject CreateZombie()
     {
         return new Zombie
         {
