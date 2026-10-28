@@ -18,7 +18,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite = new StaticSprite(textureAtlas);
                 var rock = obj as RockObject;
                 sprite.SetState(rock.RegionName);
-                sprite.Texture = textureAtlas.GetTexture(rock.TextureName);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.ObjectSprites);
                 sprite.IdleName = rock.RegionName;
                 spriteScale = context.GridScale * 4.0f;
                 break;

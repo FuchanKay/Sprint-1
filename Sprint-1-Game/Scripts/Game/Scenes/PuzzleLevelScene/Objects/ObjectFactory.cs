@@ -26,7 +26,6 @@ public class ObjectFactory()
         return new RockObject
         {
             Direction = Directions.South,
-            TextureName = TextureNames.ObjectSprites,
             RegionName = regionName
         };
     }
