@@ -23,19 +23,19 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         var lockMove = buttonInput.IsHeld(InputNames.LShift);
         if (buttonInput.IsPressed(InputNames.MoveNorth) || buttonInput.IsPressed(InputNames.MoveNorthAlt))
         {
-            Level.EnqueueEvent(new MovePlayerEvent(Directions.North, lockMove, ObjectFactory));
+            Level.EnqueueEvent(new MovePlayerEvent(Directions.North, lockMove, ObjectFactory, TileFactory));
         }
         else if (buttonInput.IsPressed(InputNames.MoveEast) || buttonInput.IsPressed(InputNames.MoveEastAlt))
         {
-            Level.EnqueueEvent(new MovePlayerEvent(Directions.East, lockMove, ObjectFactory));
+            Level.EnqueueEvent(new MovePlayerEvent(Directions.East, lockMove, ObjectFactory, TileFactory));
         }
         else if (buttonInput.IsPressed(InputNames.MoveSouth) || buttonInput.IsPressed(InputNames.MoveSouthAlt))
         {
-            Level.EnqueueEvent(new MovePlayerEvent(Directions.South, lockMove, ObjectFactory));
+            Level.EnqueueEvent(new MovePlayerEvent(Directions.South, lockMove, ObjectFactory, TileFactory));
         }
         else if (buttonInput.IsPressed(InputNames.MoveWest) || buttonInput.IsPressed(InputNames.MoveWestAlt))
         {
-            Level.EnqueueEvent(new MovePlayerEvent(Directions.West, lockMove, ObjectFactory));
+            Level.EnqueueEvent(new MovePlayerEvent(Directions.West, lockMove, ObjectFactory, TileFactory));
         }
         else if (buttonInput.IsPressed(InputNames.ChangeLevel))
         {
@@ -44,7 +44,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         }
         else if (buttonInput.IsPressed(InputNames.Snap))
         {
-            Level.EnqueueEvent(new SnapEvent(ObjectFactory));
+            Level.EnqueueEvent(new SnapEvent(ObjectFactory, TileFactory));
         }
         else if (buttonInput.IsPressed(InputNames.UseItem1))
         {
@@ -62,7 +62,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         }
         else if (buttonInput.IsPressed(InputNames.PickItem))
         {
-            Level.EnqueueEvent(new PickItemEvent(ObjectFactory));
+            Level.EnqueueEvent(new PickItemEvent(ObjectFactory, TileFactory));
 
         }
         else if (buttonInput.IsPressed(InputNames.ResetLevel))

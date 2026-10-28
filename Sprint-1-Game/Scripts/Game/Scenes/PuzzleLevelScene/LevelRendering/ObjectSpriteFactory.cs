@@ -18,8 +18,9 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite = new StaticSprite(textureAtlas);
                 var rock = obj as RockObject;
                 sprite.SetState(rock.RegionName);
-                sprite.Texture = textureAtlas.GetTexture(rock.TextureName);
-                sprite.IdleName = RegionNames.Rock;
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.ObjectSprites);
+                sprite.IdleName = rock.RegionName;
+                spriteScale = context.GridScale * 4.0f;
                 break;
             case ObjectIds.Player:
                 sprite = new StaticSprite(textureAtlas);
@@ -151,12 +152,15 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 spriteScale = context.GridScale * 3.5f;
                 sprite.Color = Color.DarkRed;
                 break;
-            case EffectIds.LavaExplosion:
-                sprite.SetState(AnimationNames.Explosion);
-                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
-                sprite.IdleName = RegionNames.Explosion;
-                spriteScale = context.GridScale * 3.5f;
-                sprite.Color = Color.OrangeRed;
+            case EffectIds.LavaSplash:
+                sprite.SetState(AnimationNames.LavaSplash);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.EffectSprites);
+                spriteScale = context.GridScale * 4.0f;
+                break;
+            case EffectIds.WaterSplash:
+                sprite.SetState(AnimationNames.WaterSplash);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.EffectSprites);
+                spriteScale = context.GridScale * 4.0f;
                 break;
             case EffectIds.BlueFire:
                 sprite.SetState(AnimationNames.Explosion);

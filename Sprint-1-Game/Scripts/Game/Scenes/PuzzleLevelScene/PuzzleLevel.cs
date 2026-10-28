@@ -15,7 +15,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     private readonly int UndoHistoryMaxLength = 200;
     public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
     private readonly int MaxEventsQueued = 2;
-    private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, false, objectFactory);
+    private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, false, objectFactory, tileFactory);
     private string[] LevelFile;
 
     public void Init(int levelIndex)

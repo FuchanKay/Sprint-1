@@ -37,6 +37,25 @@ public class TileFactory()
         return CreateFloorTile(RegionNames.MossyBrickTile);
     }
 
+    public ITile CreatePitBoulderTile()
+    {
+        return CreateFloorTile(RegionNames.BoulderPitTile);
+    }
+
+    public ITile CreateWaterBoulderTile()
+    {
+        return CreateFloorTile(RegionNames.BoulderWaterTile);
+    }
+
+    public ITile CreatePitPumpkinTile()
+    {
+        return CreateFloorTile(RegionNames.PumpkinPitTile);
+    }
+
+    public ITile CreateWaterPumpkinTile()
+    {
+        return CreateFloorTile(RegionNames.PumpkinWaterTile);
+    }
     public static ITile CreatePitTile()
     {
         return new PitTile
