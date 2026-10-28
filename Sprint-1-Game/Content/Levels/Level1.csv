@@ -4,9 +4,9 @@ Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 Dirt,Dirt,Water,Water,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 Dirt,Dirt,Water,Water,Lava,Dirt,Dirt,Dirt,Dirt,Dirt
 Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
-Dirt,Dirt,Dirt,Dirt,Dirt,Brick,Brick,Dirt,Dirt,Dirt
+Dirt,Dirt,Bug,CCBug,Dirt,Brick,Brick,Dirt,Dirt,Dirt
 Dirt,Dirt,Dirt,Dirt,Dirt,Brick,Pit,MossyBrick,Dirt,Dirt
-Dirt,Dirt,Bug,CCBug,Dirt,Dirt,MossyBrick,Grass,Dirt,Dirt
+Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,MossyBrick,Grass,Dirt,Dirt
 Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 _,_,_,_,_,_,_,_,_,_
@@ -18,5 +18,5 @@ Wall,RedLizard,BlueLizard,_,_,_,_,_,_,Wall
 Wall,_,_,Warlock,_,_,_,Skeleton,_,Wall
 Wall,_,_,_,_,_,_,_,_,Wall
 Wall,_,_,Bat,_,_,_,Frog,_,Wall
-Wall,_,_,_,Zombie,_,_,_,_,Wall
+Wall,Rock,_,_,Zombie,_,_,_,_,Wall
 Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall

@@ -8,7 +8,6 @@ public class RockObject() : IObject
         {
             Direction = Direction,
             RegionName = RegionName,
-            TextureName = TextureName
         };
     }
     public ObjectIds Id => ObjectIds.Rock;

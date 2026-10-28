@@ -15,17 +15,12 @@ public class SkeletonsAttackSubEvent(List<Coordinate> skeletonCoords, ObjectFact
 
     private void TryAttack(Coordinate skeletonCoord, GridPointer gridPointer, SpriteGrid spriteGrid)
     {
-        List<Directions> directions = new List<Directions> { Directions.North, Directions.East, Directions.South, Directions.West };
-        foreach (var direction in directions)
+        var playerCoord = Pathfinder.GetPlayerCoord(gridPointer, skeletonCoord);
+        if(playerCoord != skeletonCoord)
         {
-            var targetCoord = skeletonCoord + Coordinate.ToCoordinate(direction);
-            var targetObj = gridPointer.GetObject(targetCoord);
-            if (targetObj.Id == ObjectIds.Player)
-            {
-                // TODO: Change skeleton facing direction and sprite
-                spriteGrid.PlayEffect(EffectIds.Slash, targetCoord);
-                subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
-            }
+            // TODO: Change skeleton facing direction and sprite
+            spriteGrid.PlayEffect(EffectIds.Slash, playerCoord);
+            subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
         }
     }
 }

@@ -81,17 +81,19 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 break;
             case ObjectIds.BlueLizard:
                 sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.RedLizardIdleS);
+                var directionState = RegionNames.ToIdleRegionName(obj.Direction);
+                sprite.SetState(directionState);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.BlueLizard);
-                sprite.IdleName = RegionNames.RedLizardIdleS;
-                spriteScale = context.GridScale * 3.0f;
+                spriteScale = context.GridScale * 4.0f;
+                sprite.IdleName = directionState;
                 break;
             case ObjectIds.RedLizard:
                 sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.RedLizardIdleS);
+                directionState = RegionNames.ToIdleRegionName(obj.Direction);
+                sprite.SetState(directionState);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.RedLizard);
-                sprite.IdleName = RegionNames.RedLizardIdleS;
-                spriteScale = context.GridScale * 3.0f;
+                spriteScale = context.GridScale * 4.0f;
+                sprite.IdleName = directionState;
                 break;
             case ObjectIds.Bat:
                 sprite = new StaticSprite(textureAtlas);
@@ -143,7 +145,20 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
                 sprite.IdleName = RegionNames.Explosion;
                 spriteScale = context.GridScale * 3.5f;
-                sprite.Color = Color.SpringGreen;
+                break;
+            case EffectIds.RedLaserBeam:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.LaserBeam);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.RedLizard);
+                sprite.IdleName = RegionNames.LaserBeam;
+                spriteScale = context.GridScale * 4.0f;
+                break;
+            case EffectIds.BlueLaserBeam:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.LaserBeam);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.BlueLizard);
+                sprite.IdleName = RegionNames.LaserBeam;
+                spriteScale = context.GridScale * 4.0f;
                 break;
             case EffectIds.EnemyDeath:
                 sprite.SetState(AnimationNames.Explosion);
@@ -161,13 +176,6 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.SetState(AnimationNames.WaterSplash);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.EffectSprites);
                 spriteScale = context.GridScale * 4.0f;
-                break;
-            case EffectIds.BlueFire:
-                sprite.SetState(AnimationNames.Explosion);
-                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
-                sprite.IdleName = RegionNames.Explosion;
-                spriteScale = context.GridScale * 3.5f;
-                sprite.Color = Color.SkyBlue;
                 break;
             case EffectIds.WarlockSpell:
                 sprite.SetState(AnimationNames.Explosion);

@@ -77,7 +77,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
             CurrentEvent = EventQueue[0];
             EventQueue.RemoveAt(0);
 
-            CurrentEvent.Execute(SpriteGrid, LevelStateHistory.GridPointer, LevelStateHistory.InventoryManager, Context);
+            CurrentEvent.Execute(SpriteGrid, LevelStateHistory.GridPointer, LevelStateHistory.InventoryManager, Context, UndoHistory);
             CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
         }
 
