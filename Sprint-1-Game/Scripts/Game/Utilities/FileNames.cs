@@ -1,11 +1,11 @@
-using System.Runtime.CompilerServices;
-
 namespace Scripts.Game;
 
 public class FileNames
 {
     public readonly static string PlayGameButtonTexture = "Images/play-button";
     public readonly static string ExitGameButtonTexture = "Images/exit-button";
+    public readonly static string LevelEditorButtonTexture = "Images/level-editor-button";
+
     public readonly static string TileTextures = "Images/tile-sprites";
     public readonly static string RockTexture = "Images/rock";
     public readonly static string WallTexture = "Images/stonewall";
@@ -23,7 +23,6 @@ public class FileNames
     public readonly static string BatTexture = "Images/bat";
     public readonly static string FrogTexture = "Images/frog";
     public readonly static string ZombieTexture = "Images/zombie";
-
     public readonly static string[] LevelFileNames = ["Content/Levels/level1.csv", "Content/Levels/level2.csv", "Content/Levels/level3.csv", "Content/Levels/level4.csv", "Content/Levels/level5.csv"];
 
     public readonly static string SnapAudio = "audio/snap";
