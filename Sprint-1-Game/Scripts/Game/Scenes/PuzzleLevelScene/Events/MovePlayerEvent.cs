@@ -2,12 +2,12 @@ using System.Collections.Generic;
 
 namespace Scripts.Game;
 
-public class MovePlayerEvent(Directions direction, bool lockMove, ObjectFactory objectFactory) : ILevelEvent
+public class MovePlayerEvent(Directions direction, bool lockMove, ObjectFactory objectFactory, TileFactory tileFactory) : ILevelEvent
 {
     public Stack<ILevelSubEvent> SubEventStack { get; } = [];
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
-        SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack, objectFactory));
+        SubEventStack.Push(new EvaluateLevelSubEvent(SubEventStack, objectFactory, tileFactory));
         if (!lockMove) SubEventStack.Push(new DirectionalInputSubEvent(direction, objectFactory, SubEventStack));
         SubEventStack.Push(new PlayerChangeDirectionSubEvent(direction));
     }

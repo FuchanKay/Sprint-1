@@ -71,7 +71,7 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
         {
             foreach (var coord in lineOfSight)
             {
-                spriteGrid.PlayEffect(EffectIds.LavaExplosion, coord);
+                spriteGrid.PlayEffect(EffectIds.BlueFire, coord);
             }
             subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
         }

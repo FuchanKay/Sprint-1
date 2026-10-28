@@ -124,6 +124,15 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         sprite.SetTargetPosition(realTargetCoord);
     }
 
+    public void SetNewTileSprite(Coordinate coord, ITile tile)
+    {
+        var realCoord = CalculateLiteralPos(coord);
+
+        TileSprites.Remove(realCoord);
+        var newSprite = tileSpriteFactory.CreateTileSprite(tile, realCoord, Context);
+        TileSprites[realCoord] = newSprite;
+    }
+
     public void StartObjectAnimation(ISprite sprite)
     {
         AnimatingObjectSprites.Add(sprite);
