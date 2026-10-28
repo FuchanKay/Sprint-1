@@ -33,7 +33,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         CurrentEvent.SubEventStack.Clear();
 
         var levelFileName = FileNames.LevelFileNames[levelIndex];
-        LevelFile = levelFileParser.ParseLevelFile(levelFileName);
+        LevelFile = LevelFileParser.ParseLevelFile(levelFileName);
         Context.LevelName = levelFileParser.GetLevelName(LevelFile);
         Context.LevelWidth = levelFileParser.GetLevelWidth(LevelFile);
         Context.LevelHeight = levelFileParser.GetLevelHeight(LevelFile);

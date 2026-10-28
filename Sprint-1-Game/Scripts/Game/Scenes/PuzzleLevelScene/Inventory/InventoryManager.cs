@@ -3,9 +3,9 @@ public class InventoryManager(ObjectFactory objectFactory)
 {
     private readonly IObject[] PlayerItems =
         [
-                objectFactory.CreateEmpty(),
-                objectFactory.CreateEmpty(),
-                objectFactory.CreateEmpty()
+                ObjectFactory.CreateEmpty(),
+                ObjectFactory.CreateEmpty(),
+                ObjectFactory.CreateEmpty()
         ];
     public void AddItem(IObject itemObj)
     {
@@ -25,7 +25,7 @@ public class InventoryManager(ObjectFactory objectFactory)
     }
     public void EmptySlot(int inventoryIdx)
     {
-        PlayerItems[inventoryIdx] = objectFactory.CreateEmpty();
+        PlayerItems[inventoryIdx] = ObjectFactory.CreateEmpty();
     }
 
     public InventoryManager Clone()
