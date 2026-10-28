@@ -2,14 +2,14 @@ namespace Scripts.Game;
 
 public class TileFactory()
 {
-    public ITile CreateEmptyTile()
+    public static ITile CreateEmptyTile()
     {
         return new EmptyTile
         {
 
         };
     }
-    private ITile CreateFloorTile(string regionName)
+    private static ITile CreateFloorTile(string regionName)
     {
         return new FloorTile
         {
@@ -17,22 +17,22 @@ public class TileFactory()
         };
     }
 
-    public ITile CreateDirtTile()
+    public static ITile CreateDirtTile()
     {
         return CreateFloorTile(RegionNames.DirtTile);
     }
 
-    public ITile CreateGrassTile()
+    public static ITile CreateGrassTile()
     {
         return CreateFloorTile(RegionNames.GrassTile);
     }
 
-    public ITile CreateBrickTile()
+    public static ITile CreateBrickTile()
     {
         return CreateFloorTile(RegionNames.BrickTile);
     }
 
-    public ITile CreateMossyBrickTile()
+    public static ITile CreateMossyBrickTile()
     {
         return CreateFloorTile(RegionNames.MossyBrickTile);
     }
@@ -56,8 +56,7 @@ public class TileFactory()
     {
         return CreateFloorTile(RegionNames.PumpkinWaterTile);
     }
-
-    public ITile CreatePitTile()
+    public static ITile CreatePitTile()
     {
         return new PitTile
         {
@@ -65,21 +64,21 @@ public class TileFactory()
         };
     }
 
-    public ITile CreateWaterTile()
+    public static ITile CreateWaterTile()
     {
         return new WaterTile
         {
         };
     }
 
-    public ITile CreateLavaTile()
+    public static ITile CreateLavaTile()
     {
         return new LavaTile
         {
         };
     }
 
-    public ITile CreateBugTile()
+    public static ITile CreateBugTile()
     {
         return new BugTile
         {
@@ -87,7 +86,7 @@ public class TileFactory()
         };
     }
 
-    public ITile CreateCCBugTile()
+    public static ITile CreateCCBugTile()
     {
         return new CCBugTile
         {

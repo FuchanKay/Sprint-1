@@ -78,7 +78,7 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
 
     }
 
-    private Stack<Coordinate> GetLineOfSight(GridPointer gridPointer, Coordinate enemyCoord, Directions direction)
+    private static Stack<Coordinate> GetLineOfSight(GridPointer gridPointer, Coordinate enemyCoord, Directions direction)
     {
         Stack<Coordinate> lineOfSight = [];
         var nextCoord = enemyCoord + Coordinate.ToCoordinate(direction);

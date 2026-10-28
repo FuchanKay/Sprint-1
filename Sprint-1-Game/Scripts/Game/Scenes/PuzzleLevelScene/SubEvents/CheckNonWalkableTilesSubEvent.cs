@@ -50,12 +50,12 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack, 
             spriteGrid.SetNewTileSprite(waterCoord, tile);
             gridPointer.SetTile(waterCoord, tile);
             spriteGrid.RemoveObjectSprite(waterCoord);
-            gridPointer.SetObject(waterCoord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(waterCoord, ObjectFactory.CreateEmpty());
             spriteGrid.PlayEffect(EffectIds.WaterSplash, waterCoord);
         }
         else if(obj.Id != ObjectIds.Empty && obj.Id != ObjectIds.Bat)
         {
-            gridPointer.SetObject(waterCoord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(waterCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(waterCoord);
             spriteGrid.PlayEffect(EffectIds.WaterSplash, waterCoord);
         }
@@ -87,11 +87,11 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack, 
             spriteGrid.SetNewTileSprite(waterCoord, tile);
             gridPointer.SetTile(waterCoord, tile);
             spriteGrid.RemoveObjectSprite(waterCoord);
-            gridPointer.SetObject(waterCoord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(waterCoord, ObjectFactory.CreateEmpty());
         }
         else if(obj.Id != ObjectIds.Empty && obj.Id != ObjectIds.Bat)
         {
-            gridPointer.SetObject(waterCoord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(waterCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(waterCoord);
         }
     }
@@ -109,7 +109,7 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack, 
         }
         else if (obj.Id != ObjectIds.Empty)
         {
-            gridPointer.SetObject(lavaCoord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(lavaCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(lavaCoord);
             spriteGrid.PlayEffect(EffectIds.LavaSplash, lavaCoord);
         }

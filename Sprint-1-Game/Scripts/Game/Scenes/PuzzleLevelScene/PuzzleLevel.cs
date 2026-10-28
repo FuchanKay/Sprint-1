@@ -7,16 +7,7 @@ namespace Scripts.Game;
 public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, LevelFileParser levelFileParser)
 {
     private readonly List<ILevelEvent> EventQueue = [];
-    public LevelContext Context = new()
-    {
-        GridSpriteWidthPx = 256,
-        GridSpriteHeightPx = 256,
-        GridScale = 0.25f,
-        PuzzleOffsetX = 400,
-        PuzzleOffsetY = 50,
-        PlayerIsDead = false,
-        LevelIsCompleted = false
-    };
+    public LevelContext Context;
     public GridPointer CurrentGridPointer;
     public InventoryManager CurrentInventoryManager;
     public LevelStateHistory LevelStateHistory;
@@ -32,8 +23,19 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         UndoHistory.Clear();
         CurrentEvent.SubEventStack.Clear();
 
+        Context = new()
+        {
+            GridSpriteWidthPx = 256,
+            GridSpriteHeightPx = 256,
+            GridScale = 0.25f,
+            PuzzleOffsetX = 400,
+            PuzzleOffsetY = 50,
+            PlayerIsDead = false,
+            LevelIsCompleted = false
+        };
+
         var levelFileName = FileNames.LevelFileNames[levelIndex];
-        LevelFile = levelFileParser.ParseLevelFile(levelFileName);
+        LevelFile = LevelFileParser.ParseLevelFile(levelFileName);
         Context.LevelName = levelFileParser.GetLevelName(LevelFile);
         Context.LevelWidth = levelFileParser.GetLevelWidth(LevelFile);
         Context.LevelHeight = levelFileParser.GetLevelHeight(LevelFile);
