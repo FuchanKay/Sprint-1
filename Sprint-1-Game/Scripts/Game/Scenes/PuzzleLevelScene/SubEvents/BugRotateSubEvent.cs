@@ -9,15 +9,15 @@ public class BugRotateSubEvent() : ILevelSubEvent
 
         foreach (var bugCoord in clockwiseBugs.Keys)
         {
-            RotateClockwise(spriteGrid, gridPointer, context, bugCoord);
+            RotateClockwise(spriteGrid, gridPointer, bugCoord);
         }
         foreach (var bugCoord in counterclockwiseBugs.Keys)
         {
-            RotateCounterclockwise(spriteGrid, gridPointer, context, bugCoord);
+            RotateCounterclockwise(spriteGrid, gridPointer, bugCoord);
         }
     }
 
-    private void RotateClockwise(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, Coordinate bugCoord)
+    private void RotateClockwise(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate bugCoord)
     {
         var bug = spriteGrid.GetTileSprite(bugCoord);
         bug = bug.ConvertToAnimated(AnimationNames.BugTileRotate);
@@ -40,7 +40,7 @@ public class BugRotateSubEvent() : ILevelSubEvent
         }
     }
 
-    private void RotateCounterclockwise(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, Coordinate bugCoord)
+    private static void RotateCounterclockwise(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate bugCoord)
     {
         var bug = spriteGrid.GetTileSprite(bugCoord);
         bug = bug.ConvertToAnimated(AnimationNames.BugTileRotateCC);

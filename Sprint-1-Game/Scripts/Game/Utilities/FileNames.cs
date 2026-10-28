@@ -8,6 +8,7 @@ public class FileNames
     public readonly static string ExitGameButtonTexture = "Images/exit-button";
     public readonly static string TileTextures = "Images/tile-sprites";
     public readonly static string ObjectTextures = "Images/object-sprites";
+    public readonly static string EffectTextures = "Images/effect-sprites";
     public readonly static string WallTexture = "Images/stonewall";
     public readonly static string DoorTexture = "Images/door";
     public readonly static string PlayerTexture = "Images/player-sprites";

@@ -22,7 +22,7 @@ public class CheckLaserEntrySubEvent(ObjectFactory objectFactory, Stack<ILevelSu
         var obj = gridPointer.GetObject(coord);
         if(obj.IsDestructible)
         {
-            gridPointer.SetObject(coord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(coord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(coord);
         }
         if(obj.Id == ObjectIds.Player)

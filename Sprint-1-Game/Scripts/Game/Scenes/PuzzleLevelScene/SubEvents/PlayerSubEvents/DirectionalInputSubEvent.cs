@@ -30,7 +30,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
             spriteGrid.SetObjectSprite(destinationCoord, onePastDestinationCoord, objectSprite);
             spriteGrid.StartObjectAnimation(destinationCoord);
 
-            gridPointer.SetObject(destinationCoord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(destinationCoord, ObjectFactory.CreateEmpty());
             gridPointer.SetObject(onePastDestinationCoord, destinationObject);
 
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
@@ -38,7 +38,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
             spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
             spriteGrid.StartObjectAnimation(playerCoord);
 
-            gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
 
             enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context);
@@ -50,7 +50,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
             spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
             spriteGrid.StartObjectAnimation(playerCoord);
 
-            gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
             enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context);
         }
@@ -58,7 +58,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
         else if (gridPointer.GetObject(destinationCoord).Id == ObjectIds.Key)
         {
             subEventStack.Push(new OpenExitSubEvent());
-            gridPointer.SetObject(destinationCoord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(destinationCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(destinationCoord);
 
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
@@ -66,7 +66,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
             spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
             spriteGrid.StartObjectAnimation(playerCoord);
 
-            gridPointer.SetObject(playerCoord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
         }
         else if (gridPointer.GetObject(destinationCoord).Id == ObjectIds.Door)

@@ -15,7 +15,7 @@ public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectF
     protected void ExplodeBomb(Coordinate bombCoord, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
     {
 
-        gridPointer.SetObject(bombCoord, objectFactory.CreateEmpty());
+        gridPointer.SetObject(bombCoord, ObjectFactory.CreateEmpty());
         spriteGrid.RemoveObjectSprite(bombCoord);
         spriteGrid.PlayEffect(EffectIds.Explosion, bombCoord);
 
@@ -37,7 +37,7 @@ public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectF
                 }
                 else if (targetObj.IsDestructible)
                 {
-                    gridPointer.SetObject(targetCoord, objectFactory.CreateEmpty());
+                    gridPointer.SetObject(targetCoord, ObjectFactory.CreateEmpty());
                     spriteGrid.RemoveObjectSprite(targetCoord);
                 }
             }

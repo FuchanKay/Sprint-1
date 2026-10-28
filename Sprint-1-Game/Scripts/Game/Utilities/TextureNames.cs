@@ -7,7 +7,8 @@ public class TextureNames
     public readonly static string Player = "Player";
     public readonly static string PlayGameButton = "Play Game Button";
     public readonly static string ExitGameButton = "Exit Game Button";
-    public readonly static string ObjectSprites = "ObjectSprites";
+    public readonly static string ObjectSprites = "Object Sprites";
+    public readonly static string EffectSprites = "Effect Sprites";
     public readonly static string Wall = "Wall";
     public readonly static string Door = "Door";
     public readonly static string Bomb = "Bomb";

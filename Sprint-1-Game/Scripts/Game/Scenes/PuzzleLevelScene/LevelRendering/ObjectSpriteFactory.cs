@@ -167,12 +167,15 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 spriteScale = context.GridScale * 3.5f;
                 sprite.Color = Color.DarkRed;
                 break;
-            case EffectIds.LavaExplosion:
-                sprite.SetState(AnimationNames.Explosion);
-                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
-                sprite.IdleName = RegionNames.Explosion;
-                spriteScale = context.GridScale * 3.5f;
-                sprite.Color = Color.OrangeRed;
+            case EffectIds.LavaSplash:
+                sprite.SetState(AnimationNames.LavaSplash);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.EffectSprites);
+                spriteScale = context.GridScale * 4.0f;
+                break;
+            case EffectIds.WaterSplash:
+                sprite.SetState(AnimationNames.WaterSplash);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.EffectSprites);
+                spriteScale = context.GridScale * 4.0f;
                 break;
             case EffectIds.WarlockSpell:
                 sprite.SetState(AnimationNames.Explosion);

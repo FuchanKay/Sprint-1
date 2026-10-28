@@ -65,8 +65,6 @@ public class Setup(ContentManager content)
         ButtonInput.MapInput(InputNames.UseItem3, (int)Keys.D3);
 
         MouseInput.MapInput(InputNames.Select, (int)MouseButtons.Left);
-
-
     }
 
     private void AddAnimations()
@@ -105,11 +103,11 @@ public class Setup(ContentManager content)
         TextureAtlas.AddAnimation(AnimationNames.BugTileRotate, 2, 0, rotateFrames, 64, 64, rotateDelay);
         TextureAtlas.AddAnimation(AnimationNames.BugTileRotateCC, 2, 2, rotateFrames, 64, 64, rotateDelay);
 
-        // obj explode
+        // effects
         TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 0, 4, 105, 96);
-
-        // slash attack effect
         TextureAtlas.AddAnimation(AnimationNames.Slash, 0, 0, 6, 102, 440, 50);
+        TextureAtlas.AddAnimation(AnimationNames.LavaSplash, 1, 0, 6, 64, 64, 80);
+        TextureAtlas.AddAnimation(AnimationNames.WaterSplash, 0, 0, 6, 64, 64);
 
         //door open
         TextureAtlas.AddAnimation(AnimationNames.DoorOpening, 0, 0, 5, 15, 27, 100);
@@ -140,11 +138,23 @@ public class Setup(ContentManager content)
         TextureAtlas.AddRegion(RegionNames.GrassTile, 1, 0, 64, 64);
         TextureAtlas.AddRegion(RegionNames.BrickTile, 2, 0, 64, 64);
         TextureAtlas.AddRegion(RegionNames.MossyBrickTile, 3, 0, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.PitTile, 0, 1, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.LavaTile, 1, 1, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.WaterTile, 2, 1, 64, 64);
+
+        TextureAtlas.AddRegion(RegionNames.PumpkinSeedTile, 0, 1, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.VineSeedTile, 1, 1, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.VineStartTile, 2, 1, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.VineTile, 3, 1, 64, 64);
+
         TextureAtlas.AddRegion(RegionNames.BugTile, 1, 2, 64, 64);
         TextureAtlas.AddRegion(RegionNames.BugTileCC, 3, 2, 64, 64);
+
+        TextureAtlas.AddRegion(RegionNames.PitTile, 0, 3, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.BoulderPitTile, 1, 3, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.PumpkinPitTile, 2, 3, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.LavaTile, 3, 3, 64, 64);
+
+        TextureAtlas.AddRegion(RegionNames.WaterTile, 0, 4, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.BoulderWaterTile, 1, 4, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.PumpkinWaterTile, 2, 4, 64, 64);
 
         // objects
         TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 64, 64);
@@ -203,6 +213,7 @@ public class Setup(ContentManager content)
         TextureAtlas.AddTexture(TextureNames.Bat, FileNames.BatTexture);
         TextureAtlas.AddTexture(TextureNames.Frog, FileNames.FrogTexture);
         TextureAtlas.AddTexture(TextureNames.Zombie, FileNames.ZombieTexture);
+        TextureAtlas.AddTexture(TextureNames.EffectSprites, FileNames.EffectTextures);
     }
     private void LoadAudio()
     {

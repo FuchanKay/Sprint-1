@@ -13,7 +13,7 @@ public class PickItemSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         if (itemObj.IsPickable)
         {
             inventoryManager.AddItem(itemObj);
-            gridPointer.SetObject(targetCoord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(targetCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(targetCoord);
             return;
         }

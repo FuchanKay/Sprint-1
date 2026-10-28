@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -83,7 +84,7 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
                 subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
             } else
             {
-                gridPointer.SetObject(dirCoord, objectFactory.CreateEmpty());
+                gridPointer.SetObject(dirCoord, ObjectFactory.CreateEmpty());
                 spriteGrid.RemoveObjectSprite(dirCoord);
             }
 
@@ -93,7 +94,7 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
 
         if(dirGrid.Object.IsDestructible)
         {
-            gridPointer.SetObject(dirCoord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(dirCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(dirCoord);
         }
 
