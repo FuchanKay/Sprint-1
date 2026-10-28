@@ -33,7 +33,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         CurrentEvent.SubEventStack.Clear();
 
         var levelFileName = FileNames.LevelFileNames[levelIndex];
-        LevelFile = levelFileParser.ParseLevelFile(levelFileName);
+        LevelFile = LevelFileParser.ParseLevelFile(levelFileName);
         Context.LevelName = levelFileParser.GetLevelName(LevelFile);
         Context.LevelWidth = levelFileParser.GetLevelWidth(LevelFile);
         Context.LevelHeight = levelFileParser.GetLevelHeight(LevelFile);
@@ -79,11 +79,13 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
             CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
         }
 
-        while (!CurrentEventIsFinished && SpriteGrid.IsIdle())
+        var maxSubEventsToExecute = 500;
+        while (!CurrentEventIsFinished && SpriteGrid.IsIdle() && maxSubEventsToExecute > 0)
         {
             var subEvent = CurrentEvent.SubEventStack.Pop();
             subEvent.Execute(SpriteGrid, LevelStateHistory.GridPointer, LevelStateHistory.InventoryManager, Context);
             CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
+            maxSubEventsToExecute--;
         }
     }
 

@@ -21,7 +21,7 @@ public class CheckLavaSubEvent(Stack<ILevelSubEvent> subEventStack, ObjectFactor
             }
             else if (obj.Id != ObjectIds.Empty)
             {
-                gridPointer.SetObject(coord, objectFactory.CreateEmpty());
+                gridPointer.SetObject(coord, ObjectFactory.CreateEmpty());
                 spriteGrid.RemoveObjectSprite(coord);
                 spriteGrid.PlayEffect(EffectIds.LavaExplosion, coord);
             }

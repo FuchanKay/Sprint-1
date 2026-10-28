@@ -19,13 +19,13 @@ public class EnemyDamageSubEvent(ObjectFactory objectFactory, Coordinate enemyCo
         bool closedDoorExists = doorPointers.Count > 0 && !door.IsOpen;
         if (gridPointer.EnemyCollection.Count == 1 && closedDoorExists) 
         {
-            var obj = objectFactory.CreateKey();
+            var obj = ObjectFactory.CreateKey();
             gridPointer.SetObject(enemyCoord, obj);
             spriteGrid.PlaceNewObjectSprite(enemyCoord, obj);
         }    
         else 
         {
-            gridPointer.SetObject(enemyCoord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(enemyCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(enemyCoord); 
         }
     }

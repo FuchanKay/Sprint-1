@@ -41,7 +41,7 @@ public class BugRotateSubEvent : ILevelSubEvent
         }
     }
 
-    private void RotateCounterclockwise(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate bugCoord)
+    private static void RotateCounterclockwise(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate bugCoord)
     {
         var bug = spriteGrid.GetTileSprite(bugCoord);
         bug = bug.ConvertToAnimated(AnimationNames.BugTileRotateCC);
