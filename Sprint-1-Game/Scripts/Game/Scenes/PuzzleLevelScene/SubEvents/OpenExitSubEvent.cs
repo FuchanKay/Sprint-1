@@ -18,7 +18,7 @@ public class OpenExitSubEvent() : ILevelSubEvent
         }
     }
 
-    private void OpenDoor(SpriteGrid spriteGrid, Coordinate doorCoord)
+    private static void OpenDoor(SpriteGrid spriteGrid, Coordinate doorCoord)
     {
         var doorSprite = spriteGrid.GetObjectSprite(doorCoord);
         doorSprite = doorSprite.ConvertToAnimated(AnimationNames.DoorOpening);

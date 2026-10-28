@@ -11,7 +11,7 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
     private readonly int WidthIdx = 1;
     private readonly int HeightIdx = 2;
     private readonly int SpacerRow = 1;
-    public string[] ParseLevelFile(string levelFilePath)
+    public static string[] ParseLevelFile(string levelFilePath)
     {
         return File.ReadAllLines(levelFilePath);
     }
@@ -73,16 +73,16 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
     {
         ITile tile = tileValue switch
         {
-            "_" => tileFactory.CreateEmptyTile(),
-            "Dirt" => tileFactory.CreateDirtTile(),
-            "Grass" => tileFactory.CreateGrassTile(),
-            "Brick" => tileFactory.CreateBrickTile(),
-            "MossyBrick" => tileFactory.CreateMossyBrickTile(),
-            "Pit" => tileFactory.CreatePitTile(),
-            "Lava" => tileFactory.CreateLavaTile(),
-            "Water" => tileFactory.CreateWaterTile(),
-            "Bug" => tileFactory.CreateBugTile(),
-            "CCBug" => tileFactory.CreateCCBugTile(),
+            "_" => TileFactory.CreateEmptyTile(),
+            "Dirt" => TileFactory.CreateDirtTile(),
+            "Grass" => TileFactory.CreateGrassTile(),
+            "Brick" => TileFactory.CreateBrickTile(),
+            "MossyBrick" => TileFactory.CreateMossyBrickTile(),
+            "Pit" => TileFactory.CreatePitTile(),
+            "Lava" => TileFactory.CreateLavaTile(),
+            "Water" => TileFactory.CreateWaterTile(),
+            "Bug" => TileFactory.CreateBugTile(),
+            "CCBug" => TileFactory.CreateCCBugTile(),
             _ => throw new Exception($"Unknown tile value: {tileValue} at position ({x}, {y})")
         };
         return tile;
@@ -95,21 +95,21 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
 
         IObject obj = objectType switch
         {
-            "_" => objectFactory.CreateEmpty(),
-            "Player" => objectFactory.CreatePlayer(),
-            "Rock" => objectFactory.CreateDefaultRock(),
-            "Wall" => objectFactory.CreateWall(),
-            "Bomb" => objectFactory.CreateBomb(),
-            "ClosedDoor" => objectFactory.CreateClosedDoor(),
-            "OpenDoor" => objectFactory.CreateOpenDoor(),
-            "TimedBomb" => objectFactory.CreateTimedBomb(),
-            "Skeleton" => objectFactory.CreateSkeleton(),
-            "Warlock" => objectFactory.CreateWarlock(),
-            "BlueLizard" => objectFactory.CreateBlueLizard(),
-            "RedLizard" => objectFactory.CreateRedLizard(),
-            "Bat" => objectFactory.CreateBat(),
-            "Frog" => objectFactory.CreateFrog(),
-            "Zombie" => objectFactory.CreateZombie(),
+            "_" => ObjectFactory.CreateEmpty(),
+            "Player" => ObjectFactory.CreatePlayer(),
+            "Rock" => ObjectFactory.CreateDefaultRock(),
+            "Wall" => ObjectFactory.CreateWall(),
+            "Bomb" => ObjectFactory.CreateBomb(),
+            "ClosedDoor" => ObjectFactory.CreateClosedDoor(),
+            "OpenDoor" => ObjectFactory.CreateOpenDoor(),
+            "TimedBomb" => ObjectFactory.CreateTimedBomb(),
+            "Skeleton" => ObjectFactory.CreateSkeleton(),
+            "Warlock" => ObjectFactory.CreateWarlock(),
+            "BlueLizard" => ObjectFactory.CreateBlueLizard(),
+            "RedLizard" => ObjectFactory.CreateRedLizard(),
+            "Bat" => ObjectFactory.CreateBat(),
+            "Frog" => ObjectFactory.CreateFrog(),
+            "Zombie" => ObjectFactory.CreateZombie(),
             _ => throw new Exception($"Unknown object value: {objectValue} at position ({x}, {y})")
         };
         return obj;

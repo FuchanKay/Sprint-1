@@ -31,12 +31,12 @@ public class BlueLizardAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelS
         else if (seesEnemy) subEventStack.Push(new EnemyDamageSubEvent(objectFactory, lineOfSight.Peek()));
         else if (seesDestructible)
         {
-            gridPointer.SetObject(lineOfSight.Peek(), objectFactory.CreateEmpty());
+            gridPointer.SetObject(lineOfSight.Peek(), ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(lineOfSight.Peek());
         }
     }
 
-    private Stack<Coordinate> GetLineOfSight(GridPointer gridPointer, Coordinate enemyCoord, Directions direction)
+    private static Stack<Coordinate> GetLineOfSight(GridPointer gridPointer, Coordinate enemyCoord, Directions direction)
     {
         Stack<Coordinate> lineOfSight = [];
         var nextCoord = enemyCoord + Coordinate.ToCoordinate(direction);

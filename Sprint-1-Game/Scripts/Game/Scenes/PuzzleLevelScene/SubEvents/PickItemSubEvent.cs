@@ -14,7 +14,7 @@ public class PickItemSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         {
 
             inventoryManager.AddItem(itemObj);
-            gridPointer.SetObject(targetCoord, objectFactory.CreateEmpty());
+            gridPointer.SetObject(targetCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(targetCoord);
             return;
         }
