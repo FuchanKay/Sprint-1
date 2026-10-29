@@ -1,10 +1,11 @@
 using Scripts.Game;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Scripts.GameComponents;
 
 public class CheckLaserEntrySubEvent(ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
         var effectSprites = spriteGrid.GetEffectSprites();
         foreach(var sprite in effectSprites.Values)

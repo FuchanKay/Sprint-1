@@ -1,13 +1,14 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using Scripts.GameComponents;
 using System.Linq;
 
 namespace Scripts.Game;
 
 public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack, List<LevelStateHistory> levelStateHistory) : ILevelSubEvent
 {
-    public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
         var skeletonCoords = gridPointer.GetObjectPointers(ObjectIds.Skeleton).Keys.ToList();
         var batCoords = gridPointer.GetObjectPointers(ObjectIds.Bat).Keys.ToList();
@@ -61,8 +62,11 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
     protected void LaserBlastAttack(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate startCoord, EffectIds laserColorId)
     {
         var direction = gridPointer.GetObject(startCoord).Direction;
-        var endCoord = Pathfinder.GetBlastTargetCoord(gridPointer, startCoord, direction);
+        var laserPath = Pathfinder.GetLaserPath(gridPointer, startCoord, direction);
+        var endCoord = laserPath.Peek();
 
+        var lizard = gridPointer.GetObject(startCoord);
+            
         var lizardSprite = spriteGrid.GetObjectSprite(startCoord);
         var mouthOpen = RegionNames.ToLizardMouthOpenName(direction);
         lizardSprite.SetState(mouthOpen);
@@ -75,6 +79,7 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
         var dirCoord = startCoord + Coordinate.ToCoordinate(direction);
         var startDirCoord = dirCoord;
         var dirGrid = gridPointer.GetGrid(dirCoord);
+        Console.WriteLine($"{endCoord}");
         while (dirCoord != endCoord)
         {
             spriteGrid.AddIterableEffectSprite(laserColorId, startDirCoord, dirCoord, rotation);
@@ -82,7 +87,11 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
             if(dirGrid.Object.Id == ObjectIds.Player)
             {
                 subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
-            } else
+            } else if (dirGrid.Object is IEnemy)
+            {
+                subEventStack.Push(new EnemyDamageSubEvent(objectFactory, dirCoord));
+            }
+            else if (dirGrid.Object.IsDestructible)
             {
                 gridPointer.SetObject(dirCoord, ObjectFactory.CreateEmpty());
                 spriteGrid.RemoveObjectSprite(dirCoord);
@@ -103,28 +112,25 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
             subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
         }
 
-        spriteGrid.AddIterableEffectSprite(EffectIds.PlayerDeath, startDirCoord, dirCoord, 0);
-
+        var laserImpactEffect = EffectIds.RedLaserImpact;
+        if(lizard.Id == ObjectIds.BlueLizard) laserImpactEffect = EffectIds.BlueLaserImpact;
+        spriteGrid.AddIterableEffectSprite(laserImpactEffect, startDirCoord, dirCoord, 0);
         spriteGrid.StartIterableEffect(startDirCoord);
+
+        subEventStack.Push(new RemoveLasersSubEvent());
     }
 
     private static bool ShouldLaserBlast(SpriteGrid spriteGrid, GridPointer gridPointer, List<LevelStateHistory> levelStateHistory, Coordinate lizardCoord)
     {
         var lizardDirection = gridPointer.GetObject(lizardCoord).Direction;
 
-        var furthestObjectCoord = Pathfinder.GetBlastTargetCoord(gridPointer, lizardCoord, lizardDirection);
-        var currObjectAhead = gridPointer.GetObject(furthestObjectCoord);
-        var nonWallObjectAhead = currObjectAhead.Id != ObjectIds.Wall;
-
-        var prev = levelStateHistory.Count - 1;
-        var prevGridPointer = levelStateHistory[prev].GridPointer;
-        var prevCoord = Pathfinder.GetBlastTargetCoord(prevGridPointer, lizardCoord, lizardDirection);
-        var prevObject = prevGridPointer.GetObject(furthestObjectCoord);
-        var isNewObject = prevObject.Id != currObjectAhead.Id || prevCoord != furthestObjectCoord;
+        Stack<Coordinate> lineOfSight = Pathfinder.GetLineOfSight(gridPointer, lizardCoord, lizardDirection);
+        var currentObjAhead = gridPointer.GetObject(lineOfSight.Peek());
+        var seesPlayer = currentObjAhead.Id == ObjectIds.Player;
 
         var lizardSprite = spriteGrid.GetObjectSprite(lizardCoord);
         var isIdle = lizardSprite.IdleName.Contains("Idle");
 
-       return nonWallObjectAhead && (isIdle || isNewObject);
+       return seesPlayer && isIdle;
     }
 }

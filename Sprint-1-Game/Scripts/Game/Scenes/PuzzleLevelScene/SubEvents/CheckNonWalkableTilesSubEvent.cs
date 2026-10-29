@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-
+using Scripts.GameComponents;
 namespace Scripts.Game;
 
 public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack, ObjectFactory objectFactory, TileFactory tileFactory) : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
         var lavaCoords = gridPointer.GetTilePointers(TileIds.Lava).Keys;
         var waterCoords = gridPointer.GetTilePointers(TileIds.Water).Keys;

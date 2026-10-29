@@ -145,6 +145,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
                 sprite.IdleName = RegionNames.Explosion;
                 spriteScale = context.GridScale * 3.5f;
+                sprite.Color = Color.SpringGreen;
                 break;
             case EffectIds.RedLaserBeam:
                 sprite = new StaticSprite(textureAtlas);
@@ -153,12 +154,26 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.IdleName = RegionNames.LaserBeam;
                 spriteScale = context.GridScale * 4.0f;
                 break;
+            case EffectIds.RedLaserImpact:
+                sprite.SetState(AnimationNames.Explosion);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
+                sprite.IdleName = RegionNames.Explosion;
+                spriteScale = context.GridScale * 4.5f;
+                sprite.Color = Color.Orange;
+                break;
             case EffectIds.BlueLaserBeam:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.LaserBeam);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.BlueLizard);
                 sprite.IdleName = RegionNames.LaserBeam;
                 spriteScale = context.GridScale * 4.0f;
+                break;
+            case EffectIds.BlueLaserImpact:
+                sprite.SetState(AnimationNames.Explosion);
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
+                sprite.IdleName = RegionNames.Explosion;
+                spriteScale = context.GridScale * 4.5f;
+                sprite.Color = Color.DodgerBlue;
                 break;
             case EffectIds.EnemyDeath:
                 sprite.SetState(AnimationNames.Explosion);
@@ -170,7 +185,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
             case EffectIds.LavaSplash:
                 sprite.SetState(AnimationNames.LavaSplash);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.EffectSprites);
-                spriteScale = context.GridScale * 4.0f;
+                spriteScale = context.GridScale * 5.0f;
                 break;
             case EffectIds.WaterSplash:
                 sprite.SetState(AnimationNames.WaterSplash);

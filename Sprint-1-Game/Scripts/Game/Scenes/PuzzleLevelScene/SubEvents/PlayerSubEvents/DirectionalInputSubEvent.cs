@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using Scripts.GameComponents;
 namespace Scripts.Game;
 
 public class DirectionalInputSubEvent(Directions direction, ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
         ILevelSubEvent enemiesMove = new EnemiesMoveSubEvent(objectFactory);
         var playerCoord = gridPointer.GetPlayerCoord();
@@ -41,7 +41,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
             gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
 
-            enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context);
+            enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context, audioManager);
         }
         else if (destinationCoordIsWithinBounds && CanMove(playerObj, gridPointer.GetGrid(destinationCoord)))
         {
@@ -52,7 +52,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
 
             gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
-            enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context);
+            enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context, audioManager);
         }
         // placeholder logic to collect a key by walking into it
         else if (gridPointer.GetObject(destinationCoord).Id == ObjectIds.Key)

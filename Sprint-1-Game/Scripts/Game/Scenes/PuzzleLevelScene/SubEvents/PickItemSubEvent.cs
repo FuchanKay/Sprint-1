@@ -1,7 +1,8 @@
 namespace Scripts.Game;
+using Scripts.GameComponents;
 public class PickItemSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
 
         var playerCoord = gridPointer.GetPlayerCoord();

@@ -1,8 +1,9 @@
 namespace Scripts.Game;
+using Scripts.GameComponents;
 
 public class UseItemSubEvent(int inventoryId, ObjectSpriteFactory objectSpriteFactory) : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerObj = gridPointer.GetObject(playerCoord);

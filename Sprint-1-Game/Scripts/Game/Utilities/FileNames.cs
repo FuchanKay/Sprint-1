@@ -29,5 +29,6 @@ public class FileNames
 
     public readonly static string SnapAudio = "audio/snap";
     public readonly static string SongAudio = "audio/song";
+    public readonly static string ExplosionAudio = "audio/explosion";
 
 }

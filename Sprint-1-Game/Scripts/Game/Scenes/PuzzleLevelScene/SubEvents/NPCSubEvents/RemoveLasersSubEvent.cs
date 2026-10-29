@@ -1,80 +1,30 @@
 using System.Collections.Generic;
-
+using System.Linq;
+using Microsoft.Xna.Framework;
+using Scripts.GameComponents;
 namespace Scripts.Game;
 
-public class RemoveLasersSubEvent(List<LevelStateHistory> undoHistory) : ILevelSubEvent
+public class RemoveLasersSubEvent() : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
-        var redLizards = gridPointer.GetObjectPointers(ObjectIds.RedLizard);
-        var blueLizards = gridPointer.GetObjectPointers(ObjectIds.BlueLizard);
-
-        foreach (var lizard in blueLizards)
+        var effectSprites = spriteGrid.GetEffectSprites();
+        var iteratingList = new Dictionary<Vector2, ISprite>(effectSprites);
+        foreach (var pair in iteratingList)
         {
-            var coord = lizard.Key;
-            var direction = gridPointer.GetObject(coord).Direction;
-            RemoveLaserBeam(spriteGrid, gridPointer, coord, coord, direction, direction);
+            var sprite = pair.Value;
+            if(sprite.IdleName == RegionNames.LaserBeam) effectSprites.Remove(pair.Key);
         }
 
-        foreach (var lizard in redLizards)
+        var redLizCoords = gridPointer.GetObjectPointers(ObjectIds.RedLizard).Keys.ToList();
+        var blueLizCoords = gridPointer.GetObjectPointers(ObjectIds.BlueLizard).Keys.ToList();
+        List<Coordinate> lizardCoords = [..redLizCoords, ..blueLizCoords];
+
+        foreach(var lizardCoord in lizardCoords)
         {
-            var previous = undoHistory.Count - 1;
-            var prevGridPointer = undoHistory[previous].GridPointer;
-
-            var coord = lizard.Key;
-            var lizardObj = lizard.Value;
-            var prevObjAtCoord = prevGridPointer.GetObject(coord);
-
-            var objectCoordAhead = Pathfinder.GetBlastTargetCoord(gridPointer, coord, lizardObj.Direction);
-            var objectAhead = gridPointer.GetObject(objectCoordAhead);
-            var wallAhead = objectAhead.Id == ObjectIds.Wall || objectAhead.Id == ObjectIds.Door;
-
-            var prevCoord = coord;
-            var positionChanged = prevObjAtCoord.Id != ObjectIds.RedLizard;
-            if(positionChanged)
-            {
-                prevCoord = Pathfinder.GetPlayerCoord(gridPointer, coord);
-            }
-
-            var prevObjectCoordAhead = Pathfinder.GetBlastTargetCoord(prevGridPointer, coord, lizardObj.Direction);
-            var prevObj = prevGridPointer.GetObject(prevObjectCoordAhead);
-            var prevNotWall = prevObj.Id != ObjectIds.Wall || prevObj.Id != ObjectIds.Door;
-            var newObjectAppeared = prevNotWall && objectCoordAhead != prevObjectCoordAhead;
-
-            var directionChanged = false;
-            if(prevObjAtCoord.Id == ObjectIds.RedLizard)
-            {
-                directionChanged = prevObjAtCoord.Direction != lizardObj.Direction;
-            }
-
-            if(directionChanged && wallAhead)
-            {
-                RemoveLaserBeam(spriteGrid, gridPointer, coord, coord, lizardObj.Direction, prevObjAtCoord.Direction);
-                RemoveLaserBeam(spriteGrid, gridPointer, coord, coord, lizardObj.Direction, lizardObj.Direction);
-            } else if(wallAhead || positionChanged || newObjectAppeared)
-            { // need to remove bc wall, remove at prev position, or to prep for new blast
-                RemoveLaserBeam(spriteGrid, gridPointer, coord, prevCoord, lizardObj.Direction, lizardObj.Direction);
-            }
+            var lizard = gridPointer.GetObject(lizardCoord);
+            var lizardSprite = spriteGrid.GetObjectSprite(lizardCoord);
+            lizardSprite.SetState(RegionNames.ToIdleRegionName(lizard.Direction));
         }
     }
-
-    private static void RemoveLaserBeam(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate lizardCoord, Coordinate prevLizardCoord, Directions lizardDirection, Directions prevLizardDirection)
-    {
-        var lizardSprite = spriteGrid.GetObjectSprite(lizardCoord);
-        var idleName = RegionNames.ToIdleRegionName(lizardDirection);
-        lizardSprite.SetState(idleName);
-        lizardSprite.IdleName = idleName;
-
-        var dirCoord = prevLizardCoord + Coordinate.ToCoordinate(prevLizardDirection);
-        var dirGrid = gridPointer.GetGrid(dirCoord);
-        while (dirGrid.Object.Id != ObjectIds.Wall && dirGrid.Object.Id != ObjectIds.Door)
-        {
-            spriteGrid.RemoveEffect(dirCoord);
-
-            dirCoord += Coordinate.ToCoordinate(prevLizardDirection);
-            dirGrid = gridPointer.GetGrid(dirCoord);
-        }
-    }
-
-
 }

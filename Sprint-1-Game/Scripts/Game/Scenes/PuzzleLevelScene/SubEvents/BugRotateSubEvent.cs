@@ -1,8 +1,9 @@
 namespace Scripts.Game;
+using Scripts.GameComponents;
 
 public class BugRotateSubEvent() : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
         var clockwiseBugs = gridPointer.GetTilePointers(TileIds.Bug);
         var counterclockwiseBugs = gridPointer.GetTilePointers(TileIds.CCBug);

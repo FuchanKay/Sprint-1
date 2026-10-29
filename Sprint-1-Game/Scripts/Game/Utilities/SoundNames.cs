@@ -4,5 +4,5 @@ public class SoundNames
 {
     public readonly static string Song = "Song";
     public readonly static string Snap = "Snap";
-
+    public readonly static string Explosion = "Explosion";
 }

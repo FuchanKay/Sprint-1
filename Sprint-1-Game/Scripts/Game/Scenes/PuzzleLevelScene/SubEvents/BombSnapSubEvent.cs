@@ -1,23 +1,25 @@
 using System.Collections.Generic;
 namespace Scripts.Game;
+using Scripts.GameComponents;
 
 public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     protected List<Coordinate> BombCoords = bombCoords;
-    public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
         foreach (var bombCoord in BombCoords)
         {
-            ExplodeBomb(bombCoord, spriteGrid, gridPointer, context);
+            ExplodeBomb(bombCoord, spriteGrid, gridPointer, context, audioManager);
         }
     }
 
-    protected void ExplodeBomb(Coordinate bombCoord, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context)
+    protected void ExplodeBomb(Coordinate bombCoord, SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, IAudioManager audioManager)
     {
 
         gridPointer.SetObject(bombCoord, ObjectFactory.CreateEmpty());
         spriteGrid.RemoveObjectSprite(bombCoord);
         spriteGrid.PlayEffect(EffectIds.Explosion, bombCoord);
+        audioManager.PlaySound(SoundNames.Explosion);
 
         const int explosionRadius = 1;
         for (int x = -explosionRadius; x <= explosionRadius; x++)
