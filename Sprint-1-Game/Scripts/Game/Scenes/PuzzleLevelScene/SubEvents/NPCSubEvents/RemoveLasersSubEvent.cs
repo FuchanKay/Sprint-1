@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Scripts.GameComponents;
 namespace Scripts.Game;
@@ -8,6 +10,7 @@ public class RemoveLasersSubEvent() : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
+        // Thread.Sleep(500);
         var effectSprites = spriteGrid.GetEffectSprites();
         var iteratingList = new Dictionary<Vector2, ISprite>(effectSprites);
         foreach (var pair in iteratingList)
@@ -25,6 +28,7 @@ public class RemoveLasersSubEvent() : ILevelSubEvent
             var lizard = gridPointer.GetObject(lizardCoord);
             var lizardSprite = spriteGrid.GetObjectSprite(lizardCoord);
             lizardSprite.SetState(RegionNames.ToIdleRegionName(lizard.Direction));
+            lizardSprite.IdleName = RegionNames.ToIdleRegionName(lizard.Direction);
         }
     }
 }

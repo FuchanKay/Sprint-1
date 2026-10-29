@@ -99,7 +99,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.Bat);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Bat);
-                spriteScale = context.GridScale * 6.0f;
+                spriteScale = context.GridScale * 8.0f;
                 sprite.IdleName = RegionNames.Bat;
                 break;
             case ObjectIds.Frog:
@@ -155,7 +155,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 spriteScale = context.GridScale * 4.0f;
                 break;
             case EffectIds.RedLaserImpact:
-                sprite.SetState(AnimationNames.Explosion);
+                sprite.SetState(AnimationNames.LaserImpact);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
                 sprite.IdleName = RegionNames.Explosion;
                 spriteScale = context.GridScale * 4.5f;
@@ -169,7 +169,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 spriteScale = context.GridScale * 4.0f;
                 break;
             case EffectIds.BlueLaserImpact:
-                sprite.SetState(AnimationNames.Explosion);
+                sprite.SetState(AnimationNames.LaserImpact);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Explosion);
                 sprite.IdleName = RegionNames.Explosion;
                 spriteScale = context.GridScale * 4.5f;

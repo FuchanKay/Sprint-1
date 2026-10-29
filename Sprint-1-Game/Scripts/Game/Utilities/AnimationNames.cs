@@ -38,6 +38,7 @@ public class AnimationNames
     public readonly static string BugTileRotateCC = "Bug Tile Rotate Counterclockwise";
     public readonly static string DoorOpening = "Door Opening";
     public readonly static string Explosion = "Explosion";
+    public readonly static string LaserImpact = "Laser Impact";
     public readonly static string Slash = "Slash";
     public readonly static string WaterSplash = "Water Splash";
     public readonly static string LavaSplash = "Lava Splash";

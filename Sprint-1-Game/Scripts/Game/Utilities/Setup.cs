@@ -105,6 +105,7 @@ public class Setup(ContentManager content)
 
         // effects
         TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 0, 4, 105, 96);
+        TextureAtlas.AddAnimation(AnimationNames.LaserImpact, 0, 0, 4, 105, 96, 150);
         TextureAtlas.AddAnimation(AnimationNames.Slash, 0, 0, 6, 102, 440, 50);
         TextureAtlas.AddAnimation(AnimationNames.LavaSplash, 1, 0, 6, 64, 64, 80);
         TextureAtlas.AddAnimation(AnimationNames.WaterSplash, 0, 0, 6, 64, 64);
