@@ -78,6 +78,7 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
             "Grass" => TileFactory.CreateGrassTile(),
             "Brick" => TileFactory.CreateBrickTile(),
             "MossyBrick" => TileFactory.CreateMossyBrickTile(),
+            "VineSeed" => TileFactory.CreateVineSeedTile(),
             "Pit" => TileFactory.CreatePitTile(),
             "Lava" => TileFactory.CreateLavaTile(),
             "Water" => TileFactory.CreateWaterTile(),

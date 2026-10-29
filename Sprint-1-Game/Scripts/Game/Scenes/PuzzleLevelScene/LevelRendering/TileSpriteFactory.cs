@@ -16,6 +16,7 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
                 sprite = new StaticSprite(textureAtlas);
                 var floor = tile as FloorTile;
                 sprite.SetState(floor.RegionName);
+                sprite.Rotation = MathHelper.ToRadians((int)tile.Direction * 90);
                 break;
             case TileIds.Pit:
                 sprite = new StaticSprite(textureAtlas);
@@ -38,6 +39,11 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.BugTileCC);
                 sprite.IdleName = RegionNames.BugTileCC;
+                break;
+            case TileIds.VineSeed:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.VineSeedTile);
+                sprite.IdleName = RegionNames.VineSeedTile;
                 break;
             default:
                 sprite = new StaticSprite(textureAtlas);
