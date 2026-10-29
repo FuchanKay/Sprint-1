@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Scripts.Game;
 
-public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack, TileFactory tileFactory) : ILevelSubEvent
+public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
@@ -16,15 +16,15 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack, 
         }
         foreach (var coord in waterCoords)
         {
-            CheckWater(spriteGrid, gridPointer, tileFactory, subEventStack, coord);
+            CheckWater(spriteGrid, gridPointer, subEventStack, coord);
         }
         foreach (var coord in pitCoords)
         {
-            CheckPit(spriteGrid, gridPointer, tileFactory, subEventStack, coord);
+            CheckPit(spriteGrid, gridPointer, subEventStack, coord);
         }
     }
 
-    private static void CheckWater(SpriteGrid spriteGrid, GridPointer gridPointer, TileFactory tileFactory, Stack<ILevelSubEvent> subEventStack, Coordinate waterCoord)
+    private static void CheckWater(SpriteGrid spriteGrid, GridPointer gridPointer, Stack<ILevelSubEvent> subEventStack, Coordinate waterCoord)
     {
         var obj = gridPointer.GetObject(waterCoord);
 
@@ -42,10 +42,10 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack, 
             ITile tile;
             if(sprite.IdleName == RegionNames.Rock)
             {
-                tile = tileFactory.CreateWaterBoulderTile();
+                tile = TileFactory.CreateWaterBoulderTile();
             } else
             {
-                tile = tileFactory.CreateWaterPumpkinTile();
+                tile = TileFactory.CreateWaterPumpkinTile();
             }
             spriteGrid.SetNewTileSprite(waterCoord, tile);
             gridPointer.SetTile(waterCoord, tile);
@@ -61,7 +61,7 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack, 
         }
     }
 
-    private static void CheckPit(SpriteGrid spriteGrid, GridPointer gridPointer, TileFactory tileFactory, Stack<ILevelSubEvent> subEventStack, Coordinate waterCoord)
+    private static void CheckPit(SpriteGrid spriteGrid, GridPointer gridPointer, Stack<ILevelSubEvent> subEventStack, Coordinate waterCoord)
     {
         var obj = gridPointer.GetObject(waterCoord);
 
@@ -79,10 +79,10 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack, 
             ITile tile;
             if(sprite.IdleName == RegionNames.Rock)
             {
-                tile = tileFactory.CreatePitBoulderTile();
+                tile = TileFactory.CreatePitBoulderTile();
             } else
             {
-                tile = tileFactory.CreatePitPumpkinTile();
+                tile = TileFactory.CreatePitPumpkinTile();
             }
             spriteGrid.SetNewTileSprite(waterCoord, tile);
             gridPointer.SetTile(waterCoord, tile);

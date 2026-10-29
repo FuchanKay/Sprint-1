@@ -2,7 +2,7 @@ using Scripts.Game;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
-public class CheckLaserEntrySubEvent(ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
+public class CheckLaserEntrySubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
@@ -11,12 +11,12 @@ public class CheckLaserEntrySubEvent(ObjectFactory objectFactory, Stack<ILevelSu
         {
             if(sprite.IdleName == RegionNames.LaserBeam)
             {
-                DestroyObject(spriteGrid, gridPointer, context, subEventStack, objectFactory, sprite.CurrentPosition);
+                DestroyObject(spriteGrid, gridPointer, context, subEventStack, sprite.CurrentPosition);
             }
         }
     }
 
-    private static void DestroyObject(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, Stack<ILevelSubEvent> subEventStack, ObjectFactory objectFactory, Vector2 position)
+    private static void DestroyObject(SpriteGrid spriteGrid, GridPointer gridPointer, LevelContext context, Stack<ILevelSubEvent> subEventStack, Vector2 position)
     {
         var coord = GetGridCoord(context, position);
         var obj = gridPointer.GetObject(coord);
