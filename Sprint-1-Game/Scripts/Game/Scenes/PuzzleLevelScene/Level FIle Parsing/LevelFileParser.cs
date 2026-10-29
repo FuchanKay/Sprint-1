@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Scripts.Game;
 
-public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactory, ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory)
+public class LevelFileParser( )
 {
     private readonly string Delimiter = ",";
     private readonly string ObjectDelimiter = ".";

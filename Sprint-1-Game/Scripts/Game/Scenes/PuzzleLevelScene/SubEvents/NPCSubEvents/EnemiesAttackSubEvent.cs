@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Scripts.Game;
 
-public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack, List<LevelStateHistory> levelStateHistory) : ILevelSubEvent
+public class EnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, List<LevelStateHistory> levelStateHistory) : ILevelSubEvent
 {
     public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
@@ -41,7 +41,7 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
         if(playerCoord != enemyCoord)
         {
             spriteGrid.PlayEffect(EffectIds.Slash, playerCoord);
-            subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
+            subEventStack.Push(new PlayerDeathSubEvent());
         }
     }
 
@@ -54,7 +54,7 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
         if (targetObj.Id == ObjectIds.Player)
         {
             spriteGrid.PlayEffect(EffectIds.Slash, targetCoord);
-            subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
+            subEventStack.Push(new PlayerDeathSubEvent());
         }
     }
 
@@ -81,7 +81,7 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
 
             if(dirGrid.Object.Id == ObjectIds.Player)
             {
-                subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
+                subEventStack.Push(new PlayerDeathSubEvent());
             } else
             {
                 gridPointer.SetObject(dirCoord, ObjectFactory.CreateEmpty());
@@ -100,7 +100,7 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
 
         if(dirGrid.Object.Id == ObjectIds.Player)
         {
-            subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
+            subEventStack.Push(new PlayerDeathSubEvent());
         }
 
         spriteGrid.AddIterableEffectSprite(EffectIds.PlayerDeath, startDirCoord, dirCoord, 0);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Scripts.Game;
 
-public class SkeletonsAttackSubEvent(List<Coordinate> skeletonCoords, ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
+public class SkeletonsAttackSubEvent(List<Coordinate> skeletonCoords, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
@@ -20,7 +20,7 @@ public class SkeletonsAttackSubEvent(List<Coordinate> skeletonCoords, ObjectFact
         {
             // TODO: Change skeleton facing direction and sprite
             spriteGrid.PlayEffect(EffectIds.Slash, playerCoord);
-            subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
+            subEventStack.Push(new PlayerDeathSubEvent());
         }
     }
 }

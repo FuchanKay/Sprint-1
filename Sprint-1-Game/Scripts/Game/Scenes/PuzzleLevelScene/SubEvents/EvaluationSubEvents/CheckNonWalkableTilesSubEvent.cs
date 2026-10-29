@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Scripts.Game;
 
-public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack, ObjectFactory objectFactory, TileFactory tileFactory) : ILevelSubEvent
+public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
@@ -12,29 +12,29 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack, 
 
         foreach (var coord in lavaCoords)
         {
-            CheckLava(spriteGrid, gridPointer, objectFactory, subEventStack, coord);
+            CheckLava(spriteGrid, gridPointer, subEventStack, coord);
         }
         foreach (var coord in waterCoords)
         {
-            CheckWater(spriteGrid, gridPointer, objectFactory, tileFactory, subEventStack, coord);
+            CheckWater(spriteGrid, gridPointer, subEventStack, coord);
         }
         foreach (var coord in pitCoords)
         {
-            CheckPit(spriteGrid, gridPointer, objectFactory, tileFactory, subEventStack, coord);
+            CheckPit(spriteGrid, gridPointer, subEventStack, coord);
         }
     }
 
-    private static void CheckWater(SpriteGrid spriteGrid, GridPointer gridPointer, ObjectFactory objectFactory, TileFactory tileFactory, Stack<ILevelSubEvent> subEventStack, Coordinate waterCoord)
+    private static void CheckWater(SpriteGrid spriteGrid, GridPointer gridPointer, Stack<ILevelSubEvent> subEventStack, Coordinate waterCoord)
     {
         var obj = gridPointer.GetObject(waterCoord);
 
         if(obj.Id == ObjectIds.Player)
         {
-            subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
+            subEventStack.Push(new PlayerDeathSubEvent());
         } 
         else if (obj is IEnemy && obj.Id != ObjectIds.Bat)
         {
-            subEventStack.Push(new EnemyDamageSubEvent(objectFactory, waterCoord));
+            subEventStack.Push(new EnemyDamageSubEvent(waterCoord));
         } 
         else if(obj.Id == ObjectIds.Rock)
         {
@@ -61,17 +61,17 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack, 
         }
     }
 
-    private static void CheckPit(SpriteGrid spriteGrid, GridPointer gridPointer, ObjectFactory objectFactory, TileFactory tileFactory, Stack<ILevelSubEvent> subEventStack, Coordinate waterCoord)
+    private static void CheckPit(SpriteGrid spriteGrid, GridPointer gridPointer, Stack<ILevelSubEvent> subEventStack, Coordinate waterCoord)
     {
         var obj = gridPointer.GetObject(waterCoord);
 
         if(obj.Id == ObjectIds.Player)
         {
-            subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
+            subEventStack.Push(new PlayerDeathSubEvent());
         } 
         else if (obj is IEnemy && obj.Id != ObjectIds.Bat)
         {
-            subEventStack.Push(new EnemyDamageSubEvent(objectFactory, waterCoord));
+            subEventStack.Push(new EnemyDamageSubEvent(waterCoord));
         } 
         else if(obj.Id == ObjectIds.Rock)
         {
@@ -96,16 +96,16 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack, 
         }
     }
 
-    private static void CheckLava(SpriteGrid spriteGrid, GridPointer gridPointer, ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack, Coordinate lavaCoord)
+    private static void CheckLava(SpriteGrid spriteGrid, GridPointer gridPointer, Stack<ILevelSubEvent> subEventStack, Coordinate lavaCoord)
     {
         var obj = gridPointer.GetObject(lavaCoord);
         if (obj.Id == ObjectIds.Player)
         {
-            subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
+            subEventStack.Push(new PlayerDeathSubEvent());
         }
         else if (obj is IEnemy)
         {
-            subEventStack.Push(new EnemyDamageSubEvent(objectFactory, lavaCoord));
+            subEventStack.Push(new EnemyDamageSubEvent(lavaCoord));
         }
         else if (obj.Id != ObjectIds.Empty)
         {

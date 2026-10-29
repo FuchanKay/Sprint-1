@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Scripts.Game;
 
-public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, LevelFileParser levelFileParser)
+public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, LevelFileParser levelFileParser)
 {
     private readonly List<ILevelEvent> EventQueue = [];
     public LevelContext Context;
@@ -15,7 +15,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     private readonly int UndoHistoryMaxLength = 200;
     public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
     private readonly int MaxEventsQueued = 2;
-    private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, false, objectFactory, tileFactory);
+    private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, false);
     private string[] LevelFile;
 
     public void Init(int levelIndex)
@@ -42,7 +42,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         CalculateOffsets();
         CurrentGridPointer = levelFileParser.CreateGrids(LevelFile);
         SpriteGrid.Init(CurrentGridPointer, Context);
-        CurrentInventoryManager = new InventoryManager(objectFactory);
+        CurrentInventoryManager = new InventoryManager();
         LevelStateHistory = new LevelStateHistory(CurrentGridPointer, CurrentInventoryManager);
     }
 
@@ -113,7 +113,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         PushCurrentLevelStateHistory();
 
         LevelStateHistory.GridPointer = levelFileParser.CreateGrids(LevelFile);
-        LevelStateHistory.InventoryManager = new InventoryManager(objectFactory);
+        LevelStateHistory.InventoryManager = new InventoryManager();
         SpriteGrid.Init(LevelStateHistory.GridPointer, Context);
 
         CurrentEvent.SubEventStack.Clear();

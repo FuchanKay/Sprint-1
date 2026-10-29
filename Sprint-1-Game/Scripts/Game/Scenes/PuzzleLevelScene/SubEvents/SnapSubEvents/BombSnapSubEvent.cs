@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 namespace Scripts.Game;
 
-public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
+public class BombSnapSubEvent(List<Coordinate> bombCoords, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     protected List<Coordinate> BombCoords = bombCoords;
     public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
@@ -29,11 +29,11 @@ public class BombSnapSubEvent(List<Coordinate> bombCoords, ObjectFactory objectF
                 
                 if (targetObj.Id == ObjectIds.Player)
                 {
-                    subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
+                    subEventStack.Push(new PlayerDeathSubEvent());
                 }
                 else if (targetObj is IEnemy)
                 {
-                    subEventStack.Push(new EnemyDamageSubEvent(objectFactory, targetCoord));
+                    subEventStack.Push(new EnemyDamageSubEvent(targetCoord));
                 }
                 else if (targetObj.IsDestructible)
                 {
