@@ -1,5 +1,3 @@
-using System.Threading.Tasks.Dataflow;
-
 namespace Scripts.Game;
 
 public class ObjectFactory()
@@ -20,26 +18,24 @@ public class ObjectFactory()
         };
     }
 
-    private static IObject CreateRock(string textureName, string regionName)
+    private static IObject CreateRock(string regionName)
     {
         return new RockObject
         {
             Direction = Directions.South,
-            TextureName = textureName,
             RegionName = regionName
         };
     }
 
     public static IObject CreateDefaultRock()
     {
-        return CreateRock(TextureNames.Rock, RegionNames.Rock);
+        return CreateRock(RegionNames.Rock);
     }
 
-    //TODO: implement this
-    // public IObject CreatePumpkin()
-    // {
-    //     return CreateRock(TextureNames.Pumpkin, RegionNames.Pumpkin);
-    // }
+    public static IObject CreatePumpkin()
+    {
+        return CreateRock(RegionNames.Pumpkin);
+    }
 
     public static IObject CreateWall()
     {

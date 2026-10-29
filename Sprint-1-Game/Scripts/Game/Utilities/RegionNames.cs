@@ -1,8 +1,12 @@
+using System;
+
 namespace Scripts.Game;
 
 public class RegionNames
 {
+    // objects
     public readonly static string Rock = "Rock";
+    public readonly static string Pumpkin = "Pumpkin";
     public readonly static string Wall = "Wall";
     public readonly static string ClosedDoor = "Closed Door";
     public readonly static string OpenDoor = "Open Door";
@@ -11,20 +15,35 @@ public class RegionNames
     public readonly static string TimedBomb = "Timed Bomb";
     public readonly static string Explosion = "Explosion";
 
+    // tiles
     public readonly static string DirtTile = "Dirt Tile";
     public readonly static string GrassTile = "Grass Tile";
     public readonly static string BrickTile = "Brick Tile";
     public readonly static string MossyBrickTile = "Mossy Brick Tile";
+    public readonly static string PumpkinSeedTile = "Pumpkin Seed Tile";
+    public readonly static string VineSeedTile = "Vine Seed Tile";
+    public readonly static string VineStartTile = "Vine Start Tile";
+    public readonly static string VineTile = "Vine Tile";
     public readonly static string PitTile = "Pit Tile";
+    public readonly static string BoulderPitTile = "Boulder Pit Tile";
+    public readonly static string PumpkinPitTile = "Pumpkin Pit Tile";
     public readonly static string WaterTile = "Water Tile";
+    public readonly static string BoulderWaterTile = "Boulder Water Tile";
+    public readonly static string PumpkinWaterTile = "Pumpkin Water Tile";
     public readonly static string LavaTile = "Lava Tile";
     public readonly static string BugTile = "Bug Tile";
     public readonly static string BugTileCC = "Bug Tile Counterclockwise";
+    public readonly static string LaserBeam = "Laser Beam";
 
+    // player/npc states
     public readonly static string IdleSouth = "Object Idle South";
     public readonly static string IdleNorth = "Object Idle North";
     public readonly static string IdleEast = "Object Idle East";
     public readonly static string IdleWest = "Object Idle West";
+    public readonly static string LizardMouthOpenNorth = "Lizard Mouth Open North";
+    public readonly static string LizardMouthOpenEast = "Lizard Mouth Open East";
+    public readonly static string LizardMouthOpenSouth = "Lizard Mouth Open South";
+    public readonly static string LizardMouthOpenWest = "Lizard Mouth Open West";
 
     public readonly static string FrogIdleN = "Frog Idle North";
     public readonly static string FrogIdleE = "Frog Idle East";
@@ -35,12 +54,6 @@ public class RegionNames
     public readonly static string ZombieIdleE = "Zombie Idle East";
     public readonly static string ZombieIdleS = "Zombie Idle South";
     public readonly static string ZombieIdleW = "Zombie Idle West";
-
-    public readonly static string RedLizardIdleN = "Red Lizard Idle North";
-    public readonly static string RedLizardIdleE = "Red Lizard Idle East";
-    public readonly static string RedLizardIdleS = "Red Lizard Idle South";
-    public readonly static string RedLizardIdleW = "Red Lizard Idle West";
-    public readonly static string BlueLizard = "BlueLizard";
     public readonly static string Skeleton = "Skeleton";
     public readonly static string Slash = "Slash";
     public readonly static string Warlock = "Warlock";
@@ -58,6 +71,18 @@ public class RegionNames
         };
     }
 
+    public static string ToLizardMouthOpenName(Directions direction)
+    {
+        return direction switch
+        {
+            Directions.North => RegionNames.LizardMouthOpenNorth,
+            Directions.East => RegionNames.LizardMouthOpenEast,
+            Directions.South => RegionNames.LizardMouthOpenSouth,
+            Directions.West => RegionNames.LizardMouthOpenWest,
+            _ => throw new ArgumentException("Direction not found"),
+        };
+    }
+    
     public static string ToFrogIdleRegionName(Directions direction)
     {
         return direction switch

@@ -22,8 +22,8 @@ public class OpenExitSubEvent() : ILevelSubEvent
     {
         var doorSprite = spriteGrid.GetObjectSprite(doorCoord);
         doorSprite = doorSprite.ConvertToAnimated(AnimationNames.DoorOpening);
-        spriteGrid.SetObjectSprite(doorCoord, doorCoord, doorSprite);
-        spriteGrid.StartObjectAnimation(doorSprite);
+        spriteGrid.SetObjectSprite(doorCoord, doorSprite);
+        spriteGrid.StartObjectAnimation(doorCoord);
         doorSprite.IdleName = RegionNames.OpenDoor;
     }
 }

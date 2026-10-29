@@ -1,6 +1,6 @@
 namespace Scripts.Game;
 
-public class BugRotateSubEvent : ILevelSubEvent
+public class BugRotateSubEvent() : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
@@ -17,18 +17,17 @@ public class BugRotateSubEvent : ILevelSubEvent
         }
     }
 
-    private static void RotateClockwise(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate bugCoord)
+    private void RotateClockwise(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate bugCoord)
     {
         var bug = spriteGrid.GetTileSprite(bugCoord);
         bug = bug.ConvertToAnimated(AnimationNames.BugTileRotate);
-        spriteGrid.SetTileSprite(bugCoord, bugCoord, bug);
-        spriteGrid.StartTileAnimation(bug);
+        spriteGrid.SetTileSprite(bugCoord, bug);
+        spriteGrid.StartTileAnimation(bugCoord);
 
         var grid = gridPointer.GetGrid(bugCoord);
         var gridObj = grid.Object;
         if (gridObj.IsRotatable)
         {
-
             var currDirection = gridObj.Direction;
             var nextDirection = (Directions)(((int)currDirection + 1) % 4);
             gridObj.Direction = nextDirection;
@@ -36,8 +35,8 @@ public class BugRotateSubEvent : ILevelSubEvent
             var sprite = spriteGrid.GetObjectSprite(bugCoord);
             sprite = sprite.ConvertToAnimated(AnimationNames.ObjectRotateClockwiseFrom(currDirection));
             sprite.IdleName = RegionNames.ToIdleRegionName(nextDirection);
-            spriteGrid.SetObjectSprite(bugCoord, bugCoord, sprite);
-            spriteGrid.StartObjectAnimation(sprite);
+            spriteGrid.SetObjectSprite(bugCoord, sprite);
+            spriteGrid.StartObjectAnimation(bugCoord);
         }
     }
 
@@ -45,8 +44,8 @@ public class BugRotateSubEvent : ILevelSubEvent
     {
         var bug = spriteGrid.GetTileSprite(bugCoord);
         bug = bug.ConvertToAnimated(AnimationNames.BugTileRotateCC);
-        spriteGrid.SetTileSprite(bugCoord, bugCoord, bug);
-        spriteGrid.StartTileAnimation(bug);
+        spriteGrid.SetTileSprite(bugCoord, bug);
+        spriteGrid.StartTileAnimation(bugCoord);
 
         var grid = gridPointer.GetGrid(bugCoord);
         var gridObj = grid.Object;
@@ -59,8 +58,8 @@ public class BugRotateSubEvent : ILevelSubEvent
             var sprite = spriteGrid.GetObjectSprite(bugCoord);
             sprite = sprite.ConvertToAnimated(AnimationNames.ObjectRotateCounterclockwiseFrom(currDirection));
             sprite.IdleName = RegionNames.ToIdleRegionName(nextDirection);
-            spriteGrid.SetObjectSprite(bugCoord, bugCoord, sprite);
-            spriteGrid.StartObjectAnimation(sprite);
+            spriteGrid.SetObjectSprite(bugCoord, sprite);
+            spriteGrid.StartObjectAnimation(bugCoord);
         }
 
     }

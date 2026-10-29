@@ -7,7 +7,7 @@ public class SnapAnimationSubEvent() : ILevelSubEvent
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
         playerSprite = playerSprite.ConvertToAnimated(AnimationNames.PlayerSnap);
-        spriteGrid.SetObjectSprite(playerCoord, playerCoord, playerSprite);
-        spriteGrid.StartObjectAnimation(playerSprite);
+        spriteGrid.SetObjectSprite(playerCoord, playerSprite);
+        spriteGrid.StartObjectAnimation(playerCoord);
     }
 }

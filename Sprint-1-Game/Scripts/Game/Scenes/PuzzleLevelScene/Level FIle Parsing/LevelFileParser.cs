@@ -98,6 +98,7 @@ public class LevelFileParser(ObjectFactory objectFactory, TileFactory tileFactor
             "_" => ObjectFactory.CreateEmpty(),
             "Player" => ObjectFactory.CreatePlayer(),
             "Rock" => ObjectFactory.CreateDefaultRock(),
+            "Pumpkin" => ObjectFactory.CreatePumpkin(),
             "Wall" => ObjectFactory.CreateWall(),
             "Bomb" => ObjectFactory.CreateBomb(),
             "ClosedDoor" => ObjectFactory.CreateClosedDoor(),

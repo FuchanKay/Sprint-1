@@ -7,16 +7,7 @@ namespace Scripts.Game;
 public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, LevelFileParser levelFileParser)
 {
     private readonly List<ILevelEvent> EventQueue = [];
-    public LevelContext Context = new()
-    {
-        GridSpriteWidthPx = 256,
-        GridSpriteHeightPx = 256,
-        GridScale = 0.25f,
-        PuzzleOffsetX = 400,
-        PuzzleOffsetY = 50,
-        PlayerIsDead = false,
-        LevelIsCompleted = false
-    };
+    public LevelContext Context;
     public GridPointer CurrentGridPointer;
     public InventoryManager CurrentInventoryManager;
     public LevelStateHistory LevelStateHistory;
@@ -24,13 +15,24 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     private readonly int UndoHistoryMaxLength = 200;
     public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
     private readonly int MaxEventsQueued = 2;
-    private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, false, objectFactory);
+    private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, false, objectFactory, tileFactory);
     private string[] LevelFile;
 
     public void Init(int levelIndex)
     {
         UndoHistory.Clear();
         CurrentEvent.SubEventStack.Clear();
+
+        Context = new()
+        {
+            GridSpriteWidthPx = 256,
+            GridSpriteHeightPx = 256,
+            GridScale = 0.25f,
+            PuzzleOffsetX = 400,
+            PuzzleOffsetY = 50,
+            PlayerIsDead = false,
+            LevelIsCompleted = false
+        };
 
         var levelFileName = FileNames.LevelFileNames[levelIndex];
         LevelFile = LevelFileParser.ParseLevelFile(levelFileName);
@@ -75,7 +77,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
             CurrentEvent = EventQueue[0];
             EventQueue.RemoveAt(0);
 
-            CurrentEvent.Execute(SpriteGrid, LevelStateHistory.GridPointer, LevelStateHistory.InventoryManager, Context);
+            CurrentEvent.Execute(SpriteGrid, LevelStateHistory.GridPointer, LevelStateHistory.InventoryManager, Context, UndoHistory);
             CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
         }
 
