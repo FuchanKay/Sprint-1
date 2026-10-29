@@ -16,7 +16,7 @@ public class SnapEvent() : ILevelEvent
         SubEventStack.Push(new BombSnapSubEvent(bombCoords, SubEventStack));
         SubEventStack.Push(new TimedBombSnapSubEvent(timedBombCoords, SubEventStack));
         SubEventStack.Push(new BugRotateSubEvent());
-        SubEventStack.Push(new WarlockSwapEvent());
+        SubEventStack.Push(new WarlockSwapSubEvent());
         SubEventStack.Push(new SnapAnimationSubEvent());
     }
 }
