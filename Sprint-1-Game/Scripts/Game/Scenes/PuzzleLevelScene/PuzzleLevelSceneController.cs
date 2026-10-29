@@ -48,16 +48,16 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         }
         else if (buttonInput.IsPressed(InputNames.UseItem1))
         {
-            Level.EnqueueEvent(new UseItemEvent(0, ObjectSpriteFactory));
+            Level.EnqueueEvent(new UseItemEvent(0));
         }
         else if (buttonInput.IsPressed(InputNames.UseItem2))
         {
-            Level.EnqueueEvent(new UseItemEvent(1, ObjectSpriteFactory));
+            Level.EnqueueEvent(new UseItemEvent(1));
 
         }
         else if (buttonInput.IsPressed(InputNames.UseItem3))
         {
-            Level.EnqueueEvent(new UseItemEvent(2, ObjectSpriteFactory));
+            Level.EnqueueEvent(new UseItemEvent(2));
 
         }
         else if (buttonInput.IsPressed(InputNames.PickItem))

@@ -13,8 +13,8 @@ public class SnapEvent(ObjectFactory objectFactory, TileFactory tileFactory) : I
         var timedBombCoords = gridPointer.GetObjectPointers(ObjectIds.TimedBomb).Keys.ToList();
 
         SubEventStack.Push(new BlueLizardAttackSubEvent(objectFactory, SubEventStack, levelStateHistory));
-        SubEventStack.Push(new BombSnapSubEvent(bombCoords, objectFactory, SubEventStack));
-        SubEventStack.Push(new TimedBombSnapSubEvent(timedBombCoords, objectFactory, SubEventStack));
+        SubEventStack.Push(new BombSnapSubEvent(bombCoords, SubEventStack));
+        SubEventStack.Push(new TimedBombSnapSubEvent(timedBombCoords, SubEventStack));
         SubEventStack.Push(new BugRotateSubEvent());
         SubEventStack.Push(new WarlockSwapEvent());
         SubEventStack.Push(new SnapAnimationSubEvent());

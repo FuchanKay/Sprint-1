@@ -27,7 +27,7 @@ public class CheckLaserEntrySubEvent(ObjectFactory objectFactory, Stack<ILevelSu
         }
         if(obj.Id == ObjectIds.Player)
         {
-            subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
+            subEventStack.Push(new PlayerDeathSubEvent());
         }
     }
 
