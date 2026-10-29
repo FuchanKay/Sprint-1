@@ -15,6 +15,7 @@ public class SnapEvent(ObjectFactory objectFactory, TileFactory tileFactory) : I
         SubEventStack.Push(new BlueLizardAttackSubEvent(objectFactory, SubEventStack, levelStateHistory));
         SubEventStack.Push(new BombSnapSubEvent(bombCoords, objectFactory, SubEventStack));
         SubEventStack.Push(new TimedBombSnapSubEvent(timedBombCoords, objectFactory, SubEventStack));
+        SubEventStack.Push(new SeedGrowthSubEvent());
         SubEventStack.Push(new BugRotateSubEvent());
         SubEventStack.Push(new WarlockSwapEvent());
         SubEventStack.Push(new SnapAnimationSubEvent());

@@ -81,11 +81,10 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
 
     private bool CanMove(IObject playerObject, Grid destinationGrid)
     {
-        var destinationTile = destinationGrid.Tile;
         var isDestinationEmpty = destinationGrid.Object.Id == ObjectIds.Empty;
         var isFacingDirection = playerObject.Direction == direction;
 
-        return destinationTile.IsWalkable && isFacingDirection && isDestinationEmpty;
+        return isFacingDirection && isDestinationEmpty;
     }
 
     private static bool CanPush(Grid destinationGrid, IObject destinationPlus1Object)
