@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Scripts.Game;
 
-public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
+public class EnemiesMoveSubEvent() : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {

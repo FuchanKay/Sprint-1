@@ -37,22 +37,22 @@ public class TileFactory()
         return CreateFloorTile(RegionNames.MossyBrickTile);
     }
 
-    public ITile CreatePitBoulderTile()
+    public static ITile CreatePitBoulderTile()
     {
         return CreateFloorTile(RegionNames.BoulderPitTile);
     }
 
-    public ITile CreateWaterBoulderTile()
+    public static ITile CreateWaterBoulderTile()
     {
         return CreateFloorTile(RegionNames.BoulderWaterTile);
     }
 
-    public ITile CreatePitPumpkinTile()
+    public static ITile CreatePitPumpkinTile()
     {
         return CreateFloorTile(RegionNames.PumpkinPitTile);
     }
 
-    public ITile CreateWaterPumpkinTile()
+    public static ITile CreateWaterPumpkinTile()
     {
         return CreateFloorTile(RegionNames.PumpkinWaterTile);
     }

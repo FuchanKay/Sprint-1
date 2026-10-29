@@ -1,5 +1,5 @@
 namespace Scripts.Game;
-public class InventoryManager(ObjectFactory objectFactory)
+public class InventoryManager()
 {
     private readonly IObject[] PlayerItems =
         [
@@ -30,7 +30,7 @@ public class InventoryManager(ObjectFactory objectFactory)
 
     public InventoryManager Clone()
     {
-        var clone = new InventoryManager(objectFactory);
+        var clone = new InventoryManager();
         foreach (var item in PlayerItems)
         {
             clone.AddItem(item);
