@@ -9,5 +9,6 @@ public enum TileIds
     Lava,
     Bug,
     CCBug,
-    VineSeed
+    VineSeed,
+    PumpkinSeed
 }

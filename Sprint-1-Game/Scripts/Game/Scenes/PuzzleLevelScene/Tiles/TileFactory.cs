@@ -111,4 +111,12 @@ public class TileFactory()
             
         };
     }
+
+    public static ITile CreatePumpkinSeedTile()
+    {
+        return new PumpkinSeedTile
+        {
+            
+        };
+    }
 }

@@ -41,6 +41,7 @@ public class AnimationNames
     public readonly static string Slash = "Slash";
     public readonly static string WaterSplash = "Water Splash";
     public readonly static string LavaSplash = "Lava Splash";
+    public readonly static string PumpkinGrowth = "Pumpkin Growth";
 
     public static string ObjectRotateClockwiseFrom(Directions direction)
     {
