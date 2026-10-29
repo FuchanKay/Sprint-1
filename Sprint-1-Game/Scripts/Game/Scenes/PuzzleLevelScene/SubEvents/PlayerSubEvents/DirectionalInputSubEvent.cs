@@ -54,21 +54,6 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
             gridPointer.SetObject(destinationCoord, playerObj);
             enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context, audioManager);
         }
-        // placeholder logic to collect a key by walking into it
-        else if (gridPointer.GetObject(destinationCoord).Id == ObjectIds.Key)
-        {
-            subEventStack.Push(new OpenExitSubEvent());
-            gridPointer.SetObject(destinationCoord, ObjectFactory.CreateEmpty());
-            spriteGrid.RemoveObjectSprite(destinationCoord);
-
-            var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
-            playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));
-            spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
-            spriteGrid.StartObjectAnimation(playerCoord);
-
-            gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
-            gridPointer.SetObject(destinationCoord, playerObj);
-        }
         else if (gridPointer.GetObject(destinationCoord).Id == ObjectIds.Door)
         {
             var door = gridPointer.GetObject(destinationCoord) as DoorObject;

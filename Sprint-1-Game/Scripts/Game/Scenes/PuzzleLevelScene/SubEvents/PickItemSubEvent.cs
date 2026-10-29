@@ -1,6 +1,8 @@
 namespace Scripts.Game;
+
+using System.Collections.Generic;
 using Scripts.GameComponents;
-public class PickItemSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
+public class PickItemSubEvent(ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
@@ -17,6 +19,11 @@ public class PickItemSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
             gridPointer.SetObject(targetCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(targetCoord);
             return;
+        } else if (itemObj.Id == ObjectIds.Key)
+        {
+            gridPointer.SetObject(targetCoord, ObjectFactory.CreateEmpty());
+            spriteGrid.RemoveObjectSprite(targetCoord);
+            subEventStack.Push(new OpenExitSubEvent());
         }
 
     }
