@@ -2,7 +2,7 @@ using System.Linq;
 
 namespace Scripts.Game;
 
-public class EnemyDamageSubEvent(ObjectFactory objectFactory, Coordinate enemyCoord) : ILevelSubEvent
+public class EnemyDamageSubEvent(Coordinate enemyCoord) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {

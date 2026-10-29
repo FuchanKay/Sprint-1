@@ -6,16 +6,14 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
 {
     private PuzzleLevel Level;
     private LevelFileParser LevelFileParser;
-    private readonly ObjectFactory ObjectFactory = new();
-    private readonly TileFactory TileFactory = new();
     private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     public int CurrentLevelIndex = 0;
 
     public void Init()
     {
-        LevelFileParser = new LevelFileParser(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory);
-        Level = new PuzzleLevel(ObjectFactory, TileFactory, ObjectSpriteFactory, TileSpriteFactory, LevelFileParser);
+        LevelFileParser = new LevelFileParser();
+        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, LevelFileParser);
         Level.Init(CurrentLevelIndex);
     }
     public void Update(int dtMs)
@@ -23,19 +21,19 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         var lockMove = buttonInput.IsHeld(InputNames.LShift);
         if (buttonInput.IsPressed(InputNames.MoveNorth) || buttonInput.IsPressed(InputNames.MoveNorthAlt))
         {
-            Level.EnqueueEvent(new MovePlayerEvent(Directions.North, lockMove, ObjectFactory, TileFactory));
+            Level.EnqueueEvent(new MovePlayerEvent(Directions.North, lockMove));
         }
         else if (buttonInput.IsPressed(InputNames.MoveEast) || buttonInput.IsPressed(InputNames.MoveEastAlt))
         {
-            Level.EnqueueEvent(new MovePlayerEvent(Directions.East, lockMove, ObjectFactory, TileFactory));
+            Level.EnqueueEvent(new MovePlayerEvent(Directions.East, lockMove));
         }
         else if (buttonInput.IsPressed(InputNames.MoveSouth) || buttonInput.IsPressed(InputNames.MoveSouthAlt))
         {
-            Level.EnqueueEvent(new MovePlayerEvent(Directions.South, lockMove, ObjectFactory, TileFactory));
+            Level.EnqueueEvent(new MovePlayerEvent(Directions.South, lockMove));
         }
         else if (buttonInput.IsPressed(InputNames.MoveWest) || buttonInput.IsPressed(InputNames.MoveWestAlt))
         {
-            Level.EnqueueEvent(new MovePlayerEvent(Directions.West, lockMove, ObjectFactory, TileFactory));
+            Level.EnqueueEvent(new MovePlayerEvent(Directions.West, lockMove));
         }
         else if (buttonInput.IsPressed(InputNames.ChangeLevel))
         {
@@ -44,25 +42,25 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         }
         else if (buttonInput.IsPressed(InputNames.Snap))
         {
-            Level.EnqueueEvent(new SnapEvent(ObjectFactory, TileFactory));
+            Level.EnqueueEvent(new SnapEvent());
         }
         else if (buttonInput.IsPressed(InputNames.UseItem1))
         {
-            Level.EnqueueEvent(new UseItemEvent(0, ObjectSpriteFactory));
+            Level.EnqueueEvent(new UseItemEvent(0));
         }
         else if (buttonInput.IsPressed(InputNames.UseItem2))
         {
-            Level.EnqueueEvent(new UseItemEvent(1, ObjectSpriteFactory));
+            Level.EnqueueEvent(new UseItemEvent(1));
 
         }
         else if (buttonInput.IsPressed(InputNames.UseItem3))
         {
-            Level.EnqueueEvent(new UseItemEvent(2, ObjectSpriteFactory));
+            Level.EnqueueEvent(new UseItemEvent(2));
 
         }
         else if (buttonInput.IsPressed(InputNames.PickItem))
         {
-            Level.EnqueueEvent(new PickItemEvent(ObjectFactory, TileFactory));
+            Level.EnqueueEvent(new PickItemEvent());
 
         }
         else if (buttonInput.IsPressed(InputNames.ResetLevel))

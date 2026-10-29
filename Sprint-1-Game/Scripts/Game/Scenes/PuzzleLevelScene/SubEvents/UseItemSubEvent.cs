@@ -1,6 +1,6 @@
 namespace Scripts.Game;
 
-public class UseItemSubEvent(int inventoryId, ObjectSpriteFactory objectSpriteFactory) : ILevelSubEvent
+public class UseItemSubEvent(int inventoryId) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
