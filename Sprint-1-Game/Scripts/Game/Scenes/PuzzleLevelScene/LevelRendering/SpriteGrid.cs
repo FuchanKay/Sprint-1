@@ -240,7 +240,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         UpdateAnimatingList(dtMs, AnimatingTileSprites, TileSprites);
         UpdateAnimatingEffectsList(dtMs, AnimatingEffectSprites, EffectSprites);
         UpdateIterableEffects();
-        if(iterableTimer % 3 == 0)
+        if(iterableTimer % 4 == 0)
         {
             UpdateIterableTiles();
         }
@@ -334,6 +334,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
             spriteList.Remove(sprite);
 
             // replace current tile with new tile!
+            TileSprites.Remove(sprite.CurrentPosition);
             TileSprites[sprite.CurrentPosition] = sprite;
         }
         // once all tiles in list have been added, remove list from iterating
