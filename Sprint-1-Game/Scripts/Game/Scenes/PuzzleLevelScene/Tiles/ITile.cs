@@ -5,4 +5,5 @@ public interface ITile
     ITile Clone();
     TileIds Id { get; }
     bool IsWalkable { get; }
+    Directions Direction { get; set; }
 }

@@ -11,4 +11,5 @@ public class CCBugTile : ITile
     }
     public TileIds Id => TileIds.CCBug;
     public bool IsWalkable => true;
+    public Directions Direction { get; set; }
 }

@@ -15,6 +15,7 @@ public class SnapEvent() : ILevelEvent
         SubEventStack.Push(new BlueLizardAttackSubEvent(SubEventStack, levelStateHistory));
         SubEventStack.Push(new BombSnapSubEvent(bombCoords, SubEventStack));
         SubEventStack.Push(new TimedBombSnapSubEvent(timedBombCoords, SubEventStack));
+        SubEventStack.Push(new SeedGrowthSubEvent());
         SubEventStack.Push(new BugRotateSubEvent());
         SubEventStack.Push(new WarlockSwapSubEvent());
         SubEventStack.Push(new SnapAnimationSubEvent());
