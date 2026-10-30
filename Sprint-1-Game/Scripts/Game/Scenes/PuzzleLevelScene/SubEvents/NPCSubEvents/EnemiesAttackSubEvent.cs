@@ -127,10 +127,12 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
         Stack<Coordinate> lineOfSight = Pathfinder.GetLineOfSight(gridPointer, lizardCoord, lizardDirection);
         var currentObjAhead = gridPointer.GetObject(lineOfSight.Peek());
         var seesPlayer = currentObjAhead.Id == ObjectIds.Player;
+        var seesDestructible = currentObjAhead.IsDestructible;
+        var seesEnemy = currentObjAhead is IEnemy;
 
         var lizardSprite = spriteGrid.GetObjectSprite(lizardCoord);
         var isIdle = lizardSprite.IdleName.Contains("Idle");
 
-       return seesPlayer && isIdle;
+       return (seesPlayer || seesDestructible || seesEnemy) && isIdle;
     }
 }
