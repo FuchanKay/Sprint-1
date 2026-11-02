@@ -62,7 +62,7 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
     protected void LaserBlastAttack(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate startCoord, EffectIds laserColorId)
     {
         var direction = gridPointer.GetObject(startCoord).Direction;
-        var laserPath = Pathfinder.GetLaserPath(gridPointer, startCoord, direction);
+        var laserPath = Pathfinder.GetLineOfSight(gridPointer, startCoord, direction);
         var endCoord = laserPath.Peek();
 
         var lizard = gridPointer.GetObject(startCoord);
