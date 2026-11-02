@@ -217,7 +217,7 @@ public class Setup(ContentManager content)
     }
     private void LoadAudio()
     {
-        AudioManager.MapSound(SoundNames.Snap, content.Load<SoundEffect>(FileNames.SnapAudio), 1.0f);
+        AudioManager.MapSound(SoundNames.Snap, content.Load<SoundEffect>(FileNames.SnapAudio), 1.0f, 1.0f);
         AudioManager.MapSong(SoundNames.Song, content.Load<Song>(FileNames.SongAudio), 0.2f);
     }
 }

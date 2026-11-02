@@ -43,9 +43,9 @@ public class AudioManager : IAudioManager
         if (SongController.Volume < 0.0f) SongController.Volume = 0.0f;
     }
 
-    public void MapSound(string soundName, SoundEffect soundEffect, float baseVolume)
+    public void MapSound(string soundName, SoundEffect soundEffect, float baseVolume, float pitch)
     {
-        SoundController.MapSound(soundName, soundEffect, baseVolume);
+        SoundController.MapSound(soundName, soundEffect, baseVolume, pitch);
     }
 
     public void MapSong(string songName, Song song, float baseVolume)

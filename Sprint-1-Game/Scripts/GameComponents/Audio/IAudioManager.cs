@@ -11,6 +11,6 @@ public interface IAudioManager
     void SoundVolumeDown();
     void SongVolumeUp();
     void SongVolumeDown();
-    void MapSound(string soundName, SoundEffect soundEffect, float baseVolume);
+    void MapSound(string soundName, SoundEffect soundEffect, float baseVolume, float pitch);
     void MapSong(string songName, Song song, float baseVolume);
 }
