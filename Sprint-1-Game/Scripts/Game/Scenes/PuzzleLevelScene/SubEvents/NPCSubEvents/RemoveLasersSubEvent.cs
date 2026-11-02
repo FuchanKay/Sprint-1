@@ -31,7 +31,7 @@ public class RemoveLasersSubEvent(List<LevelStateHistory> undoHistory) : ILevelS
 
             var prevCoord = coord;
             var positionChanged = prevObjAtCoord.Id != ObjectIds.RedLizard;
-            if(positionChanged)
+            if (positionChanged)
             {
                 prevCoord = Pathfinder.GetPlayerCoord(gridPointer, coord);
             }
@@ -42,16 +42,17 @@ public class RemoveLasersSubEvent(List<LevelStateHistory> undoHistory) : ILevelS
             var newObjectAppeared = prevNotWall && objectCoordAhead != prevObjectCoordAhead;
 
             var directionChanged = false;
-            if(prevObjAtCoord.Id == ObjectIds.RedLizard)
+            if (prevObjAtCoord.Id == ObjectIds.RedLizard)
             {
                 directionChanged = prevObjAtCoord.Direction != lizardObj.Direction;
             }
 
-            if(directionChanged && wallAhead)
+            if (directionChanged && wallAhead)
             {
                 RemoveLaserBeam(spriteGrid, gridPointer, coord, coord, lizardObj.Direction, prevObjAtCoord.Direction);
                 RemoveLaserBeam(spriteGrid, gridPointer, coord, coord, lizardObj.Direction, lizardObj.Direction);
-            } else if(wallAhead || positionChanged || newObjectAppeared)
+            }
+            else if (wallAhead || positionChanged || newObjectAppeared)
             { // need to remove bc wall, remove at prev position, or to prep for new blast
                 RemoveLaserBeam(spriteGrid, gridPointer, coord, prevCoord, lizardObj.Direction, lizardObj.Direction);
             }

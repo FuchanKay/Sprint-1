@@ -106,7 +106,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     {
         EffectSpriteManager.StartIterableEffect(startCoord);
     }
-    
+
     public void Update(int dtMs)
     {
         ObjectSpriteManager.Update(dtMs);

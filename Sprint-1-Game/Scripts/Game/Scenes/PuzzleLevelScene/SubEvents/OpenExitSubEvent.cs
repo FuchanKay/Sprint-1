@@ -10,7 +10,7 @@ public class OpenExitSubEvent() : ILevelSubEvent
         foreach (var doorCoord in doorCoords)
         {
             DoorObject door = gridPointer.GetObject(doorCoord) as DoorObject;
-            if(!door.IsOpen) 
+            if (!door.IsOpen)
             {
                 OpenDoor(spriteGrid, doorCoord);
                 door.IsOpen = true;

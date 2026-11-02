@@ -122,7 +122,7 @@ public class ObjectFactory()
     {
         return new Bat
         {
-          Direction = Directions.South,   
+            Direction = Directions.South,
         };
     }
 
@@ -130,7 +130,7 @@ public class ObjectFactory()
     {
         return new Frog
         {
-          Direction = Directions.South,   
+            Direction = Directions.South,
         };
     }
 
@@ -138,7 +138,7 @@ public class ObjectFactory()
     {
         return new Zombie
         {
-          Direction = Directions.South,   
+            Direction = Directions.South,
         };
     }
 }

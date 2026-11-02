@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
@@ -6,7 +7,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class Setup(ContentManager content)
+public class Setup(ContentManager content, GameWindow window)
 {
     //TODO: If there are any save file stuff that needs to be resolved it should be done here. 
     private IAudioManager AudioManager;
@@ -23,8 +24,7 @@ public class Setup(ContentManager content)
         MapDefaultInputs();
         AddAnimations();
         AddRegions();
-
-        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas);
+        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, window);
         sceneManager.Init();
     }
 
@@ -32,6 +32,8 @@ public class Setup(ContentManager content)
     {
         BindAllTextures();
         LoadAudio();
+        LoadUI();
+
     }
 
 
@@ -219,5 +221,9 @@ public class Setup(ContentManager content)
     {
         AudioManager.MapSound(SoundNames.Snap, content.Load<SoundEffect>(FileNames.SnapAudio), 1.0f);
         AudioManager.MapSong(SoundNames.Song, content.Load<Song>(FileNames.SongAudio), 0.2f);
+    }
+    private void LoadUI()
+    {
+        //place holder, will be implemented in the future
     }
 }
