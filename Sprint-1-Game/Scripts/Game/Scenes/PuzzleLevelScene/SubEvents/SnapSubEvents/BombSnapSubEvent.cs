@@ -26,7 +26,7 @@ public class BombSnapSubEvent(List<Coordinate> bombCoords, Stack<ILevelSubEvent>
             {
                 var targetCoord = new Coordinate(bombCoord.X + x, bombCoord.Y + y);
                 var targetObj = gridPointer.GetObject(targetCoord);
-                
+
                 if (targetObj.Id == ObjectIds.Player)
                 {
                     subEventStack.Push(new PlayerDeathSubEvent());

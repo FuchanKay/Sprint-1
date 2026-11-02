@@ -30,7 +30,7 @@ public class EffectSpriteManager()
     {
         var realCoord = CalculateLiteralPos(coord);
         ISprite sprite = ObjectSpriteFactory.CreateEffectSprite(effectId, realCoord, Context);
-        
+
         EffectSprites[realCoord] = sprite;
         AnimatingEffectSprites.Add(sprite);
     }
@@ -54,7 +54,7 @@ public class EffectSpriteManager()
         var sprite = ObjectSpriteFactory.CreateEffectSprite(effectId, realCurrentCoord, Context);
         sprite.Rotation = rotation;
 
-        if(!IterableEffectSprites.TryGetValue(realStartCoord, out var spriteList))
+        if (!IterableEffectSprites.TryGetValue(realStartCoord, out var spriteList))
         {
             spriteList = [];
             IterableEffectSprites.Add(realStartCoord, spriteList);
@@ -121,10 +121,11 @@ public class EffectSpriteManager()
         {
             var sprite = spriteList[0];
             spriteList.Remove(sprite);
-            if(sprite.IdleName == RegionNames.Explosion)
+            if (sprite.IdleName == RegionNames.Explosion)
             {
                 AnimatingEffectSprites.Add(sprite);
-            } else
+            }
+            else
             {
                 EffectSprites.Remove(sprite.CurrentPosition);
                 EffectSprites.Add(sprite.CurrentPosition, sprite);

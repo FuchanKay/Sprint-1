@@ -7,9 +7,9 @@ public class CheckLaserEntrySubEvent(Stack<ILevelSubEvent> subEventStack) : ILev
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
         var effectSprites = spriteGrid.GetEffectSprites();
-        foreach(var sprite in effectSprites.Values)
+        foreach (var sprite in effectSprites.Values)
         {
-            if(sprite.IdleName == RegionNames.LaserBeam)
+            if (sprite.IdleName == RegionNames.LaserBeam)
             {
                 DestroyObject(spriteGrid, gridPointer, context, subEventStack, sprite.CurrentPosition);
             }
@@ -20,12 +20,12 @@ public class CheckLaserEntrySubEvent(Stack<ILevelSubEvent> subEventStack) : ILev
     {
         var coord = GetGridCoord(context, position);
         var obj = gridPointer.GetObject(coord);
-        if(obj.IsDestructible)
+        if (obj.IsDestructible)
         {
             gridPointer.SetObject(coord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(coord);
         }
-        if(obj.Id == ObjectIds.Player)
+        if (obj.Id == ObjectIds.Player)
         {
             subEventStack.Push(new PlayerDeathSubEvent());
         }

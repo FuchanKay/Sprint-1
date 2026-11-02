@@ -1,4 +1,5 @@
 namespace Scripts.Game;
+
 public class InventoryManager()
 {
     private readonly IObject[] PlayerItems =

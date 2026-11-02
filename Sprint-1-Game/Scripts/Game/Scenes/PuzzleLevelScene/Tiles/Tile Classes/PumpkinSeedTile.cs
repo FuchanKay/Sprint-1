@@ -6,7 +6,7 @@ public class PumpkinSeedTile : ITile
     {
         return new PumpkinSeedTile
         {
-            
+
         };
     }
     public TileIds Id => TileIds.PumpkinSeed;

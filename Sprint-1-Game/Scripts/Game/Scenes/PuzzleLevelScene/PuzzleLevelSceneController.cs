@@ -14,7 +14,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
 
     public void Init()
     {
-        GameLayoutManager.Initialize(window);
+        GameLayoutManager.Init(window);
         LevelFileParser = new LevelFileParser();
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, LevelFileParser, GameLayoutManager);
         Level.Init(CurrentLevelIndex);

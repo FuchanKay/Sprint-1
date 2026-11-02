@@ -20,7 +20,7 @@ public class TileSpriteManager
     {
         Context = context;
         TileSpriteFactory = tileSpriteFactory;
-        
+
         TileSprites.Clear();
         AnimatingTileSprites.Clear();
         IterableTileSprites.Clear();
@@ -36,7 +36,7 @@ public class TileSpriteManager
                 var tile = grid.Tile;
 
                 var spriteCoord = CalculateLiteralPos(coord);
-                
+
                 if (tile.Id != TileIds.Empty)
                 {
                     TileSprites.Add(spriteCoord, tileSpriteFactory.CreateTileSprite(tile, spriteCoord, context));
@@ -89,7 +89,7 @@ public class TileSpriteManager
         var sprite = TileSpriteFactory.CreateTileSprite(tile, realCurrentCoord, Context);
         sprite.Rotation = rotation;
 
-        if(!IterableTileSprites.TryGetValue(realStartCoord, out var spriteList))
+        if (!IterableTileSprites.TryGetValue(realStartCoord, out var spriteList))
         {
             spriteList = [];
             IterableTileSprites.Add(realStartCoord, spriteList);

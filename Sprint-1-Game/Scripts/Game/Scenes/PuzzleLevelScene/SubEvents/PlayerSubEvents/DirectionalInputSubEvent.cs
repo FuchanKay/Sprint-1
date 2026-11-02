@@ -16,12 +16,12 @@ public class DirectionalInputSubEvent(Directions direction, Stack<ILevelSubEvent
 
         var destinationPlus1Coord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
         var destinationPlus1CoordIsWithinBounds = CoordIsWithinBounds(destinationPlus1Coord, context.LevelWidth, context.LevelHeight);
-        
+
         if (destinationCoordIsWithinBounds && destinationPlus1CoordIsWithinBounds && CanPush(gridPointer.GetGrid(destinationCoord), gridPointer.GetObject(destinationPlus1Coord)))
         {
             var destinationGrid = gridPointer.GetGrid(destinationCoord);
             var destinationObject = destinationGrid.Object;
-            
+
             var onePastDestinationCoord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
 
             var objectSprite = spriteGrid.GetObjectSprite(destinationCoord);
