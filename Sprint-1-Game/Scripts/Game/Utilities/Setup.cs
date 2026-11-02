@@ -24,7 +24,6 @@ public class Setup(ContentManager content, GameWindow window)
         MapDefaultInputs();
         AddAnimations();
         AddRegions();
-
         sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, window);
         sceneManager.Init();
     }
@@ -33,6 +32,8 @@ public class Setup(ContentManager content, GameWindow window)
     {
         BindAllTextures();
         LoadAudio();
+        LoadUI();
+
     }
 
 
@@ -220,5 +221,9 @@ public class Setup(ContentManager content, GameWindow window)
     {
         AudioManager.MapSound(SoundNames.Snap, content.Load<SoundEffect>(FileNames.SnapAudio), 1.0f);
         AudioManager.MapSong(SoundNames.Song, content.Load<Song>(FileNames.SongAudio), 0.2f);
+    }
+    private void LoadUI()
+    {
+        //place holder, will be implemented in the future
     }
 }

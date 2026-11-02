@@ -6,7 +6,6 @@ namespace Scripts.Game;
 public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, ITextureAtlas textureAtlas, GameWindow window) : ISceneController
 {
     private PuzzleLevel Level;
-    private HUD HUD;
     private LevelFileParser LevelFileParser;
     private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
@@ -19,8 +18,6 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         LevelFileParser = new LevelFileParser();
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, LevelFileParser, GameLayoutManager);
         Level.Init(CurrentLevelIndex);
-        HUD = new HUD(GameLayoutManager);
-        HUD.Initialize(Level);
     }
     public void Update(int dtMs)
     {
@@ -79,7 +76,6 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         }
 
         Level.Update(dtMs);
-        HUD.Update(dtMs);
 
         // Exits to the main menu upon a levels completion
         if (Level.Context.LevelIsCompleted)
@@ -92,6 +88,5 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     public void Draw(SpriteBatch sb)
     {
         Level.Draw(sb);
-        HUD.Draw(sb);
     }
 }
