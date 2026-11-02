@@ -88,7 +88,7 @@ public class Pathfinder()
         var destinationTile = destinationGrid.Tile;
         var isDestinationEmpty = destinationGrid.Object.Id == ObjectIds.Empty || destinationGrid.Object.Id == ObjectIds.Player;
 
-        return destinationTile.IsWalkable && destinationTile.Id != TileIds.Lava && isDestinationEmpty;
+        return destinationTile.Id != TileIds.Lava && isDestinationEmpty;
     }
 
     public static Coordinate GetBlastTargetCoord(GridPointer gridPointer, Coordinate startCoord, Directions direction)

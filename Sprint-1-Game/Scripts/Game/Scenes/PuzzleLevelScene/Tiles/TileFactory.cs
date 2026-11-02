@@ -56,6 +56,16 @@ public class TileFactory()
     {
         return CreateFloorTile(RegionNames.PumpkinWaterTile);
     }
+
+    public static ITile CreateVineStartTile()
+    {
+        return CreateFloorTile(RegionNames.VineStartTile);
+    }
+
+    public static ITile CreateVineTile()
+    {
+        return CreateFloorTile(RegionNames.VineTile);
+    }
     public static ITile CreatePitTile()
     {
         return new PitTile
@@ -91,6 +101,22 @@ public class TileFactory()
         return new CCBugTile
         {
 
+        };
+    }
+
+    public static ITile CreateVineSeedTile()
+    {
+        return new VineSeedTile
+        {
+            
+        };
+    }
+
+    public static ITile CreatePumpkinSeedTile()
+    {
+        return new PumpkinSeedTile
+        {
+            
         };
     }
 }
