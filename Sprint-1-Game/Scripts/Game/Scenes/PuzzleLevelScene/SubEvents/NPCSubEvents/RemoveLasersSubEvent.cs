@@ -10,7 +10,6 @@ public class RemoveLasersSubEvent() : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
-        // Thread.Sleep(500);
         var effectSprites = spriteGrid.GetEffectSprites();
         var iteratingList = new Dictionary<Vector2, ISprite>(effectSprites);
         foreach (var pair in iteratingList)

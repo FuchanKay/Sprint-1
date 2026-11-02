@@ -59,7 +59,6 @@ public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
     private void PathFindToPlayer(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate enemyCoord)
     {
         var destinationCoord = Pathfinder.FindNextPointTowardsPlayer(gridPointer, enemyCoord);
-        Console.WriteLine($"Moving to {destinationCoord}");
 
         var directionCoord = enemyCoord - destinationCoord;
         var direction = Directions.North;
