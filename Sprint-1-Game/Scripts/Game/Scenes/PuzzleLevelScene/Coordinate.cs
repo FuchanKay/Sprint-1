@@ -61,4 +61,5 @@ public struct Coordinate
     }
 
     public override string ToString() => $"({X}, {Y})";
+
 }

@@ -3,7 +3,7 @@ using System;
 using Scripts.GameComponents;
 namespace Scripts.Game;
 
-public class EvaluateLevelSubEvent(Stack<ILevelSubEvent> subEventStack, ObjectFactory objectFactory, TileFactory tileFactory,  List<LevelStateHistory> levelStateHistory) : ILevelSubEvent
+public class EvaluateLevelSubEvent(Stack<ILevelSubEvent> subEventStack, List<LevelStateHistory> levelStateHistory) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {

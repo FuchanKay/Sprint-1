@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas) : ISceneManager
+public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, GameWindow window) : ISceneManager
 {
     private readonly Dictionary<string, ISceneController> NameSceneMap = [];
     private ISceneController CurrentScene;
@@ -75,7 +76,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas);
         NameSceneMap.TryAdd(SceneNames.MainMenu, mainMenuScene);
 
-        var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas);
+        var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas, window);
         NameSceneMap.TryAdd(SceneNames.PuzzleLevel, puzzleLevelScene);
     }
 }

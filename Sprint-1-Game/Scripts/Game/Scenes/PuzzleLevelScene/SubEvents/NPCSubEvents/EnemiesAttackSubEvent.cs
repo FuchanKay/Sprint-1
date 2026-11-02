@@ -6,14 +6,14 @@ using System.Linq;
 
 namespace Scripts.Game;
 
-public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack, List<LevelStateHistory> levelStateHistory) : ILevelSubEvent
+public class EnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, List<LevelStateHistory> levelStateHistory) : ILevelSubEvent
 {
     public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
         var skeletonCoords = gridPointer.GetObjectPointers(ObjectIds.Skeleton).Keys.ToList();
         var batCoords = gridPointer.GetObjectPointers(ObjectIds.Bat).Keys.ToList();
         var lizardCoords = gridPointer.GetObjectPointers(ObjectIds.RedLizard).Keys.ToList();
-        List<Coordinate> omniDirEnemyCoords = [..skeletonCoords, ..batCoords]; 
+        List<Coordinate> omniDirEnemyCoords = [.. skeletonCoords, .. batCoords];
 
         foreach (var attackingEnemyCoord in omniDirEnemyCoords)
         {
@@ -39,10 +39,10 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
     private void OmniDirectionalAttack(Coordinate enemyCoord, GridPointer gridPointer, SpriteGrid spriteGrid)
     {
         var playerCoord = Pathfinder.GetPlayerCoord(gridPointer, enemyCoord);
-        if(playerCoord != enemyCoord)
+        if (playerCoord != enemyCoord)
         {
             spriteGrid.PlayEffect(EffectIds.Slash, playerCoord);
-            subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
+            subEventStack.Push(new PlayerDeathSubEvent());
         }
     }
 
@@ -55,7 +55,7 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
         if (targetObj.Id == ObjectIds.Player)
         {
             spriteGrid.PlayEffect(EffectIds.Slash, targetCoord);
-            subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
+            subEventStack.Push(new PlayerDeathSubEvent());
         }
     }
 
@@ -84,7 +84,7 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
         {
             spriteGrid.AddIterableEffectSprite(laserColorId, startDirCoord, dirCoord, rotation);
 
-            if(dirGrid.Object.Id == ObjectIds.Player)
+            if (dirGrid.Object.Id == ObjectIds.Player)
             {
                 subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
             } else if (dirGrid.Object is IEnemy)
@@ -101,15 +101,15 @@ public class EnemiesAttackSubEvent(ObjectFactory objectFactory, Stack<ILevelSubE
             dirGrid = gridPointer.GetGrid(dirCoord);
         }
 
-        if(dirGrid.Object.IsDestructible)
+        if (dirGrid.Object.IsDestructible)
         {
             gridPointer.SetObject(dirCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(dirCoord);
         }
 
-        if(dirGrid.Object.Id == ObjectIds.Player)
+        if (dirGrid.Object.Id == ObjectIds.Player)
         {
-            subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
+            subEventStack.Push(new PlayerDeathSubEvent());
         }
 
         var laserImpactEffect = EffectIds.RedLaserImpact;

@@ -1,7 +1,7 @@
 namespace Scripts.Game;
 using Scripts.GameComponents;
 
-public class PlayerDeathSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
+public class PlayerDeathSubEvent() : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {

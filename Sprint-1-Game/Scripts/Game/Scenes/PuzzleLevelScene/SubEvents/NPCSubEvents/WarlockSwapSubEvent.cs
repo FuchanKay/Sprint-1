@@ -1,6 +1,10 @@
 using System.Linq;
+<<<<<<< HEAD
 using System;
 using Scripts.GameComponents;
+=======
+
+>>>>>>> origin/main
 namespace Scripts.Game;
 
 public class WarlockSwapSubEvent() : ILevelSubEvent

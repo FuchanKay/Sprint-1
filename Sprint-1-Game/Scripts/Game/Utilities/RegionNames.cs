@@ -82,7 +82,7 @@ public class RegionNames
             _ => throw new ArgumentException("Direction not found"),
         };
     }
-    
+
     public static string ToFrogIdleRegionName(Directions direction)
     {
         return direction switch

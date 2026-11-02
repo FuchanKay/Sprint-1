@@ -1,8 +1,6 @@
 namespace Scripts.Game;
 
-using System.Collections.Generic;
-using Scripts.GameComponents;
-public class PickItemSubEvent(ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
+public class PickItemSubEvent() : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {

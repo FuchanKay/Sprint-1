@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
@@ -6,7 +7,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class Setup(ContentManager content)
+public class Setup(ContentManager content, GameWindow window)
 {
     //TODO: If there are any save file stuff that needs to be resolved it should be done here. 
     private IAudioManager AudioManager;
@@ -23,8 +24,7 @@ public class Setup(ContentManager content)
         MapDefaultInputs();
         AddAnimations();
         AddRegions();
-
-        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas);
+        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, window);
         sceneManager.Init();
     }
 
@@ -32,6 +32,8 @@ public class Setup(ContentManager content)
     {
         BindAllTextures();
         LoadAudio();
+        LoadUI();
+
     }
 
 
@@ -102,6 +104,7 @@ public class Setup(ContentManager content)
         // tiles
         TextureAtlas.AddAnimation(AnimationNames.BugTileRotate, 2, 0, rotateFrames, 64, 64, rotateDelay);
         TextureAtlas.AddAnimation(AnimationNames.BugTileRotateCC, 2, 2, rotateFrames, 64, 64, rotateDelay);
+        TextureAtlas.AddAnimation(AnimationNames.PumpkinGrowth, 1, 0, 6, 64, 64, 125);
 
         // effects
         TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 0, 4, 105, 96);
@@ -109,7 +112,6 @@ public class Setup(ContentManager content)
         TextureAtlas.AddAnimation(AnimationNames.Slash, 0, 0, 6, 102, 440, 50);
         TextureAtlas.AddAnimation(AnimationNames.LavaSplash, 1, 0, 6, 64, 64, 80);
         TextureAtlas.AddAnimation(AnimationNames.WaterSplash, 0, 0, 6, 64, 64);
-
         //door open
         TextureAtlas.AddAnimation(AnimationNames.DoorOpening, 0, 0, 5, 15, 27, 100);
 
@@ -221,5 +223,9 @@ public class Setup(ContentManager content)
         AudioManager.MapSound(SoundNames.Snap, content.Load<SoundEffect>(FileNames.SnapAudio), 1.0f);
         AudioManager.MapSong(SoundNames.Song, content.Load<Song>(FileNames.SongAudio), 0.2f);
         AudioManager.MapSound(SoundNames.Explosion, content.Load<SoundEffect>(FileNames.ExplosionAudio), 0.75f);
+    }
+    private void LoadUI()
+    {
+        //place holder, will be implemented in the future
     }
 }
