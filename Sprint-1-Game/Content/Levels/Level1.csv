@@ -11,8 +11,8 @@ Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 _,_,_,_,_,_,_,_,_,_
 Wall,Wall,Wall,Wall,ClosedDoor,Wall,Wall,Wall,Wall,Wall
-Wall,Player,_,Wall,_,_,_,_,_,Wall
-Wall,Wall,Wall,Wall,_,Pumpkin,Rock,Bomb,_,Wall
+Wall,Player,_,_,_,_,_,_,_,Wall
+Wall,_,_,_,_,Pumpkin,Rock,Bomb,_,Wall
 Wall,_,_,_,_,_,_,_,_,Wall
 Wall,_,_,_,_,_,_,_,_,Wall
 Wall,_,_,_,_,_,_,BlueLizard,_,Wall
