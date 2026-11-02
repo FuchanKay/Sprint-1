@@ -1,7 +1,7 @@
 Level1,10,10,,,,,,,
 Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
-Dirt,Dirt,Water,Water,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
+Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 Dirt,Dirt,Water,Water,Lava,Dirt,Dirt,Dirt,Dirt,Dirt
 Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 Dirt,Dirt,Bug,CCBug,Dirt,Brick,Brick,Dirt,Bug,Dirt
@@ -11,10 +11,10 @@ Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 _,_,_,_,_,_,_,_,_,_
 Wall,Wall,Wall,Wall,ClosedDoor,Wall,Wall,Wall,Wall,Wall
+Wall,Player,_,Wall,_,_,_,_,_,Wall
+Wall,Wall,Wall,Wall,_,Pumpkin,Rock,Bomb,_,Wall
 Wall,_,_,_,_,_,_,_,_,Wall
-Wall,_,_,_,Player,Pumpkin,Rock,Bomb,_,Wall
 Wall,_,_,_,_,_,_,_,_,Wall
-Wall,_,RedLizard,_,_,_,_,_,_,Wall
 Wall,_,_,_,_,_,_,BlueLizard,_,Wall
 Wall,_,_,_,_,_,_,_,_,Wall
 Wall,_,_,_,_,_,_,_,_,Wall

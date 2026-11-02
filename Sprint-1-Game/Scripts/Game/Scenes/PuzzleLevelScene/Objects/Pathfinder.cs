@@ -91,30 +91,6 @@ public class Pathfinder()
         return destinationTile.IsWalkable && destinationTile.Id != TileIds.Lava && isDestinationEmpty;
     }
 
-    // public static Coordinate GetLaserPath(GridPointer gridPointer, Coordinate startCoord, Directions direction)
-    // {
-    //     Stack<Coordinate> laserPath = [];
-    //     var prevCoord = GetLineOfSight(gridPointer, startCoord, direction);
-    //     var currCoord = prevCoord;
-
-    //     var obj = gridPointer.GetObject(currCoord);
-
-    //     while(obj.Id != ObjectIds.Wall && obj.Id != ObjectIds.Door)
-    //     {
-    //         prevCoord = currCoord;
-    //         currCoord = GetLineOfSight(gridPointer, prevCoord, direction);
-    //         obj = gridPointer.GetObject(currCoord);
-    //     }
-
-    //     var returnCoord = prevCoord;
-    //     if(obj.Id == ObjectIds.Rock)
-    //     {
-    //         returnCoord = currCoord;
-    //     }
-
-    //     return returnCoord;
-    // }
-
     public static Stack<Coordinate> GetLaserPath(GridPointer gridPointer, Coordinate coord, Directions direction)
     {
         Stack<Coordinate> laserPath = [];

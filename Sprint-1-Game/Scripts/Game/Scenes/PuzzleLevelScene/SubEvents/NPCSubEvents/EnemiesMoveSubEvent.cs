@@ -69,7 +69,10 @@ public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         if (destinationCoord.X != -1 && destinationCoord.Y != -1)
         {
             MoveEnemySprite(spriteGrid, gridPointer, enemyCoord, direction);
-        } 
+        } else
+        {
+            MoveRandom(spriteGrid, gridPointer, enemyCoord);
+        }
     }
 
     // Overload method to handle the frogs special directional movement sprites.
