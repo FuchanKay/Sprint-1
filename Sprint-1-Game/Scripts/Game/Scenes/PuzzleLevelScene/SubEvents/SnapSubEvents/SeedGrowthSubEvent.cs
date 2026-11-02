@@ -1,10 +1,11 @@
 using Microsoft.Xna.Framework;
 
 namespace Scripts.Game;
+using Scripts.GameComponents;
 
 public class SeedGrowthSubEvent : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
         var vineSeedCoords = gridPointer.GetTilePointers(TileIds.VineSeed).Keys;
         var pumpkinSeedCoords = gridPointer.GetTilePointers(TileIds.PumpkinSeed).Keys;

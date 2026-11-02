@@ -86,10 +86,10 @@ public class EnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, List<Lev
 
             if (dirGrid.Object.Id == ObjectIds.Player)
             {
-                subEventStack.Push(new PlayerDeathSubEvent(objectFactory));
+                subEventStack.Push(new PlayerDeathSubEvent());
             } else if (dirGrid.Object is IEnemy)
             {
-                subEventStack.Push(new EnemyDamageSubEvent(objectFactory, dirCoord));
+                subEventStack.Push(new EnemyDamageSubEvent(dirCoord));
             }
             else if (dirGrid.Object.IsDestructible)
             {

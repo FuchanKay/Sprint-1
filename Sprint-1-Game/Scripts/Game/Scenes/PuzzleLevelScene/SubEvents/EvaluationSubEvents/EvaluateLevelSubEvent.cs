@@ -7,8 +7,8 @@ public class EvaluateLevelSubEvent(Stack<ILevelSubEvent> subEventStack, List<Lev
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
-        subEventStack.Push(new CheckNonWalkableTilesSubEvent(subEventStack, objectFactory, tileFactory));
-        subEventStack.Push(new CheckLaserEntrySubEvent(objectFactory, subEventStack));
-        subEventStack.Push(new EnemiesAttackSubEvent(objectFactory, subEventStack, levelStateHistory));
+        subEventStack.Push(new CheckNonWalkableTilesSubEvent(subEventStack));
+        subEventStack.Push(new CheckLaserEntrySubEvent(subEventStack));
+        subEventStack.Push(new EnemiesAttackSubEvent(subEventStack, levelStateHistory));
     }
 }
