@@ -17,10 +17,10 @@ public class SoundController : IAudioController
         soundEffectInstance.Play();
     }
 
-    public void MapSound(string soundName, SoundEffect soundEffect, float baseVolume)
+    public void MapSound(string soundName, SoundEffect soundEffect, float baseVolume, float pitch)
     {
         SoundEffectInstance soundEffectInstance = soundEffect.CreateInstance();
-        SoundConfig soundConfig = new SoundConfig(soundEffectInstance, baseVolume);
+        SoundConfig soundConfig = new SoundConfig(soundEffectInstance, baseVolume, pitch);
         if (!SoundMap.TryAdd(soundName, soundConfig))
         {
             SoundMap[soundName] = soundConfig;
