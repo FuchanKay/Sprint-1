@@ -17,7 +17,7 @@ public class Game1 : Core
 
     public Game1() : base(Name, ScreenWidth, ScreenHeight, IsFullScreen)
     {
-        Setup = new(Content);
+        Setup = new(Content, Window);
     }
 
     protected override void Initialize()

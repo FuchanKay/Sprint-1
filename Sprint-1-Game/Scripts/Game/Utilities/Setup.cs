@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
@@ -6,7 +7,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class Setup(ContentManager content)
+public class Setup(ContentManager content, GameWindow window)
 {
     //TODO: If there are any save file stuff that needs to be resolved it should be done here. 
     private IAudioManager AudioManager;
@@ -24,7 +25,7 @@ public class Setup(ContentManager content)
         AddAnimations();
         AddRegions();
 
-        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas);
+        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, window);
         sceneManager.Init();
     }
 

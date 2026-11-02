@@ -1,27 +1,48 @@
 using System;
-using System.Data;
-using System.Security.Cryptography.X509Certificates;
 using Microsoft.Xna.Framework;
-using MonoGameLibrary;
+using Microsoft.Xna.Framework.Graphics;
 
-public class GameLayoutManager() : Game
+namespace Scripts.Game;
+
+public class GameLayoutManager
 {
-    int CurrentSceneWidth=0;
-    int CurrentSceneHeight=0;
-    public void Update(GameWindow window)
+    private const float SceneRatio = 16f / 9f;
+    private const float LevelSceneRatio = 4f / 5f;
+    private const float HUDSceneRatio = 1f / 5f;
+    public LevelContext Context;
+    private int CurrentSceneWidth;
+    private int CurrentSceneHeight;
+
+    public void Initialize(GameWindow window)
     {
         CurrentSceneWidth = window.ClientBounds.Width;
         CurrentSceneHeight = window.ClientBounds.Height;
     }
-    public Point AnchorPoint()
+    public void LevelLayout(LevelContext context)
     {
-        Point point = new Point((CurrentSceneWidth - CurrentSceneHeight*16/9)*1/2, -(CurrentSceneHeight - CurrentSceneWidth*16/9)*1/2);
-        return point;
-    }
-    public float ScaleFactor()
-    {
-        float scaleFactor = 0f;
+        Context = context;
+        float levelWidthPx = Context.LevelWidth * Context.GridSpriteWidthPx;
+        float levelHeightPx = Context.LevelHeight * Context.GridSpriteHeightPx;
+        ScaleLevel(levelWidthPx, levelHeightPx);
+        AnchorLevel(levelWidthPx, levelHeightPx);
 
-        return scaleFactor;
+
+    }
+    public void HUDLayoutInitialize(LevelContext context)
+    {
+        Context = context;
+    }
+
+    private void AnchorLevel(float levelWidthPx, float levelHeightPx)
+    {
+        int EdgeOffset = Context.GridSpriteHeightPx / 2;
+        Context.PuzzleOffsetX = (int)((float)((CurrentSceneWidth * LevelSceneRatio - levelWidthPx * Context.GridScale) / 2f) + EdgeOffset * Context.GridScale);
+        Context.PuzzleOffsetY = (int)((float)((CurrentSceneHeight - levelHeightPx * Context.GridScale) / 2f) + EdgeOffset * Context.GridScale);
+    }
+    private void ScaleLevel(float levelWidthPx, float levelHeightPx)
+    {
+        float scaleX = CurrentSceneWidth * LevelSceneRatio / levelWidthPx;
+        float scaleY = CurrentSceneHeight / levelHeightPx;
+        Context.GridScale = Math.Min(scaleX, scaleY);
     }
 }

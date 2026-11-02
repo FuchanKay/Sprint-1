@@ -1,19 +1,22 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 namespace Scripts.Game;
 
-public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, ITextureAtlas textureAtlas) : ISceneController
+public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, ITextureAtlas textureAtlas, GameWindow window) : ISceneController
 {
     private PuzzleLevel Level;
     private LevelFileParser LevelFileParser;
     private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
+    private GameLayoutManager GameLayoutManager = new();
     public int CurrentLevelIndex = 0;
 
     public void Init()
     {
+        GameLayoutManager.Initialize(window);
         LevelFileParser = new LevelFileParser();
-        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, LevelFileParser);
+        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, LevelFileParser, GameLayoutManager);
         Level.Init(CurrentLevelIndex);
     }
     public void Update(int dtMs)
