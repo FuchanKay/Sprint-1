@@ -11,7 +11,7 @@ public class Game1 : Core
     private static readonly int ScreenWidth = 1280;
     private static readonly int ScreenHeight = 720;
     private static readonly bool IsFullScreen = false;
-    private static readonly Color BackgroundColor = Color.White;
+    private static readonly Color BackgroundColor = Color.Black;
     private readonly Setup Setup;
     private SceneManager SceneManager;
 
