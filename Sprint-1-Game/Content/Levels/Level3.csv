@@ -10,7 +10,7 @@ Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 _,_,_,_,_,_,_,_,_,_
-CornerWall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,CornerWall.1
+CornerWall,Wall,Wall,Wall,SingleWallConnector,Wall,Wall,Wall,Wall,CornerWall.1
 Wall.3,_,_,_,SingleWall.1,_,_,_,_,Wall.1
 Wall.3,_,Bomb,_,SingleWall.1,_,_,_,_,Wall.1
 Wall.3,_,_,_,Rock,Rock,SingleWall.1,_,_,Wall.1
@@ -19,4 +19,4 @@ Wall.3,_,_,_,Rock,Rock,SingleWall.1,_,_,Wall.1
 Wall.3,_,_,_,SingleWall.1,_,_,_,_,Wall.1
 Wall.3,_,Player,_,SingleWall.1,_,_,_,_,Wall.1
 Wall.3,_,_,_,SingleWall.1,_,_,_,_,Wall.1
-CornerWall.3,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,CornerWall.2
+CornerWall.3,Wall.2,Wall.2,Wall.2,SingleWallConnector.2,Wall.2,Wall.2,Wall.2,Wall.2,CornerWall.2

@@ -75,9 +75,24 @@ public class ObjectFactory()
         return CreateSkinnedWall(direction, RegionNames.CornerWall);
     }
 
+    public static IObject CreateInvertedCornerWall(Directions direction)
+    {
+        return CreateSkinnedWall(direction, RegionNames.InvertedCornerWall);
+    }
+
     public static IObject CreateStandaloneWall(Directions direction)
     {
         return CreateSkinnedWall(direction, RegionNames.StandaloneWall);
+    }
+
+    public static IObject CreateStandaloneWallConnector(Directions direction)
+    {
+        return CreateSkinnedWall(direction, RegionNames.StandaloneWallConnector);
+    }
+
+    public static IObject CreateStandaloneWallCorner(Directions direction)
+    {
+        return CreateSkinnedWall(direction, RegionNames.StandaloneWallCorner);
     }
 
     public static IObject CreateTopOfWall(Directions direction)
