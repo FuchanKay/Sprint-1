@@ -33,9 +33,9 @@ public class CheckLaserEntrySubEvent(Stack<ILevelSubEvent> subEventStack) : ILev
 
     private static Coordinate GetGridCoord(LevelContext context, Vector2 position)
     {
-        var spriteWidth = (int)(context.GridSpriteWidthPx * context.GridScale);
+        var spriteWidth = (int)(context.RawSpriteWidthPx * context.GridScale);
         var X = (int)(position.X - context.PuzzleOffsetX) / spriteWidth;
-        var spriteHeight = (int)(context.GridSpriteHeightPx * context.GridScale);
+        var spriteHeight = (int)(context.RawSpriteHeightPx * context.GridScale);
         var Y = (int)(position.Y - context.PuzzleOffsetY) / spriteHeight;
 
         return new Coordinate(X, Y);

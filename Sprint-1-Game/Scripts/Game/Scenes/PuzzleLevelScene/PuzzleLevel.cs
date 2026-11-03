@@ -24,8 +24,8 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
 
         Context = new()
         {
-            GridSpriteWidthPx = 256,
-            GridSpriteHeightPx = 256,
+            RawSpriteWidthPx = 256,
+            RawSpriteHeightPx = 256,
             GridScale = 0.25f,
             PuzzleOffsetX = 400,
             PuzzleOffsetY = 50,

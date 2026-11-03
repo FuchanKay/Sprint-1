@@ -1,14 +1,15 @@
+using System;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 namespace Scripts.Game;
 
-public class LevelEditorSceneController(ISceneManager sceneManager, IInputManager buttonInput, ITextureAtlas textureAtlas) : ISceneController
+public class LevelEditorSceneController(ISceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, ITextureAtlas textureAtlas) : ISceneController
 {
     private PuzzleLevel Level;
     private LevelContext Context = new()
     {
-        GridSpriteWidthPx = 256,
-        GridSpriteHeightPx = 256,
+        RawSpriteWidthPx = 256,
+        RawSpriteHeightPx = 256,
         GridScale = 0.175f,
         PuzzleOffsetX = 50,
         PuzzleOffsetY = 50,
@@ -39,8 +40,31 @@ public class LevelEditorSceneController(ISceneManager sceneManager, IInputManage
     {
         SpriteGrid.Update(dtMs);
 
+        if (mouseInput.IsPressed(InputNames.Select))
+        {
+            var leftmostPoint = Context.PuzzleOffsetX;
+            var rightmostPoint = (int) (Context.LevelWidth * Context.RawSpriteWidthPx * Context.GridScale + Context.PuzzleOffsetX);
+            var topMostPoint = Context.PuzzleOffsetY;
+            var bottomMostPoint = (int) (Context.LevelWidth * Context.RawSpriteHeightPx * Context.GridScale + Context.PuzzleOffsetY);
 
+            var gridWidth = (int) (Context.RawSpriteWidthPx * Context.GridScale);
+            var gridHeight = (int) (Context.RawSpriteHeightPx * Context.GridScale);
 
+            var mouseX = mouseInput.MousePositionX;
+            var mouseY = mouseInput.MousePositionY;
+
+            var outOfBounds = mouseX < leftmostPoint || mouseX > rightmostPoint || mouseY < topMostPoint || mouseY > bottomMostPoint;
+            if (outOfBounds)
+            {
+                Console.WriteLine("Out Of Bounds!");
+            }
+            else
+            {
+                var coordX = (mouseX - leftmostPoint) / gridWidth;
+                var coordY = (mouseY - topMostPoint) / gridHeight;
+                Console.WriteLine($"({coordX}, {coordY})");
+            }
+        }
     }
     public void Draw(SpriteBatch sb)
     {

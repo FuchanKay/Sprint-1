@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -89,9 +88,9 @@ public class EffectSpriteManager()
 
     private Vector2 CalculateLiteralPos(Coordinate coord)
     {
-        var spriteWidth = (int)(Context.GridSpriteWidthPx * Context.GridScale);
+        var spriteWidth = (int)(Context.RawSpriteWidthPx * Context.GridScale);
         var spriteX = spriteWidth * coord.X + Context.PuzzleOffsetX;
-        var spriteHeight = (int)(Context.GridSpriteHeightPx * Context.GridScale);
+        var spriteHeight = (int)(Context.RawSpriteHeightPx * Context.GridScale);
         var spriteY = spriteHeight * coord.Y + Context.PuzzleOffsetY;
 
         return new Vector2(spriteX, spriteY);

@@ -30,7 +30,7 @@ public class ObjectSpriteManager
                 var grid = gridPointer.GetGrid(coord);
                 var obj = grid.Object;
 
-                var spriteCoord = CalculateLiteralPos(coord);
+                var spriteCoord = SpriteGrid.CalculateLiteralPos(context, coord);
 
                 if (obj.Id != ObjectIds.Empty)
                 {
@@ -42,7 +42,7 @@ public class ObjectSpriteManager
 
     public ISprite GetObjectSprite(Coordinate coord)
     {
-        var realCoord = CalculateLiteralPos(coord);
+        var realCoord = SpriteGrid.CalculateLiteralPos(Context, coord);
         if (!ObjectSprites.TryGetValue(realCoord, out var sprite))
         {
             throw new ArgumentException("Grid could not be found");
@@ -52,7 +52,7 @@ public class ObjectSpriteManager
 
     public void SetObjectSprite(Coordinate coord, ISprite sprite)
     {
-        var realCoord = CalculateLiteralPos(coord);
+        var realCoord = SpriteGrid.CalculateLiteralPos(Context, coord);
 
         sprite.CurrentPosition = realCoord;
         sprite.SetTargetPosition(realCoord);
@@ -63,8 +63,8 @@ public class ObjectSpriteManager
 
     public void SetObjectSprite(Coordinate startCoord, Coordinate targetCoord, ISprite sprite)
     {
-        var realStartCoord = CalculateLiteralPos(startCoord);
-        var realTargetCoord = CalculateLiteralPos(targetCoord);
+        var realStartCoord = SpriteGrid.CalculateLiteralPos(Context, startCoord);
+        var realTargetCoord = SpriteGrid.CalculateLiteralPos(Context, targetCoord);
 
         sprite.CurrentPosition = realStartCoord;
         sprite.SetTargetPosition(realTargetCoord);
@@ -75,7 +75,7 @@ public class ObjectSpriteManager
 
     public void SetNewObjectSprite(Coordinate coord, IObject obj)
     {
-        var realCoord = CalculateLiteralPos(coord);
+        var realCoord = SpriteGrid.CalculateLiteralPos(Context, coord);
         ObjectSprites.Remove(realCoord);
         var newSprite = ObjectSpriteFactory.CreateObjectSprite(obj, realCoord, Context);
         ObjectSprites[realCoord] = newSprite;
@@ -83,7 +83,7 @@ public class ObjectSpriteManager
 
     public void RemoveObjectSprite(Coordinate coord)
     {
-        var realCoord = CalculateLiteralPos(coord);
+        var realCoord = SpriteGrid.CalculateLiteralPos(Context, coord);
         ObjectSprites.Remove(realCoord);
     }
 
@@ -133,15 +133,5 @@ public class ObjectSpriteManager
         }
 
         finishedSprites.Clear();
-    }
-
-    private Vector2 CalculateLiteralPos(Coordinate coord)
-    {
-        var spriteWidth = (int)(Context.GridSpriteWidthPx * Context.GridScale);
-        var spriteX = spriteWidth * coord.X + Context.PuzzleOffsetX;
-        var spriteHeight = (int)(Context.GridSpriteHeightPx * Context.GridScale);
-        var spriteY = spriteHeight * coord.Y + Context.PuzzleOffsetY;
-
-        return new Vector2(spriteX, spriteY);
     }
 }

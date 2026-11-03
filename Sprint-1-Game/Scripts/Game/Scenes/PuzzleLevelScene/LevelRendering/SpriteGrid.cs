@@ -132,4 +132,14 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
 
         return animObjEmpty && animTileEmpty && animEffectsEmpty && iteratingEffectsEmpty && iteratingTilesEmpty;
     }
+
+    public static Vector2 CalculateLiteralPos(LevelContext context, Coordinate coord)
+    {
+        var spriteCenteringOffsetX = (int) (context.GridWidth * 0.5);
+        var spriteCenteringOffsetY = (int) (context.GridHeight * 0.5);
+        var spriteX = context.GridWidth * coord.X + context.PuzzleOffsetX + spriteCenteringOffsetX;
+        var spriteY = context.GridHeight * coord.Y + context.PuzzleOffsetY + spriteCenteringOffsetY;
+
+        return new Vector2(spriteX, spriteY);
+    }
 }
