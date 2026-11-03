@@ -7,7 +7,12 @@ public class RegionNames
     // objects
     public readonly static string Rock = "Rock";
     public readonly static string Pumpkin = "Pumpkin";
+    public readonly static string PumpkinSeed  = "Pumpkin Seed";
+    public readonly static string VineSeed = "Vine Seed";
     public readonly static string Wall = "Wall";
+    public readonly static string CornerWall = "Corner Wall";
+    public readonly static string StandaloneWall = "Standalone Wall";
+    public readonly static string TopOfWall = "Top of Wall";
     public readonly static string ClosedDoor = "Closed Door";
     public readonly static string OpenDoor = "Open Door";
     public readonly static string Bomb = "Bomb";
