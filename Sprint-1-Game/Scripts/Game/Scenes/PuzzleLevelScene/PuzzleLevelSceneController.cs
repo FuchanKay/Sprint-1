@@ -9,6 +9,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private LevelFileParser LevelFileParser;
     private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
+    private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private GameLayoutManager GameLayoutManager = new();
     private readonly IAudioManager AudioManager = audioManager;
     public int CurrentLevelIndex = 0;
@@ -17,7 +18,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     {
         GameLayoutManager.Init(window);
         LevelFileParser = new LevelFileParser();
-        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
+        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
         Level.Init(CurrentLevelIndex);
     }
     public void Update(int dtMs)
