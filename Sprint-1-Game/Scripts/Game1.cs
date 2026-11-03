@@ -24,7 +24,7 @@ public class Game1 : Core
     protected override void Initialize()
     {
         Setup.Initialize(out var sceneManager);
-        InitializeGum();
+        //InitializeGum();
         SceneManager = sceneManager;
         base.Initialize();
     }

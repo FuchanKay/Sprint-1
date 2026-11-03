@@ -24,7 +24,7 @@ public class Setup(ContentManager content, GameWindow window)
         MapDefaultInputs();
         AddAnimations();
         AddRegions();
-        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, window);
+        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, window, content);
         sceneManager.Init();
     }
 

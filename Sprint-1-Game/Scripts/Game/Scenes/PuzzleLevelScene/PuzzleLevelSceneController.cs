@@ -2,8 +2,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 namespace Scripts.Game;
-
-public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, ITextureAtlas textureAtlas, GameWindow window) : ISceneController
+using Microsoft.Xna.Framework.Content;
+public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, ITextureAtlas textureAtlas, GameWindow window, ContentManager content) : ISceneController
 {
     private PuzzleLevel Level;
     private LevelFileParser LevelFileParser;
@@ -11,6 +11,8 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private GameLayoutManager GameLayoutManager = new();
     public int CurrentLevelIndex = 0;
+// Loading a SpriteFont Description using the content pipeline
+    SpriteFont font = content.Load<SpriteFont>("Font/defaultFont");
 
     public void Init()
     {
@@ -18,6 +20,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         LevelFileParser = new LevelFileParser();
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, LevelFileParser, GameLayoutManager);
         Level.Init(CurrentLevelIndex);
+        
     }
     public void Update(int dtMs)
     {
@@ -88,5 +91,15 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     public void Draw(SpriteBatch sb)
     {
         Level.Draw(sb);
+        sb.DrawString(
+        font,                   // font
+        "Hello, MonoGame!",     // text
+        Vector2.Zero,           // position
+        Color.White             // color
+        );
+    }
+    private void drawText()
+    {
+        
     }
 }
