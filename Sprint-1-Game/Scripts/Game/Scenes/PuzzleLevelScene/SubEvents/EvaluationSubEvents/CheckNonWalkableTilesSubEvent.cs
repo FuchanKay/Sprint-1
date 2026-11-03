@@ -28,22 +28,23 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack) 
     {
         var obj = gridPointer.GetObject(waterCoord);
 
-        if(obj.Id == ObjectIds.Player)
+        if (obj.Id == ObjectIds.Player)
         {
             subEventStack.Push(new PlayerDeathSubEvent());
-        } 
+        }
         else if (obj is IEnemy && obj.Id != ObjectIds.Bat)
         {
             subEventStack.Push(new EnemyDamageSubEvent(waterCoord));
-        } 
-        else if(obj.Id == ObjectIds.Rock)
+        }
+        else if (obj.Id == ObjectIds.Rock)
         {
             var sprite = spriteGrid.GetObjectSprite(waterCoord);
             ITile tile;
-            if(sprite.IdleName == RegionNames.Rock)
+            if (sprite.IdleName == RegionNames.Rock)
             {
                 tile = TileFactory.CreateWaterBoulderTile();
-            } else
+            }
+            else
             {
                 tile = TileFactory.CreateWaterPumpkinTile();
             }
@@ -53,7 +54,7 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack) 
             gridPointer.SetObject(waterCoord, ObjectFactory.CreateEmpty());
             spriteGrid.PlayEffect(EffectIds.WaterSplash, waterCoord);
         }
-        else if(obj.Id != ObjectIds.Empty && obj.Id != ObjectIds.Bat)
+        else if (obj.Id != ObjectIds.Empty && obj.Id != ObjectIds.Bat)
         {
             gridPointer.SetObject(waterCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(waterCoord);
@@ -65,22 +66,23 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack) 
     {
         var obj = gridPointer.GetObject(waterCoord);
 
-        if(obj.Id == ObjectIds.Player)
+        if (obj.Id == ObjectIds.Player)
         {
             subEventStack.Push(new PlayerDeathSubEvent());
-        } 
+        }
         else if (obj is IEnemy && obj.Id != ObjectIds.Bat)
         {
             subEventStack.Push(new EnemyDamageSubEvent(waterCoord));
-        } 
-        else if(obj.Id == ObjectIds.Rock)
+        }
+        else if (obj.Id == ObjectIds.Rock)
         {
             var sprite = spriteGrid.GetObjectSprite(waterCoord);
             ITile tile;
-            if(sprite.IdleName == RegionNames.Rock)
+            if (sprite.IdleName == RegionNames.Rock)
             {
                 tile = TileFactory.CreatePitBoulderTile();
-            } else
+            }
+            else
             {
                 tile = TileFactory.CreatePitPumpkinTile();
             }
@@ -89,7 +91,7 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack) 
             spriteGrid.RemoveObjectSprite(waterCoord);
             gridPointer.SetObject(waterCoord, ObjectFactory.CreateEmpty());
         }
-        else if(obj.Id != ObjectIds.Empty && obj.Id != ObjectIds.Bat)
+        else if (obj.Id != ObjectIds.Empty && obj.Id != ObjectIds.Bat)
         {
             gridPointer.SetObject(waterCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(waterCoord);

@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Scripts.Game;
 
-public class LevelFileParser( )
+public class LevelFileParser()
 {
     private readonly string Delimiter = ",";
     private readonly string DirectionDelimiter = ".";

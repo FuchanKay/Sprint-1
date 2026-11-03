@@ -68,7 +68,7 @@ public class ObjectSpriteManager
 
         sprite.CurrentPosition = realStartCoord;
         sprite.SetTargetPosition(realTargetCoord);
-        
+
         ObjectSprites.Remove(realStartCoord);
         ObjectSprites.Add(realStartCoord, sprite);
     }
@@ -131,7 +131,7 @@ public class ObjectSpriteManager
             ObjectSprites.Remove(currPos);
             ObjectSprites.Add(currPos, staticSprite);
         }
-        
+
         finishedSprites.Clear();
     }
 

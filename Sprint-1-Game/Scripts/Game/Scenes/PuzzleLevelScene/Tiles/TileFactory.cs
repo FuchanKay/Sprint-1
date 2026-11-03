@@ -108,7 +108,7 @@ public class TileFactory()
     {
         return new VineSeedTile
         {
-            
+
         };
     }
 
@@ -124,7 +124,7 @@ public class TileFactory()
     {
         return new PumpkinSeedTile
         {
-            
+
         };
     }
 }

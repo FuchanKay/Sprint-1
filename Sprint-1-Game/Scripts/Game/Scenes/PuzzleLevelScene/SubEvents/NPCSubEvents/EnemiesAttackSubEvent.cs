@@ -12,7 +12,7 @@ public class EnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, List<Lev
         var skeletonCoords = gridPointer.GetObjectPointers(ObjectIds.Skeleton).Keys.ToList();
         var batCoords = gridPointer.GetObjectPointers(ObjectIds.Bat).Keys.ToList();
         var lizardCoords = gridPointer.GetObjectPointers(ObjectIds.RedLizard).Keys.ToList();
-        List<Coordinate> omniDirEnemyCoords = [..skeletonCoords, ..batCoords]; 
+        List<Coordinate> omniDirEnemyCoords = [.. skeletonCoords, .. batCoords];
 
         foreach (var attackingEnemyCoord in omniDirEnemyCoords)
         {
@@ -38,7 +38,7 @@ public class EnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, List<Lev
     private void OmniDirectionalAttack(Coordinate enemyCoord, GridPointer gridPointer, SpriteGrid spriteGrid)
     {
         var playerCoord = Pathfinder.GetPlayerCoord(gridPointer, enemyCoord);
-        if(playerCoord != enemyCoord)
+        if (playerCoord != enemyCoord)
         {
             spriteGrid.PlayEffect(EffectIds.Slash, playerCoord);
             subEventStack.Push(new PlayerDeathSubEvent());
@@ -79,10 +79,11 @@ public class EnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, List<Lev
         {
             spriteGrid.AddIterableEffectSprite(laserColorId, startDirCoord, dirCoord, rotation);
 
-            if(dirGrid.Object.Id == ObjectIds.Player)
+            if (dirGrid.Object.Id == ObjectIds.Player)
             {
                 subEventStack.Push(new PlayerDeathSubEvent());
-            } else
+            }
+            else
             {
                 gridPointer.SetObject(dirCoord, ObjectFactory.CreateEmpty());
                 spriteGrid.RemoveObjectSprite(dirCoord);
@@ -92,13 +93,13 @@ public class EnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, List<Lev
             dirGrid = gridPointer.GetGrid(dirCoord);
         }
 
-        if(dirGrid.Object.IsDestructible)
+        if (dirGrid.Object.IsDestructible)
         {
             gridPointer.SetObject(dirCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(dirCoord);
         }
 
-        if(dirGrid.Object.Id == ObjectIds.Player)
+        if (dirGrid.Object.Id == ObjectIds.Player)
         {
             subEventStack.Push(new PlayerDeathSubEvent());
         }
@@ -125,6 +126,6 @@ public class EnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, List<Lev
         var lizardSprite = spriteGrid.GetObjectSprite(lizardCoord);
         var isIdle = lizardSprite.IdleName.Contains("Idle");
 
-       return nonWallObjectAhead && (isIdle || isNewObject);
+        return nonWallObjectAhead && (isIdle || isNewObject);
     }
 }

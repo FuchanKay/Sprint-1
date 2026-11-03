@@ -22,7 +22,7 @@ public class AnimationNames
     public readonly static string ZombieWalkEast = "Zombie Walk East";
     public readonly static string ZombieWalkSouth = "Zombie Walk South";
     public readonly static string ZombieWalkWest = "Zombie Walk West";
- 
+
 
     public readonly static string RotateSE = "Object Rotate SE";
     public readonly static string RotateEN = "Object Rotate EN";

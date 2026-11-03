@@ -16,7 +16,7 @@ public class SkeletonsAttackSubEvent(List<Coordinate> skeletonCoords, Stack<ILev
     private void TryAttack(Coordinate skeletonCoord, GridPointer gridPointer, SpriteGrid spriteGrid)
     {
         var playerCoord = Pathfinder.GetPlayerCoord(gridPointer, skeletonCoord);
-        if(playerCoord != skeletonCoord)
+        if (playerCoord != skeletonCoord)
         {
             // TODO: Change skeleton facing direction and sprite
             spriteGrid.PlayEffect(EffectIds.Slash, playerCoord);
