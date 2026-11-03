@@ -7,6 +7,7 @@ public class PlayerDeathSubEvent() : ILevelSubEvent
     {
         var playerCoord = gridPointer.GetPlayerCoord();
         spriteGrid.PlayEffect(EffectIds.PlayerDeath, playerCoord);
+        audioManager.PlaySound(SoundNames.Death);
         spriteGrid.RemoveObjectSprite(playerCoord);
         gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
         context.PlayerIsDead = true;

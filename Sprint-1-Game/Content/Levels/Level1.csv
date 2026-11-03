@@ -15,7 +15,7 @@ Wall,Player,_,_,_,_,_,_,_,Wall
 Wall,_,_,_,_,Pumpkin,Rock,Bomb,_,Wall
 Wall,_,_,_,_,_,_,_,_,Wall
 Wall,_,_,_,_,_,_,_,_,Wall
-Wall,_,_,_,_,_,Rock,_,_,Wall
+Wall,Bomb,_,_,_,_,Rock,_,_,Wall
 Wall,_,_,_,_,_,_,_,_,Wall
 Wall,RedLizard,BlueLizard,_,_,_,_,_,Bomb,Wall
 Wall,_,_,Warlock,_,_,_,Skeleton,_,Wall

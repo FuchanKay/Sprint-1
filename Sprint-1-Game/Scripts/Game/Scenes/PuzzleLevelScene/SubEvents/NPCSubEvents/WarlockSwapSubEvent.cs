@@ -11,6 +11,7 @@ public class WarlockSwapSubEvent() : ILevelSubEvent
 
         if (warlockExists)
         {
+            audioManager.PlaySound(SoundNames.MagicSparkle);
             var warLockCoord = warlockPointer.Keys.First();
             var warLockObj = gridPointer.GetObject(warLockCoord);
             var playerCoord = gridPointer.GetPlayerCoord();

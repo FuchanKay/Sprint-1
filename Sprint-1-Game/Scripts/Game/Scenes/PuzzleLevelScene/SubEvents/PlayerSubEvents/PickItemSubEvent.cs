@@ -19,11 +19,13 @@ public class PickItemSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEv
             inventoryManager.AddItem(itemObj);
             gridPointer.SetObject(targetCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(targetCoord);
+            audioManager.PlaySound(SoundNames.Pickup);
             return;
         } else if (itemObj.Id == ObjectIds.Key)
         {
             gridPointer.SetObject(targetCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(targetCoord);
+            audioManager.PlaySound(SoundNames.Pickup);
             subEventStack.Push(new OpenExitSubEvent());
         }
 

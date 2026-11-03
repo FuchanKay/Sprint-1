@@ -19,6 +19,7 @@ public class UseItemSubEvent(int inventoryId) : ILevelSubEvent
             gridPointer.SetObject(targetCoord, itemObj);
             spriteGrid.SetNewObjectSprite(targetCoord, itemObj);
             inventoryManager.EmptySlot(inventoryId);
+            audioManager.PlaySound(SoundNames.Pickup);
         }
     }
 }

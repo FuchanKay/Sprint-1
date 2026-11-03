@@ -22,6 +22,8 @@ public class DirectionalInputSubEvent(Directions direction, Stack<ILevelSubEvent
             var destinationGrid = gridPointer.GetGrid(destinationCoord);
             var destinationObject = destinationGrid.Object;
 
+            if(destinationObject.Id == ObjectIds.Rock) audioManager.PlaySound(SoundNames.StoneScrape);
+
             var onePastDestinationCoord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
 
             var objectSprite = spriteGrid.GetObjectSprite(destinationCoord);
@@ -40,6 +42,7 @@ public class DirectionalInputSubEvent(Directions direction, Stack<ILevelSubEvent
 
             gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
+
 
             enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context, audioManager);
         }

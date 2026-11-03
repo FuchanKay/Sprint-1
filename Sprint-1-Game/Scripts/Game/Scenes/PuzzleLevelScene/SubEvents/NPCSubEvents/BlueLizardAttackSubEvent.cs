@@ -10,7 +10,7 @@ public class BlueLizardAttackSubEvent(Stack<ILevelSubEvent> subEventStack, List<
         var lizardCoords = gridPointer.GetObjectPointers(ObjectIds.BlueLizard).Keys.ToList();
         foreach (var lizardCoord in lizardCoords)
         {
-            LaserBlastAttack(spriteGrid, gridPointer, lizardCoord, EffectIds.BlueLaserBeam);
+            LaserBlastAttack(spriteGrid, gridPointer, lizardCoord, EffectIds.BlueLaserBeam, audioManager);
         }
     }
 }

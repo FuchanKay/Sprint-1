@@ -17,36 +17,37 @@ public class EnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, List<Lev
 
         foreach (var attackingEnemyCoord in omniDirEnemyCoords)
         {
-            OmniDirectionalAttack(attackingEnemyCoord, gridPointer, spriteGrid);
+            OmniDirectionalAttack(attackingEnemyCoord, gridPointer, spriteGrid, audioManager);
         }
 
         var zombieCoords = gridPointer.GetObjectPointers(ObjectIds.Zombie).Keys.ToList();
 
         foreach (var zombieCoord in zombieCoords)
         {
-            AttackFront(zombieCoord, gridPointer, spriteGrid);
+            AttackFront(zombieCoord, gridPointer, spriteGrid, audioManager);
         }
 
         foreach (var lizardCoord in lizardCoords)
         {
             if (ShouldLaserBlast(spriteGrid, gridPointer, levelStateHistory, lizardCoord))
             {
-                LaserBlastAttack(spriteGrid, gridPointer, lizardCoord, EffectIds.RedLaserBeam);
+                LaserBlastAttack(spriteGrid, gridPointer, lizardCoord, EffectIds.RedLaserBeam, audioManager);
             }
         }
     }
 
-    private void OmniDirectionalAttack(Coordinate enemyCoord, GridPointer gridPointer, SpriteGrid spriteGrid)
+    private void OmniDirectionalAttack(Coordinate enemyCoord, GridPointer gridPointer, SpriteGrid spriteGrid, IAudioManager audioManager)
     {
         var playerCoord = Pathfinder.GetPlayerCoord(gridPointer, enemyCoord);
         if (playerCoord != enemyCoord)
         {
             spriteGrid.PlayEffect(EffectIds.Slash, playerCoord);
+            audioManager.PlaySound(SoundNames.Slash);
             subEventStack.Push(new PlayerDeathSubEvent());
         }
     }
 
-    private void AttackFront(Coordinate enemyCoord, GridPointer gridPointer, SpriteGrid spriteGrid)
+    private void AttackFront(Coordinate enemyCoord, GridPointer gridPointer, SpriteGrid spriteGrid, IAudioManager audioManager)
     {
         var enemy = gridPointer.GetObject(enemyCoord);
         var direction = enemy.Direction;
@@ -55,11 +56,12 @@ public class EnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, List<Lev
         if (targetObj.Id == ObjectIds.Player)
         {
             spriteGrid.PlayEffect(EffectIds.Slash, targetCoord);
+            audioManager.PlaySound(SoundNames.Slash);
             subEventStack.Push(new PlayerDeathSubEvent());
         }
     }
 
-    protected void LaserBlastAttack(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate startCoord, EffectIds laserColorId)
+    protected void LaserBlastAttack(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate startCoord, EffectIds laserColorId, IAudioManager audioManager)
     {
         var direction = gridPointer.GetObject(startCoord).Direction;
         var laserPath = Pathfinder.GetLineOfSight(gridPointer, startCoord, direction);
@@ -116,6 +118,7 @@ public class EnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, List<Lev
         if(lizard.Id == ObjectIds.BlueLizard) laserImpactEffect = EffectIds.BlueLaserImpact;
         spriteGrid.AddIterableEffectSprite(laserImpactEffect, startDirCoord, dirCoord, 0);
         spriteGrid.StartIterableEffect(startDirCoord);
+        audioManager.PlaySound(SoundNames.LaserBeam);
 
         subEventStack.Push(new RemoveLasersSubEvent());
     }
