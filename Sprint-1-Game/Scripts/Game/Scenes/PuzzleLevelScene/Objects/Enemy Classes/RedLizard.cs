@@ -19,7 +19,7 @@ public class RedLizard : IEnemy
     public Directions Direction { get; set; } = Directions.South;
     public bool IsPushable => true;
     public bool IsDestructible => true;
-    public bool IsRotatable => false;
+    public bool IsRotatable => true;
     public bool IsPickable => false;
 
     public int Health { get; set; } = 1;

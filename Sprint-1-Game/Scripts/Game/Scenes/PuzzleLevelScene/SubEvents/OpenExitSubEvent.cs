@@ -10,7 +10,7 @@ public class OpenExitSubEvent() : ILevelSubEvent
         foreach (var doorCoord in doorCoords)
         {
             DoorObject door = gridPointer.GetObject(doorCoord) as DoorObject;
-            if(!door.IsOpen) 
+            if (!door.IsOpen)
             {
                 OpenDoor(spriteGrid, doorCoord);
                 door.IsOpen = true;
@@ -22,8 +22,8 @@ public class OpenExitSubEvent() : ILevelSubEvent
     {
         var doorSprite = spriteGrid.GetObjectSprite(doorCoord);
         doorSprite = doorSprite.ConvertToAnimated(AnimationNames.DoorOpening);
-        spriteGrid.SetObjectSprite(doorCoord, doorCoord, doorSprite);
-        spriteGrid.StartObjectAnimation(doorSprite);
+        spriteGrid.SetObjectSprite(doorCoord, doorSprite);
+        spriteGrid.StartObjectAnimation(doorCoord);
         doorSprite.IdleName = RegionNames.OpenDoor;
     }
 }

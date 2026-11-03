@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Scripts.Game;
 
-public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, LevelFileParser levelFileParser)
+public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, LevelFileParser levelFileParser, GameLayoutManager gameLayoutManager)
 {
     private readonly List<ILevelEvent> EventQueue = [];
     public LevelContext Context;
@@ -15,7 +16,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
     private readonly int UndoHistoryMaxLength = 200;
     public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory);
     private readonly int MaxEventsQueued = 2;
-    private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, false, objectFactory);
+    private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, false);
     private string[] LevelFile;
 
     public void Init(int levelIndex)
@@ -33,16 +34,15 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
             PlayerIsDead = false,
             LevelIsCompleted = false
         };
-
         var levelFileName = FileNames.LevelFileNames[levelIndex];
         LevelFile = LevelFileParser.ParseLevelFile(levelFileName);
         Context.LevelName = levelFileParser.GetLevelName(LevelFile);
         Context.LevelWidth = levelFileParser.GetLevelWidth(LevelFile);
         Context.LevelHeight = levelFileParser.GetLevelHeight(LevelFile);
-        CalculateOffsets();
+        gameLayoutManager.LevelLayout(Context);
         CurrentGridPointer = levelFileParser.CreateGrids(LevelFile);
         SpriteGrid.Init(CurrentGridPointer, Context);
-        CurrentInventoryManager = new InventoryManager(objectFactory);
+        CurrentInventoryManager = new InventoryManager();
         LevelStateHistory = new LevelStateHistory(CurrentGridPointer, CurrentInventoryManager);
     }
 
@@ -77,7 +77,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
             CurrentEvent = EventQueue[0];
             EventQueue.RemoveAt(0);
 
-            CurrentEvent.Execute(SpriteGrid, LevelStateHistory.GridPointer, LevelStateHistory.InventoryManager, Context);
+            CurrentEvent.Execute(SpriteGrid, LevelStateHistory.GridPointer, LevelStateHistory.InventoryManager, Context, UndoHistory);
             CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
         }
 
@@ -113,7 +113,7 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         PushCurrentLevelStateHistory();
 
         LevelStateHistory.GridPointer = levelFileParser.CreateGrids(LevelFile);
-        LevelStateHistory.InventoryManager = new InventoryManager(objectFactory);
+        LevelStateHistory.InventoryManager = new InventoryManager();
         SpriteGrid.Init(LevelStateHistory.GridPointer, Context);
 
         CurrentEvent.SubEventStack.Clear();
@@ -126,13 +126,5 @@ public class PuzzleLevel(ObjectFactory objectFactory, TileFactory tileFactory, O
         var clone = LevelStateHistory.Clone();
         UndoHistory.Add(clone);
         if (UndoHistory.Count > UndoHistoryMaxLength) UndoHistory.RemoveAt(0);
-    }
-
-    private void CalculateOffsets()
-    {
-        const int midX = 1280 / 2;
-        const int midY = 720 / 2;
-        Context.PuzzleOffsetX = (int) (midX - Context.LevelWidth / 2 * Context.GridSpriteWidthPx * Context.GridScale);
-        Context.PuzzleOffsetY = (int) (midY - Context.LevelHeight / 2 * Context.GridSpriteHeightPx * Context.GridScale);
     }
 }

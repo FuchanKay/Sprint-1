@@ -1,14 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
+public class EnemiesMoveSubEvent() : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
@@ -19,9 +15,9 @@ public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         {
             PathFindToPlayer(spriteGrid, gridPointer, batCoord);
         }
-        foreach(var frogCoord in frogCoords)
+        foreach (var frogCoord in frogCoords)
         {
-            MoveRandom(spriteGrid, gridPointer,  frogCoord);
+            MoveRandom(spriteGrid, gridPointer, frogCoord);
         }
         foreach (var zombieCoord in zombieCoords)
         {
@@ -34,7 +30,7 @@ public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         List<Directions> validDirections = Pathfinder.GetValidDirections(gridPointer, enemyCoord);
         int randomInt = Random.Shared.Next(0, validDirections.Count);
         var destination = validDirections[randomInt];
-        if(gridPointer.GetObject(enemyCoord + Coordinate.ToCoordinate(destination)).Id == ObjectIds.Player) return;
+        if (gridPointer.GetObject(enemyCoord + Coordinate.ToCoordinate(destination)).Id == ObjectIds.Player) return;
         MoveEnemySprite(spriteGrid, gridPointer, enemyCoord, destination);
     }
 
@@ -45,7 +41,7 @@ public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         if (!isFacingHorizontal) enemyObj.Direction = Directions.East;
 
         var oppositeDirection = Directions.West;
-        if (enemyObj.Direction == Directions.West) oppositeDirection = Directions.East; 
+        if (enemyObj.Direction == Directions.West) oppositeDirection = Directions.East;
 
         var destinationCoord = enemyCoord + Coordinate.ToCoordinate(enemyObj.Direction);
         var destinationGrid = gridPointer.GetGrid(destinationCoord);
@@ -67,14 +63,14 @@ public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
 
         var directionCoord = enemyCoord - destinationCoord;
         var direction = Directions.North;
-        if(directionCoord.X == -1) direction = Directions.East;
-        else if(directionCoord.X == 1) direction = Directions.West;
-        else if(directionCoord.Y == -1) direction = Directions.South;
+        if (directionCoord.X == -1) direction = Directions.East;
+        else if (directionCoord.X == 1) direction = Directions.West;
+        else if (directionCoord.Y == -1) direction = Directions.South;
 
         if (destinationCoord.X != -1 && destinationCoord.Y != -1)
         {
             MoveEnemySprite(spriteGrid, gridPointer, enemyCoord, direction);
-        } 
+        }
     }
 
     // Overload method to handle the frogs special directional movement sprites.
@@ -88,7 +84,7 @@ public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         var newIdleName = RegionNames.Bat;
 
         switch (enemyObj.Id)
-        {  
+        {
             case ObjectIds.Frog:
                 movingAnimation = AnimationNames.ToFrogJumpAnimationName(direction);
                 newIdleName = RegionNames.ToFrogIdleRegionName(direction);
@@ -103,10 +99,10 @@ public class EnemiesMoveSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
 
         enemySprite = enemySprite.ConvertToAnimated(movingAnimation);
         spriteGrid.SetObjectSprite(enemyCoord, destinationCoord, enemySprite);
-        spriteGrid.StartObjectAnimation(enemySprite);
+        spriteGrid.StartObjectAnimation(enemyCoord);
         enemySprite.IdleName = newIdleName;
 
         gridPointer.SetObject(enemyCoord, ObjectFactory.CreateEmpty());
-        gridPointer.SetObject(destinationCoord, enemyObj); 
+        gridPointer.SetObject(destinationCoord, enemyObj);
     }
 }

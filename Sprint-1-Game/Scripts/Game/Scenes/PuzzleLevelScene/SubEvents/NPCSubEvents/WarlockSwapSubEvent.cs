@@ -1,9 +1,8 @@
 using System.Linq;
-using System;
 
 namespace Scripts.Game;
 
-public class WarlockSwapEvent() : ILevelSubEvent
+public class WarlockSwapSubEvent() : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
@@ -27,10 +26,8 @@ public class WarlockSwapEvent() : ILevelSubEvent
             spriteGrid.RemoveObjectSprite(warLockCoord);
             spriteGrid.PlayEffect(EffectIds.WarlockSpell, warLockCoord);
             spriteGrid.PlayEffect(EffectIds.WarlockSpell, playerCoord);
-            playerSprite.CurrentPosition = spriteGrid.CalculateLiteralPos(warLockCoord);
-            warlockSprite.CurrentPosition = spriteGrid.CalculateLiteralPos(playerCoord);
-            spriteGrid.SetObjectSprite(warLockCoord, warLockCoord, playerSprite);
-            spriteGrid.SetObjectSprite(playerCoord, playerCoord, warlockSprite);
+            spriteGrid.SetObjectSprite(warLockCoord, playerSprite);
+            spriteGrid.SetObjectSprite(playerCoord, warlockSprite);
         }
     }
 }

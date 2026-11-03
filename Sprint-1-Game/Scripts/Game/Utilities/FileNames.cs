@@ -7,7 +7,8 @@ public class FileNames
     public readonly static string LevelEditorButtonTexture = "Images/level-editor-button";
 
     public readonly static string TileTextures = "Images/tile-sprites";
-    public readonly static string RockTexture = "Images/rock";
+    public readonly static string ObjectTextures = "Images/object-sprites";
+    public readonly static string EffectTextures = "Images/effect-sprites";
     public readonly static string WallTexture = "Images/stonewall";
     public readonly static string DoorTexture = "Images/door";
     public readonly static string PlayerTexture = "Images/player-sprites";
@@ -23,6 +24,8 @@ public class FileNames
     public readonly static string BatTexture = "Images/bat";
     public readonly static string FrogTexture = "Images/frog";
     public readonly static string ZombieTexture = "Images/zombie";
+    public readonly static string FontTexture = "Images/hud_font_sheet";
+
     public readonly static string[] LevelFileNames = ["Content/Levels/level1.csv", "Content/Levels/level2.csv", "Content/Levels/level3.csv", "Content/Levels/level4.csv", "Content/Levels/level5.csv"];
 
     public readonly static string SnapAudio = "audio/snap";

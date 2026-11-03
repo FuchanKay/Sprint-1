@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Scripts.Game;
 
-public class DirectionalInputSubEvent(Directions direction, ObjectFactory objectFactory, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
+public class DirectionalInputSubEvent(Directions direction, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
-        ILevelSubEvent enemiesMove = new EnemiesMoveSubEvent(objectFactory);
+        ILevelSubEvent enemiesMove = new EnemiesMoveSubEvent();
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerObj = gridPointer.GetObject(playerCoord);
 
@@ -16,15 +16,19 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
 
         var destinationPlus1Coord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
         var destinationPlus1CoordIsWithinBounds = CoordIsWithinBounds(destinationPlus1Coord, context.LevelWidth, context.LevelHeight);
+
         if (destinationCoordIsWithinBounds && destinationPlus1CoordIsWithinBounds && CanPush(gridPointer.GetGrid(destinationCoord), gridPointer.GetObject(destinationPlus1Coord)))
         {
             var destinationGrid = gridPointer.GetGrid(destinationCoord);
             var destinationObject = destinationGrid.Object;
+
+            var onePastDestinationCoord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
+
             var objectSprite = spriteGrid.GetObjectSprite(destinationCoord);
             objectSprite.Duration = spriteGrid.PushDuration;
-            var onePastDestinationCoord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
+
             spriteGrid.SetObjectSprite(destinationCoord, onePastDestinationCoord, objectSprite);
-            spriteGrid.StartObjectAnimation(objectSprite);
+            spriteGrid.StartObjectAnimation(destinationCoord);
 
             gridPointer.SetObject(destinationCoord, ObjectFactory.CreateEmpty());
             gridPointer.SetObject(onePastDestinationCoord, destinationObject);
@@ -32,7 +36,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerPushAnimationName(direction));
             spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
-            spriteGrid.StartObjectAnimation(playerSprite);
+            spriteGrid.StartObjectAnimation(playerCoord);
 
             gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
@@ -44,7 +48,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));
             spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
-            spriteGrid.StartObjectAnimation(playerSprite);
+            spriteGrid.StartObjectAnimation(playerCoord);
 
             gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
@@ -60,7 +64,7 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
             var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
             playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));
             spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
-            spriteGrid.StartObjectAnimation(playerSprite);
+            spriteGrid.StartObjectAnimation(playerCoord);
 
             gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
@@ -77,11 +81,10 @@ public class DirectionalInputSubEvent(Directions direction, ObjectFactory object
 
     private bool CanMove(IObject playerObject, Grid destinationGrid)
     {
-        var destinationTile = destinationGrid.Tile;
         var isDestinationEmpty = destinationGrid.Object.Id == ObjectIds.Empty;
         var isFacingDirection = playerObject.Direction == direction;
 
-        return destinationTile.IsWalkable && isFacingDirection && isDestinationEmpty;
+        return isFacingDirection && isDestinationEmpty;
     }
 
     private static bool CanPush(Grid destinationGrid, IObject destinationPlus1Object)

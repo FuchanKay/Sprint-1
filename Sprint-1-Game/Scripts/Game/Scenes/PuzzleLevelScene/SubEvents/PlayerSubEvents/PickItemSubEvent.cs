@@ -1,5 +1,6 @@
 namespace Scripts.Game;
-public class PickItemSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
+
+public class PickItemSubEvent() : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
@@ -12,7 +13,6 @@ public class PickItemSubEvent(ObjectFactory objectFactory) : ILevelSubEvent
         var itemObj = gridPointer.GetObject(targetCoord);
         if (itemObj.IsPickable)
         {
-
             inventoryManager.AddItem(itemObj);
             gridPointer.SetObject(targetCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(targetCoord);

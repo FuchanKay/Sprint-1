@@ -1,6 +1,6 @@
 namespace Scripts.Game;
 
-public class UseItemSubEvent(int inventoryId, ObjectSpriteFactory objectSpriteFactory) : ILevelSubEvent
+public class UseItemSubEvent(int inventoryId) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
     {
@@ -16,8 +16,7 @@ public class UseItemSubEvent(int inventoryId, ObjectSpriteFactory objectSpriteFa
         if (itemEquiped && isFrontCleared)
         {
             gridPointer.SetObject(targetCoord, itemObj);
-            var itemSprite = objectSpriteFactory.CreateObjectSprite(itemObj, spriteGrid.CalculateLiteralPos(targetCoord), context);
-            spriteGrid.SetObjectSprite(targetCoord, targetCoord, itemSprite);
+            spriteGrid.SetNewObjectSprite(targetCoord, itemObj);
             inventoryManager.EmptySlot(inventoryId);
         }
     }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,226 +7,129 @@ namespace Scripts.Game;
 
 public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory)
 {
-    private readonly Dictionary<Vector2, ISprite> ObjectSprites = [];
-    private readonly Dictionary<Vector2, ISprite> TileSprites = [];
-    private readonly Dictionary<Vector2, ISprite> EffectSprites = [];
-    private readonly List<ISprite> AnimatingObjectSprites = [];
-    private readonly List<ISprite> AnimatingTileSprites = [];
-    private readonly List<ISprite> AnimatingEffectSprites = [];
-    private LevelContext Context;
-
+    private readonly ObjectSpriteManager ObjectSpriteManager = new();
+    private readonly TileSpriteManager TileSpriteManager = new();
+    private readonly EffectSpriteManager EffectSpriteManager = new();
     public readonly int PushDuration = 400;
 
     public void Init(GridPointer gridPointer, LevelContext context)
     {
-        ObjectSprites.Clear();
-        TileSprites.Clear();
-        EffectSprites.Clear();
-        AnimatingObjectSprites.Clear();
-        AnimatingTileSprites.Clear();
-        AnimatingEffectSprites.Clear();
-
-        Context = context;
-
-        /*
-        For each grid that contains a nonempty object,
-        adds the corresponding sprite to that grid
-        */
-        for (int y = 0; y < context.LevelHeight; y++)
-        {
-            for (int x = 0; x < context.LevelWidth; x++)
-            {
-                var coord = new Coordinate(x, y);
-
-                var grid = gridPointer.GetGrid(coord);
-                var obj = grid.Object;
-                var tile = grid.Tile;
-
-                var spriteCoord = CalculateLiteralPos(coord);
-
-                if (obj.Id != ObjectIds.Empty)
-                {
-                    ObjectSprites.Add(spriteCoord, objectSpriteFactory.CreateObjectSprite(obj, spriteCoord, context));
-                }
-                if (tile.Id != TileIds.Empty)
-                {
-                    TileSprites.Add(spriteCoord, tileSpriteFactory.CreateTileSprite(tile, spriteCoord, context));
-                }
-            }
-        }
+        ObjectSpriteManager.Init(gridPointer, context, objectSpriteFactory);
+        TileSpriteManager.Init(gridPointer, context, tileSpriteFactory);
+        EffectSpriteManager.Init(context, objectSpriteFactory);
     }
 
+    // OBJECT SPRITE METHODS
     public ISprite GetObjectSprite(Coordinate coord)
     {
-        var realCoord = CalculateLiteralPos(coord);
-        if (!ObjectSprites.TryGetValue(realCoord, out var sprite))
-        {
-            throw new ArgumentException("Grid could not be found");
-        }
-        return sprite;
+        return ObjectSpriteManager.GetObjectSprite(coord);
     }
 
-    public ISprite GetTileSprite(Coordinate coord)
+    public void SetObjectSprite(Coordinate coord, ISprite sprite)
     {
-        var realCoord = CalculateLiteralPos(coord);
-        if (!TileSprites.TryGetValue(realCoord, out var sprite))
-        {
-            throw new ArgumentException("Grid could not be found");
-        }
-        return sprite;
+        ObjectSpriteManager.SetObjectSprite(coord, sprite);
     }
 
-    public void PlaceNewObjectSprite(Coordinate coord, IObject obj)
+    public void SetObjectSprite(Coordinate startCoord, Coordinate targetCoord, ISprite sprite)
     {
-        var realCoord = CalculateLiteralPos(coord);
-        if (ObjectSprites.ContainsKey(realCoord)) ObjectSprites.Remove(realCoord);
-        var newSprite = objectSpriteFactory.CreateObjectSprite(obj, realCoord, Context);
-        ObjectSprites[realCoord] = newSprite;
+        ObjectSpriteManager.SetObjectSprite(startCoord, targetCoord, sprite);
     }
 
-    public void SetObjectSprite(Coordinate currentCoord, Coordinate targetCoord, ISprite sprite)
+    public void SetNewObjectSprite(Coordinate coord, IObject obj)
     {
-        var realCurrentCoord = CalculateLiteralPos(currentCoord);
-        var realTargetCoord = CalculateLiteralPos(targetCoord);
-        /* 
-        Must remove and add each time a sprite is set in case 
-        the type (static or animated) changed
-        */
-        ObjectSprites.Remove(realCurrentCoord);
-        ObjectSprites.Add(realCurrentCoord, sprite);
-
-        sprite.SetTargetPosition(realTargetCoord);
-    }
-
-    public void PlayEffect(EffectIds effectId, Coordinate coord)
-    {
-        var realCoord = CalculateLiteralPos(coord);
-        ISprite sprite = objectSpriteFactory.CreateEffectSprite(effectId, realCoord, Context);
-        EffectSprites.Add(realCoord, sprite);
-        StartEffectAnimation(sprite);
+        ObjectSpriteManager.SetNewObjectSprite(coord, obj);
     }
 
     public void RemoveObjectSprite(Coordinate coord)
     {
-        var realCoord = CalculateLiteralPos(coord);
-        ObjectSprites.Remove(realCoord);
+        ObjectSpriteManager.RemoveObjectSprite(coord);
     }
 
-    public void SetTileSprite(Coordinate currentCoord, Coordinate targetCoord, ISprite sprite)
+    public void StartObjectAnimation(Coordinate coord)
     {
-        var realCurrentCoord = CalculateLiteralPos(currentCoord);
-        var realTargetCoord = CalculateLiteralPos(targetCoord);
-
-        TileSprites.Remove(realCurrentCoord);
-        TileSprites.Add(realCurrentCoord, sprite);
-
-        sprite.SetTargetPosition(realTargetCoord);
+        ObjectSpriteManager.StartObjectAnimation(coord);
     }
 
-    public void StartObjectAnimation(ISprite sprite)
+    // TILE SPRITE METHODS
+    public ISprite GetTileSprite(Coordinate coord)
     {
-        AnimatingObjectSprites.Add(sprite);
+        return TileSpriteManager.GetTileSprite(coord);
     }
 
-    public void StartTileAnimation(ISprite sprite)
+    public void SetTileSprite(Coordinate coord, ISprite sprite)
     {
-        AnimatingTileSprites.Add(sprite);
+        TileSpriteManager.SetTileSprite(coord, sprite);
     }
 
-    public void StartEffectAnimation(ISprite sprite)
+    public void SetNewTileSprite(Coordinate coord, ITile tile)
     {
-        AnimatingEffectSprites.Add(sprite);
+        TileSpriteManager.SetNewTileSprite(coord, tile);
+    }
+
+    public void StartTileAnimation(Coordinate coord)
+    {
+        TileSpriteManager.StartTileAnimation(coord);
+    }
+
+    public void AddIterableTileSprite(ITile tile, Coordinate startCoord, Coordinate currentCoord, float rotation)
+    {
+        TileSpriteManager.AddIterableTileSprite(tile, startCoord, currentCoord, rotation);
+    }
+
+    public void StartIterableTile(Coordinate startCoord)
+    {
+        TileSpriteManager.StartIterableTile(startCoord);
+    }
+
+    // EFFECT METHODS
+    public void PlayEffect(EffectIds effectId, Coordinate coord)
+    {
+        EffectSpriteManager.PlayEffect(effectId, coord);
+    }
+
+    public Dictionary<Vector2, ISprite> GetEffectSprites()
+    {
+        return EffectSpriteManager.GetEffectSprites();
+    }
+
+    public void RemoveEffect(Coordinate coord)
+    {
+        EffectSpriteManager.RemoveEffect(coord);
+    }
+
+    public void AddIterableEffectSprite(EffectIds effectId, Coordinate startCoord, Coordinate currentCoord, float rotation)
+    {
+        EffectSpriteManager.AddIterableEffectSprite(effectId, startCoord, currentCoord, rotation);
+    }
+
+    public void StartIterableEffect(Coordinate startCoord)
+    {
+        EffectSpriteManager.StartIterableEffect(startCoord);
     }
 
     public void Update(int dtMs)
     {
-        UpdateAnimatingList(dtMs, AnimatingObjectSprites, ObjectSprites);
-        UpdateAnimatingList(dtMs, AnimatingTileSprites, TileSprites);
-        UpdateEffectsList(dtMs, AnimatingEffectSprites, EffectSprites);
+        ObjectSpriteManager.Update(dtMs);
+        TileSpriteManager.Update(dtMs);
+        EffectSpriteManager.Update(dtMs);
     }
 
     public void Draw(SpriteBatch sb)
     {
-        foreach (var coordAndTileSprite in TileSprites)
-        {
-            var tileSprite = coordAndTileSprite.Value;
-            tileSprite.Draw(sb);
-        }
-        foreach (var coordAndObjSprite in ObjectSprites)
-        {
-            var objectSprite = coordAndObjSprite.Value;
-            objectSprite.Draw(sb);
-        }
-        foreach (var coordAndEffectSprite in EffectSprites)
-        {
-            var effectSprite = coordAndEffectSprite.Value;
-            effectSprite.Draw(sb);
-        }
+        TileSpriteManager.Draw(sb);
+        ObjectSpriteManager.Draw(sb);
+        EffectSpriteManager.Draw(sb);
     }
 
     public bool IsIdle()
     {
+        bool animObjEmpty = ObjectSpriteManager.AnimatingObjectSprites.Count == 0;
+        bool animTileEmpty = TileSpriteManager.AnimatingTileSprites.Count == 0;
+        bool animEffectsEmpty = EffectSpriteManager.AnimatingEffectSprites.Count == 0;
 
-        bool animObjEmpty = AnimatingObjectSprites.Count == 0;
-        bool animTileEmpty = AnimatingTileSprites.Count == 0;
-        bool animEffectsEmpty = AnimatingEffectSprites.Count == 0;
+        bool iteratingEffectsEmpty = EffectSpriteManager.IteratingEffectSprites.Count == 0;
+        bool iteratingTilesEmpty = TileSpriteManager.IteratingTileSprites.Count == 0;
 
-        return animObjEmpty && animTileEmpty && animEffectsEmpty;
-    }
-
-    private static void UpdateAnimatingList(int dtMs, List<ISprite> currentList, Dictionary<Vector2, ISprite> currentDict)
-    {
-        foreach (var sprite in currentList)
-        {
-            currentDict.Remove(sprite.CurrentPosition);
-            sprite.Update(dtMs);
-            currentDict.Add(sprite.CurrentPosition, sprite);
-        }
-        var finishedSprites = currentList.FindAll(sprite => sprite.IsFinished);
-        ResetToIdle(finishedSprites, currentDict);
-        currentList.RemoveAll(sprite => sprite.IsFinished);
-    }
-
-    private static void UpdateEffectsList(int dtMs, List<ISprite> animatingEffects, Dictionary<Vector2, ISprite> effectSprites)
-    {
-        foreach (var sprite in animatingEffects)
-        {
-            effectSprites.Remove(sprite.CurrentPosition);
-            sprite.Update(dtMs);
-            effectSprites.Add(sprite.CurrentPosition, sprite);
-        }
-        var finishedSprites = animatingEffects.FindAll(sprite => sprite.IsFinished);
-
-        foreach (var sprite in finishedSprites)
-        {
-            effectSprites.Remove(sprite.CurrentPosition);
-        }
-
-        animatingEffects.RemoveAll(sprite => sprite.IsFinished);
-    }
-
-    private static void ResetToIdle(List<ISprite> finishedSprites, Dictionary<Vector2, ISprite> currentDict)
-    {
-        foreach (var sprite in finishedSprites)
-        {
-            var staticSprite = sprite.ConvertToStatic(sprite.IdleName);
-
-            // reset sprite stored at pos to new static sprite
-            Vector2 currPos = staticSprite.CurrentPosition;
-            currentDict.Remove(currPos);
-            currentDict.Add(currPos, staticSprite);
-        }
-
-        finishedSprites.Clear();
-    }
-
-    public Vector2 CalculateLiteralPos(Coordinate coord)
-    {
-        var spriteWidth = (int)(Context.GridSpriteWidthPx * Context.GridScale);
-        var spriteX = spriteWidth * coord.X + Context.PuzzleOffsetX;
-        var spriteHeight = (int)(Context.GridSpriteHeightPx * Context.GridScale);
-        var spriteY = spriteHeight * coord.Y + Context.PuzzleOffsetY;
-
-        return new Vector2(spriteX, spriteY);
+        return animObjEmpty && animTileEmpty && animEffectsEmpty && iteratingEffectsEmpty && iteratingTilesEmpty;
     }
 }

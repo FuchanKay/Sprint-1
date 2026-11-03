@@ -37,6 +37,35 @@ public class TileFactory()
         return CreateFloorTile(RegionNames.MossyBrickTile);
     }
 
+    public static ITile CreatePitBoulderTile()
+    {
+        return CreateFloorTile(RegionNames.BoulderPitTile);
+    }
+
+    public static ITile CreateWaterBoulderTile()
+    {
+        return CreateFloorTile(RegionNames.BoulderWaterTile);
+    }
+
+    public static ITile CreatePitPumpkinTile()
+    {
+        return CreateFloorTile(RegionNames.PumpkinPitTile);
+    }
+
+    public static ITile CreateWaterPumpkinTile()
+    {
+        return CreateFloorTile(RegionNames.PumpkinWaterTile);
+    }
+
+    public static ITile CreateVineStartTile()
+    {
+        return CreateFloorTile(RegionNames.VineStartTile);
+    }
+
+    public static ITile CreateVineTile()
+    {
+        return CreateFloorTile(RegionNames.VineTile);
+    }
     public static ITile CreatePitTile()
     {
         return new PitTile
@@ -70,6 +99,22 @@ public class TileFactory()
     public static ITile CreateCCBugTile()
     {
         return new CCBugTile
+        {
+
+        };
+    }
+
+    public static ITile CreateVineSeedTile()
+    {
+        return new VineSeedTile
+        {
+
+        };
+    }
+
+    public static ITile CreatePumpkinSeedTile()
+    {
+        return new PumpkinSeedTile
         {
 
         };
