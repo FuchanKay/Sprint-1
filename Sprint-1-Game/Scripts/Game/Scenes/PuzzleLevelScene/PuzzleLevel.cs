@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Scripts.Game;
@@ -39,6 +37,7 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
         Context.LevelName = levelFileParser.GetLevelName(LevelFile);
         Context.LevelWidth = levelFileParser.GetLevelWidth(LevelFile);
         Context.LevelHeight = levelFileParser.GetLevelHeight(LevelFile);
+        
         gameLayoutManager.LevelLayout(Context);
         CurrentGridPointer = levelFileParser.CreateGrids(LevelFile);
         SpriteGrid.Init(CurrentGridPointer, Context);
