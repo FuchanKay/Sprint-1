@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -14,6 +15,7 @@ public class Setup(ContentManager content, GameWindow window)
     private IInputManager ButtonInput;
     private IInputManager MouseInput;
     private ITextureAtlas TextureAtlas;
+    private SpriteFontManager SpriteFontManager = new(content);
     public void Initialize(out SceneManager sceneManager)
     {
         ButtonInput = new KeyboardInputManager();
@@ -24,7 +26,7 @@ public class Setup(ContentManager content, GameWindow window)
         MapDefaultInputs();
         AddAnimations();
         AddRegions();
-        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, window);
+        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, SpriteFontManager, window);
         sceneManager.Init();
     }
 
@@ -33,6 +35,7 @@ public class Setup(ContentManager content, GameWindow window)
         BindAllTextures();
         LoadAudio();
         LoadUI();
+        LoadFont();
 
     }
 
@@ -225,5 +228,10 @@ public class Setup(ContentManager content, GameWindow window)
     private void LoadUI()
     {
         //place holder, will be implemented in the future
+    }
+
+    private void LoadFont()
+    {
+        SpriteFontManager.MapFont(FontNames.DefaultFont, FileNames.DefaultFont);
     }
 }
