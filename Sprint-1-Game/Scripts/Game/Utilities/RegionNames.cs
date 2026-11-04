@@ -28,6 +28,7 @@ public class RegionNames
     public readonly static string BoulderPitTile = "Boulder Pit Tile";
     public readonly static string PumpkinPitTile = "Pumpkin Pit Tile";
     public readonly static string WaterTile = "Water Tile";
+    public readonly static string IceTile = "Ice Tile";
     public readonly static string BoulderWaterTile = "Boulder Water Tile";
     public readonly static string PumpkinWaterTile = "Pumpkin Water Tile";
     public readonly static string LavaTile = "Lava Tile";

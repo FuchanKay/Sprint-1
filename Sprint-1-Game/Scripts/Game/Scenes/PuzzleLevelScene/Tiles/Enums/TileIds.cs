@@ -6,6 +6,7 @@ public enum TileIds
     Floor,
     Pit,
     Water,
+    Ice,
     Lava,
     Bug,
     CCBug,
