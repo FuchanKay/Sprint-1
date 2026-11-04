@@ -14,7 +14,6 @@ public class LevelEditorSceneController(ISceneManager sceneManager, IInputManage
         PuzzleOffsetX = 50,
         PuzzleOffsetY = 50,
     };
-    private LevelFileParser LevelFileParser;
     private GridPointer Grid = new();
     private readonly ObjectFactory ObjectFactory = new();
     private readonly TileFactory TileFactory = new();
@@ -40,7 +39,7 @@ public class LevelEditorSceneController(ISceneManager sceneManager, IInputManage
     {
         SpriteGrid.Update(dtMs);
 
-        if (mouseInput.IsPressed(InputNames.Select))
+        if (mouseInput.IsHeld(InputNames.Select))
         {
             var leftmostPoint = Context.PuzzleOffsetX;
             var rightmostPoint = (int) (Context.LevelWidth * Context.RawSpriteWidthPx * Context.GridScale + Context.PuzzleOffsetX);
