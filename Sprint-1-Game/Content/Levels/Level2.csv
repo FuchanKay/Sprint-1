@@ -18,5 +18,5 @@ CornerWall.3,Wall.2,ICornerWall,Rock,SingleWallCorner.2,SingleWall,SingleWall,_,
 WallTop.1,WallTop.1,Wall.3,_,_,Rock,_,_,SingleWall.1,Rock,_,Rock,Rock,Rock,Wall.1
 WallTop.1,WallTop.1,Wall.3,_,SingleWall.1,_,SingleWall.1,_,SingleWall.1,_,Rock,Rock,_,_,Wall.1
 WallTop.1,WallTop.1,CornerWall.3,ICornerWall,SingleWall.1,_,_,_,SingleWall.1,Rock,_,_,Rock,Rock,Wall.1
-WallTop.1,WallTop.1,WallTop,CornerWall.3,SingleWallConnector.2,Wall.2,Wall.2,Wall.2,ICornerWall,Rock,_,_,_,_,Wall.1
+WallTop.1,WallTop.1,WallTop,CornerWall.3,SingleWallConnector.2,Wall.2,Wall.2,Wall.2,SingleWallConnector.2,Rock,_,_,_,_,Wall.1
 WallTop.1,WallTop.1,WallTop,WallTop,WallTop,WallTop,WallTop,WallTop,CornerWall.3,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,CornerWall.2
