@@ -92,23 +92,6 @@ public class Pathfinder()
         return destinationTile.Id != TileIds.Lava && isDestinationEmpty;
     }
 
-    public static Stack<Coordinate> GetLaserPath(GridPointer gridPointer, Coordinate coord, Directions direction)
-    {
-        Stack<Coordinate> laserPath = [];
-        var dirCoord = coord + Coordinate.ToCoordinate(direction);
-        var dirGrid = gridPointer.GetGrid(dirCoord);
-
-        while (dirGrid.Object.Id != ObjectIds.Wall && dirGrid.Object.Id != ObjectIds.Door)
-        {
-            dirCoord += Coordinate.ToCoordinate(direction);
-            dirGrid = gridPointer.GetGrid(dirCoord);
-            laserPath.Push(dirCoord);
-        }
-        laserPath.Push(dirCoord);
-        
-        return laserPath;
-    }
-
     public static Coordinate GetPlayerCoord(GridPointer gridPointer, Coordinate coord)
     {
         var northCoord = coord + Coordinate.North;
