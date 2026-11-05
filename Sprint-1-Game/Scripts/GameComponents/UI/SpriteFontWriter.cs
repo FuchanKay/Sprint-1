@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Scripts.GameComponents;
-public class SpriteFontWriter(SpriteFontManager spriteFontManager): ISpriteFontWriter
+public class BasicSpriteFontWriter(SpriteFontManager spriteFontManager): ISpriteFontWriter
 {
     private SpriteFont Font;
     private Vector2 Pos;

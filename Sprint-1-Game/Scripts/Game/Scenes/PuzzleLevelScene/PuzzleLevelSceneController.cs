@@ -10,8 +10,8 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private GameLayoutManager GameLayoutManager = new();
-    private SpriteFontWriter EnemyCounter = new (spriteFontManager);
-    private SpriteFontWriter InventoryStatus = new (spriteFontManager);
+    private BasicSpriteFontWriter EnemyCounter = new (spriteFontManager);
+    private BasicSpriteFontWriter InventoryStatus = new (spriteFontManager);
 
 
     public int CurrentLevelIndex = 0;
@@ -22,8 +22,8 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         LevelFileParser = new LevelFileParser();
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, LevelFileParser, GameLayoutManager);
         Level.Init(CurrentLevelIndex);
-        EnemyCounter.Init(FontNames.DefaultFont, new Vector2 (1000,40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.White);
-        InventoryStatus.Init(FontNames.DefaultFont, new Vector2(1000,60), $"Inventory:\n{Level.LevelStateHistory.InventoryManager.ReadInventoryString()}", Color.White);
+        EnemyCounter.Init(FontNames.DefaultFont, new Vector2 (1040,40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.White);
+        InventoryStatus.Init(FontNames.DefaultFont, new Vector2(1040,80), $"Inventory:\n{Level.LevelStateHistory.InventoryManager.ReadInventoryString()}", Color.White);
     }
     public void Update(int dtMs)
     {
@@ -82,8 +82,8 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         }
 
         Level.Update(dtMs);
-        EnemyCounter.Update(new Vector2 (1000,0), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}");
-        InventoryStatus.Update(new Vector2(1000,40), $"Inventory:\n{Level.LevelStateHistory.InventoryManager.ReadInventoryString()}");
+        EnemyCounter.Update(new Vector2 (1040,40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}");
+        InventoryStatus.Update(new Vector2(1040,80), $"Inventory:\n{Level.LevelStateHistory.InventoryManager.ReadInventoryString()}");
 
 
         // Exits to the main menu upon a levels completion
