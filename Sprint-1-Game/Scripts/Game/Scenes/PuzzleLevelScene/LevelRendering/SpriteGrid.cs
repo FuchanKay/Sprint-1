@@ -11,6 +11,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     private readonly TileSpriteManager TileSpriteManager = new();
     private readonly EffectSpriteManager EffectSpriteManager = new();
     public readonly int PushDuration = 400;
+    public readonly int SlideDuration = 300;
 
     public void Init(GridPointer gridPointer, LevelContext context)
     {
