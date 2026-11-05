@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Scripts.GameComponents;
 namespace Scripts.Game;
 
 public class EnemiesMoveSubEvent() : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
         var batCoords = gridPointer.GetObjectPointers(ObjectIds.Bat).Keys.ToList();
         var frogCoords = gridPointer.GetObjectPointers(ObjectIds.Frog).Keys.ToList();
@@ -59,7 +59,6 @@ public class EnemiesMoveSubEvent() : ILevelSubEvent
     private void PathFindToPlayer(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate enemyCoord)
     {
         var destinationCoord = Pathfinder.FindNextPointTowardsPlayer(gridPointer, enemyCoord);
-        Console.WriteLine($"Moving to {destinationCoord}");
 
         var directionCoord = enemyCoord - destinationCoord;
         var direction = Directions.North;

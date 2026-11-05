@@ -108,6 +108,7 @@ public class Setup(ContentManager content, GameWindow window)
 
         // effects
         TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 0, 4, 105, 96);
+        TextureAtlas.AddAnimation(AnimationNames.LaserImpact, 0, 0, 4, 105, 96, 150);
         TextureAtlas.AddAnimation(AnimationNames.Slash, 0, 0, 6, 102, 440, 50);
         TextureAtlas.AddAnimation(AnimationNames.LavaSplash, 1, 0, 6, 64, 64, 80);
         TextureAtlas.AddAnimation(AnimationNames.WaterSplash, 0, 0, 6, 64, 64);
@@ -221,6 +222,15 @@ public class Setup(ContentManager content, GameWindow window)
     {
         AudioManager.MapSound(SoundNames.Snap, content.Load<SoundEffect>(FileNames.SnapAudio), 1.0f);
         AudioManager.MapSong(SoundNames.Song, content.Load<Song>(FileNames.SongAudio), 0.2f);
+        AudioManager.MapSound(SoundNames.Explosion, content.Load<SoundEffect>(FileNames.ExplosionAudio), 0.75f);
+        AudioManager.MapSound(SoundNames.Pickup, content.Load<SoundEffect>(FileNames.PickupAudio), 0.75f);
+        AudioManager.MapSound(SoundNames.Slash, content.Load<SoundEffect>(FileNames.SlashAudio), 0.75f);
+        AudioManager.MapSound(SoundNames.MagicSparkle, content.Load<SoundEffect>(FileNames.MagicSparkleAudio), 0.75f);
+        AudioManager.MapSound(SoundNames.LaserBeam, content.Load<SoundEffect>(FileNames.LaserBeamAudio), 0.5f);
+        AudioManager.MapSound(SoundNames.WaterSplash, content.Load<SoundEffect>(FileNames.WaterSplashAudio), 0.5f);
+        AudioManager.MapSound(SoundNames.LavaFizz, content.Load<SoundEffect>(FileNames.LavaFizzAudio), 0.75f);
+        AudioManager.MapSound(SoundNames.StoneScrape, content.Load<SoundEffect>(FileNames.StoneScrapeAudio), 0.75f);
+        AudioManager.MapSound(SoundNames.Death, content.Load<SoundEffect>(FileNames.DeathAudio), 0.5f);
     }
     private void LoadUI()
     {
