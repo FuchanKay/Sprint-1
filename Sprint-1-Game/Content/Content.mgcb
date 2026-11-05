@@ -404,3 +404,6 @@
 #begin Levels/Level5.csv
 /copy:Levels/Level5.csv
 
+#begin Levels/Level6.csv
+/copy:Levels/Level6.csv
+
