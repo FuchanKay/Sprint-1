@@ -21,7 +21,6 @@ public class DirectionalInputSubEvent(Directions direction, Stack<ILevelSubEvent
         {
             var destinationGrid = gridPointer.GetGrid(destinationCoord);
             var destinationObject = destinationGrid.Object;
-            destinationObject.Direction = direction;
 
             if(destinationObject.Id == ObjectIds.Rock) audioManager.PlaySound(SoundNames.StoneScrape);
 
@@ -45,8 +44,9 @@ public class DirectionalInputSubEvent(Directions direction, Stack<ILevelSubEvent
             gridPointer.SetObject(destinationCoord, playerObj);
 
             enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context, audioManager);
-            subEventStack.Push(new CheckIceSlideSubEvent(gridPointer.GetPlayerCoord(), subEventStack));
-            subEventStack.Push(new CheckIceSlideSubEvent(onePastDestinationCoord, subEventStack));
+            
+            if(gridPointer.ObjectsJustMoved.ContainsKey(direction) == false) gridPointer.ObjectsJustMoved[direction] = new Dictionary<Coordinate, IObject>();
+            gridPointer.ObjectsJustMoved[direction].Add(onePastDestinationCoord, destinationObject);
         }
         else if (destinationCoordIsWithinBounds && CanMove(playerObj, gridPointer.GetGrid(destinationCoord)))
         {
@@ -59,7 +59,6 @@ public class DirectionalInputSubEvent(Directions direction, Stack<ILevelSubEvent
             gridPointer.SetObject(destinationCoord, playerObj);
 
             enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context, audioManager);
-            subEventStack.Push(new CheckIceSlideSubEvent(gridPointer.GetPlayerCoord(), subEventStack));
         }
         else if (gridPointer.GetObject(destinationCoord).Id == ObjectIds.Door)
         {
@@ -69,6 +68,8 @@ public class DirectionalInputSubEvent(Directions direction, Stack<ILevelSubEvent
                 context.LevelIsCompleted = true;
             }
         }
+        if(gridPointer.ObjectsJustMoved.ContainsKey(direction) == false) gridPointer.ObjectsJustMoved[direction] = new Dictionary<Coordinate, IObject>();
+        gridPointer.ObjectsJustMoved[direction].Add(gridPointer.GetPlayerCoord(), playerObj);
     }
 
     private bool CanMove(IObject playerObject, Grid destinationGrid)
