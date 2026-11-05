@@ -12,7 +12,6 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private GameLayoutManager GameLayoutManager = new();
     public int CurrentLevelIndex = 0;
 // Loading a SpriteFont Description using the content pipeline
-    SpriteFont font = content.Load<SpriteFont>("Font/defaultFont");
 
     public void Init()
     {
@@ -91,15 +90,5 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     public void Draw(SpriteBatch sb)
     {
         Level.Draw(sb);
-        sb.DrawString(
-        font,                   // font
-        "Hello, MonoGame!",     // text
-        Vector2.Zero,           // position
-        Color.White             // color
-        );
-    }
-    private void drawText()
-    {
-        
     }
 }
