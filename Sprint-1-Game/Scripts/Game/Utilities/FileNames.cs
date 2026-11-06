@@ -27,7 +27,7 @@ public class FileNames
     public readonly static string ZombieTexture = "Images/zombie";
     public readonly static string FontTexture = "Images/hud_font_sheet";
 
-    public readonly static string[] LevelFileNames = ["Content/Levels/level1.csv", "Content/Levels/level2.csv", "Content/Levels/level3.csv", "Content/Levels/level4.csv", "Content/Levels/level5.csv", "Content/Levels/level6.csv", "Content/Levels/level7.csv"];
+    public readonly static string[] LevelFileNames = ["Content/Levels/level1.csv", "Content/Levels/level2.csv", "Content/Levels/level3.csv", "Content/Levels/level4.csv", "Content/Levels/level5.csv", "Content/Levels/level6.csv", "Content/Levels/level7.csv", "Content/Levels/level8.csv"];
 
     public readonly static string SnapAudio = "audio/snap";
     public readonly static string SongAudio = "audio/song";
