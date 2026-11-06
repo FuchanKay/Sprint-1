@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Scripts.GameComponents;
 namespace Scripts.Game;
 
-public class DirectionalInputSubEvent(Directions direction, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
+public class DirectionalInputSubEvent(Directions direction) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {

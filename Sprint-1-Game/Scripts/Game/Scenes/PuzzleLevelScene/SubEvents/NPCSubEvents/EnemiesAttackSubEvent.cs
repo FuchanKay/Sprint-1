@@ -81,7 +81,6 @@ public class CheckEnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, Lis
         var dirCoord = startCoord + Coordinate.ToCoordinate(direction);
         var startDirCoord = dirCoord;
         var dirGrid = gridPointer.GetGrid(dirCoord);
-        Console.WriteLine($"{endCoord}");
         while (dirCoord != endCoord)
         {
             spriteGrid.AddIterableEffectSprite(laserColorId, startDirCoord, dirCoord, rotation);

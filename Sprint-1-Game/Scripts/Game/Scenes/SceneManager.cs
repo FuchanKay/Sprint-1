@@ -76,7 +76,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas);
         NameSceneMap.TryAdd(SceneNames.MainMenu, mainMenuScene);
 
-        var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, audioManager, textureAtlas, spriteFontManager, window);
+        var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas, spriteFontManager, window);
         NameSceneMap.TryAdd(SceneNames.PuzzleLevel, puzzleLevelScene);
     }
 }
