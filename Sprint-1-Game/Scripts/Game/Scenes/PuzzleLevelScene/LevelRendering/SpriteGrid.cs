@@ -5,7 +5,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory)
+public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, EffectSpriteFactory effectSpriteFactory)
 {
     private readonly ObjectSpriteManager ObjectSpriteManager = new();
     private readonly TileSpriteManager TileSpriteManager = new();
@@ -16,7 +16,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     {
         ObjectSpriteManager.Init(gridPointer, context, objectSpriteFactory);
         TileSpriteManager.Init(gridPointer, context, tileSpriteFactory);
-        EffectSpriteManager.Init(context, objectSpriteFactory);
+        EffectSpriteManager.Init(context, effectSpriteFactory);
     }
 
     // OBJECT SPRITE METHODS

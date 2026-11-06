@@ -1,16 +1,17 @@
 using System.Linq;
-
 namespace Scripts.Game;
+using Scripts.GameComponents;
 
 public class WarlockSwapSubEvent() : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
         var warlockPointer = gridPointer.GetObjectPointers(ObjectIds.Warlock);
         bool warlockExists = warlockPointer.Count > 0;
 
         if (warlockExists)
         {
+            audioManager.PlaySound(SoundNames.MagicSparkle);
             var warLockCoord = warlockPointer.Keys.First();
             var warLockObj = gridPointer.GetObject(warLockCoord);
             var playerCoord = gridPointer.GetPlayerCoord();

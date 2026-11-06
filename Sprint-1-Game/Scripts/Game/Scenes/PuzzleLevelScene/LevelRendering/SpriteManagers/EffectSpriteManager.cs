@@ -13,12 +13,12 @@ public class EffectSpriteManager()
     public readonly Dictionary<Vector2, List<ISprite>> IterableEffectSprites = [];
     public readonly List<List<ISprite>> IteratingEffectSprites = [];
     private LevelContext Context;
-    private ObjectSpriteFactory ObjectSpriteFactory;
+    private EffectSpriteFactory EffectSpriteFactory;
 
-    public void Init(LevelContext context, ObjectSpriteFactory objectSpriteFactory)
+    public void Init(LevelContext context, EffectSpriteFactory effectSpriteFactory)
     {
         Context = context;
-        ObjectSpriteFactory = objectSpriteFactory;
+        EffectSpriteFactory = effectSpriteFactory;
 
         EffectSprites.Clear();
         AnimatingEffectSprites.Clear();
@@ -29,7 +29,7 @@ public class EffectSpriteManager()
     public void PlayEffect(EffectIds effectId, Coordinate coord)
     {
         var realCoord = CalculateLiteralPos(coord);
-        ISprite sprite = ObjectSpriteFactory.CreateEffectSprite(effectId, realCoord, Context);
+        ISprite sprite = EffectSpriteFactory.CreateEffectSprite(effectId, realCoord, Context);
 
         EffectSprites[realCoord] = sprite;
         AnimatingEffectSprites.Add(sprite);
@@ -51,7 +51,7 @@ public class EffectSpriteManager()
         var realStartCoord = CalculateLiteralPos(startCoord);
         var realCurrentCoord = CalculateLiteralPos(currentCoord);
 
-        var sprite = ObjectSpriteFactory.CreateEffectSprite(effectId, realCurrentCoord, Context);
+        var sprite = EffectSpriteFactory.CreateEffectSprite(effectId, realCurrentCoord, Context);
         sprite.Rotation = rotation;
 
         if (!IterableEffectSprites.TryGetValue(realStartCoord, out var spriteList))
