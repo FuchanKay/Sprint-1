@@ -81,6 +81,13 @@ public class TileFactory()
         };
     }
 
+    public static ITile CreateIceTile()
+    {
+        return new IceTile
+        {
+        };
+    }
+
     public static ITile CreateLavaTile()
     {
         return new LavaTile

@@ -11,11 +11,9 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private GameLayoutManager GameLayoutManager = new();
+    private readonly IAudioManager AudioManager = audioManager;
     private BasicSpriteFontWriter EnemyCounter = new (spriteFontManager);
     private BasicSpriteFontWriter InventoryStatus = new (spriteFontManager);
-
-
-    private readonly IAudioManager AudioManager = audioManager;
     public int CurrentLevelIndex = 0;
 
     public void Init()
