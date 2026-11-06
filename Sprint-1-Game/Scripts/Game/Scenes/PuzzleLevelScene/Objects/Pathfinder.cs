@@ -92,29 +92,6 @@ public class Pathfinder()
         return destinationTile.Id != TileIds.Lava && isDestinationEmpty;
     }
 
-    public static Coordinate GetBlastTargetCoord(GridPointer gridPointer, Coordinate startCoord, Directions direction)
-    {
-        var prevCoord = GetNextObjectCoord(gridPointer, startCoord, direction);
-        var currCoord = prevCoord;
-
-        var obj = gridPointer.GetObject(currCoord);
-
-        while (obj.Id != ObjectIds.Wall && obj.Id != ObjectIds.Rock && obj.Id != ObjectIds.Door)
-        {
-            prevCoord = currCoord;
-            currCoord = GetNextObjectCoord(gridPointer, prevCoord, direction);
-            obj = gridPointer.GetObject(currCoord);
-        }
-
-        var returnCoord = prevCoord;
-        if (obj.Id == ObjectIds.Rock)
-        {
-            returnCoord = currCoord;
-        }
-
-        return returnCoord;
-    }
-
     public static Coordinate GetPlayerCoord(GridPointer gridPointer, Coordinate coord)
     {
         var northCoord = coord + Coordinate.North;
@@ -130,17 +107,20 @@ public class Pathfinder()
         return coord;
     }
 
-    private static Coordinate GetNextObjectCoord(GridPointer gridPointer, Coordinate lizardCoord, Directions lizardDirection)
+    public static Stack<Coordinate> GetLineOfSight(GridPointer gridPointer, Coordinate coord, Directions direction)
     {
-        var dirCoord = lizardCoord + Coordinate.ToCoordinate(lizardDirection);
+        Stack<Coordinate> lineOfSight = [];
+        var dirCoord = coord + Coordinate.ToCoordinate(direction);
         var dirGrid = gridPointer.GetGrid(dirCoord);
 
         while (dirGrid.Object.Id == ObjectIds.Empty)
         {
-            dirCoord += Coordinate.ToCoordinate(lizardDirection);
+            dirCoord += Coordinate.ToCoordinate(direction);
             dirGrid = gridPointer.GetGrid(dirCoord);
+            lineOfSight.Push(dirCoord);
         }
-
-        return dirCoord;
+        lineOfSight.Push(dirCoord);
+        
+        return lineOfSight;
     }
 }

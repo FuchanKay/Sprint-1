@@ -1,8 +1,9 @@
 namespace Scripts.Game;
+using Scripts.GameComponents;
 
 public class UseItemSubEvent(int inventoryId) : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
         var playerCoord = gridPointer.GetPlayerCoord();
         var playerObj = gridPointer.GetObject(playerCoord);
@@ -18,6 +19,7 @@ public class UseItemSubEvent(int inventoryId) : ILevelSubEvent
             gridPointer.SetObject(targetCoord, itemObj);
             spriteGrid.SetNewObjectSprite(targetCoord, itemObj);
             inventoryManager.EmptySlot(inventoryId);
+            audioManager.PlaySound(SoundNames.Pickup);
         }
     }
 }

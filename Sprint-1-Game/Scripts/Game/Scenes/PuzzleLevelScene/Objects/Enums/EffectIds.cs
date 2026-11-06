@@ -11,5 +11,7 @@ public enum EffectIds
     BlueFire,
     Slash,
     LavaSplash,
+    RedLaserImpact,
+    BlueLaserImpact,
     WaterSplash
 }
