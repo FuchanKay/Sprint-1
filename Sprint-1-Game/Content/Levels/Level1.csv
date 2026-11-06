@@ -10,7 +10,7 @@ Dirt,Dirt,Dirt,Dirt,Dirt,Water,Water,Grass,Dirt,Dirt
 Dirt,Dirt,Dirt,Dirt,Dirt,Water,Water,Dirt,Dirt,Dirt
 Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 _,_,_,_,_,_,_,_,_,_
-CornerWall,Wall,Wall,Wall,OpenDoor,Wall,Wall,Wall,Wall,CornerWall.1
+CornerWall,Wall,Wall,Wall,ClosedDoor,Wall,Wall,Wall,Wall,CornerWall.1
 Wall.3,_,_,_,_,_,_,_,_,Wall.1
 Wall.3,_,_,_,_,_,Rock,_,_,Wall.1
 Wall.3,_,_,_,_,_,Player,_,_,Wall.1
