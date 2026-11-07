@@ -18,6 +18,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private const int FadeDurationMs = 400;
     private FadeType currentFadeType;
     private int fadeTimeElapsedMs;
+    
     #nullable enable
     private Texture2D? transitionPixel;
 

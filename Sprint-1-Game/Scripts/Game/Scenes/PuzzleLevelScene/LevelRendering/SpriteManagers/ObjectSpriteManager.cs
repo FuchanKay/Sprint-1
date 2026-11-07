@@ -113,7 +113,7 @@ public class ObjectSpriteManager
         {
             ObjectSprites.Remove(sprite.CurrentPosition);
             sprite.Update(dtMs);
-            ObjectSprites.Add(sprite.CurrentPosition, sprite);
+            if(!ObjectSprites.ContainsKey(sprite.CurrentPosition)) ObjectSprites.Add(sprite.CurrentPosition, sprite);
         }
         var finishedSprites = AnimatingObjectSprites.FindAll(sprite => sprite.IsFinished);
         ResetToIdle(finishedSprites);
