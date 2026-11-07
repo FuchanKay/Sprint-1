@@ -14,6 +14,13 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private BasicSpriteFontWriter EnemyCounter = new (spriteFontManager);
     private BasicSpriteFontWriter InventoryStatus = new (spriteFontManager);
 
+    private enum FadeType {None, FadeIn, FadeOut};
+    private const int FadeDurationMs = 400;
+    private FadeType currentFadeType;
+    private int fadeTimeElapsedMs;
+    #nullable enable
+    private Texture2D? transitionPixel;
+
 
     private readonly IAudioManager AudioManager = audioManager;
     public int CurrentLevelIndex = 0;
@@ -88,12 +95,15 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         InventoryStatus.Update(new Vector2(1040,80), $"Inventory:\n{Level.LevelStateHistory.InventoryManager.ReadInventoryString()}");
 
 
-        // Exits to the main menu upon a levels completion
-        if (Level.Context.LevelIsCompleted)
+        if (currentFadeType != FadeType.None)
         {
-            CurrentLevelIndex = (CurrentLevelIndex + 1) % FileNames.LevelFileNames.Length;
-            Level.Init(CurrentLevelIndex);
-            Level.Context.LevelIsCompleted = false;
+            UpdateLevelTransition(dtMs);
+        }
+
+        if (Level.Context.LevelIsCompleted && currentFadeType == FadeType.None)
+        {
+            currentFadeType = FadeType.FadeOut;
+            fadeTimeElapsedMs = 0;
         }
     }
     public void Draw(SpriteBatch sb)
@@ -101,5 +111,42 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         EnemyCounter.Draw(sb);
         InventoryStatus.Draw(sb);
         Level.Draw(sb);
+
+        if (currentFadeType == FadeType.None) return;
+
+        // Clamp ensures progress is always between 0 and 1, even if fadeTimeElapsedMs is greater than FadeDurationMs
+        float progress = MathHelper.Clamp((float)fadeTimeElapsedMs / FadeDurationMs, 0f, 1f);
+
+        float opacity;
+        if (currentFadeType == FadeType.FadeOut) opacity = progress;
+        else opacity = 1f - progress;
+
+        var viewport = sb.GraphicsDevice.Viewport;
+        if (transitionPixel == null) CreateTransitionPixel(sb);
+        sb.Draw(transitionPixel, new Rectangle(0, 0, viewport.Width, viewport.Height), Color.Black * opacity);
+    }
+
+    private void UpdateLevelTransition(int dtMs)
+    {
+        fadeTimeElapsedMs += dtMs;
+        if (fadeTimeElapsedMs < FadeDurationMs) return;
+        if (currentFadeType == FadeType.FadeOut)
+        {
+            CurrentLevelIndex = (CurrentLevelIndex + 1) % FileNames.LevelFileNames.Length;
+            Level.Init(CurrentLevelIndex);
+            currentFadeType = FadeType.FadeIn;
+            fadeTimeElapsedMs = 0;
+        }
+        else
+        {
+            currentFadeType = FadeType.None;
+            fadeTimeElapsedMs = 0;
+        }
+    }
+
+    private void CreateTransitionPixel(SpriteBatch sb)
+    {
+        transitionPixel = new Texture2D(sb.GraphicsDevice, 1, 1);
+        transitionPixel.SetData([Color.White]);
     }
 }
