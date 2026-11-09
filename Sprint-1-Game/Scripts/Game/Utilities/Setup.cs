@@ -243,5 +243,7 @@ public class Setup(ContentManager content, GameWindow window)
     private void LoadFont()
     {
         SpriteFontManager.MapFont(FontNames.DefaultFont, FileNames.DefaultFont);
+        SpriteFontManager.MapFont(FileNames.DungeontFont, FileNames.DungeontFont);
+
     }
 }
