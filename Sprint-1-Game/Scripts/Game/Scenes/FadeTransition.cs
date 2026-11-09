@@ -2,22 +2,22 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.Game;
 
-public class FadeTransition(PuzzleLevel Level) : ILevelTransition
+public class FadeTransition(SceneManager sceneManager) : ISceneTransition
 {
     public int TransitionDurationMs { get; set; } = 400;
     public bool IsActive => currentTransitionType != TransitionType.None;
     private int TransitionTimeElapsedMs;
-    private int NewLevelIndex;
+    private string SceneName;
     
     #nullable enable
     private Texture2D? transitionPixel;
     private enum TransitionType {None, TransitionIn, TransitionOut};
     private TransitionType currentTransitionType = TransitionType.None; 
    
-    public void StartLevelTransition(int newLevelIndex)
+    public void StartLevelTransition(string sceneName)
     {
         currentTransitionType = TransitionType.TransitionOut;
-        NewLevelIndex = newLevelIndex;
+        SceneName = sceneName;
         TransitionTimeElapsedMs = 0;
     }
 
@@ -27,8 +27,7 @@ public class FadeTransition(PuzzleLevel Level) : ILevelTransition
         if (TransitionTimeElapsedMs < TransitionDurationMs) return;
         if (currentTransitionType == TransitionType.TransitionOut)
         {
-            Level.Init(NewLevelIndex);
-            Level.Context.LevelIsCompleted = false;
+            sceneManager.SwapScene(SceneName);
             currentTransitionType = TransitionType.TransitionIn;
             TransitionTimeElapsedMs = 0;
         }
