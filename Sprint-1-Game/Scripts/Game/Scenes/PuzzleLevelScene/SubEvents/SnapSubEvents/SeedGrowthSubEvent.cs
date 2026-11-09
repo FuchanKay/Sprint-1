@@ -63,10 +63,11 @@ public class SeedGrowthSubEvent : ILevelSubEvent
             tile = gridPointer.GetTile(nextCoord);
         }
 
-        var oppositeRotation = Utilities.ToRadians(direction);
+        var oppositeDirection = Utilities.Rotate180(direction);
+        var oppositeRotation = Utilities.ToRadians(oppositeDirection);
 
         var endVineTile = TileFactory.CreateVineStartTile();
-        endVineTile.Direction = Utilities.Rotate180(direction);
+        endVineTile.Direction = oppositeDirection;
         gridPointer.SetTile(nextCoord, endVineTile);
         spriteGrid.AddIterableTileSprite(endVineTile, seedCoord, nextCoord, oppositeRotation);
         spriteGrid.StartIterableTile(seedCoord);

@@ -29,14 +29,7 @@ public class Utilities
 
     public static Directions Rotate180(Directions direction)
     {
-        return direction switch
-        {
-            Directions.North => Directions.South,
-            Directions.East => Directions.West,
-            Directions.South => Directions.North,
-            Directions.West => Directions.East,
-            _ => Directions.North
-        };
+        return (Directions) (((int)direction + 2) % 4);
     }
 
     public static float ToRadians(Directions direction)
