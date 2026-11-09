@@ -18,12 +18,18 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
 
     public void Init()
     {
+        Console.WriteLine("init");
+        foreach (string key in spriteFontManager.FontMap.Keys)
+        {
+            Console.WriteLine("1");
+            Console.WriteLine($"{key}");
+        }
         PlayGameButton = new PlayGameButton(sceneManager, audioManager, textureAtlas);
         PlayGameButton.Init(PlayGameButtonX, PlayGameButtonY, mouseInput);
 
         ExitGameButton = new ExitGameButton(sceneManager, textureAtlas);
         ExitGameButton.Init(ExitGameButtonX, ExitGameButtonY, mouseInput);
-        GameTitle.Init(FontNames.DungeonFont, new Vector2 (1040,40), "Suger Snap", Color.Gold);
+        GameTitle.Init(FontNames.DungeonFont, new Vector2 (1040,40), "Sugar Snap", Color.Gold);
 
     }
 
@@ -37,6 +43,6 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
     {
         PlayGameButton.Draw(sb);
         ExitGameButton.Draw(sb);
-        //GameTitle.Draw(sb);
+        GameTitle.Draw(sb);
     }
 }
