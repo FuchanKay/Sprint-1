@@ -27,6 +27,7 @@ public class Setup(ContentManager content, GameWindow window)
         MapDefaultInputs();
         AddAnimations();
         AddRegions();
+        AddFont();
         sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, SpriteFontManager, window);
         sceneManager.Init();
     }
@@ -36,7 +37,6 @@ public class Setup(ContentManager content, GameWindow window)
         BindAllTextures();
         LoadAudio();
         LoadUI();
-        LoadFont();
 
     }
 
@@ -166,7 +166,17 @@ public class Setup(ContentManager content, GameWindow window)
         // objects
         TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 64, 64);
         TextureAtlas.AddRegion(RegionNames.Pumpkin, 1, 0, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.Wall, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.VineSeed, 2, 0, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.PumpkinSeed, 3, 0, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.InvertedCornerWall, 4, 0, 64, 64);
+
+        TextureAtlas.AddRegion(RegionNames.CornerWall, 0, 2, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.Wall, 1, 2, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.StandaloneWall, 2, 2, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.TopOfWall, 3, 2, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.StandaloneWallConnector, 4, 2, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.StandaloneWallCorner, 5, 2, 64, 64)
+;
         TextureAtlas.AddRegion(RegionNames.Bomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Key, 0, 0, 512, 512);
@@ -242,10 +252,10 @@ public class Setup(ContentManager content, GameWindow window)
 
     }
 
-    private void LoadFont()
+    private void AddFont()
     {
         SpriteFontManager.MapFont(FontNames.DefaultFont, FileNames.DefaultFont);
-        SpriteFontManager.MapFont(FileNames.DungeontFont, FileNames.DungeontFont);
+        SpriteFontManager.MapFont(FontNames.DungeonFont, FileNames.DungeonFont);
 
     }
 }
