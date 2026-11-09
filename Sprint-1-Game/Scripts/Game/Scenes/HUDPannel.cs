@@ -19,10 +19,10 @@ public class HUDPannel(SpriteFontManager spriteFontManager)
     {
         Clock = 0;;
         Level = level;
-        EnemyCounter.Init(FileNames.DungeontFont, new Vector2 (1040,40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.Gold);
-        GameClock.Init(FileNames.DungeontFont, new Vector2 (1040,80), "Game Clock: ", Color.Gold);
-        InventoryStatus.Init(FileNames.DungeontFont, new Vector2(1040,120), $"Inventory:\n{Level.LevelStateHistory.InventoryManager}",  Color.Gold);
-        CommandInstructions.Init(FileNames.DungeontFont, new Vector2(1040,500), "Player Move: WASD\n" 
+        EnemyCounter.Init(FontNames.DungeonFont, new Vector2 (1040,40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.Gold);
+        GameClock.Init(FontNames.DungeonFont, new Vector2 (1040,80), "Game Clock: ", Color.Gold);
+        InventoryStatus.Init(FontNames.DungeonFont, new Vector2(1040,120), $"Inventory:\n{Level.LevelStateHistory.InventoryManager}",  Color.Gold);
+        CommandInstructions.Init(FontNames.DungeonFont, new Vector2(1040,500), "Player Move: WASD\n" 
                                                                                 + "SNAP: F\n"
                                                                                 + "Use Item: 123\n" 
                                                                                 + "Grab item: G\n"
