@@ -8,7 +8,7 @@ using Scripts.Game;
 namespace Scripts.GameComponents;
 public class SpriteFontManager(ContentManager content)
 {
-    public readonly Dictionary<string, SpriteFont> FontMap = [];
+    private readonly Dictionary<string, SpriteFont> FontMap = [];
     public void MapFont(string fontName, string fileName)
     {
 

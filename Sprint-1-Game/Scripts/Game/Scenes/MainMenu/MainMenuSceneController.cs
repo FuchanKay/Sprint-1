@@ -19,11 +19,7 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
     public void Init()
     {
         Console.WriteLine("init");
-        foreach (string key in spriteFontManager.FontMap.Keys)
-        {
-            Console.WriteLine("1");
-            Console.WriteLine($"{key}");
-        }
+ 
         PlayGameButton = new PlayGameButton(sceneManager, audioManager, textureAtlas);
         PlayGameButton.Init(PlayGameButtonX, PlayGameButtonY, mouseInput);
 
