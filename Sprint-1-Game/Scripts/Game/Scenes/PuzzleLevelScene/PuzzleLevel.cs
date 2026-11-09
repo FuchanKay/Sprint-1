@@ -24,6 +24,7 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
     public void Init(int levelIndex)
     {
         UndoHistory.Clear();
+        EventQueue.Clear();
         CurrentEvent.SubEventStack.Clear();
 
         Context = new()
