@@ -22,7 +22,7 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
 
     public void Update(int dtMs)
     {
-        if (buttonInput.IsHeld(InputNames.RotateObject) && CurrentObject.IsRotatable)
+        if (buttonInput.IsPressed(InputNames.RotateObject) && CurrentObject.IsRotatable)
         {
             CurrentObject.Direction = Utilities.RotateClockwise(CurrentObject.Direction);
             CurrentObjectSprite.Rotation = Utilities.ToRadians(CurrentObject.Direction);
