@@ -40,7 +40,7 @@ public class InventoryManager()
         }
         return clone;
     }
-    public string ReadInventoryString()
+    public override string ToString()
     {
         int inventorySize = PlayerItems.Length;
         string itemString = "";
