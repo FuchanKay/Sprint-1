@@ -21,14 +21,17 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
             case TileIds.Pit:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.PitTile);
+                sprite.IdleName = RegionNames.PitTile;
                 break;
             case TileIds.Water:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.WaterTile);
+                sprite.IdleName = RegionNames.WaterTile;
                 break;
             case TileIds.Lava:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.LavaTile);
+                sprite.IdleName = RegionNames.LavaTile;
                 break;
             case TileIds.Bug:
                 sprite = new StaticSprite(textureAtlas);
