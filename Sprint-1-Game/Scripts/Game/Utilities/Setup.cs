@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using MonoGameLibrary.Graphics;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
@@ -237,7 +238,8 @@ public class Setup(ContentManager content, GameWindow window)
     }
     private void LoadUI()
     {
-        //place holder, will be implemented in the future
+        UITextureAtlas UIatlas = UITextureAtlas.LoadFromFile(content, "images/atlas-definition.xml");
+
     }
 
     private void LoadFont()
