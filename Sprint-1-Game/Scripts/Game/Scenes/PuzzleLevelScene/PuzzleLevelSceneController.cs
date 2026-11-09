@@ -74,6 +74,10 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         {
             Level.Undo();
         }
+        else if (buttonInput.IsPressed(InputNames.ToggleObjectView))
+        {
+            Level.ToggleObjectHide();
+        }
 
         Level.Update(dtMs);
 

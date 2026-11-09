@@ -4,7 +4,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class PaintBrush(IInputManager buttonInput, IInputManager mouseInput)
+public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInput)
 {
     private LevelContext Context;
     private GridPointer Grid;
@@ -85,6 +85,8 @@ public class PaintBrush(IInputManager buttonInput, IInputManager mouseInput)
         //the coordinate calculation can sometimes jankily evaluate to an index that is out of bounds
         if (x >= Context.LevelWidth) x = Context.LevelWidth - 1;
         if (y >= Context.LevelHeight) y = Context.LevelHeight - 1;
+        if (x < 0) x = 0;
+        if (y < 0) y = 0;
 
         return new Coordinate(x, y);
     }

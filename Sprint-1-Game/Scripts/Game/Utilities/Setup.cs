@@ -53,6 +53,8 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.LCtrl, (int)Keys.LeftControl);
         ButtonInput.MapInput(InputNames.LShift, (int)Keys.LeftShift);
 
+        ButtonInput.MapInput(InputNames.ToggleObjectView, (int)Keys.H);
+
         ButtonInput.MapInput(InputNames.Snap, (int)Keys.F);
 
         ButtonInput.MapInput(InputNames.ExitGame, (int)Keys.Q);

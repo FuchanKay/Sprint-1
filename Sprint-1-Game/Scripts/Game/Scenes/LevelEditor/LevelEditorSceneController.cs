@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
+
 namespace Scripts.Game;
 
 public class LevelEditorSceneController(ISceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, ITextureAtlas textureAtlas) : ISceneController
@@ -16,8 +17,7 @@ public class LevelEditorSceneController(ISceneManager sceneManager, IInputManage
     private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private SpriteGrid SpriteGrid;
-    private readonly PaintBrush Brush = new(buttonInput, mouseInput);
-
+    private readonly ObjectPaintBrush Brush = new(buttonInput, mouseInput);
     public int CurrentLevelIndex = 0;
 
     public void Init()

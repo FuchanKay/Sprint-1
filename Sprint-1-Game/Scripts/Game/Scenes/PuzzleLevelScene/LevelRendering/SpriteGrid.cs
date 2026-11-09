@@ -134,7 +134,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         return animObjEmpty && animTileEmpty && animEffectsEmpty && iteratingEffectsEmpty && iteratingTilesEmpty;
     }
     
-    public void SwitchHideObjectLayer()
+    public void ToggleObjectLayerHide()
     {
         HideObjectLayer = !HideObjectLayer;
     }

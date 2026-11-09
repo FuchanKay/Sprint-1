@@ -120,6 +120,11 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
         Context.PlayerIsDead = false;
     }
 
+    public void ToggleObjectHide()
+    {
+        SpriteGrid.ToggleObjectLayerHide();
+    }
+
     private void PushCurrentLevelStateHistory()
     {
         var clone = LevelStateHistory.Clone();
