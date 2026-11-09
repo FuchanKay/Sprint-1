@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-
+using Scripts.GameComponents;
 namespace Scripts.Game;
 
 public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
         var lavaCoords = gridPointer.GetTilePointers(TileIds.Lava).Keys;
         var waterCoords = gridPointer.GetTilePointers(TileIds.Water).Keys;
@@ -12,11 +12,11 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack) 
 
         foreach (var coord in lavaCoords)
         {
-            CheckLava(spriteGrid, gridPointer, subEventStack, coord);
+            CheckLava(spriteGrid, gridPointer, subEventStack, coord, audioManager);
         }
         foreach (var coord in waterCoords)
         {
-            CheckWater(spriteGrid, gridPointer, subEventStack, coord);
+            CheckWater(spriteGrid, gridPointer, subEventStack, coord, audioManager);
         }
         foreach (var coord in pitCoords)
         {
@@ -24,7 +24,7 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack) 
         }
     }
 
-    private static void CheckWater(SpriteGrid spriteGrid, GridPointer gridPointer, Stack<ILevelSubEvent> subEventStack, Coordinate waterCoord)
+    private static void CheckWater(SpriteGrid spriteGrid, GridPointer gridPointer, Stack<ILevelSubEvent> subEventStack, Coordinate waterCoord, IAudioManager audioManager)
     {
         var obj = gridPointer.GetObject(waterCoord);
 
@@ -53,12 +53,14 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack) 
             spriteGrid.RemoveObjectSprite(waterCoord);
             gridPointer.SetObject(waterCoord, ObjectFactory.CreateEmpty());
             spriteGrid.PlayEffect(EffectIds.WaterSplash, waterCoord);
+            audioManager.PlaySound(SoundNames.WaterSplash);
         }
-        else if (obj.Id != ObjectIds.Empty && obj.Id != ObjectIds.Bat)
+        else if (obj.Id != ObjectIds.Empty && obj.Id != ObjectIds.Bat && obj.Id != ObjectIds.Wall)
         {
             gridPointer.SetObject(waterCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(waterCoord);
             spriteGrid.PlayEffect(EffectIds.WaterSplash, waterCoord);
+            audioManager.PlaySound(SoundNames.WaterSplash);
         }
     }
 
@@ -98,7 +100,7 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack) 
         }
     }
 
-    private static void CheckLava(SpriteGrid spriteGrid, GridPointer gridPointer, Stack<ILevelSubEvent> subEventStack, Coordinate lavaCoord)
+    private static void CheckLava(SpriteGrid spriteGrid, GridPointer gridPointer, Stack<ILevelSubEvent> subEventStack, Coordinate lavaCoord, IAudioManager audioManager)
     {
         var obj = gridPointer.GetObject(lavaCoord);
         if (obj.Id == ObjectIds.Player)
@@ -114,6 +116,7 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack) 
             gridPointer.SetObject(lavaCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(lavaCoord);
             spriteGrid.PlayEffect(EffectIds.LavaSplash, lavaCoord);
+            audioManager.PlaySound(SoundNames.LavaFizz);
         }
     }
 }

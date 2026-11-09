@@ -30,5 +30,15 @@ public class FileNames
 
     public readonly static string SnapAudio = "audio/snap";
     public readonly static string SongAudio = "audio/song";
+    public readonly static string DefaultFont = "Font/defaultFont";
+    public readonly static string ExplosionAudio = "audio/explosion";
+    public readonly static string PickupAudio = "audio/pickItem";
+    public readonly static string SlashAudio = "audio/slashAttack";
+    public readonly static string MagicSparkleAudio = "audio/magicSparkle";
+    public readonly static string LaserBeamAudio = "audio/laserBeam";
+    public readonly static string WaterSplashAudio = "audio/waterSplash";
+    public readonly static string LavaFizzAudio = "audio/fizz";
+    public readonly static string StoneScrapeAudio = "audio/stoneScrape";
+    public readonly static string DeathAudio = "audio/entityDeath";
 
 }
