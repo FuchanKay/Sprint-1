@@ -53,7 +53,7 @@ public class Game1 : Core
     {
         GraphicsDevice.Clear(BackgroundColor);
 
-        SpriteBatch.Begin();
+        SpriteBatch.Begin(SpriteSortMode.FrontToBack);
 
         // TEST (random destination)
         SceneManager.Draw(SpriteBatch);

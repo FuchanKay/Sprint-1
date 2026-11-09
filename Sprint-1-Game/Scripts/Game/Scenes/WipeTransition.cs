@@ -14,6 +14,7 @@ public class WipeTransition(PuzzleLevel Level) : ILevelTransition
     private enum TransitionType {None, TransitionIn, TransitionOut};
     private TransitionType currentTransitionType = TransitionType.None; 
     private Directions direction = Directions.West;
+    private const float LevelScreenRatio = 4f / 5f;
    
     public void StartLevelTransition(int newLevelIndex)
     {
@@ -49,33 +50,42 @@ public class WipeTransition(PuzzleLevel Level) : ILevelTransition
         var viewport = sb.GraphicsDevice.Viewport;
 
         Rectangle wipeRectangle = new Rectangle(0, 0, viewport.Width, viewport.Height);
+        var levelWidth = (int)(viewport.Width * LevelScreenRatio);
 
         switch (direction)
         {
             case Directions.South:
                 int height = (int)(viewport.Height * progress);
-                if (currentTransitionType == TransitionType.TransitionOut) wipeRectangle = new Rectangle(0, 0, viewport.Width, height);
-                else wipeRectangle = new Rectangle(0, height, viewport.Width, viewport.Height - height);
+                if (currentTransitionType == TransitionType.TransitionOut) wipeRectangle = new Rectangle(0, 0, levelWidth, height);
+                else wipeRectangle = new Rectangle(0, height, levelWidth, viewport.Height - height);
                 break;
             case Directions.North:
                 height = (int)(viewport.Height * progress);
-                if (currentTransitionType == TransitionType.TransitionOut) wipeRectangle = new Rectangle(0, viewport.Height - height, viewport.Width, height);
-                else wipeRectangle = new Rectangle(0, 0, viewport.Width, viewport.Height - height);
+                if (currentTransitionType == TransitionType.TransitionOut) wipeRectangle = new Rectangle(0, viewport.Height - height, levelWidth, height);
+                else wipeRectangle = new Rectangle(0, 0, levelWidth, viewport.Height - height);
                 break;
             case Directions.West:
                 int width = (int)(viewport.Width * progress);
-                if (currentTransitionType == TransitionType.TransitionOut) wipeRectangle = new Rectangle(viewport.Width - width, 0, width, viewport.Height);
-                else wipeRectangle = new Rectangle(0, 0, viewport.Width - width, viewport.Height);
+                if (currentTransitionType == TransitionType.TransitionOut) wipeRectangle = new Rectangle(levelWidth - width, 0, width, viewport.Height);
+                else wipeRectangle = new Rectangle(0, 0, levelWidth - width, viewport.Height);
                 break;
             case Directions.East:
                 width = (int)(viewport.Width * progress);
                 if (currentTransitionType == TransitionType.TransitionOut) wipeRectangle = new Rectangle(0, 0, width, viewport.Height);
-                else wipeRectangle = new Rectangle(width, 0, viewport.Width - width, viewport.Height);
+                else wipeRectangle = new Rectangle(width, 0, levelWidth - width, viewport.Height);
                 break;
         }
 
         if (transitionPixel == null) CreateTransitionPixel(sb);
-        sb.Draw(transitionPixel, wipeRectangle, Color.Black);
+        sb.Draw(
+            transitionPixel,
+            wipeRectangle,
+            null,
+            Color.Black,
+            0f,
+            Vector2.Zero,
+            SpriteEffects.None,
+            1.0f);
     }
 
     private void CreateTransitionPixel(SpriteBatch sb)

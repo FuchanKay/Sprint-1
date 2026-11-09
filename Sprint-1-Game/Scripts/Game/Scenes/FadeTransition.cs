@@ -48,7 +48,15 @@ public class FadeTransition(SceneManager sceneManager) : ISceneTransition
 
         var viewport = sb.GraphicsDevice.Viewport;
         if (transitionPixel == null) CreateTransitionPixel(sb);
-        sb.Draw(transitionPixel, new Rectangle(0, 0, viewport.Width, viewport.Height), Color.Black * opacity);
+        sb.Draw(
+            transitionPixel,
+            new Rectangle(0, 0, viewport.Width, viewport.Height),
+            null,
+            Color.Black * opacity,
+            0f,
+            Vector2.Zero,
+            SpriteEffects.None,
+            1.0f);
     }
 
     private void CreateTransitionPixel(SpriteBatch sb)

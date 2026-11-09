@@ -5,7 +5,7 @@ namespace Scripts.Game;
 
 public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
 {
-    private readonly static float ObjectLayerDepth = 1.0f;
+    private readonly static float ObjectLayerDepth = 0.5f;
     public ISprite CreateObjectSprite(IObject obj, Vector2 coord, LevelContext context)
     {
         ISprite sprite;
@@ -122,6 +122,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
         sprite.CurrentPosition = coord;
         sprite.SetTargetPosition(coord);
         sprite.LayerDepth = ObjectLayerDepth;
+        if (obj.Id == ObjectIds.Door) sprite.LayerDepth = 0.45f;
         sprite.Scale = spriteScale;
 
         return sprite;
