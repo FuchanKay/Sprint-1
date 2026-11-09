@@ -10,6 +10,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     private readonly ObjectSpriteManager ObjectSpriteManager = new();
     private readonly TileSpriteManager TileSpriteManager = new();
     private readonly EffectSpriteManager EffectSpriteManager = new();
+    private bool HideObjectLayer = false;
     public readonly int PushDuration = 400;
 
     public void Init(GridPointer gridPointer, LevelContext context)
@@ -117,7 +118,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     public void Draw(SpriteBatch sb)
     {
         TileSpriteManager.Draw(sb);
-        ObjectSpriteManager.Draw(sb);
+        if (!HideObjectLayer) ObjectSpriteManager.Draw(sb);
         EffectSpriteManager.Draw(sb);
     }
 
@@ -131,6 +132,11 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         bool iteratingTilesEmpty = TileSpriteManager.IteratingTileSprites.Count == 0;
 
         return animObjEmpty && animTileEmpty && animEffectsEmpty && iteratingEffectsEmpty && iteratingTilesEmpty;
+    }
+    
+    public void SwitchHideObjectLayer()
+    {
+        HideObjectLayer = !HideObjectLayer;
     }
 
     public static Vector2 CalculateLiteralPos(LevelContext context, Coordinate coord)
