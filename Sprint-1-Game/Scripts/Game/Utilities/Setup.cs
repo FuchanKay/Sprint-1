@@ -28,6 +28,7 @@ public class Setup(ContentManager content, GameWindow window)
         AddAnimations();
         AddRegions();
         AddFont();
+        AddUItexture();
         sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, SpriteFontManager, window);
         sceneManager.Init();
     }
@@ -36,8 +37,6 @@ public class Setup(ContentManager content, GameWindow window)
     {
         BindAllTextures();
         LoadAudio();
-        LoadUI();
-
     }
 
 
@@ -246,9 +245,9 @@ public class Setup(ContentManager content, GameWindow window)
         AudioManager.MapSound(SoundNames.StoneScrape, content.Load<SoundEffect>(FileNames.StoneScrapeAudio), 0.75f);
         AudioManager.MapSound(SoundNames.Death, content.Load<SoundEffect>(FileNames.DeathAudio), 0.5f);
     }
-    private void LoadUI()
+    private void AddUItexture()
     {
-        UITextureAtlas UIatlas = UITextureAtlas.LoadFromFile(content, "images/atlas-definition.xml");
+        UITextureAtlas UIatlas = UITextureAtlas.LoadFromFile(content, FileNames.UIAtlasDef + ".xml");
 
     }
 

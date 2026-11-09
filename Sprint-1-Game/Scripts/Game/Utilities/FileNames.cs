@@ -41,6 +41,6 @@ public class FileNames
     public readonly static string LavaFizzAudio = "audio/fizz";
     public readonly static string StoneScrapeAudio = "audio/stoneScrape";
     public readonly static string DeathAudio = "audio/entityDeath";
-    
+    public readonly static string UIAtlasDef = "Images/ui-atlas-definition";
 
 }

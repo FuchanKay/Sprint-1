@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TextureAtlas>
-    <Texture>images/bomb</Texture>
+    <Texture>Images/bomb</Texture>
     <Regions>
         <Region name="bomb" x="0" y="0" width="256" height="288" />
     </Regions>

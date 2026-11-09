@@ -13,12 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin atlas-definition.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/processorParam:Version=3.8.5.1
-/build:atlas-definition.xml
-
 #begin Audio/entityDeath.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
@@ -371,6 +365,9 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.1
 /build:Images/tile-sprites.png;Images/tile-sprites
+
+#begin Images/ui-atlas-definition.xml
+/copy:Images/ui-atlas-definition.xml
 
 #begin Images/warlock.png
 /importer:TextureImporter
