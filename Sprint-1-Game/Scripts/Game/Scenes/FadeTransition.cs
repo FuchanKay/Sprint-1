@@ -5,18 +5,18 @@ using Scripts.Game;
 public class FadeTransition(PuzzleLevel Level) : ILevelTransition
 {
     public int TransitionDurationMs { get; set; } = 400;
-    public bool IsActive => currentFadeType != FadeType.None;
+    public bool IsActive => currentTransitionType != TransitionType.None;
     private int TransitionTimeElapsedMs;
     private int NewLevelIndex;
     
     #nullable enable
     private Texture2D? transitionPixel;
-    private enum FadeType {None, FadeIn, FadeOut};
-    private FadeType currentFadeType = FadeType.None; 
+    private enum TransitionType {None, TransitionIn, TransitionOut};
+    private TransitionType currentTransitionType = TransitionType.None; 
    
     public void StartLevelTransition(int newLevelIndex)
     {
-        currentFadeType = FadeType.FadeOut;
+        currentTransitionType = TransitionType.TransitionOut;
         NewLevelIndex = newLevelIndex;
         TransitionTimeElapsedMs = 0;
     }
@@ -25,26 +25,26 @@ public class FadeTransition(PuzzleLevel Level) : ILevelTransition
     {
         TransitionTimeElapsedMs += dtMs;
         if (TransitionTimeElapsedMs < TransitionDurationMs) return;
-        if (currentFadeType == FadeType.FadeOut)
+        if (currentTransitionType == TransitionType.TransitionOut)
         {
             Level.Init(NewLevelIndex);
             Level.Context.LevelIsCompleted = false;
-            currentFadeType = FadeType.FadeIn;
+            currentTransitionType = TransitionType.TransitionIn;
             TransitionTimeElapsedMs = 0;
         }
         else
         {
-            currentFadeType = FadeType.None;
+            currentTransitionType = TransitionType.None;
             TransitionTimeElapsedMs = 0;
         }
     }
 
     public void Draw(SpriteBatch sb)
     {
-        if (currentFadeType == FadeType.None) return;
+        if (currentTransitionType == TransitionType.None) return;
         float progress = MathHelper.Clamp((float)TransitionTimeElapsedMs / TransitionDurationMs, 0f, 1f);
         float opacity;
-        if (currentFadeType == FadeType.FadeOut) opacity = progress;
+        if (currentTransitionType == TransitionType.TransitionOut) opacity = progress;
         else opacity = 1f - progress;
 
         var viewport = sb.GraphicsDevice.Viewport;

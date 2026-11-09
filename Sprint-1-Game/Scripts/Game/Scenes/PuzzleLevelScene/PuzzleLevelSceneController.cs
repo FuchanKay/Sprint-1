@@ -25,7 +25,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         Level.Init(CurrentLevelIndex);
         EnemyCounter.Init(FontNames.DefaultFont, new Vector2 (1040,40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.White);
         InventoryStatus.Init(FontNames.DefaultFont, new Vector2(1040,80), $"Inventory:\n{Level.LevelStateHistory.InventoryManager.ReadInventoryString()}", Color.White);
-        LevelTransition = new FadeTransition(Level);
+        LevelTransition = new WipeTransition(Level);
     }
     public void Update(int dtMs)
     {
