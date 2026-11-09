@@ -52,6 +52,7 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.MoveWestAlt, (int)Keys.Left);
 
         ButtonInput.MapInput(InputNames.ChangeLevel, (int)Keys.B);
+        ButtonInput.MapInput(InputNames.RotateObject, (int)Keys.R);
 
         ButtonInput.MapInput(InputNames.LCtrl, (int)Keys.LeftControl);
         ButtonInput.MapInput(InputNames.LShift, (int)Keys.LeftShift);

@@ -16,12 +16,17 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
         Context = context;
         Grid = grid;
         SpriteGrid = spriteGrid;
-        CurrentObject = ObjectFactory.CreatePumpkin();
+        CurrentObject = ObjectFactory.CreateBlueLizard();
         CurrentObjectSprite = objectSpriteFactory.CreateObjectSprite(CurrentObject, new Vector2(0, 0), context);
     }
 
     public void Update(int dtMs)
     {
+        if (buttonInput.IsHeld(InputNames.RotateObject) && CurrentObject.IsRotatable)
+        {
+            CurrentObject.Direction = Utilities.RotateClockwise(CurrentObject.Direction);
+            CurrentObjectSprite.Rotation = Utilities.ToRadians(CurrentObject.Direction);
+        }
         if (mouseInput.IsHeld(InputNames.Select) && !IsOutOfBounds())
         {
             var coord = MouseCoordinate();

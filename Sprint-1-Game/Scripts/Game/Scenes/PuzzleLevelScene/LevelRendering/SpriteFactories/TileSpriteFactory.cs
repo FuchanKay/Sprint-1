@@ -16,7 +16,7 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
                 sprite = new StaticSprite(textureAtlas);
                 var floor = tile as FloorTile;
                 sprite.SetState(floor.RegionName);
-                sprite.Rotation = MathHelper.ToRadians((int)tile.Direction * 90);
+                sprite.Rotation = Utilities.ToRadians(tile.Direction);
                 break;
             case TileIds.Pit:
                 sprite = new StaticSprite(textureAtlas);

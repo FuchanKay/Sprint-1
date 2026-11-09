@@ -25,7 +25,7 @@ public class LevelEditorSceneController(ISceneManager sceneManager, IInputManage
     {
         Grid.Init();
 
-        var levelFileName = FileNames.LevelFileNames[0];
+        var levelFileName = FileNames.LevelFileNames[1];
         string[] levelFile = LevelFileParser.ParseLevelFile(levelFileName);
         LevelFileParser levelFileParser = new();
         Context.LevelName = levelFileParser.GetLevelName(levelFile);
