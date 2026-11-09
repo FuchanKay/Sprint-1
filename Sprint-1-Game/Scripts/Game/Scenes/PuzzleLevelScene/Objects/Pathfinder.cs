@@ -18,27 +18,28 @@ public class Pathfinder()
 
         var coordinateQueue = new Queue<Coordinate>();
         var nextMove = new Dictionary<Coordinate, Coordinate>();
-        var visitedCoords = new HashSet<Coordinate> {enemyCoord};
+        var visitedCoords = new HashSet<Coordinate> { enemyCoord };
         coordinateQueue.Enqueue(enemyCoord);
 
-        while(coordinateQueue.Count > 0)
+        while (coordinateQueue.Count > 0)
         {
             var current = coordinateQueue.Dequeue();
             List<Coordinate> neighbors = GetValidNeighbors(gridPointer, current);
             foreach (var next in neighbors)
             {
-                if(!visitedCoords.Add(next)) continue;
+                if (!visitedCoords.Add(next)) continue;
 
-                if(current.X == enemyCoord.X && current.Y == enemyCoord.Y)
+                if (current.X == enemyCoord.X && current.Y == enemyCoord.Y)
                 {
                     nextMove[next] = next;
-                } else
+                }
+                else
                 {
                     nextMove[next] = nextMove[current];
                 }
 
-                if(next.X == playerCoord.X && next.Y == playerCoord.Y) return nextMove[next];
-                coordinateQueue.Enqueue(next); 
+                if (next.X == playerCoord.X && next.Y == playerCoord.Y) return nextMove[next];
+                coordinateQueue.Enqueue(next);
             }
         }
         return nullCoord;
@@ -51,7 +52,7 @@ public class Pathfinder()
         foreach (var direction in directions)
         {
             var targetGrid = gridPointer.GetGrid(coord + Coordinate.ToCoordinate(direction));
-            if(CanMove(targetGrid))
+            if (CanMove(targetGrid))
             {
                 validDirections.Add(direction);
             }
@@ -75,43 +76,20 @@ public class Pathfinder()
         {
             var targetGrid = gridPointer.GetGrid(coord + Coordinate.ToCoordinate(direction));
             var targetCoord = coord + Coordinate.ToCoordinate(direction);
-            if(CanMoveTowardPlayer(targetGrid))
+            if (CanMoveTowardPlayer(targetGrid))
             {
                 validCoordinates.Add(targetCoord);
             }
         }
         return validCoordinates;
     }
-    
+
     public static bool CanMoveTowardPlayer(Grid destinationGrid)
     {
         var destinationTile = destinationGrid.Tile;
         var isDestinationEmpty = destinationGrid.Object.Id == ObjectIds.Empty || destinationGrid.Object.Id == ObjectIds.Player;
 
         return destinationTile.Id != TileIds.Lava && isDestinationEmpty;
-    }
-
-    public static Coordinate GetBlastTargetCoord(GridPointer gridPointer, Coordinate startCoord, Directions direction)
-    {
-        var prevCoord = GetNextObjectCoord(gridPointer, startCoord, direction);
-        var currCoord = prevCoord;
-
-        var obj = gridPointer.GetObject(currCoord);
-
-        while(obj.Id != ObjectIds.Wall && obj.Id != ObjectIds.Rock && obj.Id != ObjectIds.Door)
-        {
-            prevCoord = currCoord;
-            currCoord = GetNextObjectCoord(gridPointer, prevCoord, direction);
-            obj = gridPointer.GetObject(currCoord);
-        }
-
-        var returnCoord = prevCoord;
-        if(obj.Id == ObjectIds.Rock)
-        {
-            returnCoord = currCoord;
-        }
-
-        return returnCoord;
     }
 
     public static Coordinate GetPlayerCoord(GridPointer gridPointer, Coordinate coord)
@@ -129,17 +107,20 @@ public class Pathfinder()
         return coord;
     }
 
-    private static Coordinate GetNextObjectCoord(GridPointer gridPointer, Coordinate lizardCoord, Directions lizardDirection)
+    public static Stack<Coordinate> GetLineOfSight(GridPointer gridPointer, Coordinate coord, Directions direction)
     {
-        var dirCoord = lizardCoord + Coordinate.ToCoordinate(lizardDirection);
+        Stack<Coordinate> lineOfSight = [];
+        var dirCoord = coord + Coordinate.ToCoordinate(direction);
         var dirGrid = gridPointer.GetGrid(dirCoord);
 
         while (dirGrid.Object.Id == ObjectIds.Empty)
         {
-            dirCoord += Coordinate.ToCoordinate(lizardDirection);
+            dirCoord += Coordinate.ToCoordinate(direction);
             dirGrid = gridPointer.GetGrid(dirCoord);
+            lineOfSight.Push(dirCoord);
         }
+        lineOfSight.Push(dirCoord);
         
-        return dirCoord;
+        return lineOfSight;
     }
 }

@@ -1,4 +1,7 @@
+using System;
+
 namespace Scripts.Game;
+
 public class InventoryManager()
 {
     private readonly IObject[] PlayerItems =
@@ -36,5 +39,29 @@ public class InventoryManager()
             clone.AddItem(item);
         }
         return clone;
+    }
+    public string ReadInventoryString()
+    {
+        int inventorySize = PlayerItems.Length;
+        string itemString = "";
+        for (int i = 0; i < inventorySize; i++)
+        {
+            itemString += ObjectIdToString(PlayerItems[i].Id) + " ";
+        }
+        return itemString;
+    }
+    private static string ObjectIdToString(ObjectIds objectIds)
+    {
+        string idString = "";
+        switch (objectIds)
+        {
+            case ObjectIds.Bomb:
+                idString = "Bomb";
+            break;
+            case ObjectIds.Empty:
+                idString = "Empty";
+            break;
+        }
+        return idString;
     }
 }

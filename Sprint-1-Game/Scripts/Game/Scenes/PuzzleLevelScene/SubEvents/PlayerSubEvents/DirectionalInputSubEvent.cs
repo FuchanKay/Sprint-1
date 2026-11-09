@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using Scripts.GameComponents;
 namespace Scripts.Game;
 
 public class DirectionalInputSubEvent(Directions direction, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
         ILevelSubEvent enemiesMove = new EnemiesMoveSubEvent();
         var playerCoord = gridPointer.GetPlayerCoord();
@@ -16,12 +16,14 @@ public class DirectionalInputSubEvent(Directions direction, Stack<ILevelSubEvent
 
         var destinationPlus1Coord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
         var destinationPlus1CoordIsWithinBounds = CoordIsWithinBounds(destinationPlus1Coord, context.LevelWidth, context.LevelHeight);
-        
+
         if (destinationCoordIsWithinBounds && destinationPlus1CoordIsWithinBounds && CanPush(gridPointer.GetGrid(destinationCoord), gridPointer.GetObject(destinationPlus1Coord)))
         {
             var destinationGrid = gridPointer.GetGrid(destinationCoord);
             var destinationObject = destinationGrid.Object;
-            
+
+            if(destinationObject.Id == ObjectIds.Rock) audioManager.PlaySound(SoundNames.StoneScrape);
+
             var onePastDestinationCoord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
 
             var objectSprite = spriteGrid.GetObjectSprite(destinationCoord);
@@ -41,7 +43,8 @@ public class DirectionalInputSubEvent(Directions direction, Stack<ILevelSubEvent
             gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
 
-            enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context);
+
+            enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context, audioManager);
         }
         else if (destinationCoordIsWithinBounds && CanMove(playerObj, gridPointer.GetGrid(destinationCoord)))
         {
@@ -52,22 +55,7 @@ public class DirectionalInputSubEvent(Directions direction, Stack<ILevelSubEvent
 
             gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
             gridPointer.SetObject(destinationCoord, playerObj);
-            enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context);
-        }
-        // placeholder logic to collect a key by walking into it
-        else if (gridPointer.GetObject(destinationCoord).Id == ObjectIds.Key)
-        {
-            subEventStack.Push(new OpenExitSubEvent());
-            gridPointer.SetObject(destinationCoord, ObjectFactory.CreateEmpty());
-            spriteGrid.RemoveObjectSprite(destinationCoord);
-
-            var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
-            playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));
-            spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
-            spriteGrid.StartObjectAnimation(playerCoord);
-
-            gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
-            gridPointer.SetObject(destinationCoord, playerObj);
+            enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context, audioManager);
         }
         else if (gridPointer.GetObject(destinationCoord).Id == ObjectIds.Door)
         {

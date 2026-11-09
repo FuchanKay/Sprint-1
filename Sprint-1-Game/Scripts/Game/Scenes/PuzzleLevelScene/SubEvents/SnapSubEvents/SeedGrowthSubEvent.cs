@@ -1,10 +1,11 @@
 using Microsoft.Xna.Framework;
 
 namespace Scripts.Game;
+using Scripts.GameComponents;
 
 public class SeedGrowthSubEvent : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
         var vineSeedCoords = gridPointer.GetTilePointers(TileIds.VineSeed).Keys;
         var pumpkinSeedCoords = gridPointer.GetTilePointers(TileIds.PumpkinSeed).Keys;
@@ -54,7 +55,7 @@ public class SeedGrowthSubEvent : ILevelSubEvent
         var vineTile = TileFactory.CreateVineTile();
         vineTile.Direction = direction;
 
-        while(!tile.IsWalkable)
+        while (!tile.IsWalkable)
         {
             gridPointer.SetTile(nextCoord, vineTile);
             spriteGrid.AddIterableTileSprite(vineTile, seedCoord, nextCoord, vineRotation);
@@ -64,11 +65,11 @@ public class SeedGrowthSubEvent : ILevelSubEvent
 
         var oppositeDirection = ((int)direction + 2) % 4;
         var oppositeRotation = MathHelper.ToRadians(oppositeDirection * 90);
-        
+
         var endVineTile = TileFactory.CreateVineStartTile();
         endVineTile.Direction = (Directions)oppositeDirection;
         gridPointer.SetTile(nextCoord, endVineTile);
         spriteGrid.AddIterableTileSprite(endVineTile, seedCoord, nextCoord, oppositeRotation);
         spriteGrid.StartIterableTile(seedCoord);
     }
-} 
+}

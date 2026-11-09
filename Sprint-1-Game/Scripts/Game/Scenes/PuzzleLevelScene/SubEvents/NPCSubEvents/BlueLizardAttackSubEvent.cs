@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
+using Scripts.GameComponents;
 namespace Scripts.Game;
 
-public class BlueLizardAttackSubEvent(Stack<ILevelSubEvent> subEventStack, List<LevelStateHistory> levelStateHistory) : EnemiesAttackSubEvent(subEventStack, levelStateHistory)
+public class BlueLizardAttackSubEvent(Stack<ILevelSubEvent> subEventStack, List<LevelStateHistory> levelStateHistory) : CheckEnemiesAttackSubEvent(subEventStack, levelStateHistory)
 {
-    public override void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public override void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
         var lizardCoords = gridPointer.GetObjectPointers(ObjectIds.BlueLizard).Keys.ToList();
-        foreach(var lizardCoord in lizardCoords)
+        foreach (var lizardCoord in lizardCoords)
         {
-            LaserBlastAttack(spriteGrid, gridPointer, lizardCoord, EffectIds.BlueLaserBeam);
+            LaserBlastAttack(spriteGrid, gridPointer, lizardCoord, EffectIds.BlueLaserBeam, audioManager);
         }
     }
 }

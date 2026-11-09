@@ -1,7 +1,11 @@
 namespace Scripts.Game;
-public class PickItemSubEvent() : ILevelSubEvent
+
+using System.Collections.Generic;
+using Scripts.GameComponents;
+
+public class PickItemSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context)
+    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
 
         var playerCoord = gridPointer.GetPlayerCoord();
@@ -15,7 +19,14 @@ public class PickItemSubEvent() : ILevelSubEvent
             inventoryManager.AddItem(itemObj);
             gridPointer.SetObject(targetCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(targetCoord);
+            audioManager.PlaySound(SoundNames.Pickup);
             return;
+        } else if (itemObj.Id == ObjectIds.Key)
+        {
+            gridPointer.SetObject(targetCoord, ObjectFactory.CreateEmpty());
+            spriteGrid.RemoveObjectSprite(targetCoord);
+            audioManager.PlaySound(SoundNames.Pickup);
+            subEventStack.Push(new OpenExitSubEvent());
         }
 
     }

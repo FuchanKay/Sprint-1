@@ -24,10 +24,21 @@ public class FileNames
     public readonly static string BatTexture = "Images/bat";
     public readonly static string FrogTexture = "Images/frog";
     public readonly static string ZombieTexture = "Images/zombie";
+    public readonly static string FontTexture = "Images/hud_font_sheet";
 
     public readonly static string[] LevelFileNames = ["Content/Levels/level1.csv", "Content/Levels/level2.csv", "Content/Levels/level3.csv", "Content/Levels/level4.csv", "Content/Levels/level5.csv"];
 
     public readonly static string SnapAudio = "audio/snap";
     public readonly static string SongAudio = "audio/song";
+    public readonly static string DefaultFont = "Font/defaultFont";
+    public readonly static string ExplosionAudio = "audio/explosion";
+    public readonly static string PickupAudio = "audio/pickItem";
+    public readonly static string SlashAudio = "audio/slashAttack";
+    public readonly static string MagicSparkleAudio = "audio/magicSparkle";
+    public readonly static string LaserBeamAudio = "audio/laserBeam";
+    public readonly static string WaterSplashAudio = "audio/waterSplash";
+    public readonly static string LavaFizzAudio = "audio/fizz";
+    public readonly static string StoneScrapeAudio = "audio/stoneScrape";
+    public readonly static string DeathAudio = "audio/entityDeath";
 
 }
