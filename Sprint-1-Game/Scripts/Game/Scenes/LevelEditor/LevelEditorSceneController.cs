@@ -16,6 +16,7 @@ public class LevelEditorSceneController(ISceneManager sceneManager, IInputManage
     private GridPointer Grid = new();
     private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
+    private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private SpriteGrid SpriteGrid;
     private readonly ObjectPaintBrush Brush = new(buttonInput, mouseInput);
     public int CurrentLevelIndex = 0;
@@ -32,7 +33,7 @@ public class LevelEditorSceneController(ISceneManager sceneManager, IInputManage
         Context.LevelHeight = levelFileParser.GetLevelHeight(levelFile);
         Grid = levelFileParser.CreateGrids(levelFile);
 
-        SpriteGrid = new(ObjectSpriteFactory, TileSpriteFactory);
+        SpriteGrid = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory);
         SpriteGrid.Init(Grid, Context);
 
         Brush.Init(Grid, SpriteGrid, ObjectSpriteFactory, Context);
