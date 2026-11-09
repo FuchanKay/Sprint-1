@@ -4,7 +4,7 @@ using Scripts.Game;
 
 public class FadeTransition(SceneManager sceneManager) : ISceneTransition
 {
-    public int TransitionDurationMs { get; set; } = 400;
+    public int TransitionDurationMs { get; set; } = 600;
     public bool IsActive => currentTransitionType != TransitionType.None;
     private int TransitionTimeElapsedMs;
     private string SceneName;
