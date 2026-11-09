@@ -4,19 +4,14 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInput)
+public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInput, GridPointer grid, SpriteGrid spriteGrid, LevelContext context, ObjectSpriteFactory objectSpriteFactory) : IBrush
 {
-    private LevelContext Context;
-    private GridPointer Grid;
-    private SpriteGrid SpriteGrid; 
     private IObject CurrentObject;
     private ISprite CurrentObjectSprite;
-    public void Init(GridPointer grid, SpriteGrid spriteGrid, ObjectSpriteFactory objectSpriteFactory, LevelContext context)
+
+    public void Init()
     {
-        Context = context;
-        Grid = grid;
-        SpriteGrid = spriteGrid;
-        CurrentObject = ObjectFactory.CreateBlueLizard();
+        CurrentObject = ObjectFactory.CreateCornerWall(Directions.North);
         CurrentObjectSprite = objectSpriteFactory.CreateObjectSprite(CurrentObject, new Vector2(0, 0), context);
     }
 
@@ -30,17 +25,10 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
         if (mouseInput.IsHeld(InputNames.Select) && !IsOutOfBounds())
         {
             var coord = MouseCoordinate();
-            Grid.SetObject(coord, CurrentObject);
-            SpriteGrid.SetNewObjectSprite(coord, CurrentObject);
-            SpriteGrid.GetObjectSprite(coord);
+            grid.SetObject(coord, CurrentObject);
+            spriteGrid.SetNewObjectSprite(coord, CurrentObject);
+            spriteGrid.GetObjectSprite(coord);
             CurrentObject = CurrentObject.Clone();
-        }
-        if (mouseInput.IsHeld(InputNames.Erase) && !IsOutOfBounds())
-        {
-            var coord = MouseCoordinate();
-            var empty = ObjectFactory.CreateEmpty();
-            Grid.SetObject(coord, empty);
-            SpriteGrid.RemoveObjectSprite(coord);
         }
     }
     
@@ -49,7 +37,7 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
         if (!IsOutOfBounds())
         {
             var mouseCoord = MouseCoordinate();
-            var literalPosition = SpriteGrid.CalculateLiteralPos(Context, mouseCoord);
+            var literalPosition = SpriteGrid.CalculateLiteralPos(context, mouseCoord);
             CurrentObjectSprite.CurrentPosition = literalPosition;
         }
         else
@@ -61,10 +49,10 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
 
     private bool IsOutOfBounds()
     {
-        var leftmostPoint = Context.PuzzleOffsetX;
-        var rightmostPoint = (int) (Context.LevelWidth * Context.RawSpriteWidthPx * Context.GridScale + Context.PuzzleOffsetX);
-        var topMostPoint = Context.PuzzleOffsetY;
-        var bottomMostPoint = (int) (Context.LevelWidth * Context.RawSpriteHeightPx * Context.GridScale + Context.PuzzleOffsetY);
+        var leftmostPoint = context.PuzzleOffsetX;
+        var rightmostPoint = (int) (context.LevelWidth * context.RawSpriteWidthPx * context.GridScale + context.PuzzleOffsetX);
+        var topMostPoint = context.PuzzleOffsetY;
+        var bottomMostPoint = (int) (context.LevelWidth * context.RawSpriteHeightPx * context.GridScale + context.PuzzleOffsetY);
 
         var mouseX = mouseInput.MousePositionX;
         var mouseY = mouseInput.MousePositionY;
@@ -73,23 +61,23 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
         return outOfBounds;
     }
     
-    public Coordinate MouseCoordinate()
+    private Coordinate MouseCoordinate()
     {
         var mouseX = mouseInput.MousePositionX;
         var mouseY = mouseInput.MousePositionY;
         
-        var leftmostPoint = Context.PuzzleOffsetX;
-        var topMostPoint = Context.PuzzleOffsetY;
+        var leftmostPoint = context.PuzzleOffsetX;
+        var topMostPoint = context.PuzzleOffsetY;
 
-        var gridWidth = (int) (Context.RawSpriteWidthPx * Context.GridScale);
-        var gridHeight = (int) (Context.RawSpriteHeightPx * Context.GridScale);
+        var gridWidth = (int) (context.RawSpriteWidthPx * context.GridScale);
+        var gridHeight = (int) (context.RawSpriteHeightPx * context.GridScale);
 
         var x = (mouseX - leftmostPoint) / gridWidth;
         var y = (mouseY - topMostPoint) / gridHeight;
         
         //the coordinate calculation can sometimes jankily evaluate to an index that is out of bounds
-        if (x >= Context.LevelWidth) x = Context.LevelWidth - 1;
-        if (y >= Context.LevelHeight) y = Context.LevelHeight - 1;
+        if (x >= context.LevelWidth) x = context.LevelWidth - 1;
+        if (y >= context.LevelHeight) y = context.LevelHeight - 1;
         if (x < 0) x = 0;
         if (y < 0) y = 0;
 

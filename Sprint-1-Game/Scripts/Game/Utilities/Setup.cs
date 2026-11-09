@@ -65,6 +65,9 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.R);
         ButtonInput.MapInput(InputNames.ResetLevel, (int)Keys.R);
 
+        ButtonInput.MapInput(InputNames.ObjectPaintBrushMode, (int)Keys.P);
+        ButtonInput.MapInput(InputNames.EraserBrushMode, (int)Keys.E);
+
         ButtonInput.MapInput(InputNames.Undo, (int)Keys.Z);
 
         ButtonInput.MapInput(InputNames.PickItem, (int)Keys.G);

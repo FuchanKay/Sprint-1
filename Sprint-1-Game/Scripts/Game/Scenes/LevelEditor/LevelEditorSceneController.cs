@@ -18,7 +18,7 @@ public class LevelEditorSceneController(ISceneManager sceneManager, IInputManage
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private SpriteGrid SpriteGrid;
-    private readonly ObjectPaintBrush Brush = new(buttonInput, mouseInput);
+    private IBrush Brush;
     public int CurrentLevelIndex = 0;
 
     public void Init()
@@ -36,11 +36,22 @@ public class LevelEditorSceneController(ISceneManager sceneManager, IInputManage
         SpriteGrid = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory);
         SpriteGrid.Init(Grid, Context);
 
-        Brush.Init(Grid, SpriteGrid, ObjectSpriteFactory, Context);
+        Brush = new ObjectPaintBrush(buttonInput, mouseInput, Grid, SpriteGrid, Context, ObjectSpriteFactory);
+        Brush.Init();
     }
 
     public void Update(int dtMs)
     {
+        if (buttonInput.IsPressed(InputNames.EraserBrushMode))
+        {
+            Brush = new EraserBrush(mouseInput, Grid, SpriteGrid, Context);
+            Brush.Init();
+        }
+        else if (buttonInput.IsPressed(InputNames.ObjectPaintBrushMode))
+        {
+            Brush = new ObjectPaintBrush(buttonInput, mouseInput, Grid, SpriteGrid, Context, ObjectSpriteFactory);
+            Brush.Init();
+        }
         SpriteGrid.Update(dtMs);
         Brush.Update(dtMs);
     }
