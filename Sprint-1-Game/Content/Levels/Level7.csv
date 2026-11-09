@@ -14,8 +14,8 @@ Brick,Ice,Ice,Ice,Ice,Ice,Ice,Ice,Brick,Brick,Brick
 Brick,Ice,Dirt,Ice,Ice,Ice,Ice,Ice,Brick,Brick,Brick
 Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick
 _,_,_,_,_,_,_,_,_,_,_
-CornerWall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,CornerWall.1
-Wall.3,_,_,_,Wall,_,_,_,Wall.1,WallTop.1,WallTop.1
+CornerWall,Wall,Wall,Wall,SingleWallConnector,Wall,Wall,Wall,CornerWall.1,WallTop.1,WallTop.1
+Wall.3,_,_,_,SingleWall.1,_,_,_,Wall.1,WallTop.1,WallTop.1
 Wall.3,_,_,_,_,_,Wall.1,_,Wall.1,WallTop.1,WallTop.1
 Wall.3,_,_,_,_,_,ICornerWall.2,_,Wall.1,WallTop.1,WallTop.1
 Wall.3,_,Wall.3,_,_,_,_,_,Wall.1,WallTop.1,WallTop.1
@@ -24,7 +24,7 @@ Wall.3,_,ICornerWall.3,ICornerWall,_,_,_,_,Wall.1,WallTop.1,WallTop.1
 Wall.3,_,ICornerWall.2,ICornerWall.1,_,_,_,_,Wall.1,WallTop.1,WallTop.1
 Wall.3,_,_,_,_,Wall.1,_,_,Wall.1,WallTop.1,WallTop.1
 Wall.3,_,_,_,_,_,_,_,Wall.1,WallTop.1,WallTop.1
-Wall.3,_,_,_,_,_,_,Wall.1,Wall.1,WallTop.1,WallTop.1
+Wall.3,_,_,_,_,_,_,SingleWall,SingleWallConnector.1,WallTop.1,WallTop.1
 Wall.3,_,_,_,Wall.2,_,_,_,Wall.1,WallTop.1,WallTop.1
 Wall.3,_,Player,_,_,_,_,_,Wall.1,WallTop.1,WallTop.1
-CornerWall.3,Wall.2,Wall.2,Wall.2,Wall.2,CornerWall.2,WallTop.1,WallTop.1,WallTop.1,WallTop.1,WallTop.1
+CornerWall.3,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,CornerWall.2,WallTop.1,WallTop.1
