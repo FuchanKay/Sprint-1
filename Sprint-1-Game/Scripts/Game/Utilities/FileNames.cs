@@ -31,6 +31,7 @@ public class FileNames
 
     public readonly static string SnapAudio = "audio/snap";
     public readonly static string SongAudio = "audio/song";
+    public readonly static string DefaultFont = "Font/defaultFont";
     public readonly static string ExplosionAudio = "audio/explosion";
     public readonly static string PickupAudio = "audio/pickItem";
     public readonly static string SlashAudio = "audio/slashAttack";

@@ -119,6 +119,14 @@ public class TileFactory()
         };
     }
 
+    public static ITile CreateVineSeedTile(Directions direction)
+    {
+        return new VineSeedTile
+        {
+            Direction = direction
+        };
+    }
+
     public static ITile CreatePumpkinSeedTile()
     {
         return new PumpkinSeedTile

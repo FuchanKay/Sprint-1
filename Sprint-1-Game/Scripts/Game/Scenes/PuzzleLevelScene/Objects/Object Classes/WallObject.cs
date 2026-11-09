@@ -6,11 +6,13 @@ public class WallObject() : IObject
     {
         return new WallObject
         {
-            Direction = Direction
+            Direction = Direction,
+            RegionName = RegionName
         };
     }
     public ObjectIds Id => ObjectIds.Wall;
-    public Directions Direction { get; set; }
+    public Directions Direction { get; set; } = Directions.North;
+    public string RegionName { get; set; }
     public bool IsPushable => false;
     public bool IsDestructible => false;
     public bool IsRotatable => false;
