@@ -109,14 +109,21 @@ public class ObjectSpriteManager
 
     private void UpdateAnimatingObjects(int dtMs)
     {
+        var ShouldResetToIdle = true;
         foreach (var sprite in AnimatingObjectSprites)
         {
             ObjectSprites.Remove(sprite.CurrentPosition);
             sprite.Update(dtMs);
-            if(!ObjectSprites.ContainsKey(sprite.CurrentPosition)) ObjectSprites.Add(sprite.CurrentPosition, sprite);
+            if (!ObjectSprites.ContainsKey(sprite.CurrentPosition))
+            {
+                ObjectSprites.Add(sprite.CurrentPosition, sprite);
+            } else
+            {
+                ShouldResetToIdle = false;
+            }
         }
         var finishedSprites = AnimatingObjectSprites.FindAll(sprite => sprite.IsFinished);
-        ResetToIdle(finishedSprites);
+        if (ShouldResetToIdle) ResetToIdle(finishedSprites);
         AnimatingObjectSprites.RemoveAll(sprite => sprite.IsFinished);
     }
 
