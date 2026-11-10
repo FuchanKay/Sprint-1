@@ -2,7 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary;
 using Scripts.Game;
-
+using Gum.Forms;
+using Gum.Forms.Controls;
 namespace Sprint_1_Game.Scripts;
 
 public class Game1 : Core
@@ -23,6 +24,7 @@ public class Game1 : Core
     protected override void Initialize()
     {
         Setup.Initialize(out var sceneManager);
+        //InitializeGum();
         SceneManager = sceneManager;
         base.Initialize();
     }
@@ -61,4 +63,5 @@ public class Game1 : Core
 
         base.Draw(gameTime);
     }
+
 }
