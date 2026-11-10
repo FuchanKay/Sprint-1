@@ -215,7 +215,7 @@ public class Setup(ContentManager content, GameWindow window)
 
         TextureAtlas.AddTexture(TextureNames.Player, FileNames.PlayerTexture);
         TextureAtlas.AddTexture(TextureNames.TileSprites, FileNames.TileTextures);
-        TextureAtlas.AddTexture(TextureNames.IcePlaceholder, FileNames.IcePlaceholder);
+        TextureAtlas.AddTexture(TextureNames.IceSprite, FileNames.IcePlaceholder);
         TextureAtlas.AddTexture(TextureNames.ObjectSprites, FileNames.ObjectTextures);
         TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
         TextureAtlas.AddTexture(TextureNames.Door, FileNames.DoorTexture);

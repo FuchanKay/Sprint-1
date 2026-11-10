@@ -70,7 +70,7 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
 
         //PLACEHOLDER
         if(id == TileIds.Ice) {
-            sprite.Texture = textureAtlas.GetTexture(TextureNames.IcePlaceholder);
+            sprite.Texture = textureAtlas.GetTexture(TextureNames.IceSprite);
             sprite.Scale = context.GridScale * 0.45f;
         }
         return sprite;
