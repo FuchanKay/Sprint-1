@@ -6,33 +6,33 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MonoGameLibrary.Graphics;
+namespace MonoGameLibrary.UIRendering;
 
 public class UITextureAtlas 
 {
-    private Dictionary<string, UITextureRegion> _regions;
+    private Dictionary<string, UITextureRegion> Regions;
     public Texture2D Texture { get; set; }
     public UITextureAtlas()
     {
-        _regions = new Dictionary<string, UITextureRegion>();
+        Regions = new Dictionary<string, UITextureRegion>();
     }
     public UITextureAtlas(Texture2D texture)
     {
         Texture = texture;
-        _regions = new Dictionary<string, UITextureRegion>();
+        Regions = new Dictionary<string, UITextureRegion>();
     }
     public void AddRegion(string name, int x, int y, int width, int height)
     {
         UITextureRegion region = new UITextureRegion(Texture, x, y, width, height);
-        _regions.Add(name, region);
+        Regions.Add(name, region);
     }
     public UITextureRegion GetRegion(string name)
     {
-        return _regions[name];
+        return Regions[name];
     }
     public bool RemoveRegion(string name)
     {
-        return _regions.Remove(name);
+        return Regions.Remove(name);
     }
     public UISprite CreateSprite(string regionName)
     {
@@ -41,7 +41,7 @@ public class UITextureAtlas
     }
     public void Clear()
     {
-        _regions.Clear();
+        Regions.Clear();
     }
     public static UITextureAtlas LoadFromFile(ContentManager content, string fileName)
     {
