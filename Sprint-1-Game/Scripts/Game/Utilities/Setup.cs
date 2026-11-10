@@ -51,7 +51,7 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.MoveWestAlt, (int)Keys.Left);
 
         ButtonInput.MapInput(InputNames.ChangeLevel, (int)Keys.B);
-        ButtonInput.MapInput(InputNames.RotateObject, (int)Keys.R);
+        ButtonInput.MapInput(InputNames.RotatePaintBrush, (int)Keys.R);
 
         ButtonInput.MapInput(InputNames.LCtrl, (int)Keys.LeftControl);
         ButtonInput.MapInput(InputNames.LShift, (int)Keys.LeftShift);
@@ -78,7 +78,7 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.UseItem3, (int)Keys.D3);
 
         MouseInput.MapInput(InputNames.Select, (int) MouseButtons.Left);
-        MouseInput.MapInput(InputNames.Erase, (int) MouseButtons.Right);
+        MouseInput.MapInput(InputNames.EraserBrushMode, (int)MouseButtons.Right);
     }
 
     private void AddAnimations()

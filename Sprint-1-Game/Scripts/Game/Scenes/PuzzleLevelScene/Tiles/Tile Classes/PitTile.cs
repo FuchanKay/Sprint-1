@@ -10,6 +10,7 @@ public class PitTile : ITile
         };
     }
     public TileIds Id => TileIds.Pit;
+    public bool IsRotatable => false;
     public bool IsWalkable => false;
     public Directions Direction { get; set; }
 }

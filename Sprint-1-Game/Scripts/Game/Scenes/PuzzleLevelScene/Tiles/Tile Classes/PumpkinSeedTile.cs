@@ -10,6 +10,7 @@ public class PumpkinSeedTile : ITile
         };
     }
     public TileIds Id => TileIds.PumpkinSeed;
+    public bool IsRotatable => true;
     public bool IsWalkable => true;
     public Directions Direction { get; set; }
 }

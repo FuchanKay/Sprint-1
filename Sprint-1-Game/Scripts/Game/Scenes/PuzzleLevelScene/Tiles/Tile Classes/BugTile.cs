@@ -11,5 +11,6 @@ public class BugTile : ITile
     }
     public TileIds Id => TileIds.Bug;
     public bool IsWalkable => true;
+    public bool IsRotatable => false;
     public Directions Direction { get; set; }
 }

@@ -14,20 +14,19 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
         PuzzleOffsetX = 50,
         PuzzleOffsetY = 50,
     };
-    private GridPointer Grid = new();
+    private GridPointer CurrentGrid = new();
     private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private List<GridPointer> UndoHistory = [];
-    private readonly int SaveFrequencyMs = 3000;
-    private int SaveClockMs = 0;
+    private readonly int UndoHistoryMaxLength = 200;
     private SpriteGrid SpriteGrid;
     private IBrush Brush;
     public int CurrentLevelIndex = 0;
 
     public void Init()
     {
-        Grid.Init();
+        CurrentGrid.Init();
 
         var levelFileName = FileNames.LevelFileNames[1];
         string[] levelFile = LevelFileParser.ParseLevelFile(levelFileName);
@@ -35,43 +34,52 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
         Context.LevelName = levelFileParser.GetLevelName(levelFile);
         Context.LevelWidth = levelFileParser.GetLevelWidth(levelFile);
         Context.LevelHeight = levelFileParser.GetLevelHeight(levelFile);
-        Grid = levelFileParser.CreateGrids(levelFile);
+        CurrentGrid = levelFileParser.CreateGrids(levelFile);
 
         SpriteGrid = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory);
-        SpriteGrid.Init(Grid, Context);
+        SpriteGrid.Init(CurrentGrid, Context);
 
-        Brush = new ObjectPaintBrush(buttonInput, mouseInput, Grid, SpriteGrid, Context, ObjectSpriteFactory);
-        Brush.Init();
+        UndoHistory.Add(CurrentGrid.Clone());
+
+        Brush = new ObjectPaintBrush(buttonInput, mouseInput, SpriteGrid, Context, ObjectSpriteFactory, UndoHistory);
+        Brush.Init(CurrentGrid);
     }
 
     public void Update(int dtMs)
     {
-        SaveClockMs -= dtMs;
-        if (SaveClockMs < 0)
-        {
-            SaveClockMs = SaveFrequencyMs;
-            
-        }
+        SpriteGrid.Update(dtMs);
+        Brush.Update(dtMs);
+
+        if (UndoHistory.Count > UndoHistoryMaxLength) UndoHistory.RemoveAt(0);
+
         if (buttonInput.IsPressed(InputNames.ToggleObjectView))
         {
             SpriteGrid.ToggleObjectLayerHide();
         }
-        else if (buttonInput.IsPressed(InputNames.EraserBrushMode))
+        else if (buttonInput.IsPressed(InputNames.EraserBrushMode) || mouseInput.IsPressed(InputNames.EraserBrushMode))
         {
-            Brush = new EraserBrush(mouseInput, Grid, SpriteGrid, Context);
-            Brush.Init();
+            Brush = new EraserBrush(mouseInput, SpriteGrid, Context, UndoHistory);
+            Brush.Init(CurrentGrid);
         }
         else if (buttonInput.IsPressed(InputNames.ObjectPaintBrushMode))
         {
-            Brush = new ObjectPaintBrush(buttonInput, mouseInput, Grid, SpriteGrid, Context, ObjectSpriteFactory);
-            Brush.Init();
+            Brush = new ObjectPaintBrush(buttonInput, mouseInput, SpriteGrid, Context, ObjectSpriteFactory, UndoHistory);
+            Brush.Init(CurrentGrid);
         }
         else if (buttonInput.IsPressed(InputNames.TileBrushMode))
         {
-            Brush = new TilePaintBrush(buttonInput, mouseInput, Grid, SpriteGrid, Context, TileSpriteFactory);
-            Brush.Init();
+            Brush = new TilePaintBrush(buttonInput, mouseInput, SpriteGrid, Context, TileSpriteFactory, UndoHistory);
+            Brush.Init(CurrentGrid);
         }
-        if (buttonInput.IsPressed(InputNames.CycleBrushLeft))
+        else if (buttonInput.IsPressed(InputNames.Undo) && UndoHistory.Count > 0)
+        {   
+            var top = UndoHistory.Count - 1;
+            CurrentGrid = UndoHistory[top];
+            UndoHistory.RemoveAt(top);
+            SpriteGrid.Init(CurrentGrid, Context);
+            Brush.Init(CurrentGrid);
+        }
+        else if (buttonInput.IsPressed(InputNames.CycleBrushLeft))
         {
             Brush.CycleLeft();
         }
@@ -79,9 +87,6 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
         {
             Brush.CycleRight();
         }
-        
-        SpriteGrid.Update(dtMs);
-        Brush.Update(dtMs);
     }
 
     public void Draw(SpriteBatch sb)

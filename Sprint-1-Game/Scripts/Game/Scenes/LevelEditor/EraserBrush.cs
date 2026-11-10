@@ -1,15 +1,16 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class EraserBrush(IInputManager mouseInput, GridPointer grid, SpriteGrid spriteGrid, LevelContext context) : IBrush
+public class EraserBrush(IInputManager mouseInput, SpriteGrid spriteGrid, LevelContext context, List<GridPointer> undoHistory) : IBrush
 {
+    public GridPointer Grid;
     public BrushTypes Type => BrushTypes.Eraser;
-    public bool ChangesMade { get; set; } = false;
-    public void Init()
+    public void Init(GridPointer grid)
     {
-
+        Grid = grid;
     }
 
     public void Update(int dtMs)
@@ -17,12 +18,12 @@ public class EraserBrush(IInputManager mouseInput, GridPointer grid, SpriteGrid 
         if (mouseInput.IsHeld(InputNames.Select) && !IsOutOfBounds())
         {
             var coord = MouseCoordinate();
-            var obj = grid.GetObject(coord);
+            var obj = Grid.GetObject(coord);
             if (obj.Id != ObjectIds.Empty)
             {
-                ChangesMade = true;
                 var empty = ObjectFactory.CreateEmpty();
-                grid.SetObject(coord, empty);
+                undoHistory.Add(Grid.Clone());
+                Grid.SetObject(coord, empty);
                 spriteGrid.RemoveObjectSprite(coord);
             }
         }

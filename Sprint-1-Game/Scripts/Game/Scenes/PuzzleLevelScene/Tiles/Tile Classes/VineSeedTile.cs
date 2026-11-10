@@ -10,6 +10,7 @@ public class VineSeedTile : ITile
         };
     }
     public TileIds Id => TileIds.VineSeed;
+    public bool IsRotatable => true;
     public bool IsWalkable => true;
-    public Directions Direction { get; set; } = Directions.East;
+    public Directions Direction { get; set; } = Directions.North;
 }

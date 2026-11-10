@@ -5,8 +5,7 @@ namespace Scripts.Game;
 public interface IBrush
 {
     BrushTypes Type { get; }
-    bool ChangesMade { get; set; }
-    void Init();
+    void Init(GridPointer grid);
 
     void Update(int dtMs);
 

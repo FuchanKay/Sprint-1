@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInput, GridPointer grid, SpriteGrid spriteGrid, LevelContext context, ObjectSpriteFactory objectSpriteFactory) : IBrush
+public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInput, SpriteGrid spriteGrid, LevelContext context, ObjectSpriteFactory objectSpriteFactory, List<GridPointer> undoHistory) : IBrush
 {
     private static readonly IObject[] ObjectPalette = [
         ObjectFactory.CreateBat(),
@@ -35,19 +36,19 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
     private IObject CurrentObject;
     private ISprite CurrentObjectSprite;
     private int ObjectIndex = 0;
-
+    private GridPointer Grid;
     public BrushTypes Type => BrushTypes.ObjectPaint;
-    public bool ChangesMade { get; set; } = false;
 
-    public void Init()
+    public void Init(GridPointer grid)
     {
-        CurrentObject = ObjectPalette[ObjectIndex];
+        Grid = grid;
+        CurrentObject = ObjectPalette[ObjectIndex].Clone();
         CurrentObjectSprite = objectSpriteFactory.CreateObjectSprite(CurrentObject, new Vector2(0, 0), context);
     }
 
     public void Update(int dtMs)
     {
-        if (buttonInput.IsPressed(InputNames.RotateObject) && CurrentObject.IsRotatable)
+        if (buttonInput.IsPressed(InputNames.RotatePaintBrush) && CurrentObject.IsRotatable)
         {
             CurrentObject.Direction = Utilities.RotateClockwise(CurrentObject.Direction);
             CurrentObjectSprite.Rotation = Utilities.ToRadians(CurrentObject.Direction);
@@ -55,13 +56,13 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
         if (mouseInput.IsHeld(InputNames.Select) && !IsOutOfBounds())
         {
             var coord = MouseCoordinate();
-            var obj = grid.GetObject(coord);
+            var obj = Grid.GetObject(coord);
             if (obj.Id != CurrentObject.Id || obj.Direction != CurrentObject.Direction)
             {
-                grid.SetObject(coord, CurrentObject);
-                spriteGrid.SetNewObjectSprite(coord, CurrentObject);
                 CurrentObject = CurrentObject.Clone();
-                ChangesMade = true;
+                undoHistory.Add(Grid.Clone());
+                Grid.SetObject(coord, CurrentObject);
+                spriteGrid.SetNewObjectSprite(coord, CurrentObject);
             }
         }
     }

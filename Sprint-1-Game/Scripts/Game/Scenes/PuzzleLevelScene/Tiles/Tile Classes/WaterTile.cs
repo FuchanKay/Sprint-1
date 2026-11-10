@@ -11,5 +11,6 @@ public class WaterTile : ITile
     }
     public TileIds Id => TileIds.Water;
     public bool IsWalkable => false;
+    public bool IsRotatable => false;
     public Directions Direction { get; set; }
 }

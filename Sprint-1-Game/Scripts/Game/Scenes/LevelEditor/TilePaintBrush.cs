@@ -1,11 +1,11 @@
-using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput, GridPointer grid, SpriteGrid spriteGrid, LevelContext context, TileSpriteFactory tileSpriteFactory) : IBrush
+public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput, SpriteGrid spriteGrid, LevelContext context, TileSpriteFactory tileSpriteFactory, List<GridPointer> undoHistory) : IBrush
 {
     private static ITile[] TilePalette =
     {
@@ -31,20 +31,26 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
     private ISprite CurrentTileSprite;
     private int TileIndex;
     public BrushTypes Type => BrushTypes.TilePaint;
-    public bool ChangesMade { get; set; } = false;
+    public GridPointer Grid;
 
-    public void Init()
+    public void Init(GridPointer grid)
     {
-        CurrentTile = TileFactory.CreateBrickTile();
+        Grid = grid;
+        CurrentTile = TilePalette[TileIndex].Clone();
         CurrentTileSprite = tileSpriteFactory.CreateTileSprite(CurrentTile, new Vector2(0, 0), context);
     }
 
     public void Update(int dtMs)
     {
+        if (buttonInput.IsPressed(InputNames.RotatePaintBrush) && CurrentTile.IsRotatable)
+        {
+            CurrentTile.Direction = Utilities.RotateClockwise(CurrentTile.Direction);
+            CurrentTileSprite.Rotation = Utilities.ToRadians(CurrentTile.Direction);
+        }
         if (mouseInput.IsHeld(InputNames.Select) && !IsOutOfBounds())
         {
             var coord = MouseCoordinate();
-            var tile = grid.GetTile(coord);
+            var tile = Grid.GetTile(coord);
             var shouldChange = false;
             if (tile.Id == TileIds.Floor && CurrentTile.Id == TileIds.Floor)
             {
@@ -52,13 +58,13 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
                 var currentTileAsFloor = (FloorTile) CurrentTile;
                 shouldChange = tileAsFloor.RegionName != currentTileAsFloor.RegionName;
             }
-            if (!shouldChange) shouldChange = tile.Id != CurrentTile.Id;
+            if (!shouldChange) shouldChange = tile.Id != CurrentTile.Id || tile.Direction != CurrentTile.Direction;
             if (shouldChange)
             {
-                ChangesMade = true;
-                grid.SetTile(coord, CurrentTile);
-                spriteGrid.SetNewTileSprite(coord, CurrentTile);
                 CurrentTile = CurrentTile.Clone();
+                undoHistory.Add(Grid.Clone());
+                Grid.SetTile(coord, CurrentTile);
+                spriteGrid.SetNewTileSprite(coord, CurrentTile);
             }
         }
     }
@@ -118,7 +124,7 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
     {
         TileIndex++;
         if (TileIndex >= TilePalette.Length) TileIndex = 0;
-        CurrentTile = TilePalette[TileIndex];
+        CurrentTile = TilePalette[TileIndex].Clone();
         CurrentTileSprite = tileSpriteFactory.CreateTileSprite(CurrentTile, new Vector2(0, 0), context);
     }
 
@@ -126,7 +132,7 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
     {
         TileIndex--;
         if (TileIndex < 0) TileIndex = TilePalette.Length - 1;
-        CurrentTile = TilePalette[TileIndex];
+        CurrentTile = TilePalette[TileIndex].Clone();
         CurrentTileSprite = tileSpriteFactory.CreateTileSprite(CurrentTile, new Vector2(0, 0), context);
     }
 }
