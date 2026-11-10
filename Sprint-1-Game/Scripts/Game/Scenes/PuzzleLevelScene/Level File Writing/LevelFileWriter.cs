@@ -12,9 +12,11 @@ public class LevelFileWriter()
         string[] levelFile = new string[levelContext.LevelHeight * 2 + 2];
 
         WriteHeader(levelFile, levelContext);
+        WriteTileGrid(levelFile, gridPointer, levelContext);
+        WriteObjectGrid(levelFile, gridPointer, levelContext);
     }
 
-    public static void WriteHeader(string[] levelFile, LevelContext levelContext)
+    private static void WriteHeader(string[] levelFile, LevelContext levelContext)
     {
         string header = $"{levelContext.LevelName}{Delimiter}{levelContext.LevelWidth}{Delimiter}{levelContext.LevelHeight}";
         for (int i = 0; i < levelContext.LevelWidth - 3; i++)
@@ -22,5 +24,14 @@ public class LevelFileWriter()
             header += Delimiter;
         }
         levelFile[0] = header;
+    }
+    private static void WriteTileGrid(string[] levelFile, GridPointer gridPointer, LevelContext levelContext)
+    {
+        
+    }
+
+    private static void WriteObjectGrid(string[] levelFile, GridPointer gridPointer, LevelContext levelContext)
+    {
+        
     }
 }
