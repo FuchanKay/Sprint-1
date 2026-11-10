@@ -27,7 +27,7 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
     public void Init()
     {
         CurrentGrid.Init();
-
+        UndoHistory.Clear();
         var levelFileName = FileNames.LevelFileNames[1];
         string[] levelFile = LevelFileParser.ParseLevelFile(levelFileName);
         LevelFileParser levelFileParser = new();

@@ -60,10 +60,10 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
             if (!shouldChange) shouldChange = tile.Id != CurrentTile.Id || tile.Direction != CurrentTile.Direction;
             if (shouldChange)
             {
-                CurrentTile = CurrentTile.Clone();
                 undoHistory.Add(Grid.Clone());
-                Grid.SetTile(coord, CurrentTile);
-                spriteGrid.SetNewTileSprite(coord, CurrentTile);
+                var placedTile = CurrentTile.Clone();
+                Grid.SetTile(coord, placedTile);
+                spriteGrid.SetNewTileSprite(coord, placedTile);
             }
         }
     }

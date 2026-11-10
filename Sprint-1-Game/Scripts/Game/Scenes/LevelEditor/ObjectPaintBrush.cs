@@ -58,10 +58,10 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
             var obj = Grid.GetObject(coord);
             if (obj.Id != CurrentObject.Id || obj.Direction != CurrentObject.Direction)
             {
-                CurrentObject = CurrentObject.Clone();
                 undoHistory.Add(Grid.Clone());
-                Grid.SetObject(coord, CurrentObject);
-                spriteGrid.SetNewObjectSprite(coord, CurrentObject);
+                var placedObject = CurrentObject.Clone();
+                Grid.SetObject(coord, placedObject);
+                spriteGrid.SetNewObjectSprite(coord, placedObject);
             }
         }
     }
@@ -84,7 +84,7 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
     {
         ObjectIndex++;
         if (ObjectIndex >= ObjectPalette.Length) ObjectIndex = 0;
-        CurrentObject = ObjectPalette[ObjectIndex];
+        CurrentObject = ObjectPalette[ObjectIndex].Clone();
         CurrentObjectSprite = objectSpriteFactory.CreateObjectSprite(CurrentObject, new Vector2(0, 0), context);
     }
 
@@ -92,7 +92,7 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
     {
         ObjectIndex--;
         if (ObjectIndex < 0) ObjectIndex = ObjectPalette.Length - 1;
-        CurrentObject = ObjectPalette[ObjectIndex];
+        CurrentObject = ObjectPalette[ObjectIndex].Clone();
         CurrentObjectSprite = objectSpriteFactory.CreateObjectSprite(CurrentObject, new Vector2(0, 0), context);
     }
 }
