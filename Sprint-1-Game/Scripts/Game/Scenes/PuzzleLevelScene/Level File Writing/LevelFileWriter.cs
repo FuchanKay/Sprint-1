@@ -12,8 +12,7 @@ public class LevelFileWriter()
         string[] levelFile = new string[levelContext.LevelHeight * 2 + 2];
 
         WriteHeader(levelFile, levelContext);
-        WriteTileGrid(levelFile, gridPointer, levelContext);
-        WriteObjectGrid(levelFile, gridPointer, levelContext);
+        WriteGrids(levelFile, gridPointer, levelContext);
     }
 
     private static void WriteHeader(string[] levelFile, LevelContext levelContext)
@@ -25,13 +24,41 @@ public class LevelFileWriter()
         }
         levelFile[0] = header;
     }
-    private static void WriteTileGrid(string[] levelFile, GridPointer gridPointer, LevelContext levelContext)
+    private static void WriteGrids(string[] levelFile, GridPointer gridPointer, LevelContext levelContext)
     {
-        
+        int tileGridIdx = 1;
+        int objectGridIdx = 1 + levelContext.LevelHeight + 1;
+
+        for (int y = 0; y < levelContext.LevelHeight; y++)
+        {
+            string tileLine = "";
+            string objectLine = "";
+            for (int x = 0; x < levelContext.LevelWidth; x++)
+            {
+                var coord = new Coordinate(x, y);
+                var grid = gridPointer.GetGrid(coord);
+                
+            }
+        }
     }
 
-    private static void WriteObjectGrid(string[] levelFile, GridPointer gridPointer, LevelContext levelContext)
+    private static void WriteSpacerRow(string[] levelFile, LevelContext levelContext)
     {
-        
+        string spacerRow = "";
+        for (int i = 0; i < levelContext.LevelWidth; i++)
+        {
+            spacerRow += Delimiter;
+        }
+        levelFile[levelContext.LevelHeight + 1] = spacerRow;
+    }
+
+    private static string WriteTile(Grid grid, LevelContext levelContext)
+    {
+        return grid.Tile.Id.ToString() + DirectionDelimiter + (int)grid.Tile.Direction;
+    }
+
+    private static string WriteObject(string row, Grid grid, LevelContext levelContext)
+    {
+        return grid.Object.Id.ToString();
     }
 }
