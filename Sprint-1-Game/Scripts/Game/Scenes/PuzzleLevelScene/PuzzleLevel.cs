@@ -72,6 +72,7 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
         if (!SpriteGrid.IsIdle() || Context.PlayerIsDead) return;
 
         var CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
+        if (CurrentEventIsFinished) LevelStateHistory.GridPointer.ObjectsJustMoved.Clear();
         if (CurrentEventIsFinished && EventQueue.Count > 0)
         {
             PushCurrentLevelStateHistory();

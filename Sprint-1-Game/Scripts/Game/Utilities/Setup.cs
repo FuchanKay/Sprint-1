@@ -159,6 +159,7 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddRegion(RegionNames.LavaTile, 3, 3, 64, 64);
 
         TextureAtlas.AddRegion(RegionNames.WaterTile, 0, 4, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.IceTile, 0, 0, 602, 602);
         TextureAtlas.AddRegion(RegionNames.BoulderWaterTile, 1, 4, 64, 64);
         TextureAtlas.AddRegion(RegionNames.PumpkinWaterTile, 2, 4, 64, 64);
 
@@ -214,6 +215,7 @@ public class Setup(ContentManager content, GameWindow window)
 
         TextureAtlas.AddTexture(TextureNames.Player, FileNames.PlayerTexture);
         TextureAtlas.AddTexture(TextureNames.TileSprites, FileNames.TileTextures);
+        TextureAtlas.AddTexture(TextureNames.IceSprite, FileNames.IcePlaceholder);
         TextureAtlas.AddTexture(TextureNames.ObjectSprites, FileNames.ObjectTextures);
         TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
         TextureAtlas.AddTexture(TextureNames.Door, FileNames.DoorTexture);
