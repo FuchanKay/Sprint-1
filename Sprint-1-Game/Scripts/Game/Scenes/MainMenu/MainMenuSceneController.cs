@@ -45,10 +45,7 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
     {
         PlayGameButton.Draw(sb);
         ExitGameButton.Draw(sb);
-<<<<<<< HEAD
         LevelEditorButton.Draw(sb);
-=======
         GameTitle.Draw(sb);
->>>>>>> befea98fa1a03f723f11987c4910ab6f04990844
     }
 }
