@@ -9,6 +9,8 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
     private IObject CurrentObject;
     private ISprite CurrentObjectSprite;
 
+    public BrushTypes Type => BrushTypes.ObjectPaint;
+
     public void Init()
     {
         CurrentObject = ObjectFactory.CreateCornerWall(Directions.North);
@@ -27,7 +29,6 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
             var coord = MouseCoordinate();
             grid.SetObject(coord, CurrentObject);
             spriteGrid.SetNewObjectSprite(coord, CurrentObject);
-            spriteGrid.GetObjectSprite(coord);
             CurrentObject = CurrentObject.Clone();
         }
     }

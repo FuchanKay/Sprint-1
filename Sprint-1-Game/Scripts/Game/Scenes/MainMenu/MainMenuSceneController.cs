@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
@@ -19,9 +17,7 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
 
 
     public void Init()
-    {
-        Console.WriteLine("init");
- 
+    { 
         PlayGameButton = new PlayGameButton(sceneManager, audioManager, textureAtlas);
         PlayGameButton.Init(PlayGameButtonX, PlayGameButtonY, mouseInput, true);
 

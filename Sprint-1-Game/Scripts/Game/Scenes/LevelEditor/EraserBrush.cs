@@ -5,6 +5,8 @@ namespace Scripts.Game;
 
 public class EraserBrush(IInputManager mouseInput, GridPointer grid, SpriteGrid spriteGrid, LevelContext context) : IBrush
 {
+    public BrushTypes Type => BrushTypes.Eraser;
+
     public void Init()
     {
 

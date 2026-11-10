@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class LevelEditorSceneController(ISceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, ITextureAtlas textureAtlas) : ISceneController
+public class LevelEditorSceneController(IInputManager buttonInput, IInputManager mouseInput, ITextureAtlas textureAtlas) : ISceneController
 {
     private LevelContext Context = new()
     {
@@ -42,7 +43,11 @@ public class LevelEditorSceneController(ISceneManager sceneManager, IInputManage
 
     public void Update(int dtMs)
     {
-        if (buttonInput.IsPressed(InputNames.EraserBrushMode))
+        if (buttonInput.IsPressed(InputNames.ToggleObjectView))
+        {
+            SpriteGrid.ToggleObjectLayerHide();
+        }
+        else if (buttonInput.IsPressed(InputNames.EraserBrushMode))
         {
             Brush = new EraserBrush(mouseInput, Grid, SpriteGrid, Context);
             Brush.Init();
@@ -52,6 +57,13 @@ public class LevelEditorSceneController(ISceneManager sceneManager, IInputManage
             Brush = new ObjectPaintBrush(buttonInput, mouseInput, Grid, SpriteGrid, Context, ObjectSpriteFactory);
             Brush.Init();
         }
+        else if (buttonInput.IsPressed(InputNames.TileBrushMode))
+        {
+            Brush = new TilePaintBrush(buttonInput, mouseInput, Grid, SpriteGrid, Context, TileSpriteFactory);
+            Brush.Init();
+        }
+        
+        
         SpriteGrid.Update(dtMs);
         Brush.Update(dtMs);
     }

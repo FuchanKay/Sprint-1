@@ -13,6 +13,7 @@ public class InputNames
     public readonly static string RotateObject = "Rotate Object";
     public readonly static string ObjectPaintBrushMode = "Object Paint Brush Mode";
     public readonly static string EraserBrushMode = "Eraser Brush Mode";
+    public readonly static string TileBrushMode = "Tile Brush Mode";
     public readonly static string LShift = "Left Shift";
     public readonly static string LCtrl = "Left Ctrl";
     public readonly static string Snap = "Snap";

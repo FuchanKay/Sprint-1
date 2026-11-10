@@ -67,6 +67,7 @@ public class Setup(ContentManager content, GameWindow window)
 
         ButtonInput.MapInput(InputNames.ObjectPaintBrushMode, (int)Keys.P);
         ButtonInput.MapInput(InputNames.EraserBrushMode, (int)Keys.E);
+        ButtonInput.MapInput(InputNames.TileBrushMode, (int)Keys.T);
 
         ButtonInput.MapInput(InputNames.Undo, (int)Keys.Z);
 
