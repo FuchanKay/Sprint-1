@@ -57,6 +57,5 @@ public class PickItemSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEv
             audioManager.PlaySound(SoundNames.Pickup);
             subEventStack.Push(new OpenExitSubEvent());
         }
-
     }
 }

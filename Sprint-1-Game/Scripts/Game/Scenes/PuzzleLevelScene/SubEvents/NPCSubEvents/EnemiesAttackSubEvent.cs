@@ -131,11 +131,11 @@ public class CheckEnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, Lis
         var currentObjAhead = gridPointer.GetObject(lineOfSight.Peek());
         var seesPlayer = currentObjAhead.Id == ObjectIds.Player;
         var seesDestructible = currentObjAhead.IsDestructible;
-        var seesEnemy = currentObjAhead is IEnemy;
+        var seesEnemy = currentObjAhead is IEnemy && currentObjAhead.Id != ObjectIds.RedLizard;
 
         var lizardSprite = spriteGrid.GetObjectSprite(lizardCoord);
         var isIdle = lizardSprite.IdleName.Contains("Idle");
 
-        return (seesPlayer || seesDestructible || seesEnemy) && isIdle;
+       return (seesPlayer || seesDestructible || seesEnemy) && isIdle;
     }
 }

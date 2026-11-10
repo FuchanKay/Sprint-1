@@ -1,0 +1,22 @@
+﻿Level 6,10,10,,,,,,,,
+Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick
+Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick
+Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Lava,Brick
+Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick
+Brick,Pit,Pit,Pit,Pit,Pit,Pit,Pit,Pit,Brick
+Brick,Pit,Pit,Pit,Pit,Pit,Pit,Pit,Pit,Brick
+Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick
+Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick
+Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick
+Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick,Brick
+_,_,_,_,_,_,_,_,_,_
+CornerWall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,CornerWall.1
+Wall.3,_,_,_,_,_,_,_,_,ClosedDoor
+Wall.3,Player,RedLizard.2,_,_,_,_,_,_,Wall.1
+Wall.3,_,_,_,_,_,_,_,_,Wall.1
+Wall.3,_,_,_,_,_,_,_,_,Wall.1
+Wall.3,_,_,_,_,_,_,_,_,Wall.1
+Wall.3,_,_,_,_,_,_,_,_,Wall.1
+Wall.3,_,_,Skeleton,_,Skeleton,_,Skeleton,_,Wall.1
+Wall.3,_,_,_,_,_,_,_,_,Wall.1
+CornerWall.3,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,CornerWall.2

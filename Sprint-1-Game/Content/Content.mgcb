@@ -236,6 +236,19 @@
 /processorParam:Version=3.8.5.1
 /build:Images/hud_font_sheet.png
 
+#begin Images/iceTile.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:Images/iceTile.png
+
 #begin Images/key.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -419,4 +432,13 @@
 
 #begin Levels/Level5.csv
 /copy:Levels/Level5.csv
+
+#begin Levels/Level6.csv
+/copy:Levels/Level6.csv
+
+#begin Levels/Level7.csv
+/copy:Levels/Level7.csv
+
+#begin Levels/Level8.csv
+/copy:Levels/Level8.csv
 

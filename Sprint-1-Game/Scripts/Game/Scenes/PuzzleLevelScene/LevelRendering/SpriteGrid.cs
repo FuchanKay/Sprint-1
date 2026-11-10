@@ -12,6 +12,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     private readonly EffectSpriteManager EffectSpriteManager = new();
     private bool HideObjectLayer = false;
     public readonly int PushDuration = 400;
+    public readonly int SlideDuration = 300;
 
     public void Init(GridPointer gridPointer, LevelContext context)
     {
