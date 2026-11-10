@@ -12,12 +12,12 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
     private Button PlayGameButton;
     private Button LevelEditorButton;
     private Button ExitGameButton;
-    private BasicSpriteFontWriter GameTitle = new (spriteFontManager);
-    
+    private BasicSpriteFontWriter GameTitle = new(spriteFontManager);
+
 
 
     public void Init()
-    { 
+    {
         PlayGameButton = new PlayGameButton(sceneManager, audioManager, textureAtlas);
         PlayGameButton.Init(PlayGameButtonX, PlayGameButtonY, mouseInput, true);
 
@@ -26,7 +26,7 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
 
         ExitGameButton = new ExitGameButton(sceneManager, textureAtlas);
         ExitGameButton.Init(ExitGameButtonX, ExitGameButtonY, mouseInput, true);
-        GameTitle.Init(FontNames.DungeonFont, new Vector2 (1280/2-100,10), "Sugar Snap", Color.Gold);
+        GameTitle.Init(FontNames.DungeonFont, new Vector2(1280 / 2 - 100, 10), "Sugar Snap", Color.Gold);
 
     }
 

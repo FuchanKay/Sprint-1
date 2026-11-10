@@ -6,11 +6,11 @@ public class TilePalette()
 {
     public void Update(int dtMs)
     {
-        
+
     }
 
     public void Draw(SpriteBatch sb)
     {
-        
+
     }
 }

@@ -17,7 +17,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
 
     private readonly IAudioManager AudioManager = audioManager;
     public int CurrentLevelIndex = 0;
-// Loading a SpriteFont Description using the content pipeline
+    // Loading a SpriteFont Description using the content pipeline
 
     public void Init()
     {
@@ -101,7 +101,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     }
     public void Draw(SpriteBatch sb)
     {
-        
+
         Level.Draw(sb);
         UIManager.Draw(sb);
     }

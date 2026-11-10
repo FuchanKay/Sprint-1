@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
+
 public class UIManager(SpriteFontManager spriteFontManager)
 {
     private HUDPannel HUDPannel = new(spriteFontManager);

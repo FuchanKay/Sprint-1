@@ -54,8 +54,8 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
             var shouldChange = false;
             if (tile.Id == TileIds.Floor && CurrentTile.Id == TileIds.Floor)
             {
-                var tileAsFloor = (FloorTile) tile;
-                var currentTileAsFloor = (FloorTile) CurrentTile;
+                var tileAsFloor = (FloorTile)tile;
+                var currentTileAsFloor = (FloorTile)CurrentTile;
                 shouldChange = tileAsFloor.RegionName != currentTileAsFloor.RegionName;
             }
             if (!shouldChange) shouldChange = tile.Id != CurrentTile.Id || tile.Direction != CurrentTile.Direction;
@@ -68,7 +68,7 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
             }
         }
     }
-    
+
     public void Draw(SpriteBatch sb)
     {
         if (!IsOutOfBounds())
@@ -87,9 +87,9 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
     private bool IsOutOfBounds()
     {
         var leftmostPoint = context.PuzzleOffsetX;
-        var rightmostPoint = (int) (context.LevelWidth * context.RawSpriteWidthPx * context.GridScale + context.PuzzleOffsetX);
+        var rightmostPoint = (int)(context.LevelWidth * context.RawSpriteWidthPx * context.GridScale + context.PuzzleOffsetX);
         var topMostPoint = context.PuzzleOffsetY;
-        var bottomMostPoint = (int) (context.LevelWidth * context.RawSpriteHeightPx * context.GridScale + context.PuzzleOffsetY);
+        var bottomMostPoint = (int)(context.LevelWidth * context.RawSpriteHeightPx * context.GridScale + context.PuzzleOffsetY);
 
         var mouseX = mouseInput.MousePositionX;
         var mouseY = mouseInput.MousePositionY;
@@ -97,21 +97,21 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
         var outOfBounds = mouseX < leftmostPoint || mouseX > rightmostPoint || mouseY < topMostPoint || mouseY > bottomMostPoint;
         return outOfBounds;
     }
-    
+
     private Coordinate MouseCoordinate()
     {
         var mouseX = mouseInput.MousePositionX;
         var mouseY = mouseInput.MousePositionY;
-        
+
         var leftmostPoint = context.PuzzleOffsetX;
         var topMostPoint = context.PuzzleOffsetY;
 
-        var gridWidth = (int) (context.RawSpriteWidthPx * context.GridScale);
-        var gridHeight = (int) (context.RawSpriteHeightPx * context.GridScale);
+        var gridWidth = (int)(context.RawSpriteWidthPx * context.GridScale);
+        var gridHeight = (int)(context.RawSpriteHeightPx * context.GridScale);
 
         var x = (mouseX - leftmostPoint) / gridWidth;
         var y = (mouseY - topMostPoint) / gridHeight;
-        
+
         if (x >= context.LevelWidth) x = context.LevelWidth - 1;
         if (y >= context.LevelHeight) y = context.LevelHeight - 1;
         if (x < 0) x = 0;

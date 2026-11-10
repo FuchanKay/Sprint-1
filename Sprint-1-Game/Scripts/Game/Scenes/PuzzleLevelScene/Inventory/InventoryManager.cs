@@ -60,13 +60,13 @@ public class InventoryManager()
         {
             case ObjectIds.Bomb:
                 idString = "Bomb";
-            break;
+                break;
             case ObjectIds.Empty:
                 idString = "Empty";
-            break;
+                break;
             case ObjectIds.Seed:
                 idString = "Seed";
-            break;
+                break;
         }
         return idString;
     }

@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 
 namespace Scripts.Game;
+
 using Scripts.GameComponents;
 
 public class SeedGrowthSubEvent : ILevelSubEvent

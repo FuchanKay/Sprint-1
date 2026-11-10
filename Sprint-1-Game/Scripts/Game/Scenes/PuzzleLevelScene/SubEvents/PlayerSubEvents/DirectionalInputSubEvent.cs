@@ -22,7 +22,7 @@ public class DirectionalInputSubEvent(Directions direction, Stack<ILevelSubEvent
             var destinationGrid = gridPointer.GetGrid(destinationCoord);
             var destinationObject = destinationGrid.Object;
 
-            if(destinationObject.Id == ObjectIds.Rock) audioManager.PlaySound(SoundNames.StoneScrape);
+            if (destinationObject.Id == ObjectIds.Rock) audioManager.PlaySound(SoundNames.StoneScrape);
 
             var onePastDestinationCoord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
 

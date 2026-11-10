@@ -6,11 +6,11 @@ public class ObjectPalette()
 {
     public void Update(int dtMs)
     {
-        
+
     }
 
     public void Draw(SpriteBatch sb)
     {
-        
+
     }
 }

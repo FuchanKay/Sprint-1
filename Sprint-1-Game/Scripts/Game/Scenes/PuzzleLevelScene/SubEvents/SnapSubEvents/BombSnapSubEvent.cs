@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 namespace Scripts.Game;
+
 using Scripts.GameComponents;
 
 public class BombSnapSubEvent(List<Coordinate> bombCoords, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent

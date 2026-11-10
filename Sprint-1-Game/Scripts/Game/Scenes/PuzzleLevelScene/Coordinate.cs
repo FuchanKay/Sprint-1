@@ -62,4 +62,8 @@ public struct Coordinate
 
     public override string ToString() => $"({X}, {Y})";
 
+    public override bool Equals(object obj)
+    {
+        throw new System.NotImplementedException();
+    }
 }

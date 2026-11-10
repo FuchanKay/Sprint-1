@@ -77,7 +77,7 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.UseItem2, (int)Keys.D2);
         ButtonInput.MapInput(InputNames.UseItem3, (int)Keys.D3);
 
-        MouseInput.MapInput(InputNames.Select, (int) MouseButtons.Left);
+        MouseInput.MapInput(InputNames.Select, (int)MouseButtons.Left);
         MouseInput.MapInput(InputNames.EraserBrushMode, (int)MouseButtons.Right);
     }
 

@@ -72,7 +72,7 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
             Brush.Init(CurrentGrid);
         }
         else if (buttonInput.IsPressed(InputNames.Undo) && UndoHistory.Count > 0)
-        {   
+        {
             var top = UndoHistory.Count - 1;
             CurrentGrid = UndoHistory[top];
             UndoHistory.RemoveAt(top);

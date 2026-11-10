@@ -66,7 +66,7 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
             }
         }
     }
-    
+
     public void Draw(SpriteBatch sb)
     {
         if (!IsOutOfBounds())
@@ -85,9 +85,9 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
     private bool IsOutOfBounds()
     {
         var leftmostPoint = context.PuzzleOffsetX;
-        var rightmostPoint = (int) (context.LevelWidth * context.RawSpriteWidthPx * context.GridScale + context.PuzzleOffsetX);
+        var rightmostPoint = (int)(context.LevelWidth * context.RawSpriteWidthPx * context.GridScale + context.PuzzleOffsetX);
         var topMostPoint = context.PuzzleOffsetY;
-        var bottomMostPoint = (int) (context.LevelWidth * context.RawSpriteHeightPx * context.GridScale + context.PuzzleOffsetY);
+        var bottomMostPoint = (int)(context.LevelWidth * context.RawSpriteHeightPx * context.GridScale + context.PuzzleOffsetY);
 
         var mouseX = mouseInput.MousePositionX;
         var mouseY = mouseInput.MousePositionY;
@@ -95,21 +95,21 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
         var outOfBounds = mouseX < leftmostPoint || mouseX > rightmostPoint || mouseY < topMostPoint || mouseY > bottomMostPoint;
         return outOfBounds;
     }
-    
+
     private Coordinate MouseCoordinate()
     {
         var mouseX = mouseInput.MousePositionX;
         var mouseY = mouseInput.MousePositionY;
-        
+
         var leftmostPoint = context.PuzzleOffsetX;
         var topMostPoint = context.PuzzleOffsetY;
 
-        var gridWidth = (int) (context.RawSpriteWidthPx * context.GridScale);
-        var gridHeight = (int) (context.RawSpriteHeightPx * context.GridScale);
+        var gridWidth = (int)(context.RawSpriteWidthPx * context.GridScale);
+        var gridHeight = (int)(context.RawSpriteHeightPx * context.GridScale);
 
         var x = (mouseX - leftmostPoint) / gridWidth;
         var y = (mouseY - topMostPoint) / gridHeight;
-        
+
         //the coordinate calculation can sometimes jankily evaluate to an index that is out of bounds
         if (x >= context.LevelWidth) x = context.LevelWidth - 1;
         if (y >= context.LevelHeight) y = context.LevelHeight - 1;

@@ -67,7 +67,7 @@ public class TileSpriteManager
 
     public void SetNewTileSprite(Coordinate coord, ITile tile)
     {
-        var realCoord = SpriteGrid.CalculateLiteralPos(Context, coord);;
+        var realCoord = SpriteGrid.CalculateLiteralPos(Context, coord); ;
 
         TileSprites.Remove(realCoord);
         var newSprite = TileSpriteFactory.CreateTileSprite(tile, realCoord, Context);
@@ -83,7 +83,7 @@ public class TileSpriteManager
 
     public void AddIterableTileSprite(ITile tile, Coordinate startCoord, Coordinate currentCoord, float rotation)
     {
-        var realStartCoord = SpriteGrid.CalculateLiteralPos(Context, startCoord);;
+        var realStartCoord = SpriteGrid.CalculateLiteralPos(Context, startCoord); ;
         var realCurrentCoord = SpriteGrid.CalculateLiteralPos(Context, currentCoord);
 
         var sprite = TileSpriteFactory.CreateTileSprite(tile, realCurrentCoord, Context);

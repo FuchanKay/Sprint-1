@@ -1,4 +1,5 @@
 namespace Scripts.Game;
+
 using Scripts.GameComponents;
 
 public class UseItemSubEvent(int inventoryId) : ILevelSubEvent
@@ -21,19 +22,19 @@ public class UseItemSubEvent(int inventoryId) : ILevelSubEvent
         {
             var canPlantPumpkinSeed = targetTileSprite.IdleName == RegionNames.DirtTile && itemObj.Id == ObjectIds.Seed && seedObj.RegionName == RegionNames.PumpkinSeed;
             var canPlantVineSeed = targetTileSprite.IdleName == RegionNames.DirtTile && itemObj.Id == ObjectIds.Seed && seedObj.RegionName == RegionNames.VineSeed;
-            if(canPlantPumpkinSeed)
+            if (canPlantPumpkinSeed)
             {
                 var pumpkinSeedTile = TileFactory.CreatePumpkinSeedTile();
                 gridPointer.SetTile(targetCoord, pumpkinSeedTile);
                 spriteGrid.SetNewTileSprite(targetCoord, pumpkinSeedTile);
-                
+
             }
             else if (canPlantVineSeed)
             {
                 var vineSeedTile = TileFactory.CreateVineSeedTile(playerDirection);
                 gridPointer.SetTile(targetCoord, vineSeedTile);
                 spriteGrid.SetNewTileSprite(targetCoord, vineSeedTile);
-                
+
             }
             else if (itemObj.Id != ObjectIds.Seed)
             {

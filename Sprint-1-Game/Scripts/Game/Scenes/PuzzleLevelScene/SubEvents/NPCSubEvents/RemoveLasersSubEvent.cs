@@ -15,14 +15,14 @@ public class RemoveLasersSubEvent() : ILevelSubEvent
         foreach (var pair in iteratingList)
         {
             var sprite = pair.Value;
-            if(sprite.IdleName == RegionNames.LaserBeam) effectSprites.Remove(pair.Key);
+            if (sprite.IdleName == RegionNames.LaserBeam) effectSprites.Remove(pair.Key);
         }
 
         var redLizCoords = gridPointer.GetObjectPointers(ObjectIds.RedLizard).Keys.ToList();
         var blueLizCoords = gridPointer.GetObjectPointers(ObjectIds.BlueLizard).Keys.ToList();
-        List<Coordinate> lizardCoords = [..redLizCoords, ..blueLizCoords];
+        List<Coordinate> lizardCoords = [.. redLizCoords, .. blueLizCoords];
 
-        foreach(var lizardCoord in lizardCoords)
+        foreach (var lizardCoord in lizardCoords)
         {
             var lizard = gridPointer.GetObject(lizardCoord);
             var lizardSprite = spriteGrid.GetObjectSprite(lizardCoord);

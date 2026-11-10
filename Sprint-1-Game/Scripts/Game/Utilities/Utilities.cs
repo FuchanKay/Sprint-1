@@ -29,7 +29,7 @@ public class Utilities
 
     public static Directions Rotate180(Directions direction)
     {
-        return (Directions) (((int)direction + 2) % 4);
+        return (Directions)(((int)direction + 2) % 4);
     }
 
     public static float ToRadians(Directions direction)

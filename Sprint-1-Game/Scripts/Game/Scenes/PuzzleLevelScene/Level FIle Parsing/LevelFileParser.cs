@@ -95,7 +95,7 @@ public class LevelFileParser()
         string[] objectParts = objectValue.Split(DirectionDelimiter);
         string objectType = objectParts[0];
 
-        if(objectParts.Length == 1)
+        if (objectParts.Length == 1)
         {
             string[] fixedBuffer = new string[2];
             objectParts.CopyTo(fixedBuffer, 0);
@@ -105,7 +105,8 @@ public class LevelFileParser()
 
         string strDirection = objectParts[1];
         var direction = Directions.North;
-        if(int.TryParse(strDirection, out var numDirection)) {
+        if (int.TryParse(strDirection, out var numDirection))
+        {
             direction = (Directions)(numDirection % 4);
         }
 
