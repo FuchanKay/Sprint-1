@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using MonoGameLibrary.Graphics;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;

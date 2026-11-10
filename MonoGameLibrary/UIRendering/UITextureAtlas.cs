@@ -56,10 +56,10 @@ public class UITextureAtlas
                 XDocument doc = XDocument.Load(reader);
                 XElement root = doc.Root;
 
-                string texturePath = root.Element("Texture").Value;
+                string texturePath = root.Element("UITexture").Value;
                 atlas.Texture = content.Load<Texture2D>(texturePath);
 
-                var regions = root.Element("Regions")?.Elements("Region");
+                var regions = root.Element("UIRegions")?.Elements("UIRegion");
 
                 if (regions != null)
                 {
