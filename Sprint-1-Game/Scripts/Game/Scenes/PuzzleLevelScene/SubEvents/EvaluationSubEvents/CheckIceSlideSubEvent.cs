@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Scripts.GameComponents;
 namespace Scripts.Game;
 
-public class CheckIceSlideSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
+public class IceSlideSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
@@ -24,7 +24,7 @@ public class CheckIceSlideSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevel
                     SlideObject(spriteGrid, gridPointer, currentCoord, destinationCoord);
                     gridPointer.ObjectsJustMoved[direction].Remove(currentCoord);
                     gridPointer.ObjectsJustMoved[direction].Add(destinationCoord, obj);
-                    subEventStack.Push(new CheckIceSlideSubEvent(subEventStack));
+                    subEventStack.Push(new IceSlideSubEvent(subEventStack));
                 }
             }
         }
