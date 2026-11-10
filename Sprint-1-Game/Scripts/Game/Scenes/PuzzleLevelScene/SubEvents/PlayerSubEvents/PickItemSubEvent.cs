@@ -1,6 +1,7 @@
 namespace Scripts.Game;
 
 using System.Collections.Generic;
+using CsvHelper.Configuration.Attributes;
 using Scripts.GameComponents;
 
 public class PickItemSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
@@ -18,26 +19,34 @@ public class PickItemSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEv
         var itemTile = itemGrid.Tile;
         if (itemObj.IsPickable)
         {
-            inventoryManager.AddItem(itemObj);
-            gridPointer.SetObject(targetCoord, ObjectFactory.CreateEmpty());
-            spriteGrid.RemoveObjectSprite(targetCoord);
-            audioManager.PlaySound(SoundNames.Pickup);
+            if (inventoryManager.AddItem(itemObj))
+            {
+                gridPointer.SetObject(targetCoord, ObjectFactory.CreateEmpty());
+                spriteGrid.RemoveObjectSprite(targetCoord);
+                audioManager.PlaySound(SoundNames.Pickup);
+            }
             return;
         } else if (itemTile.Id == TileIds.VineSeed)
         {
             itemObj = ObjectFactory.CreateVineSeed(itemTile.Direction);
-            inventoryManager.AddItem(itemObj);
-            var dirtTile = TileFactory.CreateDirtTile();
-            gridPointer.SetTile(targetCoord, dirtTile);
-            spriteGrid.SetNewTileSprite(targetCoord, dirtTile);
+            if (inventoryManager.AddItem(itemObj))
+            {
+                var dirtTile = TileFactory.CreateDirtTile();
+                gridPointer.SetTile(targetCoord, dirtTile);
+                spriteGrid.SetNewTileSprite(targetCoord, dirtTile);
+            }
+
             
         } else if (itemTile.Id == TileIds.PumpkinSeed)
         {
             itemObj = ObjectFactory.CreatePumpkinSeed();
-            inventoryManager.AddItem(itemObj);
-            var dirtTile = TileFactory.CreateDirtTile();
-            gridPointer.SetTile(targetCoord, dirtTile);
-            spriteGrid.SetNewTileSprite(targetCoord, dirtTile);
+            if (inventoryManager.AddItem(itemObj))
+            {
+                var dirtTile = TileFactory.CreateDirtTile();
+                gridPointer.SetTile(targetCoord, dirtTile);
+                spriteGrid.SetNewTileSprite(targetCoord, dirtTile);
+            }
+            
         } else if (itemObj.Id == ObjectIds.Key)
         {
             gridPointer.SetObject(targetCoord, ObjectFactory.CreateEmpty());

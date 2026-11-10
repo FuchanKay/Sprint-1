@@ -8,9 +8,9 @@ public class BasicSpriteFontWriter(SpriteFontManager spriteFontManager): ISprite
     private Vector2 Pos;
     private string Text;
     private Color Color;
-    public void Init(string font, Vector2 pos, string text, Color color)
+    public void Init(string fontName, Vector2 pos, string text, Color color)
     {
-        Font = spriteFontManager.GetFont(font);
+        Font = spriteFontManager.GetFont(fontName);
         Pos = pos;
         Text = text;
         Color = color;

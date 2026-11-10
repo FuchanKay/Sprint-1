@@ -76,6 +76,20 @@
 /processorParam:Version=3.8.5.1
 /build:Audio/song.mp3
 
+#begin Audio/stoneScrape.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.1
+/build:Audio/stoneScrape.mp3
+
+#begin Audio/waterSplash.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.1
+/build:Audio/waterSplash.mp3
+
 #begin Font/defaultFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -83,33 +97,14 @@
 /processorParam:TextureFormat=Compressed
 /processorParam:Version=3.8.5.1
 /build:Font/defaultFont.spritefont
-#begin Audio/stoneScrape.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/processorParam:Version=3.8.5.1
-/build:Audio/stoneScrape.mp3
 
-#begin Audio/waterSplash.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
+#begin Font/DungeonDepths-owJWV.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
 /processorParam:Version=3.8.5.1
-/build:Audio/waterSplash.mp3
-
-#begin Audio/stoneScrape.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/processorParam:Version=3.8.5.1
-/build:Audio/stoneScrape.mp3
-
-#begin Audio/waterSplash.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/processorParam:Version=3.8.5.1
-/build:Audio/waterSplash.mp3
+/build:Font/DungeonDepths-owJWV.spritefont
 
 #begin Images/bat.png
 /importer:TextureImporter

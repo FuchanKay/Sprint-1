@@ -26,6 +26,7 @@ public class Setup(ContentManager content, GameWindow window)
         MapDefaultInputs();
         AddAnimations();
         AddRegions();
+        AddFont();
         sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, SpriteFontManager, window);
         sceneManager.Init();
     }
@@ -35,7 +36,6 @@ public class Setup(ContentManager content, GameWindow window)
         BindAllTextures();
         LoadAudio();
         LoadUI();
-        LoadFont();
 
     }
 
@@ -252,8 +252,10 @@ public class Setup(ContentManager content, GameWindow window)
         //place holder, will be implemented in the future
     }
 
-    private void LoadFont()
+    private void AddFont()
     {
         SpriteFontManager.MapFont(FontNames.DefaultFont, FileNames.DefaultFont);
+        SpriteFontManager.MapFont(FontNames.DungeonFont, FileNames.DungeonFont);
+
     }
 }
