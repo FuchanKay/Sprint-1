@@ -6,7 +6,7 @@ namespace Scripts.Game;
 public class EraserBrush(IInputManager mouseInput, GridPointer grid, SpriteGrid spriteGrid, LevelContext context) : IBrush
 {
     public BrushTypes Type => BrushTypes.Eraser;
-
+    public bool ChangesMade { get; set; } = false;
     public void Init()
     {
 
@@ -17,9 +17,14 @@ public class EraserBrush(IInputManager mouseInput, GridPointer grid, SpriteGrid 
         if (mouseInput.IsHeld(InputNames.Select) && !IsOutOfBounds())
         {
             var coord = MouseCoordinate();
-            var empty = ObjectFactory.CreateEmpty();
-            grid.SetObject(coord, empty);
-            spriteGrid.RemoveObjectSprite(coord);
+            var obj = grid.GetObject(coord);
+            if (obj.Id != ObjectIds.Empty)
+            {
+                ChangesMade = true;
+                var empty = ObjectFactory.CreateEmpty();
+                grid.SetObject(coord, empty);
+                spriteGrid.RemoveObjectSprite(coord);
+            }
         }
     }
     
@@ -63,5 +68,15 @@ public class EraserBrush(IInputManager mouseInput, GridPointer grid, SpriteGrid 
         if (y < 0) y = 0;
 
         return new Coordinate(x, y);
+    }
+
+    public void CycleRight()
+    {
+        
+    }
+
+    public void CycleLeft()
+    {
+        
     }
 }

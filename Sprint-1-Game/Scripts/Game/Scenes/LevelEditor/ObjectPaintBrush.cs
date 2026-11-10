@@ -6,14 +6,42 @@ namespace Scripts.Game;
 
 public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInput, GridPointer grid, SpriteGrid spriteGrid, LevelContext context, ObjectSpriteFactory objectSpriteFactory) : IBrush
 {
+    private static readonly IObject[] ObjectPalette = [
+        ObjectFactory.CreateBat(),
+        ObjectFactory.CreateBlueLizard(Directions.North),
+        ObjectFactory.CreateBomb(),
+        ObjectFactory.CreateClosedDoor(),
+        ObjectFactory.CreateCornerWall(Directions.North),
+        ObjectFactory.CreateDefaultRock(),
+        ObjectFactory.CreateFrog(),
+        ObjectFactory.CreateInvertedCornerWall(Directions.North),
+        ObjectFactory.CreateKey(),
+        ObjectFactory.CreateOpenDoor(),
+        ObjectFactory.CreatePlayer(),
+        ObjectFactory.CreatePumpkin(),
+        ObjectFactory.CreatePumpkinSeed(),
+        ObjectFactory.CreateRedLizard(Directions.North),
+        ObjectFactory.CreateSkeleton(),
+        ObjectFactory.CreateStandaloneWall(Directions.North),
+        ObjectFactory.CreateStandaloneWallConnector(Directions.North),
+        ObjectFactory.CreateStandaloneWallCorner(Directions.North),
+        ObjectFactory.CreateTimedBomb(),
+        ObjectFactory.CreateTopOfWall(Directions.North),
+        ObjectFactory.CreateVineSeed(Directions.North),
+        ObjectFactory.CreateWall(Directions.North),
+        ObjectFactory.CreateWarlock(),
+        ObjectFactory.CreateZombie()
+    ];
     private IObject CurrentObject;
     private ISprite CurrentObjectSprite;
+    private int ObjectIndex = 0;
 
     public BrushTypes Type => BrushTypes.ObjectPaint;
+    public bool ChangesMade { get; set; } = false;
 
     public void Init()
     {
-        CurrentObject = ObjectFactory.CreateCornerWall(Directions.North);
+        CurrentObject = ObjectPalette[ObjectIndex];
         CurrentObjectSprite = objectSpriteFactory.CreateObjectSprite(CurrentObject, new Vector2(0, 0), context);
     }
 
@@ -27,9 +55,14 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
         if (mouseInput.IsHeld(InputNames.Select) && !IsOutOfBounds())
         {
             var coord = MouseCoordinate();
-            grid.SetObject(coord, CurrentObject);
-            spriteGrid.SetNewObjectSprite(coord, CurrentObject);
-            CurrentObject = CurrentObject.Clone();
+            var obj = grid.GetObject(coord);
+            if (obj.Id != CurrentObject.Id || obj.Direction != CurrentObject.Direction)
+            {
+                grid.SetObject(coord, CurrentObject);
+                spriteGrid.SetNewObjectSprite(coord, CurrentObject);
+                CurrentObject = CurrentObject.Clone();
+                ChangesMade = true;
+            }
         }
     }
     
@@ -83,5 +116,21 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
         if (y < 0) y = 0;
 
         return new Coordinate(x, y);
+    }
+
+    public void CycleRight()
+    {
+        ObjectIndex++;
+        if (ObjectIndex >= ObjectPalette.Length) ObjectIndex = 0;
+        CurrentObject = ObjectPalette[ObjectIndex];
+        CurrentObjectSprite = objectSpriteFactory.CreateObjectSprite(CurrentObject, new Vector2(0, 0), context);
+    }
+
+    public void CycleLeft()
+    {
+        ObjectIndex--;
+        if (ObjectIndex < 0) ObjectIndex = ObjectPalette.Length - 1;
+        CurrentObject = ObjectPalette[ObjectIndex];
+        CurrentObjectSprite = objectSpriteFactory.CreateObjectSprite(CurrentObject, new Vector2(0, 0), context);
     }
 }

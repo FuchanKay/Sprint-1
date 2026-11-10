@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -68,6 +67,8 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.ObjectPaintBrushMode, (int)Keys.P);
         ButtonInput.MapInput(InputNames.EraserBrushMode, (int)Keys.E);
         ButtonInput.MapInput(InputNames.TileBrushMode, (int)Keys.T);
+        ButtonInput.MapInput(InputNames.CycleBrushLeft, (int)Keys.A);
+        ButtonInput.MapInput(InputNames.CycleBrushRight, (int)Keys.D);
 
         ButtonInput.MapInput(InputNames.Undo, (int)Keys.Z);
 

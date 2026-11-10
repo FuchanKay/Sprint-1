@@ -1,5 +1,5 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
@@ -18,6 +18,9 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
     private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
+    private List<GridPointer> UndoHistory = [];
+    private readonly int SaveFrequencyMs = 3000;
+    private int SaveClockMs = 0;
     private SpriteGrid SpriteGrid;
     private IBrush Brush;
     public int CurrentLevelIndex = 0;
@@ -43,6 +46,12 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
 
     public void Update(int dtMs)
     {
+        SaveClockMs -= dtMs;
+        if (SaveClockMs < 0)
+        {
+            SaveClockMs = SaveFrequencyMs;
+            
+        }
         if (buttonInput.IsPressed(InputNames.ToggleObjectView))
         {
             SpriteGrid.ToggleObjectLayerHide();
@@ -62,7 +71,14 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
             Brush = new TilePaintBrush(buttonInput, mouseInput, Grid, SpriteGrid, Context, TileSpriteFactory);
             Brush.Init();
         }
-        
+        if (buttonInput.IsPressed(InputNames.CycleBrushLeft))
+        {
+            Brush.CycleLeft();
+        }
+        else if (buttonInput.IsPressed(InputNames.CycleBrushRight))
+        {
+            Brush.CycleRight();
+        }
         
         SpriteGrid.Update(dtMs);
         Brush.Update(dtMs);
