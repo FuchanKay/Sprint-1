@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
@@ -11,12 +12,12 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private GameLayoutManager GameLayoutManager = new();
-    private BasicSpriteFontWriter EnemyCounter = new (spriteFontManager);
-    private BasicSpriteFontWriter InventoryStatus = new (spriteFontManager);
+    private UIManager UIManager = new(spriteFontManager);
 
 
     private readonly IAudioManager AudioManager = audioManager;
     public int CurrentLevelIndex = 0;
+// Loading a SpriteFont Description using the content pipeline
 
     public void Init()
     {
@@ -24,8 +25,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         LevelFileParser = new LevelFileParser();
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
         Level.Init(CurrentLevelIndex);
-        EnemyCounter.Init(FontNames.DefaultFont, new Vector2 (1040,40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.White);
-        InventoryStatus.Init(FontNames.DefaultFont, new Vector2(1040,80), $"Inventory:\n{Level.LevelStateHistory.InventoryManager.ReadInventoryString()}", Color.White);
+        UIManager.Init(Level);
     }
     public void Update(int dtMs)
     {
@@ -88,8 +88,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         }
 
         Level.Update(dtMs);
-        EnemyCounter.Update(new Vector2 (1040,40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}");
-        InventoryStatus.Update(new Vector2(1040,80), $"Inventory:\n{Level.LevelStateHistory.InventoryManager.ReadInventoryString()}");
+        UIManager.Update(dtMs);
 
 
         // Exits to the main menu upon a levels completion
@@ -102,8 +101,8 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     }
     public void Draw(SpriteBatch sb)
     {
-        EnemyCounter.Draw(sb);
-        InventoryStatus.Draw(sb);
+        
         Level.Draw(sb);
+        UIManager.Draw(sb);
     }
 }
