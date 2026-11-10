@@ -7,7 +7,6 @@ namespace Scripts.Game;
 public class EraserBrush(IInputManager mouseInput, SpriteGrid spriteGrid, LevelContext context, List<GridPointer> undoHistory) : IBrush
 {
     public GridPointer Grid;
-    public BrushTypes Type => BrushTypes.Eraser;
     public void Init(GridPointer grid)
     {
         Grid = grid;

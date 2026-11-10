@@ -30,7 +30,6 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
     private ITile CurrentTile;
     private ISprite CurrentTileSprite;
     private int TileIndex;
-    public BrushTypes Type => BrushTypes.TilePaint;
     public GridPointer Grid;
 
     public void Init(GridPointer grid)

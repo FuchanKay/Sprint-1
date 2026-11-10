@@ -37,7 +37,6 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
     private ISprite CurrentObjectSprite;
     private int ObjectIndex = 0;
     private GridPointer Grid;
-    public BrushTypes Type => BrushTypes.ObjectPaint;
 
     public void Init(GridPointer grid)
     {
