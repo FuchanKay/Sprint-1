@@ -35,7 +35,8 @@ public class FileNames
     "Content/Levels/level6.csv", 
     "Content/Levels/level7.csv", 
     "Content/Levels/level8.csv",
-    "Content/Levels/level9.csv",];
+    "Content/Levels/level9.csv",
+    "Content/Levels/level10.csv"];
 
     public readonly static string SnapAudio = "audio/snap";
     public readonly static string SongAudio = "audio/song";

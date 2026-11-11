@@ -18,8 +18,7 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
 
     public void Init()
     {
-        Console.WriteLine("init");
- 
+
         PlayGameButton = new PlayGameButton(sceneManager, audioManager, textureAtlas);
         PlayGameButton.Init(PlayGameButtonX, PlayGameButtonY, mouseInput);
 
