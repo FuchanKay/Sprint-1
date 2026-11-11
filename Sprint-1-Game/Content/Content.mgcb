@@ -429,3 +429,6 @@
 #begin Levels/Level8.csv
 /copy:Levels/Level8.csv
 
+#begin Levels/Level9.csv
+/copy:Levels/Level9.csv
+
