@@ -5,20 +5,24 @@ using System;
 namespace MonoGameLibrary.UIRendering;
 
 
-public class UIFontAtlas(ContentManager content)
+public class UIFontAtlas
 {
-    private readonly Dictionary<string, SpriteFont> FontMap;
-    public void MapFont(string fontName, string fileName)
+    private readonly Dictionary<string, SpriteFont> Fonts;
+    public UIFontAtlas()
+    {
+        Fonts = new Dictionary<string, SpriteFont>();
+    }
+    public void MapFont(ContentManager content, string fontName, string fileName)
     {
 
-        if(!FontMap.TryAdd(fontName, content.Load<SpriteFont>(fileName)))
+        if(!Fonts.TryAdd(fontName, content.Load<SpriteFont>(fileName)))
         {
-            FontMap[fontName] = content.Load<SpriteFont>(fileName);
+            Fonts[fontName] = content.Load<SpriteFont>(fileName);
         }
     }
     public SpriteFont GetFont(string fontName)
     {
-        if (!FontMap.TryGetValue(fontName, out SpriteFont spriteFont))
+        if (!Fonts.TryGetValue(fontName, out SpriteFont spriteFont))
         {
             throw new ArgumentException($"{fontName} was not found");
         }

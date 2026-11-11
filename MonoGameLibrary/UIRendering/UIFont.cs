@@ -2,17 +2,21 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace MonoGameLibrary.UIRendering;
 
-public class UIFontRegion()
+public class UIFont
 {
-    public SpriteFont Font; 
-    public string Text;
-    public Vector2 Pos; 
-    public Color Color;
-    public float Rotation; 
-    public Vector2 Origin; 
-    public Vector2 Scale;
-    public SpriteEffects Effects; 
-    public float LayerDepth;
+    public SpriteFont Font{ get; set; }
+    public string Text{ get; set; }
+    public Vector2 Pos{ get; set; }
+    public Color Color{ get; set; } = Color.White;
+    public float Rotation{ get; set; } = 0.0f;
+    public Vector2 Origin{ get; set; } = Vector2.Zero;
+    public Vector2 Scale{ get; set; } = Vector2.One;
+    public SpriteEffects Effects{ get; set; } = SpriteEffects.None;
+    public float LayerDepth{ get; set; } = 0.0f;
+    public UIFont(UITextureRegion region)
+    {
+        Font = UIFontAtlas;
+    }
     public void Init(string fontName, Vector2 pos, string text, Color color)
     {
        // Font = spriteFontManager.GetFont(fontName);

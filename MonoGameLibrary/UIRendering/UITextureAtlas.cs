@@ -10,42 +10,42 @@ namespace MonoGameLibrary.UIRendering;
 
 public class UITextureAtlas 
 {
-    private Dictionary<string, UITextureRegion> Regions;
+    private Dictionary<string, UITextureRegion> UIRegions;
     public Texture2D Texture { get; set; }
     public UITextureAtlas()
     {
-        Regions = new Dictionary<string, UITextureRegion>();
+        UIRegions = new Dictionary<string, UITextureRegion>();
     }
     public UITextureAtlas(Texture2D texture)
     {
         Texture = texture;
-        Regions = new Dictionary<string, UITextureRegion>();
+        UIRegions = new Dictionary<string, UITextureRegion>();
     }
     public void AddRegion(string name, int x, int y, int width, int height)
     {
-        UITextureRegion region = new UITextureRegion(Texture, x, y, width, height);
-        Regions.Add(name, region);
+        UITextureRegion uIRegion = new UITextureRegion(Texture, x, y, width, height);
+        UIRegions.Add(name, uIRegion);
     }
     public UITextureRegion GetRegion(string name)
     {
-        return Regions[name];
+        return UIRegions[name];
     }
     public bool RemoveRegion(string name)
     {
-        return Regions.Remove(name);
+        return UIRegions.Remove(name);
     }
     public UISprite CreateSprite(string regionName)
     {
-        UITextureRegion region = GetRegion(regionName);
-        return new UISprite(region);
+        UITextureRegion uIRegion = GetRegion(regionName);
+        return new UISprite(uIRegion);
     }
     public void Clear()
     {
-        Regions.Clear();
+        UIRegions.Clear();
     }
     public static UITextureAtlas LoadFromFile(ContentManager content, string fileName)
     {
-        UITextureAtlas atlas = new UITextureAtlas();
+        UITextureAtlas uIAtlas = new UITextureAtlas();
 
         string filePath = Path.Combine(content.RootDirectory, fileName);
 
@@ -57,13 +57,13 @@ public class UITextureAtlas
                 XElement root = doc.Root;
 
                 string texturePath = root.Element("UITexture").Value;
-                atlas.Texture = content.Load<Texture2D>(texturePath);
+                uIAtlas.Texture = content.Load<Texture2D>(texturePath);
 
-                var regions = root.Element("UIRegions")?.Elements("UIRegion");
+                var uIRegions = root.Element("UIRegions")?.Elements("UIRegion");
 
-                if (regions != null)
+                if (uIRegions != null)
                 {
-                    foreach (var region in regions)
+                    foreach (var region in uIRegions)
                     {
                         string name = region.Attribute("name")?.Value;
                         int x = int.Parse(region.Attribute("x")?.Value ?? "0");
@@ -73,12 +73,12 @@ public class UITextureAtlas
 
                         if (!string.IsNullOrEmpty(name))
                         {
-                            atlas.AddRegion(name, x, y, width, height);
+                            uIAtlas.AddRegion(name, x, y, width, height);
                         }
                     }
                 }
 
-                return atlas;
+                return uIAtlas;
             }
         }
     }

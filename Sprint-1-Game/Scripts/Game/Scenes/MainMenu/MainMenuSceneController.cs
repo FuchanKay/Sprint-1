@@ -2,17 +2,18 @@ using System;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGameLibrary.UIRendering;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class MainMenuSceneController(ISceneManager sceneManager, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager) : ISceneController
+public class MainMenuSceneController(ISceneManager sceneManager, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas) : ISceneController
 {
     private readonly static int PlayGameButtonX = 500, PlayGameButtonY = 200;
     private readonly static int ExitGameButtonX = 500, ExitGameButtonY = 300;
     private Button PlayGameButton;
     private Button ExitGameButton;
-    private BasicSpriteFontWriter GameTitle = new (spriteFontManager);
+    private UIFont GameTitle = new (spriteFontManager);
     
 
 

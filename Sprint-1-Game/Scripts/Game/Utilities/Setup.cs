@@ -5,7 +5,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Scripts.GameComponents;
-
+using MonoGameLibrary.UIRendering;
+using UIFontAtlas = MonoGameLibrary.UIRendering.UIFontAtlas;
 namespace Scripts.Game;
 
 public class Setup(ContentManager content, GameWindow window)
@@ -15,7 +16,8 @@ public class Setup(ContentManager content, GameWindow window)
     private IInputManager ButtonInput;
     private IInputManager MouseInput;
     private ITextureAtlas TextureAtlas;
-    private SpriteFontManager SpriteFontManager = new(content);
+    private UIFontAtlas UIFontAtlas;
+    private UITextureAtlas UITextureAtlas;
     public void Initialize(out SceneManager sceneManager)
     {
         ButtonInput = new KeyboardInputManager();
@@ -23,12 +25,15 @@ public class Setup(ContentManager content, GameWindow window)
         AudioManager = new AudioManager();
 
         TextureAtlas = new TextureAtlas(content);
+
+        UIFontAtlas = new();
+        UITextureAtlas = new();
         MapDefaultInputs();
         AddAnimations();
         AddRegions();
         AddFont();
         AddUItexture();
-        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, SpriteFontManager, window);
+        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, UIFontAtlas, window);
         sceneManager.Init();
     }
 
@@ -246,14 +251,14 @@ public class Setup(ContentManager content, GameWindow window)
     }
     private void AddUItexture()
     {
-        UITextureAtlas UIatlas = UITextureAtlas.LoadFromFile(content, FileNames.UIAtlasDef + ".xml");
+        UITextureAtlas.LoadFromFile(content, FileNames.UIAtlasDef + ".xml");
 
     }
 
     private void AddFont()
     {
-        SpriteFontManager.MapFont(FontNames.DefaultFont, FileNames.DefaultFont);
-        SpriteFontManager.MapFont(FontNames.DungeonFont, FileNames.DungeonFont);
+        UIFontAtlas.MapFont(content, FontNames.DefaultFont, FileNames.DefaultFont);
+        UIFontAtlas.MapFont(content, FontNames.DungeonFont, FileNames.DungeonFont);
 
     }
 }

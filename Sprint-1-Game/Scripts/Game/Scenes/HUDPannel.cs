@@ -1,17 +1,18 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGameLibrary.UIRendering;
 using Scripts.Game;
 using Scripts.GameComponents;
 
-public class HUDPannel(SpriteFontManager spriteFontManager)
+public class HUDPannel(UIFontAtlas uIFontAtlas)
 {
     public Vector2 PannelCornerPos{ get; set; }
     private int Clock;
-    private BasicSpriteFontWriter EnemyCounter = new (spriteFontManager);
-    private BasicSpriteFontWriter InventoryStatus = new (spriteFontManager);
-    private BasicSpriteFontWriter GameClock = new (spriteFontManager);
-    private BasicSpriteFontWriter CommandInstructions = new (spriteFontManager);
+    private BasicSpriteFontWriter EnemyCounter = new (uIFontAtlas);
+    private BasicSpriteFontWriter InventoryStatus = new (uIFontAtlas);
+    private BasicSpriteFontWriter GameClock = new (uIFontAtlas);
+    private BasicSpriteFontWriter CommandInstructions = new (uIFontAtlas);
     
     private PuzzleLevel Level;
 

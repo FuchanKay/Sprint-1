@@ -14,14 +14,14 @@ public class UITextureRegion
         Texture = texture;
         SourceRectangle = new Rectangle(x, y, width, height);
     }
-    public void Draw(SpriteBatch spriteBatch, Vector2 position, Color color)
+    public void Draw(SpriteBatch sb, Vector2 position, Color color)
     {
-        Draw(spriteBatch, position, color, 0.0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0.0f);
+        Draw(sb, position, color, 0.0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0.0f);
     }
-    public void Draw(SpriteBatch spriteBatch, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)
+    public void Draw(SpriteBatch sb, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)
     {
         Draw(
-            spriteBatch,
+            sb,
             position,
             color,
             rotation,
@@ -31,9 +31,9 @@ public class UITextureRegion
             layerDepth
         );
     }
-    public void Draw(SpriteBatch spriteBatch, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
+    public void Draw(SpriteBatch sb, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
     {
-        spriteBatch.Draw(
+        sb.Draw(
             Texture,
             position,
             SourceRectangle,
