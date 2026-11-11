@@ -9,5 +9,6 @@ public class EvaluateLevelSubEvent(Stack<ILevelSubEvent> subEventStack, List<Lev
     {
         subEventStack.Push(new CheckNonWalkableTilesSubEvent(subEventStack));
         subEventStack.Push(new CheckEnemiesAttackSubEvent(subEventStack, levelStateHistory));
+        subEventStack.Push(new IceSlideSubEvent(subEventStack));
     }
 }
