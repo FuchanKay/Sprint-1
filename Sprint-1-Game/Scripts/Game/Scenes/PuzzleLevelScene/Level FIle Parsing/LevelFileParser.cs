@@ -6,7 +6,7 @@ namespace Scripts.Game;
 public class LevelFileParser()
 {
     private readonly string Delimiter = ",";
-    private readonly string ObjectDelimiter = ".";
+    private readonly string DirectionDelimiter = ".";
     private readonly int NameIdx = 0;
     private readonly int WidthIdx = 1;
     private readonly int HeightIdx = 2;
@@ -83,6 +83,7 @@ public class LevelFileParser()
             "Pit" => TileFactory.CreatePitTile(),
             "Lava" => TileFactory.CreateLavaTile(),
             "Water" => TileFactory.CreateWaterTile(),
+            "Ice" => TileFactory.CreateIceTile(),
             "Bug" => TileFactory.CreateBugTile(),
             "CCBug" => TileFactory.CreateCCBugTile(),
             _ => throw new Exception($"Unknown tile value: {tileValue} at position ({x}, {y})")
@@ -92,8 +93,22 @@ public class LevelFileParser()
 
     private IObject ProcessObject(string objectValue, int x, int y)
     {
-        string[] objectParts = objectValue.Split(ObjectDelimiter);
+        string[] objectParts = objectValue.Split(DirectionDelimiter);
         string objectType = objectParts[0];
+
+        if(objectParts.Length == 1)
+        {
+            string[] fixedBuffer = new string[2];
+            objectParts.CopyTo(fixedBuffer, 0);
+            objectParts = fixedBuffer;
+            objectParts[1] = "0";
+        }
+
+        string strDirection = objectParts[1];
+        var direction = Directions.North;
+        if(int.TryParse(strDirection, out var numDirection)) {
+            direction = (Directions)(numDirection % 4);
+        }
 
         IObject obj = objectType switch
         {
@@ -101,15 +116,21 @@ public class LevelFileParser()
             "Player" => ObjectFactory.CreatePlayer(),
             "Rock" => ObjectFactory.CreateDefaultRock(),
             "Pumpkin" => ObjectFactory.CreatePumpkin(),
-            "Wall" => ObjectFactory.CreateWall(),
+            "Wall" => ObjectFactory.CreateWall(direction),
+            "CornerWall" => ObjectFactory.CreateCornerWall(direction),
+            "ICornerWall" => ObjectFactory.CreateInvertedCornerWall(direction),
+            "SingleWall" => ObjectFactory.CreateStandaloneWall(direction),
+            "SingleWallCorner" => ObjectFactory.CreateStandaloneWallCorner(direction),
+            "SingleWallConnector" => ObjectFactory.CreateStandaloneWallConnector(direction),
+            "WallTop" => ObjectFactory.CreateTopOfWall(direction),
             "Bomb" => ObjectFactory.CreateBomb(),
             "ClosedDoor" => ObjectFactory.CreateClosedDoor(),
             "OpenDoor" => ObjectFactory.CreateOpenDoor(),
             "TimedBomb" => ObjectFactory.CreateTimedBomb(),
             "Skeleton" => ObjectFactory.CreateSkeleton(),
             "Warlock" => ObjectFactory.CreateWarlock(),
-            "BlueLizard" => ObjectFactory.CreateBlueLizard(),
-            "RedLizard" => ObjectFactory.CreateRedLizard(),
+            "BlueLizard" => ObjectFactory.CreateBlueLizard(direction),
+            "RedLizard" => ObjectFactory.CreateRedLizard(direction),
             "Bat" => ObjectFactory.CreateBat(),
             "Frog" => ObjectFactory.CreateFrog(),
             "Zombie" => ObjectFactory.CreateZombie(),

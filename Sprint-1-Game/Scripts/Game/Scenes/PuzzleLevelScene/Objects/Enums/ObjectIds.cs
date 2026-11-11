@@ -16,5 +16,6 @@ public enum ObjectIds
     Bomb,
     TimedBomb,
     Door,
-    Key
+    Key,
+    Seed
 }

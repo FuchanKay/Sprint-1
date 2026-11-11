@@ -6,6 +6,7 @@ public class EnemyDamageSubEvent(Coordinate enemyCoord) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
+        if (!gridPointer.EnemyCollection.ContainsKey(enemyCoord)) return;
         var enemy = gridPointer.EnemyCollection[enemyCoord];
         enemy.Health--;
         if (enemy.Health == 0) {

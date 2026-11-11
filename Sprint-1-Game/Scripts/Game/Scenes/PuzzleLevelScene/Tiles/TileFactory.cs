@@ -81,6 +81,13 @@ public class TileFactory()
         };
     }
 
+    public static ITile CreateIceTile()
+    {
+        return new IceTile
+        {
+        };
+    }
+
     public static ITile CreateLavaTile()
     {
         return new LavaTile
@@ -109,6 +116,14 @@ public class TileFactory()
         return new VineSeedTile
         {
 
+        };
+    }
+
+    public static ITile CreateVineSeedTile(Directions direction)
+    {
+        return new VineSeedTile
+        {
+            Direction = direction
         };
     }
 

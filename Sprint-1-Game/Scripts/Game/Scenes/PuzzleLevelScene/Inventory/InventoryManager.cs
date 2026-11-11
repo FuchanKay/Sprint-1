@@ -10,16 +10,19 @@ public class InventoryManager()
                 ObjectFactory.CreateEmpty(),
                 ObjectFactory.CreateEmpty()
         ];
-    public void AddItem(IObject itemObj)
+    public bool AddItem(IObject itemObj)
     {
+        bool isAdded = false;
         for (int i = 0; i < PlayerItems.Length; i++)
         {
             if (PlayerItems[i].Id == ObjectIds.Empty)
             {
                 PlayerItems[i] = itemObj.Clone();
+                isAdded = true;
                 break;
             }
         }
+        return isAdded;
     }
     public IObject GetItem(int inventoryIdx)
     {
@@ -40,7 +43,7 @@ public class InventoryManager()
         }
         return clone;
     }
-    public string ReadInventoryString()
+    public override string ToString()
     {
         int inventorySize = PlayerItems.Length;
         string itemString = "";
@@ -60,6 +63,9 @@ public class InventoryManager()
             break;
             case ObjectIds.Empty:
                 idString = "Empty";
+            break;
+            case ObjectIds.Seed:
+                idString = "Seed";
             break;
         }
         return idString;

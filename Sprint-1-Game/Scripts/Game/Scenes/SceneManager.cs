@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
-
+using Microsoft.Xna.Framework.Content;
 namespace Scripts.Game;
 
 public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager, GameWindow window) : ISceneManager
@@ -77,11 +77,8 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
 
     private void AddScenesToMap()
     {
-        var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas);
+        var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas, spriteFontManager);
         NameSceneMap.TryAdd(SceneNames.MainMenu, mainMenuScene);
-
-        // var gameplayScene = new GameplaySceneController(this, buttonInput, mouseInput, audioManager, texAtlas);
-        // NameSceneMap.TryAdd(GameplaySceneController.Name, gameplayScene);
 
         var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas, spriteFontManager, window);
         NameSceneMap.TryAdd(SceneNames.PuzzleLevel, puzzleLevelScene);

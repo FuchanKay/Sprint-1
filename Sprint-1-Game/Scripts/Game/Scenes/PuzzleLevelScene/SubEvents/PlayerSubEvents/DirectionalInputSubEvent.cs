@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Scripts.GameComponents;
 namespace Scripts.Game;
 
-public class DirectionalInputSubEvent(Directions direction, Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
+public class DirectionalInputSubEvent(Directions direction) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
@@ -35,26 +35,15 @@ public class DirectionalInputSubEvent(Directions direction, Stack<ILevelSubEvent
             gridPointer.SetObject(destinationCoord, ObjectFactory.CreateEmpty());
             gridPointer.SetObject(onePastDestinationCoord, destinationObject);
 
-            var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
-            playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerPushAnimationName(direction));
-            spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
-            spriteGrid.StartObjectAnimation(playerCoord);
-
-            gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
-            gridPointer.SetObject(destinationCoord, playerObj);
-
-
+            MovePlayerSprite(spriteGrid, gridPointer, playerCoord, direction, true);
             enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context, audioManager);
+
+            if(gridPointer.ObjectsJustMoved.ContainsKey(direction) == false) gridPointer.ObjectsJustMoved[direction] = new Dictionary<Coordinate, IObject>();
+            gridPointer.ObjectsJustMoved[direction].Add(onePastDestinationCoord, destinationObject);
         }
         else if (destinationCoordIsWithinBounds && CanMove(playerObj, gridPointer.GetGrid(destinationCoord)))
         {
-            var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
-            playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));
-            spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
-            spriteGrid.StartObjectAnimation(playerCoord);
-
-            gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
-            gridPointer.SetObject(destinationCoord, playerObj);
+            MovePlayerSprite(spriteGrid, gridPointer, playerCoord, direction, false);
             enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context, audioManager);
         }
         else if (gridPointer.GetObject(destinationCoord).Id == ObjectIds.Door)
@@ -69,6 +58,25 @@ public class DirectionalInputSubEvent(Directions direction, Stack<ILevelSubEvent
                 context.LevelIsCompleted = true;
             }
         }
+
+        if(gridPointer.ObjectsJustMoved.ContainsKey(direction) == false) gridPointer.ObjectsJustMoved[direction] = new Dictionary<Coordinate, IObject>();
+        gridPointer.ObjectsJustMoved[direction].Add(gridPointer.GetPlayerCoord(), playerObj);
+    }
+
+    private void MovePlayerSprite(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate playerCoord, Directions direction, bool isPushing)
+    {
+        var destinationCoord = playerCoord + Coordinate.ToCoordinate(direction);
+        var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
+
+        if (isPushing) playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerPushAnimationName(direction));
+        else playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));
+
+        spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
+        spriteGrid.StartObjectAnimation(playerCoord);
+
+        var playerObj = gridPointer.GetObject(playerCoord);
+        gridPointer.SetObject(playerCoord, ObjectFactory.CreateEmpty());
+        gridPointer.SetObject(destinationCoord, playerObj);
     }
 
     private bool CanMove(IObject playerObject, Grid destinationGrid)

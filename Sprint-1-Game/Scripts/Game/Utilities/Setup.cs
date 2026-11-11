@@ -26,6 +26,7 @@ public class Setup(ContentManager content, GameWindow window)
         MapDefaultInputs();
         AddAnimations();
         AddRegions();
+        AddFont();
         sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, SpriteFontManager, window);
         sceneManager.Init();
     }
@@ -35,7 +36,6 @@ public class Setup(ContentManager content, GameWindow window)
         BindAllTextures();
         LoadAudio();
         LoadUI();
-        LoadFont();
 
     }
 
@@ -159,13 +159,24 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddRegion(RegionNames.LavaTile, 3, 3, 64, 64);
 
         TextureAtlas.AddRegion(RegionNames.WaterTile, 0, 4, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.IceTile, 0, 0, 602, 602);
         TextureAtlas.AddRegion(RegionNames.BoulderWaterTile, 1, 4, 64, 64);
         TextureAtlas.AddRegion(RegionNames.PumpkinWaterTile, 2, 4, 64, 64);
 
         // objects
         TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 64, 64);
         TextureAtlas.AddRegion(RegionNames.Pumpkin, 1, 0, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.Wall, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.VineSeed, 2, 0, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.PumpkinSeed, 3, 0, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.InvertedCornerWall, 4, 0, 64, 64);
+
+        TextureAtlas.AddRegion(RegionNames.CornerWall, 0, 2, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.Wall, 1, 2, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.StandaloneWall, 2, 2, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.TopOfWall, 3, 2, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.StandaloneWallConnector, 4, 2, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.StandaloneWallCorner, 5, 2, 64, 64)
+;
         TextureAtlas.AddRegion(RegionNames.Bomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Key, 0, 0, 512, 512);
@@ -204,6 +215,7 @@ public class Setup(ContentManager content, GameWindow window)
 
         TextureAtlas.AddTexture(TextureNames.Player, FileNames.PlayerTexture);
         TextureAtlas.AddTexture(TextureNames.TileSprites, FileNames.TileTextures);
+        TextureAtlas.AddTexture(TextureNames.IceSprite, FileNames.IcePlaceholder);
         TextureAtlas.AddTexture(TextureNames.ObjectSprites, FileNames.ObjectTextures);
         TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
         TextureAtlas.AddTexture(TextureNames.Door, FileNames.DoorTexture);
@@ -240,8 +252,10 @@ public class Setup(ContentManager content, GameWindow window)
         //place holder, will be implemented in the future
     }
 
-    private void LoadFont()
+    private void AddFont()
     {
         SpriteFontManager.MapFont(FontNames.DefaultFont, FileNames.DefaultFont);
+        SpriteFontManager.MapFont(FontNames.DungeonFont, FileNames.DungeonFont);
+
     }
 }

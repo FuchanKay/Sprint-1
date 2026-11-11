@@ -7,7 +7,15 @@ public class RegionNames
     // objects
     public readonly static string Rock = "Rock";
     public readonly static string Pumpkin = "Pumpkin";
+    public readonly static string PumpkinSeed  = "Pumpkin Seed";
+    public readonly static string VineSeed = "Vine Seed";
     public readonly static string Wall = "Wall";
+    public readonly static string CornerWall = "Corner Wall";
+    public readonly static string InvertedCornerWall = "Inverted Corner Wall";
+    public readonly static string StandaloneWall = "Standalone Wall";
+    public readonly static string StandaloneWallConnector = "Standalone Wall Connector";
+    public readonly static string StandaloneWallCorner = "Standalone Wall Corner";
+    public readonly static string TopOfWall = "Top of Wall";
     public readonly static string ClosedDoor = "Closed Door";
     public readonly static string OpenDoor = "Open Door";
     public readonly static string Bomb = "Bomb";
@@ -28,6 +36,7 @@ public class RegionNames
     public readonly static string BoulderPitTile = "Boulder Pit Tile";
     public readonly static string PumpkinPitTile = "Pumpkin Pit Tile";
     public readonly static string WaterTile = "Water Tile";
+    public readonly static string IceTile = "Ice Tile";
     public readonly static string BoulderWaterTile = "Boulder Water Tile";
     public readonly static string PumpkinWaterTile = "Pumpkin Water Tile";
     public readonly static string LavaTile = "Lava Tile";
