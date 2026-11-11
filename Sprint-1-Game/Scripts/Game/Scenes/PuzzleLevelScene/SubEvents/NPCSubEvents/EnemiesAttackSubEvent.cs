@@ -136,6 +136,5 @@ public class CheckEnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, Lis
         var isIdle = lizardSprite.IdleName.Contains("Idle");
 
        return (seesPlayer || seesDestructible || seesEnemy) && isIdle;
-       return (seesPlayer || seesDestructible || seesEnemy) && isIdle;
     }
 }
