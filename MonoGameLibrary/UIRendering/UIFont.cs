@@ -1,53 +1,62 @@
+using System;
+using System.ComponentModel;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace MonoGameLibrary.UIRendering;
 
 public class UIFont
 {
-    public SpriteFont Font{ get; set; }
-    public string Text{ get; set; }
+    private SpriteFont Font;
+    private string Text;
     public Vector2 Pos{ get; set; }
-    public Color Color{ get; set; } = Color.White;
-    public float Rotation{ get; set; } = 0.0f;
-    public Vector2 Origin{ get; set; } = Vector2.Zero;
-    public Vector2 Scale{ get; set; } = Vector2.One;
-    public SpriteEffects Effects{ get; set; } = SpriteEffects.None;
-    public float LayerDepth{ get; set; } = 0.0f;
-    public UIFont(UITextureRegion region)
-    {
-        Font = UIFontAtlas;
-    }
-    public void Init(string fontName, Vector2 pos, string text, Color color)
-    {
-       // Font = spriteFontManager.GetFont(fontName);
-        Pos = pos;
-        Text = text;
-        Color = color;
-    } 
-    public void Update(Vector2 pos)
-    {
-        Pos = pos;
-    } 
-    public void Update(Vector2 pos, string text)
-    {
-        Pos = pos;
-        Text = text;
-    }
-    public void Update(Vector2 pos, string text, Color color)
-    {
-        Pos = pos;
-        Text = text;
-        Color = color;
-    }  
-    public void Update(SpriteFont font, Vector2 pos, string text, Color color)
+    private Color Color;
+    private float Rotation;
+    private Vector2 Origin;
+    private Vector2 Scale;
+    private SpriteEffects Effects;
+    private float LayerDepth;
+    private float Width = 0.0f;
+    private float Height = 0.0f;
+    public UIFont(SpriteFont font)
     {
         Font = font;
+        Rotation = 0.0f;
+        Origin = Vector2.Zero;
+        Scale = Vector2.One;
+        Effects = SpriteEffects.None;
+        LayerDepth = 0.0f;
+    }
+    public void Init(Vector2 pos, string text, Color color, Vector2 scale)
+    {
         Pos = pos;
         Text = text;
         Color = color;
-    }  
+        Scale = scale;
+        Width = FontSize().X;
+        Height = FontSize().Y;
+    }
+
+    public void UpdateText(string text)
+    {
+        Text = text;
+        Width = FontSize().X;
+        Height = FontSize().Y;
+    }
+    public void DrawAtOrigin(SpriteBatch sb)
+    {
+        CenterOrigin();
+        sb.DrawString(Font, Text, Pos, Color, Rotation, Origin, Scale, Effects, LayerDepth);
+    }
     public void Draw(SpriteBatch sb)
     {
         sb.DrawString(Font, Text, Pos, Color, Rotation, Origin, Scale, Effects, LayerDepth);
+    }
+    private void CenterOrigin()
+    {
+        Origin = new Vector2(Width, Height) * 0.5f;
+    }
+    public Vector2 FontSize()
+    {
+        return new Vector2(Font.MeasureString(Text).X, Font.MeasureString(Text).Y);
     }
 }

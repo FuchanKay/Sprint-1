@@ -22,10 +22,6 @@ public class UIFontAtlas
     }
     public SpriteFont GetFont(string fontName)
     {
-        if (!Fonts.TryGetValue(fontName, out SpriteFont spriteFont))
-        {
-            throw new ArgumentException($"{fontName} was not found");
-        }
-        return spriteFont;
+        return Fonts[fontName];
     }
 }
