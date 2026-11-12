@@ -19,6 +19,10 @@ public class UISprite
     {
         Region = region;
     }
+    public void UpdateRegion(UITextureRegion region)
+    {
+        Region = region;
+    }
     public void CenterOrigin()
     {
         Origin = new Vector2(Region.Width, Region.Height) * 0.5f;

@@ -1,7 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <UITextureAtlas>
-    <UITexture>Images/bomb</UITexture>
+    <UITexture>Images/ui-atlas</UITexture>
+    <DefultSetting width="256" height="256"></DefultSetting>
     <UIRegions>
-        <UIRegion name="bomb" x="0" y="0" width="256" height="288" />
+        <UIRegion name="VineSeed" x="0" y="0"/>
+        <UIRegion name="PumpkinSeed" x="256" y="0"/>
+        <UIRegion name="Bomb" x="512" y="0"/>
+        <UIRegion name="Background" x="768" y="0"/>
+        <UIRegion name="Empty" x="1024" y="0"/>
     </UIRegions>
 </UITextureAtlas>

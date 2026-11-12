@@ -13,18 +13,27 @@ public class HUDPannel(UIFontAtlas uIFontAtlas, UITextureAtlas uITextureAtlas)
     private UIFont InventoryStatus = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
     private UIFont GameClock = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
     private UIFont CommandInstructions = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
-    private UISprite Bomb;
+    private UISprite Inventory1;
+    private UISprite Inventory2;
+    private UISprite Inventory3;
     private PuzzleLevel Level;
 
     public void Init(PuzzleLevel level)
     {
-        Bomb = new(uITextureAtlas.GetRegion("bomb"));
+        Vector2 inventoryScale = new Vector2(0.25f, 0.25f);
+        Inventory1 = new(uITextureAtlas.GetRegion("Bomb"));
+        Inventory2 = new(uITextureAtlas.GetRegion("Empty"));
+        Inventory3 = new(uITextureAtlas.GetRegion("Empty"));
+        Inventory1.Scale = inventoryScale;
+        Inventory2.Scale = inventoryScale;
+        Inventory3.Scale = inventoryScale;
+
         Clock = 0;;
         Level = level;
-        EnemyCounter.Init(new Vector2 (1040,40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.Gold, Vector2.One);
-        GameClock.Init(new Vector2 (1040,80), "Game Clock: ", Color.Gold, Vector2.One);
-        InventoryStatus.Init(new Vector2(1040,120), $"Inventory:\n{Level.LevelStateHistory.InventoryManager}",  Color.Gold, Vector2.One);
-        CommandInstructions.Init(new Vector2(1040,500), "Player Move: WASD\n" 
+        EnemyCounter.Init(PannelCornerPos + new Vector2 (1040,40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.Gold, Vector2.One);
+        GameClock.Init(PannelCornerPos + new Vector2 (1040,80), "Game Clock: ", Color.Gold, Vector2.One);
+        InventoryStatus.Init(PannelCornerPos + new Vector2(1040,120), $"Inventory:\n\n\n\n    1        2        3",  Color.Gold, Vector2.One);
+        CommandInstructions.Init(PannelCornerPos + new Vector2(1040,500), "Player Move: WASD\n" 
                                                         + "SNAP: F\n"
                                                         + "Use Item: 123\n" 
                                                         + "Grab item: G\n"
@@ -39,8 +48,9 @@ public class HUDPannel(UIFontAtlas uIFontAtlas, UITextureAtlas uITextureAtlas)
         Clock += dtMs;
         TimeSpan formattedClock = TimeSpan.FromMilliseconds(Clock);
         GameClock.UpdateText($"{formattedClock:hh\\:mm\\:ss}");
-
-        InventoryStatus.UpdateText($"Inventory:\n{Level.LevelStateHistory.InventoryManager}");
+        Inventory1.UpdateRegion(uITextureAtlas.GetRegion(InventoryManager.ObjectIdToString(Level.LevelStateHistory.InventoryManager.PlayerItems[0].Id)));
+        Inventory2.UpdateRegion(uITextureAtlas.GetRegion(InventoryManager.ObjectIdToString(Level.LevelStateHistory.InventoryManager.PlayerItems[1].Id)));
+        Inventory3.UpdateRegion(uITextureAtlas.GetRegion(InventoryManager.ObjectIdToString(Level.LevelStateHistory.InventoryManager.PlayerItems[2].Id)));
     }
     public void Draw(SpriteBatch sb)
     {
@@ -48,6 +58,9 @@ public class HUDPannel(UIFontAtlas uIFontAtlas, UITextureAtlas uITextureAtlas)
         InventoryStatus.Draw(sb);
         GameClock.Draw(sb);
         CommandInstructions.Draw(sb);
-        Bomb.Draw(sb, new Vector2(1040, 120));
+        Inventory1.Draw(sb, PannelCornerPos + new Vector2(1040, 140));
+        Inventory2.Draw(sb, PannelCornerPos + new Vector2(1040+64, 140));
+        Inventory3.Draw(sb, PannelCornerPos + new Vector2(1040+128, 140));
+
     }
 }

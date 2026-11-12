@@ -4,7 +4,7 @@ namespace Scripts.Game;
 
 public class InventoryManager()
 {
-    private readonly IObject[] PlayerItems =
+    public readonly IObject[] PlayerItems =
         [
                 ObjectFactory.CreateEmpty(),
                 ObjectFactory.CreateEmpty(),
@@ -53,7 +53,7 @@ public class InventoryManager()
         }
         return itemString;
     }
-    private static string ObjectIdToString(ObjectIds objectIds)
+    public static string ObjectIdToString(ObjectIds objectIds)
     {
         string idString = "";
         switch (objectIds)
@@ -65,10 +65,10 @@ public class InventoryManager()
                 idString = "Empty";
                 break;
             case ObjectIds.PumpkinSeed:
-                idString = "Pumpkin Seed";
+                idString = "PumpkinSeed";
                 break;
             case ObjectIds.VineSeed:
-                idString = "Vine Seed";
+                idString = "VineSeed";
                 break;
         }
         return idString;

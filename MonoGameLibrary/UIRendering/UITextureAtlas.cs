@@ -54,9 +54,11 @@ public class UITextureAtlas
             {
                 XDocument doc = XDocument.Load(reader);
                 XElement root = doc.Root;
-
+                
                 string texturePath = root.Element("UITexture").Value;
                 Texture = content.Load<Texture2D>(texturePath);
+                int width = int.Parse(root.Element("DefultSetting").Attribute("width")?.Value ?? "0");
+                int height = int.Parse(root.Element("DefultSetting").Attribute("height")?.Value ?? "0");
 
                 var uIRegions = root.Element("UIRegions")?.Elements("UIRegion");
 
@@ -65,11 +67,8 @@ public class UITextureAtlas
                     foreach (var uIRegion in uIRegions)
                     {
                         string name = uIRegion.Attribute("name")?.Value;
-                        Console.WriteLine($"{name}");
                         int x = int.Parse(uIRegion.Attribute("x")?.Value ?? "0");
                         int y = int.Parse(uIRegion.Attribute("y")?.Value ?? "0");
-                        int width = int.Parse(uIRegion.Attribute("width")?.Value ?? "0");
-                        int height = int.Parse(uIRegion.Attribute("height")?.Value ?? "0");
 
                         if (!string.IsNullOrEmpty(name))
                         {
