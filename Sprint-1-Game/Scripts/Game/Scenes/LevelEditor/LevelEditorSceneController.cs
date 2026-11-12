@@ -20,10 +20,11 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private readonly List<GridPointer> UndoHistory = [];
     private readonly List<GridPointer> RedoHistory = [];
-    private readonly int UndoHistoryMaxLength = 200;
+    private readonly int UndoHistoryMaxLength = 2000;
     private SpriteGrid SpriteGrid;
     private IBrush Brush;
-    public int CurrentLevelIndex = 0;
+    private readonly int UndoBufferMs = 400;
+    private int UndoBufferTimerMs = 0;
 
     public void Init()
     {
@@ -52,6 +53,10 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
         Brush.Update(dtMs);
 
         if (UndoHistory.Count > UndoHistoryMaxLength) UndoHistory.RemoveAt(0);
+        if (buttonInput.IsHeld(InputNames.Undo))
+        {
+            
+        }
 
         if (buttonInput.IsPressed(InputNames.ToggleObjectView))
         {
@@ -72,23 +77,19 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
             Brush = new TilePaintBrush(buttonInput, mouseInput, SpriteGrid, Context, TileSpriteFactory, UndoHistory, RedoHistory);
             Brush.Init(CurrentGrid);
         }
+        else if (buttonInput.IsPressed(InputNames.Undo) && UndoHistory.Count > 0)
+        {
+            Undo();
+            UndoBufferTimerMs = UndoBufferMs;
+        }
         else if (buttonInput.IsHeld(InputNames.Undo) && UndoHistory.Count > 0)
         {
-            var top = UndoHistory.Count - 1;
-            RedoHistory.Add(CurrentGrid);
-            CurrentGrid = UndoHistory[top];
-            UndoHistory.RemoveAt(top);
-            SpriteGrid.Init(CurrentGrid, Context);
-            Brush.Init(CurrentGrid);
+            UndoBufferTimerMs -= dtMs;
+            if (UndoBufferTimerMs <= 0) Undo();
         }
         else if (buttonInput.IsPressed(InputNames.Redo) && RedoHistory.Count > 0)
         {
-            var top = RedoHistory.Count - 1;
-            UndoHistory.Add(CurrentGrid);
-            CurrentGrid = RedoHistory[top];
-            RedoHistory.RemoveAt(top);
-            SpriteGrid.Init(CurrentGrid, Context);
-            Brush.Init(CurrentGrid);
+            Redo();
         }
         else if (buttonInput.IsPressed(InputNames.CycleBrushLeft))
         {
@@ -98,11 +99,34 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
         {
             Brush.CycleRight();
         }
+        if (buttonInput.IsReleased(InputNames.Undo))
+        {
+            UndoBufferTimerMs = UndoBufferMs;
+        }
     }
 
     public void Draw(SpriteBatch sb)
     {
         SpriteGrid.Draw(sb);
         Brush.Draw(sb);
+    }
+
+    private void Undo()
+    {
+        var top = UndoHistory.Count - 1;
+        RedoHistory.Add(CurrentGrid);
+        CurrentGrid = UndoHistory[top];
+        UndoHistory.RemoveAt(top);
+        SpriteGrid.Init(CurrentGrid, Context);
+        Brush.Init(CurrentGrid);
+    }
+    private void Redo()
+    {
+        var top = RedoHistory.Count - 1;
+        UndoHistory.Add(CurrentGrid);
+        CurrentGrid = RedoHistory[top];
+        RedoHistory.RemoveAt(top);
+        SpriteGrid.Init(CurrentGrid, Context);
+        Brush.Init(CurrentGrid);   
     }
 }
