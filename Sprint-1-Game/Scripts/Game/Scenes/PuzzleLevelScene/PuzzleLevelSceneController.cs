@@ -13,7 +13,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private GameLayoutManager GameLayoutManager = new();
-    private UIManager UIManager = new(uIFontAtlas, uITextureAtlas);
+    private UIManager UIManager;
 
 
     private readonly IAudioManager AudioManager = audioManager;
@@ -26,6 +26,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         LevelFileParser = new LevelFileParser();
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
         Level.Init(CurrentLevelIndex);
+        UIManager = new(uIFontAtlas, uITextureAtlas, GameLayoutManager);
         UIManager.Init(Level);
     }
     public void Update(int dtMs)
@@ -93,6 +94,8 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         {
             CurrentLevelIndex = (CurrentLevelIndex + 1) % FileNames.LevelFileNames.Length;
             Level.Init(CurrentLevelIndex);
+            UIManager.Init(Level);
+
             Level.Context.LevelIsCompleted = false;
         }
     }
