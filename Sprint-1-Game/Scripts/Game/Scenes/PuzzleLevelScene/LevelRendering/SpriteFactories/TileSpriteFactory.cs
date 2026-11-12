@@ -70,7 +70,8 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
         sprite.LayerDepth = TileLayerDepth;
 
         //PLACEHOLDER
-        if(id == TileIds.Ice) {
+        if (id == TileIds.Ice)
+        {
             sprite.Texture = textureAtlas.GetTexture(TextureNames.IceSprite);
             sprite.Scale = context.GridScale * 0.45f;
         }

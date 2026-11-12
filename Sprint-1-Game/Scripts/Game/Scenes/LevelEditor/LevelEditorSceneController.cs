@@ -68,7 +68,7 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
         {
             Brush = new ObjectPaintBrush(buttonInput, mouseInput, SpriteGrid, Context, ObjectSpriteFactory, UndoHistory, RedoHistory);
             Brush.Init(CurrentGrid);
-        }   
+        }
         else if (buttonInput.IsPressed(InputNames.TileBrushMode))
         {
             Brush = new TilePaintBrush(buttonInput, mouseInput, SpriteGrid, Context, TileSpriteFactory, UndoHistory, RedoHistory);
@@ -134,6 +134,6 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
         CurrentGrid = RedoHistory[top];
         RedoHistory.RemoveAt(top);
         SpriteGrid.Init(CurrentGrid, Context);
-        Brush.Init(CurrentGrid);   
+        Brush.Init(CurrentGrid);
     }
 }
