@@ -50,14 +50,7 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
             && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, context, out var coord))
         {
             var tile = Grid.GetTile(coord);
-            var shouldChange = false;
-            if (tile.Id == TileIds.Floor && CurrentTile.Id == TileIds.Floor)
-            {
-                var tileAsFloor = (FloorTile)tile;
-                var currentTileAsFloor = (FloorTile)CurrentTile;
-                shouldChange = tileAsFloor.RegionName != currentTileAsFloor.RegionName;
-            }
-            if (!shouldChange) shouldChange = tile.Id != CurrentTile.Id || tile.Direction != CurrentTile.Direction;
+            var shouldChange = tile.Id != CurrentTile.Id || tile.Direction != CurrentTile.Direction || tile.RegionName != CurrentTile.RegionName;
             if (shouldChange)
             {
                 redoHistory.Clear();

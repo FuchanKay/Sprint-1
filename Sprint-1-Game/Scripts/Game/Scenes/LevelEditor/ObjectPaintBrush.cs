@@ -56,7 +56,8 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
             && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, context, out var coord))
         {
             var obj = Grid.GetObject(coord);
-            if (obj.Id != CurrentObject.Id || obj.Direction != CurrentObject.Direction)
+            var shouldChange = obj.Id != CurrentObject.Id || obj.Direction != CurrentObject.Direction || obj.RegionName != CurrentObject.RegionName;
+            if (shouldChange)
             {
                 redoHistory.Clear();
                 undoHistory.Add(Grid.Clone());

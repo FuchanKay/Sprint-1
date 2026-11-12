@@ -10,6 +10,7 @@ public class EmptyTile : ITile
         };
     }
     public TileIds Id => TileIds.Empty;
+    public string RegionName => "";
     public bool IsWalkable => false;
     public bool IsRotatable => false;
     public Directions Direction { get; set; }

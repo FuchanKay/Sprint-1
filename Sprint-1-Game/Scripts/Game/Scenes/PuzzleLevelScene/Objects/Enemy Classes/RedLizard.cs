@@ -17,6 +17,7 @@ public class RedLizard : IEnemy
     }
     public ObjectIds Id => ObjectIds.RedLizard;
     public Directions Direction { get; set; } = Directions.South;
+    public string RegionName => RegionNames.ToIdleRegionName(Directions.South);
     public bool IsPushable => true;
     public bool IsDestructible => true;
     public bool IsRotatable => true;

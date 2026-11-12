@@ -11,6 +11,7 @@ public class KeyObject : IObject
     }
     public ObjectIds Id => ObjectIds.Key;
     public Directions Direction { get; set; } = Directions.South;
+    public string RegionName => RegionNames.Key;
     public bool IsPushable => false;
     public bool IsDestructible => false;
     public bool IsRotatable => false;

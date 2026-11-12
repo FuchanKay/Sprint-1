@@ -12,6 +12,7 @@ public class DoorObject : IObject
     }
     public ObjectIds Id => ObjectIds.Door;
     public Directions Direction { get; set; } = Directions.South;
+    public string RegionName => RegionNames.ClosedDoor;
     public bool IsPushable => false;
     public bool IsDestructible => false;
     public bool IsRotatable => false;

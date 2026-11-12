@@ -11,6 +11,7 @@ public class Bat : IEnemy
     }
     public ObjectIds Id => ObjectIds.Bat;
     public Directions Direction { get; set; } = Directions.South;
+    public string RegionName => RegionNames.Bat;
     public bool IsPushable => false;
     public bool IsDestructible => true;
     public bool IsRotatable => false;
