@@ -17,5 +17,6 @@ public enum ObjectIds
     TimedBomb,
     Door,
     Key,
-    Seed
+    PumpkinSeed,
+    VineSeed
 }

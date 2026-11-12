@@ -37,23 +37,20 @@ public class ObjectFactory()
         return CreateRock(RegionNames.Pumpkin);
     }
 
-    private static IObject CreateSeed(string regionName, Directions direction)
-    {
-        return new SeedObject
-        {
-            Direction = direction,
-            RegionName = regionName
-        };
-    }
-
     public static IObject CreatePumpkinSeed()
     {
-        return CreateSeed(RegionNames.PumpkinSeed, Directions.South);
+        return new PumpkinSeedObject
+        {
+            
+        };
     }
 
     public static IObject CreateVineSeed(Directions direction)
     {
-        return CreateSeed(RegionNames.VineSeed, direction);
+        return new VineSeedObject
+        {
+            Direction = direction,
+        };
     }
 
     private static IObject CreateSkinnedWall(Directions direction, string regionName)
