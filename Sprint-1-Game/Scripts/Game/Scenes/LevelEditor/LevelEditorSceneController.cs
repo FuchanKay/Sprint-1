@@ -23,8 +23,9 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
     private readonly int UndoHistoryMaxLength = 2000;
     private SpriteGrid SpriteGrid;
     private IBrush Brush;
-    private readonly int UndoBufferMs = 400;
+    private readonly int UndoRedoBufferMs = 400;
     private int UndoBufferTimerMs = 0;
+    private int RedoBufferTimeMs = 0;
 
     public void Init()
     {
@@ -53,10 +54,6 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
         Brush.Update(dtMs);
 
         if (UndoHistory.Count > UndoHistoryMaxLength) UndoHistory.RemoveAt(0);
-        if (buttonInput.IsHeld(InputNames.Undo))
-        {
-            
-        }
 
         if (buttonInput.IsPressed(InputNames.ToggleObjectView))
         {
@@ -71,7 +68,7 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
         {
             Brush = new ObjectPaintBrush(buttonInput, mouseInput, SpriteGrid, Context, ObjectSpriteFactory, UndoHistory, RedoHistory);
             Brush.Init(CurrentGrid);
-        }
+        }   
         else if (buttonInput.IsPressed(InputNames.TileBrushMode))
         {
             Brush = new TilePaintBrush(buttonInput, mouseInput, SpriteGrid, Context, TileSpriteFactory, UndoHistory, RedoHistory);
@@ -80,7 +77,7 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
         else if (buttonInput.IsPressed(InputNames.Undo) && UndoHistory.Count > 0)
         {
             Undo();
-            UndoBufferTimerMs = UndoBufferMs;
+            UndoBufferTimerMs = UndoRedoBufferMs;
         }
         else if (buttonInput.IsHeld(InputNames.Undo) && UndoHistory.Count > 0)
         {
@@ -90,6 +87,12 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
         else if (buttonInput.IsPressed(InputNames.Redo) && RedoHistory.Count > 0)
         {
             Redo();
+            RedoBufferTimeMs = UndoRedoBufferMs;
+        }
+        else if (buttonInput.IsHeld(InputNames.Redo) && RedoHistory.Count > 0)
+        {
+            RedoBufferTimeMs -= dtMs;
+            if (RedoBufferTimeMs <= 0) Redo();
         }
         else if (buttonInput.IsPressed(InputNames.CycleBrushLeft))
         {
@@ -101,7 +104,11 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
         }
         if (buttonInput.IsReleased(InputNames.Undo))
         {
-            UndoBufferTimerMs = UndoBufferMs;
+            UndoBufferTimerMs = UndoRedoBufferMs;
+        }
+        if (buttonInput.IsReleased(InputNames.Redo))
+        {
+            RedoBufferTimeMs = UndoRedoBufferMs;
         }
     }
 
