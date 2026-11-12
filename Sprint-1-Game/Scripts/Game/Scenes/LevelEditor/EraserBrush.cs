@@ -4,7 +4,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class EraserBrush(IInputManager mouseInput, SpriteGrid spriteGrid, LevelContext context, List<GridPointer> undoHistory) : IBrush
+public class EraserBrush(IInputManager mouseInput, SpriteGrid spriteGrid, LevelContext context, List<GridPointer> undoHistory, List<GridPointer> redoHistory) : IBrush
 {
     public GridPointer Grid;
     public void Init(GridPointer grid)
@@ -20,6 +20,7 @@ public class EraserBrush(IInputManager mouseInput, SpriteGrid spriteGrid, LevelC
             var obj = Grid.GetObject(coord);
             if (obj.Id != ObjectIds.Empty)
             {
+                redoHistory.Clear();
                 var empty = ObjectFactory.CreateEmpty();
                 undoHistory.Add(Grid.Clone());
                 Grid.SetObject(coord, empty);

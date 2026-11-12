@@ -9,16 +9,16 @@ public abstract class Button : IButton
     protected Vector2 Coords;
     protected int Width => Texture.Width;
     protected int Height => Texture.Height / 2;
-    protected bool CanHot;
+    protected bool CanBeHot;
 
     protected abstract Texture2D Texture { get; }
     protected abstract void OnClick();
 
-    public void Init(int x, int y, IInputManager input, bool canHot)
+    public void Init(int x, int y, IInputManager input, bool canBeHot)
     {
         Input = input;
         Coords = new Vector2(x, y);
-        CanHot = canHot;
+        CanBeHot = canBeHot;
     }
 
     public void Update(int dtMs)
@@ -33,7 +33,7 @@ public abstract class Button : IButton
     {
         var hotTextureRectangle = new Rectangle(0, 0, Width, Height);
         var notHotTextureRectangle = new Rectangle(0, Height, Width, Height);
-        Rectangle textureRect = CanHot && IsHot() ? hotTextureRectangle : notHotTextureRectangle;
+        Rectangle textureRect = CanBeHot && IsHot() ? hotTextureRectangle : notHotTextureRectangle;
 
         sb.Draw(
             Texture,

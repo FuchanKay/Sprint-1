@@ -20,6 +20,7 @@ public class InputNames
     public readonly static string LCtrl = "Left Ctrl";
     public readonly static string Snap = "Snap";
     public readonly static string Undo = "Undo";
+    public readonly static string Redo = "Redo";
     public readonly static string PickItem = "Pick Item";
     public readonly static string UseItem1 = "Use Item 1";
     public readonly static string UseItem2 = "Use Item 2";

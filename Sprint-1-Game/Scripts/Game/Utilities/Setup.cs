@@ -71,6 +71,7 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.CycleBrushRight, (int)Keys.D);
 
         ButtonInput.MapInput(InputNames.Undo, (int)Keys.Z);
+        ButtonInput.MapInput(InputNames.Redo, (int)Keys.Y);
 
         ButtonInput.MapInput(InputNames.PickItem, (int)Keys.G);
         ButtonInput.MapInput(InputNames.UseItem1, (int)Keys.D1);

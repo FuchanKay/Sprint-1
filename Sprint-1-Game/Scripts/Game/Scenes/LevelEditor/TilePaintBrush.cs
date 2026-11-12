@@ -5,7 +5,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput, SpriteGrid spriteGrid, LevelContext context, TileSpriteFactory tileSpriteFactory, List<GridPointer> undoHistory) : IBrush
+public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput, SpriteGrid spriteGrid, LevelContext context, TileSpriteFactory tileSpriteFactory, List<GridPointer> undoHistory, List<GridPointer> redoHistory) : IBrush
 {
     private static ITile[] TilePalette =
     {
@@ -60,6 +60,7 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
             if (!shouldChange) shouldChange = tile.Id != CurrentTile.Id || tile.Direction != CurrentTile.Direction;
             if (shouldChange)
             {
+                redoHistory.Clear();
                 undoHistory.Add(Grid.Clone());
                 var placedTile = CurrentTile.Clone();
                 Grid.SetTile(coord, placedTile);
