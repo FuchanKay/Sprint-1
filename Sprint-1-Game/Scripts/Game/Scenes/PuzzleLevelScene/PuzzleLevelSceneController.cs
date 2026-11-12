@@ -26,6 +26,15 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         Level.Init(CurrentLevelIndex);
         UIManager.Init(Level);
     }
+
+    public void Init(GridPointer grid, LevelContext level)
+    {
+        GameLayoutManager.Init(window);
+        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
+        Level.Init(grid, level);
+        UIManager.Init(Level);
+    }
+
     public void Update(int dtMs)
     {
         var lockMove = buttonInput.IsHeld(InputNames.LShift);

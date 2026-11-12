@@ -4,7 +4,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class LevelEditorSceneController(IInputManager buttonInput, IInputManager mouseInput, ITextureAtlas textureAtlas) : ISceneController
+public class LevelEditorSceneController(SceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, ITextureAtlas textureAtlas) : ISceneController
 {
     private LevelContext Context = new()
     {
@@ -101,6 +101,10 @@ public class LevelEditorSceneController(IInputManager buttonInput, IInputManager
         else if (buttonInput.IsPressed(InputNames.CycleBrushRight))
         {
             Brush.CycleRight();
+        }
+        else if (buttonInput.IsPressed(InputNames.PlayLevel))
+        {
+            sceneManager.PlayLevel(CurrentGrid, Context);
         }
         if (buttonInput.IsReleased(InputNames.Undo))
         {

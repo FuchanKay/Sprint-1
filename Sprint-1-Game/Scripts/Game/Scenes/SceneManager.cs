@@ -60,6 +60,16 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         }
     }
 
+    public void PlayLevel(GridPointer grid, LevelContext level)
+    {
+        if (NameSceneMap.TryGetValue(SceneNames.PuzzleLevel, out ISceneController scene))
+        {
+            CurrentScene = scene;
+            var sceneAsPuzzleLevel = CurrentScene as PuzzleLevelSceneController;
+            sceneAsPuzzleLevel.Init(grid, level);
+        }
+    }
+
     public void ExitGame()
     {
         ShouldExit = true;
@@ -76,7 +86,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas, spriteFontManager);
         NameSceneMap.TryAdd(SceneNames.MainMenu, mainMenuScene);
 
-        var levelEditorScene = new LevelEditorSceneController(buttonInput, mouseInput, textureAtlas);
+        var levelEditorScene = new LevelEditorSceneController(this, buttonInput, mouseInput, textureAtlas);
         NameSceneMap.TryAdd(SceneNames.LevelEditor, levelEditorScene);
 
         var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas, spriteFontManager, window);

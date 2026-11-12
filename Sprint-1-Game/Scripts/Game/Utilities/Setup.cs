@@ -69,6 +69,7 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.TileBrushMode, (int)Keys.T);
         ButtonInput.MapInput(InputNames.CycleBrushLeft, (int)Keys.A);
         ButtonInput.MapInput(InputNames.CycleBrushRight, (int)Keys.D);
+        ButtonInput.MapInput(InputNames.PlayLevel, (int)Keys.M);
 
         ButtonInput.MapInput(InputNames.Undo, (int)Keys.Z);
         ButtonInput.MapInput(InputNames.Redo, (int)Keys.Y);

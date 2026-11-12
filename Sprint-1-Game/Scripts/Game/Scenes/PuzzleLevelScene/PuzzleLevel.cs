@@ -47,6 +47,17 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
         LevelStateHistory = new LevelStateHistory(CurrentGridPointer, CurrentInventoryManager);
     }
 
+    public void Init(GridPointer grid, LevelContext context)
+    {
+        UndoHistory.Clear();
+        CurrentEvent.SubEventStack.Clear();
+        Context = context;
+        CurrentGridPointer = grid;
+        SpriteGrid.Init(CurrentGridPointer, Context);
+        CurrentInventoryManager = new InventoryManager();
+        LevelStateHistory = new LevelStateHistory(CurrentGridPointer, CurrentInventoryManager);
+    }
+
     public void Update(int dtMs)
     {
         TryExecuteEvent();

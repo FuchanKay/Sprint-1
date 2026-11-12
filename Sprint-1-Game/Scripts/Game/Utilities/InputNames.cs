@@ -28,6 +28,7 @@ public class InputNames
     public readonly static string ExitGame = "Exit Game";
     public readonly static string ResetGame = "Reset Game";
     public readonly static string ResetLevel = "Reset Level";
+    public readonly static string PlayLevel = "Play Level";
     public readonly static string ToggleObjectView = "Toggle Object View";
     public readonly static string Select = "Select";
     public readonly static string ChangeLevel = "Change Level";
