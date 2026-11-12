@@ -1,19 +1,16 @@
 namespace Scripts.Game;
 
-public class SeedObject() : IObject
+public class PumpkinSeedObject() : IObject
 {
     public IObject Clone()
     {
-        return new SeedObject
+        return new PumpkinSeedObject
         {
-            Direction = Direction,
-            RegionName = RegionName,
+            Direction = Direction
         };
     }
-    public ObjectIds Id => ObjectIds.Seed;
+    public ObjectIds Id => ObjectIds.PumpkinSeed;
     public Directions Direction { get; set; }
-    public string RegionName { get; set; }
-    public string TextureName { get; set; }
     public bool IsPushable => true;
     public bool IsDestructible => true;
     public bool IsRotatable => false;
