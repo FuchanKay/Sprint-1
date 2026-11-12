@@ -18,6 +18,7 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
     private readonly int MaxEventsQueued = 2;
     private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, false);
     private string[] LevelFile;
+    private GridPointer LevelStart;
 
     public void Init(int levelIndex)
     {
@@ -32,7 +33,8 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
             PuzzleOffsetX = 400,
             PuzzleOffsetY = 50,
             PlayerIsDead = false,
-            LevelIsCompleted = false
+            LevelIsCompleted = false,
+            LevelEditorMode = false
         };
         var levelFileName = FileNames.LevelFileNames[levelIndex];
         LevelFile = LevelFileParser.ParseLevelFile(levelFileName);
@@ -49,9 +51,11 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
 
     public void Init(GridPointer grid, LevelContext context)
     {
+        LevelStart = grid.Clone();
         UndoHistory.Clear();
         CurrentEvent.SubEventStack.Clear();
         Context = context;
+        Context.LevelEditorMode = true;
         CurrentGridPointer = grid;
         SpriteGrid.Init(CurrentGridPointer, Context);
         CurrentInventoryManager = new InventoryManager();
@@ -125,7 +129,14 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
     {
         PushCurrentLevelStateHistory();
 
-        LevelStateHistory.GridPointer = levelFileParser.CreateGrids(LevelFile);
+        if (!Context.LevelEditorMode)
+        {
+            LevelStateHistory.GridPointer = levelFileParser.CreateGrids(LevelFile);
+        }
+        else
+        {
+            LevelStateHistory.GridPointer = LevelStart.Clone();
+        }
         LevelStateHistory.InventoryManager = new InventoryManager();
         SpriteGrid.Init(LevelStateHistory.GridPointer, Context);
 

@@ -12,8 +12,6 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private GameLayoutManager GameLayoutManager = new();
     private UIManager UIManager = new(spriteFontManager);
-
-
     private readonly IAudioManager AudioManager = audioManager;
     public int CurrentLevelIndex = 0;
     // Loading a SpriteFont Description using the content pipeline
@@ -100,7 +98,11 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
 
 
         // Exits to the main menu upon a levels completion
-        if (Level.Context.LevelIsCompleted)
+        if (Level.Context.LevelIsCompleted && Level.Context.LevelEditorMode)
+        {
+            sceneManager.Restart();
+        }
+        else if (Level.Context.LevelIsCompleted)
         {
             CurrentLevelIndex = (CurrentLevelIndex + 1) % FileNames.LevelFileNames.Length;
             Level.Init(CurrentLevelIndex);

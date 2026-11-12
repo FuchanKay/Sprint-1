@@ -14,4 +14,5 @@ public class LevelContext
     public float GridScale { get; set; }
     public bool PlayerIsDead { get; set; }
     public bool LevelIsCompleted { get; set; }
+    public bool LevelEditorMode { get; set; }
 }
