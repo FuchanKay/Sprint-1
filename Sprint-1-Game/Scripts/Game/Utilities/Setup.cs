@@ -33,7 +33,7 @@ public class Setup(ContentManager content, GameWindow window)
         AddRegions();
         AddFont();
         AddUItexture();
-        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, UIFontAtlas, window);
+        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, UIFontAtlas, UITextureAtlas, window);
         sceneManager.Init();
     }
 
@@ -254,7 +254,6 @@ public class Setup(ContentManager content, GameWindow window)
     private void AddUItexture()
     {
         UITextureAtlas.LoadFromFile(content, FileNames.UIAtlasDef + ".xml");
-
     }
 
     private void AddFont()

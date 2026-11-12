@@ -5,7 +5,7 @@ using MonoGameLibrary.UIRendering;
 using Scripts.Game;
 using Scripts.GameComponents;
 
-public class HUDPannel(UIFontAtlas uIFontAtlas)
+public class HUDPannel(UIFontAtlas uIFontAtlas, UITextureAtlas uITextureAtlas)
 {
     public Vector2 PannelCornerPos{ get; set; }
     private int Clock;
@@ -13,21 +13,14 @@ public class HUDPannel(UIFontAtlas uIFontAtlas)
     private UIFont InventoryStatus = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
     private UIFont GameClock = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
     private UIFont CommandInstructions = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
-    
+    private UISprite Bomb;
     private PuzzleLevel Level;
 
     public void Init(PuzzleLevel level)
     {
+        Bomb = new(uITextureAtlas.GetRegion("bomb"));
         Clock = 0;;
         Level = level;
-        // EnemyCounter.Init(FontNames.DungeonFont, new Vector2 (1040,40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.Gold);
-        // GameClock.Init(FontNames.DungeonFont, new Vector2 (1040,80), "Game Clock: ", Color.Gold);
-        // InventoryStatus.Init(FontNames.DungeonFont, new Vector2(1040,120), $"Inventory:\n{Level.LevelStateHistory.InventoryManager}",  Color.Gold);
-        // CommandInstructions.Init(FontNames.DungeonFont, new Vector2(1040,500), "Player Move: WASD\n" 
-        //                                                                         + "SNAP: F\n"
-        //                                                                         + "Use Item: 123\n" 
-        //                                                                         + "Grab item: G\n"
-        //                                                                         +"Change Scene: B\n",  Color.Gold);
         EnemyCounter.Init(new Vector2 (1040,40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.Gold, Vector2.One);
         GameClock.Init(new Vector2 (1040,80), "Game Clock: ", Color.Gold, Vector2.One);
         InventoryStatus.Init(new Vector2(1040,120), $"Inventory:\n{Level.LevelStateHistory.InventoryManager}",  Color.Gold, Vector2.One);
@@ -55,5 +48,6 @@ public class HUDPannel(UIFontAtlas uIFontAtlas)
         InventoryStatus.Draw(sb);
         GameClock.Draw(sb);
         CommandInstructions.Draw(sb);
+        Bomb.Draw(sb, new Vector2(1040, 120));
     }
 }

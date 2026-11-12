@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
@@ -43,10 +44,8 @@ public class UITextureAtlas
     {
         UIRegions.Clear();
     }
-    public static UITextureAtlas LoadFromFile(ContentManager content, string fileName)
+    public void LoadFromFile(ContentManager content, string fileName)
     {
-        UITextureAtlas uIAtlas = new UITextureAtlas();
-
         string filePath = Path.Combine(content.RootDirectory, fileName);
 
         using (Stream stream = TitleContainer.OpenStream(filePath))
@@ -57,28 +56,27 @@ public class UITextureAtlas
                 XElement root = doc.Root;
 
                 string texturePath = root.Element("UITexture").Value;
-                uIAtlas.Texture = content.Load<Texture2D>(texturePath);
+                Texture = content.Load<Texture2D>(texturePath);
 
                 var uIRegions = root.Element("UIRegions")?.Elements("UIRegion");
 
                 if (uIRegions != null)
                 {
-                    foreach (var region in uIRegions)
+                    foreach (var uIRegion in uIRegions)
                     {
-                        string name = region.Attribute("name")?.Value;
-                        int x = int.Parse(region.Attribute("x")?.Value ?? "0");
-                        int y = int.Parse(region.Attribute("y")?.Value ?? "0");
-                        int width = int.Parse(region.Attribute("width")?.Value ?? "0");
-                        int height = int.Parse(region.Attribute("height")?.Value ?? "0");
+                        string name = uIRegion.Attribute("name")?.Value;
+                        Console.WriteLine($"{name}");
+                        int x = int.Parse(uIRegion.Attribute("x")?.Value ?? "0");
+                        int y = int.Parse(uIRegion.Attribute("y")?.Value ?? "0");
+                        int width = int.Parse(uIRegion.Attribute("width")?.Value ?? "0");
+                        int height = int.Parse(uIRegion.Attribute("height")?.Value ?? "0");
 
                         if (!string.IsNullOrEmpty(name))
                         {
-                            uIAtlas.AddRegion(name, x, y, width, height);
+                            AddRegion(name, x, y, width, height);
                         }
                     }
                 }
-
-                return uIAtlas;
             }
         }
     }

@@ -26,7 +26,7 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
 
         ExitGameButton = new ExitGameButton(sceneManager, textureAtlas);
         ExitGameButton.Init(ExitGameButtonX, ExitGameButtonY, mouseInput);
-        GameTitle.Init(new Vector2 (1280/2,10), "Sugar Snap", Color.Gold, Vector2.One);
+        GameTitle.Init(new Vector2 (1280/2,40), "Sugar Snap", Color.Gold, new Vector2(5,5));
 
     }
 
