@@ -49,7 +49,7 @@ public abstract class Sprite(ITextureAtlas textureAtlas) : ISprite
         staticSprite.IdleName = IdleName;
         staticSprite.Texture = Texture;
         staticSprite.Scale = Scale;
-
+        staticSprite.LayerDepth = LayerDepth;
         return staticSprite;
     }
 
@@ -61,6 +61,7 @@ public abstract class Sprite(ITextureAtlas textureAtlas) : ISprite
         animatedSprite.IdleName = IdleName;
         animatedSprite.Texture = Texture;
         animatedSprite.Scale = Scale;
+        animatedSprite.LayerDepth = LayerDepth;
         return animatedSprite;
     }
 }

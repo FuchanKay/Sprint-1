@@ -127,6 +127,7 @@ public class LevelFileParser()
             "Bomb" => ObjectFactory.CreateBomb(),
             "ClosedDoor" => ObjectFactory.CreateClosedDoor(),
             "OpenDoor" => ObjectFactory.CreateOpenDoor(),
+            "Key" => ObjectFactory.CreateKey(),
             "TimedBomb" => ObjectFactory.CreateTimedBomb(),
             "Skeleton" => ObjectFactory.CreateSkeleton(),
             "Warlock" => ObjectFactory.CreateWarlock(),

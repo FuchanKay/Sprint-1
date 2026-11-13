@@ -9,7 +9,7 @@ public class PlayGameButton(ISceneManager sm, IAudioManager audioManager, ITextu
 
     protected override void OnClick()
     {
-        sm.SwapScene(SceneNames.PuzzleLevel);
+        sm.SceneTransition.StartLevelTransition(SceneNames.PuzzleLevel);
         // Placeholder sound effect to indicate that the button was clicked.
         audioManager.PlaySound(SoundNames.Snap);
     }

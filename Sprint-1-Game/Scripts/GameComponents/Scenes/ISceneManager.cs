@@ -18,4 +18,5 @@ public interface ISceneManager
     void Draw(SpriteBatch sb);
 
     void ExitGame();
+    public ISceneTransition SceneTransition { get; set; }
 }
