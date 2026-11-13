@@ -2,7 +2,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Scripts.GameComponents;
-public class BasicSpriteFontWriter(SpriteFontManager spriteFontManager): ISpriteFontWriter
+
+public class BasicSpriteFontWriter(SpriteFontManager spriteFontManager) : ISpriteFontWriter
 {
     private SpriteFont Font;
     private Vector2 Pos;
@@ -14,11 +15,11 @@ public class BasicSpriteFontWriter(SpriteFontManager spriteFontManager): ISprite
         Pos = pos;
         Text = text;
         Color = color;
-    } 
+    }
     public void Update(Vector2 pos)
     {
         Pos = pos;
-    } 
+    }
     public void Update(Vector2 pos, string text)
     {
         Pos = pos;
@@ -29,17 +30,17 @@ public class BasicSpriteFontWriter(SpriteFontManager spriteFontManager): ISprite
         Pos = pos;
         Text = text;
         Color = color;
-    }  
+    }
     public void Update(SpriteFont font, Vector2 pos, string text, Color color)
     {
         Font = font;
         Pos = pos;
         Text = text;
         Color = color;
-    }  
+    }
     public void Draw(SpriteBatch sb)
     {
         sb.DrawString(Font, Text, Pos, Color);
     }
-    
+
 }

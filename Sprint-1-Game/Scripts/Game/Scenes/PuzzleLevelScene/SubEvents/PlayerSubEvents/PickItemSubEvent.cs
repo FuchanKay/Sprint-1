@@ -26,7 +26,8 @@ public class PickItemSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEv
                 audioManager.PlaySound(SoundNames.Pickup);
             }
             return;
-        } else if (itemTile.Id == TileIds.VineSeed)
+        }
+        else if (itemTile.Id == TileIds.VineSeed)
         {
             itemObj = ObjectFactory.CreateVineSeed(itemTile.Direction);
             if (inventoryManager.AddItem(itemObj))
@@ -36,8 +37,9 @@ public class PickItemSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEv
                 spriteGrid.SetNewTileSprite(targetCoord, dirtTile);
             }
 
-            
-        } else if (itemTile.Id == TileIds.PumpkinSeed)
+
+        }
+        else if (itemTile.Id == TileIds.PumpkinSeed)
         {
             itemObj = ObjectFactory.CreatePumpkinSeed();
             if (inventoryManager.AddItem(itemObj))
@@ -46,8 +48,9 @@ public class PickItemSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEv
                 gridPointer.SetTile(targetCoord, dirtTile);
                 spriteGrid.SetNewTileSprite(targetCoord, dirtTile);
             }
-            
-        } else if (itemObj.Id == ObjectIds.Key)
+
+        }
+        else if (itemObj.Id == ObjectIds.Key)
         {
             gridPointer.SetObject(targetCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(targetCoord);

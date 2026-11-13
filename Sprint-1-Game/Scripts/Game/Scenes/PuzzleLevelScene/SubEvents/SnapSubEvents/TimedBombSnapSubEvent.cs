@@ -1,4 +1,5 @@
 namespace Scripts.Game;
+
 using Scripts.GameComponents;
 
 using System;

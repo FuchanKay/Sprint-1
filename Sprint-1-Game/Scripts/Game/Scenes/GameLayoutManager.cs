@@ -24,15 +24,15 @@ public class GameLayoutManager
     public void LevelLayout(LevelContext context)
     {
         LevelContext = context;
-        float levelWidthPx = LevelContext.LevelWidth * LevelContext.GridSpriteWidthPx;
-        float levelHeightPx = LevelContext.LevelHeight * LevelContext.GridSpriteHeightPx;
+        float levelWidthPx = LevelContext.LevelWidth * LevelContext.RawSpriteWidthPx;
+        float levelHeightPx = LevelContext.LevelHeight * LevelContext.RawSpriteHeightPx;
         ScaleLevel(levelWidthPx, levelHeightPx);
         SetLevelOffset(levelWidthPx, levelHeightPx);
     }
 
     private void SetLevelOffset(float levelWidthPx, float levelHeightPx)
     {
-        int EdgeOffset = LevelContext.GridSpriteHeightPx / 2;
+        int EdgeOffset = LevelContext.RawSpriteHeightPx / 2;
         LevelContext.PuzzleOffsetX = (int)Math.Floor((CurrentSceneWidth * LevelSceneRatio - levelWidthPx * LevelContext.GridScale) / 2f + EdgeOffset * LevelContext.GridScale);
         LevelContext.PuzzleOffsetY = (int)Math.Floor((CurrentSceneHeight - levelHeightPx * LevelContext.GridScale) / 2f + EdgeOffset * LevelContext.GridScale);
     }

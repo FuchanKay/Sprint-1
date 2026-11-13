@@ -34,7 +34,7 @@ public class IceSlideSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEv
     {
         var objectSprite = spriteGrid.GetObjectSprite(currentCoord);
         objectSprite = objectSprite.ConvertToStatic(objectSprite.IdleName);
-        objectSprite.Duration = spriteGrid.SlideDuration;    
+        objectSprite.Duration = spriteGrid.SlideDuration;
         spriteGrid.SetObjectSprite(currentCoord, destinationCoord, objectSprite);
         spriteGrid.StartObjectAnimation(currentCoord);
 

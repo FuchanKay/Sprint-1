@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -52,9 +51,12 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.MoveWestAlt, (int)Keys.Left);
 
         ButtonInput.MapInput(InputNames.ChangeLevel, (int)Keys.B);
+        ButtonInput.MapInput(InputNames.RotatePaintBrush, (int)Keys.R);
 
         ButtonInput.MapInput(InputNames.LCtrl, (int)Keys.LeftControl);
         ButtonInput.MapInput(InputNames.LShift, (int)Keys.LeftShift);
+
+        ButtonInput.MapInput(InputNames.ToggleObjectView, (int)Keys.H);
 
         ButtonInput.MapInput(InputNames.Snap, (int)Keys.F);
 
@@ -62,7 +64,15 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.R);
         ButtonInput.MapInput(InputNames.ResetLevel, (int)Keys.R);
 
+        ButtonInput.MapInput(InputNames.ObjectPaintBrushMode, (int)Keys.P);
+        ButtonInput.MapInput(InputNames.EraserBrushMode, (int)Keys.E);
+        ButtonInput.MapInput(InputNames.TileBrushMode, (int)Keys.T);
+        ButtonInput.MapInput(InputNames.CycleBrushLeft, (int)Keys.A);
+        ButtonInput.MapInput(InputNames.CycleBrushRight, (int)Keys.D);
+        ButtonInput.MapInput(InputNames.PlayLevel, (int)Keys.M);
+
         ButtonInput.MapInput(InputNames.Undo, (int)Keys.Z);
+        ButtonInput.MapInput(InputNames.Redo, (int)Keys.Y);
 
         ButtonInput.MapInput(InputNames.PickItem, (int)Keys.G);
         ButtonInput.MapInput(InputNames.UseItem1, (int)Keys.D1);
@@ -70,6 +80,7 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.UseItem3, (int)Keys.D3);
 
         MouseInput.MapInput(InputNames.Select, (int)MouseButtons.Left);
+        MouseInput.MapInput(InputNames.EraserBrushMode, (int)MouseButtons.Right);
     }
 
     private void AddAnimations()
@@ -212,6 +223,7 @@ public class Setup(ContentManager content, GameWindow window)
     {
         TextureAtlas.AddTexture(TextureNames.PlayGameButton, FileNames.PlayGameButtonTexture);
         TextureAtlas.AddTexture(TextureNames.ExitGameButton, FileNames.ExitGameButtonTexture);
+        TextureAtlas.AddTexture(TextureNames.LevelEditorButton, FileNames.LevelEditorButtonTexture);
 
         TextureAtlas.AddTexture(TextureNames.Player, FileNames.PlayerTexture);
         TextureAtlas.AddTexture(TextureNames.TileSprites, FileNames.TileTextures);
