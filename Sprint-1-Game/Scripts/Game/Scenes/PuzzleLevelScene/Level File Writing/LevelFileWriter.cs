@@ -13,6 +13,8 @@ public class LevelFileWriter()
 
         WriteHeader(levelFile, levelContext);
         WriteGrids(levelFile, gridPointer, levelContext);
+
+        File.WriteAllLines("Content/Levels/" + levelContext.LevelName + ".csv", levelFile);
     }
 
     private static void WriteHeader(string[] levelFile, LevelContext levelContext)
