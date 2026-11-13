@@ -26,8 +26,8 @@ public class LevelFileWriter()
     }
     private static void WriteGrids(string[] levelFile, GridPointer gridPointer, LevelContext levelContext)
     {
-        int tileGridIdx = 1;
-        int objectGridIdx = 1 + levelContext.LevelHeight + 1;
+        int tileGridRowIdx = 1;
+        int objectGridRowIdx = 1 + levelContext.LevelHeight + 1;
 
         for (int y = 0; y < levelContext.LevelHeight; y++)
         {
