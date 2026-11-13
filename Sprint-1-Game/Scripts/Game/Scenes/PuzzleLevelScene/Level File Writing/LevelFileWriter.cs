@@ -37,28 +37,39 @@ public class LevelFileWriter()
             {
                 var coord = new Coordinate(x, y);
                 var grid = gridPointer.GetGrid(coord);
+                tileLine += WriteTile(grid);
+                objectLine += WriteObject(grid);
+                if (x < levelContext.LevelWidth - 1)
+                {
+                    tileLine += Delimiter;
+                    objectLine += Delimiter;
+                }
                 
             }
+            levelFile[tileGridRowIdx + y] = tileLine;
+            levelFile[objectGridRowIdx + y] = objectLine;
         }
+
+        levelFile[tileGridRowIdx + levelContext.LevelHeight] = WriteSpacerRow(levelContext);
     }
 
-    private static void WriteSpacerRow(string[] levelFile, LevelContext levelContext)
+    private static string WriteSpacerRow(LevelContext levelContext)
     {
         string spacerRow = "";
         for (int i = 0; i < levelContext.LevelWidth; i++)
         {
             spacerRow += Delimiter;
         }
-        levelFile[levelContext.LevelHeight + 1] = spacerRow;
+        return spacerRow;
     }
 
-    private static string WriteTile(Grid grid, LevelContext levelContext)
+    private static string WriteTile(Grid grid)
     {
-        return grid.Tile.Id.ToString() + DirectionDelimiter + (int)grid.Tile.Direction;
+        return grid.Tile.Id.ToString() + DirectionDelimiter + grid.Tile.Direction;
     }
 
-    private static string WriteObject(string row, Grid grid, LevelContext levelContext)
+    private static string WriteObject(Grid grid)
     {
-        return grid.Object.Id.ToString();
+        return grid.Object.Id.ToString() + DirectionDelimiter + grid.Object.Direction;
     }
 }
