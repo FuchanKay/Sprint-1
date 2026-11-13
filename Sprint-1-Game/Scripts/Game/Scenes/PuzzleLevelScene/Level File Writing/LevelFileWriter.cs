@@ -13,8 +13,9 @@ public class LevelFileWriter()
 
         WriteHeader(levelFile, levelContext);
         WriteGrids(levelFile, gridPointer, levelContext);
-
-        File.WriteAllLines("Content/Levels/" + levelContext.LevelName + ".csv", levelFile);
+        
+        string levelFilePath = "Content/Levels/" + levelContext.LevelName + ".csv";
+        File.WriteAllLines(levelFilePath, levelFile);
     }
 
     private static void WriteHeader(string[] levelFile, LevelContext levelContext)
@@ -67,11 +68,33 @@ public class LevelFileWriter()
 
     private static string WriteTile(Grid grid)
     {
-        return grid.Tile.Id.ToString() + DirectionDelimiter + grid.Tile.Direction;
+        string TileID = grid.Tile.Id.ToString();
+        string TileDirection = ((int)grid.Tile.Direction).ToString();
+
+        return TileID + DirectionDelimiter + TileDirection;
     }
 
     private static string WriteObject(Grid grid)
     {
-        return grid.Object.Id.ToString() + DirectionDelimiter + grid.Object.Direction;
+        string objectString;
+        string ObjectID = grid.Object.Id.ToString();
+        string ObjectDirection = ((int)grid.Object.Direction).ToString();
+
+        if (ObjectID == "Empty")
+        {
+            objectString = "_";
+        } 
+        else if (ObjectID == "Wall")
+        {
+            var wallObject = (WallObject)grid.Object;
+            objectString = wallObject.RegionName.ToString().Replace(" ", string.Empty) + DirectionDelimiter + ObjectDirection;
+        }
+        else
+        {
+            objectString = ObjectID + DirectionDelimiter + ObjectDirection;
+        }
+        
+
+        return objectString;
     }
 }

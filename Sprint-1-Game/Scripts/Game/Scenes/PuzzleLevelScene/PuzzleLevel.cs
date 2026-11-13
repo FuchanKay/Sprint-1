@@ -46,6 +46,8 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
         SpriteGrid.Init(CurrentGridPointer, Context);
         CurrentInventoryManager = new InventoryManager();
         LevelStateHistory = new LevelStateHistory(CurrentGridPointer, CurrentInventoryManager);
+        Context.LevelName = "test";
+        LevelFileWriter.WriteLevelFile(CurrentGridPointer, Context);
     }
 
     public void Update(int dtMs)
