@@ -22,7 +22,7 @@ public class DirectionalInputSubEvent(Directions direction) : ILevelSubEvent
             var destinationGrid = gridPointer.GetGrid(destinationCoord);
             var destinationObject = destinationGrid.Object;
 
-            if(destinationObject.Id == ObjectIds.Rock) audioManager.PlaySound(SoundNames.StoneScrape);
+            if (destinationObject.Id == ObjectIds.Rock) audioManager.PlaySound(SoundNames.StoneScrape);
 
             var onePastDestinationCoord = playerCoord + Coordinate.ToCoordinate(direction) * 2;
 
@@ -38,7 +38,7 @@ public class DirectionalInputSubEvent(Directions direction) : ILevelSubEvent
             MovePlayerSprite(spriteGrid, gridPointer, playerCoord, direction, true);
             enemiesMove.Execute(spriteGrid, gridPointer, inventoryManager, context, audioManager);
 
-            if(gridPointer.ObjectsJustMoved.ContainsKey(direction) == false) gridPointer.ObjectsJustMoved[direction] = new Dictionary<Coordinate, IObject>();
+            if (gridPointer.ObjectsJustMoved.ContainsKey(direction) == false) gridPointer.ObjectsJustMoved[direction] = new Dictionary<Coordinate, IObject>();
             gridPointer.ObjectsJustMoved[direction].Add(onePastDestinationCoord, destinationObject);
         }
         else if (destinationCoordIsWithinBounds && CanMove(playerObj, gridPointer.GetGrid(destinationCoord)))
@@ -59,7 +59,7 @@ public class DirectionalInputSubEvent(Directions direction) : ILevelSubEvent
             }
         }
 
-        if(gridPointer.ObjectsJustMoved.ContainsKey(direction) == false) gridPointer.ObjectsJustMoved[direction] = new Dictionary<Coordinate, IObject>();
+        if (gridPointer.ObjectsJustMoved.ContainsKey(direction) == false) gridPointer.ObjectsJustMoved[direction] = new Dictionary<Coordinate, IObject>();
         gridPointer.ObjectsJustMoved[direction].Add(gridPointer.GetPlayerCoord(), playerObj);
     }
 

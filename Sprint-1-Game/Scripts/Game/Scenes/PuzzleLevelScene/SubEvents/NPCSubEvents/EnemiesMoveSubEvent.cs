@@ -68,7 +68,6 @@ public class EnemiesMoveSubEvent() : ILevelSubEvent
         }
     }
 
-    // Overload method to handle the frogs special directional movement sprites.
     private void MoveEnemySprite(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate enemyCoord, Directions direction)
     {
         var enemySprite = spriteGrid.GetObjectSprite(enemyCoord);
@@ -105,7 +104,7 @@ public class EnemiesMoveSubEvent() : ILevelSubEvent
             movedObjects.Remove(enemyCoord);
         }
 
-        if(gridPointer.ObjectsJustMoved.ContainsKey(direction) == false) gridPointer.ObjectsJustMoved[direction] = new Dictionary<Coordinate, IObject>();
+        if (gridPointer.ObjectsJustMoved.ContainsKey(direction) == false) gridPointer.ObjectsJustMoved[direction] = new Dictionary<Coordinate, IObject>();
         gridPointer.ObjectsJustMoved[direction].Add(destinationCoord, enemyObj);
     }
 }

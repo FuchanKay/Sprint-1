@@ -12,6 +12,8 @@ public class IceTile : ITile
         };
     }
     public TileIds Id => TileIds.Ice;
+    public string RegionName => RegionNames.IceTile;
     public bool IsWalkable => true;
+    public bool IsRotatable => false;
     public Directions Direction { get; set; }
 }

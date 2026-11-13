@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 
 namespace Scripts.Game;
+
 using Scripts.GameComponents;
 
 public class SeedGrowthSubEvent : ILevelSubEvent
@@ -41,7 +42,7 @@ public class SeedGrowthSubEvent : ILevelSubEvent
     private static void GrowVine(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate seedCoord)
     {
         var direction = gridPointer.GetTile(seedCoord).Direction;
-        var vineRotation = MathHelper.ToRadians((int)direction * 90);
+        var vineRotation = Utilities.ToRadians(direction);
 
         var startVineTile = TileFactory.CreateVineStartTile();
         startVineTile.Direction = direction;
@@ -63,11 +64,11 @@ public class SeedGrowthSubEvent : ILevelSubEvent
             tile = gridPointer.GetTile(nextCoord);
         }
 
-        var oppositeDirection = ((int)direction + 2) % 4;
-        var oppositeRotation = MathHelper.ToRadians(oppositeDirection * 90);
+        var oppositeDirection = Utilities.Rotate180(direction);
+        var oppositeRotation = Utilities.ToRadians(oppositeDirection);
 
         var endVineTile = TileFactory.CreateVineStartTile();
-        endVineTile.Direction = (Directions)oppositeDirection;
+        endVineTile.Direction = oppositeDirection;
         gridPointer.SetTile(nextCoord, endVineTile);
         spriteGrid.AddIterableTileSprite(endVineTile, seedCoord, nextCoord, oppositeRotation);
         spriteGrid.StartIterableTile(seedCoord);

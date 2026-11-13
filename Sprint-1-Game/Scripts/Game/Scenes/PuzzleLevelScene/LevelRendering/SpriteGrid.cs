@@ -10,6 +10,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     private readonly ObjectSpriteManager ObjectSpriteManager = new();
     private readonly TileSpriteManager TileSpriteManager = new();
     private readonly EffectSpriteManager EffectSpriteManager = new();
+    private bool HideObjectLayer = false;
     public readonly int PushDuration = 400;
     public readonly int SlideDuration = 300;
 
@@ -118,7 +119,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     public void Draw(SpriteBatch sb)
     {
         TileSpriteManager.Draw(sb);
-        ObjectSpriteManager.Draw(sb);
+        if (!HideObjectLayer) ObjectSpriteManager.Draw(sb);
         EffectSpriteManager.Draw(sb);
     }
 
@@ -132,5 +133,20 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         bool iteratingTilesEmpty = TileSpriteManager.IteratingTileSprites.Count == 0;
 
         return animObjEmpty && animTileEmpty && animEffectsEmpty && iteratingEffectsEmpty && iteratingTilesEmpty;
+    }
+
+    public void ToggleObjectLayerHide()
+    {
+        HideObjectLayer = !HideObjectLayer;
+    }
+
+    public static Vector2 CalculateLiteralPos(LevelContext context, Coordinate coord)
+    {
+        var spriteCenteringOffsetX = (int)(context.GridWidth * 0.5);
+        var spriteCenteringOffsetY = (int)(context.GridHeight * 0.5);
+        var spriteX = context.GridWidth * coord.X + context.PuzzleOffsetX + spriteCenteringOffsetX;
+        var spriteY = context.GridHeight * coord.Y + context.PuzzleOffsetY + spriteCenteringOffsetY;
+
+        return new Vector2(spriteX, spriteY);
     }
 }

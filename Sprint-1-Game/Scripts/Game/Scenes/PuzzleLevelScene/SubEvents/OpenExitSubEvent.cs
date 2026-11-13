@@ -1,6 +1,7 @@
 using System.Linq;
 
 namespace Scripts.Game;
+
 using Scripts.GameComponents;
 
 public class OpenExitSubEvent() : ILevelSubEvent

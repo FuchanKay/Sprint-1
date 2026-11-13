@@ -120,7 +120,7 @@ public class Pathfinder()
             lineOfSight.Push(dirCoord);
         }
         lineOfSight.Push(dirCoord);
-        
+
         return lineOfSight;
     }
 }

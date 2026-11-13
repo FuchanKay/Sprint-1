@@ -11,6 +11,7 @@ public class Frog : IEnemy
     }
     public ObjectIds Id => ObjectIds.Frog;
     public Directions Direction { get; set; } = Directions.South;
+    public string RegionName => RegionNames.ToFrogIdleRegionName(Directions.South);
     public bool IsPushable => false;
     public bool IsDestructible => true;
     public bool IsRotatable => false;

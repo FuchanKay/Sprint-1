@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
@@ -13,12 +12,10 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private GameLayoutManager GameLayoutManager = new();
     private UIManager UIManager = new(spriteFontManager);
-
-
     private readonly IAudioManager AudioManager = audioManager;
     private ILevelTransition LevelTransition;
     public int CurrentLevelIndex = 0;
-// Loading a SpriteFont Description using the content pipeline
+    // Loading a SpriteFont Description using the content pipeline
 
     public void Init()
     {
@@ -29,6 +26,15 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         UIManager.Init(Level);
         LevelTransition = new WipeTransition(Level);
     }
+
+    public void Init(GridPointer grid, LevelContext level)
+    {
+        GameLayoutManager.Init(window);
+        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
+        Level.Init(grid, level);
+        UIManager.Init(Level);
+    }
+
     public void Update(int dtMs)
     {
         if (LevelTransition.IsActive)
@@ -91,12 +97,20 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         {
             Level.Undo();
         }
+        else if (buttonInput.IsPressed(InputNames.ToggleObjectView))
+        {
+            Level.ToggleObjectHide();
+        }
 
         Level.Update(dtMs);
         UIManager.Update(dtMs);
 
         // Exits to the main menu upon a levels completion
-        if (Level.Context.LevelIsCompleted)
+        if (Level.Context.LevelIsCompleted && Level.Context.LevelEditorMode)
+        {
+            sceneManager.Restart();
+        }
+        else if (Level.Context.LevelIsCompleted)
         {
             CurrentLevelIndex = (CurrentLevelIndex + 1) % FileNames.LevelFileNames.Length;
             LevelTransition.StartLevelTransition(CurrentLevelIndex);
@@ -104,7 +118,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     }
     public void Draw(SpriteBatch sb)
     {
-        
+
         Level.Draw(sb);
         UIManager.Draw(sb);
         if(LevelTransition.IsActive) LevelTransition.Draw(sb);

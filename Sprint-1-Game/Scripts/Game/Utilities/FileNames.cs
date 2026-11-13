@@ -1,11 +1,11 @@
-using System.Runtime.CompilerServices;
-
 namespace Scripts.Game;
 
 public class FileNames
 {
     public readonly static string PlayGameButtonTexture = "Images/play-button";
     public readonly static string ExitGameButtonTexture = "Images/exit-button";
+    public readonly static string LevelEditorButtonTexture = "Images/level-editor-button";
+
     public readonly static string TileTextures = "Images/tile-sprites";
     public readonly static string IcePlaceholder = "Images/iceTile";
     public readonly static string ObjectTextures = "Images/object-sprites";
@@ -51,6 +51,6 @@ public class FileNames
     public readonly static string LavaFizzAudio = "audio/fizz";
     public readonly static string StoneScrapeAudio = "audio/stoneScrape";
     public readonly static string DeathAudio = "audio/entityDeath";
-    
+
 
 }

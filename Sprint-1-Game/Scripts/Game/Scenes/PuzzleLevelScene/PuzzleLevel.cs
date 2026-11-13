@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
@@ -20,6 +18,7 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
     private readonly int MaxEventsQueued = 2;
     private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, false);
     private string[] LevelFile;
+    private GridPointer LevelStart;
 
     public void Init(int levelIndex)
     {
@@ -29,21 +28,36 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
 
         Context = new()
         {
-            GridSpriteWidthPx = 256,
-            GridSpriteHeightPx = 256,
+            RawSpriteWidthPx = 256,
+            RawSpriteHeightPx = 256,
             GridScale = 0.25f,
             PuzzleOffsetX = 400,
             PuzzleOffsetY = 50,
             PlayerIsDead = false,
-            LevelIsCompleted = false
+            LevelIsCompleted = false,
+            LevelEditorMode = false
         };
         var levelFileName = FileNames.LevelFileNames[levelIndex];
         LevelFile = LevelFileParser.ParseLevelFile(levelFileName);
         Context.LevelName = levelFileParser.GetLevelName(LevelFile);
         Context.LevelWidth = levelFileParser.GetLevelWidth(LevelFile);
         Context.LevelHeight = levelFileParser.GetLevelHeight(LevelFile);
+
         gameLayoutManager.LevelLayout(Context);
         CurrentGridPointer = levelFileParser.CreateGrids(LevelFile);
+        SpriteGrid.Init(CurrentGridPointer, Context);
+        CurrentInventoryManager = new InventoryManager();
+        LevelStateHistory = new LevelStateHistory(CurrentGridPointer, CurrentInventoryManager);
+    }
+
+    public void Init(GridPointer grid, LevelContext context)
+    {
+        LevelStart = grid.Clone();
+        UndoHistory.Clear();
+        CurrentEvent.SubEventStack.Clear();
+        Context = context;
+        Context.LevelEditorMode = true;
+        CurrentGridPointer = grid;
         SpriteGrid.Init(CurrentGridPointer, Context);
         CurrentInventoryManager = new InventoryManager();
         LevelStateHistory = new LevelStateHistory(CurrentGridPointer, CurrentInventoryManager);
@@ -116,13 +130,25 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
     {
         PushCurrentLevelStateHistory();
 
-        LevelStateHistory.GridPointer = levelFileParser.CreateGrids(LevelFile);
+        if (!Context.LevelEditorMode)
+        {
+            LevelStateHistory.GridPointer = levelFileParser.CreateGrids(LevelFile);
+        }
+        else
+        {
+            LevelStateHistory.GridPointer = LevelStart.Clone();
+        }
         LevelStateHistory.InventoryManager = new InventoryManager();
         SpriteGrid.Init(LevelStateHistory.GridPointer, Context);
 
         CurrentEvent.SubEventStack.Clear();
         EventQueue.Clear();
         Context.PlayerIsDead = false;
+    }
+
+    public void ToggleObjectHide()
+    {
+        SpriteGrid.ToggleObjectLayerHide();
     }
 
     private void PushCurrentLevelStateHistory()

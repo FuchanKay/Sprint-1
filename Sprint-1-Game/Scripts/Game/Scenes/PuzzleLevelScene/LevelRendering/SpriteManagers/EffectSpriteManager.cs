@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -28,7 +27,7 @@ public class EffectSpriteManager()
 
     public void PlayEffect(EffectIds effectId, Coordinate coord)
     {
-        var realCoord = CalculateLiteralPos(coord);
+        var realCoord = SpriteGrid.CalculateLiteralPos(Context, coord);
         ISprite sprite = EffectSpriteFactory.CreateEffectSprite(effectId, realCoord, Context);
 
         EffectSprites[realCoord] = sprite;
@@ -42,14 +41,14 @@ public class EffectSpriteManager()
 
     public void RemoveEffect(Coordinate coord)
     {
-        var realCoord = CalculateLiteralPos(coord);
+        var realCoord = SpriteGrid.CalculateLiteralPos(Context, coord);
         EffectSprites.Remove(realCoord);
     }
 
     public void AddIterableEffectSprite(EffectIds effectId, Coordinate startCoord, Coordinate currentCoord, float rotation)
     {
-        var realStartCoord = CalculateLiteralPos(startCoord);
-        var realCurrentCoord = CalculateLiteralPos(currentCoord);
+        var realStartCoord = SpriteGrid.CalculateLiteralPos(Context, startCoord);
+        var realCurrentCoord = SpriteGrid.CalculateLiteralPos(Context, currentCoord);
 
         var sprite = EffectSpriteFactory.CreateEffectSprite(effectId, realCurrentCoord, Context);
         sprite.Rotation = rotation;
@@ -65,7 +64,7 @@ public class EffectSpriteManager()
 
     public void StartIterableEffect(Coordinate startCoord)
     {
-        var realStartCoord = CalculateLiteralPos(startCoord);
+        var realStartCoord = SpriteGrid.CalculateLiteralPos(Context, startCoord);
         var spriteList = IterableEffectSprites[realStartCoord];
         IterableEffectSprites.Remove(realStartCoord);
 
@@ -87,15 +86,15 @@ public class EffectSpriteManager()
         }
     }
 
-    private Vector2 CalculateLiteralPos(Coordinate coord)
-    {
-        var spriteWidth = (int)(Context.GridSpriteWidthPx * Context.GridScale);
-        var spriteX = spriteWidth * coord.X + Context.PuzzleOffsetX;
-        var spriteHeight = (int)(Context.GridSpriteHeightPx * Context.GridScale);
-        var spriteY = spriteHeight * coord.Y + Context.PuzzleOffsetY;
+    // private Vector2 CalculateLiteralPos(Coordinate coord)
+    // {
+    //     var spriteWidth = (int)(Context.RawSpriteWidthPx * Context.GridScale);
+    //     var spriteX = spriteWidth * coord.X + Context.PuzzleOffsetX;
+    //     var spriteHeight = (int)(Context.RawSpriteHeightPx * Context.GridScale);
+    //     var spriteY = spriteHeight * coord.Y + Context.PuzzleOffsetY;
 
-        return new Vector2(spriteX, spriteY);
-    }
+    //     return new Vector2(spriteX, spriteY);
+    // }
 
     private void UpdateAnimatingEffectsList(int dtMs)
     {
