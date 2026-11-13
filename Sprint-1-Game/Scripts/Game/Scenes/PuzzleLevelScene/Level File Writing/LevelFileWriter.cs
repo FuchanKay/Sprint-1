@@ -68,10 +68,21 @@ public class LevelFileWriter()
 
     private static string WriteTile(Grid grid)
     {
+        string tileString;
         string TileID = grid.Tile.Id.ToString();
         string TileDirection = ((int)grid.Tile.Direction).ToString();
 
-        return TileID + DirectionDelimiter + TileDirection;
+        if (TileID == "Floor")
+        {
+            var floorTile = (FloorTile)grid.Tile;
+            tileString = floorTile.RegionName.Replace(" ", string.Empty);
+        }
+        else
+        {
+            tileString = TileID + DirectionDelimiter + TileDirection;
+        }
+
+        return tileString;
     }
 
     private static string WriteObject(Grid grid)
@@ -87,7 +98,18 @@ public class LevelFileWriter()
         else if (ObjectID == "Wall")
         {
             var wallObject = (WallObject)grid.Object;
-            objectString = wallObject.RegionName.ToString().Replace(" ", string.Empty) + DirectionDelimiter + ObjectDirection;
+            objectString = wallObject.RegionName.Replace(" ", string.Empty) + DirectionDelimiter + ObjectDirection;
+        }
+        else if (ObjectID == "Rock")
+        {
+            var rockObject = (RockObject)grid.Object;
+            objectString = rockObject.RegionName.Replace(" ", string.Empty) + DirectionDelimiter + ObjectDirection;
+        }
+        else if (ObjectID == "Door")
+        {
+            var doorObject = (DoorObject)grid.Object;
+            string doorOpenStatus = doorObject.IsOpen ? "OpenDoor" : "ClosedDoor";
+            objectString = doorOpenStatus + DirectionDelimiter + ObjectDirection;
         }
         else
         {
