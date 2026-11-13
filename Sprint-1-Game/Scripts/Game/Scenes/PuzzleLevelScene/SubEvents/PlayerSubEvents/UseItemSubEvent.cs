@@ -14,18 +14,21 @@ public class UseItemSubEvent(int inventoryId) : ILevelSubEvent
         var targetTileSprite = spriteGrid.GetTileSprite(targetCoord);
 
         var itemObj = inventoryManager.GetItem(inventoryId);
-        var seedObj = itemObj as SeedObject;
         bool itemEquiped = itemObj.Id != ObjectIds.Empty;
         bool isFrontCleared = targetObj.Id == ObjectIds.Empty;
         if (itemEquiped && isFrontCleared)
         {
-            var canPlantPumpkinSeed = targetTileSprite.IdleName == RegionNames.DirtTile && itemObj.Id == ObjectIds.Seed && seedObj.RegionName == RegionNames.PumpkinSeed;
-            var canPlantVineSeed = targetTileSprite.IdleName == RegionNames.DirtTile && itemObj.Id == ObjectIds.Seed && seedObj.RegionName == RegionNames.VineSeed;
+            var canPlantPumpkinSeed = targetTileSprite.IdleName == RegionNames.DirtTile && itemObj.Id == ObjectIds.PumpkinSeed;
+            var canPlantVineSeed = targetTileSprite.IdleName == RegionNames.DirtTile && itemObj.Id == ObjectIds.VineSeed;
+            var isNotSeed = itemObj.Id != ObjectIds.PumpkinSeed && itemObj.Id != ObjectIds.VineSeed;
+
             if(canPlantPumpkinSeed)
             {
                 var pumpkinSeedTile = TileFactory.CreatePumpkinSeedTile();
                 gridPointer.SetTile(targetCoord, pumpkinSeedTile);
                 spriteGrid.SetNewTileSprite(targetCoord, pumpkinSeedTile);
+                inventoryManager.EmptySlot(inventoryId);
+                audioManager.PlaySound(SoundNames.Pickup);
                 
             }
             else if (canPlantVineSeed)
@@ -33,15 +36,17 @@ public class UseItemSubEvent(int inventoryId) : ILevelSubEvent
                 var vineSeedTile = TileFactory.CreateVineSeedTile(playerDirection);
                 gridPointer.SetTile(targetCoord, vineSeedTile);
                 spriteGrid.SetNewTileSprite(targetCoord, vineSeedTile);
+                inventoryManager.EmptySlot(inventoryId);
+                audioManager.PlaySound(SoundNames.Pickup);
                 
             }
-            else if (itemObj.Id != ObjectIds.Seed)
+            else if (isNotSeed)
             {
                 gridPointer.SetObject(targetCoord, itemObj);
                 spriteGrid.SetNewObjectSprite(targetCoord, itemObj);
+                inventoryManager.EmptySlot(inventoryId);
+                audioManager.PlaySound(SoundNames.Pickup);
             }
-            inventoryManager.EmptySlot(inventoryId);
-            audioManager.PlaySound(SoundNames.Pickup);
         }
     }
 }

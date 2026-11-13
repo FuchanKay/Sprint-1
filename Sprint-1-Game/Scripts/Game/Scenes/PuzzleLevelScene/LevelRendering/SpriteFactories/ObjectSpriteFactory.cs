@@ -21,10 +21,15 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.ObjectSprites);
                 spriteScale = context.GridScale * 4.0f;
                 break;
-            case ObjectIds.Seed:
+            case ObjectIds.PumpkinSeed:
                 sprite = new StaticSprite(textureAtlas);
-                var seed = obj as SeedObject;
-                regionName = seed.RegionName;
+                regionName = RegionNames.PumpkinSeed;
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.ObjectSprites);
+                spriteScale = context.GridScale * 4.0f;
+                break;
+            case ObjectIds.VineSeed:
+                sprite = new StaticSprite(textureAtlas);
+                regionName = RegionNames.VineSeed;
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.ObjectSprites);
                 spriteScale = context.GridScale * 4.0f;
                 break;

@@ -29,6 +29,10 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.SetState(RegionNames.WaterTile);
                 sprite.IdleName = RegionNames.WaterTile;
                 break;
+            case TileIds.Ice:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.IceTile);
+                break;
             case TileIds.Lava:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.LavaTile);
@@ -64,6 +68,11 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
         sprite.Scale = context.GridScale * 4.0f;
         sprite.LayerDepth = TileLayerDepth;
 
+        //PLACEHOLDER
+        if(id == TileIds.Ice) {
+            sprite.Texture = textureAtlas.GetTexture(TextureNames.IceSprite);
+            sprite.Scale = context.GridScale * 0.45f;
+        }
         return sprite;
     }
 }

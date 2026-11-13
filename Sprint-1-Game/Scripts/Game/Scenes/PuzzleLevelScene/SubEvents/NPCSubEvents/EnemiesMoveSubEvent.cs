@@ -29,9 +29,10 @@ public class EnemiesMoveSubEvent() : ILevelSubEvent
     {
         List<Directions> validDirections = Pathfinder.GetValidDirections(gridPointer, enemyCoord);
         int randomInt = Random.Shared.Next(0, validDirections.Count);
-        var destination = validDirections[randomInt];
-        if (gridPointer.GetObject(enemyCoord + Coordinate.ToCoordinate(destination)).Id == ObjectIds.Player) return;
-        MoveEnemySprite(spriteGrid, gridPointer, enemyCoord, destination);
+        var destinationDirection = validDirections[randomInt];
+        if (gridPointer.GetObject(enemyCoord + Coordinate.ToCoordinate(destinationDirection)).Id == ObjectIds.Player) return;
+        gridPointer.GetObject(enemyCoord).Direction = destinationDirection;
+        MoveEnemySprite(spriteGrid, gridPointer, enemyCoord, destinationDirection);
     }
 
     private void MoveHorizontal(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate enemyCoord)
@@ -103,5 +104,8 @@ public class EnemiesMoveSubEvent() : ILevelSubEvent
 
         gridPointer.SetObject(enemyCoord, ObjectFactory.CreateEmpty());
         gridPointer.SetObject(destinationCoord, enemyObj);
+
+        if(gridPointer.ObjectsJustMoved.ContainsKey(direction) == false) gridPointer.ObjectsJustMoved[direction] = new Dictionary<Coordinate, IObject>();
+        gridPointer.ObjectsJustMoved[direction].Add(destinationCoord, enemyObj);
     }
 }
