@@ -87,36 +87,9 @@ public class LevelFileWriter()
 
     private static string WriteObject(Grid grid)
     {
-        string objectString;
-        string ObjectID = grid.Object.Id.ToString();
+        string ObjectName = grid.Object.RegionName.Replace(" ", string.Empty);
         string ObjectDirection = ((int)grid.Object.Direction).ToString();
 
-        if (ObjectID == "Empty")
-        {
-            objectString = "_";
-        } 
-        else if (ObjectID == "Wall")
-        {
-            var wallObject = (WallObject)grid.Object;
-            objectString = wallObject.RegionName.Replace(" ", string.Empty) + DirectionDelimiter + ObjectDirection;
-        }
-        else if (ObjectID == "Rock")
-        {
-            var rockObject = (RockObject)grid.Object;
-            objectString = rockObject.RegionName.Replace(" ", string.Empty) + DirectionDelimiter + ObjectDirection;
-        }
-        else if (ObjectID == "Door")
-        {
-            var doorObject = (DoorObject)grid.Object;
-            string doorOpenStatus = doorObject.IsOpen ? "OpenDoor" : "ClosedDoor";
-            objectString = doorOpenStatus + DirectionDelimiter + ObjectDirection;
-        }
-        else
-        {
-            objectString = ObjectID + DirectionDelimiter + ObjectDirection;
-        }
-        
-
-        return objectString;
+        return ObjectName + DirectionDelimiter + ObjectDirection;
     }
 }
