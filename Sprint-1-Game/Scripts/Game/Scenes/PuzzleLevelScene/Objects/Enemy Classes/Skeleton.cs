@@ -16,6 +16,7 @@ public class Skeleton : IEnemy
     }
     public ObjectIds Id => ObjectIds.Skeleton;
     public Directions Direction { get; set; } = Directions.South;
+    public string RegionName => RegionNames.Skeleton;
     public bool IsPushable => true;
     public bool IsDestructible => true;
     public bool IsRotatable => false;

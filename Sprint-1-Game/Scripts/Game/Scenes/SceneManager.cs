@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
-using Microsoft.Xna.Framework.Content;
+
 namespace Scripts.Game;
 
 public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager, GameWindow window) : ISceneManager
@@ -60,6 +60,16 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         }
     }
 
+    public void PlayLevel(GridPointer grid, LevelContext level)
+    {
+        if (NameSceneMap.TryGetValue(SceneNames.PuzzleLevel, out ISceneController scene))
+        {
+            CurrentScene = scene;
+            var sceneAsPuzzleLevel = CurrentScene as PuzzleLevelSceneController;
+            sceneAsPuzzleLevel.Init(grid, level);
+        }
+    }
+
     public void ExitGame()
     {
         ShouldExit = true;
@@ -75,6 +85,9 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
     {
         var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas, spriteFontManager);
         NameSceneMap.TryAdd(SceneNames.MainMenu, mainMenuScene);
+
+        var levelEditorScene = new LevelEditorSceneController(this, buttonInput, mouseInput, textureAtlas);
+        NameSceneMap.TryAdd(SceneNames.LevelEditor, levelEditorScene);
 
         var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas, spriteFontManager, window);
         NameSceneMap.TryAdd(SceneNames.PuzzleLevel, puzzleLevelScene);
