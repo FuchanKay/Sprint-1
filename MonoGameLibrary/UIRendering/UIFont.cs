@@ -42,16 +42,11 @@ public class UIFont
         Width = FontSize().X;
         Height = FontSize().Y;
     }
-    public void DrawAtOrigin(SpriteBatch sb)
-    {
-        CenterOrigin();
-        sb.DrawString(Font, Text, Pos, Color, Rotation, Origin, Scale, Effects, LayerDepth);
-    }
     public void Draw(SpriteBatch sb)
     {
         sb.DrawString(Font, Text, Pos, Color, Rotation, Origin, Scale, Effects, LayerDepth);
     }
-    private void CenterOrigin()
+    public void CenterOrigin()
     {
         Origin = new Vector2(Width, Height) * 0.5f;
     }
