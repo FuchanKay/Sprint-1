@@ -6,18 +6,13 @@ namespace Scripts.Game;
 
 public class EnemiesMoveSubEvent() : ILevelSubEvent
 {
-    public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
+    public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
         var batCoords = gridPointer.GetObjectPointers(ObjectIds.Bat).Keys.ToList();
-        var frogCoords = gridPointer.GetObjectPointers(ObjectIds.Frog).Keys.ToList();
         var zombieCoords = gridPointer.GetObjectPointers(ObjectIds.Zombie).Keys.ToList();
         foreach (var batCoord in batCoords)
         {
             PathFindToPlayer(spriteGrid, gridPointer, batCoord);
-        }
-        foreach (var frogCoord in frogCoords)
-        {
-            MoveRandom(spriteGrid, gridPointer, frogCoord);
         }
         foreach (var zombieCoord in zombieCoords)
         {
@@ -57,7 +52,7 @@ public class EnemiesMoveSubEvent() : ILevelSubEvent
         MoveEnemySprite(spriteGrid, gridPointer, enemyCoord, enemyObj.Direction);
     }
 
-    private void PathFindToPlayer(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate enemyCoord)
+    protected void PathFindToPlayer(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate enemyCoord)
     {
         var destinationCoord = Pathfinder.FindNextPointTowardsPlayer(gridPointer, enemyCoord);
 
@@ -73,7 +68,6 @@ public class EnemiesMoveSubEvent() : ILevelSubEvent
         }
     }
 
-    // Overload method to handle the frogs special directional movement sprites.
     private void MoveEnemySprite(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate enemyCoord, Directions direction)
     {
         var enemySprite = spriteGrid.GetObjectSprite(enemyCoord);
@@ -104,6 +98,11 @@ public class EnemiesMoveSubEvent() : ILevelSubEvent
 
         gridPointer.SetObject(enemyCoord, ObjectFactory.CreateEmpty());
         gridPointer.SetObject(destinationCoord, enemyObj);
+
+        foreach (var movedObjects in gridPointer.ObjectsJustMoved.Values)
+        {
+            movedObjects.Remove(enemyCoord);
+        }
 
         if (gridPointer.ObjectsJustMoved.ContainsKey(direction) == false) gridPointer.ObjectsJustMoved[direction] = new Dictionary<Coordinate, IObject>();
         gridPointer.ObjectsJustMoved[direction].Add(destinationCoord, enemyObj);

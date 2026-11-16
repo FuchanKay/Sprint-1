@@ -14,6 +14,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private GameLayoutManager GameLayoutManager = new();
     private UIManager UIManager = new(spriteFontManager);
     private readonly IAudioManager AudioManager = audioManager;
+    private ILevelTransition LevelTransition;
     public int CurrentLevelIndex = 0;
     // Loading a SpriteFont Description using the content pipeline
 
@@ -24,6 +25,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
         Level.Init(CurrentLevelIndex);
         UIManager.Init(Level);
+        LevelTransition = new WipeTransition(Level);
     }
 
     public void Init(GridPointer grid, LevelContext level)
@@ -36,6 +38,13 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
 
     public void Update(int dtMs)
     {
+        if (LevelTransition.IsActive)
+        {
+            LevelTransition.Update(dtMs);
+            Level.Update(dtMs);
+            return;
+        }
+
         var lockMove = buttonInput.IsHeld(InputNames.LShift);
         if (buttonInput.IsPressed(InputNames.MoveNorth) || buttonInput.IsPressed(InputNames.MoveNorthAlt))
         {
@@ -97,7 +106,6 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         Level.Update(dtMs);
         UIManager.Update(dtMs);
 
-
         // Exits to the main menu upon a levels completion
         if (Level.Context.LevelIsCompleted && Level.Context.LevelEditorMode)
         {
@@ -106,8 +114,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         else if (Level.Context.LevelIsCompleted)
         {
             CurrentLevelIndex = (CurrentLevelIndex + 1) % FileNames.LevelFileNames.Length;
-            Level.Init(CurrentLevelIndex);
-            Level.Context.LevelIsCompleted = false;
+            LevelTransition.StartLevelTransition(CurrentLevelIndex);
         }
     }
     public void Draw(SpriteBatch sb)
@@ -115,5 +122,6 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
 
         Level.Draw(sb);
         UIManager.Draw(sb);
+        if(LevelTransition.IsActive) LevelTransition.Draw(sb);
     }
 }

@@ -65,10 +65,10 @@ public class InventoryManager()
                 idString = "Empty";
                 break;
             case ObjectIds.PumpkinSeed:
-                idString = "Pumpkin Seed";
+                idString = "PSeed";
                 break;
             case ObjectIds.VineSeed:
-                idString = "Vine Seed";
+                idString = "VSeed";
                 break;
         }
         return idString;

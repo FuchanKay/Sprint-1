@@ -13,10 +13,10 @@ _,_,_,_,_,_,_,_,_,_
 CornerWall,Wall,Wall,Wall,ClosedDoor,Wall,Wall,Wall,Wall,CornerWall.1
 Wall.3,Player,RedLizard,_,_,_,_,Bomb,RedLizard,Wall.1
 Wall.3,_,_,_,_,Pumpkin,Rock,Bomb,Bomb,Wall.1
-Wall.3,Bomb,_,_,_,_,_,_,_,Wall.1
+Wall.3,_,_,_,_,_,_,_,_,Wall.1
 Wall.3,_,_,_,_,_,_,_,_,Wall.1
 Wall.3,_,_,_,_,_,Rock,_,_,Wall.1
 Wall.3,_,_,_,_,_,_,_,_,Wall.1
-Wall.3,RedLizard,BlueLizard,_,_,_,_,_,Bomb,Wall.1
-Wall.3,_,_,Warlock,_,_,_,Skeleton,_,Wall.1
+Wall.3,_,Frog,_,_,_,_,_,Bomb,Wall.1
+Wall.3,_,_,_,_,_,_,Skeleton,_,Wall.1
 CornerWall.3,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,CornerWall.2
