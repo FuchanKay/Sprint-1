@@ -14,8 +14,7 @@ public class LevelFileWriter()
         WriteHeader(levelFile, levelContext);
         WriteGrids(levelFile, gridPointer, levelContext);
         
-        string levelFilePath = "Content/Levels/" + levelContext.LevelName + ".csv";
-        File.WriteAllLines(levelFilePath, levelFile);
+        CreateLevelFile(levelFile, levelContext);
     }
 
     private static void WriteHeader(string[] levelFile, LevelContext levelContext)
@@ -91,5 +90,23 @@ public class LevelFileWriter()
         string ObjectDirection = ((int)grid.Object.Direction).ToString();
 
         return ObjectName + DirectionDelimiter + ObjectDirection;
+    }
+
+    private static void CreateLevelFile(string[] levelFile, LevelContext levelContext)
+    {
+        string levelsFolder = Path.Combine(GetProjectDirectory(),"Content", "Levels");
+        Directory.CreateDirectory(levelsFolder);
+
+        string path = Path.Combine(levelsFolder, levelContext.LevelName + ".csv");
+        File.WriteAllLines(path, levelFile);
+    }
+
+    static string GetProjectDirectory()
+    {
+        var dir = new DirectoryInfo(AppContext.BaseDirectory);
+        while (dir != null && dir.GetFiles("*.csproj").Length == 0)
+            dir = dir.Parent;
+
+        return dir?.FullName ?? AppContext.BaseDirectory;
     }
 }
