@@ -4,7 +4,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class LevelEditorSceneController(SceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, ITextureAtlas textureAtlas) : ISceneController
+public class LevelEditorSceneController(SceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager) : ISceneController
 {
     private LevelContext Context = new()
     {
@@ -18,6 +18,7 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
     private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
+    private LevelEditorHUDPanel HUD = new(spriteFontManager);
     private readonly List<GridPointer> UndoHistory = [];
     private readonly List<GridPointer> RedoHistory = [];
     private readonly int UndoHistoryMaxLength = 2000;
@@ -46,6 +47,9 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
 
         Brush = new EraserBrush(mouseInput, SpriteGrid, Context, UndoHistory, RedoHistory);
         Brush.Init(CurrentGrid);
+
+        HUD = new(spriteFontManager);
+        HUD.Init();
     }
 
     public void Update(int dtMs)
@@ -120,6 +124,7 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
     {
         SpriteGrid.Draw(sb);
         Brush.Draw(sb);
+        HUD.Draw(sb);
     }
 
     private void Undo()
