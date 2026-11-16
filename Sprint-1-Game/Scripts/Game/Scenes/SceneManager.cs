@@ -11,10 +11,12 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
     private ISceneController CurrentScene;
     public bool ShouldExit { get; private set; }
     public bool ShouldRestart { get; private set; }
+    public ISceneTransition SceneTransition { get; set; }
 
     public void Init()
     {
         ShouldExit = false;
+        SceneTransition = new FadeTransition(this);
 
         AddScenesToMap();
 
@@ -43,12 +45,14 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         {
             ExitGame();
         }
+        if (SceneTransition.IsActive) SceneTransition.Update(dtMs);
         CurrentScene.Update(dtMs);
     }
 
     public void Draw(SpriteBatch sb)
     {
         CurrentScene.Draw(sb);
+        if (SceneTransition.IsActive) SceneTransition.Draw(sb);
     }
 
     public void SwapScene(string sceneName)
@@ -57,6 +61,16 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         {
             CurrentScene = scene;
             scene.Init();
+        }
+    }
+
+    public void PlayLevel(GridPointer grid, LevelContext level)
+    {
+        if (NameSceneMap.TryGetValue(SceneNames.PuzzleLevel, out ISceneController scene))
+        {
+            CurrentScene = scene;
+            var sceneAsPuzzleLevel = CurrentScene as PuzzleLevelSceneController;
+            sceneAsPuzzleLevel.Init(grid, level);
         }
     }
 
@@ -73,11 +87,11 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
 
     private void AddScenesToMap()
     {
-        var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas);
+        var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas, spriteFontManager);
         NameSceneMap.TryAdd(SceneNames.MainMenu, mainMenuScene);
 
-        // var gameplayScene = new GameplaySceneController(this, buttonInput, mouseInput, audioManager, texAtlas);
-        // NameSceneMap.TryAdd(GameplaySceneController.Name, gameplayScene);
+        var levelEditorScene = new LevelEditorSceneController(this, buttonInput, mouseInput, textureAtlas, spriteFontManager);
+        NameSceneMap.TryAdd(SceneNames.LevelEditor, levelEditorScene);
 
         var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas, spriteFontManager, window);
         NameSceneMap.TryAdd(SceneNames.PuzzleLevel, puzzleLevelScene);

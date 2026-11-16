@@ -5,7 +5,7 @@ namespace Scripts.Game;
 
 public class EffectSpriteFactory(ITextureAtlas textureAtlas)
 {
-    private readonly static float EffectLayerDepth = 0.5f;
+    private readonly static float EffectLayerDepth = 0.8f;
     public ISprite CreateEffectSprite(EffectIds effectId, Vector2 coord, LevelContext context)
     {
         ISprite sprite = new AnimatedSprite(textureAtlas);
@@ -90,6 +90,7 @@ public class EffectSpriteFactory(ITextureAtlas textureAtlas)
         sprite.CurrentPosition = coord;
         sprite.SetTargetPosition(coord);
         sprite.LayerDepth = EffectLayerDepth;
+        if(effectId == EffectIds.BlueLaserBeam || effectId == EffectIds.RedLaserBeam) sprite.LayerDepth = 0.75f;
         sprite.Scale = spriteScale;
         return sprite;
     }

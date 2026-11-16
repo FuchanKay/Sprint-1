@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
@@ -11,12 +12,11 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private GameLayoutManager GameLayoutManager = new();
-    private BasicSpriteFontWriter EnemyCounter = new (spriteFontManager);
-    private BasicSpriteFontWriter InventoryStatus = new (spriteFontManager);
-
-
+    private UIManager UIManager = new(spriteFontManager);
     private readonly IAudioManager AudioManager = audioManager;
+    private ILevelTransition LevelTransition;
     public int CurrentLevelIndex = 0;
+    // Loading a SpriteFont Description using the content pipeline
 
     public void Init()
     {
@@ -24,11 +24,27 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         LevelFileParser = new LevelFileParser();
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
         Level.Init(CurrentLevelIndex);
-        EnemyCounter.Init(FontNames.DefaultFont, new Vector2 (1040,40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.White);
-        InventoryStatus.Init(FontNames.DefaultFont, new Vector2(1040,80), $"Inventory:\n{Level.LevelStateHistory.InventoryManager.ReadInventoryString()}", Color.White);
+        UIManager.Init(Level);
+        LevelTransition = new WipeTransition(Level);
     }
+
+    public void Init(GridPointer grid, LevelContext level)
+    {
+        GameLayoutManager.Init(window);
+        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
+        Level.Init(grid, level);
+        UIManager.Init(Level);
+    }
+
     public void Update(int dtMs)
     {
+        if (LevelTransition.IsActive)
+        {
+            LevelTransition.Update(dtMs);
+            Level.Update(dtMs);
+            return;
+        }
+
         var lockMove = buttonInput.IsHeld(InputNames.LShift);
         if (buttonInput.IsPressed(InputNames.MoveNorth) || buttonInput.IsPressed(InputNames.MoveNorthAlt))
         {
@@ -46,7 +62,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         {
             Level.EnqueueEvent(new MovePlayerEvent(Directions.West, lockMove));
         }
-        else if (buttonInput.IsPressed(InputNames.ChangeLevel))
+        else if (buttonInput.IsPressed(InputNames.ChangeLevel) && !Level.Context.LevelEditorMode)
         {
             CurrentLevelIndex = (CurrentLevelIndex + 1) % FileNames.LevelFileNames.Length;
             Level.Init(CurrentLevelIndex);
@@ -82,24 +98,30 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         {
             Level.Undo();
         }
+        else if (buttonInput.IsPressed(InputNames.ToggleObjectView))
+        {
+            Level.ToggleObjectHide();
+        }
 
         Level.Update(dtMs);
-        EnemyCounter.Update(new Vector2 (1040,40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}");
-        InventoryStatus.Update(new Vector2(1040,80), $"Inventory:\n{Level.LevelStateHistory.InventoryManager.ReadInventoryString()}");
-
+        UIManager.Update(dtMs);
 
         // Exits to the main menu upon a levels completion
-        if (Level.Context.LevelIsCompleted)
+        if (Level.Context.LevelIsCompleted && Level.Context.LevelEditorMode)
+        {
+            sceneManager.Restart();
+        }
+        else if (Level.Context.LevelIsCompleted)
         {
             CurrentLevelIndex = (CurrentLevelIndex + 1) % FileNames.LevelFileNames.Length;
-            Level.Init(CurrentLevelIndex);
-            Level.Context.LevelIsCompleted = false;
+            LevelTransition.StartLevelTransition(CurrentLevelIndex);
         }
     }
     public void Draw(SpriteBatch sb)
     {
-        EnemyCounter.Draw(sb);
-        InventoryStatus.Draw(sb);
+
         Level.Draw(sb);
+        UIManager.Draw(sb);
+        if(LevelTransition.IsActive) LevelTransition.Draw(sb);
     }
 }

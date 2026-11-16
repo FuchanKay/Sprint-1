@@ -1,9 +1,9 @@
-using Microsoft.Xna.Framework;
-
 namespace Scripts.Game;
+
+using System.Collections.Generic;
 using Scripts.GameComponents;
 
-public class SeedGrowthSubEvent : ILevelSubEvent
+public class SeedGrowthSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
@@ -18,17 +18,22 @@ public class SeedGrowthSubEvent : ILevelSubEvent
         {
             GrowPumpkin(spriteGrid, gridPointer, coord);
         }
-
-
     }
 
-    private static void GrowPumpkin(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate seedCoord)
+    private void GrowPumpkin(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate seedCoord)
     {
+
+        if (gridPointer.GetObject(seedCoord).Id != ObjectIds.Empty) return;
         var dirtTile = TileFactory.CreateDirtTile();
         gridPointer.SetTile(seedCoord, dirtTile);
         spriteGrid.SetNewTileSprite(seedCoord, dirtTile);
 
         var pumpkinObj = ObjectFactory.CreatePumpkin();
+        if (gridPointer.GetObject(seedCoord).Id == ObjectIds.Player)
+        {
+            subEventStack.Push(new PlayerDeathSubEvent());
+            return;
+        }
         gridPointer.SetObject(seedCoord, pumpkinObj);
         spriteGrid.SetNewObjectSprite(seedCoord, pumpkinObj);
 
@@ -41,7 +46,7 @@ public class SeedGrowthSubEvent : ILevelSubEvent
     private static void GrowVine(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate seedCoord)
     {
         var direction = gridPointer.GetTile(seedCoord).Direction;
-        var vineRotation = MathHelper.ToRadians((int)direction * 90);
+        var vineRotation = Utilities.ToRadians(direction);
 
         var startVineTile = TileFactory.CreateVineStartTile();
         startVineTile.Direction = direction;
@@ -63,11 +68,11 @@ public class SeedGrowthSubEvent : ILevelSubEvent
             tile = gridPointer.GetTile(nextCoord);
         }
 
-        var oppositeDirection = ((int)direction + 2) % 4;
-        var oppositeRotation = MathHelper.ToRadians(oppositeDirection * 90);
+        var oppositeDirection = Utilities.Rotate180(direction);
+        var oppositeRotation = Utilities.ToRadians(oppositeDirection);
 
         var endVineTile = TileFactory.CreateVineStartTile();
-        endVineTile.Direction = (Directions)oppositeDirection;
+        endVineTile.Direction = oppositeDirection;
         gridPointer.SetTile(nextCoord, endVineTile);
         spriteGrid.AddIterableTileSprite(endVineTile, seedCoord, nextCoord, oppositeRotation);
         spriteGrid.StartIterableTile(seedCoord);

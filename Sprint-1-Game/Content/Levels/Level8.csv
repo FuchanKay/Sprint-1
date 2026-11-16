@@ -1,0 +1,20 @@
+﻿Level 8,13,9,,,,,,,,,,
+Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
+Dirt,Dirt,Dirt,Dirt,Ice,Ice,Ice,Ice,Ice,Ice,Ice,Ice,Dirt
+Dirt,Dirt,Dirt,Dirt,Ice,Ice,Ice,Ice,Ice,Ice,Ice,Brick,Dirt
+Dirt,Dirt,Dirt,Dirt,Ice,Ice,Ice,Ice,Ice,Ice,Brick,Brick,Dirt
+Dirt,Dirt,Dirt,Dirt,Ice,Ice,Ice,Ice,Ice,Brick,Brick,Brick,Dirt
+Dirt,Dirt,Dirt,Dirt,Ice,Ice,Ice,Ice,Ice,Ice,Brick,Brick,Dirt
+Dirt,Dirt,Dirt,Dirt,Ice,Ice,Ice,Ice,Ice,Ice,Ice,Brick,Dirt
+Dirt,Dirt,Dirt,Dirt,Ice,Ice,Ice,Ice,Ice,Ice,Ice,Ice,Dirt
+Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
+_,_,_,_,_,_,_,_,_,_,_,_,_
+CornerWall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,Wall,CornerWall.1
+Wall.3,Bomb,Bomb,_,_,_,_,_,_,_,_,_,Wall.1
+Wall.3,Bomb,_,_,_,_,_,_,_,_,_,Skeleton,Wall.1
+Wall.3,_,_,_,_,_,_,_,_,_,Skeleton,Skeleton,Wall.1
+ClosedDoor,Player,_,_,_,_,_,_,_,Skeleton,Skeleton,Skeleton,Wall.1
+Wall.3,_,_,_,_,_,_,_,_,_,Skeleton,Skeleton,Wall.1
+Wall.3,_,_,_,_,_,_,_,_,_,_,Skeleton,Wall.1
+Wall.3,_,_,_,_,_,_,_,_,_,_,_,Wall.1
+CornerWall.3,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,CornerWall.2

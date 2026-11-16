@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.Xna.Framework;
 namespace Scripts.Game;
 
@@ -61,5 +60,4 @@ public struct Coordinate
     }
 
     public override string ToString() => $"({X}, {Y})";
-
 }

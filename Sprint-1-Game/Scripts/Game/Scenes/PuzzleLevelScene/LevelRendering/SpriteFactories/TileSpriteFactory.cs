@@ -16,19 +16,27 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
                 sprite = new StaticSprite(textureAtlas);
                 var floor = tile as FloorTile;
                 sprite.SetState(floor.RegionName);
-                sprite.Rotation = MathHelper.ToRadians((int)tile.Direction * 90);
+                sprite.IdleName = floor.RegionName;
+                sprite.Rotation = Utilities.ToRadians(tile.Direction);
                 break;
             case TileIds.Pit:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.PitTile);
+                sprite.IdleName = RegionNames.PitTile;
                 break;
             case TileIds.Water:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.WaterTile);
+                sprite.IdleName = RegionNames.WaterTile;
+                break;
+            case TileIds.Ice:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.IceTile);
                 break;
             case TileIds.Lava:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.LavaTile);
+                sprite.IdleName = RegionNames.LavaTile;
                 break;
             case TileIds.Bug:
                 sprite = new StaticSprite(textureAtlas);
@@ -60,6 +68,10 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
         sprite.Scale = context.GridScale * 4.0f;
         sprite.LayerDepth = TileLayerDepth;
 
+        if(id == TileIds.Ice) {
+            sprite.Texture = textureAtlas.GetTexture(TextureNames.IceSprite);
+            sprite.Scale = context.GridScale * 0.43f;
+        }
         return sprite;
     }
 }

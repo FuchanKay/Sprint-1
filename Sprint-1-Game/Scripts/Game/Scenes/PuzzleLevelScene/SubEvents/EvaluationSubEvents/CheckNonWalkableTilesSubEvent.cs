@@ -111,7 +111,7 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack) 
         {
             subEventStack.Push(new EnemyDamageSubEvent(lavaCoord));
         }
-        else if (obj.Id != ObjectIds.Empty)
+        else if (obj.Id != ObjectIds.Empty && obj.Id != ObjectIds.Key)
         {
             gridPointer.SetObject(lavaCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(lavaCoord);

@@ -14,6 +14,7 @@ public class SoundController : IAudioController
         SoundEffectInstance soundEffectInstance = soundConfig.SoundEffect;
         float VolumeMultiplier = soundConfig.Volume;
         soundEffectInstance.Volume = Volume * VolumeMultiplier;
+        soundEffectInstance.Stop();
         soundEffectInstance.Play();
     }
 

@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -26,6 +25,7 @@ public class Setup(ContentManager content, GameWindow window)
         MapDefaultInputs();
         AddAnimations();
         AddRegions();
+        AddFont();
         sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, SpriteFontManager, window);
         sceneManager.Init();
     }
@@ -35,7 +35,6 @@ public class Setup(ContentManager content, GameWindow window)
         BindAllTextures();
         LoadAudio();
         LoadUI();
-        LoadFont();
 
     }
 
@@ -52,9 +51,12 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.MoveWestAlt, (int)Keys.Left);
 
         ButtonInput.MapInput(InputNames.ChangeLevel, (int)Keys.B);
+        ButtonInput.MapInput(InputNames.RotatePaintBrush, (int)Keys.R);
 
         ButtonInput.MapInput(InputNames.LCtrl, (int)Keys.LeftControl);
         ButtonInput.MapInput(InputNames.LShift, (int)Keys.LeftShift);
+
+        ButtonInput.MapInput(InputNames.ToggleObjectView, (int)Keys.H);
 
         ButtonInput.MapInput(InputNames.Snap, (int)Keys.F);
 
@@ -62,7 +64,15 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.R);
         ButtonInput.MapInput(InputNames.ResetLevel, (int)Keys.R);
 
+        ButtonInput.MapInput(InputNames.ObjectPaintBrushMode, (int)Keys.P);
+        ButtonInput.MapInput(InputNames.EraserBrushMode, (int)Keys.E);
+        ButtonInput.MapInput(InputNames.TileBrushMode, (int)Keys.T);
+        ButtonInput.MapInput(InputNames.CycleBrushLeft, (int)Keys.A);
+        ButtonInput.MapInput(InputNames.CycleBrushRight, (int)Keys.D);
+        ButtonInput.MapInput(InputNames.PlayLevel, (int)Keys.M);
+
         ButtonInput.MapInput(InputNames.Undo, (int)Keys.Z);
+        ButtonInput.MapInput(InputNames.Redo, (int)Keys.Y);
 
         ButtonInput.MapInput(InputNames.PickItem, (int)Keys.G);
         ButtonInput.MapInput(InputNames.UseItem1, (int)Keys.D1);
@@ -70,6 +80,7 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.UseItem3, (int)Keys.D3);
 
         MouseInput.MapInput(InputNames.Select, (int)MouseButtons.Left);
+        MouseInput.MapInput(InputNames.EraserBrushMode, (int)MouseButtons.Right);
     }
 
     private void AddAnimations()
@@ -159,13 +170,24 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddRegion(RegionNames.LavaTile, 3, 3, 64, 64);
 
         TextureAtlas.AddRegion(RegionNames.WaterTile, 0, 4, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.IceTile, 0, 0, 602, 602);
         TextureAtlas.AddRegion(RegionNames.BoulderWaterTile, 1, 4, 64, 64);
         TextureAtlas.AddRegion(RegionNames.PumpkinWaterTile, 2, 4, 64, 64);
 
         // objects
         TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 64, 64);
         TextureAtlas.AddRegion(RegionNames.Pumpkin, 1, 0, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.Wall, 0, 0, 256, 256);
+        TextureAtlas.AddRegion(RegionNames.VineSeed, 2, 0, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.PumpkinSeed, 3, 0, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.InvertedCornerWall, 4, 0, 64, 64);
+
+        TextureAtlas.AddRegion(RegionNames.CornerWall, 0, 2, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.Wall, 1, 2, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.StandaloneWall, 2, 2, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.TopOfWall, 3, 2, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.StandaloneWallConnector, 4, 2, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.StandaloneWallCorner, 5, 2, 64, 64)
+;
         TextureAtlas.AddRegion(RegionNames.Bomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Key, 0, 0, 512, 512);
@@ -201,9 +223,11 @@ public class Setup(ContentManager content, GameWindow window)
     {
         TextureAtlas.AddTexture(TextureNames.PlayGameButton, FileNames.PlayGameButtonTexture);
         TextureAtlas.AddTexture(TextureNames.ExitGameButton, FileNames.ExitGameButtonTexture);
+        TextureAtlas.AddTexture(TextureNames.LevelEditorButton, FileNames.LevelEditorButtonTexture);
 
         TextureAtlas.AddTexture(TextureNames.Player, FileNames.PlayerTexture);
         TextureAtlas.AddTexture(TextureNames.TileSprites, FileNames.TileTextures);
+        TextureAtlas.AddTexture(TextureNames.IceSprite, FileNames.IcePlaceholder);
         TextureAtlas.AddTexture(TextureNames.ObjectSprites, FileNames.ObjectTextures);
         TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
         TextureAtlas.AddTexture(TextureNames.Door, FileNames.DoorTexture);
@@ -240,8 +264,10 @@ public class Setup(ContentManager content, GameWindow window)
         //place holder, will be implemented in the future
     }
 
-    private void LoadFont()
+    private void AddFont()
     {
         SpriteFontManager.MapFont(FontNames.DefaultFont, FileNames.DefaultFont);
+        SpriteFontManager.MapFont(FontNames.DungeonFont, FileNames.DungeonFont);
+
     }
 }

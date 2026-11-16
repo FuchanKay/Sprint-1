@@ -1,4 +1,5 @@
 namespace Scripts.Game;
+
 using Scripts.GameComponents;
 
 public class PlayerChangeDirectionSubEvent(Directions direction) : ILevelSubEvent

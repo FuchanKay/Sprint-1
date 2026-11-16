@@ -37,12 +37,64 @@ public class ObjectFactory()
         return CreateRock(RegionNames.Pumpkin);
     }
 
-    public static IObject CreateWall()
+    public static IObject CreatePumpkinSeed()
+    {
+        return new PumpkinSeedObject
+        {
+
+        };
+    }
+
+    public static IObject CreateVineSeed(Directions direction)
+    {
+        return new VineSeedObject
+        {
+            Direction = direction,
+        };
+    }
+
+    private static IObject CreateSkinnedWall(Directions direction, string regionName)
     {
         return new WallObject
         {
-            Direction = Directions.South,
+            Direction = direction,
+            RegionName = regionName
         };
+    }
+
+    public static IObject CreateWall(Directions direction)
+    {
+        return CreateSkinnedWall(direction, RegionNames.Wall);
+    }
+
+    public static IObject CreateCornerWall(Directions direction)
+    {
+        return CreateSkinnedWall(direction, RegionNames.CornerWall);
+    }
+
+    public static IObject CreateInvertedCornerWall(Directions direction)
+    {
+        return CreateSkinnedWall(direction, RegionNames.InvertedCornerWall);
+    }
+
+    public static IObject CreateStandaloneWall(Directions direction)
+    {
+        return CreateSkinnedWall(direction, RegionNames.StandaloneWall);
+    }
+
+    public static IObject CreateStandaloneWallConnector(Directions direction)
+    {
+        return CreateSkinnedWall(direction, RegionNames.StandaloneWallConnector);
+    }
+
+    public static IObject CreateStandaloneWallCorner(Directions direction)
+    {
+        return CreateSkinnedWall(direction, RegionNames.StandaloneWallCorner);
+    }
+
+    public static IObject CreateTopOfWall(Directions direction)
+    {
+        return CreateSkinnedWall(direction, RegionNames.TopOfWall);
     }
 
     public static IObject CreateBomb()
@@ -102,19 +154,19 @@ public class ObjectFactory()
         };
     }
 
-    public static IObject CreateBlueLizard()
+    public static IObject CreateBlueLizard(Directions direction)
     {
         return new BlueLizard
         {
-            Direction = Directions.South,
+            Direction = direction,
         };
     }
 
-    public static IObject CreateRedLizard()
+    public static IObject CreateRedLizard(Directions direction)
     {
         return new RedLizard
         {
-            Direction = Directions.South,
+            Direction = direction,
         };
     }
 

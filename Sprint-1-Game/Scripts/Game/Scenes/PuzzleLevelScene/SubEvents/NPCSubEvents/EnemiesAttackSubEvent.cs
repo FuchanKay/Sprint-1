@@ -68,7 +68,7 @@ public class CheckEnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, Lis
         var endCoord = laserPath.Peek();
 
         var lizard = gridPointer.GetObject(startCoord);
-            
+
         var lizardSprite = spriteGrid.GetObjectSprite(startCoord);
         var mouthOpen = RegionNames.ToLizardMouthOpenName(direction);
         lizardSprite.SetState(mouthOpen);
@@ -81,7 +81,6 @@ public class CheckEnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, Lis
         var dirCoord = startCoord + Coordinate.ToCoordinate(direction);
         var startDirCoord = dirCoord;
         var dirGrid = gridPointer.GetGrid(dirCoord);
-        Console.WriteLine($"{endCoord}");
         while (dirCoord != endCoord)
         {
             spriteGrid.AddIterableEffectSprite(laserColorId, startDirCoord, dirCoord, rotation);
@@ -89,7 +88,8 @@ public class CheckEnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, Lis
             if (dirGrid.Object.Id == ObjectIds.Player)
             {
                 subEventStack.Push(new PlayerDeathSubEvent());
-            } else if (dirGrid.Object is IEnemy)
+            }
+            else if (dirGrid.Object is IEnemy)
             {
                 subEventStack.Push(new EnemyDamageSubEvent(dirCoord));
             }
@@ -115,7 +115,7 @@ public class CheckEnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, Lis
         }
 
         var laserImpactEffect = EffectIds.RedLaserImpact;
-        if(lizard.Id == ObjectIds.BlueLizard) laserImpactEffect = EffectIds.BlueLaserImpact;
+        if (lizard.Id == ObjectIds.BlueLizard) laserImpactEffect = EffectIds.BlueLaserImpact;
         spriteGrid.AddIterableEffectSprite(laserImpactEffect, startDirCoord, dirCoord, 0);
         spriteGrid.StartIterableEffect(startDirCoord);
         audioManager.PlaySound(SoundNames.LaserBeam);
@@ -131,11 +131,11 @@ public class CheckEnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, Lis
         var currentObjAhead = gridPointer.GetObject(lineOfSight.Peek());
         var seesPlayer = currentObjAhead.Id == ObjectIds.Player;
         var seesDestructible = currentObjAhead.IsDestructible;
-        var seesEnemy = currentObjAhead is IEnemy;
+        var seesEnemy = currentObjAhead is IEnemy && currentObjAhead.Id != ObjectIds.RedLizard;
 
         var lizardSprite = spriteGrid.GetObjectSprite(lizardCoord);
         var isIdle = lizardSprite.IdleName.Contains("Idle");
 
-       return (seesPlayer || seesDestructible || seesEnemy) && isIdle;
+        return (seesPlayer || seesDestructible || seesEnemy) && isIdle;
     }
 }

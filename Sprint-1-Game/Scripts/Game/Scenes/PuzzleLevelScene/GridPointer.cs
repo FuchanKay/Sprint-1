@@ -8,6 +8,7 @@ public class GridPointer
     private readonly Dictionary<ObjectIds, Dictionary<Coordinate, IObject>> ObjectPointersCollection = [];
     private readonly Dictionary<TileIds, Dictionary<Coordinate, ITile>> TilePointersCollection = [];
     public readonly Dictionary<Coordinate, IEnemy> EnemyCollection = [];
+    public Dictionary<Directions, Dictionary<Coordinate, IObject>> ObjectsJustMoved = [];
 
     public void Init()
     {

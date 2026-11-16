@@ -10,6 +10,9 @@ public class LavaTile : ITile
         };
     }
     public TileIds Id => TileIds.Lava;
+    public string RegionName => RegionNames.LavaTile;
     public bool IsWalkable => false;
+    public bool IsRotatable => false;
+
     public Directions Direction { get; set; }
 }
