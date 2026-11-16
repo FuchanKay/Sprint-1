@@ -71,6 +71,24 @@ public class LevelFileParser()
 
     private ITile ProcessTile(string tileValue, int x, int y)
     {
+        string[] tileParts = tileValue.Split(DirectionDelimiter);
+        string tileType = tileParts[0];
+
+        if (tileParts.Length == 1)
+        {
+            string[] fixedBuffer = new string[2];
+            tileParts.CopyTo(fixedBuffer, 0);
+            tileParts = fixedBuffer;
+            tileParts[1] = "0";
+        }
+
+        string strDirection = tileParts[1];
+        var direction = Directions.North;
+        if (int.TryParse(strDirection, out var numDirection))
+        {
+            direction = (Directions)(numDirection % 4);
+        }
+
         ITile tile = tileValue switch
         {
             "_" => TileFactory.CreateEmptyTile(),
