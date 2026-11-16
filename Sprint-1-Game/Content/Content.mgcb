@@ -441,6 +441,3 @@
 
 #begin Levels/Level8.csv
 /copy:Levels/Level8.csv
-
-#begin Levels/test.csv
-/copy:Levels/Level8.csv
