@@ -14,7 +14,7 @@ public class WipeTransition(PuzzleLevel Level) : ILevelTransition
     private enum TransitionType {None, TransitionIn, TransitionOut};
     private TransitionType currentTransitionType = TransitionType.None; 
     private Directions direction = Directions.West;
-    private const float LevelScreenRatio = 4f / 5f;
+    private const float LevelScreenRatio = 1f;
    
     public void StartLevelTransition(int newLevelIndex)
     {
