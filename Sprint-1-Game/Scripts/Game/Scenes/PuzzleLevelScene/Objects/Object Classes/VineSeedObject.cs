@@ -11,6 +11,7 @@ public class VineSeedObject() : IObject
     }
     public ObjectIds Id => ObjectIds.VineSeed;
     public Directions Direction { get; set; }
+    public string RegionName => RegionNames.VineSeed;
     public bool IsPushable => true;
     public bool IsDestructible => true;
     public bool IsRotatable => false;

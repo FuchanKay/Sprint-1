@@ -2,8 +2,12 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
+<<<<<<< HEAD
 using Microsoft.Xna.Framework.Content;
 using MonoGameLibrary.UIRendering;
+=======
+
+>>>>>>> origin
 namespace Scripts.Game;
 
 public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas, UITextureAtlas uITextureAtlas, GameWindow window) : ISceneManager
@@ -61,6 +65,16 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         }
     }
 
+    public void PlayLevel(GridPointer grid, LevelContext level)
+    {
+        if (NameSceneMap.TryGetValue(SceneNames.PuzzleLevel, out ISceneController scene))
+        {
+            CurrentScene = scene;
+            var sceneAsPuzzleLevel = CurrentScene as PuzzleLevelSceneController;
+            sceneAsPuzzleLevel.Init(grid, level);
+        }
+    }
+
     public void ExitGame()
     {
         ShouldExit = true;
@@ -77,10 +91,17 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas, uIFontAtlas);
         NameSceneMap.TryAdd(SceneNames.MainMenu, mainMenuScene);
 
+<<<<<<< HEAD
         // var gameplayScene = new GameplaySceneController(this, buttonInput, mouseInput, audioManager, texAtlas);
         // NameSceneMap.TryAdd(GameplaySceneController.Name, gameplayScene);
 
         var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas, uIFontAtlas, uITextureAtlas, window);
+=======
+        var levelEditorScene = new LevelEditorSceneController(this, buttonInput, mouseInput, textureAtlas);
+        NameSceneMap.TryAdd(SceneNames.LevelEditor, levelEditorScene);
+
+        var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas, spriteFontManager, window);
+>>>>>>> origin
         NameSceneMap.TryAdd(SceneNames.PuzzleLevel, puzzleLevelScene);
     }
 }

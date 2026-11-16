@@ -105,7 +105,7 @@ public class EnemiesMoveSubEvent() : ILevelSubEvent
         gridPointer.SetObject(enemyCoord, ObjectFactory.CreateEmpty());
         gridPointer.SetObject(destinationCoord, enemyObj);
 
-        if(gridPointer.ObjectsJustMoved.ContainsKey(direction) == false) gridPointer.ObjectsJustMoved[direction] = new Dictionary<Coordinate, IObject>();
+        if (gridPointer.ObjectsJustMoved.ContainsKey(direction) == false) gridPointer.ObjectsJustMoved[direction] = new Dictionary<Coordinate, IObject>();
         gridPointer.ObjectsJustMoved[direction].Add(destinationCoord, enemyObj);
     }
 }

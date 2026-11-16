@@ -1,4 +1,5 @@
 namespace Scripts.Game;
+
 using Scripts.GameComponents;
 
 public class UseItemSubEvent(int inventoryId) : ILevelSubEvent
@@ -22,14 +23,14 @@ public class UseItemSubEvent(int inventoryId) : ILevelSubEvent
             var canPlantVineSeed = targetTileSprite.IdleName == RegionNames.DirtTile && itemObj.Id == ObjectIds.VineSeed;
             var isNotSeed = itemObj.Id != ObjectIds.PumpkinSeed && itemObj.Id != ObjectIds.VineSeed;
 
-            if(canPlantPumpkinSeed)
+            if (canPlantPumpkinSeed)
             {
                 var pumpkinSeedTile = TileFactory.CreatePumpkinSeedTile();
                 gridPointer.SetTile(targetCoord, pumpkinSeedTile);
                 spriteGrid.SetNewTileSprite(targetCoord, pumpkinSeedTile);
                 inventoryManager.EmptySlot(inventoryId);
                 audioManager.PlaySound(SoundNames.Pickup);
-                
+
             }
             else if (canPlantVineSeed)
             {
@@ -38,7 +39,7 @@ public class UseItemSubEvent(int inventoryId) : ILevelSubEvent
                 spriteGrid.SetNewTileSprite(targetCoord, vineSeedTile);
                 inventoryManager.EmptySlot(inventoryId);
                 audioManager.PlaySound(SoundNames.Pickup);
-                
+
             }
             else if (isNotSeed)
             {

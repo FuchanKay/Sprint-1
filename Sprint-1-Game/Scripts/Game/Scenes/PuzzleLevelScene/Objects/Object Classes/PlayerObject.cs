@@ -11,6 +11,7 @@ public class PlayerObject : IObject
     }
     public ObjectIds Id => ObjectIds.Player;
     public Directions Direction { get; set; } = Directions.South;
+    public string RegionName => RegionNames.ToIdleRegionName(Directions.South);
     public bool IsPushable => false;
     public bool IsDestructible => false;
     public bool IsRotatable => true;

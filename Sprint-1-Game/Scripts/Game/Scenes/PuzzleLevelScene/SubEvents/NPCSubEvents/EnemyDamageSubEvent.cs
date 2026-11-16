@@ -9,7 +9,8 @@ public class EnemyDamageSubEvent(Coordinate enemyCoord) : ILevelSubEvent
         if (!gridPointer.EnemyCollection.ContainsKey(enemyCoord)) return;
         var enemy = gridPointer.EnemyCollection[enemyCoord];
         enemy.Health--;
-        if (enemy.Health == 0) {
+        if (enemy.Health == 0)
+        {
             audioManager.PlaySound(SoundNames.Death);
             KillEnemy(spriteGrid, gridPointer);
         }

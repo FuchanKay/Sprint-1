@@ -11,6 +11,7 @@ public class PumpkinSeedObject() : IObject
     }
     public ObjectIds Id => ObjectIds.PumpkinSeed;
     public Directions Direction { get; set; }
+    public string RegionName => RegionNames.PumpkinSeed;
     public bool IsPushable => true;
     public bool IsDestructible => true;
     public bool IsRotatable => false;

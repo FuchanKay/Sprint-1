@@ -35,7 +35,7 @@ public class TileSpriteManager
                 var grid = gridPointer.GetGrid(coord);
                 var tile = grid.Tile;
 
-                var spriteCoord = CalculateLiteralPos(coord);
+                var spriteCoord = SpriteGrid.CalculateLiteralPos(context, coord);
 
                 if (tile.Id != TileIds.Empty)
                 {
@@ -46,7 +46,7 @@ public class TileSpriteManager
     }
     public ISprite GetTileSprite(Coordinate coord)
     {
-        var realCoord = CalculateLiteralPos(coord);
+        var realCoord = SpriteGrid.CalculateLiteralPos(Context, coord);
         if (!TileSprites.TryGetValue(realCoord, out var sprite))
         {
             throw new ArgumentException("Grid could not be found");
@@ -56,7 +56,7 @@ public class TileSpriteManager
 
     public void SetTileSprite(Coordinate coord, ISprite sprite)
     {
-        var realCoord = CalculateLiteralPos(coord);
+        var realCoord = SpriteGrid.CalculateLiteralPos(Context, coord);
 
         sprite.CurrentPosition = realCoord;
         sprite.SetTargetPosition(realCoord);
@@ -67,7 +67,7 @@ public class TileSpriteManager
 
     public void SetNewTileSprite(Coordinate coord, ITile tile)
     {
-        var realCoord = CalculateLiteralPos(coord);
+        var realCoord = SpriteGrid.CalculateLiteralPos(Context, coord); ;
 
         TileSprites.Remove(realCoord);
         var newSprite = TileSpriteFactory.CreateTileSprite(tile, realCoord, Context);
@@ -83,8 +83,8 @@ public class TileSpriteManager
 
     public void AddIterableTileSprite(ITile tile, Coordinate startCoord, Coordinate currentCoord, float rotation)
     {
-        var realStartCoord = CalculateLiteralPos(startCoord);
-        var realCurrentCoord = CalculateLiteralPos(currentCoord);
+        var realStartCoord = SpriteGrid.CalculateLiteralPos(Context, startCoord); ;
+        var realCurrentCoord = SpriteGrid.CalculateLiteralPos(Context, currentCoord);
 
         var sprite = TileSpriteFactory.CreateTileSprite(tile, realCurrentCoord, Context);
         sprite.Rotation = rotation;
@@ -100,7 +100,7 @@ public class TileSpriteManager
 
     public void StartIterableTile(Coordinate startCoord)
     {
-        var realStartCoord = CalculateLiteralPos(startCoord);
+        var realStartCoord = SpriteGrid.CalculateLiteralPos(Context, startCoord);
 
         var spriteList = IterableTileSprites[realStartCoord];
         IterableTileSprites.Remove(realStartCoord);
@@ -152,16 +152,6 @@ public class TileSpriteManager
             TileSprites.Add(currPos, staticSprite);
         }
         finishedSprites.Clear();
-    }
-
-    private Vector2 CalculateLiteralPos(Coordinate coord)
-    {
-        var spriteWidth = (int)(Context.GridSpriteWidthPx * Context.GridScale);
-        var spriteX = spriteWidth * coord.X + Context.PuzzleOffsetX;
-        var spriteHeight = (int)(Context.GridSpriteHeightPx * Context.GridScale);
-        var spriteY = spriteHeight * coord.Y + Context.PuzzleOffsetY;
-
-        return new Vector2(spriteX, spriteY);
     }
 
     private void UpdateIterableTiles()

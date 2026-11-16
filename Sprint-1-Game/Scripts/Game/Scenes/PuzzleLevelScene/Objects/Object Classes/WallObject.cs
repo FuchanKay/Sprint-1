@@ -15,6 +15,6 @@ public class WallObject() : IObject
     public string RegionName { get; set; }
     public bool IsPushable => false;
     public bool IsDestructible => false;
-    public bool IsRotatable => false;
+    public bool IsRotatable => true;
     public bool IsPickable => false;
 }
