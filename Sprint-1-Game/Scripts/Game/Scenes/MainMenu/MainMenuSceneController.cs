@@ -40,6 +40,6 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
     {
         PlayGameButton.Draw(sb);
         ExitGameButton.Draw(sb);
-        GameTitle.DrawAtOrigin(sb, new Vector2 (1280/2,40));
+        GameTitle.DrawAtOrigin(sb, new Vector2 (1280/2,80));
     }
 }
