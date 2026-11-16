@@ -7,7 +7,6 @@ using Scripts.GameComponents;
 
 public class HUDPannel(UIFontAtlas uIFontAtlas, UITextureAtlas uITextureAtlas)
 {
-<<<<<<< HEAD
     public Vector2 PannelCornerPos = Vector2.Zero;
     private int Clock;
     private UIFont EnemyCounter = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
@@ -18,20 +17,10 @@ public class HUDPannel(UIFontAtlas uIFontAtlas, UITextureAtlas uITextureAtlas)
     private UISprite Inventory1;
     private UISprite Inventory2;
     private UISprite Inventory3;
-=======
-    public Vector2 PannelCornerPos { get; set; }
-    private int Clock;
-    private BasicSpriteFontWriter EnemyCounter = new(spriteFontManager);
-    private BasicSpriteFontWriter InventoryStatus = new(spriteFontManager);
-    private BasicSpriteFontWriter GameClock = new(spriteFontManager);
-    private BasicSpriteFontWriter CommandInstructions = new(spriteFontManager);
-
->>>>>>> origin
     private PuzzleLevel Level;
 
     public void Init(PuzzleLevel level)
     {
-<<<<<<< HEAD
         Vector2 inventoryScale = new Vector2(0.25f, 0.25f);
         Inventory1 = new(uITextureAtlas.GetRegion("Bomb"));
         Inventory2 = new(uITextureAtlas.GetRegion("Empty"));
@@ -57,39 +46,14 @@ public class HUDPannel(UIFontAtlas uIFontAtlas, UITextureAtlas uITextureAtlas)
     public void Update(int dtMs)
     {
         EnemyCounter.UpdateText( $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}");
-=======
-        Clock = 0; ;
-        Level = level;
-        EnemyCounter.Init(FontNames.DungeonFont, new Vector2(1040, 40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.Gold);
-        GameClock.Init(FontNames.DungeonFont, new Vector2(1040, 80), "Game Clock: ", Color.Gold);
-        InventoryStatus.Init(FontNames.DungeonFont, new Vector2(1040, 120), $"Inventory:\n{Level.LevelStateHistory.InventoryManager}", Color.Gold);
-        CommandInstructions.Init(FontNames.DungeonFont, new Vector2(1040, 500), "Player Move: WASD\n"
-                                                                                + "SNAP: F\n"
-                                                                                + "Use Item: 123\n"
-                                                                                + "Grab item: G\n"
-                                                                                + "Change Scene: B\n", Color.Gold);
-
-    }
-    public void Update(int dtMs)
-    {
-        EnemyCounter.Update(new Vector2(1040, 40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}");
->>>>>>> origin
 
         //This may be moved to PuzzleLevel or LevelStateHistory to count how much time player spent on each puzzle.
         Clock += dtMs;
         TimeSpan formattedClock = TimeSpan.FromMilliseconds(Clock);
-<<<<<<< HEAD
         GameClock.UpdateText($"Game Clock: {formattedClock:hh\\:mm\\:ss}");
         Inventory1.UpdateRegion(uITextureAtlas.GetRegion(InventoryManager.ObjectIdToString(Level.LevelStateHistory.InventoryManager.PlayerItems[0].Id)));
         Inventory2.UpdateRegion(uITextureAtlas.GetRegion(InventoryManager.ObjectIdToString(Level.LevelStateHistory.InventoryManager.PlayerItems[1].Id)));
         Inventory3.UpdateRegion(uITextureAtlas.GetRegion(InventoryManager.ObjectIdToString(Level.LevelStateHistory.InventoryManager.PlayerItems[2].Id)));
-=======
-        GameClock.Update(new Vector2(1040, 80), $"{formattedClock:hh\\:mm\\:ss}");
-
-
-        InventoryStatus.Update(new Vector2(1040, 120), $"Inventory:\n{Level.LevelStateHistory.InventoryManager}");
-        CommandInstructions.Update(new Vector2(1040, 350));
->>>>>>> origin
     }
     public void Draw(SpriteBatch sb)
     {
