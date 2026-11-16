@@ -42,6 +42,6 @@ public class GameLayoutManager
     //place holder, will be implemented in the future
     public void HUDLayout(HUDPannel hUDPannel)
     {
-        hUDPannel.PannelCornerPos.X = (LevelContext.LevelWidth * LevelContext.GridSpriteWidthPx - LevelContext.GridSpriteHeightPx / 2)* LevelContext.GridScale + LevelContext.PuzzleOffsetX ;
+        hUDPannel.PannelCornerPos.X = (LevelContext.LevelWidth * LevelContext.RawSpriteWidthPx - LevelContext.RawSpriteHeightPx / 2)* LevelContext.GridScale + LevelContext.PuzzleOffsetX ;
     }
 }
