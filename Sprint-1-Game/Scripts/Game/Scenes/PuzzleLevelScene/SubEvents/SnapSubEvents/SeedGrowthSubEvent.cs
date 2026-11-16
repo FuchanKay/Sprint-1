@@ -25,11 +25,14 @@ public class SeedGrowthSubEvent : ILevelSubEvent
 
     private static void GrowPumpkin(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate seedCoord)
     {
+
+        if (gridPointer.GetObject(seedCoord).Id != ObjectIds.Empty) return;
         var dirtTile = TileFactory.CreateDirtTile();
         gridPointer.SetTile(seedCoord, dirtTile);
         spriteGrid.SetNewTileSprite(seedCoord, dirtTile);
 
         var pumpkinObj = ObjectFactory.CreatePumpkin();
+
         gridPointer.SetObject(seedCoord, pumpkinObj);
         spriteGrid.SetNewObjectSprite(seedCoord, pumpkinObj);
 
