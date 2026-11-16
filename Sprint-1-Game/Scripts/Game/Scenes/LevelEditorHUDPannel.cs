@@ -3,6 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Scripts.Game;
 using Scripts.GameComponents;
 
+/*
+**IMPORTANT NOTE** this code is completely temporary and should be removed once UIManager is fully functional
+*/
+
 public class LevelEditorHUDPanel(SpriteFontManager spriteFontManager)
 {
     public Vector2 PannelCornerPos { get; set; }
