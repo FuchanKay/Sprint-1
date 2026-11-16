@@ -32,12 +32,12 @@ public class WipeTransition(PuzzleLevel Level) : ILevelTransition
         if (currentTransitionType == TransitionType.TransitionOut)
         {
             Level.Init(NewLevelIndex);
-            Level.Context.LevelIsCompleted = false;
             currentTransitionType = TransitionType.TransitionIn;
             TransitionTimeElapsedMs = 0;
         }
         else
         {
+            if(Level.Context.LevelIsCompleted) Level.Context.LevelIsCompleted = true;
             currentTransitionType = TransitionType.None;
             TransitionTimeElapsedMs = 0;
         }
