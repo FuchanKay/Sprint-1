@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -6,6 +7,7 @@ namespace MonoGameLibrary.UIRendering;
 public class UISprite
 {
     public UITextureRegion Region { get; set; }
+    public Vector2 Pos { get; set; }
     public Color Color { get; set; } = Color.White;
     public float Rotation { get; set; } = 0.0f;
     public Vector2 Scale { get; set; } = Vector2.One;
@@ -26,9 +28,9 @@ public class UISprite
     public void CenterOrigin()
     {
         Origin = new Vector2(Region.Width, Region.Height) * 0.5f;
-    }public void Draw(SpriteBatch spriteBatch, Vector2 position)
+    }public void Draw(SpriteBatch spriteBatch)
     {
-        Region.Draw(spriteBatch, position, Color, Rotation, Origin, Scale, Effects, LayerDepth);
+        Region.Draw(spriteBatch, Pos, Color, Rotation, Origin, Scale, Effects, LayerDepth);
     }
 
 }

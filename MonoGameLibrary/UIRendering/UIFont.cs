@@ -26,8 +26,9 @@ public class UIFont
         Effects = SpriteEffects.None;
         LayerDepth = 0.0f;
     }
-    public void Init(string text, Color color, Vector2 scale)
+    public void Init(Vector2 pos, string text, Color color, Vector2 scale)
     {
+        Pos = pos;
         Text = text;
         Color = color;
         Scale = scale;
@@ -41,14 +42,13 @@ public class UIFont
         Width = FontSize().X;
         Height = FontSize().Y;
     }
-    public void DrawAtOrigin(SpriteBatch sb, Vector2 pos)
+    public void DrawAtOrigin(SpriteBatch sb)
     {
         CenterOrigin();
-        sb.DrawString(Font, Text, pos, Color, Rotation, Origin, Scale, Effects, LayerDepth);
+        sb.DrawString(Font, Text, Pos, Color, Rotation, Origin, Scale, Effects, LayerDepth);
     }
-    public void Draw(SpriteBatch sb, Vector2 pos)
+    public void Draw(SpriteBatch sb)
     {
-        Pos = pos;
         sb.DrawString(Font, Text, Pos, Color, Rotation, Origin, Scale, Effects, LayerDepth);
     }
     private void CenterOrigin()

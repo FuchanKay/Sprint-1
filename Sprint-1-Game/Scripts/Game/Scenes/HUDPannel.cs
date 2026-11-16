@@ -13,30 +13,27 @@ public class HUDPannel(UIFontAtlas uIFontAtlas, UITextureAtlas uITextureAtlas)
     private UIFont InventoryStatus = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
     private UIFont GameClock = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
     private UIFont CommandInstructions = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
-    private UISprite Background;
-    private UISprite Inventory1;
-    private UISprite Inventory2;
-    private UISprite Inventory3;
+    private UISprite Background = new(uITextureAtlas.GetRegion("Background"));
+    private UISprite Inventory1 = new(uITextureAtlas.GetRegion("Bomb"));
+    private UISprite Inventory2 = new(uITextureAtlas.GetRegion("Empty"));
+    private UISprite Inventory3 = new(uITextureAtlas.GetRegion("Empty"));
     private PuzzleLevel Level;
 
     public void Init(PuzzleLevel level)
     {
         Vector2 inventoryScale = new Vector2(0.25f, 0.25f);
-        Inventory1 = new(uITextureAtlas.GetRegion("Bomb"));
-        Inventory2 = new(uITextureAtlas.GetRegion("Empty"));
-        Inventory3 = new(uITextureAtlas.GetRegion("Empty"));
-        Background = new(uITextureAtlas.GetRegion("Background"));
-
+        
+        Background.Pos = PannelCornerPos;
         Inventory1.Scale = inventoryScale;
         Inventory2.Scale = inventoryScale;
         Inventory3.Scale = inventoryScale;
         Background.Scale = new Vector2(1f, 3f);
         Clock = 0;;
         Level = level;
-        EnemyCounter.Init( $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.Gold, Vector2.One);
-        GameClock.Init( "Game Clock: ", Color.Gold, Vector2.One);
-        InventoryStatus.Init( $"Inventory:\n\n\n\n    1        2        3",  Color.Gold, Vector2.One);
-        CommandInstructions.Init( "Player Move: WASD\n" 
+        EnemyCounter.Init(PannelCornerPos + new Vector2 (0,120), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.Gold, Vector2.One);
+        GameClock.Init(PannelCornerPos + new Vector2(0,80), "Game Clock: ", Color.Gold, Vector2.One);
+        InventoryStatus.Init(PannelCornerPos + new Vector2 (0,160), $"Inventory:\n\n\n\n    1        2        3",  Color.Gold, Vector2.One);
+        CommandInstructions.Init(PannelCornerPos + new Vector2(0,300), "Player Move: WASD\n" 
                                                         + "SNAP: F\n"
                                                         + "Use Item: 123\n" 
                                                         + "Grab item: G\n"
@@ -45,6 +42,7 @@ public class HUDPannel(UIFontAtlas uIFontAtlas, UITextureAtlas uITextureAtlas)
     }
     public void Update(int dtMs)
     {
+        
         EnemyCounter.UpdateText( $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}");
 
         //This may be moved to PuzzleLevel or LevelStateHistory to count how much time player spent on each puzzle.
@@ -57,14 +55,27 @@ public class HUDPannel(UIFontAtlas uIFontAtlas, UITextureAtlas uITextureAtlas)
     }
     public void Draw(SpriteBatch sb)
     {
-        Background.Draw(sb, PannelCornerPos);
-        GameClock.Draw(sb, PannelCornerPos + new Vector2(0,80));
-        EnemyCounter.Draw(sb, PannelCornerPos + new Vector2 (0,120));
-        InventoryStatus.Draw(sb, PannelCornerPos + new Vector2 (0,160));
-        Inventory1.Draw(sb, PannelCornerPos + new Vector2(0, 180));
-        Inventory2.Draw(sb, PannelCornerPos + new Vector2(0+64, 180));
-        Inventory3.Draw(sb, PannelCornerPos + new Vector2(0+128, 180));
-        CommandInstructions.Draw(sb, PannelCornerPos + new Vector2(0,300));
+        UpdateLayout();
+        Background.Draw(sb);
+        GameClock.Draw(sb);
+        EnemyCounter.Draw(sb);
+        InventoryStatus.Draw(sb);
+        Inventory1.Draw(sb);
+        Inventory2.Draw(sb);
+        Inventory3.Draw(sb);
+        CommandInstructions.Draw(sb);
 
+    }
+
+    private void UpdateLayout()
+    {
+        Background.Pos = PannelCornerPos;
+        Inventory1.Pos = PannelCornerPos + new Vector2(0, 180);
+        Inventory2.Pos = PannelCornerPos + new Vector2(0+64, 180);
+        Inventory3.Pos = PannelCornerPos + new Vector2(0+128, 180);
+        EnemyCounter.Pos = PannelCornerPos + new Vector2 (0,120);
+        GameClock.Pos = PannelCornerPos + new Vector2(0,80);
+        InventoryStatus.Pos = PannelCornerPos + new Vector2 (0,160);
+        CommandInstructions.Pos = PannelCornerPos + new Vector2(0,300);
     }
 }
