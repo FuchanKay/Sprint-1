@@ -101,7 +101,7 @@ public class LevelFileWriter()
         File.WriteAllLines(path, levelFile);
     }
 
-    static string GetProjectDirectory()
+    private static string GetProjectDirectory()
     {
         var dir = new DirectoryInfo(AppContext.BaseDirectory);
         while (dir != null && dir.GetFiles("*.csproj").Length == 0)
