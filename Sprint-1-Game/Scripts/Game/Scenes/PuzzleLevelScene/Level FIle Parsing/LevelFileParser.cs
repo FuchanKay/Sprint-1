@@ -89,7 +89,7 @@ public class LevelFileParser()
             direction = (Directions)(numDirection % 4);
         }
 
-        ITile tile = tileValue switch
+        ITile tile = tileType switch
         {
             "_" => TileFactory.CreateEmptyTile(),
             "Dirt" => TileFactory.CreateDirtTile(),
