@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
@@ -52,7 +53,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         {
             Level.EnqueueEvent(new MovePlayerEvent(Directions.West, lockMove));
         }
-        else if (buttonInput.IsPressed(InputNames.ChangeLevel))
+        else if (buttonInput.IsPressed(InputNames.ChangeLevel) && !Level.Context.LevelEditorMode)
         {
             CurrentLevelIndex = (CurrentLevelIndex + 1) % FileNames.LevelFileNames.Length;
             Level.Init(CurrentLevelIndex);

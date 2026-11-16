@@ -1,10 +1,9 @@
-using Microsoft.Xna.Framework;
-
 namespace Scripts.Game;
 
+using System.Collections.Generic;
 using Scripts.GameComponents;
 
-public class SeedGrowthSubEvent : ILevelSubEvent
+public class SeedGrowthSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
@@ -19,17 +18,20 @@ public class SeedGrowthSubEvent : ILevelSubEvent
         {
             GrowPumpkin(spriteGrid, gridPointer, coord);
         }
-
-
     }
 
-    private static void GrowPumpkin(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate seedCoord)
+    private void GrowPumpkin(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate seedCoord)
     {
         var dirtTile = TileFactory.CreateDirtTile();
         gridPointer.SetTile(seedCoord, dirtTile);
         spriteGrid.SetNewTileSprite(seedCoord, dirtTile);
 
         var pumpkinObj = ObjectFactory.CreatePumpkin();
+        if (gridPointer.GetObject(seedCoord).Id == ObjectIds.Player)
+        {
+            subEventStack.Push(new PlayerDeathSubEvent());
+            return;
+        }
         gridPointer.SetObject(seedCoord, pumpkinObj);
         spriteGrid.SetNewObjectSprite(seedCoord, pumpkinObj);
 
