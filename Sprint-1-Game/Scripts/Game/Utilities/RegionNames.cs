@@ -13,8 +13,10 @@ public class RegionNames
     public readonly static string CornerWall = "Corner Wall";
     public readonly static string InvertedCornerWall = "Inverted Corner Wall";
     public readonly static string StandaloneWall = "Standalone Wall";
+    public readonly static string SingleStandaloneWall = "Single Standalone Wall";
     public readonly static string StandaloneWallConnector = "Standalone Wall Connector";
     public readonly static string StandaloneWallCorner = "Standalone Wall Corner";
+    public readonly static string StandaloneWallCap = "Standalone Wall Cap";
     public readonly static string TopOfWall = "Top of Wall";
     public readonly static string ClosedDoor = "Closed Door";
     public readonly static string OpenDoor = "Open Door";

@@ -139,6 +139,8 @@ public class LevelFileParser()
             "CornerWall" => ObjectFactory.CreateCornerWall(direction),
             "ICornerWall" => ObjectFactory.CreateInvertedCornerWall(direction),
             "SingleWall" => ObjectFactory.CreateStandaloneWall(direction),
+            "OneSingleWall" => ObjectFactory.CreateSingleStandaloneWall(direction),
+            "SingleWallCap" => ObjectFactory.CreateStandaloneWallCap(direction),
             "SingleWallCorner" => ObjectFactory.CreateStandaloneWallCorner(direction),
             "SingleWallConnector" => ObjectFactory.CreateStandaloneWallConnector(direction),
             "WallTop" => ObjectFactory.CreateTopOfWall(direction),

@@ -24,6 +24,8 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
         ObjectFactory.CreateRedLizard(Directions.North),
         ObjectFactory.CreateSkeleton(),
         ObjectFactory.CreateStandaloneWall(Directions.North),
+        ObjectFactory.CreateSingleStandaloneWall(Directions.North),
+        ObjectFactory.CreateStandaloneWallCap(Directions.North),
         ObjectFactory.CreateStandaloneWallConnector(Directions.North),
         ObjectFactory.CreateStandaloneWallCorner(Directions.North),
         ObjectFactory.CreateTimedBomb(),
