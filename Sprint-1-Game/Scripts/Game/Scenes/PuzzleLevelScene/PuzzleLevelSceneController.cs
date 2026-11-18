@@ -1,4 +1,3 @@
-using System;
 using Gum.Forms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -41,10 +40,10 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
 
     private void InitDeathMessage()
     {
-        String deathMessageText = "Press Z to Undo, or R to Restart";
+        string deathMessageText = "Press Z to Undo, or R to Restart";
         Vector2 messageSize = spriteFontManager.GetFont(FontNames.DungeonFont).MeasureString(deathMessageText);
         float LevelScreenRatio = 4f/5f;
-        Vector2 DeathMessagePosition = new Vector2(window.ClientBounds.Width * (LevelScreenRatio / 2f) - messageSize.X/2f, window.ClientBounds.Height/2 + messageSize.Y/2f);
+        Vector2 DeathMessagePosition = new Vector2(window.ClientBounds.Width * (LevelScreenRatio / 2f) - messageSize.X/2f, window.ClientBounds.Height/2f + messageSize.Y/2f);
         DeathMessage.Init(FontNames.DungeonFont, DeathMessagePosition, deathMessageText, Color.DarkRed);
     }
 
@@ -123,10 +122,15 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         {
             sceneManager.Restart();
         }
-        else if (Level.Context.LevelIsCompleted)
+        else if (Level.Context.LevelIsCompleted && !sceneManager.SceneTransition.IsActive)
         {
-            CurrentLevelIndex = (CurrentLevelIndex + 1) % FileNames.LevelFileNames.Length;
-            LevelTransition.StartLevelTransition(CurrentLevelIndex);
+            CurrentLevelIndex += 1;
+            if (CurrentLevelIndex >= FileNames.LevelFileNames.Length)
+            {
+                sceneManager.SceneTransition.StartSceneTransition(SceneNames.GameCredits);
+            } else {
+                LevelTransition.StartLevelTransition(CurrentLevelIndex);
+            }
         }
     }
     public void Draw(SpriteBatch sb)

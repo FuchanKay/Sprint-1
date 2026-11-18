@@ -27,7 +27,6 @@ public class Setup(ContentManager content, GameWindow window)
         AddRegions();
         AddFont();
         sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, SpriteFontManager, window);
-        sceneManager.Init();
     }
 
     public void LoadContent()
