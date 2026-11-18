@@ -1,4 +1,5 @@
 using System;
+using Gum.Forms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
@@ -16,7 +17,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private readonly IAudioManager AudioManager = audioManager;
     private ILevelTransition LevelTransition;
     public int CurrentLevelIndex = 0;
-    // Loading a SpriteFont Description using the content pipeline
+    private BasicSpriteFontWriter DeathMessage = new(spriteFontManager);
 
     public void Init()
     {
@@ -26,6 +27,12 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         Level.Init(CurrentLevelIndex);
         UIManager.Init(Level);
         LevelTransition = new WipeTransition(Level);
+
+        String deathMessageText = "Press Z to Undo, or R to Restart";
+        Vector2 messageSize = spriteFontManager.GetFont(FontNames.DungeonFont).MeasureString(deathMessageText);
+        float LevelScreenRatio = 4f/5f;
+        Vector2 DeathMessagePosition = new Vector2(window.ClientBounds.Width * (LevelScreenRatio / 2f) - messageSize.X/2f, window.ClientBounds.Height/2 + messageSize.Y/2f);
+        DeathMessage.Init(FontNames.DungeonFont, DeathMessagePosition, deathMessageText, Color.DarkRed);
     }
 
     public void Init(GridPointer grid, LevelContext level)
@@ -119,9 +126,9 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     }
     public void Draw(SpriteBatch sb)
     {
-
         Level.Draw(sb);
         UIManager.Draw(sb);
+        if(Level.Context.PlayerIsDead) DeathMessage.Draw(sb);
         if(LevelTransition.IsActive) LevelTransition.Draw(sb);
     }
 }
