@@ -399,6 +399,76 @@
         "ElementType": "Screens",
         "EventType": 5,
         "TimestampUtc": "2026-11-18T04:25:54.8878029Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "DemoScreenGum",
+        "ElementType": "Screens",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-18T18:49:10.178757Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "Elements/VerticalLines",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-18T18:49:52.0637497Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "Elements/PercentBarIcon",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-18T18:49:54.9051659Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "Elements/PercentBar",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-18T18:49:57.2251576Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "Elements/Icon",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-18T18:50:00.0796068Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "Elements/DividerVertical",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-18T18:50:02.4441629Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "Elements/DividerHorizontal",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-18T18:50:05.8417051Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "Elements/Divider",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-18T18:51:12.2420575Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "Elements/CautionLines",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-18T18:51:15.9414399Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "DemoScreenGum",
+        "ElementType": "Screens",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-18T18:56:03.0167951Z"
       }
     ]
   }

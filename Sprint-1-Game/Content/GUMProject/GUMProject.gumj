@@ -58,11 +58,6 @@
   "CurrentLanguageIndex": 0,
   "ScreenReferences": [
     {
-      "Name": "DemoScreenGum",
-      "ElementType": 0,
-      "LinkType": 0
-    },
-    {
       "Name": "TestScreen",
       "ElementType": 0,
       "LinkType": 0
