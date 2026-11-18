@@ -5,7 +5,7 @@ using Scripts.Game;
 using Gum.Forms;
 using Gum.Forms.Controls;
 using Microsoft.Xna.Framework.Media;
-using MonoGameGum;
+using Gum;
 using Gum.Managers;
 namespace Sprint_1_Game.Scripts;
 
@@ -18,7 +18,7 @@ public class Game1 : Core
     private static readonly Color BackgroundColor = Color.Black;
     private readonly Setup Setup;
     private SceneManager SceneManager;
-    GumService GumUI => GumService.Default;
+    Gum.GumService GumUI => Gum.GumService.Default;
     public Game1() : base(Name, ScreenWidth, ScreenHeight, IsFullScreen)
     {
         Setup = new(Content, Window);

@@ -1,16 +1,15 @@
 //Code for TestScreen
-using Gum;
 using Gum.Converters;
 using Gum.DataTypes;
-using Gum.GueDeriving;
 using Gum.Managers;
 using Gum.Wireframe;
 using GUMProject.Components.GameUI;
 using GumRuntime;
+using MonoGameGum;
+using MonoGameGum.GueDeriving;
 using RenderingLibrary.Graphics;
 using System.Linq;
 namespace GUMProject.Screens;
-[global::Gum.DataTypes.GumElement("TestScreen")]
 partial class TestScreen : global::Gum.Forms.Controls.FrameworkElement
 {
     #if UNITY_5_3_OR_NEWER && !GUM_NO_UNITY_ENGINE
@@ -22,8 +21,8 @@ partial class TestScreen : global::Gum.Forms.Controls.FrameworkElement
     {
         var template = new global::Gum.Forms.VisualTemplate((vm, createForms) =>
         {
-            var visual = new global::Gum.GueDeriving.ContainerRuntime();
-            var element = ObjectFinder.Self.GetRequiredElementSave("TestScreen");
+            var visual = new global::MonoGameGum.GueDeriving.ContainerRuntime();
+            var element = ObjectFinder.Self.GetElementSave("TestScreen") ?? throw new System.InvalidOperationException("Could not find an element named TestScreen - did you forget to load a Gum project?");
             element.SetGraphicalUiElement(visual, RenderingLibrary.SystemManagers.Default);
             if(createForms) visual.FormsControlAsObject = new TestScreen(visual);
             visual.Width = 0;
@@ -53,7 +52,7 @@ partial class TestScreen : global::Gum.Forms.Controls.FrameworkElement
     protected override void ReactToVisualChanged()
     {
         base.ReactToVisualChanged();
-        InventoryBarInstance = global::Gum.Forms.GraphicalUiElementFormsExtensions.FindFormsControl<InventoryBar>(this.Visual,"InventoryBarInstance");
+        InventoryBarInstance = global::Gum.Forms.GraphicalUiElementFormsExtensions.TryGetFrameworkElementByName<InventoryBar>(this.Visual,"InventoryBarInstance");
         CustomInitialize();
     }
     //Not assigning variables because Object Instantiation Type is set to By Name rather than Fully In Code
