@@ -27,12 +27,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         Level.Init(CurrentLevelIndex);
         UIManager.Init(Level);
         LevelTransition = new WipeTransition(Level);
-
-        String deathMessageText = "Press Z to Undo, or R to Restart";
-        Vector2 messageSize = spriteFontManager.GetFont(FontNames.DungeonFont).MeasureString(deathMessageText);
-        float LevelScreenRatio = 4f/5f;
-        Vector2 DeathMessagePosition = new Vector2(window.ClientBounds.Width * (LevelScreenRatio / 2f) - messageSize.X/2f, window.ClientBounds.Height/2 + messageSize.Y/2f);
-        DeathMessage.Init(FontNames.DungeonFont, DeathMessagePosition, deathMessageText, Color.DarkRed);
+        InitDeathMessage();        
     }
 
     public void Init(GridPointer grid, LevelContext level)
@@ -41,6 +36,16 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
         Level.Init(grid, level);
         UIManager.Init(Level);
+        InitDeathMessage();
+    }
+
+    private void InitDeathMessage()
+    {
+        String deathMessageText = "Press Z to Undo, or R to Restart";
+        Vector2 messageSize = spriteFontManager.GetFont(FontNames.DungeonFont).MeasureString(deathMessageText);
+        float LevelScreenRatio = 4f/5f;
+        Vector2 DeathMessagePosition = new Vector2(window.ClientBounds.Width * (LevelScreenRatio / 2f) - messageSize.X/2f, window.ClientBounds.Height/2 + messageSize.Y/2f);
+        DeathMessage.Init(FontNames.DungeonFont, DeathMessagePosition, deathMessageText, Color.DarkRed);
     }
 
     public void Update(int dtMs)
