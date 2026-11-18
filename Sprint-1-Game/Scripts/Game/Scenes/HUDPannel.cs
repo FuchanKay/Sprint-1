@@ -5,7 +5,7 @@ using MonoGameLibrary.UIRendering;
 using Scripts.Game;
 using Scripts.GameComponents;
 
-public class HUDPannel(UIFontAtlas uIFontAtlas, UITextureAtlas uITextureAtlas)
+public class HUDPannel(UIFontAtlas uIFontAtlas)
 {
     public Vector2 PannelCornerPos = Vector2.Zero;
     private int Clock;
@@ -13,21 +13,14 @@ public class HUDPannel(UIFontAtlas uIFontAtlas, UITextureAtlas uITextureAtlas)
     private UIFont InventoryStatus = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
     private UIFont GameClock = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
     private UIFont CommandInstructions = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
-    private UISprite Background = new(uITextureAtlas.GetRegion("Background"));
-    private UISprite Inventory1 = new(uITextureAtlas.GetRegion("Bomb"));
-    private UISprite Inventory2 = new(uITextureAtlas.GetRegion("Empty"));
-    private UISprite Inventory3 = new(uITextureAtlas.GetRegion("Empty"));
+
     private PuzzleLevel Level;
 
     public void Init(PuzzleLevel level)
     {
         Vector2 inventoryScale = new Vector2(0.25f, 0.25f);
         
-        Background.Pos = PannelCornerPos;
-        Inventory1.Scale = inventoryScale;
-        Inventory2.Scale = inventoryScale;
-        Inventory3.Scale = inventoryScale;
-        Background.Scale = new Vector2(1f, 3f);
+
         Clock = 0;;
         Level = level;
         EnemyCounter.Init(PannelCornerPos + new Vector2 (0,120), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.Gold, Vector2.One);
@@ -49,30 +42,23 @@ public class HUDPannel(UIFontAtlas uIFontAtlas, UITextureAtlas uITextureAtlas)
         Clock += dtMs;
         TimeSpan formattedClock = TimeSpan.FromMilliseconds(Clock);
         GameClock.UpdateText($"Game Clock: {formattedClock:hh\\:mm\\:ss}");
-        Inventory1.UpdateRegion(uITextureAtlas.GetRegion(InventoryManager.ObjectIdToString(Level.LevelStateHistory.InventoryManager.PlayerItems[0].Id)));
-        Inventory2.UpdateRegion(uITextureAtlas.GetRegion(InventoryManager.ObjectIdToString(Level.LevelStateHistory.InventoryManager.PlayerItems[1].Id)));
-        Inventory3.UpdateRegion(uITextureAtlas.GetRegion(InventoryManager.ObjectIdToString(Level.LevelStateHistory.InventoryManager.PlayerItems[2].Id)));
+
     }
     public void Draw(SpriteBatch sb)
     {
         UpdateLayout();
-        Background.Draw(sb);
+
         GameClock.Draw(sb);
         EnemyCounter.Draw(sb);
         InventoryStatus.Draw(sb);
-        Inventory1.Draw(sb);
-        Inventory2.Draw(sb);
-        Inventory3.Draw(sb);
+
         CommandInstructions.Draw(sb);
 
     }
 
     private void UpdateLayout()
     {
-        Background.Pos = PannelCornerPos;
-        Inventory1.Pos = PannelCornerPos + new Vector2(0, 180);
-        Inventory2.Pos = PannelCornerPos + new Vector2(0+64, 180);
-        Inventory3.Pos = PannelCornerPos + new Vector2(0+128, 180);
+
         EnemyCounter.Pos = PannelCornerPos + new Vector2 (0,120);
         GameClock.Pos = PannelCornerPos + new Vector2(0,80);
         InventoryStatus.Pos = PannelCornerPos + new Vector2 (0,160);

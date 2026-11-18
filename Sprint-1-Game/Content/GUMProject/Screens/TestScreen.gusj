@@ -1,0 +1,57 @@
+{
+  "Name": "TestScreen",
+  "States": [
+    {
+      "Name": "Default",
+      "Variables": [
+        {
+          "Name": "InventoryBarInstance.X",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": -20
+        },
+        {
+          "Name": "InventoryBarInstance.XOrigin",
+          "Type": "HorizontalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 2
+        },
+        {
+          "Name": "InventoryBarInstance.XUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "InventoryBarInstance.Y",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": -5
+        },
+        {
+          "Name": "InventoryBarInstance.YOrigin",
+          "Type": "VerticalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "InventoryBarInstance.YUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 7
+        }
+      ],
+      "VariableLists": []
+    }
+  ],
+  "Categories": [],
+  "Instances": [
+    {
+      "Name": "InventoryBarInstance",
+      "BaseType": "GameUI/InventoryBar"
+    }
+  ],
+  "Events": [],
+  "Behaviors": [],
+  "VariablesHiddenFromInstances": []
+}

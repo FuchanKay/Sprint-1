@@ -16,7 +16,6 @@ public class Setup(ContentManager content, GameWindow window)
     private IInputManager MouseInput;
     private ITextureAtlas TextureAtlas;
     private UIFontAtlas UIFontAtlas;
-    private UITextureAtlas UITextureAtlas;
     public void Initialize(out SceneManager sceneManager)
     {
         ButtonInput = new KeyboardInputManager();
@@ -26,13 +25,12 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas = new TextureAtlas(content);
 
         UIFontAtlas = new();
-        UITextureAtlas = new();
         MapDefaultInputs();
         AddAnimations();
         AddRegions();
         AddFont();
         AddUItexture();
-        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, UIFontAtlas, UITextureAtlas, window);
+        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, UIFontAtlas, window);
         sceneManager.Init();
     }
 
@@ -265,7 +263,6 @@ public class Setup(ContentManager content, GameWindow window)
     }
     private void AddUItexture()
     {
-        UITextureAtlas.LoadFromFile(content, FileNames.UIAtlasDef + ".xml");
     }
 
     private void AddFont()

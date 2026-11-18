@@ -1,0 +1,224 @@
+{
+  "Name": "GameUI/Pieces/SlotNumber",
+  "BaseType": "Container",
+  "States": [
+    {
+      "Name": "Default",
+      "Variables": [
+        {
+          "Name": "Background.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Background.HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 2
+        },
+        {
+          "Name": "Background.Parent",
+          "Type": "string",
+          "SetsValue": true
+        },
+        {
+          "Name": "Background.SourceFile",
+          "Type": "string",
+          "SetsValue": true,
+          "IsFile": true,
+          "ValueAsString": "Components\\GameUI\\GUMUI.png"
+        },
+        {
+          "Name": "Background.TextureAddress",
+          "Type": "TextureAddress",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "Background.TextureHeight",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 16
+        },
+        {
+          "Name": "Background.TextureLeft",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 128
+        },
+        {
+          "Name": "Background.TextureTop",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 0
+        },
+        {
+          "Name": "Background.TextureWidth",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 16
+        },
+        {
+          "Name": "Background.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Background.WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 2
+        },
+        {
+          "Name": "Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 25
+        },
+        {
+          "Name": "SlotNumberText.Alpha",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 150
+        },
+        {
+          "Name": "SlotNumberText.Blue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 0
+        },
+        {
+          "Name": "SlotNumberText.FontSize",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 18
+        },
+        {
+          "Name": "SlotNumberText.Green",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 210
+        },
+        {
+          "Name": "SlotNumberText.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "SlotNumberText.HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "SlotNumberText.HorizontalAlignment",
+          "Type": "HorizontalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "SlotNumberText.IsBold",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "SlotNumberText.Parent",
+          "Type": "string",
+          "SetsValue": true
+        },
+        {
+          "Name": "SlotNumberText.Red",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 233
+        },
+        {
+          "Name": "SlotNumberText.Text",
+          "Type": "string",
+          "ExposedAsName": "NumberText",
+          "SetsValue": true,
+          "ValueAsString": "1"
+        },
+        {
+          "Name": "SlotNumberText.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "SlotNumberText.WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "SlotNumberText.X",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "SlotNumberText.XOrigin",
+          "Type": "HorizontalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "SlotNumberText.XUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 6
+        },
+        {
+          "Name": "SlotNumberText.Y",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "SlotNumberText.YOrigin",
+          "Type": "VerticalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "SlotNumberText.YUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 7
+        },
+        {
+          "Name": "State",
+          "Type": "State",
+          "Category": "States and Visibility",
+          "ValueAsString": "Default"
+        },
+        {
+          "Name": "Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 25
+        }
+      ],
+      "VariableLists": []
+    }
+  ],
+  "Categories": [],
+  "Instances": [
+    {
+      "Name": "Background",
+      "BaseType": "NineSlice"
+    },
+    {
+      "Name": "SlotNumberText",
+      "BaseType": "Text"
+    }
+  ],
+  "Events": [],
+  "Behaviors": [],
+  "VariablesHiddenFromInstances": []
+}

@@ -1,0 +1,32 @@
+{
+  "Name": "TreeViewItemBehavior",
+  "RequiredVariables": {
+    "Name": "",
+    "Variables": [],
+    "VariableLists": []
+  },
+  "FormsProperties": [
+    {
+      "Name": "ToolTip",
+      "Type": "string",
+      "SetsValue": true
+    },
+    {
+      "Name": "IsEnabled",
+      "Type": "bool",
+      "SetsValue": true,
+      "ValueAsBool": true
+    }
+  ],
+  "ToolOnlyVariableReferences": [],
+  "Categories": [],
+  "RequiredInstances": [
+    {
+      "Behaviors": [],
+      "Name": "InnerPanelInstance",
+      "BaseType": ""
+    }
+  ],
+  "RequiredAnimations": [],
+  "DefaultImplementation": "Controls/TreeViewItem"
+}

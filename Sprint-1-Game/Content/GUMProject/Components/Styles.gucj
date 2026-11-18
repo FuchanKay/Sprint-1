@@ -1,0 +1,1346 @@
+{
+  "Name": "Styles",
+  "BaseType": "Container",
+  "States": [
+    {
+      "Name": "Default",
+      "Variables": [
+        {
+          "Name": "Accent.FillBlue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 138
+        },
+        {
+          "Name": "Accent.FillGreen",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 48
+        },
+        {
+          "Name": "Accent.FillRed",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 140
+        },
+        {
+          "Name": "Accent.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "Accent.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "Accent.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Black.FillBlue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 0
+        },
+        {
+          "Name": "Black.FillGreen",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 0
+        },
+        {
+          "Name": "Black.FillRed",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 0
+        },
+        {
+          "Name": "Black.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "Black.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "Black.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Colors.ChildrenLayout",
+          "Type": "ChildrenLayout",
+          "SetsValue": true,
+          "ValueAsInt": 2
+        },
+        {
+          "Name": "Colors.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 69
+        },
+        {
+          "Name": "Colors.StackSpacing",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 4
+        },
+        {
+          "Name": "Colors.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": -0
+        },
+        {
+          "Name": "Colors.WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 2
+        },
+        {
+          "Name": "Colors.X",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Colors.XOrigin",
+          "Type": "HorizontalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "Colors.XUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 6
+        },
+        {
+          "Name": "Colors.Y",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Colors.YOrigin",
+          "Type": "VerticalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 0
+        },
+        {
+          "Name": "Colors.YUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "Danger.FillBlue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 41
+        },
+        {
+          "Name": "Danger.FillGreen",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 18
+        },
+        {
+          "Name": "Danger.FillRed",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 212
+        },
+        {
+          "Name": "Danger.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "Danger.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "Danger.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "DarkGray.FillBlue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 80
+        },
+        {
+          "Name": "DarkGray.FillGreen",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 70
+        },
+        {
+          "Name": "DarkGray.FillRed",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 70
+        },
+        {
+          "Name": "DarkGray.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "DarkGray.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "DarkGray.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Emphasis.FontSize",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 14
+        },
+        {
+          "Name": "Emphasis.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Emphasis.HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "Emphasis.IsItalic",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "Emphasis.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "TextStyles"
+        },
+        {
+          "Name": "Emphasis.Text",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Emphasis"
+        },
+        {
+          "Name": "Emphasis.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Emphasis.WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "Gray.FillBlue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 130
+        },
+        {
+          "Name": "Gray.FillGreen",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 130
+        },
+        {
+          "Name": "Gray.FillRed",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 130
+        },
+        {
+          "Name": "Gray.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "Gray.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "Gray.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "H1.FontSize",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 22
+        },
+        {
+          "Name": "H1.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "H1.HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "H1.IsBold",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "H1.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "TextStyles"
+        },
+        {
+          "Name": "H1.Text",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "H1"
+        },
+        {
+          "Name": "H1.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "H1.WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "H2.FontSize",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 18
+        },
+        {
+          "Name": "H2.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "H2.HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "H2.IsBold",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "H2.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "TextStyles"
+        },
+        {
+          "Name": "H2.Text",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "H2"
+        },
+        {
+          "Name": "H2.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "H2.WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "H3.FontSize",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 16
+        },
+        {
+          "Name": "H3.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "H3.HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "H3.IsBold",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "H3.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "TextStyles"
+        },
+        {
+          "Name": "H3.Text",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "H3"
+        },
+        {
+          "Name": "H3.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "H3.WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": -0
+        },
+        {
+          "Name": "HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 2
+        },
+        {
+          "Name": "InputBackground.FillBlue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 74
+        },
+        {
+          "Name": "InputBackground.FillGreen",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 74
+        },
+        {
+          "Name": "InputBackground.FillRed",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 74
+        },
+        {
+          "Name": "InputBackground.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "InputBackground.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "InputBackground.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "InputBackgroundDark.FillBlue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 48
+        },
+        {
+          "Name": "InputBackgroundDark.FillGreen",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 48
+        },
+        {
+          "Name": "InputBackgroundDark.FillRed",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 48
+        },
+        {
+          "Name": "InputBackgroundDark.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "InputBackgroundDark.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "InputBackgroundDark.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "InputBackgroundLight.FillBlue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 110
+        },
+        {
+          "Name": "InputBackgroundLight.FillGreen",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 110
+        },
+        {
+          "Name": "InputBackgroundLight.FillRed",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 110
+        },
+        {
+          "Name": "InputBackgroundLight.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "InputBackgroundLight.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "InputBackgroundLight.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "LightGray.FillBlue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 170
+        },
+        {
+          "Name": "LightGray.FillGreen",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 170
+        },
+        {
+          "Name": "LightGray.FillRed",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 170
+        },
+        {
+          "Name": "LightGray.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "LightGray.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "LightGray.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Normal.FontSize",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 14
+        },
+        {
+          "Name": "Normal.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Normal.HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "Normal.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "TextStyles"
+        },
+        {
+          "Name": "Normal.Text",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Normal"
+        },
+        {
+          "Name": "Normal.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Normal.WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "Primary.FillBlue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 177
+        },
+        {
+          "Name": "Primary.FillGreen",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 159
+        },
+        {
+          "Name": "Primary.FillRed",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 6
+        },
+        {
+          "Name": "Primary.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "Primary.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "Primary.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "PrimaryDark.FillBlue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 137
+        },
+        {
+          "Name": "PrimaryDark.FillGreen",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 120
+        },
+        {
+          "Name": "PrimaryDark.FillRed",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "PrimaryDark.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "PrimaryDark.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "PrimaryDark.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "PrimaryDisabled.FillBlue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 74
+        },
+        {
+          "Name": "PrimaryDisabled.FillGreen",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 74
+        },
+        {
+          "Name": "PrimaryDisabled.FillRed",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 74
+        },
+        {
+          "Name": "PrimaryDisabled.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "PrimaryDisabled.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "PrimaryDisabled.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "PrimaryHighlighted.FillBlue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 188
+        },
+        {
+          "Name": "PrimaryHighlighted.FillGreen",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 173
+        },
+        {
+          "Name": "PrimaryHighlighted.FillRed",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 43
+        },
+        {
+          "Name": "PrimaryHighlighted.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "PrimaryHighlighted.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "PrimaryHighlighted.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "PrimaryLight.FillBlue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 193
+        },
+        {
+          "Name": "PrimaryLight.FillGreen",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 180
+        },
+        {
+          "Name": "PrimaryLight.FillRed",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 74
+        },
+        {
+          "Name": "PrimaryLight.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "PrimaryLight.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "PrimaryLight.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "PrimaryPushed.FillBlue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 150
+        },
+        {
+          "Name": "PrimaryPushed.FillGreen",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 135
+        },
+        {
+          "Name": "PrimaryPushed.FillRed",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 5
+        },
+        {
+          "Name": "PrimaryPushed.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "PrimaryPushed.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "PrimaryPushed.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Small.FontSize",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 12
+        },
+        {
+          "Name": "Small.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Small.HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "Small.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "TextStyles"
+        },
+        {
+          "Name": "Small.Text",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Small"
+        },
+        {
+          "Name": "Small.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Small.WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "State",
+          "Type": "State",
+          "Category": "States and Visibility",
+          "ValueAsString": "Default"
+        },
+        {
+          "Name": "Strong.FontSize",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 14
+        },
+        {
+          "Name": "Strong.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Strong.HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "Strong.IsBold",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "Strong.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "TextStyles"
+        },
+        {
+          "Name": "Strong.Text",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Strong"
+        },
+        {
+          "Name": "Strong.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Strong.WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "Success.FillBlue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 48
+        },
+        {
+          "Name": "Success.FillGreen",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 167
+        },
+        {
+          "Name": "Success.FillRed",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 62
+        },
+        {
+          "Name": "Success.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "Success.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "Success.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "TextStyles.ChildrenLayout",
+          "Type": "ChildrenLayout",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "TextStyles.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 20
+        },
+        {
+          "Name": "TextStyles.HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "TextStyles.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 308
+        },
+        {
+          "Name": "TextStyles.X",
+          "Type": "float",
+          "SetsValue": true
+        },
+        {
+          "Name": "TextStyles.Y",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 81
+        },
+        {
+          "Name": "Tiny.FontSize",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 10
+        },
+        {
+          "Name": "Tiny.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Tiny.HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "Tiny.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "TextStyles"
+        },
+        {
+          "Name": "Tiny.Text",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Tiny"
+        },
+        {
+          "Name": "Tiny.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Tiny.WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "Title.FontSize",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 28
+        },
+        {
+          "Name": "Title.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Title.HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "Title.IsBold",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "Title.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "TextStyles"
+        },
+        {
+          "Name": "Title.Text",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Title"
+        },
+        {
+          "Name": "Title.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Title.WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "Warning.FillBlue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 25
+        },
+        {
+          "Name": "Warning.FillGreen",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 171
+        },
+        {
+          "Name": "Warning.FillRed",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 232
+        },
+        {
+          "Name": "Warning.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "Warning.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "Warning.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "White.IsFilled",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "White.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Colors"
+        },
+        {
+          "Name": "White.StrokeWidth",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": -0
+        },
+        {
+          "Name": "WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 2
+        },
+        {
+          "Name": "X",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "XOrigin",
+          "Type": "HorizontalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "XUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 6
+        },
+        {
+          "Name": "Y",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "YOrigin",
+          "Type": "VerticalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 0
+        },
+        {
+          "Name": "YUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        }
+      ],
+      "VariableLists": []
+    }
+  ],
+  "Categories": [],
+  "Instances": [
+    {
+      "Name": "Colors",
+      "BaseType": "Container",
+      "Locked": true
+    },
+    {
+      "Name": "Black",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "DarkGray",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "InputBackground",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "InputBackgroundDark",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "InputBackgroundLight",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "Gray",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "LightGray",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "White",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "PrimaryDark",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "Primary",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "PrimaryLight",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "PrimaryDisabled",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "PrimaryHighlighted",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "PrimaryPushed",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "Success",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "Warning",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "Danger",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "Accent",
+      "BaseType": "Rectangle"
+    },
+    {
+      "Name": "Tiny",
+      "BaseType": "Text"
+    },
+    {
+      "Name": "Small",
+      "BaseType": "Text"
+    },
+    {
+      "Name": "Normal",
+      "BaseType": "Text"
+    },
+    {
+      "Name": "Emphasis",
+      "BaseType": "Text"
+    },
+    {
+      "Name": "Strong",
+      "BaseType": "Text"
+    },
+    {
+      "Name": "H3",
+      "BaseType": "Text"
+    },
+    {
+      "Name": "H2",
+      "BaseType": "Text"
+    },
+    {
+      "Name": "H1",
+      "BaseType": "Text"
+    },
+    {
+      "Name": "TextStyles",
+      "BaseType": "Container"
+    },
+    {
+      "Name": "Title",
+      "BaseType": "Text"
+    }
+  ],
+  "Events": [],
+  "Behaviors": [],
+  "VariablesHiddenFromInstances": []
+}

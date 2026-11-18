@@ -1,0 +1,405 @@
+{
+  "UserEvents": {
+    "32e9a9804bffe909ff226129e9bed998115326d58d3eca039114f3865ff5269c": [
+      {
+        "NewName": "MainScreen",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 0,
+        "TimestampUtc": "2026-11-18T02:23:24.1216493Z"
+      },
+      {
+        "NewName": "TestScreen",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 0,
+        "TimestampUtc": "2026-11-18T02:26:48.9820068Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainScreen",
+        "ElementType": "Screens",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-18T02:50:20.1414335Z"
+      },
+      {
+        "NewName": "InventoryBar/Pieces/ItemIcon",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2026-11-18T02:56:04.2560984Z"
+      },
+      {
+        "NewName": "GameUI/Pieces/ItemIcon",
+        "OldName": "InventoryBar/Pieces/ItemIcon",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2026-11-18T03:11:46.7525343Z"
+      },
+      {
+        "NewName": "GameUI/Pieces/ItemIcon (Container).SpriteInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T03:14:36.8168079Z"
+      },
+      {
+        "NewName": "GameUI/Pieces/SlotNumber",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2026-11-18T03:20:39.3664957Z"
+      },
+      {
+        "NewName": "GameUI/Pieces/SlotNumber (Container).NineSliceInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T03:22:31.7636564Z"
+      },
+      {
+        "NewName": "GameUI/Pieces/SlotNumber (Container).TextInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T03:22:38.2642872Z"
+      },
+      {
+        "NewName": "GameUI/Pieces/SlotNumber (Container).Background",
+        "OldName": "GameUI/Pieces/SlotNumber (Container).NineSliceInstance",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2026-11-18T03:22:46.4535688Z"
+      },
+      {
+        "NewName": "GameUI/Pieces/SlotNumber (Container).SlotNumberText",
+        "OldName": "GameUI/Pieces/SlotNumber (Container).TextInstance",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2026-11-18T03:23:03.351748Z"
+      },
+      {
+        "NewName": "GameUI/Pieces/ItemBackground",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2026-11-18T03:35:26.9939954Z"
+      },
+      {
+        "NewName": "GameUI/Pieces/ItemBackground (Container).NineSliceInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T03:36:45.2406185Z"
+      },
+      {
+        "NewName": "GameUI/Pieces/ItemBackground (Container).Background",
+        "OldName": "GameUI/Pieces/ItemBackground (Container).NineSliceInstance",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2026-11-18T03:37:00.7779485Z"
+      },
+      {
+        "NewName": "GameUI/InventorySlot",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2026-11-18T03:39:33.5254873Z"
+      },
+      {
+        "NewName": "GameUI/InventorySlot (Container).ItemBackgroundInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T03:39:57.5871958Z"
+      },
+      {
+        "NewName": "GameUI/InventorySlot (Container).ItemIconInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T03:40:20.3659626Z"
+      },
+      {
+        "NewName": "GameUI/InventorySlot (Container).SlotNumberInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T03:41:10.8882462Z"
+      },
+      {
+        "NewName": "GameUI/InventorySlot (Container).NineSliceInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T03:46:50.3265855Z"
+      },
+      {
+        "NewName": "GameUI/InventorySlot (Container).HighLightIndicator",
+        "OldName": "GameUI/InventorySlot (Container).NineSliceInstance",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2026-11-18T03:47:07.1322229Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2026-11-18T03:57:41.9957567Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar (Container).StackPanelInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T03:58:52.94848Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar (Container).InventorySlotInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T04:01:16.0846047Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar (Container).InventorySlotInstance1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T04:01:19.5601032Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/InventoryBar (Container).GameUI/InventorySlot InventorySlotInstance1 in GameUI/InventoryBar (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-18T04:01:25.0908031Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/InventoryBar (Container).GameUI/InventorySlot InventorySlotInstance in GameUI/InventoryBar (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-18T04:01:26.963208Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar (Container).InventorySlotInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T04:01:30.9203126Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar (Container).InventorySlotInstance1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T04:01:33.4193608Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar (Container).InventorySlotInstance2",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T04:01:35.9762056Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/InventoryBar (Container).GameUI/InventorySlot InventorySlotInstance2 in GameUI/InventoryBar (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-18T04:03:02.2509951Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/InventoryBar (Container).GameUI/InventorySlot InventorySlotInstance1 in GameUI/InventoryBar (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-18T04:03:02.7616901Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/InventoryBar (Container).GameUI/InventorySlot InventorySlotInstance in GameUI/InventoryBar (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-18T04:03:02.8440563Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/InventoryBar (Container).Controls/StackPanel StackPanelInstance in GameUI/InventoryBar (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-18T04:03:06.1573254Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar (Container).StackPanelInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T04:03:58.4515513Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/InventoryBar (Container).Controls/StackPanel StackPanelInstance in GameUI/InventoryBar (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-18T04:04:11.7902191Z"
+      },
+      {
+        "NewName": "Controls/StackPanel1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2026-11-18T04:04:52.0770314Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "Controls/StackPanel1",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-18T04:05:00.600969Z"
+      },
+      {
+        "NewName": "GameUI/a",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2026-11-18T04:05:08.9271586Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/a",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-18T04:05:13.8834618Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar (Container).StackPanelInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T04:05:33.7699926Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar (Container).StackPanelInstance1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T04:07:30.584512Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/InventoryBar (Container).Controls/StackPanel StackPanelInstance1 in GameUI/InventoryBar (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-18T04:07:36.9846592Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/InventoryBar (Container).Controls/StackPanel StackPanelInstance in GameUI/InventoryBar (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-18T04:07:40.533203Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar (Container).StackPanelInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T04:11:27.6803096Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar (Container).StackPanelInstance1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T04:17:49.8425067Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/InventoryBar",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-18T04:20:40.7225138Z"
+      },
+      {
+        "NewName": "GameUI/test",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2026-11-18T04:20:51.5133579Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/test",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-18T04:22:32.6964663Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2026-11-18T04:22:42.855868Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar (Container).PanelInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T04:22:46.9156095Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar (Container).InventorySlotInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T04:22:55.0621166Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar (Container).InventorySlotInstance1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T04:22:57.3450965Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar (Container).InventorySlotInstance2",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T04:22:59.1235874Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar (Container).InventorySlotInstance3",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T04:23:01.1504453Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/InventoryBar (Container).GameUI/InventorySlot InventorySlotInstance in GameUI/InventoryBar (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-18T04:23:03.2432476Z"
+      },
+      {
+        "NewName": "GameUI/InventoryBar (Container).InventoryBarPanel",
+        "OldName": "GameUI/InventoryBar (Container).PanelInstance",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2026-11-18T04:24:01.7275799Z"
+      },
+      {
+        "NewName": "TestScreen.InventoryBarInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-18T04:25:54.8878029Z"
+      }
+    ]
+  }
+}

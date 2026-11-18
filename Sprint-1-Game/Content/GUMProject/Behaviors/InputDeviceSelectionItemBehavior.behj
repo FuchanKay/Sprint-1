@@ -1,0 +1,41 @@
+{
+  "Name": "InputDeviceSelectionItemBehavior",
+  "RequiredVariables": {
+    "Name": "",
+    "Variables": [],
+    "VariableLists": []
+  },
+  "FormsProperties": [
+    {
+      "Name": "ToolTip",
+      "Type": "string",
+      "SetsValue": true
+    },
+    {
+      "Name": "IsEnabled",
+      "Type": "bool",
+      "SetsValue": true,
+      "ValueAsBool": true
+    }
+  ],
+  "ToolOnlyVariableReferences": [],
+  "Categories": [
+    {
+      "Name": "JoinedCategory",
+      "States": [
+        {
+          "Name": "HasInputDevice",
+          "Variables": [],
+          "VariableLists": []
+        },
+        {
+          "Name": "NoInputDevice",
+          "Variables": [],
+          "VariableLists": []
+        }
+      ]
+    }
+  ],
+  "RequiredInstances": [],
+  "RequiredAnimations": []
+}

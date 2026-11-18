@@ -4,9 +4,9 @@ using MonoGameLibrary.UIRendering;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
-public class UIManager(UIFontAtlas uIFontAtlas, UITextureAtlas uITextureAtlas, GameLayoutManager gameLayoutManager)
+public class UIManager(UIFontAtlas uIFontAtlas, GameLayoutManager gameLayoutManager)
 {
-    private HUDPannel HUDPannel = new(uIFontAtlas, uITextureAtlas);
+    private HUDPannel HUDPannel = new(uIFontAtlas);
     public void Init(PuzzleLevel level)
     {
         HUDPannel.Init(level);

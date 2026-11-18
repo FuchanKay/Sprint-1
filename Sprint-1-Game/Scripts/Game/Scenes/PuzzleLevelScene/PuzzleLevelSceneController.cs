@@ -4,7 +4,7 @@ using MonoGameLibrary.UIRendering;
 using Scripts.GameComponents;
 namespace Scripts.Game;
 
-public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas, UITextureAtlas uITextureAtlas, GameWindow window) : ISceneController
+public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas, GameWindow window) : ISceneController
 {
     private PuzzleLevel Level;
     private LevelFileParser LevelFileParser;
@@ -25,7 +25,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         LevelFileParser = new LevelFileParser();
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
         Level.Init(CurrentLevelIndex);
-        UIManager = new(uIFontAtlas, uITextureAtlas, GameLayoutManager);
+        UIManager = new(uIFontAtlas, GameLayoutManager);
         UIManager.Init(Level);
     }
 
