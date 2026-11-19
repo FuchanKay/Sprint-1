@@ -47,6 +47,14 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
         CurrentObjectSprite = objectSpriteFactory.CreateObjectSprite(CurrentObject, new Vector2(0, 0), context);
     }
 
+    public void Init(GridPointer grid, Coordinate coord)
+    {
+        Grid = grid;
+        var obj = objectSelectorGrid.GetObject(coord);
+        CurrentObject = obj.Clone();
+        CurrentObjectSprite = objectSpriteFactory.CreateObjectSprite(CurrentObject, new Vector2(0, 0), context);
+    }
+
     public void Update(int dtMs)
     {
         if (buttonInput.IsPressed(InputNames.RotatePaintBrush) && CurrentObject.IsRotatable)

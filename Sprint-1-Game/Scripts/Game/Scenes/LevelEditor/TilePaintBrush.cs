@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
@@ -36,6 +37,14 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
     {
         Grid = grid;
         CurrentTile = TilePalette[TileIndex].Clone();
+        CurrentTileSprite = tileSpriteFactory.CreateTileSprite(CurrentTile, new Vector2(0, 0), context);
+    }
+
+    public void Init(GridPointer grid, Coordinate coord)
+    {
+        Grid = grid;
+        var tile = tileSelectorGrid.GetTile(coord);
+        CurrentTile = tile.Clone();
         CurrentTileSprite = tileSpriteFactory.CreateTileSprite(CurrentTile, new Vector2(0, 0), context);
     }
 

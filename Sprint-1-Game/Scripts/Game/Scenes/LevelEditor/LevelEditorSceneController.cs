@@ -85,8 +85,10 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
         SpriteGrid.Update(dtMs);
         Brush.Update(dtMs);
 
-        var clickedObjectSelector = mouseInput.IsPressed(InputNames.Select) && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, ObjectSelectorContext, out var objCoord);
-        var clickedTileSelector = mouseInput.IsPressed(InputNames.Select) && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, TileSelectorContext, out var tileCoord);
+        var objCoord = Coordinate.Zero;
+        var tileCoord = Coordinate.Zero;
+        var clickedObjectSelector = mouseInput.IsPressed(InputNames.Select) && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, ObjectSelectorContext, out objCoord);
+        var clickedTileSelector = mouseInput.IsPressed(InputNames.Select) && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, TileSelectorContext, out tileCoord);
 
         if (UndoHistory.Count > UndoHistoryMaxLength) UndoHistory.RemoveAt(0);
 
@@ -102,12 +104,14 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
         else if (buttonInput.IsPressed(InputNames.ObjectPaintBrushMode) || clickedObjectSelector)
         {
             Brush = new ObjectPaintBrush(buttonInput, mouseInput, audioManager, SpriteGrid, Context, ObjectSelectorContext, ObjectSelectorGrid, ObjectSpriteFactory, UndoHistory, RedoHistory);
-            Brush.Init(CurrentGrid);
+            if(clickedObjectSelector) Brush.Init(CurrentGrid, objCoord);
+            else Brush.Init(CurrentGrid);
         }
         else if (buttonInput.IsPressed(InputNames.TileBrushMode) || clickedTileSelector)
         {
             Brush = new TilePaintBrush(buttonInput, mouseInput, audioManager, SpriteGrid, Context, TileSelectorContext, TileSelectorGrid, TileSpriteFactory, UndoHistory, RedoHistory);
-            Brush.Init(CurrentGrid);
+            if(clickedTileSelector) Brush.Init(CurrentGrid, tileCoord);
+            else Brush.Init(CurrentGrid);
         }
         else if (buttonInput.IsPressed(InputNames.Undo) && UndoHistory.Count > 0)
         {
