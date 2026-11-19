@@ -1148,6 +1148,300 @@
         "ElementType": "Screens",
         "EventType": 5,
         "TimestampUtc": "2026-11-19T19:40:17.8909151Z"
+      },
+      {
+        "NewName": "GameUI/InventoryMenu (Container).InventoryPanel",
+        "OldName": "GameUI/InventoryMenu (Container).InventoryPannel",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2026-11-19T19:49:35.4368281Z"
+      },
+      {
+        "NewName": "GameUI/TimeMenu",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2026-11-19T20:05:21.7117847Z"
+      },
+      {
+        "NewName": "GameUI/TimeMenu (Container).TitleBarInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-19T20:05:24.9936206Z"
+      },
+      {
+        "NewName": "GameUI/TimeMenu (Container).Background",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-19T20:05:44.597647Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/TimeMenu (Container).NineSlice Background in GameUI/TimeMenu (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-19T20:05:48.7071871Z"
+      },
+      {
+        "NewName": "GameUI/TimeMenu (Container).MainContainer",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-19T20:05:50.457514Z"
+      },
+      {
+        "NewName": "GameUI/TimeMenu (Container).Background",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-19T20:05:52.163728Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/TimeMenu (Container).GameUI/Pieces/TitleBar TitleBarInstance in GameUI/TimeMenu (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-19T20:07:21.8372366Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/TimeMenu (Container).Container MainContainer in GameUI/TimeMenu (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-19T20:07:24.048557Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/TimeMenu (Container).NineSlice Background in GameUI/TimeMenu (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-19T20:07:25.847292Z"
+      },
+      {
+        "NewName": "GameUI/TimeMenu (Container).TitleBarInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-19T20:07:39.6953221Z"
+      },
+      {
+        "NewName": "GameUI/TimeMenu (Container).MainContainer",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-19T20:07:42.2421224Z"
+      },
+      {
+        "NewName": "GameUI/TimeMenu (Container).Background",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-19T20:07:45.9834636Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/TimeMenu",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-19T20:07:50.2458129Z"
+      },
+      {
+        "NewName": "GameUI/InventoryMenu1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2026-11-19T20:07:52.5337965Z"
+      },
+      {
+        "NewName": "GameUI/TimeMenu",
+        "OldName": "GameUI/InventoryMenu1",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2026-11-19T20:08:01.8861796Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/TimeMenu (Container).Controls/Panel InventoryPanel in GameUI/TimeMenu (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-19T20:08:08.3268093Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/TimeMenu (Container).GameUI/InventorySlot InventorySlotInstance1 in GameUI/TimeMenu (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-19T20:08:11.2857854Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/TimeMenu (Container).GameUI/InventorySlot InventorySlotInstance2 in GameUI/TimeMenu (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-19T20:08:11.2867601Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/TimeMenu (Container).GameUI/InventorySlot InventorySlotInstance3 in GameUI/TimeMenu (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-19T20:08:11.2943387Z"
+      },
+      {
+        "NewName": "GameUI/TimeMenu (Container).TextInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-19T20:08:18.7055528Z"
+      },
+      {
+        "NewName": "GameUI/TimeMenu1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2026-11-19T20:12:47.0232108Z"
+      },
+      {
+        "NewName": "GameUI/LevelNameMenu",
+        "OldName": "GameUI/TimeMenu1",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2026-11-19T20:13:02.2188313Z"
+      },
+      {
+        "NewName": "GameUI/LevelNameMenu (Container).LevelText",
+        "OldName": "GameUI/LevelNameMenu (Container).TextInstance",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2026-11-19T20:13:32.7521984Z"
+      },
+      {
+        "NewName": "GameUI/LevelNameMenu (Container).LevelTitle",
+        "OldName": "GameUI/LevelNameMenu (Container).LevelText",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2026-11-19T20:14:20.9823535Z"
+      },
+      {
+        "NewName": "GameUI/LevelTitleMenu",
+        "OldName": "GameUI/LevelNameMenu",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2026-11-19T20:14:31.3792805Z"
+      },
+      {
+        "NewName": "GameUI/TimeMenu (Container).Time",
+        "OldName": "GameUI/TimeMenu (Container).TextInstance",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2026-11-19T20:15:58.1908704Z"
+      },
+      {
+        "NewName": "GameUI/TimeMenu1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2026-11-19T20:16:50.3038268Z"
+      },
+      {
+        "NewName": "GameUI/GameInstructionMenu",
+        "OldName": "GameUI/TimeMenu1",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2026-11-19T20:17:02.2847962Z"
+      },
+      {
+        "NewName": "GameUI/GameInstructionMenu (Container).GameInstruction",
+        "OldName": "GameUI/GameInstructionMenu (Container).Time",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2026-11-19T20:17:25.4913178Z"
+      },
+      {
+        "NewName": "GameUI/GameSceneHUD",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2026-11-19T20:20:12.8813018Z"
+      },
+      {
+        "NewName": "GameUI/GameSceneHUD (Container).PanelInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-19T20:20:19.3074084Z"
+      },
+      {
+        "NewName": "GameUI/GameSceneHUD (Container).HUDPanel",
+        "OldName": "GameUI/GameSceneHUD (Container).PanelInstance",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2026-11-19T20:20:26.3711497Z"
+      },
+      {
+        "NewName": "GameUI/GameSceneHUD (Container).LevelTitleMenuInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-19T20:20:47.6086377Z"
+      },
+      {
+        "NewName": "GameUI/GameSceneHUD (Container).GameInstructionMenuInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-19T20:21:02.0538782Z"
+      },
+      {
+        "NewName": "GameUI/GameSceneHUD (Container).InventoryMenuInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-19T20:21:08.1563676Z"
+      },
+      {
+        "NewName": "GameUI/GameSceneHUD (Container).TimeMenuInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-19T20:21:21.4851762Z"
+      },
+      {
+        "NewName": "GameUI/TimeMenu1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2026-11-19T20:22:41.1831803Z"
+      },
+      {
+        "NewName": "GameUI/EnemyCounterMenu",
+        "OldName": "GameUI/TimeMenu1",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2026-11-19T20:22:53.4347394Z"
+      },
+      {
+        "NewName": "GameUI/GameSceneHUD (Container).EnemyCounterMenuInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-19T20:24:31.7900154Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameSceneUI.GameUI/InventoryMenu InventoryMenuInstance in GameSceneUI",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2026-11-19T20:31:51.7511391Z"
+      },
+      {
+        "NewName": "GameSceneUI.GameSceneHUDInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2026-11-19T20:32:02.2870824Z"
       }
     ]
   }

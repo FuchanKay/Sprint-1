@@ -5,37 +5,37 @@
       "Name": "Default",
       "Variables": [
         {
-          "Name": "InventoryMenuInstance.X",
+          "Name": "GameSceneHUDInstance.X",
           "Type": "float",
           "SetsValue": true,
           "ValueAsFloat": 0
         },
         {
-          "Name": "InventoryMenuInstance.XOrigin",
+          "Name": "GameSceneHUDInstance.XOrigin",
           "Type": "HorizontalAlignment",
           "SetsValue": true,
           "ValueAsInt": 2
         },
         {
-          "Name": "InventoryMenuInstance.XUnits",
+          "Name": "GameSceneHUDInstance.XUnits",
           "Type": "PositionUnitType",
           "SetsValue": true,
           "ValueAsInt": 4
         },
         {
-          "Name": "InventoryMenuInstance.Y",
+          "Name": "GameSceneHUDInstance.Y",
           "Type": "float",
           "SetsValue": true,
-          "ValueAsFloat": -103
+          "ValueAsFloat": 0
         },
         {
-          "Name": "InventoryMenuInstance.YOrigin",
+          "Name": "GameSceneHUDInstance.YOrigin",
           "Type": "VerticalAlignment",
           "SetsValue": true,
           "ValueAsInt": 1
         },
         {
-          "Name": "InventoryMenuInstance.YUnits",
+          "Name": "GameSceneHUDInstance.YUnits",
           "Type": "PositionUnitType",
           "SetsValue": true,
           "ValueAsInt": 7
@@ -47,8 +47,8 @@
   "Categories": [],
   "Instances": [
     {
-      "Name": "InventoryMenuInstance",
-      "BaseType": "GameUI/InventoryMenu"
+      "Name": "GameSceneHUDInstance",
+      "BaseType": "GameUI/GameSceneHUD"
     }
   ],
   "Events": [],

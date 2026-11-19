@@ -305,6 +305,21 @@
       "LinkType": 0
     },
     {
+      "Name": "GameUI/EnemyCounterMenu",
+      "ElementType": 1,
+      "LinkType": 0
+    },
+    {
+      "Name": "GameUI/GameInstructionMenu",
+      "ElementType": 1,
+      "LinkType": 0
+    },
+    {
+      "Name": "GameUI/GameSceneHUD",
+      "ElementType": 1,
+      "LinkType": 0
+    },
+    {
       "Name": "GameUI/InventoryBar",
       "ElementType": 1,
       "LinkType": 0
@@ -316,6 +331,11 @@
     },
     {
       "Name": "GameUI/InventorySlot",
+      "ElementType": 1,
+      "LinkType": 0
+    },
+    {
+      "Name": "GameUI/LevelTitleMenu",
       "ElementType": 1,
       "LinkType": 0
     },
@@ -336,6 +356,11 @@
     },
     {
       "Name": "GameUI/Pieces/TitleBar",
+      "ElementType": 1,
+      "LinkType": 0
+    },
+    {
+      "Name": "GameUI/TimeMenu",
       "ElementType": 1,
       "LinkType": 0
     },

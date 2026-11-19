@@ -91,73 +91,73 @@
           "ValueAsInt": 4
         },
         {
-          "Name": "InventoryPannel.AutoGridHorizontalCells",
+          "Name": "InventoryPanel.AutoGridHorizontalCells",
           "Type": "int",
           "SetsValue": true,
           "ValueAsInt": 3
         },
         {
-          "Name": "InventoryPannel.AutoGridVerticalCells",
+          "Name": "InventoryPanel.AutoGridVerticalCells",
           "Type": "int",
           "SetsValue": true,
           "ValueAsInt": 1
         },
         {
-          "Name": "InventoryPannel.ChildrenLayout",
+          "Name": "InventoryPanel.ChildrenLayout",
           "Type": "ChildrenLayout",
           "SetsValue": true,
           "ValueAsInt": 4
         },
         {
-          "Name": "InventoryPannel.Height",
+          "Name": "InventoryPanel.Height",
           "Type": "float",
           "SetsValue": true,
           "ValueAsFloat": 0
         },
         {
-          "Name": "InventoryPannel.HeightUnits",
+          "Name": "InventoryPanel.HeightUnits",
           "Type": "DimensionUnitType",
           "SetsValue": true,
           "ValueAsInt": 4
         },
         {
-          "Name": "InventoryPannel.Parent",
+          "Name": "InventoryPanel.Parent",
           "Type": "string",
           "SetsValue": true,
           "ValueAsString": "MainContainer"
         },
         {
-          "Name": "InventoryPannel.StackSpacing",
+          "Name": "InventoryPanel.StackSpacing",
           "Type": "float",
           "SetsValue": true,
           "ValueAsFloat": 10
         },
         {
-          "Name": "InventoryPannel.Width",
+          "Name": "InventoryPanel.Width",
           "Type": "float",
           "SetsValue": true,
           "ValueAsFloat": 0
         },
         {
-          "Name": "InventoryPannel.WidthUnits",
+          "Name": "InventoryPanel.WidthUnits",
           "Type": "DimensionUnitType",
           "SetsValue": true,
           "ValueAsInt": 4
         },
         {
-          "Name": "InventoryPannel.XOrigin",
+          "Name": "InventoryPanel.XOrigin",
           "Type": "HorizontalAlignment",
           "SetsValue": true,
           "ValueAsInt": 1
         },
         {
-          "Name": "InventoryPannel.XUnits",
+          "Name": "InventoryPanel.XUnits",
           "Type": "PositionUnitType",
           "SetsValue": true,
           "ValueAsInt": 6
         },
         {
-          "Name": "InventoryPannel.Y",
+          "Name": "InventoryPanel.Y",
           "Type": "float",
           "SetsValue": true,
           "ValueAsFloat": 20
@@ -166,7 +166,7 @@
           "Name": "InventorySlotInstance1.Parent",
           "Type": "string",
           "SetsValue": true,
-          "ValueAsString": "InventoryPannel"
+          "ValueAsString": "InventoryPanel"
         },
         {
           "Name": "InventorySlotInstance1.SlotNumber",
@@ -178,7 +178,7 @@
           "Name": "InventorySlotInstance2.Parent",
           "Type": "string",
           "SetsValue": true,
-          "ValueAsString": "InventoryPannel"
+          "ValueAsString": "InventoryPanel"
         },
         {
           "Name": "InventorySlotInstance2.SlotNumber",
@@ -190,7 +190,7 @@
           "Name": "InventorySlotInstance3.Parent",
           "Type": "string",
           "SetsValue": true,
-          "ValueAsString": "InventoryPannel"
+          "ValueAsString": "InventoryPanel"
         },
         {
           "Name": "MainContainer.Height",
@@ -253,7 +253,7 @@
       "BaseType": "NineSlice"
     },
     {
-      "Name": "InventoryPannel",
+      "Name": "InventoryPanel",
       "BaseType": "Controls/Panel"
     },
     {

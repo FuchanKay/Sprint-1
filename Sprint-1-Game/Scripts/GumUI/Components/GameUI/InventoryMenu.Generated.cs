@@ -40,7 +40,7 @@ partial class InventoryMenu : global::Gum.Forms.Controls.FrameworkElement
     public TitleBar TitleBarInstance { get; protected set; }
     public ContainerRuntime MainContainer { get; protected set; }
     public NineSliceRuntime Background { get; protected set; }
-    public Panel InventoryPannel { get; protected set; }
+    public Panel InventoryPanel { get; protected set; }
     public InventorySlot InventorySlotInstance1 { get; protected set; }
     public InventorySlot InventorySlotInstance2 { get; protected set; }
     public InventorySlot InventorySlotInstance3 { get; protected set; }
@@ -60,7 +60,7 @@ partial class InventoryMenu : global::Gum.Forms.Controls.FrameworkElement
         TitleBarInstance = global::Gum.Forms.GraphicalUiElementFormsExtensions.FindFormsControl<TitleBar>(this.Visual,"TitleBarInstance");
         MainContainer = this.Visual?.GetGraphicalUiElementByName("MainContainer") as global::Gum.GueDeriving.ContainerRuntime;
         Background = this.Visual?.GetGraphicalUiElementByName("Background") as global::Gum.GueDeriving.NineSliceRuntime;
-        InventoryPannel = global::Gum.Forms.GraphicalUiElementFormsExtensions.FindFormsControl<Panel>(this.Visual,"InventoryPannel");
+        InventoryPanel = global::Gum.Forms.GraphicalUiElementFormsExtensions.FindFormsControl<Panel>(this.Visual,"InventoryPanel");
         InventorySlotInstance1 = global::Gum.Forms.GraphicalUiElementFormsExtensions.FindFormsControl<InventorySlot>(this.Visual,"InventorySlotInstance1");
         InventorySlotInstance2 = global::Gum.Forms.GraphicalUiElementFormsExtensions.FindFormsControl<InventorySlot>(this.Visual,"InventorySlotInstance2");
         InventorySlotInstance3 = global::Gum.Forms.GraphicalUiElementFormsExtensions.FindFormsControl<InventorySlot>(this.Visual,"InventorySlotInstance3");
