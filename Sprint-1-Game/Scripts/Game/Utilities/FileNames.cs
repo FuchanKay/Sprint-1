@@ -47,6 +47,7 @@ public class FileNames
     public readonly static string[] TileSelectorFileNames = 
     [
     "Content/Levels/tile-grid-1.csv",
+    "Content/Levels/tile-grid-2.csv",
     ];
 
     public readonly static string SnapAudio = "audio/snap";
