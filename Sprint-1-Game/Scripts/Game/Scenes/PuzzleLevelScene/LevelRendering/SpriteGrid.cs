@@ -145,9 +145,9 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         HideObjectLayer = !HideObjectLayer;
     }
 
-    public void ToggleFogOfWar()
+    public void SetFogOfWar(bool fogState)
     {
-        FogOfWar = !FogOfWar;
+        FogOfWar = fogState;
     }
 
     public static Vector2 CalculateLiteralPos(LevelContext context, Coordinate coord)

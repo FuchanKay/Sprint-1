@@ -36,7 +36,6 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
             PlayerIsDead = false,
             LevelIsCompleted = false,
             LevelEditorMode = false,
-            FogOfWar = true // PLACEHOLDER
         };
 
         var levelFileName = FileNames.LevelFileNames[levelIndex];
@@ -44,11 +43,12 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
         Context.LevelName = levelFileParser.GetLevelName(LevelFile);
         Context.LevelWidth = levelFileParser.GetLevelWidth(LevelFile);
         Context.LevelHeight = levelFileParser.GetLevelHeight(LevelFile);
+        Context.FogOfWar = levelFileParser.GetFogOfWar(LevelFile);
 
         gameLayoutManager.LevelLayout(Context);
         CurrentGridPointer = levelFileParser.CreateGrids(LevelFile);
         SpriteGrid.Init(CurrentGridPointer, Context);
-        if(Context.FogOfWar) SpriteGrid.ToggleFogOfWar();
+        SpriteGrid.SetFogOfWar(Context.FogOfWar);
         CurrentInventoryManager = new InventoryManager();
         LevelStateHistory = new LevelStateHistory(CurrentGridPointer, CurrentInventoryManager);
     }
