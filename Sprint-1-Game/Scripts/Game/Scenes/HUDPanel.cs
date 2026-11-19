@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Scripts.Game;
 using Scripts.GameComponents;
 
-public class HUDPannel(UIFontAtlas uIFontAtlas)
+public class HUDPanel(UIFontAtlas uIFontAtlas)
 {
     public Vector2 PannelCornerPos { get; set; }
     private int Clock;
