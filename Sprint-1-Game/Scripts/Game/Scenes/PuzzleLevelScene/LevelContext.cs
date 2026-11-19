@@ -15,4 +15,5 @@ public class LevelContext
     public bool PlayerIsDead { get; set; }
     public bool LevelIsCompleted { get; set; }
     public bool LevelEditorMode { get; set; }
+    public bool FogOfWar { get; set; }
 }

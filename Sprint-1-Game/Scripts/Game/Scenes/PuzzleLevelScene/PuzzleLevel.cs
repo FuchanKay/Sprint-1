@@ -35,13 +35,15 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
             PuzzleOffsetY = 50,
             PlayerIsDead = false,
             LevelIsCompleted = false,
-            LevelEditorMode = false
+            LevelEditorMode = false,
         };
+
         var levelFileName = FileNames.LevelFileNames[levelIndex];
         LevelFile = LevelFileParser.ParseLevelFile(levelFileName);
         Context.LevelName = levelFileParser.GetLevelName(LevelFile);
         Context.LevelWidth = levelFileParser.GetLevelWidth(LevelFile);
         Context.LevelHeight = levelFileParser.GetLevelHeight(LevelFile);
+        Context.FogOfWar = levelFileParser.GetFogOfWar(LevelFile);
 
         gameLayoutManager.LevelLayout(Context);
         CurrentGridPointer = levelFileParser.CreateGrids(LevelFile);
