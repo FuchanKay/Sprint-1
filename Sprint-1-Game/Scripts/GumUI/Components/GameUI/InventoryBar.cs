@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace GUMProject.Components.GameUI
 {
-    partial class InventoryBar()
+    partial class InventoryBar
     {
         partial void CustomInitialize()
         {
