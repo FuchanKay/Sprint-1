@@ -5,6 +5,7 @@ using MonoGameLibrary.UIRendering;
 using Scripts.GameComponents;
 namespace Scripts.Game;
 using Gum;
+using Gum.DataTypes.Variables;
 using Gum.Managers;
 public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager, GameWindow window) : ISceneController
 {
@@ -15,14 +16,11 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private GameLayoutManager GameLayoutManager = new();
     private UIManager UIManager;
-    Gum.GumService GumUI => Gum.GumService.Default;
-
-
     private readonly IAudioManager AudioManager = audioManager;
     private ILevelTransition LevelTransition;
     public int CurrentLevelIndex = 0;
     // Loading a SpriteFont Description using the content pipeline
-
+    private Gum.Wireframe.GraphicalUiElement Screen;
     public void Init()
     {
         GameLayoutManager.Init(window);
@@ -32,8 +30,8 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
        // UIManager = new(uIFontAtlas, GameLayoutManager);
         //UIManager.Init(Level);
         LevelTransition = new WipeTransition(Level);
-        var screen = ObjectFinder.Self.GumProjectSave.Screens[0].ToGraphicalUiElement();
-        screen.AddToRoot();
+        var Screen = ObjectFinder.Self.GumProjectSave.Screens[0].ToGraphicalUiElement();
+        Screen.AddToRoot();
 
     }
 
@@ -114,7 +112,6 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
 
         Level.Update(dtMs);
         //UIManager.Update(dtMs);
-
         // Exits to the main menu upon a levels completion
         if (Level.Context.LevelIsCompleted && Level.Context.LevelEditorMode)
         {
