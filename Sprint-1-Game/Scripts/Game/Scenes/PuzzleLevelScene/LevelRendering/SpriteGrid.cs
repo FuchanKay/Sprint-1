@@ -22,6 +22,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         TileSpriteManager.Init(gridPointer, context, tileSpriteFactory);
         EffectSpriteManager.Init(context, effectSpriteFactory);
         FogManager.Init(ObjectSpriteManager.PlayerSprite.CurrentPosition);
+        FogOfWar = context.FogOfWar;
     }
 
     // OBJECT SPRITE METHODS
@@ -143,11 +144,6 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     public void ToggleObjectLayerHide()
     {
         HideObjectLayer = !HideObjectLayer;
-    }
-
-    public void SetFogOfWar(bool fogState)
-    {
-        FogOfWar = fogState;
     }
 
     public static Vector2 CalculateLiteralPos(LevelContext context, Coordinate coord)

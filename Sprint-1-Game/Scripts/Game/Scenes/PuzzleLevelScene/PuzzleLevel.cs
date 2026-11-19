@@ -48,7 +48,6 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
         gameLayoutManager.LevelLayout(Context);
         CurrentGridPointer = levelFileParser.CreateGrids(LevelFile);
         SpriteGrid.Init(CurrentGridPointer, Context);
-        SpriteGrid.SetFogOfWar(Context.FogOfWar);
         CurrentInventoryManager = new InventoryManager();
         LevelStateHistory = new LevelStateHistory(CurrentGridPointer, CurrentInventoryManager);
     }
