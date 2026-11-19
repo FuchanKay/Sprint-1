@@ -51,6 +51,10 @@ public class DirectionalInputSubEvent(Directions direction) : ILevelSubEvent
             var door = gridPointer.GetObject(destinationCoord) as DoorObject;
             if (door.IsOpen)
             {
+                var playerSprite = spriteGrid.GetObjectSprite(playerCoord);
+                playerSprite = playerSprite.ConvertToAnimated(AnimationNames.ToPlayerMovingAnimationName(direction));
+                spriteGrid.SetObjectSprite(playerCoord, destinationCoord, playerSprite);
+                spriteGrid.StartObjectAnimation(playerCoord);
                 context.LevelIsCompleted = true;
             }
         }

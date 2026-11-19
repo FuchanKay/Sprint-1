@@ -71,7 +71,25 @@ public class LevelFileParser()
 
     private ITile ProcessTile(string tileValue, int x, int y)
     {
-        ITile tile = tileValue switch
+        string[] tileParts = tileValue.Split(DirectionDelimiter);
+        string tileType = tileParts[0];
+
+        if (tileParts.Length == 1)
+        {
+            string[] fixedBuffer = new string[2];
+            tileParts.CopyTo(fixedBuffer, 0);
+            tileParts = fixedBuffer;
+            tileParts[1] = "0";
+        }
+
+        string strDirection = tileParts[1];
+        var direction = Directions.North;
+        if (int.TryParse(strDirection, out var numDirection))
+        {
+            direction = (Directions)(numDirection % 4);
+        }
+
+        ITile tile = tileType switch
         {
             "_" => TileFactory.CreateEmptyTile(),
             "Dirt" => TileFactory.CreateDirtTile(),
@@ -121,12 +139,15 @@ public class LevelFileParser()
             "CornerWall" => ObjectFactory.CreateCornerWall(direction),
             "ICornerWall" => ObjectFactory.CreateInvertedCornerWall(direction),
             "SingleWall" => ObjectFactory.CreateStandaloneWall(direction),
+            "OneSingleWall" => ObjectFactory.CreateSingleStandaloneWall(direction),
+            "SingleWallCap" => ObjectFactory.CreateStandaloneWallCap(direction),
             "SingleWallCorner" => ObjectFactory.CreateStandaloneWallCorner(direction),
             "SingleWallConnector" => ObjectFactory.CreateStandaloneWallConnector(direction),
             "WallTop" => ObjectFactory.CreateTopOfWall(direction),
             "Bomb" => ObjectFactory.CreateBomb(),
             "ClosedDoor" => ObjectFactory.CreateClosedDoor(),
             "OpenDoor" => ObjectFactory.CreateOpenDoor(),
+            "Key" => ObjectFactory.CreateKey(),
             "TimedBomb" => ObjectFactory.CreateTimedBomb(),
             "Skeleton" => ObjectFactory.CreateSkeleton(),
             "Warlock" => ObjectFactory.CreateWarlock(),

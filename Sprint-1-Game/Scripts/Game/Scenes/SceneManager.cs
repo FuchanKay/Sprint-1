@@ -13,10 +13,12 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
     private ISceneController CurrentScene;
     public bool ShouldExit { get; private set; }
     public bool ShouldRestart { get; private set; }
+    public ISceneTransition SceneTransition { get; set; }
 
     public void Init()
     {
         ShouldExit = false;
+        SceneTransition = new FadeTransition(this);
 
         AddScenesToMap();
 
@@ -45,12 +47,14 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         {
             ExitGame();
         }
+        if (SceneTransition.IsActive) SceneTransition.Update(dtMs);
         CurrentScene.Update(dtMs);
     }
 
     public void Draw(SpriteBatch sb)
     {
         CurrentScene.Draw(sb);
+        if (SceneTransition.IsActive) SceneTransition.Draw(sb);
     }
 
     public void SwapScene(string sceneName)
@@ -88,7 +92,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas, uIFontAtlas);
         NameSceneMap.TryAdd(SceneNames.MainMenu, mainMenuScene);
 
-        var levelEditorScene = new LevelEditorSceneController(this, buttonInput, mouseInput, textureAtlas);
+        var levelEditorScene = new LevelEditorSceneController(this, buttonInput, mouseInput, textureAtlas, spriteFontManager);
         NameSceneMap.TryAdd(SceneNames.LevelEditor, levelEditorScene);
         
         var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas, uIFontAtlas, window);

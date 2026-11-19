@@ -4,6 +4,7 @@
 
 ## Controls
 
+For Puzzle Level Gameplay:
 W, A, S, D or arrow keys => Face and move in that direction
 Left Shift + direction => Turn to face that direction without moving
 F => Snap: activate bombs, rotate bug tiles, and trigger the other snap interactions
@@ -15,14 +16,22 @@ R => Restart the current level (can be undone)
 Ctrl + R => Restart the entire game
 Q => Exit the game
 
-## Level Elements
+For the level editor:
+P => Object Paint Brush
+T => Tile Paint Brush
+E => Eraser Brush
+A/D => Cycle current object/tile
+Left-Click => Draw object/tile
+H => Hide objects on screen
+M => Test the current level (switches to gameplay controls).
 
 ### Tiles
 
 Dirt, grass, brick, mossy brick => Walkable floor; these are visual variations of the same floor behavior.
-Water => Walkable. It has no additional gameplay effect at present.
-Pit => Blocks movement.
-Lava => Walkable, but dangerous: after a move, the player is defeated if standing on lava. Other objects on lava are destroyed during the level check.
+Water => Non-Walkable. Objects on top of it will sink and be destroyed. Can be filled with a rock or pumpkin.
+Pit => Blocks movement. Can be filled with a rock or pumpkin.
+Lava => Non-Walkable. Objects on top of it will be burned and destroyed. Can not be filled with any rocks or pumpkins.
+Ice => Walkable. Players, moving enemies and pushed objects slide along ice in the direction they last moved.
 Clockwise bug tile => Walkable. When you snap, it rotates rotatable objects on its tile clockwise.
 Counterclockwise bug tile => Walkable. When you snap, it rotates rotatable objects on its tile counterclockwise.
 
@@ -31,8 +40,10 @@ Counterclockwise bug tile => Walkable. When you snap, it rotates rotatable objec
 Sprout => The character you control.
 Wall => Blocks movement and cannot be pushed or destroyed.
 Rock => Pushable and destructible. Push it into an empty tile; bombs can destroy it.
-Bomb => Pushable and pickable. Snapping detonates it, affecting a 3×3 area centered on the bomb. Destructible objects in that area are removed, and both players and enemies are defeated if caught in the blast.
+Bomb => Pushable and collectable. Snapping detonates it, affecting a 3×3 area centered on the bomb. Destructible objects in that area are removed, and both players and enemies are defeated if caught in the blast.
 Timed bomb => Pushable. Its countdown advances when you snap; it detonates when its remaining count reaches one. Its blast follows the same area and destruction rules as a bomb.
+Pumpkin Seed => Collectable. Grows into a pumpkin when the player snaps, which functions the same as a rock.
+Vine Seed => Collectable. Grows across non-walkable tiles to create a bridge when the player snaps.
 Key => Unlocks a closed door present in the level. Dropped once all enemies are defeated.
 Door => When open, acts as the exit to the current screen.
 
@@ -42,10 +53,9 @@ Skeleton => Stationary. It can attack the player in all cardinal directions; get
 Warlock => Pushable and stationary. When you snap, it swaps positions with the player.
 Red lizards => Pushable and stationary. Shoots a ranged fire attack at the player whenever the player enters its line of sight.
 Blue lizards => Pushable and stationary. Shoots a ranged fire attack when the player snaps. This attack can be used by the player to defeat enemies and destroy destructible objects.
-(Both lizards will be rotatable in the future, but currently are not)
-Frog => Moves randomly in a cardinal direction as the player moves. Has no attack behavior.
+Frog => When the player snaps frogs will hop 2 spaces toward the player. Will not move towards the player if a path is not available.
 Zombie => Moves in a fixed movement pattern (Currently a horizontal line). It attacks the player if they are standing in the direction it is facing.
-Bat => Pathfinds to the player and moves towards their current position. It can attack the player in all cardinal directions.
+Bat => Pathfinds to the player and moves towards their current position every time the player moves. It can attack the player in all cardinal directions. Will not move if a path to the player is not available similar to the frogs.
 
 ## Project
 

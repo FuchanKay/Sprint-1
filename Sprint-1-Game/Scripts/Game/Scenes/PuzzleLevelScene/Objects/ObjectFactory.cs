@@ -82,6 +82,16 @@ public class ObjectFactory()
         return CreateSkinnedWall(direction, RegionNames.StandaloneWall);
     }
 
+    public static IObject CreateSingleStandaloneWall(Directions direction)
+    {
+        return CreateSkinnedWall(direction, RegionNames.SingleStandaloneWall);
+    }
+
+    public static IObject CreateStandaloneWallCap(Directions direction)
+    {
+        return CreateSkinnedWall(direction, RegionNames.StandaloneWallCap);
+    }
+
     public static IObject CreateStandaloneWallConnector(Directions direction)
     {
         return CreateSkinnedWall(direction, RegionNames.StandaloneWallConnector);

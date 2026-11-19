@@ -188,7 +188,10 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddRegion(RegionNames.StandaloneWall, 2, 2, 64, 64);
         TextureAtlas.AddRegion(RegionNames.TopOfWall, 3, 2, 64, 64);
         TextureAtlas.AddRegion(RegionNames.StandaloneWallConnector, 4, 2, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.StandaloneWallCorner, 5, 2, 64, 64)
+        TextureAtlas.AddRegion(RegionNames.StandaloneWallCorner, 5, 2, 64, 64);
+
+        TextureAtlas.AddRegion(RegionNames.StandaloneWallCap, 0, 3, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.SingleStandaloneWall, 1, 3, 64, 64);
 ;
         TextureAtlas.AddRegion(RegionNames.Bomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
