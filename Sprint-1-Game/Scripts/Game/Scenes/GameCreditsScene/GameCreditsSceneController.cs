@@ -20,6 +20,19 @@ public class GameCreditsSceneController(ISceneManager sceneManager, IInputManage
         SproutHeartInit();
     }
 
+    public void Update(int dtMs)
+    {
+        ExitGameButton.Update(dtMs);
+        SproutHeart.Update(dtMs);
+    }
+
+    public void Draw(SpriteBatch sb)
+    {
+        ExitGameButton.Draw(sb);
+        GameCompleteMessage.Draw(sb);
+        SproutHeart.Draw(sb);
+    }
+
     private void CreditsTextInit()
     {
         string gameCompleteText = "Thank you for playing!\n\nGame Created By:\nFuma\nMallory\nSadie\nYongan\nLucas";
@@ -39,18 +52,5 @@ public class GameCreditsSceneController(ISceneManager sceneManager, IInputManage
         SproutHeart.SetTargetPosition(sproutPosition);
         SproutHeart.LayerDepth = 0.95f;
         SproutHeart.Scale = 5.0f;
-    }
-
-    public void Update(int dtMs)
-    {
-        ExitGameButton.Update(dtMs);
-        SproutHeart.Update(dtMs);
-    }
-
-    public void Draw(SpriteBatch sb)
-    {
-        ExitGameButton.Draw(sb);
-        GameCompleteMessage.Draw(sb);
-        SproutHeart.Draw(sb);
     }
 }
