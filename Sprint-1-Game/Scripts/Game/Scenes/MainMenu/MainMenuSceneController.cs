@@ -4,7 +4,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class MainMenuSceneController(ISceneManager sceneManager, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager) : ISceneController
+public class MainMenuSceneController(ISceneManager sceneManager, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas) : ISceneController
 {
     private readonly static int PlayGameButtonX = 500, PlayGameButtonY = 200;
     private readonly static int LevelEditorButtonX = 500, LevelEditorButtonY = 300;
@@ -12,7 +12,7 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
     private Button PlayGameButton;
     private Button LevelEditorButton;
     private Button ExitGameButton;
-    private BasicSpriteFontWriter GameTitle = new(spriteFontManager);
+    private UIFont GameTitle = new(uIFontAtlas);
 
 
 
@@ -27,7 +27,10 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
 
         ExitGameButton = new ExitGameButton(sceneManager, textureAtlas);
         ExitGameButton.Init(ExitGameButtonX, ExitGameButtonY, mouseInput, true);
-        GameTitle.Init(FontNames.DungeonFont, new Vector2(1280 / 2 - 100, 10), "Sugar Snap", Color.Gold);
+        GameTitle.Init(FontNames.DungeonFont);
+        GameTitle.Pos = new Vector2(1280 / 2 - 100, 10);
+        GameTitle.Text = "Sugar Snap";
+        GameTitle.Color = Color.Gold;
 
     }
 
