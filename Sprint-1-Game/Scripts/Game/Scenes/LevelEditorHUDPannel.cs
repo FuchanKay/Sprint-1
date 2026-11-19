@@ -18,6 +18,7 @@ public class LevelEditorHUDPanel(SpriteFontManager spriteFontManager)
                                                                                 + "Tile Paint Mode: T\n"
                                                                                 + "Eraser Mode: E/Right Click\n"
                                                                                 + "Rotate: R\n"
+                                                                                + "Toggle Hide Objects: H\n"
                                                                                 + "Cycle Right: D\n"
                                                                                 + "Cycle Left: A\n"
                                                                                 + "Undo: Z\n"
