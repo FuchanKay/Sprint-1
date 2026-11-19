@@ -1,15 +1,16 @@
 //Code for GameUI/InventorySlot (Container)
+using Gum;
 using Gum.Converters;
 using Gum.DataTypes;
+using Gum.GueDeriving;
 using Gum.Managers;
 using Gum.Wireframe;
 using GUMProject.Components.GameUI.Pieces;
 using GumRuntime;
-using MonoGameGum;
-using MonoGameGum.GueDeriving;
 using RenderingLibrary.Graphics;
 using System.Linq;
 namespace GUMProject.Components.GameUI;
+[global::Gum.DataTypes.GumElement("GameUI/InventorySlot")]
 partial class InventorySlot : global::Gum.Forms.Controls.FrameworkElement
 {
     #if UNITY_5_3_OR_NEWER && !GUM_NO_UNITY_ENGINE
@@ -21,8 +22,8 @@ partial class InventorySlot : global::Gum.Forms.Controls.FrameworkElement
     {
         var template = new global::Gum.Forms.VisualTemplate((vm, createForms) =>
         {
-            var visual = new global::MonoGameGum.GueDeriving.ContainerRuntime();
-            var element = ObjectFinder.Self.GetElementSave("GameUI/InventorySlot") ?? throw new System.InvalidOperationException("Could not find an element named GameUI/InventorySlot - did you forget to load a Gum project?");
+            var visual = new global::Gum.GueDeriving.ContainerRuntime();
+            var element = ObjectFinder.Self.GetRequiredElementSave("GameUI/InventorySlot");
             element.SetGraphicalUiElement(visual, RenderingLibrary.SystemManagers.Default);
             if(createForms) visual.FormsControlAsObject = new InventorySlot(visual);
             return visual;
@@ -105,10 +106,10 @@ partial class InventorySlot : global::Gum.Forms.Controls.FrameworkElement
     protected override void ReactToVisualChanged()
     {
         base.ReactToVisualChanged();
-        ItemBackgroundInstance = global::Gum.Forms.GraphicalUiElementFormsExtensions.TryGetFrameworkElementByName<ItemBackground>(this.Visual,"ItemBackgroundInstance");
-        ItemIconInstance = global::Gum.Forms.GraphicalUiElementFormsExtensions.TryGetFrameworkElementByName<ItemIcon>(this.Visual,"ItemIconInstance");
-        SlotNumberInstance = global::Gum.Forms.GraphicalUiElementFormsExtensions.TryGetFrameworkElementByName<SlotNumber>(this.Visual,"SlotNumberInstance");
-        HighLightIndicator = this.Visual?.GetGraphicalUiElementByName("HighLightIndicator") as global::MonoGameGum.GueDeriving.NineSliceRuntime;
+        ItemBackgroundInstance = global::Gum.Forms.GraphicalUiElementFormsExtensions.FindFormsControl<ItemBackground>(this.Visual,"ItemBackgroundInstance");
+        ItemIconInstance = global::Gum.Forms.GraphicalUiElementFormsExtensions.FindFormsControl<ItemIcon>(this.Visual,"ItemIconInstance");
+        SlotNumberInstance = global::Gum.Forms.GraphicalUiElementFormsExtensions.FindFormsControl<SlotNumber>(this.Visual,"SlotNumberInstance");
+        HighLightIndicator = this.Visual?.GetGraphicalUiElementByName("HighLightIndicator") as global::Gum.GueDeriving.NineSliceRuntime;
         CustomInitialize();
     }
     //Not assigning variables because Object Instantiation Type is set to By Name rather than Fully In Code

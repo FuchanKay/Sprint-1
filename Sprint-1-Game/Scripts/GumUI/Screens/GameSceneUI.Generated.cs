@@ -39,7 +39,7 @@ partial class GameSceneUI : global::Gum.Forms.Controls.FrameworkElement
             return gue;
         });
     }
-    public InventoryBar InventoryBarInstance { get; protected set; }
+    public InventoryMenu InventoryMenuInstance { get; protected set; }
 
     public GameSceneUI(InteractiveGue visual) : base(visual)
     {
@@ -53,7 +53,7 @@ partial class GameSceneUI : global::Gum.Forms.Controls.FrameworkElement
     protected override void ReactToVisualChanged()
     {
         base.ReactToVisualChanged();
-        InventoryBarInstance = global::Gum.Forms.GraphicalUiElementFormsExtensions.FindFormsControl<InventoryBar>(this.Visual,"InventoryBarInstance");
+        InventoryMenuInstance = global::Gum.Forms.GraphicalUiElementFormsExtensions.FindFormsControl<InventoryMenu>(this.Visual,"InventoryMenuInstance");
         CustomInitialize();
     }
     //Not assigning variables because Object Instantiation Type is set to By Name rather than Fully In Code

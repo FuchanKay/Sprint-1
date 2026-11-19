@@ -310,12 +310,12 @@
       "LinkType": 0
     },
     {
-      "Name": "GameUI/InventorySlot",
+      "Name": "GameUI/InventoryMenu",
       "ElementType": 1,
       "LinkType": 0
     },
     {
-      "Name": "GameUI/Pieces/ArrowButtom",
+      "Name": "GameUI/InventorySlot",
       "ElementType": 1,
       "LinkType": 0
     },
@@ -331,6 +331,11 @@
     },
     {
       "Name": "GameUI/Pieces/SlotNumber",
+      "ElementType": 1,
+      "LinkType": 0
+    },
+    {
+      "Name": "GameUI/Pieces/TitleBar",
       "ElementType": 1,
       "LinkType": 0
     },

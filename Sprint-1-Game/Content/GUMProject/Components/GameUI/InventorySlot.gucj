@@ -163,6 +163,20 @@
           "Name": "True",
           "Variables": [
             {
+              "Name": "ItemIconInstance.IconLeft",
+              "Type": "int",
+              "ExposedAsName": "IconLeft",
+              "SetsValue": true,
+              "ValueAsInt": 0
+            },
+            {
+              "Name": "ItemIconInstance.IconTop",
+              "Type": "int",
+              "ExposedAsName": "IconTop",
+              "SetsValue": true,
+              "ValueAsInt": 64
+            },
+            {
               "Name": "ItemIconInstance.Visible",
               "Type": "bool",
               "Category": "States and Visibility",
@@ -175,6 +189,19 @@
         {
           "Name": "False",
           "Variables": [
+            {
+              "Name": "ItemIconInstance.IconLeft",
+              "Type": "int",
+              "ExposedAsName": "IconLeft",
+              "SetsValue": true,
+              "ValueAsInt": 0
+            },
+            {
+              "Name": "ItemIconInstance.IconTop",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 64
+            },
             {
               "Name": "ItemIconInstance.Visible",
               "Type": "bool",

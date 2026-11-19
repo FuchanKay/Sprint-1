@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace GUMProject.Components.GameUI.Pieces
 {
-    partial class ArrowButtom
+    partial class TitleBar
     {
         partial void CustomInitialize()
         {

@@ -6,7 +6,11 @@
       "Components/Controls",
       "Components/GameUI",
       "Components/GameUI/Pieces",
+      "Components/GameUI/Pieces/ItemIcon",
+      "Components/GameUI/Pieces/SlotNumber",
+      "Components/GameUI/Pieces/TitleBar",
       "Components/GameUI/InventoryBar",
+      "Components/GameUI/InventoryBar/InventoryBarPanel",
       "Components/GameUI/InventorySlot"
     ]
   }
