@@ -4,7 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary.UIRendering;
 using Scripts.GameComponents;
 namespace Scripts.Game;
-
+using Gum;
+using Gum.Managers;
 public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager, GameWindow window) : ISceneController
 {
     private PuzzleLevel Level;
@@ -14,6 +15,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private GameLayoutManager GameLayoutManager = new();
     private UIManager UIManager;
+    Gum.GumService GumUI => Gum.GumService.Default;
 
 
     private readonly IAudioManager AudioManager = audioManager;
@@ -30,6 +32,9 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
        // UIManager = new(uIFontAtlas, GameLayoutManager);
         //UIManager.Init(Level);
         LevelTransition = new WipeTransition(Level);
+        var screen = ObjectFinder.Self.GumProjectSave.Screens[0].ToGraphicalUiElement();
+        screen.AddToRoot();
+
     }
 
     public void Init(GridPointer grid, LevelContext level)
@@ -120,6 +125,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
             CurrentLevelIndex = (CurrentLevelIndex + 1) % FileNames.LevelFileNames.Length;
             LevelTransition.StartLevelTransition(CurrentLevelIndex);
         }
+
     }
     public void Draw(SpriteBatch sb)
     {
