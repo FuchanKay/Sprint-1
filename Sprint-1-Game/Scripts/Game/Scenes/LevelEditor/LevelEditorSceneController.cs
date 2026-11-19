@@ -200,7 +200,7 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
 
     private void AddObjectSelectorGridContent()
     {
-        var objGridFileName = FileNames.ObjectSelectorFileNames[0];
+        var objGridFileName = FileNames.ObjectSelectorFileNames[objectSelectorIndex];
         string[] objGridFile = LevelFileParser.ParseLevelFile(objGridFileName);
         LevelFileParser levelFileParser = new();
         ObjectSelectorContext.LevelName = levelFileParser.GetLevelName(objGridFile);
@@ -214,7 +214,7 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
 
     private void AddTileSelectorGridContent()
     {
-        var tileGridFileName = FileNames.TileSelectorFileNames[0];
+        var tileGridFileName = FileNames.TileSelectorFileNames[tileSelectorIndex];
         string[] tileGridFile = LevelFileParser.ParseLevelFile(tileGridFileName);
         LevelFileParser levelFileParser = new();
         TileSelectorContext.LevelName = levelFileParser.GetLevelName(tileGridFile);
@@ -318,7 +318,7 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
 
     private void SwapTileSelector()
     {
-        AddObjectSelectorGridContent();
+        AddTileSelectorGridContent();
 
         Brush = new TilePaintBrush(buttonInput, mouseInput, audioManager, SpriteGrid, Context, TileSelectorContext, TileSelectorGrid, TileSpriteFactory, UndoHistory, RedoHistory);
         Brush.Init(CurrentGrid);
