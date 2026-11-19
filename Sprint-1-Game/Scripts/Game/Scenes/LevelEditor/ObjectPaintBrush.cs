@@ -5,7 +5,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInput, SpriteGrid spriteGrid, LevelContext context, ObjectSpriteFactory objectSpriteFactory, List<GridPointer> undoHistory, List<GridPointer> redoHistory) : IBrush
+public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInput, SpriteGrid spriteGrid, LevelContext context, LevelContext objectGridContext, GridPointer objectSelectorGrid, ObjectSpriteFactory objectSpriteFactory, List<GridPointer> undoHistory, List<GridPointer> redoHistory) : IBrush
 {
     private static readonly IObject[] ObjectPalette = [
         ObjectFactory.CreateBat(),
@@ -67,6 +67,11 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
                 Grid.SetObject(coord, placedObject);
                 spriteGrid.SetNewObjectSprite(coord, placedObject);
             }
+        } else if (mouseInput.IsHeld(InputNames.Select) 
+            && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, objectGridContext, out var objCoord)) 
+        {
+            CurrentObject = objectSelectorGrid.GetObject(objCoord);
+            CurrentObjectSprite = objectSpriteFactory.CreateObjectSprite(CurrentObject, new Vector2(0, 0), context);
         }
     }
 

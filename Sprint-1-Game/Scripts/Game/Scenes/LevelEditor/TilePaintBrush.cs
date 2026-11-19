@@ -5,7 +5,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput, SpriteGrid spriteGrid, LevelContext context, TileSpriteFactory tileSpriteFactory, List<GridPointer> undoHistory, List<GridPointer> redoHistory) : IBrush
+public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput, SpriteGrid spriteGrid, LevelContext context, LevelContext tileGridContext, GridPointer tileSelectorGrid, TileSpriteFactory tileSpriteFactory, List<GridPointer> undoHistory, List<GridPointer> redoHistory) : IBrush
 {
     private static ITile[] TilePalette =
     {
@@ -59,6 +59,11 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
                 Grid.SetTile(coord, placedTile);
                 spriteGrid.SetNewTileSprite(coord, placedTile);
             }
+        } else if (mouseInput.IsHeld(InputNames.Select) 
+            && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, tileGridContext, out var tileCoord)) 
+        {
+            CurrentTile = tileSelectorGrid.GetTile(tileCoord);
+            CurrentTileSprite = tileSpriteFactory.CreateTileSprite(CurrentTile, new Vector2(0, 0), context);
         }
     }
 
