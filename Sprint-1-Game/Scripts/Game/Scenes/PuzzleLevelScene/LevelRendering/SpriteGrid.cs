@@ -10,6 +10,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
     private readonly ObjectSpriteManager ObjectSpriteManager = new();
     private readonly TileSpriteManager TileSpriteManager = new();
     private readonly EffectSpriteManager EffectSpriteManager = new();
+    private readonly FogManager FogManager = new();
     private bool HideObjectLayer = false;
     public readonly int PushDuration = 400;
     public readonly int SlideDuration = 300;
@@ -19,6 +20,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         ObjectSpriteManager.Init(gridPointer, context, objectSpriteFactory);
         TileSpriteManager.Init(gridPointer, context, tileSpriteFactory);
         EffectSpriteManager.Init(context, effectSpriteFactory);
+        FogManager.Init(ObjectSpriteManager.PlayerSprite.CurrentPosition);
     }
 
     // OBJECT SPRITE METHODS
@@ -114,6 +116,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         ObjectSpriteManager.Update(dtMs);
         TileSpriteManager.Update(dtMs);
         EffectSpriteManager.Update(dtMs);
+        FogManager.Update(ObjectSpriteManager.PlayerSprite.CurrentPosition);
     }
 
     public void Draw(SpriteBatch sb)
@@ -121,6 +124,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         TileSpriteManager.Draw(sb);
         if (!HideObjectLayer) ObjectSpriteManager.Draw(sb);
         EffectSpriteManager.Draw(sb);
+        FogManager.Draw(sb);
     }
 
     public bool IsIdle()

@@ -40,7 +40,6 @@ public class BasicSpriteFontWriter(SpriteFontManager spriteFontManager) : ISprit
     }
     public void Draw(SpriteBatch sb)
     {
-        sb.DrawString(Font, Text, Pos, Color);
+        sb.DrawString(Font, Text, Pos, Color, 0f, new Vector2(0, 0), 1.0f, SpriteEffects.None, 1.0f);
     }
-
 }
