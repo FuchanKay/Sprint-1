@@ -85,6 +85,9 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
         SpriteGrid.Update(dtMs);
         Brush.Update(dtMs);
 
+        var clickedObjectSelector = mouseInput.IsPressed(InputNames.Select) && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, ObjectSelectorContext, out var objCoord);
+        var clickedTileSelector = mouseInput.IsPressed(InputNames.Select) && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, TileSelectorContext, out var tileCoord);
+
         if (UndoHistory.Count > UndoHistoryMaxLength) UndoHistory.RemoveAt(0);
 
         if (buttonInput.IsPressed(InputNames.ToggleObjectView))
@@ -96,12 +99,12 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
             Brush = new EraserBrush(mouseInput, SpriteGrid, Context, UndoHistory, RedoHistory);
             Brush.Init(CurrentGrid);
         }
-        else if (buttonInput.IsPressed(InputNames.ObjectPaintBrushMode))
+        else if (buttonInput.IsPressed(InputNames.ObjectPaintBrushMode) || clickedObjectSelector)
         {
             Brush = new ObjectPaintBrush(buttonInput, mouseInput, audioManager, SpriteGrid, Context, ObjectSelectorContext, ObjectSelectorGrid, ObjectSpriteFactory, UndoHistory, RedoHistory);
             Brush.Init(CurrentGrid);
         }
-        else if (buttonInput.IsPressed(InputNames.TileBrushMode))
+        else if (buttonInput.IsPressed(InputNames.TileBrushMode) || clickedTileSelector)
         {
             Brush = new TilePaintBrush(buttonInput, mouseInput, audioManager, SpriteGrid, Context, TileSelectorContext, TileSelectorGrid, TileSpriteFactory, UndoHistory, RedoHistory);
             Brush.Init(CurrentGrid);
