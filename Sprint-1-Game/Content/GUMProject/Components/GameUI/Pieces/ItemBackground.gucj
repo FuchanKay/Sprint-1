@@ -70,7 +70,13 @@
           "Name": "Height",
           "Type": "float",
           "SetsValue": true,
-          "ValueAsFloat": 64
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 2
         },
         {
           "Name": "State",
@@ -82,7 +88,13 @@
           "Name": "Width",
           "Type": "float",
           "SetsValue": true,
-          "ValueAsFloat": 64
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 2
         }
       ],
       "VariableLists": []

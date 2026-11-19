@@ -5,7 +5,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class MainMenuSceneController(ISceneManager sceneManager, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas) : ISceneController
+public class MainMenuSceneController(ISceneManager sceneManager, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager) : ISceneController
 {
     private readonly static int PlayGameButtonX = 500, PlayGameButtonY = 200;
     private readonly static int LevelEditorButtonX = 500, LevelEditorButtonY = 300;
@@ -13,7 +13,7 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
     private Button PlayGameButton;
     private Button LevelEditorButton;
     private Button ExitGameButton;
-    private UIFont GameTitle = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
+    //private UIFont GameTitle = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
     
 
 
@@ -28,8 +28,8 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
 
         ExitGameButton = new ExitGameButton(sceneManager, textureAtlas);
         ExitGameButton.Init(ExitGameButtonX, ExitGameButtonY, mouseInput, true);
-        GameTitle.Init(new Vector2 (1280/2,80), "Sugar Snap", Color.Gold, new Vector2(5,5));
-        GameTitle.CenterOrigin();
+        //GameTitle.Init(new Vector2 (1280/2,80), "Sugar Snap", Color.Gold, new Vector2(5,5));
+        //GameTitle.CenterOrigin();
 
     }
 
@@ -45,7 +45,7 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
         PlayGameButton.Draw(sb);
         ExitGameButton.Draw(sb);
         LevelEditorButton.Draw(sb);
-        GameTitle.Draw(sb);
+        //GameTitle.Draw(sb);
 
     }
 }

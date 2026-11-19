@@ -1,16 +1,17 @@
-//Code for TestScreen
+//Code for GameSceneUI
+using Gum;
 using Gum.Converters;
 using Gum.DataTypes;
+using Gum.GueDeriving;
 using Gum.Managers;
 using Gum.Wireframe;
 using GUMProject.Components.GameUI;
 using GumRuntime;
-using MonoGameGum;
-using MonoGameGum.GueDeriving;
 using RenderingLibrary.Graphics;
 using System.Linq;
 namespace GUMProject.Screens;
-partial class TestScreen : global::Gum.Forms.Controls.FrameworkElement
+[global::Gum.DataTypes.GumElement("GameSceneUI")]
+partial class GameSceneUI : global::Gum.Forms.Controls.FrameworkElement
 {
     #if UNITY_5_3_OR_NEWER && !GUM_NO_UNITY_ENGINE
     [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -21,18 +22,18 @@ partial class TestScreen : global::Gum.Forms.Controls.FrameworkElement
     {
         var template = new global::Gum.Forms.VisualTemplate((vm, createForms) =>
         {
-            var visual = new global::MonoGameGum.GueDeriving.ContainerRuntime();
-            var element = ObjectFinder.Self.GetElementSave("TestScreen") ?? throw new System.InvalidOperationException("Could not find an element named TestScreen - did you forget to load a Gum project?");
+            var visual = new global::Gum.GueDeriving.ContainerRuntime();
+            var element = ObjectFinder.Self.GetRequiredElementSave("GameSceneUI");
             element.SetGraphicalUiElement(visual, RenderingLibrary.SystemManagers.Default);
-            if(createForms) visual.FormsControlAsObject = new TestScreen(visual);
+            if(createForms) visual.FormsControlAsObject = new GameSceneUI(visual);
             visual.Width = 0;
             visual.WidthUnits = global::Gum.DataTypes.DimensionUnitType.RelativeToParent;
             visual.Height = 0;
             visual.HeightUnits = global::Gum.DataTypes.DimensionUnitType.RelativeToParent;
             return visual;
         });
-        global::Gum.Forms.Controls.FrameworkElement.DefaultFormsTemplates[typeof(TestScreen)] = template;
-        ElementSaveExtensions.RegisterGueInstantiation("TestScreen", () => 
+        global::Gum.Forms.Controls.FrameworkElement.DefaultFormsTemplates[typeof(GameSceneUI)] = template;
+        ElementSaveExtensions.RegisterGueInstantiation("GameSceneUI", () => 
         {
             var gue = template.CreateContent(null, true) as InteractiveGue;
             return gue;
@@ -40,10 +41,10 @@ partial class TestScreen : global::Gum.Forms.Controls.FrameworkElement
     }
     public InventoryBar InventoryBarInstance { get; protected set; }
 
-    public TestScreen(InteractiveGue visual) : base(visual)
+    public GameSceneUI(InteractiveGue visual) : base(visual)
     {
     }
-    public TestScreen()
+    public GameSceneUI()
     {
 
 
@@ -52,7 +53,7 @@ partial class TestScreen : global::Gum.Forms.Controls.FrameworkElement
     protected override void ReactToVisualChanged()
     {
         base.ReactToVisualChanged();
-        InventoryBarInstance = global::Gum.Forms.GraphicalUiElementFormsExtensions.TryGetFrameworkElementByName<InventoryBar>(this.Visual,"InventoryBarInstance");
+        InventoryBarInstance = global::Gum.Forms.GraphicalUiElementFormsExtensions.FindFormsControl<InventoryBar>(this.Visual,"InventoryBarInstance");
         CustomInitialize();
     }
     //Not assigning variables because Object Instantiation Type is set to By Name rather than Fully In Code

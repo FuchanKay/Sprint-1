@@ -7,9 +7,9 @@ using RenderingLibrary.Graphics;
 
 using System.Linq;
 
-namespace GUMProject.Screens
+namespace GUMProject.Components.GameUI.Pieces
 {
-    partial class TestScreen
+    partial class MotherPanelBackground
     {
         partial void CustomInitialize()
         {

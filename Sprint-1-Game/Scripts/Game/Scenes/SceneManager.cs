@@ -7,7 +7,7 @@ using MonoGameLibrary.UIRendering;
 
 namespace Scripts.Game;
 
-public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas, GameWindow window) : ISceneManager
+public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager, GameWindow window) : ISceneManager
 {
     private readonly Dictionary<string, ISceneController> NameSceneMap = [];
     private ISceneController CurrentScene;
@@ -89,13 +89,13 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
 
     private void AddScenesToMap()
     {
-        var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas, uIFontAtlas);
+        var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas, spriteFontManager);
         NameSceneMap.TryAdd(SceneNames.MainMenu, mainMenuScene);
 
         var levelEditorScene = new LevelEditorSceneController(this, buttonInput, mouseInput, textureAtlas, spriteFontManager);
         NameSceneMap.TryAdd(SceneNames.LevelEditor, levelEditorScene);
         
-        var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas, uIFontAtlas, window);
+        var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas, spriteFontManager, window);
         NameSceneMap.TryAdd(SceneNames.PuzzleLevel, puzzleLevelScene);
     }
 }

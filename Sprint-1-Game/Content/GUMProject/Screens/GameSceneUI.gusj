@@ -1,5 +1,5 @@
 {
-  "Name": "TestScreen",
+  "Name": "GameSceneUI",
   "States": [
     {
       "Name": "Default",

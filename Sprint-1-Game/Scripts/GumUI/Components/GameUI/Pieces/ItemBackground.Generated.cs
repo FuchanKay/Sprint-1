@@ -1,14 +1,15 @@
 //Code for GameUI/Pieces/ItemBackground (Container)
+using Gum;
 using Gum.Converters;
 using Gum.DataTypes;
+using Gum.GueDeriving;
 using Gum.Managers;
 using Gum.Wireframe;
 using GumRuntime;
-using MonoGameGum;
-using MonoGameGum.GueDeriving;
 using RenderingLibrary.Graphics;
 using System.Linq;
 namespace GUMProject.Components.GameUI.Pieces;
+[global::Gum.DataTypes.GumElement("GameUI/Pieces/ItemBackground")]
 partial class ItemBackground : global::Gum.Forms.Controls.FrameworkElement
 {
     #if UNITY_5_3_OR_NEWER && !GUM_NO_UNITY_ENGINE
@@ -20,8 +21,8 @@ partial class ItemBackground : global::Gum.Forms.Controls.FrameworkElement
     {
         var template = new global::Gum.Forms.VisualTemplate((vm, createForms) =>
         {
-            var visual = new global::MonoGameGum.GueDeriving.ContainerRuntime();
-            var element = ObjectFinder.Self.GetElementSave("GameUI/Pieces/ItemBackground") ?? throw new System.InvalidOperationException("Could not find an element named GameUI/Pieces/ItemBackground - did you forget to load a Gum project?");
+            var visual = new global::Gum.GueDeriving.ContainerRuntime();
+            var element = ObjectFinder.Self.GetRequiredElementSave("GameUI/Pieces/ItemBackground");
             element.SetGraphicalUiElement(visual, RenderingLibrary.SystemManagers.Default);
             if(createForms) visual.FormsControlAsObject = new ItemBackground(visual);
             return visual;
@@ -47,7 +48,7 @@ partial class ItemBackground : global::Gum.Forms.Controls.FrameworkElement
     protected override void ReactToVisualChanged()
     {
         base.ReactToVisualChanged();
-        Background = this.Visual?.GetGraphicalUiElementByName("Background") as global::MonoGameGum.GueDeriving.NineSliceRuntime;
+        Background = this.Visual?.GetGraphicalUiElementByName("Background") as global::Gum.GueDeriving.NineSliceRuntime;
         CustomInitialize();
     }
     //Not assigning variables because Object Instantiation Type is set to By Name rather than Fully In Code
