@@ -6,7 +6,7 @@ namespace Scripts.Game;
 
 public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, EffectSpriteFactory effectSpriteFactory, LevelFileParser levelFileParser, IAudioManager audioManager, GameLayoutManager gameLayoutManager)
 {
-    private readonly List<ILevelEvent> EventQueue = [];
+    public readonly List<ILevelEvent> EventQueue = [];
     public LevelContext Context;
     public GridPointer CurrentGridPointer;
     public InventoryManager CurrentInventoryManager;

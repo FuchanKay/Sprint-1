@@ -1,4 +1,3 @@
-using System.Transactions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
@@ -17,6 +16,14 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private ILevelTransition LevelTransition;
     public int CurrentLevelIndex = 0;
     private BasicSpriteFontWriter DeathMessage = new(spriteFontManager);
+    private readonly int MovementInputBufferMs = 200;
+    private readonly (string Primary, string Alternate, Directions Direction, int BufferTimer)[] DirectionalInputs =
+    [
+        (InputNames.MoveNorth, InputNames.MoveNorthAlt, Directions.North, 200),
+        (InputNames.MoveEast, InputNames.MoveEastAlt, Directions.East, 200),
+        (InputNames.MoveSouth, InputNames.MoveSouthAlt, Directions.South, 200),
+        (InputNames.MoveWest, InputNames.MoveWestAlt, Directions.West, 200)
+    ];
 
     public void Init()
     {
@@ -54,28 +61,16 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
             LevelTransition.Update(dtMs);
             Level.Update(dtMs);
             return;
-        } else if (sceneManager.SceneTransition.IsActive)
+        }
+        else if (sceneManager.SceneTransition.IsActive)
         {
             Level.Update(dtMs);
             return;
         }
-
-        var lockMove = buttonInput.IsHeld(InputNames.LShift);
-        if (buttonInput.IsPressed(InputNames.MoveNorth) || buttonInput.IsPressed(InputNames.MoveNorthAlt))
+        if (CheckDirectionalInput(dtMs, out var direction))
         {
-            Level.EnqueueEvent(new MovePlayerEvent(Directions.North, lockMove));
-        }
-        else if (buttonInput.IsPressed(InputNames.MoveEast) || buttonInput.IsPressed(InputNames.MoveEastAlt))
-        {
-            Level.EnqueueEvent(new MovePlayerEvent(Directions.East, lockMove));
-        }
-        else if (buttonInput.IsPressed(InputNames.MoveSouth) || buttonInput.IsPressed(InputNames.MoveSouthAlt))
-        {
-            Level.EnqueueEvent(new MovePlayerEvent(Directions.South, lockMove));
-        }
-        else if (buttonInput.IsPressed(InputNames.MoveWest) || buttonInput.IsPressed(InputNames.MoveWestAlt))
-        {
-            Level.EnqueueEvent(new MovePlayerEvent(Directions.West, lockMove));
+            var lockMove = buttonInput.IsHeld(InputNames.LShift);
+            Level.EnqueueEvent(new MovePlayerEvent(direction, lockMove));
         }
         else if (buttonInput.IsPressed(InputNames.ChangeLevel) && !Level.Context.LevelEditorMode)
         {
@@ -93,7 +88,6 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         else if (buttonInput.IsPressed(InputNames.UseItem2))
         {
             Level.EnqueueEvent(new UseItemEvent(1));
-
         }
         else if (buttonInput.IsPressed(InputNames.UseItem3))
         {
@@ -143,5 +137,35 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         UIManager.Draw(sb);
         if(Level.Context.PlayerIsDead) DeathMessage.Draw(sb);
         if(LevelTransition.IsActive) LevelTransition.Draw(sb);
+    }
+
+    public bool CheckDirectionalInput(int dtMs, out Directions directionToMove)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            var primaryInput = DirectionalInputs[i].Primary;
+            var altInput = DirectionalInputs[i].Alternate;
+            var direction = DirectionalInputs[i].Direction;
+            if (buttonInput.IsPressed(primaryInput) || buttonInput.IsPressed(altInput))
+            {
+                directionToMove = direction;
+                return true;
+            }
+            else if (buttonInput.IsHeld(primaryInput) || buttonInput.IsHeld(altInput))
+            {
+                DirectionalInputs[i].BufferTimer -= dtMs;
+                if (DirectionalInputs[i].BufferTimer < 0 && Level.EventQueue.Count == 0)
+                {
+                    directionToMove = direction;
+                    return true;
+                } 
+            }
+            else if (buttonInput.IsReleased(primaryInput) || buttonInput.IsReleased(altInput))
+            {
+                DirectionalInputs[i].BufferTimer = MovementInputBufferMs;
+            }
+        }
+        directionToMove = Directions.North;
+        return false;
     }
 }
