@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 namespace Scripts.Game;
 
-public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager, GameWindow window) : ISceneController
+public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas, GameWindow window) : ISceneController
 {
     private PuzzleLevel Level;
     private LevelFileParser LevelFileParser;
@@ -12,7 +12,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private GameLayoutManager GameLayoutManager = new();
-    private UIManager UIManager = new(spriteFontManager);
+    private UIManager UIManager = new(uIFontAtlas);
     private readonly IAudioManager AudioManager = audioManager;
     private ILevelTransition LevelTransition;
     public int CurrentLevelIndex = 0;
