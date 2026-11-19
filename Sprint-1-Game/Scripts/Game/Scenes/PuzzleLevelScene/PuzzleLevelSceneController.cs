@@ -20,6 +20,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
 
     public void Init()
     {
+        Gum.GumService.Default.Root.Children.Clear();
         GameLayoutManager.Init(window);
         LevelFileParser = new LevelFileParser();
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
@@ -30,6 +31,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
 
     public void Init(GridPointer grid, LevelContext level)
     {
+        Gum.GumService.Default.Root.Children.Clear();
         GameLayoutManager.Init(window);
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
         Level.Init(grid, level);

@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
+using System;
+using Gum.Forms.Controls;
+using Gum.Wireframe;
 
 namespace Scripts.Game;
 
@@ -10,7 +13,7 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
     {
         RawSpriteWidthPx = 256,
         RawSpriteHeightPx = 256,
-        GridScale = 0.175f,
+        GridScale = 0.1875f,
         PuzzleOffsetX = 160,
         PuzzleOffsetY = 160,
     };
@@ -20,8 +23,8 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
     {
         RawSpriteWidthPx = 256,
         RawSpriteHeightPx = 256,
-        GridScale = 0.175f,
-        PuzzleOffsetX = 252,
+        GridScale = 0.1875f,
+        PuzzleOffsetX = 232,
         PuzzleOffsetY = 40,
     };
     private GridPointer ObjectSelectorGrid = new();
@@ -31,15 +34,20 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
     {
         RawSpriteWidthPx = 256,
         RawSpriteHeightPx = 256,
-        GridScale = 0.175f,
+        GridScale = 0.1875f,
         PuzzleOffsetX = 40,
-        PuzzleOffsetY = 252,
+        PuzzleOffsetY = 232,
     };
     private GridPointer TileSelectorGrid = new();
     private SpriteGrid TileSelectorSpriteGrid;
-    private Button DownArrowButton;
-    private Grid Flag;
+
+    private Panel LevelEditorPanel;
+    private Gum.Forms.Controls.Button DownArrowButton;
+    private Gum.Forms.Controls.Button UpArrowButton;
+    private Gum.Forms.Controls.Button RightArrowButton;
+    private Gum.Forms.Controls.Button LeftArrowButton;
     private int tileSelectorIndex;
+    private int objectSelectorIndex;
 
     private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
@@ -56,13 +64,11 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
     public void Init()
     {
         InitLevelEditorGrid();
-        InitObjectSelectorGrid();
-        InitTileSelectorGrid();
-
-        Flag = new Grid();
-        Flag.Object = new EmptyObject();
-        DownArrowButton = new DownArrowButton(sceneManager, audioManager, textureAtlas, Flag);
-        DownArrowButton.Init(40, 600, mouseInput, true);
+        ObjectSelectorGrid.Init();
+        AddObjectSelectorGridContent();
+        TileSelectorGrid.Init();
+        AddTileSelectorGridContent();
+        InitUI();
 
         UndoHistory.Clear();
         UndoHistory.Add(CurrentGrid.Clone());
@@ -76,17 +82,10 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
 
     public void Update(int dtMs)
     {
-        DownArrowButton.Update(dtMs);
         SpriteGrid.Update(dtMs);
         Brush.Update(dtMs);
 
         if (UndoHistory.Count > UndoHistoryMaxLength) UndoHistory.RemoveAt(0);
-
-        if(Flag.Object.Id != ObjectIds.Empty)
-        {
-            SwapTileSelector();
-            Flag.Object = new EmptyObject();
-        }
 
         if (buttonInput.IsPressed(InputNames.ToggleObjectView))
         {
@@ -147,32 +146,15 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
         {
             RedoBufferTimeMs = UndoRedoBufferMs;
         }
-
     }
 
     public void Draw(SpriteBatch sb)
     {
+        Brush.Draw(sb);
         SpriteGrid.Draw(sb);
         ObjectSelectorSpriteGrid.Draw(sb);
         TileSelectorSpriteGrid.Draw(sb);
-        Brush.Draw(sb);
         HUD.Draw(sb);
-        DownArrowButton.Draw(sb);
-    }
-
-    private void SwapTileSelector()
-    {
-        tileSelectorIndex = (tileSelectorIndex + 1) % FileNames.TileSelectorFileNames.Length;
-
-        var tileGridFileName = FileNames.TileSelectorFileNames[tileSelectorIndex];
-        string[] tileGridFile = LevelFileParser.ParseLevelFile(tileGridFileName);
-        LevelFileParser levelFileParser = new();
-        TileSelectorContext.LevelName = levelFileParser.GetLevelName(tileGridFile);
-        TileSelectorGrid = levelFileParser.CreateGrids(tileGridFile);
-        TileSelectorSpriteGrid.Init(TileSelectorGrid, TileSelectorContext);
-
-        Brush = new TilePaintBrush(buttonInput, mouseInput, audioManager, SpriteGrid, Context, TileSelectorContext, TileSelectorGrid, TileSpriteFactory, UndoHistory, RedoHistory);
-        Brush.Init(CurrentGrid);
     }
 
     private void Undo()
@@ -207,12 +189,10 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
 
         SpriteGrid = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory);
         SpriteGrid.Init(CurrentGrid, Context);
-        
     }
 
-    private void InitObjectSelectorGrid()
+    private void AddObjectSelectorGridContent()
     {
-        ObjectSelectorGrid.Init();
         var objGridFileName = FileNames.ObjectSelectorFileNames[0];
         string[] objGridFile = LevelFileParser.ParseLevelFile(objGridFileName);
         LevelFileParser levelFileParser = new();
@@ -225,9 +205,8 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
         ObjectSelectorSpriteGrid.Init(ObjectSelectorGrid, ObjectSelectorContext);
     }
 
-    private void InitTileSelectorGrid()
+    private void AddTileSelectorGridContent()
     {
-        TileSelectorGrid.Init();
         var tileGridFileName = FileNames.TileSelectorFileNames[0];
         string[] tileGridFile = LevelFileParser.ParseLevelFile(tileGridFileName);
         LevelFileParser levelFileParser = new();
@@ -238,5 +217,111 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
 
         TileSelectorSpriteGrid = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory);
         TileSelectorSpriteGrid.Init(TileSelectorGrid, TileSelectorContext);
+    }
+
+    private void InitUI()
+    {
+        Gum.GumService.Default.Root.Children.Clear();
+        CreateLevelEditorPanel();
+    }
+
+    private void CreateLevelEditorPanel()
+    {
+        LevelEditorPanel = new Panel();
+        LevelEditorPanel.Dock(Dock.Fill);
+        LevelEditorPanel.AddToRoot();
+
+        DownArrowButton = new Gum.Forms.Controls.Button();
+        SetupButton(DownArrowButton, Anchor.BottomLeft, 37, -100, 100, 10, "Next", true);
+        DownArrowButton.Click += HandleDownClicked;
+        LevelEditorPanel.AddChild(DownArrowButton);
+
+        UpArrowButton = new Gum.Forms.Controls.Button();
+        SetupButton(UpArrowButton, Anchor.TopLeft, 37, 180, 100, 10, "Prev", false);
+        UpArrowButton.Click += HandleUpClicked;
+        LevelEditorPanel.AddChild(UpArrowButton);
+
+        RightArrowButton = new Gum.Forms.Controls.Button();
+        SetupButton(RightArrowButton, Anchor.Top, 205, 40, 40, 10, "N\ne\nx\nt", false);
+        RightArrowButton.Click += HandleRightClicked;
+        LevelEditorPanel.AddChild(RightArrowButton);
+
+        LeftArrowButton = new Gum.Forms.Controls.Button();
+        SetupButton(LeftArrowButton, Anchor.TopLeft, 175, 40, 40, 10, "P\nr\ne\nv", false);
+        LeftArrowButton.Click += HandleLeftClicked;
+        LevelEditorPanel.AddChild(LeftArrowButton);
+    }
+
+    private void SetupButton(Gum.Forms.Controls.Button button, Anchor anchor, int x, int y, int width, int height, string text, bool isEnabled)
+    {
+        button.Anchor(anchor);
+        button.X = x;
+        button.Y = y;
+        button.Width = width;
+        button.Height = height;
+        button.Text = text;
+        button.IsEnabled = isEnabled;
+    }
+
+    private void HandleDownClicked(object sender, EventArgs e)
+    {
+        audioManager.PlaySound(SoundNames.Snap);
+
+        tileSelectorIndex++;
+        UpdateEnable(tileSelectorIndex, UpArrowButton, DownArrowButton, FileNames.TileSelectorFileNames);
+
+        SwapTileSelector();
+    }
+
+    private void HandleUpClicked(object sender, EventArgs e)
+    {
+        audioManager.PlaySound(SoundNames.Snap);
+
+        tileSelectorIndex--;
+        UpdateEnable(tileSelectorIndex, UpArrowButton, DownArrowButton, FileNames.TileSelectorFileNames);
+
+        SwapTileSelector();
+    }
+
+    private void HandleRightClicked(object sender, EventArgs e)
+    {
+        audioManager.PlaySound(SoundNames.Snap);
+
+        objectSelectorIndex++;
+        UpdateEnable(objectSelectorIndex, LeftArrowButton, RightArrowButton, FileNames.ObjectSelectorFileNames);
+
+        SwapObjectSelector();
+    }
+
+    private void HandleLeftClicked(object sender, EventArgs e)
+    {
+        audioManager.PlaySound(SoundNames.Snap);
+
+        objectSelectorIndex--;
+        UpdateEnable(objectSelectorIndex, LeftArrowButton, RightArrowButton, FileNames.ObjectSelectorFileNames);
+
+        SwapObjectSelector();
+    }
+
+    private void UpdateEnable(int index, Gum.Forms.Controls.Button prevButton, Gum.Forms.Controls.Button nextButton, string[] fileArray)
+    {
+        prevButton.IsEnabled = index > 0;
+        nextButton.IsEnabled = index < fileArray.Length - 1;
+    }
+
+    private void SwapTileSelector()
+    {
+        AddObjectSelectorGridContent();
+
+        Brush = new TilePaintBrush(buttonInput, mouseInput, audioManager, SpriteGrid, Context, TileSelectorContext, TileSelectorGrid, TileSpriteFactory, UndoHistory, RedoHistory);
+        Brush.Init(CurrentGrid);
+    }
+
+    private void SwapObjectSelector()
+    {
+        AddObjectSelectorGridContent();
+
+        Brush = new ObjectPaintBrush(buttonInput, mouseInput, audioManager, SpriteGrid, Context, ObjectSelectorContext, ObjectSelectorGrid, ObjectSpriteFactory, UndoHistory, RedoHistory);
+        Brush.Init(CurrentGrid);
     }
 }
