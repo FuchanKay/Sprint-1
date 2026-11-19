@@ -79,6 +79,7 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
         {
             CurrentTileSprite.CurrentPosition = new Vector2(mouseInput.MousePositionX, mouseInput.MousePositionY);
         }
+        CurrentTileSprite.LayerDepth = 0.4f;
         CurrentTileSprite.Draw(sb);
     }
 
