@@ -34,6 +34,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
         Level.Init(grid, level);
         UIManager.Init(Level);
+        LevelTransition = new WipeTransition(Level);
     }
 
     public void Update(int dtMs)
