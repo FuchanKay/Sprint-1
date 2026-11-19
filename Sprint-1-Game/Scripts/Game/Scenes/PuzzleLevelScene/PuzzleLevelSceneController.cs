@@ -28,7 +28,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
         Level.Init(CurrentLevelIndex);
        // UIManager = new(uIFontAtlas, GameLayoutManager);
-        UIManager.Init(Level);
+        //UIManager.Init(Level);
         LevelTransition = new WipeTransition(Level);
     }
 
@@ -37,7 +37,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         GameLayoutManager.Init(window);
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
         Level.Init(grid, level);
-        UIManager.Init(Level);
+        //UIManager.Init(Level);
     }
 
     public void Update(int dtMs)
@@ -108,7 +108,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         }
 
         Level.Update(dtMs);
-        UIManager.Update(dtMs);
+        //UIManager.Update(dtMs);
 
         // Exits to the main menu upon a levels completion
         if (Level.Context.LevelIsCompleted && Level.Context.LevelEditorMode)

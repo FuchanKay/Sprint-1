@@ -31,7 +31,7 @@ public class Game1 : Core
         SceneManager = sceneManager;
 
         GumUI.Initialize(this, "GUMProject/GUMProject.gumj");
-        var screen = ObjectFinder.Self.GumProjectSave.Screens[1].ToGraphicalUiElement();
+        var screen = ObjectFinder.Self.GumProjectSave.Screens[0].ToGraphicalUiElement();
         screen.AddToRoot();
 
         base.Initialize();
