@@ -4,7 +4,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class LevelEditorSceneController(SceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager) : ISceneController
+public class LevelEditorSceneController(SceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager) : ISceneController
 {
     private LevelContext Context = new()
     {
@@ -33,10 +33,13 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
         RawSpriteHeightPx = 256,
         GridScale = 0.175f,
         PuzzleOffsetX = 40,
-        PuzzleOffsetY = 284,
+        PuzzleOffsetY = 252,
     };
     private GridPointer TileSelectorGrid = new();
     private SpriteGrid TileSelectorSpriteGrid;
+    private Button DownArrowButton;
+    private Grid Flag;
+    private int tileSelectorIndex;
 
     private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
@@ -52,12 +55,16 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
 
     public void Init()
     {
-        UndoHistory.Clear();
-
         InitLevelEditorGrid();
         InitObjectSelectorGrid();
         InitTileSelectorGrid();
 
+        Flag = new Grid();
+        Flag.Object = new EmptyObject();
+        DownArrowButton = new DownArrowButton(sceneManager, audioManager, textureAtlas, Flag);
+        DownArrowButton.Init(40, 600, mouseInput, true);
+
+        UndoHistory.Clear();
         UndoHistory.Add(CurrentGrid.Clone());
 
         Brush = new EraserBrush(mouseInput, SpriteGrid, Context, UndoHistory, RedoHistory);
@@ -69,10 +76,17 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
 
     public void Update(int dtMs)
     {
+        DownArrowButton.Update(dtMs);
         SpriteGrid.Update(dtMs);
         Brush.Update(dtMs);
 
         if (UndoHistory.Count > UndoHistoryMaxLength) UndoHistory.RemoveAt(0);
+
+        if(Flag.Object.Id != ObjectIds.Empty)
+        {
+            SwapTileSelector();
+            Flag.Object = new EmptyObject();
+        }
 
         if (buttonInput.IsPressed(InputNames.ToggleObjectView))
         {
@@ -85,12 +99,12 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
         }
         else if (buttonInput.IsPressed(InputNames.ObjectPaintBrushMode))
         {
-            Brush = new ObjectPaintBrush(buttonInput, mouseInput, SpriteGrid, Context, ObjectSelectorContext, ObjectSelectorGrid, ObjectSpriteFactory, UndoHistory, RedoHistory);
+            Brush = new ObjectPaintBrush(buttonInput, mouseInput, audioManager, SpriteGrid, Context, ObjectSelectorContext, ObjectSelectorGrid, ObjectSpriteFactory, UndoHistory, RedoHistory);
             Brush.Init(CurrentGrid);
         }
         else if (buttonInput.IsPressed(InputNames.TileBrushMode))
         {
-            Brush = new TilePaintBrush(buttonInput, mouseInput, SpriteGrid, Context, TileSelectorContext, TileSelectorGrid, TileSpriteFactory, UndoHistory, RedoHistory);
+            Brush = new TilePaintBrush(buttonInput, mouseInput, audioManager, SpriteGrid, Context, TileSelectorContext, TileSelectorGrid, TileSpriteFactory, UndoHistory, RedoHistory);
             Brush.Init(CurrentGrid);
         }
         else if (buttonInput.IsPressed(InputNames.Undo) && UndoHistory.Count > 0)
@@ -143,6 +157,22 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
         TileSelectorSpriteGrid.Draw(sb);
         Brush.Draw(sb);
         HUD.Draw(sb);
+        DownArrowButton.Draw(sb);
+    }
+
+    private void SwapTileSelector()
+    {
+        tileSelectorIndex = (tileSelectorIndex + 1) % FileNames.TileSelectorFileNames.Length;
+
+        var tileGridFileName = FileNames.TileSelectorFileNames[tileSelectorIndex];
+        string[] tileGridFile = LevelFileParser.ParseLevelFile(tileGridFileName);
+        LevelFileParser levelFileParser = new();
+        TileSelectorContext.LevelName = levelFileParser.GetLevelName(tileGridFile);
+        TileSelectorGrid = levelFileParser.CreateGrids(tileGridFile);
+        TileSelectorSpriteGrid.Init(TileSelectorGrid, TileSelectorContext);
+
+        Brush = new TilePaintBrush(buttonInput, mouseInput, audioManager, SpriteGrid, Context, TileSelectorContext, TileSelectorGrid, TileSpriteFactory, UndoHistory, RedoHistory);
+        Brush.Init(CurrentGrid);
     }
 
     private void Undo()
