@@ -10,5 +10,9 @@ public class EvaluateLevelSubEvent(Stack<ILevelSubEvent> subEventStack, List<Lev
         subEventStack.Push(new CheckNonWalkableTilesSubEvent(subEventStack));
         subEventStack.Push(new CheckEnemiesAttackSubEvent(subEventStack, levelStateHistory));
         subEventStack.Push(new IceSlideSubEvent(subEventStack));
+
+        bool keysExist = gridPointer.GetObjectPointers(ObjectIds.Key).Count > 0;
+        bool enemiesExist = gridPointer.EnemyCollection.Count > 0;
+        if(!keysExist && !enemiesExist) subEventStack.Push(new OpenExitSubEvent());
     }
 }
