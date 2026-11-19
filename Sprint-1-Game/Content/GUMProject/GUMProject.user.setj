@@ -2,16 +2,12 @@
   "TreeViewState": {
     "ExpandedNodes": [
       "Screens",
-      "Screens/PuzzleEditorUI",
       "Components",
       "Components/Controls",
-      "Components/Controls/ButtonConfirm",
-      "Components/Controls/ButtonStandard",
       "Components/GameUI",
       "Components/GameUI/Pieces",
-      "Components/GameUI/Pieces/ArrowButtom",
-      "Components/GameUI/DirectionPanelComponent",
-      "Components/GameUI/DirectionPanelComponent/DirectionPanel"
+      "Components/GameUI/InventoryBar",
+      "Components/GameUI/InventorySlot"
     ]
   }
 }

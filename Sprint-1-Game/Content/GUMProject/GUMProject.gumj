@@ -63,11 +63,6 @@
       "LinkType": 0
     },
     {
-      "Name": "PuzzleEditorUI",
-      "ElementType": 0,
-      "LinkType": 0
-    },
-    {
       "Name": "TitleSceneUI",
       "ElementType": 0,
       "LinkType": 0
@@ -310,11 +305,6 @@
       "LinkType": 0
     },
     {
-      "Name": "GameUI/DirectionPanelComponent",
-      "ElementType": 1,
-      "LinkType": 0
-    },
-    {
       "Name": "GameUI/InventoryBar",
       "ElementType": 1,
       "LinkType": 0
@@ -336,11 +326,6 @@
     },
     {
       "Name": "GameUI/Pieces/ItemIcon",
-      "ElementType": 1,
-      "LinkType": 0
-    },
-    {
-      "Name": "GameUI/Pieces/MotherPanelBackground",
       "ElementType": 1,
       "LinkType": 0
     },

@@ -882,6 +882,27 @@
         "ElementType": "Screens",
         "EventType": 5,
         "TimestampUtc": "2026-11-19T03:20:08.3237421Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "PuzzleEditorUI",
+        "ElementType": "Screens",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-19T18:10:49.7773455Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/DirectionPanelComponent",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-19T18:11:00.0514817Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/Pieces/MotherPanelBackground",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-19T18:11:11.335879Z"
       }
     ]
   }
