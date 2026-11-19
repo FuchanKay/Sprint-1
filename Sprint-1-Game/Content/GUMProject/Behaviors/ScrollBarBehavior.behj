@@ -1,0 +1,101 @@
+{
+  "Name": "ScrollBarBehavior",
+  "RequiredVariables": {
+    "Name": "",
+    "Variables": [],
+    "VariableLists": []
+  },
+  "FormsProperties": [
+    {
+      "Name": "ToolTip",
+      "Type": "string",
+      "SetsValue": true
+    },
+    {
+      "Name": "IsEnabled",
+      "Type": "bool",
+      "SetsValue": true,
+      "ValueAsBool": true
+    },
+    {
+      "Name": "Minimum",
+      "Type": "double",
+      "SetsValue": true,
+      "ValueAsDouble": 0
+    },
+    {
+      "Name": "Maximum",
+      "Type": "double",
+      "SetsValue": true,
+      "ValueAsDouble": 100
+    },
+    {
+      "Name": "Value",
+      "Type": "double",
+      "SetsValue": true,
+      "ValueAsDouble": 0
+    },
+    {
+      "Name": "SmallChange",
+      "Type": "double",
+      "SetsValue": true,
+      "Description": "Step size for arrow buttons / mouse wheel.",
+      "ValueAsDouble": 10
+    },
+    {
+      "Name": "LargeChange",
+      "Type": "double?",
+      "SetsValue": true,
+      "Description": "Step for track clicks. Empty follows the viewport size."
+    },
+    {
+      "Name": "Orientation",
+      "Type": "Orientation",
+      "SetsValue": true,
+      "Description": "Vertical places the buttons above and below the track; Horizontal places them left and right.",
+      "ValueAsString": "Vertical"
+    }
+  ],
+  "ToolOnlyVariableReferences": [
+    "OrientationCategoryState = Orientation == \u0022Horizontal\u0022 ? \u0022Horizontal\u0022 : \u0022Vertical\u0022"
+  ],
+  "Categories": [
+    {
+      "Name": "ScrollBarCategory",
+      "States": []
+    },
+    {
+      "Name": "OrientationCategory",
+      "States": [
+        {
+          "Name": "Vertical",
+          "Variables": [],
+          "VariableLists": []
+        },
+        {
+          "Name": "Horizontal",
+          "Variables": [],
+          "VariableLists": []
+        }
+      ]
+    }
+  ],
+  "RequiredInstances": [
+    {
+      "Behaviors": [
+        {
+          "Name": "ButtonBehavior"
+        }
+      ],
+      "Name": "ThumbInstance",
+      "BaseType": ""
+    },
+    {
+      "Behaviors": [],
+      "Name": "TrackInstance",
+      "BaseType": "Container"
+    }
+  ],
+  "RequiredAnimations": [],
+  "DefaultImplementation": "Controls/ScrollBar"
+}

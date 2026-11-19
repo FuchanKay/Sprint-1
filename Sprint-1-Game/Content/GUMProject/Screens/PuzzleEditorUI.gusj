@@ -1,0 +1,185 @@
+{
+  "Name": "PuzzleEditorUI",
+  "States": [
+    {
+      "Name": "Default",
+      "Variables": [
+        {
+          "Name": "ButtonStandardInstance.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 60
+        },
+        {
+          "Name": "ButtonStandardInstance.Text",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Save Level"
+        },
+        {
+          "Name": "ButtonStandardInstance.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 180
+        },
+        {
+          "Name": "ButtonStandardInstance.X",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": -38
+        },
+        {
+          "Name": "ButtonStandardInstance.XOrigin",
+          "Type": "HorizontalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 2
+        },
+        {
+          "Name": "ButtonStandardInstance.XUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "ButtonStandardInstance.Y",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": -177
+        },
+        {
+          "Name": "ButtonStandardInstance.YOrigin",
+          "Type": "VerticalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "ButtonStandardInstance.YUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 7
+        },
+        {
+          "Name": "ButtonStandardInstance1.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 60
+        },
+        {
+          "Name": "ButtonStandardInstance1.Text",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Play"
+        },
+        {
+          "Name": "ButtonStandardInstance1.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 180
+        },
+        {
+          "Name": "ButtonStandardInstance1.X",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": -38
+        },
+        {
+          "Name": "ButtonStandardInstance1.XOrigin",
+          "Type": "HorizontalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 2
+        },
+        {
+          "Name": "ButtonStandardInstance1.XUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "ButtonStandardInstance1.Y",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": -42
+        },
+        {
+          "Name": "ButtonStandardInstance1.YOrigin",
+          "Type": "VerticalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "ButtonStandardInstance1.YUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 7
+        },
+        {
+          "Name": "DirectionPanelComponentInstance.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 240
+        },
+        {
+          "Name": "DirectionPanelComponentInstance.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 240
+        },
+        {
+          "Name": "DirectionPanelComponentInstance.X",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": -8
+        },
+        {
+          "Name": "DirectionPanelComponentInstance.XOrigin",
+          "Type": "HorizontalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 2
+        },
+        {
+          "Name": "DirectionPanelComponentInstance.XUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "DirectionPanelComponentInstance.Y",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": -48
+        },
+        {
+          "Name": "DirectionPanelComponentInstance.YOrigin",
+          "Type": "VerticalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 2
+        },
+        {
+          "Name": "DirectionPanelComponentInstance.YUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 5
+        }
+      ],
+      "VariableLists": []
+    }
+  ],
+  "Categories": [],
+  "Instances": [
+    {
+      "Name": "ButtonStandardInstance1",
+      "BaseType": "Controls/ButtonStandard"
+    },
+    {
+      "Name": "DirectionPanelComponentInstance",
+      "BaseType": "GameUI/DirectionPanelComponent"
+    },
+    {
+      "Name": "ButtonStandardInstance",
+      "BaseType": "Controls/ButtonStandard"
+    }
+  ],
+  "Events": [],
+  "Behaviors": [],
+  "VariablesHiddenFromInstances": []
+}

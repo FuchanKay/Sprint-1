@@ -4,7 +4,7 @@ namespace Scripts.Game;
 
 public class InventoryManager()
 {
-    private readonly IObject[] PlayerItems =
+    public readonly IObject[] PlayerItems =
         [
                 ObjectFactory.CreateEmpty(),
                 ObjectFactory.CreateEmpty(),
@@ -53,7 +53,7 @@ public class InventoryManager()
         }
         return itemString;
     }
-    private static string ObjectIdToString(ObjectIds objectIds)
+    public static string ObjectIdToString(ObjectIds objectIds)
     {
         string idString = "";
         switch (objectIds)

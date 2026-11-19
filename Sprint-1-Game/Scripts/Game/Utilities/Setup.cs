@@ -4,7 +4,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Scripts.GameComponents;
-
+using MonoGameLibrary.UIRendering;
+using UIFontAtlas = MonoGameLibrary.UIRendering.UIFontAtlas;
 namespace Scripts.Game;
 
 public class Setup(ContentManager content, GameWindow window)
@@ -22,10 +23,12 @@ public class Setup(ContentManager content, GameWindow window)
         AudioManager = new AudioManager();
 
         TextureAtlas = new TextureAtlas(content);
+
         MapDefaultInputs();
         AddAnimations();
         AddRegions();
         AddFont();
+        AddUItexture();
         sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, SpriteFontManager, window);
         sceneManager.Init();
     }
@@ -34,8 +37,6 @@ public class Setup(ContentManager content, GameWindow window)
     {
         BindAllTextures();
         LoadAudio();
-        LoadUI();
-
     }
 
 
@@ -262,9 +263,8 @@ public class Setup(ContentManager content, GameWindow window)
         AudioManager.MapSound(SoundNames.StoneScrape, content.Load<SoundEffect>(FileNames.StoneScrapeAudio), 0.75f);
         AudioManager.MapSound(SoundNames.Death, content.Load<SoundEffect>(FileNames.DeathAudio), 0.5f);
     }
-    private void LoadUI()
+    private void AddUItexture()
     {
-        //place holder, will be implemented in the future
     }
 
     private void AddFont()

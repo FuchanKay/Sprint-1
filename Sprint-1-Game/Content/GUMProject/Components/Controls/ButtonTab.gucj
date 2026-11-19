@@ -1,0 +1,958 @@
+{
+  "Name": "Controls/ButtonTab",
+  "BaseType": "Container",
+  "States": [
+    {
+      "Name": "Default",
+      "Variables": [
+        {
+          "Name": "Background.Blue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 177
+        },
+        {
+          "Name": "Background.ExposeChildrenEvents",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": false
+        },
+        {
+          "Name": "Background.Green",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 159
+        },
+        {
+          "Name": "Background.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "Background.HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 2
+        },
+        {
+          "Name": "Background.Red",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 6
+        },
+        {
+          "Name": "Background.SourceFile",
+          "Type": "string",
+          "SetsValue": true,
+          "IsFile": true,
+          "ValueAsString": "UISpriteSheet.png"
+        },
+        {
+          "Name": "Background.TextureAddress",
+          "Type": "TextureAddress",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "Background.TextureHeight",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 24
+        },
+        {
+          "Name": "Background.TextureLeft",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 72
+        },
+        {
+          "Name": "Background.TextureTop",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 48
+        },
+        {
+          "Name": "Background.TextureWidth",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 24
+        },
+        {
+          "Name": "Background.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 32
+        },
+        {
+          "Name": "Background.WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "Background.XOrigin",
+          "Type": "HorizontalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "Background.XUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 6
+        },
+        {
+          "Name": "Background.YOrigin",
+          "Type": "VerticalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "Background.YUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 7
+        },
+        {
+          "Name": "ButtonCategoryState",
+          "Type": "ButtonCategory"
+        },
+        {
+          "Name": "FocusedIndicator.Blue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 25
+        },
+        {
+          "Name": "FocusedIndicator.ExposeChildrenEvents",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": false
+        },
+        {
+          "Name": "FocusedIndicator.Green",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 171
+        },
+        {
+          "Name": "FocusedIndicator.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 2
+        },
+        {
+          "Name": "FocusedIndicator.HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 0
+        },
+        {
+          "Name": "FocusedIndicator.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Background"
+        },
+        {
+          "Name": "FocusedIndicator.Red",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 232
+        },
+        {
+          "Name": "FocusedIndicator.SourceFile",
+          "Type": "string",
+          "SetsValue": true,
+          "IsFile": true,
+          "ValueAsString": "UISpriteSheet.png"
+        },
+        {
+          "Name": "FocusedIndicator.TextureAddress",
+          "Type": "TextureAddress",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "FocusedIndicator.TextureHeight",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 24
+        },
+        {
+          "Name": "FocusedIndicator.TextureLeft",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 0
+        },
+        {
+          "Name": "FocusedIndicator.TextureTop",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 48
+        },
+        {
+          "Name": "FocusedIndicator.TextureWidth",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 24
+        },
+        {
+          "Name": "FocusedIndicator.Visible",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": false
+        },
+        {
+          "Name": "FocusedIndicator.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": -8
+        },
+        {
+          "Name": "FocusedIndicator.WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 2
+        },
+        {
+          "Name": "FocusedIndicator.XOrigin",
+          "Type": "HorizontalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "FocusedIndicator.XUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 6
+        },
+        {
+          "Name": "FocusedIndicator.Y",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 2
+        },
+        {
+          "Name": "FocusedIndicator.YOrigin",
+          "Type": "VerticalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 0
+        },
+        {
+          "Name": "FocusedIndicator.YUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 5
+        },
+        {
+          "Name": "Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 32
+        },
+        {
+          "Name": "State",
+          "Type": "State",
+          "Category": "States and Visibility",
+          "SetsValue": true
+        },
+        {
+          "Name": "TabText.Blue",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 255
+        },
+        {
+          "Name": "TabText.CustomFontFile",
+          "Type": "string",
+          "SetsValue": true,
+          "IsFile": true,
+          "ValueAsString": ""
+        },
+        {
+          "Name": "TabText.Font",
+          "Type": "string",
+          "SetsValue": true,
+          "IsFont": true,
+          "ValueAsString": "Fonts/LiberationSans-Regular.ttf"
+        },
+        {
+          "Name": "TabText.FontScale",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 1
+        },
+        {
+          "Name": "TabText.FontSize",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 14
+        },
+        {
+          "Name": "TabText.Green",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 255
+        },
+        {
+          "Name": "TabText.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "TabText.HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 2
+        },
+        {
+          "Name": "TabText.HorizontalAlignment",
+          "Type": "HorizontalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "TabText.IsBold",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": true
+        },
+        {
+          "Name": "TabText.IsItalic",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": false
+        },
+        {
+          "Name": "TabText.LineHeightMultiplier",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 1
+        },
+        {
+          "Name": "TabText.Parent",
+          "Type": "string",
+          "SetsValue": true,
+          "ValueAsString": "Background"
+        },
+        {
+          "Name": "TabText.Red",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 255
+        },
+        {
+          "Name": "TabText.Text",
+          "Type": "string",
+          "ExposedAsName": "TabDisplayText",
+          "SetsValue": true,
+          "ValueAsString": "Tab 1"
+        },
+        {
+          "Name": "TabText.UseCustomFont",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": false
+        },
+        {
+          "Name": "TabText.VerticalAlignment",
+          "Type": "VerticalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "TabText.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "TabText.WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "TabText.XOrigin",
+          "Type": "HorizontalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "TabText.XUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 6
+        },
+        {
+          "Name": "TabText.YOrigin",
+          "Type": "VerticalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "TabText.YUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 7
+        },
+        {
+          "Name": "Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 4
+        },
+        {
+          "Name": "XOrigin",
+          "Type": "HorizontalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "XUnits",
+          "Type": "PositionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 6
+        },
+        {
+          "Name": "YOrigin",
+          "Type": "VerticalAlignment",
+          "SetsValue": true,
+          "ValueAsInt": 2
+        }
+      ],
+      "VariableLists": [
+        {
+          "Name": "Background.VariableReferences",
+          "Type": "string",
+          "Category": "References",
+          "StringValues": [
+            "Color = Components/Styles.Primary.FillColor"
+          ]
+        },
+        {
+          "Name": "FocusedIndicator.VariableReferences",
+          "Type": "string",
+          "Category": "References",
+          "StringValues": [
+            "Color = Components/Styles.Warning.FillColor"
+          ]
+        },
+        {
+          "Name": "TabText.VariableReferences",
+          "Type": "string",
+          "Category": "References",
+          "StringValues": [
+            "Color = Components/Styles.White.FillColor",
+            "Font = Components/Styles.Strong.Font",
+            "FontSize = Components/Styles.Strong.FontSize",
+            "IsBold = Components/Styles.Strong.IsBold",
+            "IsItalic = Components/Styles.Strong.IsItalic",
+            "UseCustomFont = Components/Styles.Strong.UseCustomFont",
+            "CustomFontFile = Components/Styles.Strong.CustomFontFile",
+            "FontScale = Components/Styles.Strong.FontScale",
+            "LineHeightMultiplier = Components/Styles.Strong.LineHeightMultiplier"
+          ]
+        }
+      ]
+    }
+  ],
+  "Categories": [
+    {
+      "Name": "ButtonCategory",
+      "States": [
+        {
+          "Name": "Enabled",
+          "Variables": [
+            {
+              "Name": "Background.Blue",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 177
+            },
+            {
+              "Name": "Background.Green",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 159
+            },
+            {
+              "Name": "Background.Red",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 6
+            },
+            {
+              "Name": "FocusedIndicator.Visible",
+              "Type": "bool",
+              "SetsValue": true,
+              "ValueAsBool": false
+            },
+            {
+              "Name": "TabText.Blue",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 255
+            },
+            {
+              "Name": "TabText.Green",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 255
+            },
+            {
+              "Name": "TabText.Red",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 255
+            }
+          ],
+          "VariableLists": [
+            {
+              "Name": "Background.VariableReferences",
+              "Type": "string",
+              "Category": "References",
+              "StringValues": [
+                "Color = Components/Styles.Primary.FillColor"
+              ]
+            },
+            {
+              "Name": "TabText.VariableReferences",
+              "Type": "string",
+              "Category": "References",
+              "StringValues": [
+                "Color = Components/Styles.White.FillColor"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "Disabled",
+          "Variables": [
+            {
+              "Name": "Background.Blue",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 80
+            },
+            {
+              "Name": "Background.Green",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 70
+            },
+            {
+              "Name": "Background.Red",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 70
+            },
+            {
+              "Name": "FocusedIndicator.Visible",
+              "Type": "bool",
+              "SetsValue": true,
+              "ValueAsBool": false
+            },
+            {
+              "Name": "TabText.Blue",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 130
+            },
+            {
+              "Name": "TabText.Green",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 130
+            },
+            {
+              "Name": "TabText.Red",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 130
+            }
+          ],
+          "VariableLists": [
+            {
+              "Name": "Background.VariableReferences",
+              "Type": "string",
+              "Category": "References",
+              "StringValues": [
+                "Color = Components/Styles.DarkGray.FillColor"
+              ]
+            },
+            {
+              "Name": "TabText.VariableReferences",
+              "Type": "string",
+              "Category": "References",
+              "StringValues": [
+                "Color = Components/Styles.Gray.FillColor"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "Highlighted",
+          "Variables": [
+            {
+              "Name": "Background.Blue",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 193
+            },
+            {
+              "Name": "Background.Green",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 180
+            },
+            {
+              "Name": "Background.Red",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 74
+            },
+            {
+              "Name": "FocusedIndicator.Visible",
+              "Type": "bool",
+              "SetsValue": true,
+              "ValueAsBool": false
+            },
+            {
+              "Name": "TabText.Blue",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 255
+            },
+            {
+              "Name": "TabText.Green",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 255
+            },
+            {
+              "Name": "TabText.Red",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 255
+            }
+          ],
+          "VariableLists": [
+            {
+              "Name": "Background.VariableReferences",
+              "Type": "string",
+              "Category": "References",
+              "StringValues": [
+                "Color = Components/Styles.PrimaryLight.FillColor"
+              ]
+            },
+            {
+              "Name": "TabText.VariableReferences",
+              "Type": "string",
+              "Category": "References",
+              "StringValues": [
+                "Color = Components/Styles.White.FillColor"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "Pushed",
+          "Variables": [
+            {
+              "Name": "Background.Blue",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 137
+            },
+            {
+              "Name": "Background.Green",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 120
+            },
+            {
+              "Name": "Background.Red",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 4
+            },
+            {
+              "Name": "FocusedIndicator.Visible",
+              "Type": "bool",
+              "SetsValue": true,
+              "ValueAsBool": false
+            },
+            {
+              "Name": "TabText.Blue",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 255
+            },
+            {
+              "Name": "TabText.Green",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 255
+            },
+            {
+              "Name": "TabText.Red",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 255
+            }
+          ],
+          "VariableLists": [
+            {
+              "Name": "Background.VariableReferences",
+              "Type": "string",
+              "Category": "References",
+              "StringValues": [
+                "Color = Components/Styles.PrimaryDark.FillColor"
+              ]
+            },
+            {
+              "Name": "TabText.VariableReferences",
+              "Type": "string",
+              "Category": "References",
+              "StringValues": [
+                "Color = Components/Styles.White.FillColor"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "HighlightedFocused",
+          "Variables": [
+            {
+              "Name": "Background.Blue",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 193
+            },
+            {
+              "Name": "Background.Green",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 180
+            },
+            {
+              "Name": "Background.Red",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 74
+            },
+            {
+              "Name": "FocusedIndicator.Visible",
+              "Type": "bool",
+              "SetsValue": true,
+              "ValueAsBool": true
+            },
+            {
+              "Name": "TabText.Blue",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 255
+            },
+            {
+              "Name": "TabText.Green",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 255
+            },
+            {
+              "Name": "TabText.Red",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 255
+            }
+          ],
+          "VariableLists": [
+            {
+              "Name": "Background.VariableReferences",
+              "Type": "string",
+              "Category": "References",
+              "StringValues": [
+                "Color = Components/Styles.PrimaryLight.FillColor"
+              ]
+            },
+            {
+              "Name": "TabText.VariableReferences",
+              "Type": "string",
+              "Category": "References",
+              "StringValues": [
+                "Color = Components/Styles.White.FillColor"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "Focused",
+          "Variables": [
+            {
+              "Name": "Background.Blue",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 177
+            },
+            {
+              "Name": "Background.Green",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 159
+            },
+            {
+              "Name": "Background.Red",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 6
+            },
+            {
+              "Name": "FocusedIndicator.Visible",
+              "Type": "bool",
+              "SetsValue": true,
+              "ValueAsBool": true
+            },
+            {
+              "Name": "TabText.Blue",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 255
+            },
+            {
+              "Name": "TabText.Green",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 255
+            },
+            {
+              "Name": "TabText.Red",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 255
+            }
+          ],
+          "VariableLists": [
+            {
+              "Name": "Background.VariableReferences",
+              "Type": "string",
+              "Category": "References",
+              "StringValues": [
+                "Color = Components/Styles.Primary.FillColor"
+              ]
+            },
+            {
+              "Name": "TabText.VariableReferences",
+              "Type": "string",
+              "Category": "References",
+              "StringValues": [
+                "Color = Components/Styles.White.FillColor"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "DisabledFocused",
+          "Variables": [
+            {
+              "Name": "Background.Blue",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 80
+            },
+            {
+              "Name": "Background.Green",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 70
+            },
+            {
+              "Name": "Background.Red",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 70
+            },
+            {
+              "Name": "FocusedIndicator.Visible",
+              "Type": "bool",
+              "SetsValue": true,
+              "ValueAsBool": true
+            },
+            {
+              "Name": "TabText.Blue",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 130
+            },
+            {
+              "Name": "TabText.Green",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 130
+            },
+            {
+              "Name": "TabText.Red",
+              "Type": "int",
+              "SetsValue": true,
+              "ValueAsInt": 130
+            }
+          ],
+          "VariableLists": [
+            {
+              "Name": "Background.VariableReferences",
+              "Type": "string",
+              "Category": "References",
+              "StringValues": [
+                "Color = Components/Styles.DarkGray.FillColor"
+              ]
+            },
+            {
+              "Name": "TabText.VariableReferences",
+              "Type": "string",
+              "Category": "References",
+              "StringValues": [
+                "Color = Components/Styles.Gray.FillColor"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Instances": [
+    {
+      "Name": "Background",
+      "BaseType": "NineSlice"
+    },
+    {
+      "Name": "TabText",
+      "BaseType": "Text"
+    },
+    {
+      "Name": "FocusedIndicator",
+      "BaseType": "NineSlice"
+    }
+  ],
+  "Events": [],
+  "Behaviors": [
+    {
+      "BehaviorName": "ButtonBehavior"
+    }
+  ],
+  "VariablesHiddenFromInstances": [
+    "ButtonCategoryState",
+    "ContainedType",
+    "ChildrenLayout",
+    "ClipsChildren",
+    "IsRenderTarget",
+    "ExposeChildrenEvents"
+  ]
+}

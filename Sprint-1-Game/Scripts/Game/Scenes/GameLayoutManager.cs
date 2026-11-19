@@ -8,10 +8,7 @@ public class GameLayoutManager
 {
     private const float LevelSceneRatio = 4f / 5f;
     private const float HUDSceneRatio = 1f / 5f;
-    public LevelContext LevelContext;
-    //place holder, will be implemented in the future
-    public LevelContext HUDContext;
-
+    private LevelContext LevelContext;
     private int CurrentSceneWidth;
     private int CurrentSceneHeight;
 
@@ -32,9 +29,8 @@ public class GameLayoutManager
 
     private void SetLevelOffset(float levelWidthPx, float levelHeightPx)
     {
-        int EdgeOffset = LevelContext.RawSpriteHeightPx / 2;
-        LevelContext.PuzzleOffsetX = (int)Math.Floor((CurrentSceneWidth * LevelSceneRatio - levelWidthPx * LevelContext.GridScale) / 2f + EdgeOffset * LevelContext.GridScale);
-        LevelContext.PuzzleOffsetY = (int)Math.Floor((CurrentSceneHeight - levelHeightPx * LevelContext.GridScale) / 2f + EdgeOffset * LevelContext.GridScale);
+        LevelContext.PuzzleOffsetX = (int)Math.Floor((CurrentSceneWidth * LevelSceneRatio - levelWidthPx * LevelContext.GridScale) / 2f);
+        LevelContext.PuzzleOffsetY = (int)Math.Floor((CurrentSceneHeight - levelHeightPx * LevelContext.GridScale) / 2f);
     }
     private void ScaleLevel(float levelWidthPx, float levelHeightPx)
     {
@@ -43,8 +39,9 @@ public class GameLayoutManager
         LevelContext.GridScale = Math.Min(scaleX, scaleY);
     }
     //place holder, will be implemented in the future
-    public void HUDLayout(LevelContext context)
+    public void HUDLayout(HUDPannel hUDPannel)
     {
-        HUDContext = context;
+        int EdgeOffset = LevelContext.GridWidth / 2;
+        hUDPannel.PannelCornerPos.X = (LevelContext.LevelWidth * LevelContext.RawSpriteWidthPx - LevelContext.RawSpriteHeightPx / 2)* LevelContext.GridScale + LevelContext.PuzzleOffsetX + EdgeOffset ;
     }
 }

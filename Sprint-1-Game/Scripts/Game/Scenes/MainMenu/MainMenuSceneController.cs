@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGameLibrary.UIRendering;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
@@ -12,8 +13,8 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
     private Button PlayGameButton;
     private Button LevelEditorButton;
     private Button ExitGameButton;
-    private BasicSpriteFontWriter GameTitle = new(spriteFontManager);
-
+    //private UIFont GameTitle = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
+    
 
 
     public void Init()
@@ -27,7 +28,8 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
 
         ExitGameButton = new ExitGameButton(sceneManager, textureAtlas);
         ExitGameButton.Init(ExitGameButtonX, ExitGameButtonY, mouseInput, true);
-        GameTitle.Init(FontNames.DungeonFont, new Vector2(1280 / 2 - 100, 10), "Sugar Snap", Color.Gold);
+        //GameTitle.Init(new Vector2 (1280/2,80), "Sugar Snap", Color.Gold, new Vector2(5,5));
+        //GameTitle.CenterOrigin();
 
     }
 
@@ -43,6 +45,7 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
         PlayGameButton.Draw(sb);
         ExitGameButton.Draw(sb);
         LevelEditorButton.Draw(sb);
-        GameTitle.Draw(sb);
+        //GameTitle.Draw(sb);
+
     }
 }

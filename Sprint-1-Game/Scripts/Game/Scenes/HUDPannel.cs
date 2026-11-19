@@ -1,52 +1,67 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGameLibrary.UIRendering;
 using Scripts.Game;
 using Scripts.GameComponents;
 
-public class HUDPannel(SpriteFontManager spriteFontManager)
+public class HUDPannel(UIFontAtlas uIFontAtlas)
 {
-    public Vector2 PannelCornerPos { get; set; }
+    public Vector2 PannelCornerPos = Vector2.Zero;
     private int Clock;
-    private BasicSpriteFontWriter EnemyCounter = new(spriteFontManager);
-    private BasicSpriteFontWriter InventoryStatus = new(spriteFontManager);
-    private BasicSpriteFontWriter GameClock = new(spriteFontManager);
-    private BasicSpriteFontWriter CommandInstructions = new(spriteFontManager);
+    private UIFont EnemyCounter = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
+    private UIFont InventoryStatus = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
+    private UIFont GameClock = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
+    private UIFont CommandInstructions = new (uIFontAtlas.GetFont(FontNames.DungeonFont));
 
     private PuzzleLevel Level;
 
     public void Init(PuzzleLevel level)
     {
-        Clock = 0; ;
-        Level = level;
-        EnemyCounter.Init(FontNames.DungeonFont, new Vector2(1040, 40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.Gold);
-        GameClock.Init(FontNames.DungeonFont, new Vector2(1040, 80), "Game Clock: ", Color.Gold);
-        InventoryStatus.Init(FontNames.DungeonFont, new Vector2(1040, 120), $"Inventory:\n{Level.LevelStateHistory.InventoryManager}", Color.Gold);
-        CommandInstructions.Init(FontNames.DungeonFont, new Vector2(1040, 500), "Player Move: WASD\n"
-                                                                                + "SNAP: F\n"
-                                                                                + "Use Item: 123\n"
-                                                                                + "Grab item: G\n"
-                                                                                + "Change Scene: B\n", Color.Gold);
+        Vector2 inventoryScale = new Vector2(0.25f, 0.25f);
+        
 
+        Clock = 0;;
+        Level = level;
+        EnemyCounter.Init(PannelCornerPos + new Vector2 (0,120), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.Gold, Vector2.One);
+        GameClock.Init(PannelCornerPos + new Vector2(0,80), "Game Clock: ", Color.Gold, Vector2.One);
+        InventoryStatus.Init(PannelCornerPos + new Vector2 (0,160), $"Inventory:\n\n\n\n    1        2        3",  Color.Gold, Vector2.One);
+        CommandInstructions.Init(PannelCornerPos + new Vector2(0,300), "Player Move: WASD\n" 
+                                                        + "SNAP: F\n"
+                                                        + "Use Item: 123\n" 
+                                                        + "Grab item: G\n"
+                                                        +"Change Scene: B\n",  Color.Gold, Vector2.One);
+        
     }
     public void Update(int dtMs)
     {
-        EnemyCounter.Update(new Vector2(1040, 40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}");
+        
+        EnemyCounter.UpdateText( $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}");
 
         //This may be moved to PuzzleLevel or LevelStateHistory to count how much time player spent on each puzzle.
         Clock += dtMs;
         TimeSpan formattedClock = TimeSpan.FromMilliseconds(Clock);
-        GameClock.Update(new Vector2(1040, 80), $"{formattedClock:hh\\:mm\\:ss}");
+        GameClock.UpdateText($"Game Clock: {formattedClock:hh\\:mm\\:ss}");
 
-
-        InventoryStatus.Update(new Vector2(1040, 120), $"Inventory:\n{Level.LevelStateHistory.InventoryManager}");
-        CommandInstructions.Update(new Vector2(1040, 350));
     }
     public void Draw(SpriteBatch sb)
     {
+        UpdateLayout();
+
+        GameClock.Draw(sb);
         EnemyCounter.Draw(sb);
         InventoryStatus.Draw(sb);
-        GameClock.Draw(sb);
+
         CommandInstructions.Draw(sb);
+
+    }
+
+    private void UpdateLayout()
+    {
+
+        EnemyCounter.Pos = PannelCornerPos + new Vector2 (0,120);
+        GameClock.Pos = PannelCornerPos + new Vector2(0,80);
+        InventoryStatus.Pos = PannelCornerPos + new Vector2 (0,160);
+        CommandInstructions.Pos = PannelCornerPos + new Vector2(0,300);
     }
 }

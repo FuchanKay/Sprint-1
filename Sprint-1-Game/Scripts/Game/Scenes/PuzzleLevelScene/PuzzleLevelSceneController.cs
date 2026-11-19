@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGameLibrary.UIRendering;
 using Scripts.GameComponents;
 namespace Scripts.Game;
 
@@ -12,7 +13,9 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private GameLayoutManager GameLayoutManager = new();
-    private UIManager UIManager = new(spriteFontManager);
+    private UIManager UIManager;
+
+
     private readonly IAudioManager AudioManager = audioManager;
     private ILevelTransition LevelTransition;
     public int CurrentLevelIndex = 0;
@@ -24,6 +27,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         LevelFileParser = new LevelFileParser();
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
         Level.Init(CurrentLevelIndex);
+       // UIManager = new(uIFontAtlas, GameLayoutManager);
         UIManager.Init(Level);
         LevelTransition = new WipeTransition(Level);
     }
@@ -121,7 +125,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     {
 
         Level.Draw(sb);
-        UIManager.Draw(sb);
+        //UIManager.Draw(sb);
         if(LevelTransition.IsActive) LevelTransition.Draw(sb);
     }
 }

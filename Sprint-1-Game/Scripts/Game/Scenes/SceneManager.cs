@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
+using Microsoft.Xna.Framework.Content;
+using MonoGameLibrary.UIRendering;
 
 namespace Scripts.Game;
 
@@ -92,7 +94,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
 
         var levelEditorScene = new LevelEditorSceneController(this, buttonInput, mouseInput, textureAtlas, spriteFontManager);
         NameSceneMap.TryAdd(SceneNames.LevelEditor, levelEditorScene);
-
+        
         var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas, spriteFontManager, window);
         NameSceneMap.TryAdd(SceneNames.PuzzleLevel, puzzleLevelScene);
     }
