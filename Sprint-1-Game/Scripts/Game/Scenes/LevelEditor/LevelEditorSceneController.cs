@@ -11,10 +11,33 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
         RawSpriteWidthPx = 256,
         RawSpriteHeightPx = 256,
         GridScale = 0.175f,
-        PuzzleOffsetX = 50,
-        PuzzleOffsetY = 50,
+        PuzzleOffsetX = 160,
+        PuzzleOffsetY = 160,
     };
     private GridPointer CurrentGrid = new();
+    private SpriteGrid SpriteGrid;
+    private LevelContext ObjectSelectorContext = new()
+    {
+        RawSpriteWidthPx = 256,
+        RawSpriteHeightPx = 256,
+        GridScale = 0.175f,
+        PuzzleOffsetX = 252,
+        PuzzleOffsetY = 40,
+    };
+    private GridPointer ObjectSelectorGrid = new();
+    private SpriteGrid ObjectSelectorSpriteGrid;
+
+    private LevelContext TileSelectorContext = new()
+    {
+        RawSpriteWidthPx = 256,
+        RawSpriteHeightPx = 256,
+        GridScale = 0.175f,
+        PuzzleOffsetX = 40,
+        PuzzleOffsetY = 284,
+    };
+    private GridPointer TileSelectorGrid = new();
+    private SpriteGrid TileSelectorSpriteGrid;
+
     private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
@@ -22,7 +45,6 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
     private readonly List<GridPointer> UndoHistory = [];
     private readonly List<GridPointer> RedoHistory = [];
     private readonly int UndoHistoryMaxLength = 2000;
-    private SpriteGrid SpriteGrid;
     private IBrush Brush;
     private readonly int UndoRedoBufferMs = 400;
     private int UndoBufferTimerMs = 0;
@@ -30,18 +52,11 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
 
     public void Init()
     {
-        CurrentGrid.Init();
         UndoHistory.Clear();
-        var levelFileName = FileNames.LevelFileNames[1];
-        string[] levelFile = LevelFileParser.ParseLevelFile(levelFileName);
-        LevelFileParser levelFileParser = new();
-        Context.LevelName = levelFileParser.GetLevelName(levelFile);
-        Context.LevelWidth = levelFileParser.GetLevelWidth(levelFile);
-        Context.LevelHeight = levelFileParser.GetLevelHeight(levelFile);
-        CurrentGrid = levelFileParser.CreateGrids(levelFile);
 
-        SpriteGrid = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory);
-        SpriteGrid.Init(CurrentGrid, Context);
+        InitLevelEditorGrid();
+        InitObjectSelectorGrid();
+        InitTileSelectorGrid();
 
         UndoHistory.Add(CurrentGrid.Clone());
 
@@ -70,12 +85,12 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
         }
         else if (buttonInput.IsPressed(InputNames.ObjectPaintBrushMode))
         {
-            Brush = new ObjectPaintBrush(buttonInput, mouseInput, SpriteGrid, Context, ObjectSpriteFactory, UndoHistory, RedoHistory);
+            Brush = new ObjectPaintBrush(buttonInput, mouseInput, SpriteGrid, Context, ObjectSelectorContext, ObjectSelectorGrid, ObjectSpriteFactory, UndoHistory, RedoHistory);
             Brush.Init(CurrentGrid);
         }
         else if (buttonInput.IsPressed(InputNames.TileBrushMode))
         {
-            Brush = new TilePaintBrush(buttonInput, mouseInput, SpriteGrid, Context, TileSpriteFactory, UndoHistory, RedoHistory);
+            Brush = new TilePaintBrush(buttonInput, mouseInput, SpriteGrid, Context, TileSelectorContext, TileSelectorGrid, TileSpriteFactory, UndoHistory, RedoHistory);
             Brush.Init(CurrentGrid);
         }
         else if (buttonInput.IsPressed(InputNames.Undo) && UndoHistory.Count > 0)
@@ -118,11 +133,14 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
         {
             RedoBufferTimeMs = UndoRedoBufferMs;
         }
+
     }
 
     public void Draw(SpriteBatch sb)
     {
         SpriteGrid.Draw(sb);
+        ObjectSelectorSpriteGrid.Draw(sb);
+        TileSelectorSpriteGrid.Draw(sb);
         Brush.Draw(sb);
         HUD.Draw(sb);
     }
@@ -144,5 +162,51 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
         RedoHistory.RemoveAt(top);
         SpriteGrid.Init(CurrentGrid, Context);
         Brush.Init(CurrentGrid);
+    }
+
+    private void InitLevelEditorGrid()
+    {
+        CurrentGrid.Init();
+        var levelFileName = FileNames.LevelFileNames[1];
+        string[] levelFile = LevelFileParser.ParseLevelFile(levelFileName);
+        LevelFileParser levelFileParser = new();
+        Context.LevelName = levelFileParser.GetLevelName(levelFile);
+        Context.LevelWidth = levelFileParser.GetLevelWidth(levelFile);
+        Context.LevelHeight = levelFileParser.GetLevelHeight(levelFile);
+        CurrentGrid = levelFileParser.CreateGrids(levelFile);
+
+        SpriteGrid = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory);
+        SpriteGrid.Init(CurrentGrid, Context);
+        
+    }
+
+    private void InitObjectSelectorGrid()
+    {
+        ObjectSelectorGrid.Init();
+        var objGridFileName = FileNames.ObjectSelectorFileNames[0];
+        string[] objGridFile = LevelFileParser.ParseLevelFile(objGridFileName);
+        LevelFileParser levelFileParser = new();
+        ObjectSelectorContext.LevelName = levelFileParser.GetLevelName(objGridFile);
+        ObjectSelectorContext.LevelWidth = levelFileParser.GetLevelWidth(objGridFile);
+        ObjectSelectorContext.LevelHeight = levelFileParser.GetLevelHeight(objGridFile);
+        ObjectSelectorGrid = levelFileParser.CreateGrids(objGridFile);
+
+        ObjectSelectorSpriteGrid = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory);
+        ObjectSelectorSpriteGrid.Init(ObjectSelectorGrid, ObjectSelectorContext);
+    }
+
+    private void InitTileSelectorGrid()
+    {
+        TileSelectorGrid.Init();
+        var tileGridFileName = FileNames.TileSelectorFileNames[0];
+        string[] tileGridFile = LevelFileParser.ParseLevelFile(tileGridFileName);
+        LevelFileParser levelFileParser = new();
+        TileSelectorContext.LevelName = levelFileParser.GetLevelName(tileGridFile);
+        TileSelectorContext.LevelWidth = levelFileParser.GetLevelWidth(tileGridFile);
+        TileSelectorContext.LevelHeight = levelFileParser.GetLevelHeight(tileGridFile);
+        TileSelectorGrid = levelFileParser.CreateGrids(tileGridFile);
+
+        TileSelectorSpriteGrid = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory);
+        TileSelectorSpriteGrid.Init(TileSelectorGrid, TileSelectorContext);
     }
 }

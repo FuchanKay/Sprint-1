@@ -39,6 +39,16 @@ public class FileNames
     "Content/Levels/level10.csv",
     ];
 
+    public readonly static string[] ObjectSelectorFileNames = 
+    [
+    "Content/Levels/object-grid-1.csv",
+    ];
+
+    public readonly static string[] TileSelectorFileNames = 
+    [
+    "Content/Levels/tile-grid-1.csv",
+    ];
+
     public readonly static string SnapAudio = "audio/snap";
     public readonly static string SongAudio = "audio/song";
     public readonly static string DefaultFont = "Font/defaultFont";
