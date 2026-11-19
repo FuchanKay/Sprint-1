@@ -36,7 +36,7 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
             PlayerIsDead = false,
             LevelIsCompleted = false,
             LevelEditorMode = false,
-            FogOfWar = false // PLACEHOLDER
+            FogOfWar = true // PLACEHOLDER
         };
 
         var levelFileName = FileNames.LevelFileNames[levelIndex];
