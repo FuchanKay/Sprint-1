@@ -1,3 +1,4 @@
+using System.Transactions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
@@ -51,6 +52,10 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         if (LevelTransition.IsActive)
         {
             LevelTransition.Update(dtMs);
+            Level.Update(dtMs);
+            return;
+        } else if (sceneManager.SceneTransition.IsActive)
+        {
             Level.Update(dtMs);
             return;
         }
