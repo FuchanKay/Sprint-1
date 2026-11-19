@@ -7,15 +7,18 @@ public class UIFont(UIFontAtlas uIFontAtlas)
 {
     private SpriteFont Font{ get; set; }
     public string Text{ get; set; }
-    public Vector2 Pos{ get; set; }
+    public Vector2 Pos{ get; set; } = Vector2.Zero;
     public Color Color{ get; set; } = Color.White;
     public float Rotation{ get; set; } = 0.0f;
-    public Vector2 Origin{ get; set; } = Vector2.Zero;
+    public GenericOrigin OriginEnum { get; set; } = GenericOrigin.TopLeft;
+    public Vector2? CustomOrigin { get; set; }
+    private Vector2 Origin => CustomOrigin ?? ToVector2(OriginEnum) * Size;
     public Vector2 Scale{ get; set; } = Vector2.One;
     public SpriteEffects Effects{ get; set; } = SpriteEffects.None;
     public float LayerDepth{ get; set; } = 0.0f;
     public float Width => Font.MeasureString(Text).X;
     public float Height => Font.MeasureString(Text).Y;
+    public Vector2 Size => new Vector2(Width, Height);
     public enum GenericOrigin
     {
         TopCenter,
@@ -26,7 +29,7 @@ public class UIFont(UIFontAtlas uIFontAtlas)
         BottomLeft,
         BottomRight,
     }
-    public static Vector2 ToVector2(GenericOrigin origin)
+    private static Vector2 ToVector2(GenericOrigin origin)
     {
         return origin switch
         {

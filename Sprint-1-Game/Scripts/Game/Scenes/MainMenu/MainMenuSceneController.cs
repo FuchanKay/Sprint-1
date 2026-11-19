@@ -28,7 +28,9 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
         ExitGameButton = new ExitGameButton(sceneManager, textureAtlas);
         ExitGameButton.Init(ExitGameButtonX, ExitGameButtonY, mouseInput, true);
         GameTitle.Init(FontNames.DungeonFont);
-        GameTitle.Pos = new Vector2(1280 / 2 - 100, 10);
+        GameTitle.Scale = new Vector2(5f,5f);
+        GameTitle.Pos = new Vector2(1280 / 2, 40);
+        GameTitle.OriginEnum = UIFont.GenericOrigin.Center;
         GameTitle.Text = "Sugar Snap";
         GameTitle.Color = Color.Gold;
 

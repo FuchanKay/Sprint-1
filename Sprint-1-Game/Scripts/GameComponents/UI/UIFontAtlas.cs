@@ -5,7 +5,7 @@ using System;
 namespace Scripts.GameComponents;
 public class UIFontAtlas(ContentManager content)
 {
-    private readonly Dictionary<string, SpriteFont> FontMap;
+    private readonly Dictionary<string, SpriteFont> FontMap = new();
     public void MapFont(string fontName, string fileName)
     {
 
