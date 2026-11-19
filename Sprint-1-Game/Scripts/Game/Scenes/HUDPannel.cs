@@ -26,6 +26,7 @@ public class HUDPannel(SpriteFontManager spriteFontManager)
                                                                                 + "SNAP: F\n"
                                                                                 + "Use Item: 123\n"
                                                                                 + "Grab item: G\n"
+                                                                                + "Toggle Hide Objects: H\n"
                                                                                 + "Change Scene: B\n", Color.Gold);
 
     }

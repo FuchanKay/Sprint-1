@@ -95,6 +95,7 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
         {
             CurrentObjectSprite.CurrentPosition = new Vector2(mouseInput.MousePositionX, mouseInput.MousePositionY);
         }
+        CurrentObjectSprite.LayerDepth = 1.0f;
         CurrentObjectSprite.Draw(sb);
     }
 
