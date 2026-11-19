@@ -9,6 +9,7 @@ public class GameCreditsSceneController(ISceneManager sceneManager, IInputManage
     private readonly static int ExitGameButtonX = 200, ExitGameButtonY = 400;
     private Button ExitGameButton;
     private BasicSpriteFontWriter GameCompleteMessage = new(spriteFontManager);
+    private ISprite SproutHeart = new StaticSprite(textureAtlas);
 
     public void Init()
     {
@@ -16,19 +17,30 @@ public class GameCreditsSceneController(ISceneManager sceneManager, IInputManage
         ExitGameButton.Init(ExitGameButtonX, ExitGameButtonY, mouseInput, true);
         string gameCompleteText = "Thank you for playing!\n\nGame Created By:\nFuma\nMallory\nSadie\nYongan\nLucas";
         Vector2 messageSize = spriteFontManager.GetFont(FontNames.DungeonFont).MeasureString(gameCompleteText);
-        Vector2 gameCompletePosition = new Vector2((window.ClientBounds.Width- messageSize.X) / 4f, (window.ClientBounds.Height - messageSize.Y)/4f);
+        Vector2 gameCompletePosition = new Vector2((window.ClientBounds.Width - messageSize.X) / 4f, (window.ClientBounds.Height - messageSize.Y)/4f);
         GameCompleteMessage.Init(FontNames.DungeonFont, gameCompletePosition, gameCompleteText, Color.Gold);
         audioManager.PlaySong(SoundNames.Song);
+
+        SproutHeart.Texture = textureAtlas.GetTexture(TextureNames.CreditsSprout);
+        SproutHeart.IdleName = RegionNames.DirtTile;
+        SproutHeart.SetState(SproutHeart.IdleName);
+        Vector2 sproutPosition = new((window.ClientBounds.Width * (3f / 4f)) - 64, (window.ClientBounds.Height - messageSize.Y) / 2f);
+        SproutHeart.CurrentPosition = sproutPosition;
+        SproutHeart.SetTargetPosition(sproutPosition);
+        SproutHeart.LayerDepth = 0.95f;
+        SproutHeart.Scale = 5.0f;
     }
 
     public void Update(int dtMs)
     {
         ExitGameButton.Update(dtMs);
+        SproutHeart.Update(dtMs);
     }
 
     public void Draw(SpriteBatch sb)
     {
         ExitGameButton.Draw(sb);
         GameCompleteMessage.Draw(sb);
+        SproutHeart.Draw(sb);
     }
 }

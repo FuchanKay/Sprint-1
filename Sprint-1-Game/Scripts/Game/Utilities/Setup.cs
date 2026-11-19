@@ -228,6 +228,7 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddTexture(TextureNames.LevelEditorButton, FileNames.LevelEditorButtonTexture);
 
         TextureAtlas.AddTexture(TextureNames.Player, FileNames.PlayerTexture);
+        TextureAtlas.AddTexture(TextureNames.CreditsSprout, FileNames.CreditsSproutTexture);
         TextureAtlas.AddTexture(TextureNames.TileSprites, FileNames.TileTextures);
         TextureAtlas.AddTexture(TextureNames.IceSprite, FileNames.IcePlaceholder);
         TextureAtlas.AddTexture(TextureNames.ObjectSprites, FileNames.ObjectTextures);

@@ -5,6 +5,7 @@ namespace Scripts.Game;
 public class TextureNames
 {
     public readonly static string Player = "Player";
+    public readonly static string CreditsSprout = "Credits Sprout";
     public readonly static string PlayGameButton = "Play Game Button";
     public readonly static string LevelEditorButton = "Level Editor Button";
     public readonly static string ExitGameButton = "Exit Game Button";
