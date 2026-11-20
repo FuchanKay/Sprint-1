@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -61,30 +60,30 @@ public class FogManager
     }
 
     private void UpdateExploredArea(Vector2 center, int width, int height)
-{
-    if (LastRecordedPosition == center) return;
-
-    int left = Math.Max(0, (int)(center.X - Radius - FadeWidth));
-    int right = Math.Min(width - 1, (int)(center.X + Radius + FadeWidth));
-    int top = Math.Max(0, (int)(center.Y - Radius - FadeWidth));
-    int bottom = Math.Min(height - 1, (int)(center.Y + Radius + FadeWidth));
-
-    for (int y = top; y <= bottom; y++)
     {
-        for (int x = left; x <= right; x++)
+        if (LastRecordedPosition == center) return;
+
+        int left = Math.Max(0, (int)(center.X - Radius - FadeWidth));
+        int right = Math.Min(width - 1, (int)(center.X + Radius + FadeWidth));
+        int top = Math.Max(0, (int)(center.Y - Radius - FadeWidth));
+        int bottom = Math.Min(height - 1, (int)(center.Y + Radius + FadeWidth));
+
+        for (int y = top; y <= bottom; y++)
         {
-            float distance = Vector2.Distance(new Vector2(x, y), center);
-            float visibility = 1f - MathHelper.Clamp((distance - Radius) / FadeWidth, 0f, 1f);
+            for (int x = left; x <= right; x++)
+            {
+                float distance = Vector2.Distance(new Vector2(x, y), center);
+                float visibility = 1f - MathHelper.Clamp((distance - Radius) / FadeWidth, 0f, 1f);
 
-            int index = y * width + x;
-            byte value = (byte)(visibility * 255);
+                int index = y * width + x;
+                byte value = (byte)(visibility * 255);
 
-            if (value > ExploredPixels[index].R)
-                ExploredPixels[index] = new Color(value, value, value, (byte)255);
+                if (value > ExploredPixels[index].R)
+                    ExploredPixels[index] = new Color(value, value, value, (byte)255);
+            }
         }
-    }
 
-    ExploredMask!.SetData(ExploredPixels);
-    LastRecordedPosition = center;
-}
+        ExploredMask!.SetData(ExploredPixels);
+        LastRecordedPosition = center;
+    }
 }
