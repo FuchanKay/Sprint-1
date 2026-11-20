@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Scripts.Game;
 
-public class CheckEnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, List<LevelStateHistory> levelStateHistory) : ILevelSubEvent
+public class CheckEnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, List<LevelState> levelStateHistory) : ILevelSubEvent
 {
     public virtual void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
@@ -123,7 +123,7 @@ public class CheckEnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, Lis
         subEventStack.Push(new RemoveLasersSubEvent());
     }
 
-    private static bool ShouldLaserBlast(SpriteGrid spriteGrid, GridPointer gridPointer, List<LevelStateHistory> levelStateHistory, Coordinate lizardCoord)
+    private static bool ShouldLaserBlast(SpriteGrid spriteGrid, GridPointer gridPointer, List<LevelState> levelStateHistory, Coordinate lizardCoord)
     {
         var lizardDirection = gridPointer.GetObject(lizardCoord).Direction;
 

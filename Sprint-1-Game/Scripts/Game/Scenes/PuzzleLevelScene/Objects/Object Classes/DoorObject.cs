@@ -10,6 +10,10 @@ public class DoorObject : IObject
             IsOpen = IsOpen
         };
     }
+    public bool Equals(IObject other)
+    {
+        return other.Id == ObjectIds.Door;
+    }
     public ObjectIds Id => ObjectIds.Door;
     public Directions Direction { get; set; } = Directions.South;
     public string RegionName => RegionNames.ClosedDoor;

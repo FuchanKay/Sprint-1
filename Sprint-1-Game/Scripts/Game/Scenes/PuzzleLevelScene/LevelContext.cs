@@ -15,4 +15,21 @@ public class LevelContext
     public bool PlayerIsDead { get; set; }
     public bool LevelIsCompleted { get; set; }
     public bool LevelEditorMode { get; set; }
+    public LevelContext Clone()
+    {
+        return new LevelContext
+        {
+            LevelName = LevelName,
+            LevelWidth = LevelWidth,
+            LevelHeight = LevelHeight,
+            RawSpriteWidthPx = RawSpriteWidthPx,
+            RawSpriteHeightPx = RawSpriteHeightPx,
+            PuzzleOffsetX = PuzzleOffsetX,
+            PuzzleOffsetY = PuzzleOffsetY,
+            GridScale = GridScale,
+            PlayerIsDead = PlayerIsDead,
+            LevelIsCompleted = LevelIsCompleted,
+            LevelEditorMode = LevelEditorMode
+        };
+    }
 }

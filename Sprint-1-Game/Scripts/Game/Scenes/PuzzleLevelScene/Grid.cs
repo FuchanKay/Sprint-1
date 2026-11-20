@@ -13,4 +13,9 @@ public class Grid
             Tile = Tile.Clone()
         };
     }
+
+    public bool Equals(Grid grid)
+    {
+        return Object.Equals(grid.Object) && Tile.Equals(grid.Tile);
+    }
 }

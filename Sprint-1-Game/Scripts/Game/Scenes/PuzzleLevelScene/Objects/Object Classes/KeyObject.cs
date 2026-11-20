@@ -9,6 +9,10 @@ public class KeyObject : IObject
             Direction = Direction
         };
     }
+    public bool Equals(IObject other)
+    {
+        return other.Id == ObjectIds.Key;
+    }
     public ObjectIds Id => ObjectIds.Key;
     public Directions Direction { get; set; } = Directions.South;
     public string RegionName => RegionNames.Key;

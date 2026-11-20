@@ -10,6 +10,10 @@ public class FloorTile : ITile
             Direction = Direction
         };
     }
+    public bool Equals(ITile other)
+    {
+        return other.Id == TileIds.Floor && RegionName == other.RegionName && Direction == other.Direction;
+    }
     public TileIds Id => TileIds.Floor;
     public string RegionName { get; set; }
     public bool IsWalkable => true;

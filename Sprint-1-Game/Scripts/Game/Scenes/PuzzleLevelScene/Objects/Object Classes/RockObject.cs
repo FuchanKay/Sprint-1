@@ -10,6 +10,10 @@ public class RockObject() : IObject
             RegionName = RegionName,
         };
     }
+    public bool Equals(IObject other)
+    {
+        return other.Id == ObjectIds.Rock && RegionName == other.RegionName;
+    }
     public ObjectIds Id => ObjectIds.Rock;
     public Directions Direction { get; set; }
     public string RegionName { get; set; }

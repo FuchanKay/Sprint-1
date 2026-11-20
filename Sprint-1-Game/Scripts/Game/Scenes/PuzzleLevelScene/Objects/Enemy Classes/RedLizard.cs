@@ -15,6 +15,10 @@ public class RedLizard : IEnemy
             Direction = Direction
         };
     }
+    public bool Equals(IObject other)
+    {
+        return other.Id == ObjectIds.RedLizard && Direction == other.Direction;
+    }
     public ObjectIds Id => ObjectIds.RedLizard;
     public Directions Direction { get; set; } = Directions.South;
     public string RegionName => RegionNames.ToIdleRegionName(Directions.South);

@@ -9,6 +9,10 @@ public class PumpkinSeedObject() : IObject
             Direction = Direction
         };
     }
+    public bool Equals(IObject other)
+    {
+        return other.Id == ObjectIds.PumpkinSeed;
+    }
     public ObjectIds Id => ObjectIds.PumpkinSeed;
     public Directions Direction { get; set; }
     public string RegionName => RegionNames.PumpkinSeed;

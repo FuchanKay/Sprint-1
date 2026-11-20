@@ -9,6 +9,10 @@ public class Bat : IEnemy
             Direction = Direction
         };
     }
+    public bool Equals(IObject other)
+    {
+        return other.Id == ObjectIds.Bat;
+    }
     public ObjectIds Id => ObjectIds.Bat;
     public Directions Direction { get; set; } = Directions.South;
     public string RegionName => RegionNames.Bat;

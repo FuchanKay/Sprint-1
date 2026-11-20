@@ -9,6 +9,10 @@ public class Zombie : IEnemy
             Direction = Direction
         };
     }
+    public bool Equals(IObject other)
+    {
+        return other.Id == ObjectIds.Zombie;
+    }
     public ObjectIds Id => ObjectIds.Zombie;
     public Directions Direction { get; set; } = Directions.South;
     public string RegionName => RegionNames.ToZombieIdleRegionName(Directions.South);

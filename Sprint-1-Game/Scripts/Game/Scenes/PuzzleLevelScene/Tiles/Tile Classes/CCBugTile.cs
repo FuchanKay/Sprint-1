@@ -9,6 +9,10 @@ public class CCBugTile : ITile
 
         };
     }
+    public bool Equals(ITile other)
+    {
+        return other.Id == TileIds.CCBug;
+    }
     public TileIds Id => TileIds.CCBug;
     public string RegionName => RegionNames.BugTileCC;
     public bool IsWalkable => true;

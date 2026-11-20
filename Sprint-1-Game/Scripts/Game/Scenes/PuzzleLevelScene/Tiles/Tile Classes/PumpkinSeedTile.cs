@@ -6,8 +6,12 @@ public class PumpkinSeedTile : ITile
     {
         return new PumpkinSeedTile
         {
-
+            Direction = Direction
         };
+    }
+    public bool Equals(ITile other)
+    {
+        return other.Id == TileIds.PumpkinSeed && Direction == other.Direction;
     }
     public TileIds Id => TileIds.PumpkinSeed;
     public string RegionName => RegionNames.PumpkinSeedTile;

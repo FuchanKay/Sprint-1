@@ -43,6 +43,16 @@ public class InventoryManager()
         }
         return clone;
     }
+
+    public bool Equals(InventoryManager inventory)
+    {
+        for (int i = 0; i < PlayerItems.Length; i++)
+        {
+            if (!PlayerItems[i].Equals(inventory.PlayerItems[i])) return false;
+        }
+        return true;
+    }
+
     public override string ToString()
     {
         int inventorySize = PlayerItems.Length;

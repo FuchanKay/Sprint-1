@@ -13,6 +13,10 @@ public class Warlock : IEnemy
             Direction = Direction
         };
     }
+    public bool Equals(IObject other)
+    {
+        return other.Id == ObjectIds.Warlock;
+    }
     public ObjectIds Id => ObjectIds.Warlock;
     public Directions Direction { get; set; } = Directions.South;
     public string RegionName => RegionNames.Warlock;
