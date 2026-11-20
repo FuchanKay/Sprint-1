@@ -21,6 +21,7 @@ public class FogManager
         LastRecordedPosition = null;
         FogOfWarEffect = fogOfWarEffect;
         LeaveTrail = leaveTrail;
+        ExploredMask = null;
     }
 
     public void Update(Vector2 playerSpritePos)
