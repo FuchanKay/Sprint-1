@@ -96,6 +96,7 @@ public class ObjectSpriteManager
     public void Update(int dtMs)
     {
         UpdateAnimatingObjects(dtMs);
+        UpdateIdleObjects(dtMs);
     }
 
     public void Draw(SpriteBatch sb)
@@ -107,36 +108,47 @@ public class ObjectSpriteManager
         }
     }
 
+    private void UpdateIdleObjects(int dtMs)
+    {
+        foreach(var sprite in ObjectSprites.Values)
+        {
+            if(AnimatingObjectSprites.Contains(sprite)) continue;
+            sprite.Update(dtMs);
+        }
+    }
+
     private void UpdateAnimatingObjects(int dtMs)
     {
-        var ShouldResetToIdle = true;
         foreach (var sprite in AnimatingObjectSprites)
         {
             ObjectSprites.Remove(sprite.CurrentPosition);
             sprite.Update(dtMs);
-            if (!ObjectSprites.ContainsKey(sprite.CurrentPosition))
-            {
-                ObjectSprites.Add(sprite.CurrentPosition, sprite);
-            } else
-            {
-                ShouldResetToIdle = false;
-            }
+            ObjectSprites[sprite.CurrentPosition] = sprite;
         }
         var finishedSprites = AnimatingObjectSprites.FindAll(sprite => sprite.IsFinished);
-        if (ShouldResetToIdle) ResetToIdle(finishedSprites);
-        AnimatingObjectSprites.RemoveAll(sprite => sprite.IsFinished);
+        ResetToIdle(finishedSprites);
+        // if next queued event is a walk event, player is NOT finished
     }
 
     private void ResetToIdle(List<ISprite> finishedSprites)
     {
         foreach (var sprite in finishedSprites)
         {
-            var staticSprite = sprite.ConvertToStatic(sprite.IdleName);
+            // if idlename is animated, 
+            // animating object sprites for single-animation....
+            // once finished, reset to idle
+            AnimatingObjectSprites.Remove(sprite);
 
-            // reset sprite stored at pos to new static sprite
-            Vector2 currPos = staticSprite.CurrentPosition;
-            ObjectSprites.Remove(currPos);
-            ObjectSprites.Add(currPos, staticSprite);
+            ISprite idleSprite;
+            if(sprite.IdleName.Contains('-'))
+            {
+                idleSprite = sprite.ConvertToAnimated(sprite.IdleName);
+            } else
+            {
+                idleSprite = sprite.ConvertToStatic(sprite.IdleName);
+            }
+
+            ObjectSprites[idleSprite.CurrentPosition] = idleSprite;
         }
 
         finishedSprites.Clear();

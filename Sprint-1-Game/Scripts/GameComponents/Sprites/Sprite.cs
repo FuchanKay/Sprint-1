@@ -46,6 +46,8 @@ public abstract class Sprite(ITextureAtlas textureAtlas) : ISprite
         StaticSprite staticSprite = new(textureAtlas);
         staticSprite.SetState(name);
         staticSprite.CurrentPosition = CurrentPosition;
+        staticSprite.TargetPosition = TargetPosition;
+        staticSprite.StartPosition = StartPosition;
         staticSprite.IdleName = IdleName;
         staticSprite.Texture = Texture;
         staticSprite.Scale = Scale;
@@ -58,6 +60,8 @@ public abstract class Sprite(ITextureAtlas textureAtlas) : ISprite
         AnimatedSprite animatedSprite = new(textureAtlas);
         animatedSprite.SetState(name);
         animatedSprite.CurrentPosition = CurrentPosition;
+        animatedSprite.TargetPosition = TargetPosition;
+        animatedSprite.StartPosition = StartPosition;
         animatedSprite.IdleName = IdleName;
         animatedSprite.Texture = Texture;
         animatedSprite.Scale = Scale;
