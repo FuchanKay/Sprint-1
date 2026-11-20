@@ -17,10 +17,10 @@ namespace GUMProject.Screens
         {
                 Clock = 0;
         }
-        public void Update(int dtms)
+        public void Update(int dtMs)
         {
             GameSceneHUDInstance.InventoryMenuInstance.HandleKeyboardInput();
-           // Clock += dtMs;
+            Clock += dtMs;
             TimeSpan formattedClock = TimeSpan.FromMilliseconds(Clock);
             GameSceneHUDInstance.TimeMenuInstance.TimeText = $"{formattedClock:hh\\:mm\\:ss}";
         }
