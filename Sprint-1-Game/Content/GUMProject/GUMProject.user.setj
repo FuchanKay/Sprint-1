@@ -12,6 +12,7 @@
       "Components/GameUI/InventoryMenu/MainContainer",
       "Components/GameUI/InventoryMenu/MainContainer/Background",
       "Components/GameUI/InventoryMenu/MainContainer/InventoryPanel",
+      "Components/GameUI/InventorySlot",
       "Components/GameUI/LevelTitleMenu",
       "Components/GameUI/LevelTitleMenu/MainContainer"
     ]

@@ -24,8 +24,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private ILevelTransition LevelTransition;
     public int CurrentLevelIndex = 0;
     // Loading a SpriteFont Description using the content pipeline
-    private Gum.Wireframe.GraphicalUiElement Screen;
-    private GameSceneUI gameSceneUI;
+    private GraphicalUiElement Screen;
     public void Init()
     {
         GameLayoutManager.Init(window);

@@ -30,7 +30,8 @@ namespace GUMProject.Screens
         }
         private void SetSlotFromLevel()
         {
-            InventoryManager currentInventoryData = PuzzleLevel.CurrentInventoryManager;
+            LevelStateHistory levelStateHistory = PuzzleLevel.LevelStateHistory;
+            InventoryManager currentInventoryData = levelStateHistory.InventoryManager;
 
             for(int i = 0; i < 3; i++)
             {
