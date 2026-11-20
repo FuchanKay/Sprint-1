@@ -6,7 +6,11 @@ using Scripts.GameComponents;
 namespace Scripts.Game;
 using Gum;
 using Gum.DataTypes.Variables;
+using Gum.Forms;
 using Gum.Managers;
+using Gum.Wireframe;
+using GUMProject.Screens;
+
 public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager, GameWindow window) : ISceneController
 {
     private PuzzleLevel Level;
@@ -21,6 +25,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     public int CurrentLevelIndex = 0;
     // Loading a SpriteFont Description using the content pipeline
     private Gum.Wireframe.GraphicalUiElement Screen;
+    private GameSceneUI gameSceneUI;
     public void Init()
     {
         GameLayoutManager.Init(window);
@@ -30,9 +35,8 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
        // UIManager = new(uIFontAtlas, GameLayoutManager);
         //UIManager.Init(Level);
         LevelTransition = new WipeTransition(Level);
-        var Screen = ObjectFinder.Self.GumProjectSave.Screens[0].ToGraphicalUiElement();
+        Screen = ObjectFinder.Self.GumProjectSave.Screens[0].ToGraphicalUiElement();
         Screen.AddToRoot();
-
     }
 
     public void Init(GridPointer grid, LevelContext level)
@@ -122,7 +126,13 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
             CurrentLevelIndex = (CurrentLevelIndex + 1) % FileNames.LevelFileNames.Length;
             LevelTransition.StartLevelTransition(CurrentLevelIndex);
         }
-
+        foreach(var item in GumService.Default.Root.Children)
+        {
+            if(item is InteractiveGue asInteractiveGue)
+            {
+                (asInteractiveGue.FormsControlAsObject as IUpdateScreen)?.Update(dtMs);
+            }
+        }
     }
     public void Draw(SpriteBatch sb)
     {

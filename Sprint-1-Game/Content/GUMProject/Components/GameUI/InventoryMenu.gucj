@@ -193,6 +193,12 @@
           "ValueAsString": "InventoryPanel"
         },
         {
+          "Name": "InventorySlotInstance3.Selected",
+          "Type": "bool",
+          "SetsValue": true,
+          "ValueAsBool": false
+        },
+        {
           "Name": "MainContainer.Height",
           "Type": "float",
           "SetsValue": true,

@@ -40,7 +40,7 @@ partial class LevelTitleMenu : global::Gum.Forms.Controls.FrameworkElement
     public NineSliceRuntime Background { get; protected set; }
     public TextRuntime LevelTitle { get; protected set; }
 
-    public string TitleNameText
+    public string LevelTitleText
     {
         get => LevelTitle.Text;
         set => LevelTitle.Text = value;

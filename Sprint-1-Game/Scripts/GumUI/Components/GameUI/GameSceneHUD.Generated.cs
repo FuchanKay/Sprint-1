@@ -57,8 +57,8 @@ partial class GameSceneHUD : global::Gum.Forms.Controls.FrameworkElement
 
     public string LevelTitleText
     {
-        get => LevelTitleMenuInstance.TitleNameText;
-        set => LevelTitleMenuInstance.TitleNameText = value;
+        get => LevelTitleMenuInstance.LevelTitleText;
+        set => LevelTitleMenuInstance.LevelTitleText = value;
     }
 
     public string TimeText

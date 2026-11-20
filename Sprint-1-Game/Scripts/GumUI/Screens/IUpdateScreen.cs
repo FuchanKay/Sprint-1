@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace HytaleHotbar.Screens
+namespace GUMProject.Screens
 {
     public interface IUpdateScreen
     {
-        void Update(GameTime gameTime);
+        void Update(int dtMs);
     }
 }

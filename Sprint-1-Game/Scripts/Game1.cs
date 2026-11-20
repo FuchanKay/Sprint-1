@@ -7,6 +7,8 @@ using Gum.Forms.Controls;
 using Microsoft.Xna.Framework.Media;
 using Gum;
 using Gum.Managers;
+using Gum.Wireframe;
+using GUMProject.Screens;
 namespace Sprint_1_Game.Scripts;
 
 public class Game1 : Core
@@ -57,6 +59,13 @@ public class Game1 : Core
             Setup.LoadContent();
         }
         GumUI.Update(gameTime);
+        // foreach(var item in GumService.Default.Root.Children)
+        // {
+        //     if(item is InteractiveGue asInteractiveGue)
+        //     {
+        //         (asInteractiveGue.FormsControlAsObject as IUpdateScreen)?.Update(dtms);
+        //     }
+        // }
 
         base.Update(gameTime);
     }

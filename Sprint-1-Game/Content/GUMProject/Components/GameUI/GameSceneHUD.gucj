@@ -20,7 +20,7 @@
           "Name": "ExposeChildrenEvents",
           "Type": "bool",
           "SetsValue": true,
-          "ValueAsBool": false
+          "ValueAsBool": true
         },
         {
           "Name": "GameInstructionMenuInstance.GameInstructionText",
