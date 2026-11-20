@@ -75,7 +75,7 @@ public class EnemiesMoveSubEvent() : ILevelSubEvent
         var enemyObj = gridPointer.GetObject(enemyCoord);
 
         var movingAnimation = AnimationNames.BatFly;
-        var newIdleName = RegionNames.Bat;
+        var newIdleName = AnimationNames.BatFly;
 
         switch (enemyObj.Id)
         {

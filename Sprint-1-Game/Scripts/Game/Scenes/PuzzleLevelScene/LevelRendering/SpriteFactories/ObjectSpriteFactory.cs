@@ -97,8 +97,8 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 spriteScale = context.GridScale * 4.0f;
                 break;
             case ObjectIds.Bat:
-                sprite = new StaticSprite(textureAtlas);
-                regionName = RegionNames.Bat;
+                sprite = new AnimatedSprite(textureAtlas);
+                regionName = AnimationNames.BatFly;
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Bat);
                 spriteScale = context.GridScale * 8.0f;
                 break;

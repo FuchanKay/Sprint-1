@@ -128,7 +128,7 @@ public class Setup(ContentManager content, GameWindow window)
         //door open
         TextureAtlas.AddAnimation(AnimationNames.DoorOpening, 0, 0, 5, 15, 27, 100);
 
-        TextureAtlas.AddAnimation(AnimationNames.BatFly, 0, 0, 4, 40, 44, 60);
+        TextureAtlas.AddAnimation(AnimationNames.BatFly, 0, 0, 4, 40, 44, 75);
 
         TextureAtlas.AddAnimation(AnimationNames.FrogJumpSouth, 0, 0, 3, 32, 32, 80);
         TextureAtlas.AddAnimation(AnimationNames.FrogJumpWest, 1, 0, 3, 32, 32, 80);
