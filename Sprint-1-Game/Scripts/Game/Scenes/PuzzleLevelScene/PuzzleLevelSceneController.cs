@@ -42,6 +42,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
         Level.Init(grid, level);
         UIManager.Init(Level);
+        LevelTransition = new WipeTransition(Level);
         InitDeathMessage();
     }
 
@@ -166,6 +167,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
                 DirectionalInputs[i].BufferTimer = MovementInputBufferMs;
             }
         }
+        
         directionToMove = Directions.North;
         return false;
     }

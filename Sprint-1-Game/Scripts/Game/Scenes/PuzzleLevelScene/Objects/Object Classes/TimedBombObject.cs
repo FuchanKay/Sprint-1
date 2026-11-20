@@ -10,6 +10,12 @@ public class TimedBombObject : IObject
             TimeRemaining = TimeRemaining
         };
     }
+    public bool Equals(IObject other)
+    {
+        if (other.Id != ObjectIds.TimedBomb) return false;
+        var otherAsTimedBomb = (TimedBombObject) other;
+        return TimeRemaining == otherAsTimedBomb.TimeRemaining;
+    }
     public ObjectIds Id => ObjectIds.TimedBomb;
     public Directions Direction { get; set; } = Directions.South;
     public string RegionName => RegionNames.TimedBomb;

@@ -10,6 +10,10 @@ public class WallObject() : IObject
             RegionName = RegionName
         };
     }
+    public bool Equals(IObject other)
+    {
+        return other.Id == ObjectIds.Wall && RegionName == other.RegionName;
+    }
     public ObjectIds Id => ObjectIds.Wall;
     public Directions Direction { get; set; } = Directions.North;
     public string RegionName { get; set; }

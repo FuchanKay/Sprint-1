@@ -110,7 +110,7 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 break;
             case ObjectIds.Zombie:
                 sprite = new StaticSprite(textureAtlas);
-                regionName = RegionNames.ZombieIdleS;
+                regionName = RegionNames.ToZombieIdleRegionName(obj.Direction);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Zombie);
                 spriteScale = context.GridScale * 5.0f;
                 break;

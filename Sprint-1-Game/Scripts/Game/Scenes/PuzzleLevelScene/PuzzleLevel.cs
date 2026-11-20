@@ -154,7 +154,16 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
     private void PushCurrentLevelStateHistory()
     {
         var clone = LevelStateHistory.Clone();
-        UndoHistory.Add(clone);
+        if (UndoHistory.Count == 0)
+        {
+            UndoHistory.Add(clone);
+        }
+        else if (UndoHistory.Count > 0)
+        {
+            var last = UndoHistory[UndoHistory.Count - 1];
+
+
+        }
         if (UndoHistory.Count > UndoHistoryMaxLength) UndoHistory.RemoveAt(0);
     }
 }

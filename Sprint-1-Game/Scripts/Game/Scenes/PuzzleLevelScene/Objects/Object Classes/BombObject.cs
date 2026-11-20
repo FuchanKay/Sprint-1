@@ -9,6 +9,10 @@ public class BombObject : IObject
             Direction = Direction
         };
     }
+    public bool Equals(IObject other)
+    {
+        return other.Id == ObjectIds.Bomb;
+    }
     public ObjectIds Id => ObjectIds.Bomb;
     public Directions Direction { get; set; } = Directions.South;
     public string RegionName => RegionNames.Bomb;

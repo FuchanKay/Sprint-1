@@ -9,6 +9,10 @@ public class BugTile : ITile
 
         };
     }
+    public bool Equals(ITile other)
+    {
+        return other.Id == TileIds.Bug;
+    }
     public TileIds Id => TileIds.Bug;
     public string RegionName => RegionNames.BugTile;
     public bool IsWalkable => true;

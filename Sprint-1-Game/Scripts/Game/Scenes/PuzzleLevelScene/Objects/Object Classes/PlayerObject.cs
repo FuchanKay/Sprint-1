@@ -9,6 +9,10 @@ public class PlayerObject : IObject
             Direction = Direction
         };
     }
+    public bool Equals(IObject other)
+    {
+        return other.Id == ObjectIds.Player && Direction == other.Direction;
+    }
     public ObjectIds Id => ObjectIds.Player;
     public Directions Direction { get; set; } = Directions.South;
     public string RegionName => RegionNames.ToIdleRegionName(Directions.South);

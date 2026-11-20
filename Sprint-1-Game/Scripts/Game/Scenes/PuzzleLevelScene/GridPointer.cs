@@ -131,4 +131,16 @@ public class GridPointer
         }
         return clone;
     }
+
+    public bool Equals(GridPointer other)
+    {
+        foreach (var kvp in CoordToGrid)
+        {
+            var coord = kvp.Key;
+            var grid = kvp.Value;
+            var otherGrid = other.GetGrid(coord);
+            if (!grid.Equals(otherGrid)) return false;
+        }
+        return true;
+    }
 }

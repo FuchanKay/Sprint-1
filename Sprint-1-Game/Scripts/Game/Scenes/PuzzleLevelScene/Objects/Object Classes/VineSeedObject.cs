@@ -9,6 +9,10 @@ public class VineSeedObject() : IObject
             Direction = Direction
         };
     }
+    public bool Equals(IObject other)
+    {
+        return other.Id == ObjectIds.VineSeed && Direction == other.Direction;
+    }
     public ObjectIds Id => ObjectIds.VineSeed;
     public Directions Direction { get; set; }
     public string RegionName => RegionNames.VineSeed;

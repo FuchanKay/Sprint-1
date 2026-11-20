@@ -11,6 +11,10 @@ public class IceTile : ITile
 
         };
     }
+    public bool Equals(ITile other)
+    {
+        return other.Id == TileIds.Ice;
+    }
     public TileIds Id => TileIds.Ice;
     public string RegionName => RegionNames.IceTile;
     public bool IsWalkable => true;

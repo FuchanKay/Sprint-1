@@ -9,6 +9,10 @@ public class Frog : IEnemy
             Direction = Direction
         };
     }
+    public bool Equals(IObject other)
+    {
+        return other.Id == ObjectIds.Frog && Direction == other.Direction;
+    }
     public ObjectIds Id => ObjectIds.Frog;
     public Directions Direction { get; set; } = Directions.South;
     public string RegionName => RegionNames.ToFrogIdleRegionName(Directions.South);

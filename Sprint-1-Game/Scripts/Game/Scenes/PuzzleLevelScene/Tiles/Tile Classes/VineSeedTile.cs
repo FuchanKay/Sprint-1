@@ -9,6 +9,10 @@ public class VineSeedTile : ITile
             Direction = Direction
         };
     }
+    public bool Equals(ITile other)
+    {
+        return other.Id == TileIds.VineSeed && Direction == other.Direction;
+    }
     public TileIds Id => TileIds.VineSeed;
     public string RegionName => RegionNames.VineSeedTile;
     public bool IsRotatable => true;

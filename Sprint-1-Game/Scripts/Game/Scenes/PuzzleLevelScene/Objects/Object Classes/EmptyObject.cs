@@ -9,6 +9,10 @@ public class EmptyObject : IObject
             Direction = Direction
         };
     }
+    public bool Equals(IObject other)
+    {
+        return other.Id == ObjectIds.Empty;
+    }
     public ObjectIds Id => ObjectIds.Empty;
     public Directions Direction { get; set; }
     public string RegionName => "";

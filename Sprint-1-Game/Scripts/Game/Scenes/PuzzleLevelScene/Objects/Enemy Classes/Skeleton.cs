@@ -14,6 +14,10 @@ public class Skeleton : IEnemy
             Direction = Direction
         };
     }
+    public bool Equals(IObject other)
+    {
+        return other.Id == ObjectIds.Skeleton;
+    }
     public ObjectIds Id => ObjectIds.Skeleton;
     public Directions Direction { get; set; } = Directions.South;
     public string RegionName => RegionNames.Skeleton;
