@@ -6,7 +6,7 @@ using Gum.Forms.Controls;
 using Gum.Forms.Input;
 using Gum.Managers;
 using Gum.Wireframe;
-
+using GUMProject.Setups;
 using RenderingLibrary.Graphics;
 using System;
 using System.Diagnostics;
@@ -18,6 +18,7 @@ namespace GUMProject.Components.GameUI
     {
         public InventorySlot Slot(int i) => (InventorySlot)InventoryPanel.Children[i];
         private int CurrentSelectedIndex = -1;
+        private InventorySetup InventorySetup;
         public int SelectedIndex
         {
             get => CurrentSelectedIndex;
@@ -35,6 +36,7 @@ namespace GUMProject.Components.GameUI
         }
         partial void CustomInitialize()
         {
+            InventorySetup = new();
             foreach (InventorySlot child in InventoryPanel.Children)
             {
                 child.Click += HandleItemSlotClicked;

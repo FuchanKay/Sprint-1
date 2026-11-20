@@ -130,7 +130,9 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         {
             if(item is InteractiveGue asInteractiveGue)
             {
+                (asInteractiveGue.FormsControlAsObject as ILevelScreen)?.FetchLevel(Level);
                 (asInteractiveGue.FormsControlAsObject as IUpdateScreen)?.Update(dtMs);
+                
             }
         }
     }
