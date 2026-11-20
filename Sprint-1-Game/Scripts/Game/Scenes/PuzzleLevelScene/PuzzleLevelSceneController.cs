@@ -154,8 +154,9 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
             else if (buttonInput.IsHeld(primaryInput) || buttonInput.IsHeld(altInput))
             {
                 DirectionalInputs[i].BufferTimer -= dtMs;
-                if (DirectionalInputs[i].BufferTimer < 0 && Level.EventQueue.Count == 0)
+                if (DirectionalInputs[i].BufferTimer < 0 && Level.CurrentEvent.SubEventStack.Count == 0)
                 {
+                    DirectionalInputs[i].BufferTimer = MovementInputBufferMs;
                     directionToMove = direction;
                     return true;
                 } 
