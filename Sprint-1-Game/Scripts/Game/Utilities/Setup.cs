@@ -279,6 +279,6 @@ public class Setup(ContentManager content, GameWindow window)
 
     private void LoadEffects()
     {
-        ShaderManager.MapEffect("Fog of War", content.Load<Effect>("Effects/FogOfWarEffect"));
+        ShaderManager.MapEffect(ShaderEffectNames.FogOfWar, content.Load<Effect>(FileNames.FogOfWarEffect));
     }
 }
