@@ -22,8 +22,12 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         ObjectSpriteManager.Init(gridPointer, context, objectSpriteFactory);
         TileSpriteManager.Init(gridPointer, context, tileSpriteFactory);
         EffectSpriteManager.Init(context, effectSpriteFactory);
-        FogManager.Init(ObjectSpriteManager.PlayerSprite, ShaderManager.GetEffect(ShaderEffectNames.FogOfWar), true);
         FogOfWar = context.FogOfWar;
+    }
+
+    public void FogOfWarInit()
+    {
+        FogManager.Init(ObjectSpriteManager.PlayerSprite, ShaderManager.GetEffect(ShaderEffectNames.FogOfWar), true);
     }
 
     // OBJECT SPRITE METHODS
