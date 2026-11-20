@@ -1,31 +1,34 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Scripts.GameComponents;
 
 public class FogManager
 {
-    private Vector2 PlayerSpritePos;
+    private ISprite PlayerSprite;
     private Effect FogOfWarEffect;
     private Color[] ExploredPixels = [];
-    private const float Radius = 120f;
-    private const float FadeWidth = 40f;
+    private float Radius;
+    private float FadeWidth;
     private bool LeaveTrail = false;
     #nullable enable
     private Texture2D? ExploredMask;
     private Vector2? LastRecordedPosition;
 
-    public void Init(Vector2 playerSpritePos, Effect fogOfWarEffect, bool leaveTrail)
+    public void Init(ISprite playerSprite, Effect fogOfWarEffect, bool leaveTrail)
     {
-        PlayerSpritePos = playerSpritePos;
+        PlayerSprite = playerSprite;
         LastRecordedPosition = null;
         FogOfWarEffect = fogOfWarEffect;
         LeaveTrail = leaveTrail;
         ExploredMask = null;
+        Radius = 85f * PlayerSprite.Scale;
+        FadeWidth = Radius/3f;
     }
 
-    public void Update(Vector2 playerSpritePos)
+    public void Update(ISprite playerSprite)
     {
-        PlayerSpritePos = playerSpritePos;
+        PlayerSprite = playerSprite;
     }
 
     public void Draw(SpriteBatch sb)
@@ -36,9 +39,9 @@ public class FogManager
             ExploredMask = new Texture2D(sb.GraphicsDevice, viewport.Width, viewport.Height);
             ExploredPixels = new Color[viewport.Width * viewport.Height];
         }    
-        if (LeaveTrail) UpdateExploredArea(PlayerSpritePos, viewport.Width, viewport.Height);
+        if (LeaveTrail) UpdateExploredArea(PlayerSprite.CurrentPosition, viewport.Width, viewport.Height);
         FogOfWarEffect.Parameters["ExploredTexture"].SetValue(ExploredMask);
-        FogOfWarEffect.Parameters["PlayerPosition"].SetValue(PlayerSpritePos);
+        FogOfWarEffect.Parameters["PlayerPosition"].SetValue(PlayerSprite.CurrentPosition);
         FogOfWarEffect.Parameters["ScreenSize"].SetValue(new Vector2(viewport.Width, viewport.Height));
         FogOfWarEffect.Parameters["Radius"].SetValue(Radius);
         FogOfWarEffect.Parameters["FadeWidth"].SetValue(FadeWidth);

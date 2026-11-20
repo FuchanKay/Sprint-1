@@ -22,7 +22,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         ObjectSpriteManager.Init(gridPointer, context, objectSpriteFactory);
         TileSpriteManager.Init(gridPointer, context, tileSpriteFactory);
         EffectSpriteManager.Init(context, effectSpriteFactory);
-        FogManager.Init(ObjectSpriteManager.PlayerSprite.CurrentPosition, ShaderManager.GetEffect(ShaderEffectNames.FogOfWar), true);
+        FogManager.Init(ObjectSpriteManager.PlayerSprite, ShaderManager.GetEffect(ShaderEffectNames.FogOfWar), true);
         FogOfWar = context.FogOfWar;
     }
 
@@ -119,7 +119,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         ObjectSpriteManager.Update(dtMs);
         TileSpriteManager.Update(dtMs);
         EffectSpriteManager.Update(dtMs);
-        if(FogOfWar) FogManager.Update(ObjectSpriteManager.PlayerSprite.CurrentPosition);
+        if(FogOfWar) FogManager.Update(ObjectSpriteManager.PlayerSprite);
     }
 
     public void Draw(SpriteBatch sb)
