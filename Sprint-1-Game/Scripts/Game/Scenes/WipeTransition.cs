@@ -21,7 +21,7 @@ public class WipeTransition(PuzzleLevel Level) : ILevelTransition
         currentTransitionType = TransitionType.TransitionOut;
         NewLevelIndex = newLevelIndex;
         TransitionTimeElapsedMs = 0;
-        var gridPointer = Level.LevelStateHistory.GridPointer;
+        var gridPointer = Level.CurrentLevelState.GridPointer;
         direction = gridPointer.GetObject(gridPointer.GetPlayerCoord()).Direction;
     }
 

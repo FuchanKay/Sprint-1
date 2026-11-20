@@ -19,9 +19,9 @@ public class HUDPannel(SpriteFontManager spriteFontManager)
     {
         Clock = 0; ;
         Level = level;
-        EnemyCounter.Init(FontNames.DungeonFont, new Vector2(1040, 40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}", Color.Gold);
+        EnemyCounter.Init(FontNames.DungeonFont, new Vector2(1040, 40), $"Enemy remains: {Level.CurrentLevelState.GridPointer.EnemyCollection.Count}", Color.Gold);
         GameClock.Init(FontNames.DungeonFont, new Vector2(1040, 80), "Game Clock: ", Color.Gold);
-        InventoryStatus.Init(FontNames.DungeonFont, new Vector2(1040, 120), $"Inventory:\n{Level.LevelStateHistory.InventoryManager}", Color.Gold);
+        InventoryStatus.Init(FontNames.DungeonFont, new Vector2(1040, 120), $"Inventory:\n{Level.CurrentLevelState.InventoryManager}", Color.Gold);
         CommandInstructions.Init(FontNames.DungeonFont, new Vector2(1040, 500), "Player Move: WASD\n"
                                                                                 + "SNAP: F\n"
                                                                                 + "Use Item: 123\n"
@@ -32,7 +32,7 @@ public class HUDPannel(SpriteFontManager spriteFontManager)
     }
     public void Update(int dtMs)
     {
-        EnemyCounter.Update(new Vector2(1040, 40), $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}");
+        EnemyCounter.Update(new Vector2(1040, 40), $"Enemy remains: {Level.CurrentLevelState.GridPointer.EnemyCollection.Count}");
 
         //This may be moved to PuzzleLevel or LevelStateHistory to count how much time player spent on each puzzle.
         Clock += dtMs;
@@ -40,7 +40,7 @@ public class HUDPannel(SpriteFontManager spriteFontManager)
         GameClock.Update(new Vector2(1040, 80), $"{formattedClock:hh\\:mm\\:ss}");
 
 
-        InventoryStatus.Update(new Vector2(1040, 120), $"Inventory:\n{Level.LevelStateHistory.InventoryManager}");
+        InventoryStatus.Update(new Vector2(1040, 120), $"Inventory:\n{Level.CurrentLevelState.InventoryManager}");
         CommandInstructions.Update(new Vector2(1040, 350));
     }
     public void Draw(SpriteBatch sb)

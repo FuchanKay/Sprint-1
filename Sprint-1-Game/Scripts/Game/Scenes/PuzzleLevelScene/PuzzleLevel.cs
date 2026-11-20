@@ -8,11 +8,10 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
 {
     public readonly List<ILevelEvent> EventQueue = [];
     public LevelContext Context;
-    public GridPointer CurrentGridPointer;
-    public InventoryManager CurrentInventoryManager;
-    public LevelStateHistory LevelStateHistory;
+    public LevelState PreviousLevelState;
+    public LevelState CurrentLevelState;
     public IAudioManager AudioManager = audioManager;
-    public List<LevelStateHistory> UndoHistory = [];
+    public List<LevelState> UndoHistory = [];
     private readonly int UndoHistoryMaxLength = 200;
     public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory, effectSpriteFactory);
     private readonly int MaxEventsQueued = 2;
@@ -44,10 +43,8 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
         Context.LevelHeight = levelFileParser.GetLevelHeight(LevelFile);
 
         gameLayoutManager.LevelLayout(Context);
-        CurrentGridPointer = levelFileParser.CreateGrids(LevelFile);
-        SpriteGrid.Init(CurrentGridPointer, Context);
-        CurrentInventoryManager = new InventoryManager();
-        LevelStateHistory = new LevelStateHistory(CurrentGridPointer, CurrentInventoryManager);
+        CurrentLevelState = new LevelState(levelFileParser.CreateGrids(LevelFile), new InventoryManager(), Context);
+        SpriteGrid.Init(CurrentLevelState.GridPointer, Context);
     }
 
     public void Init(GridPointer grid, LevelContext context)
@@ -57,10 +54,8 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
         CurrentEvent.SubEventStack.Clear();
         Context = context;
         Context.LevelEditorMode = true;
-        CurrentGridPointer = grid;
-        SpriteGrid.Init(CurrentGridPointer, Context);
-        CurrentInventoryManager = new InventoryManager();
-        LevelStateHistory = new LevelStateHistory(CurrentGridPointer, CurrentInventoryManager);
+        CurrentLevelState = new LevelState(grid, new InventoryManager(), context);
+        SpriteGrid.Init(grid, Context);
     }
 
     public void Update(int dtMs)
@@ -87,7 +82,7 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
         if (!SpriteGrid.IsIdle() || Context.PlayerIsDead) return;
 
         var CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
-        if (CurrentEventIsFinished) LevelStateHistory.GridPointer.ObjectsJustMoved.Clear();
+        if (CurrentEventIsFinished) CurrentLevelState.GridPointer.ObjectsJustMoved.Clear();
         if (CurrentEventIsFinished && EventQueue.Count > 0)
         {
             PushCurrentLevelStateHistory();
@@ -95,7 +90,7 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
             CurrentEvent = EventQueue[0];
             EventQueue.RemoveAt(0);
 
-            CurrentEvent.Execute(SpriteGrid, LevelStateHistory.GridPointer, LevelStateHistory.InventoryManager, Context, AudioManager, UndoHistory);
+            CurrentEvent.Execute(SpriteGrid, CurrentLevelState.GridPointer, CurrentLevelState.InventoryManager, Context, AudioManager, UndoHistory);
             CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
         }
 
@@ -103,7 +98,7 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
         while (!CurrentEventIsFinished && SpriteGrid.IsIdle() && maxSubEventsToExecute > 0)
         {
             var subEvent = CurrentEvent.SubEventStack.Pop();
-            subEvent.Execute(SpriteGrid, LevelStateHistory.GridPointer, LevelStateHistory.InventoryManager, Context, AudioManager);
+            subEvent.Execute(SpriteGrid, CurrentLevelState.GridPointer, CurrentLevelState.InventoryManager, Context, AudioManager);
             CurrentEventIsFinished = CurrentEvent.SubEventStack.Count == 0;
             maxSubEventsToExecute--;
         }
@@ -117,9 +112,9 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
             return;
         }
         var top = UndoHistory.Count - 1;
-        LevelStateHistory = UndoHistory[top];
+        CurrentLevelState = UndoHistory[top];
         UndoHistory.RemoveAt(top);
-        SpriteGrid.Init(LevelStateHistory.GridPointer, Context);
+        SpriteGrid.Init(CurrentLevelState.GridPointer, Context);
         CurrentEvent.SubEventStack.Clear();
         EventQueue.Clear();
 
@@ -132,14 +127,14 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
 
         if (!Context.LevelEditorMode)
         {
-            LevelStateHistory.GridPointer = levelFileParser.CreateGrids(LevelFile);
+            CurrentLevelState.GridPointer = levelFileParser.CreateGrids(LevelFile);
         }
         else
         {
-            LevelStateHistory.GridPointer = LevelStart.Clone();
+            CurrentLevelState.GridPointer = LevelStart.Clone();
         }
-        LevelStateHistory.InventoryManager = new InventoryManager();
-        SpriteGrid.Init(LevelStateHistory.GridPointer, Context);
+        CurrentLevelState.InventoryManager = new InventoryManager();
+        SpriteGrid.Init(CurrentLevelState.GridPointer, Context);
 
         CurrentEvent.SubEventStack.Clear();
         EventQueue.Clear();
@@ -153,7 +148,7 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
 
     private void PushCurrentLevelStateHistory()
     {
-        var clone = LevelStateHistory.Clone();
+        var clone = CurrentLevelState.Clone();
         if (UndoHistory.Count == 0)
         {
             UndoHistory.Add(clone);
@@ -161,8 +156,10 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
         else if (UndoHistory.Count > 0)
         {
             var last = UndoHistory[UndoHistory.Count - 1];
-
-
+            if (!CurrentLevelState.Equals(last))
+            {
+                UndoHistory.Add(CurrentLevelState.Clone());
+            }
         }
         if (UndoHistory.Count > UndoHistoryMaxLength) UndoHistory.RemoveAt(0);
     }
