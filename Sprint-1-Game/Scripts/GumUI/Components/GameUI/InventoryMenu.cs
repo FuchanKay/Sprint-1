@@ -50,15 +50,13 @@ namespace GUMProject.Components.GameUI
 
             if(indexToSelect != null)
             {
-                CurrentSelectedIndex = indexToSelect.Value;
+                SelectedIndex = indexToSelect.Value;
             }
         }
         private void HandleItemSlotClicked(object sender, EventArgs e)
         {
             InventorySlot inventorySlot = (InventorySlot)sender;
             SelectedIndex = InventoryPanel.Children.IndexOf(inventorySlot);
-
-            Debug.WriteLine($"Clicked {inventorySlot.Name}");
         }
        
     }
