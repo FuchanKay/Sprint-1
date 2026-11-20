@@ -7,16 +7,21 @@
 	#define PS_SHADERMODEL ps_4_0_level_9_1
 #endif
 
-Texture2D SpriteTexture;
+Texture2D ExploredTexture;
 
 float2 PlayerPosition;
 float2 ScreenSize;
 float Radius;
 float FadeWidth;
 
-sampler2D SpriteTextureSampler = sampler_state
+// Samples each pixel at a position (U, V)
+sampler2D ExploredSampler = sampler_state
 {
-	Texture = <SpriteTexture>;
+    Texture = <ExploredTexture>;
+    MinFilter = Linear;
+    MagFilter = Linear;
+    AddressU = Clamp;
+    AddressV = Clamp;
 };
 
 struct VertexShaderOutput
@@ -28,12 +33,13 @@ struct VertexShaderOutput
 
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
-	// Sample the texture
-    float2 pixelPosition = input.TextureCoordinates * ScreenSize;
-	float distanceToPlayer = distance(pixelPosition, PlayerPosition);
-	float alpha = saturate((distanceToPlayer - Radius) / FadeWidth);
+	float2 pixelPosition = input.TextureCoordinates * ScreenSize;
 
-    return float4(0, 0, 0, alpha);
+	float currentReveal = 1.0 - saturate((distance(pixelPosition, PlayerPosition) - Radius) / FadeWidth);
+	float explored = tex2D(ExploredSampler, input.TextureCoordinates).r;
+
+	float fogAlpha = 1.0 - max(explored, currentReveal);
+	return float4(0, 0, 0, fogAlpha);
 }
 
 technique SpriteDrawing
