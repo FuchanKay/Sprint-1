@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput, SpriteGrid spriteGrid, LevelContext context, TileSpriteFactory tileSpriteFactory, List<GridPointer> undoHistory, List<GridPointer> redoHistory) : IBrush
+public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, SpriteGrid spriteGrid, LevelContext context, LevelContext tileGridContext, GridPointer tileSelectorGrid, TileSpriteFactory tileSpriteFactory, List<GridPointer> undoHistory, List<GridPointer> redoHistory) : IBrush
 {
     private static ITile[] TilePalette =
     {
@@ -39,6 +40,14 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
         CurrentTileSprite = tileSpriteFactory.CreateTileSprite(CurrentTile, new Vector2(0, 0), context);
     }
 
+    public void Init(GridPointer grid, Coordinate coord)
+    {
+        Grid = grid;
+        var tile = tileSelectorGrid.GetTile(coord);
+        CurrentTile = tile.Clone();
+        CurrentTileSprite = tileSpriteFactory.CreateTileSprite(CurrentTile, new Vector2(0, 0), context);
+    }
+
     public void Update(int dtMs)
     {
         if (buttonInput.IsPressed(InputNames.RotatePaintBrush) && CurrentTile.IsRotatable)
@@ -59,6 +68,12 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
                 Grid.SetTile(coord, placedTile);
                 spriteGrid.SetNewTileSprite(coord, placedTile);
             }
+        } else if (mouseInput.IsHeld(InputNames.Select) 
+            && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, tileGridContext, out var tileCoord) && tileSelectorGrid.GetTile(tileCoord).Id != TileIds.Empty) 
+        {
+            CurrentTile = tileSelectorGrid.GetTile(tileCoord);
+            CurrentTileSprite = tileSpriteFactory.CreateTileSprite(CurrentTile, new Vector2(0, 0), context);
+            audioManager.PlaySound(SoundNames.Pickup);
         }
     }
 
@@ -73,6 +88,7 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
         {
             CurrentTileSprite.CurrentPosition = new Vector2(mouseInput.MousePositionX, mouseInput.MousePositionY);
         }
+        CurrentTileSprite.LayerDepth = 0.4f;
         CurrentTileSprite.Draw(sb);
     }
 

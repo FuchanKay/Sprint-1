@@ -29,11 +29,6 @@ public class SeedGrowthSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSub
         spriteGrid.SetNewTileSprite(seedCoord, dirtTile);
 
         var pumpkinObj = ObjectFactory.CreatePumpkin();
-        if (gridPointer.GetObject(seedCoord).Id == ObjectIds.Player)
-        {
-            subEventStack.Push(new PlayerDeathSubEvent());
-            return;
-        }
         gridPointer.SetObject(seedCoord, pumpkinObj);
         spriteGrid.SetNewObjectSprite(seedCoord, pumpkinObj);
 

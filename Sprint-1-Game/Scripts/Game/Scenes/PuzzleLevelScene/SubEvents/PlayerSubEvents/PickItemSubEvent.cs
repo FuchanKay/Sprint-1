@@ -35,6 +35,7 @@ public class PickItemSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEv
                 var dirtTile = TileFactory.CreateDirtTile();
                 gridPointer.SetTile(targetCoord, dirtTile);
                 spriteGrid.SetNewTileSprite(targetCoord, dirtTile);
+                audioManager.PlaySound(SoundNames.Pickup);
             }
 
 
@@ -47,6 +48,7 @@ public class PickItemSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEv
                 var dirtTile = TileFactory.CreateDirtTile();
                 gridPointer.SetTile(targetCoord, dirtTile);
                 spriteGrid.SetNewTileSprite(targetCoord, dirtTile);
+                audioManager.PlaySound(SoundNames.Pickup);
             }
 
         }

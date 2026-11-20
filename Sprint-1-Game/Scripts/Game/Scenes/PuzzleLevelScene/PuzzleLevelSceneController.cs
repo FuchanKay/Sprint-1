@@ -20,6 +20,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
 
     public void Init()
     {
+        Gum.GumService.Default.Root.Children.Clear();
         GameLayoutManager.Init(window);
         LevelFileParser = new LevelFileParser();
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
@@ -31,20 +32,13 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
 
     public void Init(GridPointer grid, LevelContext level)
     {
+        Gum.GumService.Default.Root.Children.Clear();
         GameLayoutManager.Init(window);
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
         Level.Init(grid, level);
         UIManager.Init(Level);
+        LevelTransition = new WipeTransition(Level);
         InitDeathMessage();
-    }
-
-    private void InitDeathMessage()
-    {
-        string deathMessageText = "Press Z to Undo, or R to Restart";
-        Vector2 messageSize = spriteFontManager.GetFont(FontNames.DungeonFont).MeasureString(deathMessageText);
-        float LevelScreenRatio = 4f/5f;
-        Vector2 DeathMessagePosition = new Vector2(window.ClientBounds.Width * (LevelScreenRatio / 2f) - messageSize.X/2f, window.ClientBounds.Height/2f + messageSize.Y/2f);
-        DeathMessage.Init(FontNames.DungeonFont, DeathMessagePosition, deathMessageText, Color.DarkRed);
     }
 
     public void Update(int dtMs)
@@ -143,5 +137,14 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         UIManager.Draw(sb);
         if(Level.Context.PlayerIsDead) DeathMessage.Draw(sb);
         if(LevelTransition.IsActive) LevelTransition.Draw(sb);
+    }
+
+    private void InitDeathMessage()
+    {
+        string deathMessageText = "Press Z to Undo, or R to Restart";
+        Vector2 messageSize = spriteFontManager.GetFont(FontNames.DungeonFont).MeasureString(deathMessageText);
+        float LevelScreenRatio = 4f/5f;
+        Vector2 DeathMessagePosition = new Vector2(window.ClientBounds.Width * (LevelScreenRatio / 2f) - messageSize.X/2f, window.ClientBounds.Height/2f + messageSize.Y/2f);
+        DeathMessage.Init(FontNames.DungeonFont, DeathMessagePosition, deathMessageText, Color.DarkRed);
     }
 }
