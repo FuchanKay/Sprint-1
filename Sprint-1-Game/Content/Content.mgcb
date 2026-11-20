@@ -90,6 +90,14 @@
 /processorParam:Version=3.8.5.1
 /build:Audio/waterSplash.mp3
 
+#begin Effects/FogOfWarEffect.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Defines=
+/processorParam:Version=3.8.5.1
+/build:Effects/FogOfWarEffect.fx
+
 #begin Font/defaultFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

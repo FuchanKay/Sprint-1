@@ -5,11 +5,12 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, EffectSpriteFactory effectSpriteFactory)
+public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, EffectSpriteFactory effectSpriteFactory, ShaderManager shaderManager)
 {
     private readonly ObjectSpriteManager ObjectSpriteManager = new();
     private readonly TileSpriteManager TileSpriteManager = new();
     private readonly EffectSpriteManager EffectSpriteManager = new();
+    private readonly ShaderManager ShaderManager = shaderManager;
     private readonly FogManager FogManager = new();
     private bool HideObjectLayer = false;
     private bool FogOfWar = false;
@@ -21,7 +22,7 @@ public class SpriteGrid(ObjectSpriteFactory objectSpriteFactory, TileSpriteFacto
         ObjectSpriteManager.Init(gridPointer, context, objectSpriteFactory);
         TileSpriteManager.Init(gridPointer, context, tileSpriteFactory);
         EffectSpriteManager.Init(context, effectSpriteFactory);
-        FogManager.Init(ObjectSpriteManager.PlayerSprite.CurrentPosition);
+        FogManager.Init(ObjectSpriteManager.PlayerSprite.CurrentPosition, ShaderManager.GetEffect("Fog of War"));
         FogOfWar = context.FogOfWar;
     }
 

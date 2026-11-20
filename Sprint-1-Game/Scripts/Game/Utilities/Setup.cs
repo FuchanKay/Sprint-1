@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Scripts.GameComponents;
@@ -14,19 +15,21 @@ public class Setup(ContentManager content, GameWindow window)
     private IInputManager ButtonInput;
     private IInputManager MouseInput;
     private ITextureAtlas TextureAtlas;
+    private ShaderManager ShaderManager;
     private SpriteFontManager SpriteFontManager = new(content);
     public void Initialize(out SceneManager sceneManager)
     {
         ButtonInput = new KeyboardInputManager();
         MouseInput = new MouseInputManager();
         AudioManager = new AudioManager();
+        ShaderManager = new ShaderManager();
 
         TextureAtlas = new TextureAtlas(content);
         MapDefaultInputs();
         AddAnimations();
         AddRegions();
         AddFont();
-        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, SpriteFontManager, window);
+        sceneManager = new(ButtonInput, MouseInput, AudioManager, ShaderManager, TextureAtlas, SpriteFontManager, window);
         sceneManager.Init();
     }
 
@@ -35,7 +38,7 @@ public class Setup(ContentManager content, GameWindow window)
         BindAllTextures();
         LoadAudio();
         LoadUI();
-
+        LoadEffects();
     }
 
 
@@ -272,5 +275,10 @@ public class Setup(ContentManager content, GameWindow window)
         SpriteFontManager.MapFont(FontNames.DefaultFont, FileNames.DefaultFont);
         SpriteFontManager.MapFont(FontNames.DungeonFont, FileNames.DungeonFont);
 
+    }
+
+    private void LoadEffects()
+    {
+        ShaderManager.MapEffect("Fog of War", content.Load<Effect>("Effects/FogOfWarEffect"));
     }
 }
