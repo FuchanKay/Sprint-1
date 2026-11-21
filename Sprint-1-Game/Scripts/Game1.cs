@@ -33,6 +33,7 @@ public class Game1 : Core
     {
         Setup.LoadContent();
         base.LoadContent();
+        SceneManager.Init();
     }
 
     protected override void Update(GameTime gameTime)
@@ -47,6 +48,7 @@ public class Game1 : Core
             Setup.Initialize(out var sm);
             SceneManager = sm;
             Setup.LoadContent();
+            SceneManager.Init();
         }
         base.Update(gameTime);
     }

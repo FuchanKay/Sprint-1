@@ -95,5 +95,8 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
 
         var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas, uIFontAtlas, window);
         NameSceneMap.TryAdd(SceneNames.PuzzleLevel, puzzleLevelScene);
+
+        var gameCreditsScene = new GameCreditsSceneController(this, mouseInput, audioManager, textureAtlas, spriteFontManager, window);
+        NameSceneMap.TryAdd(SceneNames.GameCredits, gameCreditsScene);
     }
 }

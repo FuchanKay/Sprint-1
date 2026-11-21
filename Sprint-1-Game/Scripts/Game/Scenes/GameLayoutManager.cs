@@ -32,7 +32,7 @@ public class GameLayoutManager
 
     private void SetLevelOffset(float levelWidthPx, float levelHeightPx)
     {
-        int EdgeOffset = LevelContext.RawSpriteHeightPx / 2;
+        int EdgeOffset = 0;
         LevelContext.PuzzleOffsetX = (int)Math.Floor((CurrentSceneWidth * LevelSceneRatio - levelWidthPx * LevelContext.GridScale) / 2f + EdgeOffset * LevelContext.GridScale);
         LevelContext.PuzzleOffsetY = (int)Math.Floor((CurrentSceneHeight - levelHeightPx * LevelContext.GridScale) / 2f + EdgeOffset * LevelContext.GridScale);
     }
