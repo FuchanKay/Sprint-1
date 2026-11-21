@@ -1,12 +1,13 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Scripts.Game;
 namespace Scripts.GameComponents;
 
 public class UIFont(UIFontAtlas uIFontAtlas)
 {
-    private SpriteFont Font{ get; set; }
-    public string Text{ get; set; }
+    private SpriteFont Font{ get; set; } = uIFontAtlas.GetFont(FontNames.DefaultFont);
+    public string Text{ get; set; } = "";
     public Vector2 Pos{ get; set; } = Vector2.Zero;
     public Color Color{ get; set; } = Color.White;
     public float Rotation{ get; set; } = 0.0f;

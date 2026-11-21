@@ -16,7 +16,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private readonly IAudioManager AudioManager = audioManager;
     private ILevelTransition LevelTransition;
     public int CurrentLevelIndex = 0;
-    private BasicSpriteFontWriter DeathMessage = new(spriteFontManager);
+    private UIFont DeathMessage = new(uIFontAtlas);
 
     public void Init()
     {
@@ -40,11 +40,12 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
 
     private void InitDeathMessage()
     {
-        string deathMessageText = "Press Z to Undo, or R to Restart";
-        Vector2 messageSize = spriteFontManager.GetFont(FontNames.DungeonFont).MeasureString(deathMessageText);
+        DeathMessage.Init(FontNames.DungeonFont);
+        DeathMessage.Text = "Press Z to Undo, or R to Restart";
+        DeathMessage.Color = Color.DarkRed;
+        DeathMessage.OriginEnum = UIFont.GenericOrigin.Center;
         float LevelScreenRatio = 4f/5f;
-        Vector2 DeathMessagePosition = new Vector2(window.ClientBounds.Width * (LevelScreenRatio / 2f) - messageSize.X/2f, window.ClientBounds.Height/2f + messageSize.Y/2f);
-        DeathMessage.Init(FontNames.DungeonFont, DeathMessagePosition, deathMessageText, Color.DarkRed);
+        DeathMessage.Pos = new Vector2(window.ClientBounds.Width * (LevelScreenRatio / 2f), window.ClientBounds.Height/2f);
     }
 
     public void Update(int dtMs)

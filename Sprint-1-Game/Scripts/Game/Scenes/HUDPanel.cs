@@ -26,18 +26,22 @@ public class HUDPanel(UIFontAtlas uIFontAtlas)
 
         EnemyCounter.Pos = new Vector2(1040, 40);
         EnemyCounter.Color = Color.Gold;
+        EnemyCounter.Text= $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}";
 
         GameClock.Pos = new Vector2(1040, 80);
         GameClock.Color = Color.Gold;
+        GameClock.Text = "00:00:00";
 
         InventoryStatus.Pos = new Vector2(1040, 120);
         InventoryStatus.Color = Color.Gold;
-
+        InventoryStatus.Text = $"Inventory:\n{Level.LevelStateHistory.InventoryManager}";
+        
         CommandInstructions.Pos = new Vector2(1040, 350);
         CommandInstructions.Text = "Player Move: WASD\n"
                                     + "SNAP: F\n"
                                     + "Use Item: 123\n"
                                     + "Grab item: G\n"
+                                    + "Toggle Hide Objects: H\n"
                                     + "Change Scene: B\n";
         CommandInstructions.Color = Color.Gold;
 
