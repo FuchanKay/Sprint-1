@@ -16,7 +16,7 @@ public class UIFont(UIFontAtlas uIFontAtlas)
     private Vector2 Origin => CustomOrigin ?? ToVector2(OriginEnum) * Size;
     public Vector2 Scale{ get; set; } = Vector2.One;
     public SpriteEffects Effects{ get; set; } = SpriteEffects.None;
-    public float LayerDepth{ get; set; } = 0.0f;
+    public float LayerDepth{ get; set; } = 1.0f;
     public float Width => Font.MeasureString(Text).X;
     public float Height => Font.MeasureString(Text).Y;
     public Vector2 Size => new Vector2(Width, Height);
