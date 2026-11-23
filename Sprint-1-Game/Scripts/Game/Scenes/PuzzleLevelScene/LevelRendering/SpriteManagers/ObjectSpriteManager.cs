@@ -127,16 +127,12 @@ public class ObjectSpriteManager
         }
         var finishedSprites = AnimatingObjectSprites.FindAll(sprite => sprite.IsFinished);
         ResetToIdle(finishedSprites);
-        // if next queued event is a walk event, player is NOT finished
     }
 
     private void ResetToIdle(List<ISprite> finishedSprites)
     {
         foreach (var sprite in finishedSprites)
         {
-            // if idlename is animated, 
-            // animating object sprites for single-animation....
-            // once finished, reset to idle
             AnimatingObjectSprites.Remove(sprite);
 
             ISprite idleSprite;
