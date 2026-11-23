@@ -1701,6 +1701,20 @@
         "ElementType": "Components",
         "EventType": 1,
         "TimestampUtc": "2026-11-23T19:41:40.7883387Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "Styles",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-23T19:43:59.4509245Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "Controls/StackPanel",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-23T19:44:11.97636Z"
       }
     ]
   }

@@ -75,11 +75,6 @@
       "LinkType": 0
     },
     {
-      "Name": "Controls/StackPanel",
-      "ElementType": 1,
-      "LinkType": 0
-    },
-    {
       "Name": "Elements/CautionLines",
       "ElementType": 1,
       "LinkType": 0
@@ -178,11 +173,6 @@
       "Name": "GameUI/TimeMenu",
       "ElementType": 1,
       "LinkType": 0
-    },
-    {
-      "Name": "Styles",
-      "ElementType": 1,
-      "LinkType": 0
     }
   ],
   "StandardElementReferences": [
@@ -230,9 +220,6 @@
   "BehaviorReferences": [
     {
       "Name": "PanelBehavior"
-    },
-    {
-      "Name": "StackPanelBehavior"
     }
   ],
   "SinglePixelTextureFile": "",
