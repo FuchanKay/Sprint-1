@@ -43,6 +43,11 @@ public class AnimationNames
     public readonly static string WaterSplash = "-Water Splash";
     public readonly static string LavaSplash = "-Lava Splash";
     public readonly static string PumpkinGrowth = "-Pumpkin Growth";
+    public readonly static string GrassTileIdle = "-Grass Tile Idle";
+    public readonly static string VineSeedTileIdle = "-Vine Seed Tile Idle";
+    public readonly static string PumpkinSeedTileIdle = "-Pumpkin Seed Tile Idle";
+    public readonly static string BugTileIdle = "-Bug Tile Idle";
+    public readonly static string CCBugTileIdle = "-CC Bug Tile Idle";
 
     public static string ObjectRotateClockwiseFrom(Directions direction)
     {

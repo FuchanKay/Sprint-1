@@ -24,7 +24,7 @@ public class TileFactory()
 
     public static ITile CreateGrassTile()
     {
-        return CreateFloorTile(RegionNames.GrassTile);
+        return CreateFloorTile(AnimationNames.GrassTileIdle);
     }
 
     public static ITile CreateBrickTile()

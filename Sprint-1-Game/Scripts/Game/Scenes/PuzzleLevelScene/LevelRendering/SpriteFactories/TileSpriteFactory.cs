@@ -8,13 +8,14 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
     private readonly static float TileLayerDepth = 0.0f;
     public ISprite CreateTileSprite(ITile tile, Vector2 coord, LevelContext context)
     {
-        StaticSprite sprite;
+        ISprite sprite;
         var id = tile.Id;
         switch (id)
         {
             case TileIds.Floor:
                 sprite = new StaticSprite(textureAtlas);
                 var floor = tile as FloorTile;
+                if(floor.RegionName == AnimationNames.GrassTileIdle) sprite = new AnimatedSprite(textureAtlas);
                 sprite.SetState(floor.RegionName);
                 sprite.IdleName = floor.RegionName;
                 sprite.Rotation = Utilities.ToRadians(tile.Direction);
@@ -39,24 +40,24 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.IdleName = RegionNames.LavaTile;
                 break;
             case TileIds.Bug:
-                sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.BugTile);
-                sprite.IdleName = RegionNames.BugTile;
+                sprite = new AnimatedSprite(textureAtlas);
+                sprite.SetState(AnimationNames.BugTileIdle);
+                sprite.IdleName = AnimationNames.BugTileIdle;
                 break;
             case TileIds.CCBug:
-                sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.BugTileCC);
-                sprite.IdleName = RegionNames.BugTileCC;
+                sprite = new AnimatedSprite(textureAtlas);
+                sprite.SetState(AnimationNames.CCBugTileIdle);
+                sprite.IdleName = AnimationNames.CCBugTileIdle;
                 break;
             case TileIds.VineSeed:
-                sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.VineSeedTile);
-                sprite.IdleName = RegionNames.VineSeedTile;
+                sprite = new AnimatedSprite(textureAtlas);
+                sprite.SetState(AnimationNames.VineSeedTileIdle);
+                sprite.IdleName = AnimationNames.VineSeedTileIdle;
                 break;
             case TileIds.PumpkinSeed:
-                sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.PumpkinSeedTile);
-                sprite.IdleName = RegionNames.PumpkinSeedTile;
+                sprite = new AnimatedSprite(textureAtlas);
+                sprite.SetState(AnimationNames.PumpkinSeedTileIdle);
+                sprite.IdleName = AnimationNames.PumpkinSeedTileIdle;
                 break;
             default:
                 sprite = new StaticSprite(textureAtlas);
@@ -67,11 +68,7 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
         sprite.SetTargetPosition(coord);
         sprite.Scale = context.GridScale * 4.0f;
         sprite.LayerDepth = TileLayerDepth;
-
-        if(id == TileIds.Ice) {
-            sprite.Texture = textureAtlas.GetTexture(TextureNames.IceSprite);
-            sprite.Scale = context.GridScale * 0.43f;
-        }
+        
         return sprite;
     }
 }
