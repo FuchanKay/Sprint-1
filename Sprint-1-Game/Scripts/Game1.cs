@@ -29,12 +29,9 @@ public class Game1 : Core
     protected override void Initialize()
     {
         Setup.Initialize(out var sceneManager);
-        //InitializeGum();
         SceneManager = sceneManager;
 
         GumUI.Initialize(this, "GUMProject/GUMProject.gumj");
-        // var screen = ObjectFinder.Self.GumProjectSave.Screens[0].ToGraphicalUiElement();
-        // screen.AddToRoot();
 
         base.Initialize();
     }
@@ -61,13 +58,6 @@ public class Game1 : Core
             SceneManager.Init();
         }
         GumUI.Update(gameTime);
-        // foreach(var item in GumService.Default.Root.Children)
-        // {
-        //     if(item is InteractiveGue asInteractiveGue)
-        //     {
-        //         (asInteractiveGue.FormsControlAsObject as IUpdateScreen)?.Update(dtms);
-        //     }
-        // }
 
         base.Update(gameTime);
     }

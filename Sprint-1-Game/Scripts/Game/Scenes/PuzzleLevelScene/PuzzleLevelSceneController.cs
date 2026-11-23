@@ -32,8 +32,6 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         LevelFileParser = new LevelFileParser();
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, ShaderManager, GameLayoutManager);
         Level.Init(CurrentLevelIndex);
-       // UIManager = new(uIFontAtlas, GameLayoutManager);
-        //UIManager.Init(Level);
         LevelTransition = new WipeTransition(Level);
         Screen = ObjectFinder.Self.GumProjectSave.Screens[0].ToGraphicalUiElement();
         Screen.AddToRoot();
@@ -45,7 +43,6 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         GameLayoutManager.Init(window);
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, ShaderManager, GameLayoutManager);
         Level.Init(grid, level);
-        //UIManager.Init(Level);
         InitDeathMessage();
     }
 
@@ -131,7 +128,6 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         }
 
         Level.Update(dtMs);
-        //UIManager.Update(dtMs);
         // Exits to the main menu upon a levels completion
         if (Level.Context.LevelIsCompleted && Level.Context.LevelEditorMode)
         {
@@ -160,7 +156,6 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     public void Draw(SpriteBatch sb)
     {
         Level.Draw(sb);
-        //UIManager.Draw(sb);
         if(Level.Context.PlayerIsDead) DeathMessage.Draw(sb);
         if(LevelTransition.IsActive) LevelTransition.Draw(sb);
     }
