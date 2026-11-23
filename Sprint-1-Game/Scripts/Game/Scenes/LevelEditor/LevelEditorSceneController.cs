@@ -164,7 +164,7 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
 
     private void InitUI()
     {
-        LevelEditorPalette = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, audioManager);
+        LevelEditorPalette = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, shaderManager, audioManager);
         LevelEditorPalette.Init();
         Gum.GumService.Default.Root.Children.Clear();
         LevelEditorPalette.CreateLevelEditorPanel();

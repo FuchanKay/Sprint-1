@@ -7,7 +7,7 @@ using Gum.Wireframe;
 
 namespace Scripts.Game;
 
-public class LevelEditorPalette(ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, EffectSpriteFactory effectSpriteFactory, IAudioManager audioManager)
+public class LevelEditorPalette(ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, EffectSpriteFactory effectSpriteFactory, ShaderManager shaderManager, IAudioManager audioManager)
 {
     public LevelContext ObjectSelectorContext = new()
     {
@@ -140,7 +140,7 @@ public class LevelEditorPalette(ObjectSpriteFactory objectSpriteFactory, TileSpr
         ObjectSelectorContext.LevelHeight = levelFileParser.GetLevelHeight(objGridFile);
         ObjectSelectorGrid = levelFileParser.CreateGrids(objGridFile);
 
-        ObjectSelectorSpriteGrid = new(objectSpriteFactory, tileSpriteFactory, effectSpriteFactory);
+        ObjectSelectorSpriteGrid = new(objectSpriteFactory, tileSpriteFactory, effectSpriteFactory, shaderManager);
         ObjectSelectorSpriteGrid.Init(ObjectSelectorGrid, ObjectSelectorContext);
     }
 
@@ -154,7 +154,7 @@ public class LevelEditorPalette(ObjectSpriteFactory objectSpriteFactory, TileSpr
         TileSelectorContext.LevelHeight = levelFileParser.GetLevelHeight(tileGridFile);
         TileSelectorGrid = levelFileParser.CreateGrids(tileGridFile);
 
-        TileSelectorSpriteGrid = new(objectSpriteFactory, tileSpriteFactory, effectSpriteFactory);
+        TileSelectorSpriteGrid = new(objectSpriteFactory, tileSpriteFactory, effectSpriteFactory, shaderManager);
         TileSelectorSpriteGrid.Init(TileSelectorGrid, TileSelectorContext);
     }
 

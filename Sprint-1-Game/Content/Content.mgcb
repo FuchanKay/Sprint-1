@@ -469,3 +469,14 @@
 #begin Levels/Level9.csv
 /copy:Levels/Level9.csv
 
+#begin Levels/Level10.csv
+/copy:Levels/Level10.csv
+
+#begin Levels/object-grid-1.csv
+/copy:Levels/object-grid-1.csv
+
+#begin Levels/tile-grid-1.csv
+/copy:Levels/object-grid-1.csv
+
+#begin Levels/tile-grid-2.csv
+/copy:Levels/object-grid-1.csv
