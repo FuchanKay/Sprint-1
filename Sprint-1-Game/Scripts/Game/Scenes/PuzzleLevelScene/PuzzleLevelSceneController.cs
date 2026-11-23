@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 namespace Scripts.Game;
 
-public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas, GameWindow window) : ISceneController
+public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ShaderManager shaderManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas, GameWindow window) : ISceneController
 {
     private PuzzleLevel Level;
     private LevelFileParser LevelFileParser;
@@ -14,6 +14,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private GameLayoutManager GameLayoutManager = new();
     private UIManager UIManager = new(uIFontAtlas);
     private readonly IAudioManager AudioManager = audioManager;
+    private readonly ShaderManager ShaderManager = shaderManager;
     private ILevelTransition LevelTransition;
     public int CurrentLevelIndex = 0;
     private UIFont DeathMessage = new(uIFontAtlas);
@@ -23,7 +24,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         Gum.GumService.Default.Root.Children.Clear();
         GameLayoutManager.Init(window);
         LevelFileParser = new LevelFileParser();
-        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
+        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, ShaderManager, GameLayoutManager);
         Level.Init(CurrentLevelIndex);
         UIManager.Init(Level);
         LevelTransition = new WipeTransition(Level);
@@ -34,7 +35,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     {
         Gum.GumService.Default.Root.Children.Clear();
         GameLayoutManager.Init(window);
-        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
+        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, ShaderManager, GameLayoutManager);
         Level.Init(grid, level);
         UIManager.Init(Level);
         LevelTransition = new WipeTransition(Level);

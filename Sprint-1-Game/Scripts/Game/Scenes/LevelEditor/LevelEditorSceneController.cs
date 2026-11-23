@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
-public class LevelEditorSceneController(SceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas) : ISceneController
+public class LevelEditorSceneController(SceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas, ShaderManager shaderManager) : ISceneController
 {
     private LevelContext Context = new()
     {
@@ -158,7 +158,7 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
         Context.LevelHeight = levelFileParser.GetLevelHeight(levelFile);
         CurrentGrid = levelFileParser.CreateGrids(levelFile);
 
-        SpriteGrid = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory);
+        SpriteGrid = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, shaderManager);
         SpriteGrid.Init(CurrentGrid, Context);
     }
 
