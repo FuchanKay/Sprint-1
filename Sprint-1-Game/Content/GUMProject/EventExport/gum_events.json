@@ -2,34 +2,6 @@
   "UserEvents": {
     "32e9a9804bffe909ff226129e9bed998115326d58d3eca039114f3865ff5269c": [
       {
-        "NewName": "MainScreen",
-        "OldName": null,
-        "ElementType": "Screens",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-18T02:23:24.1216493Z"
-      },
-      {
-        "NewName": "TestScreen",
-        "OldName": null,
-        "ElementType": "Screens",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-18T02:26:48.9820068Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "MainScreen",
-        "ElementType": "Screens",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-18T02:50:20.1414335Z"
-      },
-      {
-        "NewName": "InventoryBar/Pieces/ItemIcon",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-18T02:56:04.2560984Z"
-      },
-      {
         "NewName": "GameUI/Pieces/ItemIcon",
         "OldName": "InventoryBar/Pieces/ItemIcon",
         "ElementType": "Components",
@@ -42,13 +14,6 @@
         "ElementType": "Components",
         "EventType": 5,
         "TimestampUtc": "2026-11-18T03:14:36.8168079Z"
-      },
-      {
-        "NewName": "GameUI/Pieces/SlotNumber",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-18T03:20:39.3664957Z"
       },
       {
         "NewName": "GameUI/Pieces/SlotNumber (Container).NineSliceInstance",
@@ -79,13 +44,6 @@
         "TimestampUtc": "2026-11-18T03:23:03.351748Z"
       },
       {
-        "NewName": "GameUI/Pieces/ItemBackground",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-18T03:35:26.9939954Z"
-      },
-      {
         "NewName": "GameUI/Pieces/ItemBackground (Container).NineSliceInstance",
         "OldName": null,
         "ElementType": "Components",
@@ -98,13 +56,6 @@
         "ElementType": "Components",
         "EventType": 7,
         "TimestampUtc": "2026-11-18T03:37:00.7779485Z"
-      },
-      {
-        "NewName": "GameUI/InventorySlot",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-18T03:39:33.5254873Z"
       },
       {
         "NewName": "GameUI/InventorySlot (Container).ItemBackgroundInstance",
@@ -142,13 +93,6 @@
         "TimestampUtc": "2026-11-18T03:47:07.1322229Z"
       },
       {
-        "NewName": "GameUI/InventoryBar",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-18T03:57:41.9957567Z"
-      },
-      {
         "NewName": "GameUI/InventoryBar (Container).StackPanelInstance",
         "OldName": null,
         "ElementType": "Components",
@@ -168,20 +112,6 @@
         "ElementType": "Components",
         "EventType": 5,
         "TimestampUtc": "2026-11-18T04:01:19.5601032Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/InventoryBar (Container).GameUI/InventorySlot InventorySlotInstance1 in GameUI/InventoryBar (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-18T04:01:25.0908031Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/InventoryBar (Container).GameUI/InventorySlot InventorySlotInstance in GameUI/InventoryBar (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-18T04:01:26.963208Z"
       },
       {
         "NewName": "GameUI/InventoryBar (Container).InventorySlotInstance",
@@ -205,74 +135,11 @@
         "TimestampUtc": "2026-11-18T04:01:35.9762056Z"
       },
       {
-        "NewName": null,
-        "OldName": "GameUI/InventoryBar (Container).GameUI/InventorySlot InventorySlotInstance2 in GameUI/InventoryBar (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-18T04:03:02.2509951Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/InventoryBar (Container).GameUI/InventorySlot InventorySlotInstance1 in GameUI/InventoryBar (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-18T04:03:02.7616901Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/InventoryBar (Container).GameUI/InventorySlot InventorySlotInstance in GameUI/InventoryBar (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-18T04:03:02.8440563Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/InventoryBar (Container).Controls/StackPanel StackPanelInstance in GameUI/InventoryBar (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-18T04:03:06.1573254Z"
-      },
-      {
         "NewName": "GameUI/InventoryBar (Container).StackPanelInstance",
         "OldName": null,
         "ElementType": "Components",
         "EventType": 5,
         "TimestampUtc": "2026-11-18T04:03:58.4515513Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/InventoryBar (Container).Controls/StackPanel StackPanelInstance in GameUI/InventoryBar (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-18T04:04:11.7902191Z"
-      },
-      {
-        "NewName": "Controls/StackPanel1",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-18T04:04:52.0770314Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/StackPanel1",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-18T04:05:00.600969Z"
-      },
-      {
-        "NewName": "GameUI/a",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-18T04:05:08.9271586Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/a",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-18T04:05:13.8834618Z"
       },
       {
         "NewName": "GameUI/InventoryBar (Container).StackPanelInstance",
@@ -289,20 +156,6 @@
         "TimestampUtc": "2026-11-18T04:07:30.584512Z"
       },
       {
-        "NewName": null,
-        "OldName": "GameUI/InventoryBar (Container).Controls/StackPanel StackPanelInstance1 in GameUI/InventoryBar (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-18T04:07:36.9846592Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/InventoryBar (Container).Controls/StackPanel StackPanelInstance in GameUI/InventoryBar (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-18T04:07:40.533203Z"
-      },
-      {
         "NewName": "GameUI/InventoryBar (Container).StackPanelInstance",
         "OldName": null,
         "ElementType": "Components",
@@ -315,34 +168,6 @@
         "ElementType": "Components",
         "EventType": 5,
         "TimestampUtc": "2026-11-18T04:17:49.8425067Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/InventoryBar",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-18T04:20:40.7225138Z"
-      },
-      {
-        "NewName": "GameUI/test",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-18T04:20:51.5133579Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/test",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-18T04:22:32.6964663Z"
-      },
-      {
-        "NewName": "GameUI/InventoryBar",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-18T04:22:42.855868Z"
       },
       {
         "NewName": "GameUI/InventoryBar (Container).PanelInstance",
@@ -380,13 +205,6 @@
         "TimestampUtc": "2026-11-18T04:23:01.1504453Z"
       },
       {
-        "NewName": null,
-        "OldName": "GameUI/InventoryBar (Container).GameUI/InventorySlot InventorySlotInstance in GameUI/InventoryBar (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-18T04:23:03.2432476Z"
-      },
-      {
         "NewName": "GameUI/InventoryBar (Container).InventoryBarPanel",
         "OldName": "GameUI/InventoryBar (Container).PanelInstance",
         "ElementType": "Components",
@@ -401,102 +219,11 @@
         "TimestampUtc": "2026-11-18T04:25:54.8878029Z"
       },
       {
-        "NewName": null,
-        "OldName": "DemoScreenGum",
-        "ElementType": "Screens",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-18T18:49:10.178757Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Elements/VerticalLines",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-18T18:49:52.0637497Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Elements/PercentBarIcon",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-18T18:49:54.9051659Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Elements/PercentBar",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-18T18:49:57.2251576Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Elements/Icon",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-18T18:50:00.0796068Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Elements/DividerVertical",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-18T18:50:02.4441629Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Elements/DividerHorizontal",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-18T18:50:05.8417051Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Elements/Divider",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-18T18:51:12.2420575Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Elements/CautionLines",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-18T18:51:15.9414399Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "DemoScreenGum",
-        "ElementType": "Screens",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-18T18:56:03.0167951Z"
-      },
-      {
         "NewName": "GameSceneUI",
         "OldName": "TestScreen",
         "ElementType": "Screens",
         "EventType": 2,
         "TimestampUtc": "2026-11-19T01:58:30.5981612Z"
-      },
-      {
-        "NewName": "PuzzleEditorUI",
-        "OldName": null,
-        "ElementType": "Screens",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-19T01:58:47.6210293Z"
-      },
-      {
-        "NewName": "TitleSceneUI",
-        "OldName": null,
-        "ElementType": "Screens",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-19T01:59:02.810476Z"
-      },
-      {
-        "NewName": "GameUI/Pieces/MotherPanelBackground",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-19T02:01:57.6697919Z"
       },
       {
         "NewName": "GameUI/Pieces/MotherPanelBackground (Container).NineSliceInstance",
@@ -513,13 +240,6 @@
         "TimestampUtc": "2026-11-19T02:02:24.300644Z"
       },
       {
-        "NewName": "GameUI/Pieces/ArrowButtom",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-19T02:14:56.5704946Z"
-      },
-      {
         "NewName": "GameUI/Pieces/ArrowButtom (Container).NineSliceInstance",
         "OldName": null,
         "ElementType": "Components",
@@ -534,25 +254,11 @@
         "TimestampUtc": "2026-11-19T02:22:24.9291198Z"
       },
       {
-        "NewName": null,
-        "OldName": "GameUI/Pieces/ArrowButtom (Container).Polygon PolygonInstance in GameUI/Pieces/ArrowButtom (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T02:22:36.5443502Z"
-      },
-      {
         "NewName": "GameUI/Pieces/ArrowButtom (Container).CircleInstance",
         "OldName": null,
         "ElementType": "Components",
         "EventType": 5,
         "TimestampUtc": "2026-11-19T02:22:40.0215448Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/Pieces/ArrowButtom (Container).Circle CircleInstance in GameUI/Pieces/ArrowButtom (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T02:23:42.9950221Z"
       },
       {
         "NewName": "GameUI/Pieces/ArrowButtom (Container).SpriteInstance",
@@ -618,13 +324,6 @@
         "TimestampUtc": "2026-11-19T02:29:41.9767246Z"
       },
       {
-        "NewName": "GameUI/DirectionPannel",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-19T02:33:22.8899832Z"
-      },
-      {
         "NewName": "GameUI/DirectionPannel (Container).PanelInstance",
         "OldName": null,
         "ElementType": "Components",
@@ -681,34 +380,6 @@
         "TimestampUtc": "2026-11-19T02:38:19.5772408Z"
       },
       {
-        "NewName": null,
-        "OldName": "GameUI/DirectionPanelComponent (Container).GameUI/Pieces/ArrowButtom ArrowButtomInstance1 in GameUI/DirectionPanelComponent (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T02:42:54.2323678Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/DirectionPanelComponent (Container).GameUI/Pieces/ArrowButtom ArrowButtomInstance2 in GameUI/DirectionPanelComponent (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T02:42:58.1784853Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/DirectionPanelComponent (Container).GameUI/Pieces/ArrowButtom ArrowButtomInstance3 in GameUI/DirectionPanelComponent (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T02:43:00.0070836Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/DirectionPanelComponent (Container).GameUI/Pieces/ArrowButtom ArrowButtomInstance in GameUI/DirectionPanelComponent (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T02:43:03.5169078Z"
-      },
-      {
         "NewName": "GameUI/DirectionPanelComponent (Container).ArrowButtomInstance",
         "OldName": null,
         "ElementType": "Components",
@@ -735,34 +406,6 @@
         "ElementType": "Components",
         "EventType": 5,
         "TimestampUtc": "2026-11-19T02:43:13.5048937Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/DirectionPanelComponent (Container).GameUI/Pieces/ArrowButtom ArrowButtomInstance1 in GameUI/DirectionPanelComponent (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T02:50:42.1497421Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/DirectionPanelComponent (Container).GameUI/Pieces/ArrowButtom ArrowButtomInstance2 in GameUI/DirectionPanelComponent (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T02:50:43.3189518Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/DirectionPanelComponent (Container).GameUI/Pieces/ArrowButtom ArrowButtomInstance3 in GameUI/DirectionPanelComponent (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T02:50:44.6602733Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/DirectionPanelComponent (Container).GameUI/Pieces/ArrowButtom ArrowButtomInstance in GameUI/DirectionPanelComponent (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T02:52:14.2505861Z"
       },
       {
         "NewName": "GameUI/DirectionPanelComponent (Container).ArrowButtomInstance",
@@ -884,41 +527,6 @@
         "TimestampUtc": "2026-11-19T03:20:08.3237421Z"
       },
       {
-        "NewName": null,
-        "OldName": "PuzzleEditorUI",
-        "ElementType": "Screens",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-19T18:10:49.7773455Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/DirectionPanelComponent",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-19T18:11:00.0514817Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/Pieces/MotherPanelBackground",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-19T18:11:11.335879Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/Pieces/ArrowButtom",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-19T18:37:35.9617831Z"
-      },
-      {
-        "NewName": "GameUI/Pieces/TitleBar",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-19T18:46:22.1364151Z"
-      },
-      {
         "NewName": "GameUI/Pieces/TitleBar (Container).NineSliceInstance",
         "OldName": null,
         "ElementType": "Components",
@@ -947,39 +555,11 @@
         "TimestampUtc": "2026-11-19T18:51:38.6784138Z"
       },
       {
-        "NewName": null,
-        "OldName": "GameUI/Pieces/TitleBar (Container).Sprite SpriteInstance in GameUI/Pieces/TitleBar (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T18:54:58.6549888Z"
-      },
-      {
         "NewName": "GameUI/Pieces/TitleBar (Container).TextInstance",
         "OldName": null,
         "ElementType": "Components",
         "EventType": 5,
         "TimestampUtc": "2026-11-19T18:55:01.3453578Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/Pieces/TitleBar",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-19T18:58:52.7333034Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/Pieces/SlotNumber (Container).Sprite SpriteInstance in GameUI/Pieces/SlotNumber (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T18:59:00.1404339Z"
-      },
-      {
-        "NewName": "GameUI/Pieces/TitleBar",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-19T18:59:32.9587431Z"
       },
       {
         "NewName": "GameUI/Pieces/TitleBar (Container).NineSliceInstance",
@@ -1008,13 +588,6 @@
         "ElementType": "Components",
         "EventType": 7,
         "TimestampUtc": "2026-11-19T19:28:19.3170271Z"
-      },
-      {
-        "NewName": "GameUI/InventoryPanel",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-19T19:29:23.3054198Z"
       },
       {
         "NewName": "GameUI/InventoryPanel (Container).TitleBarInstance",
@@ -1059,25 +632,11 @@
         "TimestampUtc": "2026-11-19T19:33:54.2617903Z"
       },
       {
-        "NewName": null,
-        "OldName": "GameUI/InventoryPanel (Container).Controls/Panel PanelInstance in GameUI/InventoryPanel (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T19:34:15.3920407Z"
-      },
-      {
         "NewName": "GameUI/InventoryPanel (Container).InventoryBarInstance",
         "OldName": null,
         "ElementType": "Components",
         "EventType": 5,
         "TimestampUtc": "2026-11-19T19:34:22.125121Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/InventoryPanel (Container).GameUI/InventoryBar InventoryBarInstance in GameUI/InventoryPanel (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T19:34:34.4600045Z"
       },
       {
         "NewName": "GameUI/InventoryPanel (Container).PanelInstance",
@@ -1129,20 +688,6 @@
         "TimestampUtc": "2026-11-19T19:38:00.6184266Z"
       },
       {
-        "NewName": null,
-        "OldName": "GameUI/InventoryMenu (Container).GameUI/InventorySlot InventorySlotInstance in GameUI/InventoryMenu (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T19:38:02.6256959Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameSceneUI.GameUI/InventoryBar InventoryBarInstance in GameSceneUI",
-        "ElementType": "Screens",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T19:40:11.6576217Z"
-      },
-      {
         "NewName": "GameSceneUI.InventoryMenuInstance",
         "OldName": null,
         "ElementType": "Screens",
@@ -1155,13 +700,6 @@
         "ElementType": "Components",
         "EventType": 7,
         "TimestampUtc": "2026-11-19T19:49:35.4368281Z"
-      },
-      {
-        "NewName": "GameUI/TimeMenu",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-19T20:05:21.7117847Z"
       },
       {
         "NewName": "GameUI/TimeMenu (Container).TitleBarInstance",
@@ -1178,13 +716,6 @@
         "TimestampUtc": "2026-11-19T20:05:44.597647Z"
       },
       {
-        "NewName": null,
-        "OldName": "GameUI/TimeMenu (Container).NineSlice Background in GameUI/TimeMenu (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T20:05:48.7071871Z"
-      },
-      {
         "NewName": "GameUI/TimeMenu (Container).MainContainer",
         "OldName": null,
         "ElementType": "Components",
@@ -1197,27 +728,6 @@
         "ElementType": "Components",
         "EventType": 5,
         "TimestampUtc": "2026-11-19T20:05:52.163728Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/TimeMenu (Container).GameUI/Pieces/TitleBar TitleBarInstance in GameUI/TimeMenu (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T20:07:21.8372366Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/TimeMenu (Container).Container MainContainer in GameUI/TimeMenu (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T20:07:24.048557Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameUI/TimeMenu (Container).NineSlice Background in GameUI/TimeMenu (Container)",
-        "ElementType": "Components",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T20:07:25.847292Z"
       },
       {
         "NewName": "GameUI/TimeMenu (Container).TitleBarInstance",
@@ -1246,13 +756,6 @@
         "ElementType": "Components",
         "EventType": 1,
         "TimestampUtc": "2026-11-19T20:07:50.2458129Z"
-      },
-      {
-        "NewName": "GameUI/InventoryMenu1",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-19T20:07:52.5337965Z"
       },
       {
         "NewName": "GameUI/TimeMenu",
@@ -1297,13 +800,6 @@
         "TimestampUtc": "2026-11-19T20:08:18.7055528Z"
       },
       {
-        "NewName": "GameUI/TimeMenu1",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-19T20:12:47.0232108Z"
-      },
-      {
         "NewName": "GameUI/LevelNameMenu",
         "OldName": "GameUI/TimeMenu1",
         "ElementType": "Components",
@@ -1339,13 +835,6 @@
         "TimestampUtc": "2026-11-19T20:15:58.1908704Z"
       },
       {
-        "NewName": "GameUI/TimeMenu1",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-19T20:16:50.3038268Z"
-      },
-      {
         "NewName": "GameUI/GameInstructionMenu",
         "OldName": "GameUI/TimeMenu1",
         "ElementType": "Components",
@@ -1358,13 +847,6 @@
         "ElementType": "Components",
         "EventType": 7,
         "TimestampUtc": "2026-11-19T20:17:25.4913178Z"
-      },
-      {
-        "NewName": "GameUI/GameSceneHUD",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-19T20:20:12.8813018Z"
       },
       {
         "NewName": "GameUI/GameSceneHUD (Container).PanelInstance",
@@ -1409,13 +891,6 @@
         "TimestampUtc": "2026-11-19T20:21:21.4851762Z"
       },
       {
-        "NewName": "GameUI/TimeMenu1",
-        "OldName": null,
-        "ElementType": "Components",
-        "EventType": 0,
-        "TimestampUtc": "2026-11-19T20:22:41.1831803Z"
-      },
-      {
         "NewName": "GameUI/EnemyCounterMenu",
         "OldName": "GameUI/TimeMenu1",
         "ElementType": "Components",
@@ -1428,349 +903,6 @@
         "ElementType": "Components",
         "EventType": 5,
         "TimestampUtc": "2026-11-19T20:24:31.7900154Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "GameSceneUI.GameUI/InventoryMenu InventoryMenuInstance in GameSceneUI",
-        "ElementType": "Screens",
-        "EventType": 6,
-        "TimestampUtc": "2026-11-19T20:31:51.7511391Z"
-      },
-      {
-        "NewName": "GameSceneUI.GameSceneHUDInstance",
-        "OldName": null,
-        "ElementType": "Screens",
-        "EventType": 5,
-        "TimestampUtc": "2026-11-19T20:32:02.2870824Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/ButtonClose",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:55.4870294Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/ButtonConfirm",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:55.5926223Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/ButtonDeny",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:55.6772756Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/ButtonIcon",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:55.7603257Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/ButtonStandard",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:55.8463127Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/ButtonStandardIcon",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:56.14514Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/ButtonTab",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:56.2228915Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/CheckBox",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:56.2928185Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/ColorPickerStandard",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:56.3589973Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/ComboBox",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:56.4279533Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/DialogBox",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:56.4979263Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/ExpanderStandard",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:56.5645376Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/ItemsControl",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:56.6317646Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/Keyboard",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:56.6893756Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/KeyboardKey",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:56.7409157Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/Label",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:56.7933962Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/ListBox",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:56.8450951Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/ListBoxItem",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:56.8958576Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/Menu",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:56.945337Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/MenuItem",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:40:56.9916235Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/TreeViewItem",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:41:02.1157843Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/SettingsView",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:41:04.684101Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/PasswordBox",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:41:11.1917183Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/RadioButton",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:41:11.2698895Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/ScrollBar",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:41:11.318116Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/ScrollBarButton",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:41:11.3526248Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/ScrollBarThumb",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:41:11.3842894Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/ScrollViewer",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:41:11.4160313Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/Slider",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:41:11.4473183Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/TreeView",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:41:13.8905018Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/Window",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:41:16.8472778Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/UserControl",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:41:20.7735927Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/TreeViewToggle",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:41:24.7013349Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/TextBox",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:41:29.1206414Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/Toast",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:41:34.0653412Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/SliderThumb",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:41:40.7451522Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/SplitterStandard",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:41:40.7883387Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Styles",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:43:59.4509245Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Controls/StackPanel",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:44:11.97636Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Elements/CautionLines",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:46:00.6278794Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Elements/Divider",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:46:03.1769313Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Elements/DividerHorizontal",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:46:05.7838616Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Elements/DividerVertical",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:46:07.5186315Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Elements/Icon",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:46:12.087123Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Elements/PercentBar",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:46:13.9516357Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Elements/PercentBarIcon",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:46:15.7516854Z"
-      },
-      {
-        "NewName": null,
-        "OldName": "Elements/VerticalLines",
-        "ElementType": "Components",
-        "EventType": 1,
-        "TimestampUtc": "2026-11-23T19:46:17.5967131Z"
       }
     ]
   }
