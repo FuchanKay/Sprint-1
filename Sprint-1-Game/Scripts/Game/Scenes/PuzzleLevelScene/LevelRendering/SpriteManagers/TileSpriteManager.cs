@@ -112,6 +112,7 @@ public class TileSpriteManager
     {
         IterableTimer++;
         UpdateAnimatingTiles(dtMs);
+        UpdateIdleTiles(dtMs);
         if (IterableTimer % 4 == 0)
         {
             UpdateIterableTiles();
@@ -133,23 +134,37 @@ public class TileSpriteManager
         {
             TileSprites.Remove(sprite.CurrentPosition);
             sprite.Update(dtMs);
-            TileSprites.Add(sprite.CurrentPosition, sprite);
+            TileSprites[sprite.CurrentPosition] = sprite;
         }
         var finishedSprites = AnimatingTileSprites.FindAll(sprite => sprite.IsFinished);
         ResetToIdle(finishedSprites);
-        AnimatingTileSprites.RemoveAll(sprite => sprite.IsFinished);
+    }
+
+    private void UpdateIdleTiles(int dtMs)
+    {
+        foreach (var sprite in TileSprites.Values)
+        {
+            if(AnimatingTileSprites.Contains(sprite)) continue;
+            sprite.Update(dtMs);
+        }
     }
 
     private void ResetToIdle(List<ISprite> finishedSprites)
     {
         foreach (var sprite in finishedSprites)
         {
-            var staticSprite = sprite.ConvertToStatic(sprite.IdleName);
+            AnimatingTileSprites.Remove(sprite);
 
-            // reset sprite stored at pos to new static sprite
-            Vector2 currPos = staticSprite.CurrentPosition;
-            TileSprites.Remove(currPos);
-            TileSprites.Add(currPos, staticSprite);
+            ISprite idleSprite;
+            if(sprite.IdleName.Contains('-'))
+            {
+                idleSprite = sprite.ConvertToAnimated(sprite.IdleName);
+            } else
+            {
+                idleSprite = sprite.ConvertToStatic(sprite.IdleName);
+            }
+
+            TileSprites[idleSprite.CurrentPosition] = idleSprite;
         }
         finishedSprites.Clear();
     }
