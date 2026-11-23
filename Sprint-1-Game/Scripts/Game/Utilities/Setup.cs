@@ -5,8 +5,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Scripts.GameComponents;
-using MonoGameLibrary.UIRendering;
-using UIFontAtlas = MonoGameLibrary.UIRendering.UIFontAtlas;
 namespace Scripts.Game;
 
 public class Setup(ContentManager content, GameWindow window)
@@ -39,7 +37,6 @@ public class Setup(ContentManager content, GameWindow window)
     {
         BindAllTextures();
         LoadAudio();
-        LoadUI();
         LoadEffects();
     }
 

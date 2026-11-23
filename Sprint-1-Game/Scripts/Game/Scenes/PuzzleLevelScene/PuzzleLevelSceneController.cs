@@ -1,7 +1,6 @@
 using System.Transactions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGameLibrary.UIRendering;
 using Scripts.GameComponents;
 namespace Scripts.Game;
 using Gum;
@@ -19,7 +18,6 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private GameLayoutManager GameLayoutManager = new();
-    private UIManager UIManager = new(uIFontAtlas);
     private readonly IAudioManager AudioManager = audioManager;
     private readonly ShaderManager ShaderManager = shaderManager;
     private ILevelTransition LevelTransition;
@@ -48,7 +46,6 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, ShaderManager, GameLayoutManager);
         Level.Init(grid, level);
         //UIManager.Init(Level);
-        UIManager.Init(Level);
         InitDeathMessage();
     }
 
@@ -164,7 +161,6 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     {
         Level.Draw(sb);
         //UIManager.Draw(sb);
-        UIManager.Draw(sb);
         if(Level.Context.PlayerIsDead) DeathMessage.Draw(sb);
         if(LevelTransition.IsActive) LevelTransition.Draw(sb);
     }
