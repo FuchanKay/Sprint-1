@@ -15,7 +15,7 @@ public class QuitConfirmationPopup (SceneManager sceneManager, IInputManager but
         IsOnscreen = false;
         ConfirmationText.Init(FontNames.DungeonFont);
         ConfirmationText.Text = "Are You Sure You Want To Quit? (Press Quit Again To Exit or Esc to Resume)";
-        ConfirmationText.Pos = new Vector2((window.ClientBounds.Width - ConfirmationText.Size.X) / 2f, (window.ClientBounds.Height - ConfirmationText.Size.Y) / 2f);
+        ConfirmationText.Pos = new Vector2((window.ClientBounds.Width - ConfirmationText.Size.X) / 2f, (window.ClientBounds.Height - ConfirmationText.Size.Y) / 3f);
         ConfirmationText.Color = Color.White;
     }
 
