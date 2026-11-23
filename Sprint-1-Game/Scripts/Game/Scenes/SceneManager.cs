@@ -63,8 +63,8 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
 
     public void Draw(SpriteBatch sb)
     {
-        QuitConfirmation.Draw(sb);
         CurrentScene.Draw(sb);
+        QuitConfirmation.Draw(sb);
         if (SceneTransition.IsActive) SceneTransition.Draw(sb);
     }
 
