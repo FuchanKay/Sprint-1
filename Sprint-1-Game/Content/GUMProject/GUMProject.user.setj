@@ -6,15 +6,14 @@
       "Components",
       "Components/Controls",
       "Components/GameUI",
-      "Components/GameUI/GameSceneHUD",
-      "Components/GameUI/GameSceneHUD/HUDPanel",
-      "Components/GameUI/InventoryMenu",
-      "Components/GameUI/InventoryMenu/MainContainer",
-      "Components/GameUI/InventoryMenu/MainContainer/Background",
-      "Components/GameUI/InventoryMenu/MainContainer/InventoryPanel",
+      "Components/GameUI/Pieces",
+      "Components/GameUI/Pieces/ItemIcon",
+      "Components/GameUI/Pieces/SlotNumber",
+      "Components/GameUI/Pieces/TitleBar",
       "Components/GameUI/InventorySlot",
       "Components/GameUI/LevelTitleMenu",
-      "Components/GameUI/LevelTitleMenu/MainContainer"
+      "Components/GameUI/LevelTitleMenu/MainContainer",
+      "Behaviors"
     ]
   }
 }
