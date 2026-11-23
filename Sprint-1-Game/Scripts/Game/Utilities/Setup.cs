@@ -16,7 +16,7 @@ public class Setup(ContentManager content, GameWindow window)
     private IInputManager MouseInput;
     private ITextureAtlas TextureAtlas;
     private ShaderManager ShaderManager;
-    private SpriteFontManager SpriteFontManager = new(content);
+    private UIFontAtlas UIFontAtlas = new(content);
     public void Initialize(out SceneManager sceneManager)
     {
         ButtonInput = new KeyboardInputManager();
@@ -29,7 +29,7 @@ public class Setup(ContentManager content, GameWindow window)
         AddAnimations();
         AddRegions();
         AddFont();
-        sceneManager = new(ButtonInput, MouseInput, AudioManager, ShaderManager, TextureAtlas, SpriteFontManager, window);
+        sceneManager = new(ButtonInput, MouseInput, AudioManager, ShaderManager, TextureAtlas, UIFontAtlas, window);
         sceneManager.Init();
     }
 
@@ -232,6 +232,7 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddTexture(TextureNames.LevelEditorButton, FileNames.LevelEditorButtonTexture);
 
         TextureAtlas.AddTexture(TextureNames.Player, FileNames.PlayerTexture);
+        TextureAtlas.AddTexture(TextureNames.CreditsSprout, FileNames.CreditsSproutTexture);
         TextureAtlas.AddTexture(TextureNames.TileSprites, FileNames.TileTextures);
         TextureAtlas.AddTexture(TextureNames.IceSprite, FileNames.IcePlaceholder);
         TextureAtlas.AddTexture(TextureNames.ObjectSprites, FileNames.ObjectTextures);
@@ -272,8 +273,8 @@ public class Setup(ContentManager content, GameWindow window)
 
     private void AddFont()
     {
-        SpriteFontManager.MapFont(FontNames.DefaultFont, FileNames.DefaultFont);
-        SpriteFontManager.MapFont(FontNames.DungeonFont, FileNames.DungeonFont);
+        UIFontAtlas.MapFont(FontNames.DefaultFont, FileNames.DefaultFont);
+        UIFontAtlas.MapFont(FontNames.DungeonFont, FileNames.DungeonFont);
 
     }
 

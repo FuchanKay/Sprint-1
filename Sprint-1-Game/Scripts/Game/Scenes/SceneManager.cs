@@ -5,7 +5,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ShaderManager shaderManager, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager, GameWindow window) : ISceneManager
+public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ShaderManager shaderManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas, GameWindow window) : ISceneManager
 {
     private readonly Dictionary<string, ISceneController> NameSceneMap = [];
     private ISceneController CurrentScene;
@@ -87,13 +87,16 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
 
     private void AddScenesToMap()
     {
-        var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas, spriteFontManager);
+        var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas, uIFontAtlas);
         NameSceneMap.TryAdd(SceneNames.MainMenu, mainMenuScene);
 
-        var levelEditorScene = new LevelEditorSceneController(this, buttonInput, mouseInput, textureAtlas, spriteFontManager, shaderManager);
+        var levelEditorScene = new LevelEditorSceneController(this, buttonInput, mouseInput, textureAtlas, uIFontAtlas, shaderManager);
         NameSceneMap.TryAdd(SceneNames.LevelEditor, levelEditorScene);
 
-        var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, shaderManager, textureAtlas, spriteFontManager, window);
+        var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, shaderManager, textureAtlas, uIFontAtlas, window);
         NameSceneMap.TryAdd(SceneNames.PuzzleLevel, puzzleLevelScene);
+
+        var gameCreditsScene = new GameCreditsSceneController(this, mouseInput, audioManager, textureAtlas, uIFontAtlas, window);
+        NameSceneMap.TryAdd(SceneNames.GameCredits, gameCreditsScene);
     }
 }

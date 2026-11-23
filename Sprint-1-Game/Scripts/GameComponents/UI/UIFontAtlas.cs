@@ -1,19 +1,15 @@
-using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Scripts.Game;
-
+using Microsoft.Xna.Framework.Content;
+using System;
 namespace Scripts.GameComponents;
-
-public class SpriteFontManager(ContentManager content)
+public class UIFontAtlas(ContentManager content)
 {
-    private readonly Dictionary<string, SpriteFont> FontMap = [];
+    private readonly Dictionary<string, SpriteFont> FontMap = new();
     public void MapFont(string fontName, string fileName)
     {
 
-        if (!FontMap.TryAdd(fontName, content.Load<SpriteFont>(fileName)))
+        if(!FontMap.TryAdd(fontName, content.Load<SpriteFont>(fileName)))
         {
             FontMap[fontName] = content.Load<SpriteFont>(fileName);
         }
