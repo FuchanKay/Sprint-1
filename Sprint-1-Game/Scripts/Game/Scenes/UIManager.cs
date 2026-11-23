@@ -4,19 +4,19 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class UIManager(SpriteFontManager spriteFontManager)
+public class UIManager(UIFontAtlas uIFontAtlas)
 {
-    private HUDPannel HUDPannel = new(spriteFontManager);
+    private HUDPanel HUDPanel = new(uIFontAtlas);
     public void Init(PuzzleLevel level)
     {
-        HUDPannel.Init(level);
+        HUDPanel.Init(level);
     }
     public void Update(int dtMs)
     {
-        HUDPannel.Update(dtMs);
+        HUDPanel.Update(dtMs);
     }
     public void Draw(SpriteBatch sb)
     {
-        HUDPannel.Draw(sb);
+        HUDPanel.Draw(sb);
     }
 }

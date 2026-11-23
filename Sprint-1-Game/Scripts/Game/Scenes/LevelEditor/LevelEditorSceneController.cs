@@ -3,8 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
-
-public class LevelEditorSceneController(SceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager) : ISceneController
+public class LevelEditorSceneController(SceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas) : ISceneController
 {
     private LevelContext Context = new()
     {
@@ -21,7 +20,7 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
     private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
-    private LevelEditorHUDPanel HUD = new(spriteFontManager);
+    private LevelEditorHUDPanel HUD = new(uIFontAtlas);
     private readonly List<GridPointer> UndoHistory = [];
     private readonly List<GridPointer> RedoHistory = [];
     private readonly int UndoHistoryMaxLength = 2000;
@@ -41,7 +40,7 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
         Brush = new EraserBrush(mouseInput, SpriteGrid, Context, UndoHistory, RedoHistory);
         Brush.Init(CurrentGrid);
 
-        HUD = new(spriteFontManager);
+        HUD = new(uIFontAtlas);
         HUD.Init();
     }
 

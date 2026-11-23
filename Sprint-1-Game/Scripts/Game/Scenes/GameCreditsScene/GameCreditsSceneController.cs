@@ -4,11 +4,11 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class GameCreditsSceneController(ISceneManager sceneManager, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager, GameWindow window) : ISceneController
+public class GameCreditsSceneController(ISceneManager sceneManager, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas, GameWindow window) : ISceneController
 {
     private readonly static int ExitGameButtonX = 200, ExitGameButtonY = 400;
     private Button ExitGameButton;
-    private BasicSpriteFontWriter GameCompleteMessage = new(spriteFontManager);
+    private UIFont GameCompleteMessage = new(uIFontAtlas);
     private ISprite SproutHeart = new StaticSprite(textureAtlas);
 
     public void Init()
@@ -35,10 +35,10 @@ public class GameCreditsSceneController(ISceneManager sceneManager, IInputManage
 
     private void CreditsTextInit()
     {
-        string gameCompleteText = "Thank you for playing!\n\nGame Created By:\nFuma\nMallory\nSadie\nYongan\nLucas";
-        Vector2 messageSize = spriteFontManager.GetFont(FontNames.DungeonFont).MeasureString(gameCompleteText);
-        Vector2 gameCompletePosition = new Vector2((window.ClientBounds.Width - messageSize.X) / 4f, (window.ClientBounds.Height - messageSize.Y)/4f);
-        GameCompleteMessage.Init(FontNames.DungeonFont, gameCompletePosition, gameCompleteText, Color.Gold);
+        GameCompleteMessage.Init(FontNames.DungeonFont);
+        GameCompleteMessage.Text = "Thank you for playing!\n\nGame Created By:\nFuma\nMallory\nSadie\nYongan\nLucas";
+        GameCompleteMessage.Pos = new Vector2((window.ClientBounds.Width - GameCompleteMessage.Size.X) / 4f, (window.ClientBounds.Height - GameCompleteMessage.Size.Y)/4f);
+        GameCompleteMessage.Color = Color.Gold;
         
     }
 

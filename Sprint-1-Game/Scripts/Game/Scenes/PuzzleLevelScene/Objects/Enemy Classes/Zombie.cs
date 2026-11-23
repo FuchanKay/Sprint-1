@@ -12,7 +12,7 @@ public class Zombie : IEnemy
     public ObjectIds Id => ObjectIds.Zombie;
     public Directions Direction { get; set; } = Directions.South;
     public string RegionName => RegionNames.ToZombieIdleRegionName(Directions.South);
-    public bool IsPushable => true;
+    public bool IsPushable => false;
     public bool IsDestructible => true;
     public bool IsRotatable => false;
     public bool IsPickable => false;
