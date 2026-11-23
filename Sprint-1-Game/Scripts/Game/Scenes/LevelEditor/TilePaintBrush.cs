@@ -40,14 +40,6 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
         CurrentTileSprite = tileSpriteFactory.CreateTileSprite(CurrentTile, new Vector2(0, 0), context);
     }
 
-    public void Init(GridPointer grid, Coordinate coord)
-    {
-        Grid = grid;
-        var tile = tileSelectorGrid.GetTile(coord);
-        CurrentTile = tile.Clone();
-        CurrentTileSprite = tileSpriteFactory.CreateTileSprite(CurrentTile, new Vector2(0, 0), context);
-    }
-
     public void Update(int dtMs)
     {
         if (buttonInput.IsPressed(InputNames.RotatePaintBrush) && CurrentTile.IsRotatable)
@@ -105,6 +97,13 @@ public class TilePaintBrush(IInputManager buttonInput, IInputManager mouseInput,
         TileIndex--;
         if (TileIndex < 0) TileIndex = TilePalette.Length - 1;
         CurrentTile = TilePalette[TileIndex].Clone();
+        CurrentTileSprite = tileSpriteFactory.CreateTileSprite(CurrentTile, new Vector2(0, 0), context);
+    }
+
+    public void SetSelection(Coordinate coord)
+    {
+        var tile = tileSelectorGrid.GetTile(coord);
+        CurrentTile = tile.Clone();
         CurrentTileSprite = tileSpriteFactory.CreateTileSprite(CurrentTile, new Vector2(0, 0), context);
     }
 }

@@ -12,8 +12,6 @@ public class EraserBrush(IInputManager mouseInput, SpriteGrid spriteGrid, LevelC
         Grid = grid;
     }
 
-    public void Init(GridPointer grid, Coordinate coord) {}
-
     public void Update(int dtMs)
     {
         if (mouseInput.IsHeld(InputNames.Select)
@@ -44,5 +42,10 @@ public class EraserBrush(IInputManager mouseInput, SpriteGrid spriteGrid, LevelC
     public void CycleLeft()
     {
 
+    }
+
+    public void SetSelection(Coordinate coord)
+    {
+        
     }
 }
