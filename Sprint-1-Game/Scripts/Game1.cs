@@ -2,13 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary;
 using Scripts.Game;
-using Gum.Forms;
-using Gum.Forms.Controls;
-using Microsoft.Xna.Framework.Media;
-using Gum;
-using Gum.Managers;
-using Gum.Wireframe;
-using GUMProject.Screens;
 namespace Sprint_1_Game.Scripts;
 
 public class Game1 : Core

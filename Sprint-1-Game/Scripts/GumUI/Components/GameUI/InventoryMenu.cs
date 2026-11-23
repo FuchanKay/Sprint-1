@@ -1,16 +1,8 @@
 using Gum;
-using Gum.Converters;
-using Gum.DataTypes;
 using Gum.ExtensionMethods;
-using Gum.Forms.Controls;
 using Gum.Forms.Input;
-using Gum.Managers;
-using Gum.Wireframe;
-using GUMProject.Setups;
-using RenderingLibrary.Graphics;
 using System;
-using System.Diagnostics;
-using System.Linq;
+
 
 namespace GUMProject.Components.GameUI
 {

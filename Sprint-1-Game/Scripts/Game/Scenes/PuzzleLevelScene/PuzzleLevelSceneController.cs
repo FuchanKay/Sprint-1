@@ -1,14 +1,12 @@
-using System.Transactions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
-namespace Scripts.Game;
 using Gum;
-using Gum.DataTypes.Variables;
-using Gum.Forms;
 using Gum.Managers;
 using Gum.Wireframe;
 using GUMProject.Screens;
+
+namespace Scripts.Game;
 
 public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ShaderManager shaderManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas, GameWindow window) : ISceneController
 {
