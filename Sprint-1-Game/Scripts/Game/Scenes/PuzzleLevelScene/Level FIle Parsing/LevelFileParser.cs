@@ -10,6 +10,7 @@ public class LevelFileParser()
     private readonly int NameIdx = 0;
     private readonly int WidthIdx = 1;
     private readonly int HeightIdx = 2;
+    private readonly int FogOfWarIdx = 3;
     private readonly int SpacerRow = 1;
     public static string[] ParseLevelFile(string levelFilePath)
     {
@@ -32,6 +33,13 @@ public class LevelFileParser()
     {
         string[] headerParts = levelFile[0].Split(Delimiter);
         return int.Parse(headerParts[HeightIdx]);
+    }
+
+    public bool GetFogOfWar(string[] levelFile)
+    {
+        string[] headerParts = levelFile[0].Split(Delimiter);
+        string fogOfWarIndicator = headerParts[FogOfWarIdx];
+        return fogOfWarIndicator.Equals("Dark");
     }
 
     public GridPointer CreateGrids(string[] levelFile)

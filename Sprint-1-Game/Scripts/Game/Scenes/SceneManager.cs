@@ -5,7 +5,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas, GameWindow window) : ISceneManager
+public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ShaderManager shaderManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas, GameWindow window) : ISceneManager
 {
     private readonly Dictionary<string, ISceneController> NameSceneMap = [];
     private ISceneController CurrentScene;
@@ -90,10 +90,10 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas, uIFontAtlas);
         NameSceneMap.TryAdd(SceneNames.MainMenu, mainMenuScene);
 
-        var levelEditorScene = new LevelEditorSceneController(this, buttonInput, mouseInput, textureAtlas, uIFontAtlas);
+        var levelEditorScene = new LevelEditorSceneController(this, buttonInput, mouseInput, textureAtlas, uIFontAtlas, shaderManager);
         NameSceneMap.TryAdd(SceneNames.LevelEditor, levelEditorScene);
 
-        var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, textureAtlas, uIFontAtlas, window);
+        var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, shaderManager, textureAtlas, uIFontAtlas, window);
         NameSceneMap.TryAdd(SceneNames.PuzzleLevel, puzzleLevelScene);
 
         var gameCreditsScene = new GameCreditsSceneController(this, mouseInput, audioManager, textureAtlas, uIFontAtlas, window);
