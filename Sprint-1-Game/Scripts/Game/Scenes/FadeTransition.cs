@@ -14,7 +14,7 @@ public class FadeTransition(SceneManager sceneManager) : ISceneTransition
     private enum TransitionType {None, TransitionIn, TransitionOut};
     private TransitionType currentTransitionType = TransitionType.None; 
    
-    public void StartLevelTransition(string sceneName)
+    public void StartSceneTransition(string sceneName)
     {
         currentTransitionType = TransitionType.TransitionOut;
         SceneName = sceneName;

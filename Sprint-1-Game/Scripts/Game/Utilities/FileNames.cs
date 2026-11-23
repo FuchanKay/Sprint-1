@@ -13,6 +13,7 @@ public class FileNames
     public readonly static string WallTexture = "Images/stonewall";
     public readonly static string DoorTexture = "Images/door";
     public readonly static string PlayerTexture = "Images/player-sprites";
+    public readonly static string CreditsSproutTexture = "Images/player-heart-credits";
     public readonly static string BombTexture = "Images/bomb";
     public readonly static string KeyTexture = "Images/key";
     public readonly static string ExplosionTexture = "Images/explosionAtlas";
@@ -53,5 +54,6 @@ public class FileNames
     public readonly static string StoneScrapeAudio = "audio/stoneScrape";
     public readonly static string DeathAudio = "audio/entityDeath";
     public readonly static string UIAtlasDef = "Images/ui-atlas-definition";
+    public readonly static string FogOfWarEffect = "Effects/FogOfWarEffect";
 
 }

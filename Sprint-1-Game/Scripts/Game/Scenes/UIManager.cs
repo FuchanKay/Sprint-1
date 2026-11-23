@@ -4,22 +4,20 @@ using MonoGameLibrary.UIRendering;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
-public class UIManager(UIFontAtlas uIFontAtlas, GameLayoutManager gameLayoutManager)
+
+public class UIManager(GameComponents.UIFontAtlas uIFontAtlas)
 {
-    private HUDPannel HUDPannel = new(uIFontAtlas);
+    private HUDPanel HUDPanel = new(uIFontAtlas);
     public void Init(PuzzleLevel level)
     {
-        HUDPannel.Init(level);
+        HUDPanel.Init(level);
     }
     public void Update(int dtMs)
     {
-
-        HUDPannel.Update(dtMs);
+        HUDPanel.Update(dtMs);
     }
     public void Draw(SpriteBatch sb)
     {
-        gameLayoutManager.HUDLayout(HUDPannel);
-
-        HUDPannel.Draw(sb);
+        HUDPanel.Draw(sb);
     }
 }

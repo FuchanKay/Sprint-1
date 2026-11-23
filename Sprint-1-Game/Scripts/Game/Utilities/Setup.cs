@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Scripts.GameComponents;
@@ -15,12 +16,14 @@ public class Setup(ContentManager content, GameWindow window)
     private IInputManager ButtonInput;
     private IInputManager MouseInput;
     private ITextureAtlas TextureAtlas;
-    private SpriteFontManager SpriteFontManager = new(content);
+    private ShaderManager ShaderManager;
+    private UIFontAtlas UIFontAtlas = new(content);
     public void Initialize(out SceneManager sceneManager)
     {
         ButtonInput = new KeyboardInputManager();
         MouseInput = new MouseInputManager();
         AudioManager = new AudioManager();
+        ShaderManager = new ShaderManager();
 
         TextureAtlas = new TextureAtlas(content);
 
@@ -28,8 +31,7 @@ public class Setup(ContentManager content, GameWindow window)
         AddAnimations();
         AddRegions();
         AddFont();
-        AddUItexture();
-        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, SpriteFontManager, window);
+        sceneManager = new(ButtonInput, MouseInput, AudioManager, ShaderManager, TextureAtlas, UIFontAtlas, window);
         sceneManager.Init();
     }
 
@@ -37,6 +39,8 @@ public class Setup(ContentManager content, GameWindow window)
     {
         BindAllTextures();
         LoadAudio();
+        LoadUI();
+        LoadEffects();
     }
 
 
@@ -230,6 +234,7 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddTexture(TextureNames.LevelEditorButton, FileNames.LevelEditorButtonTexture);
 
         TextureAtlas.AddTexture(TextureNames.Player, FileNames.PlayerTexture);
+        TextureAtlas.AddTexture(TextureNames.CreditsSprout, FileNames.CreditsSproutTexture);
         TextureAtlas.AddTexture(TextureNames.TileSprites, FileNames.TileTextures);
         TextureAtlas.AddTexture(TextureNames.IceSprite, FileNames.IcePlaceholder);
         TextureAtlas.AddTexture(TextureNames.ObjectSprites, FileNames.ObjectTextures);
@@ -269,8 +274,13 @@ public class Setup(ContentManager content, GameWindow window)
 
     private void AddFont()
     {
-        SpriteFontManager.MapFont(FontNames.DefaultFont, FileNames.DefaultFont);
-        SpriteFontManager.MapFont(FontNames.DungeonFont, FileNames.DungeonFont);
+        UIFontAtlas.MapFont(FontNames.DefaultFont, FileNames.DefaultFont);
+        UIFontAtlas.MapFont(FontNames.DungeonFont, FileNames.DungeonFont);
 
+    }
+
+    private void LoadEffects()
+    {
+        ShaderManager.MapEffect(ShaderEffectNames.FogOfWar, content.Load<Effect>(FileNames.FogOfWarEffect));
     }
 }

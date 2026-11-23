@@ -4,7 +4,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, EffectSpriteFactory effectSpriteFactory, LevelFileParser levelFileParser, IAudioManager audioManager, GameLayoutManager gameLayoutManager)
+public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, EffectSpriteFactory effectSpriteFactory, LevelFileParser levelFileParser, IAudioManager audioManager, ShaderManager shaderManager, GameLayoutManager gameLayoutManager)
 {
     private readonly List<ILevelEvent> EventQueue = [];
     public LevelContext Context;
@@ -14,7 +14,7 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
     public IAudioManager AudioManager = audioManager;
     public List<LevelStateHistory> UndoHistory = [];
     private readonly int UndoHistoryMaxLength = 200;
-    public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory, effectSpriteFactory);
+    public readonly SpriteGrid SpriteGrid = new(objectSpriteFactory, tileSpriteFactory, effectSpriteFactory, shaderManager);
     private readonly int MaxEventsQueued = 2;
     private ILevelEvent CurrentEvent = new MovePlayerEvent(Directions.East, false);
     private string[] LevelFile;
@@ -35,17 +35,20 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
             PuzzleOffsetY = 50,
             PlayerIsDead = false,
             LevelIsCompleted = false,
-            LevelEditorMode = false
+            LevelEditorMode = false,
         };
+
         var levelFileName = FileNames.LevelFileNames[levelIndex];
         LevelFile = LevelFileParser.ParseLevelFile(levelFileName);
         Context.LevelName = levelFileParser.GetLevelName(LevelFile);
         Context.LevelWidth = levelFileParser.GetLevelWidth(LevelFile);
         Context.LevelHeight = levelFileParser.GetLevelHeight(LevelFile);
+        Context.FogOfWar = levelFileParser.GetFogOfWar(LevelFile);
 
         gameLayoutManager.LevelLayout(Context);
         CurrentGridPointer = levelFileParser.CreateGrids(LevelFile);
         SpriteGrid.Init(CurrentGridPointer, Context);
+        SpriteGrid.FogOfWarInit();
         CurrentInventoryManager = new InventoryManager();
         LevelStateHistory = new LevelStateHistory(CurrentGridPointer, CurrentInventoryManager);
     }
@@ -140,6 +143,7 @@ public class PuzzleLevel(ObjectSpriteFactory objectSpriteFactory, TileSpriteFact
         }
         LevelStateHistory.InventoryManager = new InventoryManager();
         SpriteGrid.Init(LevelStateHistory.GridPointer, Context);
+        SpriteGrid.FogOfWarInit();
 
         CurrentEvent.SubEventStack.Clear();
         EventQueue.Clear();

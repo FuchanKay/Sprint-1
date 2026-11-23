@@ -1,4 +1,4 @@
-using System;
+using System.Transactions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary.UIRendering;
@@ -11,7 +11,7 @@ using Gum.Managers;
 using Gum.Wireframe;
 using GUMProject.Screens;
 
-public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager, GameWindow window) : ISceneController
+public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ShaderManager shaderManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas, GameWindow window) : ISceneController
 {
     private PuzzleLevel Level;
     private LevelFileParser LevelFileParser;
@@ -19,31 +19,47 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private GameLayoutManager GameLayoutManager = new();
-    private UIManager UIManager;
+    private UIManager UIManager = new(uIFontAtlas);
     private readonly IAudioManager AudioManager = audioManager;
+    private readonly ShaderManager ShaderManager = shaderManager;
     private ILevelTransition LevelTransition;
     public int CurrentLevelIndex = 0;
     // Loading a SpriteFont Description using the content pipeline
     private GraphicalUiElement Screen;
+    private UIFont DeathMessage = new(uIFontAtlas);
+
     public void Init()
     {
         GameLayoutManager.Init(window);
         LevelFileParser = new LevelFileParser();
-        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
+        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, ShaderManager, GameLayoutManager);
         Level.Init(CurrentLevelIndex);
        // UIManager = new(uIFontAtlas, GameLayoutManager);
         //UIManager.Init(Level);
         LevelTransition = new WipeTransition(Level);
         Screen = ObjectFinder.Self.GumProjectSave.Screens[0].ToGraphicalUiElement();
         Screen.AddToRoot();
+        InitDeathMessage();        
     }
 
     public void Init(GridPointer grid, LevelContext level)
     {
         GameLayoutManager.Init(window);
-        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
+        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, ShaderManager, GameLayoutManager);
         Level.Init(grid, level);
         //UIManager.Init(Level);
+        UIManager.Init(Level);
+        InitDeathMessage();
+    }
+
+    private void InitDeathMessage()
+    {
+        DeathMessage.Init(FontNames.DungeonFont);
+        DeathMessage.Text = "Press Z to Undo, or R to Restart";
+        DeathMessage.Color = Color.DarkRed;
+        DeathMessage.OriginEnum = UIFont.GenericOrigin.Center;
+        float LevelScreenRatio = 4f/5f;
+        DeathMessage.Pos = new Vector2(window.ClientBounds.Width * (LevelScreenRatio / 2f), window.ClientBounds.Height/2f);
     }
 
     public void Update(int dtMs)
@@ -51,6 +67,10 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         if (LevelTransition.IsActive)
         {
             LevelTransition.Update(dtMs);
+            Level.Update(dtMs);
+            return;
+        } else if (sceneManager.SceneTransition.IsActive)
+        {
             Level.Update(dtMs);
             return;
         }
@@ -120,10 +140,15 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         {
             sceneManager.Restart();
         }
-        else if (Level.Context.LevelIsCompleted)
+        else if (Level.Context.LevelIsCompleted && !sceneManager.SceneTransition.IsActive)
         {
-            CurrentLevelIndex = (CurrentLevelIndex + 1) % FileNames.LevelFileNames.Length;
-            LevelTransition.StartLevelTransition(CurrentLevelIndex);
+            CurrentLevelIndex += 1;
+            if (CurrentLevelIndex >= FileNames.LevelFileNames.Length)
+            {
+                sceneManager.SceneTransition.StartSceneTransition(SceneNames.GameCredits);
+            } else {
+                LevelTransition.StartLevelTransition(CurrentLevelIndex);
+            }
         }
         foreach(var item in GumService.Default.Root.Children)
         {
@@ -137,9 +162,10 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     }
     public void Draw(SpriteBatch sb)
     {
-
         Level.Draw(sb);
         //UIManager.Draw(sb);
+        UIManager.Draw(sb);
+        if(Level.Context.PlayerIsDead) DeathMessage.Draw(sb);
         if(LevelTransition.IsActive) LevelTransition.Draw(sb);
     }
 }
