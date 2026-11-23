@@ -90,11 +90,6 @@
       "LinkType": 0
     },
     {
-      "Name": "GameUI/InventoryBar",
-      "ElementType": 1,
-      "LinkType": 0
-    },
-    {
       "Name": "GameUI/InventoryMenu",
       "ElementType": 1,
       "LinkType": 0

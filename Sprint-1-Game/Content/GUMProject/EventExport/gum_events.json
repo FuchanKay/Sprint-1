@@ -1771,6 +1771,13 @@
         "ElementType": "Components",
         "EventType": 1,
         "TimestampUtc": "2026-11-23T19:46:17.5967131Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameUI/InventoryBar",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2026-11-23T20:31:04.2498195Z"
       }
     ]
   }
