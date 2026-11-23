@@ -75,46 +75,6 @@
       "LinkType": 0
     },
     {
-      "Name": "Elements/CautionLines",
-      "ElementType": 1,
-      "LinkType": 0
-    },
-    {
-      "Name": "Elements/Divider",
-      "ElementType": 1,
-      "LinkType": 0
-    },
-    {
-      "Name": "Elements/DividerHorizontal",
-      "ElementType": 1,
-      "LinkType": 0
-    },
-    {
-      "Name": "Elements/DividerVertical",
-      "ElementType": 1,
-      "LinkType": 0
-    },
-    {
-      "Name": "Elements/Icon",
-      "ElementType": 1,
-      "LinkType": 0
-    },
-    {
-      "Name": "Elements/PercentBar",
-      "ElementType": 1,
-      "LinkType": 0
-    },
-    {
-      "Name": "Elements/PercentBarIcon",
-      "ElementType": 1,
-      "LinkType": 0
-    },
-    {
-      "Name": "Elements/VerticalLines",
-      "ElementType": 1,
-      "LinkType": 0
-    },
-    {
       "Name": "GameUI/EnemyCounterMenu",
       "ElementType": 1,
       "LinkType": 0
