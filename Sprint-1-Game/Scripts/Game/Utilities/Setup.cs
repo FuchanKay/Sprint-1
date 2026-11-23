@@ -60,6 +60,7 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.Snap, (int)Keys.F);
 
         ButtonInput.MapInput(InputNames.ExitGame, (int)Keys.Q);
+        ButtonInput.MapInput(InputNames.Resume, (int)Keys.Escape);
         ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.R);
         ButtonInput.MapInput(InputNames.ResetLevel, (int)Keys.R);
 

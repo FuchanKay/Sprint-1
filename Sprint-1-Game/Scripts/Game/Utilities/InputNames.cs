@@ -26,6 +26,7 @@ public class InputNames
     public readonly static string UseItem2 = "Use Item 2";
     public readonly static string UseItem3 = "Use Item 3";
     public readonly static string ExitGame = "Exit Game";
+    public readonly static string Resume = "Resume";
     public readonly static string ResetGame = "Reset Game";
     public readonly static string ResetLevel = "Reset Level";
     public readonly static string PlayLevel = "Play Level";
