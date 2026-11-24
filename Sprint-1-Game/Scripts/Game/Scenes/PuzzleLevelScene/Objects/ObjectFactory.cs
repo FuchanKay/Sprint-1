@@ -128,7 +128,8 @@ public class ObjectFactory()
         return new DoorObject
         {
             Direction = Directions.South,
-            RegionName = RegionNames.ClosedDoor
+            RegionName = RegionNames.ClosedDoor,
+            IsOpen = false,
         };
     }
 

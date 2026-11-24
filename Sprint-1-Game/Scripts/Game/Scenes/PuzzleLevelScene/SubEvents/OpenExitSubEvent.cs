@@ -1,8 +1,7 @@
 using System.Linq;
+using Scripts.GameComponents;
 
 namespace Scripts.Game;
-
-using Scripts.GameComponents;
 
 public class OpenExitSubEvent() : ILevelSubEvent
 {
@@ -14,6 +13,7 @@ public class OpenExitSubEvent() : ILevelSubEvent
             DoorObject door = gridPointer.GetObject(doorCoord) as DoorObject;
             if (!door.IsOpen)
             {
+                gridPointer.SetObject(doorCoord, ObjectFactory.CreateOpenDoor());
                 OpenDoor(spriteGrid, doorCoord);
                 door.IsOpen = true;
             }
