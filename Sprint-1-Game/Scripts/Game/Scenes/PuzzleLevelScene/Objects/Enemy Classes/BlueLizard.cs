@@ -18,7 +18,7 @@ public class BlueLizard : IEnemy
     public Directions Direction { get; set; } = Directions.South;
     public string RegionName => RegionNames.ToIdleRegionName(Directions.South);
     public bool IsPushable => true;
-    public bool IsDestructible => true;
+    public bool IsDestructible => false;
     public bool IsRotatable => true;
     public bool IsPickable => false;
     public int Health { get; set; } = 1;
