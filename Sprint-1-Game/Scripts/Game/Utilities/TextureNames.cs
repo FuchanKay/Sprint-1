@@ -12,7 +12,6 @@ public class TextureNames
     public readonly static string ObjectSprites = "Object Sprites";
     public readonly static string EffectSprites = "Effect Sprites";
     public readonly static string Wall = "Wall";
-    public readonly static string Door = "Door";
     public readonly static string Bomb = "Bomb";
     public readonly static string Key = "Key";
     public readonly static string Explosion = "Explosion";

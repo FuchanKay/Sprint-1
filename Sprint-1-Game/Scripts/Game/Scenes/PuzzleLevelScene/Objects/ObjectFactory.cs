@@ -128,6 +128,7 @@ public class ObjectFactory()
         return new DoorObject
         {
             Direction = Directions.South,
+            RegionName = RegionNames.ClosedDoor
         };
     }
 
@@ -136,7 +137,8 @@ public class ObjectFactory()
         return new DoorObject
         {
             Direction = Directions.South,
-            IsOpen = true
+            IsOpen = true,
+            RegionName = AnimationNames.OpenDoorIdle
         };
     }
 

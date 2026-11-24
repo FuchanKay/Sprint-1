@@ -62,10 +62,10 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
             case ObjectIds.Door:
                 sprite = new StaticSprite(textureAtlas);
                 var door = obj as DoorObject;
-                if (door.IsOpen) regionName = RegionNames.OpenDoor;
-                else regionName = RegionNames.ClosedDoor;
-                sprite.Texture = textureAtlas.GetTexture(TextureNames.Door);
-                spriteScale = context.GridScale * 12.0f;
+                if (door.IsOpen) sprite = new AnimatedSprite(textureAtlas);
+                regionName = door.RegionName;
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.ObjectSprites);
+                spriteScale = context.GridScale * 4.0f;
                 break;
             case ObjectIds.TimedBomb:
                 sprite = new StaticSprite(textureAtlas);
@@ -125,7 +125,10 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
         sprite.SetTargetPosition(coord);
 
         sprite.LayerDepth = ObjectLayerDepth;
-        if (obj.Id == ObjectIds.Door) sprite.LayerDepth = 0.45f;
+        if (obj.Id == ObjectIds.Door) {
+            sprite.LayerDepth = 0.45f;
+            sprite.IdleName = AnimationNames.OpenDoorIdle;
+        }
         sprite.Scale = spriteScale;
 
         return sprite;

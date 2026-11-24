@@ -133,7 +133,8 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddAnimation(AnimationNames.Slash, 2, 0, 6, 64, 64, 30);
 
         //door open
-        TextureAtlas.AddAnimation(AnimationNames.DoorOpening, 0, 0, 5, 15, 27, 100);
+        TextureAtlas.AddAnimation(AnimationNames.DoorOpening, 3, 1, 4, 64, 64, 150);
+        TextureAtlas.AddAnimation(AnimationNames.OpenDoorIdle, 3, 4, 2, 64, 64, idleDelay);
 
         TextureAtlas.AddAnimation(AnimationNames.BatFly, 0, 0, 4, 40, 44, 75);
 
@@ -180,6 +181,7 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddRegion(RegionNames.VineSeed, 2, 0, 64, 64);
         TextureAtlas.AddRegion(RegionNames.PumpkinSeed, 3, 0, 64, 64);
         TextureAtlas.AddRegion(RegionNames.InvertedCornerWall, 4, 0, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.SingleStandaloneWall, 5, 0, 64, 64);
 
         TextureAtlas.AddRegion(RegionNames.CornerWall, 0, 2, 64, 64);
         TextureAtlas.AddRegion(RegionNames.Wall, 1, 2, 64, 64);
@@ -189,13 +191,11 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddRegion(RegionNames.StandaloneWallCorner, 5, 2, 64, 64);
 
         TextureAtlas.AddRegion(RegionNames.StandaloneWallCap, 0, 3, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.SingleStandaloneWall, 1, 3, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.ClosedDoor, 1, 3, 64, 64);
 ;
         TextureAtlas.AddRegion(RegionNames.Bomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.TimedBomb, 0, 0, 256, 256);
         TextureAtlas.AddRegion(RegionNames.Key, 0, 0, 512, 512);
-        TextureAtlas.AddRegion(RegionNames.ClosedDoor, 0, 0, 15, 27);
-        TextureAtlas.AddRegion(RegionNames.OpenDoor, 4, 0, 15, 27);
 
         // effects
         TextureAtlas.AddRegion(RegionNames.LaserBeam, 4, 2, 64, 64);
@@ -232,7 +232,6 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddTexture(TextureNames.TileSprites, FileNames.TileTextures);
         TextureAtlas.AddTexture(TextureNames.ObjectSprites, FileNames.ObjectTextures);
         TextureAtlas.AddTexture(TextureNames.Wall, FileNames.WallTexture);
-        TextureAtlas.AddTexture(TextureNames.Door, FileNames.DoorTexture);
         TextureAtlas.AddTexture(TextureNames.Bomb, FileNames.BombTexture);
         TextureAtlas.AddTexture(TextureNames.Key, FileNames.KeyTexture);
         TextureAtlas.AddTexture(TextureNames.Explosion, FileNames.ExplosionTexture);

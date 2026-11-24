@@ -7,12 +7,13 @@ public class DoorObject : IObject
         return new DoorObject
         {
             Direction = Direction,
-            IsOpen = IsOpen
+            IsOpen = IsOpen,
+            RegionName = RegionName,
         };
     }
     public ObjectIds Id => ObjectIds.Door;
     public Directions Direction { get; set; } = Directions.South;
-    public string RegionName => RegionNames.ClosedDoor;
+    public string RegionName {get; set;}
     public bool IsPushable => false;
     public bool IsDestructible => false;
     public bool IsRotatable => false;

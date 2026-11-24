@@ -48,6 +48,7 @@ public class AnimationNames
     public readonly static string PumpkinSeedTileIdle = "-Pumpkin Seed Tile Idle";
     public readonly static string BugTileIdle = "-Bug Tile Idle";
     public readonly static string CCBugTileIdle = "-CC Bug Tile Idle";
+    public readonly static string OpenDoorIdle = "-Open Door Idle";
 
     public static string ObjectRotateClockwiseFrom(Directions direction)
     {
