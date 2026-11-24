@@ -112,6 +112,12 @@ public class LevelFileParser()
             "Ice" => TileFactory.CreateIceTile(),
             "Bug" => TileFactory.CreateBugTile(),
             "CCBug" => TileFactory.CreateCCBugTile(),
+            "PitBoulder" => TileFactory.CreatePitBoulderTile(),
+            "WaterBoulder" => TileFactory.CreateWaterBoulderTile(),
+            "PitPumpkin" => TileFactory.CreatePitPumpkinTile(),
+            "WaterPumpkin" => TileFactory.CreateWaterPumpkinTile(),
+            "VineStart" => TileFactory.CreateVineStartTile(),
+            "Vine" => TileFactory.CreateVineTile(),
             _ => throw new Exception($"Unknown tile value: {tileValue} at position ({x}, {y})")
         };
         return tile;

@@ -58,6 +58,10 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.SetState(RegionNames.PumpkinSeedTile);
                 sprite.IdleName = RegionNames.PumpkinSeedTile;
                 break;
+            case TileIds.Empty:
+                sprite = new StaticSprite(textureAtlas);
+                sprite.SetState(RegionNames.InventorySlot);
+                break;
             default:
                 sprite = new StaticSprite(textureAtlas);
                 break;

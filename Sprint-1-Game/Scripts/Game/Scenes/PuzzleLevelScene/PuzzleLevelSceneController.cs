@@ -26,6 +26,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
 
     public void Init()
     {
+        Gum.GumService.Default.Root.Children.Clear();
         GameLayoutManager.Init(window);
         LevelFileParser = new LevelFileParser();
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, ShaderManager, GameLayoutManager);
@@ -38,20 +39,11 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
 
     public void Init(GridPointer grid, LevelContext level)
     {
+        Gum.GumService.Default.Root.Children.Clear();
         GameLayoutManager.Init(window);
         Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, ShaderManager, GameLayoutManager);
         Level.Init(grid, level);
         InitDeathMessage();
-    }
-
-    private void InitDeathMessage()
-    {
-        DeathMessage.Init(FontNames.DungeonFont);
-        DeathMessage.Text = "Press Z to Undo, or R to Restart";
-        DeathMessage.Color = Color.DarkRed;
-        DeathMessage.OriginEnum = UIFont.GenericOrigin.Center;
-        float LevelScreenRatio = 4f/5f;
-        DeathMessage.Pos = new Vector2(window.ClientBounds.Width * (LevelScreenRatio / 2f), window.ClientBounds.Height/2f);
     }
 
     public void Update(int dtMs)
@@ -156,5 +148,15 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         Level.Draw(sb);
         if(Level.Context.PlayerIsDead) DeathMessage.Draw(sb);
         if(LevelTransition.IsActive) LevelTransition.Draw(sb);
+    }
+
+    private void InitDeathMessage()
+    {
+        DeathMessage.Init(FontNames.DungeonFont);
+        DeathMessage.Text = "Press Z to Undo, or R to Restart";
+        DeathMessage.Color = Color.DarkRed;
+        DeathMessage.OriginEnum = UIFont.GenericOrigin.Center;
+        float LevelScreenRatio = 4f/5f;
+        DeathMessage.Pos = new Vector2(window.ClientBounds.Width * (LevelScreenRatio / 2f), window.ClientBounds.Height/2f);
     }
 }

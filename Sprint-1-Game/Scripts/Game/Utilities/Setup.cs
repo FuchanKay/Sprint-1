@@ -63,6 +63,7 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.Snap, (int)Keys.F);
 
         ButtonInput.MapInput(InputNames.ExitGame, (int)Keys.Q);
+        ButtonInput.MapInput(InputNames.Resume, (int)Keys.Escape);
         ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.R);
         ButtonInput.MapInput(InputNames.ResetLevel, (int)Keys.R);
 
@@ -172,9 +173,11 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddRegion(RegionNames.LavaTile, 3, 3, 64, 64);
 
         TextureAtlas.AddRegion(RegionNames.WaterTile, 0, 4, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.IceTile, 0, 0, 602, 602);
         TextureAtlas.AddRegion(RegionNames.BoulderWaterTile, 1, 4, 64, 64);
         TextureAtlas.AddRegion(RegionNames.PumpkinWaterTile, 2, 4, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.InventorySlot, 3, 4, 64, 64);
+
+        TextureAtlas.AddRegion(RegionNames.IceTile, 0, 0, 602, 602);
 
         // objects
         TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 64, 64);

@@ -13,6 +13,9 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
     public bool ShouldExit { get; private set; }
     public bool ShouldRestart { get; private set; }
     public ISceneTransition SceneTransition { get; set; }
+    private QuitConfirmationPopup QuitConfirmation;
+    public enum GameStates {Play, Paused};
+    public GameStates currentGameState = GameStates.Play;
 
     public void Init()
     {
@@ -23,6 +26,8 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
 
         CurrentScene = NameSceneMap[SceneNames.MainMenu];
         CurrentScene.Init();
+        QuitConfirmation = new QuitConfirmationPopup(this, buttonInput, uIFontAtlas, window);
+        QuitConfirmation.Init();
     }
 
     public void Restart()
@@ -36,6 +41,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
     {
         UpdateInputs();
 
+        QuitConfirmation.Update();
         //Later on in development exiting game should not be mapped to a key but decent temporary solution for now. 
         if (buttonInput.IsHeld(InputNames.LCtrl) && buttonInput.IsPressed(InputNames.ResetGame))
         {
@@ -44,15 +50,22 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
 
         if (buttonInput.IsPressed(InputNames.ExitGame))
         {
-            ExitGame();
+            if(CurrentScene is MainMenuSceneController || CurrentScene is GameCreditsSceneController) ExitGame();
+            else {
+                currentGameState = GameStates.Paused;
+                QuitConfirmation.IsOnscreen = true;
+            }
         }
+        
         if (SceneTransition.IsActive) SceneTransition.Update(dtMs);
-        CurrentScene.Update(dtMs);
+        if(currentGameState == GameStates.Play) CurrentScene.Update(dtMs);
     }
+        
 
     public void Draw(SpriteBatch sb)
     {
         CurrentScene.Draw(sb);
+        QuitConfirmation.Draw(sb);
         if (SceneTransition.IsActive) SceneTransition.Draw(sb);
     }
 
@@ -91,7 +104,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas, uIFontAtlas);
         NameSceneMap.TryAdd(SceneNames.MainMenu, mainMenuScene);
 
-        var levelEditorScene = new LevelEditorSceneController(this, buttonInput, mouseInput, textureAtlas, uIFontAtlas, shaderManager);
+        var levelEditorScene = new LevelEditorSceneController(this, buttonInput, mouseInput, audioManager, textureAtlas, uIFontAtlas, shaderManager);
         NameSceneMap.TryAdd(SceneNames.LevelEditor, levelEditorScene);
 
         var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, shaderManager, textureAtlas, uIFontAtlas, window);

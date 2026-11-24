@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Gum.Forms;
+using Gum.Forms.Controls;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary;
 using Scripts.Game;
@@ -27,6 +29,7 @@ public class Game1 : Core
         GumUI.Initialize(this, "GUMProject/GUMProject.gumj");
 
         base.Initialize();
+        InitializeGum();
     }
 
     protected override void LoadContent()
@@ -52,6 +55,8 @@ public class Game1 : Core
         }
         GumUI.Update(gameTime);
 
+
+        Gum.GumService.Default.Update(gameTime);
         base.Update(gameTime);
     }
 
@@ -60,12 +65,23 @@ public class Game1 : Core
         GraphicsDevice.Clear(BackgroundColor);
 
         SpriteBatch.Begin(SpriteSortMode.FrontToBack);
-
-        // TEST (random destination)
         SceneManager.Draw(SpriteBatch);
         SpriteBatch.End();
-        GumUI.Draw();
+
+        Gum.GumService.Default.Draw();
         base.Draw(gameTime);
     }
 
+    private void InitializeGum()
+    {
+        Gum.GumService.Default.Initialize(this, DefaultVisualsVersion.V3);
+        Gum.GumService.Default.ContentLoader.XnaContentManager = Core.Content;
+
+        FrameworkElement.KeyboardsForUiControl.Add(Gum.GumService.Default.Keyboard);
+        FrameworkElement.GamePadsForUiControl.AddRange(Gum.GumService.Default.Gamepads);
+        FrameworkElement.TabReverseKeyCombos.Add(
+        new KeyCombo() { PushedKey = Gum.Forms.Input.Keys.Up });
+        FrameworkElement.TabKeyCombos.Add(
+        new KeyCombo() { PushedKey = Gum.Forms.Input.Keys.Down });
+    }
 }

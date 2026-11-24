@@ -1,9 +1,8 @@
 namespace Scripts.Game;
 
-using System.Collections.Generic;
 using Scripts.GameComponents;
 
-public class SeedGrowthSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
+public class SeedGrowthSubEvent : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
@@ -29,11 +28,6 @@ public class SeedGrowthSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSub
         spriteGrid.SetNewTileSprite(seedCoord, dirtTile);
 
         var pumpkinObj = ObjectFactory.CreatePumpkin();
-        if (gridPointer.GetObject(seedCoord).Id == ObjectIds.Player)
-        {
-            subEventStack.Push(new PlayerDeathSubEvent());
-            return;
-        }
         gridPointer.SetObject(seedCoord, pumpkinObj);
         spriteGrid.SetNewObjectSprite(seedCoord, pumpkinObj);
 
