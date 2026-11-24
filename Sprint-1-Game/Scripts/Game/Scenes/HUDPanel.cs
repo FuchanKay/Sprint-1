@@ -27,14 +27,17 @@ public class HUDPanel(UIFontAtlas uIFontAtlas)
         EnemyCounter.Pos = new Vector2(1040, 40);
         EnemyCounter.Color = Color.Gold;
         EnemyCounter.Text= $"Enemy remains: {Level.LevelStateHistory.GridPointer.EnemyCollection.Count}";
+        EnemyCounter.LayerDepth = 0.95f;
 
         GameClock.Pos = new Vector2(1040, 80);
         GameClock.Color = Color.Gold;
         GameClock.Text = "00:00:00";
+        GameClock.LayerDepth = 0.95f;
 
         InventoryStatus.Pos = new Vector2(1040, 120);
         InventoryStatus.Color = Color.Gold;
         InventoryStatus.Text = $"Inventory:\n{Level.LevelStateHistory.InventoryManager}";
+        InventoryStatus.LayerDepth = 0.95f;
         
         CommandInstructions.Pos = new Vector2(1040, 350);
         CommandInstructions.Text = "Player Move: WASD\n"
@@ -44,6 +47,7 @@ public class HUDPanel(UIFontAtlas uIFontAtlas)
                                     + "Toggle Hide Objects: H\n"
                                     + "Change Scene: B\n";
         CommandInstructions.Color = Color.Gold;
+        CommandInstructions.LayerDepth = 0.95f;
 
 
     }
