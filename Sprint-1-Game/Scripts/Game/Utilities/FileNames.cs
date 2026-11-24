@@ -42,13 +42,13 @@ public class FileNames
 
     public readonly static string[] ObjectSelectorFileNames = 
     [
-    "Content/Levels/object-grid-1.csv",
+    "Content/PaletteGrids/object-grid-1.csv",
     ];
 
     public readonly static string[] TileSelectorFileNames = 
     [
-    "Content/Levels/tile-grid-1.csv",
-    "Content/Levels/tile-grid-2.csv",
+    "Content/PaletteGrids/tile-grid-1.csv",
+    "Content/PaletteGrids/tile-grid-2.csv",
     ];
 
     public readonly static string SnapAudio = "audio/snap";
