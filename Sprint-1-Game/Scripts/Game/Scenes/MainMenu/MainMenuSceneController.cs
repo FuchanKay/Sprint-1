@@ -18,7 +18,8 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
 
     public void Init()
     {
-
+        Gum.GumService.Default.Root.Children.Clear();
+        
         PlayGameButton = new PlayGameButton(sceneManager, audioManager, textureAtlas);
         PlayGameButton.Init(PlayGameButtonX, PlayGameButtonY, mouseInput, true);
 

@@ -18,7 +18,7 @@ public class SnapEvent() : ILevelEvent
         SubEventStack.Push(new TimedBombSnapSubEvent(timedBombCoords, SubEventStack));
         SubEventStack.Push(new FrogHopSubEvent());
         SubEventStack.Push(new FrogHopSubEvent());
-        SubEventStack.Push(new SeedGrowthSubEvent(SubEventStack));
+        SubEventStack.Push(new SeedGrowthSubEvent());
         SubEventStack.Push(new BugRotateSubEvent());
         SubEventStack.Push(new WarlockSwapSubEvent());
         SubEventStack.Push(new SnapAnimationSubEvent());

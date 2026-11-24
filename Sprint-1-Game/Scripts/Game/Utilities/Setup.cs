@@ -174,9 +174,11 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddRegion(RegionNames.LavaTile, 3, 3, 64, 64);
 
         TextureAtlas.AddRegion(RegionNames.WaterTile, 0, 4, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.IceTile, 0, 0, 602, 602);
         TextureAtlas.AddRegion(RegionNames.BoulderWaterTile, 1, 4, 64, 64);
         TextureAtlas.AddRegion(RegionNames.PumpkinWaterTile, 2, 4, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.InventorySlot, 3, 4, 64, 64);
+
+        TextureAtlas.AddRegion(RegionNames.IceTile, 0, 0, 602, 602);
 
         // objects
         TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 64, 64);

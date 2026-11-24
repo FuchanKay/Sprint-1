@@ -37,10 +37,7 @@ public class TileSpriteManager
 
                 var spriteCoord = SpriteGrid.CalculateLiteralPos(context, coord);
 
-                if (tile.Id != TileIds.Empty)
-                {
-                    TileSprites.Add(spriteCoord, tileSpriteFactory.CreateTileSprite(tile, spriteCoord, context));
-                }
+                TileSprites.Add(spriteCoord, tileSpriteFactory.CreateTileSprite(tile, spriteCoord, context));
             }
         }
     }

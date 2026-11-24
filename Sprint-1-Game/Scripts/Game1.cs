@@ -24,9 +24,9 @@ public class Game1 : Core
     protected override void Initialize()
     {
         Setup.Initialize(out var sceneManager);
-        //InitializeGum();
         SceneManager = sceneManager;
         base.Initialize();
+        InitializeGum();
     }
 
     protected override void LoadContent()
@@ -50,6 +50,8 @@ public class Game1 : Core
             Setup.LoadContent();
             SceneManager.Init();
         }
+
+        Gum.GumService.Default.Update(gameTime);
         base.Update(gameTime);
     }
 
@@ -58,12 +60,23 @@ public class Game1 : Core
         GraphicsDevice.Clear(BackgroundColor);
 
         SpriteBatch.Begin(SpriteSortMode.FrontToBack);
-
-        // TEST (random destination)
         SceneManager.Draw(SpriteBatch);
         SpriteBatch.End();
 
+        Gum.GumService.Default.Draw();
         base.Draw(gameTime);
     }
 
+    private void InitializeGum()
+    {
+        Gum.GumService.Default.Initialize(this, DefaultVisualsVersion.V3);
+        Gum.GumService.Default.ContentLoader.XnaContentManager = Core.Content;
+
+        FrameworkElement.KeyboardsForUiControl.Add(Gum.GumService.Default.Keyboard);
+        FrameworkElement.GamePadsForUiControl.AddRange(Gum.GumService.Default.Gamepads);
+        FrameworkElement.TabReverseKeyCombos.Add(
+        new KeyCombo() { PushedKey = Gum.Forms.Input.Keys.Up });
+        FrameworkElement.TabKeyCombos.Add(
+        new KeyCombo() { PushedKey = Gum.Forms.Input.Keys.Down });
+    }
 }

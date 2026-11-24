@@ -5,7 +5,7 @@ using Scripts.GameComponents;
 
 namespace Scripts.Game;
 
-public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInput, SpriteGrid spriteGrid, LevelContext context, ObjectSpriteFactory objectSpriteFactory, List<GridPointer> undoHistory, List<GridPointer> redoHistory) : IBrush
+public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, SpriteGrid spriteGrid, LevelContext context, LevelContext objectGridContext, GridPointer objectSelectorGrid, ObjectSpriteFactory objectSpriteFactory, List<GridPointer> undoHistory, List<GridPointer> redoHistory) : IBrush
 {
     private static readonly IObject[] ObjectPalette = [
         ObjectFactory.CreateBat(),
@@ -67,6 +67,12 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
                 Grid.SetObject(coord, placedObject);
                 spriteGrid.SetNewObjectSprite(coord, placedObject);
             }
+        } else if (mouseInput.IsHeld(InputNames.Select) 
+            && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, objectGridContext, out var objCoord) && objectSelectorGrid.GetObject(objCoord).Id != ObjectIds.Empty) 
+        {
+            CurrentObject = objectSelectorGrid.GetObject(objCoord);
+            CurrentObjectSprite = objectSpriteFactory.CreateObjectSprite(CurrentObject, new Vector2(0, 0), context);
+            audioManager.PlaySound(SoundNames.Pickup);
         }
     }
 
@@ -81,6 +87,7 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
         {
             CurrentObjectSprite.CurrentPosition = new Vector2(mouseInput.MousePositionX, mouseInput.MousePositionY);
         }
+        CurrentObjectSprite.LayerDepth = 1.0f;
         CurrentObjectSprite.Draw(sb);
     }
 
@@ -97,6 +104,13 @@ public class ObjectPaintBrush(IInputManager buttonInput, IInputManager mouseInpu
         ObjectIndex--;
         if (ObjectIndex < 0) ObjectIndex = ObjectPalette.Length - 1;
         CurrentObject = ObjectPalette[ObjectIndex].Clone();
+        CurrentObjectSprite = objectSpriteFactory.CreateObjectSprite(CurrentObject, new Vector2(0, 0), context);
+    }
+
+    public void SetSelection(Coordinate coord)
+    {
+        var obj = objectSelectorGrid.GetObject(coord);
+        CurrentObject = obj.Clone();
         CurrentObjectSprite = objectSpriteFactory.CreateObjectSprite(CurrentObject, new Vector2(0, 0), context);
     }
 }

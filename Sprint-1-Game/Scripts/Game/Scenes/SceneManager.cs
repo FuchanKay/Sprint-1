@@ -103,7 +103,7 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
         var mainMenuScene = new MainMenuSceneController(this, mouseInput, audioManager, textureAtlas, uIFontAtlas);
         NameSceneMap.TryAdd(SceneNames.MainMenu, mainMenuScene);
 
-        var levelEditorScene = new LevelEditorSceneController(this, buttonInput, mouseInput, textureAtlas, uIFontAtlas, shaderManager);
+        var levelEditorScene = new LevelEditorSceneController(this, buttonInput, mouseInput, audioManager, textureAtlas, uIFontAtlas, shaderManager);
         NameSceneMap.TryAdd(SceneNames.LevelEditor, levelEditorScene);
 
         var puzzleLevelScene = new PuzzleLevelSceneController(this, buttonInput, audioManager, shaderManager, textureAtlas, uIFontAtlas, window);

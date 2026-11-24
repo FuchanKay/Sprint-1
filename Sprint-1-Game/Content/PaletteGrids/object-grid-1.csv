@@ -1,0 +1,6 @@
+﻿Objects 1,12,2,,,,,,,,,
+_,_,_,_,_,_,_,_,_,_,_,_
+_,_,_,_,_,_,_,_,_,_,_,_
+-,-,-,-,-,-,-,-,-,-,-,-
+Rock,Bomb,ClosedDoor,Player,Skeleton,BlueLizard,Frog,Wall,ICornerWall,OneSingleWall,SingleWallCorner,WallTop
+Pumpkin,TimedBomb,OpenDoor,Key,Bat,RedLizard,Warlock,CornerWall,SingleWall,SingleWallCap,SingleWallConnector,_
