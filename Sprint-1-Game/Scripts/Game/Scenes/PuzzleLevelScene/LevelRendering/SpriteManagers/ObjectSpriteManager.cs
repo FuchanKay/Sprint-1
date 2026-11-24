@@ -12,11 +12,13 @@ public class ObjectSpriteManager
     public readonly List<ISprite> AnimatingObjectSprites = [];
     private LevelContext Context;
     private ObjectSpriteFactory ObjectSpriteFactory;
+    private bool ShouldReset = true;
 
     public void Init(GridPointer gridPointer, LevelContext context, ObjectSpriteFactory objectSpriteFactory)
     {
         Context = context;
         ObjectSpriteFactory = objectSpriteFactory;
+        ShouldReset = true;
 
         ObjectSprites.Clear();
         AnimatingObjectSprites.Clear();
@@ -123,18 +125,21 @@ public class ObjectSpriteManager
         {
             ObjectSprites.Remove(sprite.CurrentPosition);
             sprite.Update(dtMs);
-            ObjectSprites[sprite.CurrentPosition] = sprite;
+
+            if(!ObjectSprites.TryAdd(sprite.CurrentPosition, sprite))
+            {
+                ShouldReset = false;
+            }
         }
         var finishedSprites = AnimatingObjectSprites.FindAll(sprite => sprite.IsFinished);
-        ResetToIdle(finishedSprites);
+        if(ShouldReset) ResetToIdle(finishedSprites);
+        AnimatingObjectSprites.RemoveAll(sprite => sprite.IsFinished);
     }
 
     private void ResetToIdle(List<ISprite> finishedSprites)
     {
         foreach (var sprite in finishedSprites)
         {
-            AnimatingObjectSprites.Remove(sprite);
-
             ISprite idleSprite;
             if(sprite.IdleName.Contains('-'))
             {
@@ -146,7 +151,5 @@ public class ObjectSpriteManager
 
             ObjectSprites[idleSprite.CurrentPosition] = idleSprite;
         }
-
-        finishedSprites.Clear();
     }
 }
