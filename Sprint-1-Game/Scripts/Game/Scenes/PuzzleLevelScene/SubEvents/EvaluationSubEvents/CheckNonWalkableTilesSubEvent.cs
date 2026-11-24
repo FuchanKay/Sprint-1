@@ -30,14 +30,23 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack) 
 
         if (obj.Id == ObjectIds.Player)
         {
-            subEventStack.Push(new PlayerDeathSubEvent());
+            audioManager.PlaySound(SoundNames.WaterSplash);
+            spriteGrid.RemoveObjectSprite(waterCoord);
+            
+            subEventStack.Push(new PlayerDeathSubEvent(EffectIds.WaterSplash));
         }
         else if (obj is IEnemy && obj.Id != ObjectIds.Bat)
         {
-            subEventStack.Push(new EnemyDamageSubEvent(waterCoord));
+            audioManager.PlaySound(SoundNames.WaterSplash);
+            spriteGrid.RemoveObjectSprite(waterCoord);
+
+            subEventStack.Push(new EnemyDamageSubEvent(waterCoord, EffectIds.WaterSplash));
         }
         else if (obj.Id == ObjectIds.Rock)
         {
+            spriteGrid.PlayEffect(EffectIds.WaterSplash, waterCoord);
+            audioManager.PlaySound(SoundNames.WaterSplash);
+
             var sprite = spriteGrid.GetObjectSprite(waterCoord);
             ITile tile;
             if (sprite.IdleName == RegionNames.Rock)
@@ -52,33 +61,32 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack) 
             gridPointer.SetTile(waterCoord, tile);
             spriteGrid.RemoveObjectSprite(waterCoord);
             gridPointer.SetObject(waterCoord, ObjectFactory.CreateEmpty());
-            spriteGrid.PlayEffect(EffectIds.WaterSplash, waterCoord);
-            audioManager.PlaySound(SoundNames.WaterSplash);
         }
         else if (obj.Id != ObjectIds.Empty && obj.Id != ObjectIds.Bat && obj.Id != ObjectIds.Wall)
         {
-            gridPointer.SetObject(waterCoord, ObjectFactory.CreateEmpty());
-            spriteGrid.RemoveObjectSprite(waterCoord);
             spriteGrid.PlayEffect(EffectIds.WaterSplash, waterCoord);
             audioManager.PlaySound(SoundNames.WaterSplash);
+
+            gridPointer.SetObject(waterCoord, ObjectFactory.CreateEmpty());
+            spriteGrid.RemoveObjectSprite(waterCoord);
         }
     }
 
-    private static void CheckPit(SpriteGrid spriteGrid, GridPointer gridPointer, Stack<ILevelSubEvent> subEventStack, Coordinate waterCoord)
+    private static void CheckPit(SpriteGrid spriteGrid, GridPointer gridPointer, Stack<ILevelSubEvent> subEventStack, Coordinate pitCoord)
     {
-        var obj = gridPointer.GetObject(waterCoord);
+        var obj = gridPointer.GetObject(pitCoord);
 
         if (obj.Id == ObjectIds.Player)
         {
-            subEventStack.Push(new PlayerDeathSubEvent());
+            subEventStack.Push(new PlayerDeathSubEvent(EffectIds.PlayerDeath));
         }
         else if (obj is IEnemy && obj.Id != ObjectIds.Bat)
         {
-            subEventStack.Push(new EnemyDamageSubEvent(waterCoord));
+            subEventStack.Push(new EnemyDamageSubEvent(pitCoord, EffectIds.EnemyDeath));
         }
         else if (obj.Id == ObjectIds.Rock)
         {
-            var sprite = spriteGrid.GetObjectSprite(waterCoord);
+            var sprite = spriteGrid.GetObjectSprite(pitCoord);
             ITile tile;
             if (sprite.IdleName == RegionNames.Rock)
             {
@@ -88,35 +96,42 @@ public class CheckNonWalkableTilesSubEvent(Stack<ILevelSubEvent> subEventStack) 
             {
                 tile = TileFactory.CreatePitPumpkinTile();
             }
-            spriteGrid.SetNewTileSprite(waterCoord, tile);
-            gridPointer.SetTile(waterCoord, tile);
-            spriteGrid.RemoveObjectSprite(waterCoord);
-            gridPointer.SetObject(waterCoord, ObjectFactory.CreateEmpty());
+            spriteGrid.SetNewTileSprite(pitCoord, tile);
+            gridPointer.SetTile(pitCoord, tile);
+            spriteGrid.RemoveObjectSprite(pitCoord);
+            gridPointer.SetObject(pitCoord, ObjectFactory.CreateEmpty());
         }
         else if (obj.Id != ObjectIds.Empty && obj.Id != ObjectIds.Bat)
         {
-            gridPointer.SetObject(waterCoord, ObjectFactory.CreateEmpty());
-            spriteGrid.RemoveObjectSprite(waterCoord);
+            gridPointer.SetObject(pitCoord, ObjectFactory.CreateEmpty());
+            spriteGrid.RemoveObjectSprite(pitCoord);
         }
     }
 
     private static void CheckLava(SpriteGrid spriteGrid, GridPointer gridPointer, Stack<ILevelSubEvent> subEventStack, Coordinate lavaCoord, IAudioManager audioManager)
     {
         var obj = gridPointer.GetObject(lavaCoord);
+
         if (obj.Id == ObjectIds.Player)
         {
-            subEventStack.Push(new PlayerDeathSubEvent());
+            audioManager.PlaySound(SoundNames.LavaFizz);
+            spriteGrid.RemoveObjectSprite(lavaCoord);
+
+            subEventStack.Push(new PlayerDeathSubEvent(EffectIds.LavaSplash));
         }
         else if (obj is IEnemy)
         {
-            subEventStack.Push(new EnemyDamageSubEvent(lavaCoord));
+            audioManager.PlaySound(SoundNames.LavaFizz);
+            spriteGrid.RemoveObjectSprite(lavaCoord);
+
+            subEventStack.Push(new EnemyDamageSubEvent(lavaCoord, EffectIds.LavaSplash));
         }
         else if (obj.Id != ObjectIds.Empty && obj.Id != ObjectIds.Key)
         {
-            gridPointer.SetObject(lavaCoord, ObjectFactory.CreateEmpty());
-            spriteGrid.RemoveObjectSprite(lavaCoord);
             spriteGrid.PlayEffect(EffectIds.LavaSplash, lavaCoord);
             audioManager.PlaySound(SoundNames.LavaFizz);
+            gridPointer.SetObject(lavaCoord, ObjectFactory.CreateEmpty());
+            spriteGrid.RemoveObjectSprite(lavaCoord);
         }
     }
 }

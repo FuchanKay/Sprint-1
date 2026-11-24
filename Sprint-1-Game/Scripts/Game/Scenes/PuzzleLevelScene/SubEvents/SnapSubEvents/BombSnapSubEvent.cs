@@ -32,11 +32,11 @@ public class BombSnapSubEvent(List<Coordinate> bombCoords, Stack<ILevelSubEvent>
 
                 if (targetObj.Id == ObjectIds.Player)
                 {
-                    subEventStack.Push(new PlayerDeathSubEvent());
+                    subEventStack.Push(new PlayerDeathSubEvent(EffectIds.PlayerDeath));
                 }
                 else if (targetObj is IEnemy)
                 {
-                    subEventStack.Push(new EnemyDamageSubEvent(targetCoord));
+                    subEventStack.Push(new EnemyDamageSubEvent(targetCoord, EffectIds.EnemyDeath));
                 }
                 else if (targetObj.IsDestructible)
                 {

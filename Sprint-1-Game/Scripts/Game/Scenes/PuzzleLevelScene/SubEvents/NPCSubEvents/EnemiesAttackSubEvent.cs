@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using Scripts.GameComponents;
 using System.Linq;
@@ -43,7 +42,7 @@ public class CheckEnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, Lis
         {
             spriteGrid.PlayEffect(EffectIds.Slash, playerCoord);
             audioManager.PlaySound(SoundNames.Slash);
-            subEventStack.Push(new PlayerDeathSubEvent());
+            subEventStack.Push(new PlayerDeathSubEvent(EffectIds.PlayerDeath));
         }
     }
 
@@ -57,7 +56,7 @@ public class CheckEnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, Lis
         {
             spriteGrid.PlayEffect(EffectIds.Slash, targetCoord);
             audioManager.PlaySound(SoundNames.Slash);
-            subEventStack.Push(new PlayerDeathSubEvent());
+            subEventStack.Push(new PlayerDeathSubEvent(EffectIds.PlayerDeath));
         }
     }
 
@@ -66,8 +65,6 @@ public class CheckEnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, Lis
         var direction = gridPointer.GetObject(startCoord).Direction;
         var laserPath = Pathfinder.GetLineOfSight(gridPointer, startCoord, direction);
         var endCoord = laserPath.Peek();
-
-        var lizard = gridPointer.GetObject(startCoord);
 
         var lizardSprite = spriteGrid.GetObjectSprite(startCoord);
         var mouthOpen = RegionNames.ToLizardMouthOpenName(direction);
@@ -85,20 +82,6 @@ public class CheckEnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, Lis
         {
             spriteGrid.AddIterableEffectSprite(laserColorId, startDirCoord, dirCoord, rotation);
 
-            if (dirGrid.Object.Id == ObjectIds.Player)
-            {
-                subEventStack.Push(new PlayerDeathSubEvent());
-            }
-            else if (dirGrid.Object is IEnemy)
-            {
-                subEventStack.Push(new EnemyDamageSubEvent(dirCoord));
-            }
-            else if (dirGrid.Object.IsDestructible)
-            {
-                gridPointer.SetObject(dirCoord, ObjectFactory.CreateEmpty());
-                spriteGrid.RemoveObjectSprite(dirCoord);
-            }
-
             dirCoord += Coordinate.ToCoordinate(direction);
             dirGrid = gridPointer.GetGrid(dirCoord);
         }
@@ -107,15 +90,16 @@ public class CheckEnemiesAttackSubEvent(Stack<ILevelSubEvent> subEventStack, Lis
         {
             gridPointer.SetObject(dirCoord, ObjectFactory.CreateEmpty());
             spriteGrid.RemoveObjectSprite(dirCoord);
-        }
-
-        if (dirGrid.Object.Id == ObjectIds.Player)
+        } else if (dirGrid.Object.Id == ObjectIds.Player)
         {
-            subEventStack.Push(new PlayerDeathSubEvent());
+            subEventStack.Push(new PlayerDeathSubEvent(EffectIds.PlayerDeath));
+        }else if (dirGrid.Object is IEnemy)
+        {
+            subEventStack.Push(new EnemyDamageSubEvent(dirCoord, EffectIds.EnemyDeath));
         }
 
         var laserImpactEffect = EffectIds.RedLaserImpact;
-        if (lizard.Id == ObjectIds.BlueLizard) laserImpactEffect = EffectIds.BlueLaserImpact;
+        if (laserColorId == EffectIds.BlueFire) laserImpactEffect = EffectIds.BlueLaserImpact;
         spriteGrid.AddIterableEffectSprite(laserImpactEffect, startDirCoord, dirCoord, 0);
         spriteGrid.StartIterableEffect(startDirCoord);
         audioManager.PlaySound(SoundNames.LaserBeam);

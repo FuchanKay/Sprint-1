@@ -20,7 +20,7 @@ public class SkeletonsAttackSubEvent(List<Coordinate> skeletonCoords, Stack<ILev
         {
             // TODO: Change skeleton facing direction and sprite
             spriteGrid.PlayEffect(EffectIds.Slash, playerCoord);
-            subEventStack.Push(new PlayerDeathSubEvent());
+            subEventStack.Push(new PlayerDeathSubEvent(EffectIds.PlayerDeath));
         }
     }
 }

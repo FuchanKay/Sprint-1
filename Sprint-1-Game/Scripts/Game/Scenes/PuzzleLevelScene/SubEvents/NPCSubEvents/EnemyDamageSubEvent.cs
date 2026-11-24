@@ -2,7 +2,7 @@ using System.Linq;
 using Scripts.GameComponents;
 namespace Scripts.Game;
 
-public class EnemyDamageSubEvent(Coordinate enemyCoord) : ILevelSubEvent
+public class EnemyDamageSubEvent(Coordinate enemyCoord, EffectIds effectId) : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {
@@ -12,13 +12,13 @@ public class EnemyDamageSubEvent(Coordinate enemyCoord) : ILevelSubEvent
         if (enemy.Health == 0)
         {
             audioManager.PlaySound(SoundNames.Death);
-            KillEnemy(spriteGrid, gridPointer);
+            KillEnemy(spriteGrid, gridPointer, effectId);
         }
     }
 
-    private void KillEnemy(SpriteGrid spriteGrid, GridPointer gridPointer)
+    private void KillEnemy(SpriteGrid spriteGrid, GridPointer gridPointer, EffectIds effectId)
     {
-        spriteGrid.PlayEffect(EffectIds.EnemyDeath, enemyCoord);
+        spriteGrid.PlayEffect(effectId, enemyCoord);
         var doorPointers = gridPointer.GetObjectPointers(ObjectIds.Door);
         var door = doorPointers.First().Value as DoorObject;
         bool closedDoorExists = doorPointers.Count > 0 && !door.IsOpen;
