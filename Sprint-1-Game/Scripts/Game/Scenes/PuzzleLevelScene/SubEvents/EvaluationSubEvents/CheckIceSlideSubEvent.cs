@@ -30,10 +30,11 @@ public class IceSlideSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEv
         }
     }
 
-    private void SlideObject(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate currentCoord, Coordinate destinationCoord)
+    private static void SlideObject(SpriteGrid spriteGrid, GridPointer gridPointer, Coordinate currentCoord, Coordinate destinationCoord)
     {
         var objectSprite = spriteGrid.GetObjectSprite(currentCoord);
-        objectSprite = objectSprite.ConvertToStatic(objectSprite.IdleName);
+        if(objectSprite.IdleName.Contains('-')) objectSprite = objectSprite.ConvertToAnimated(objectSprite.IdleName);
+        else objectSprite = objectSprite.ConvertToStatic(objectSprite.IdleName);
         objectSprite.Duration = spriteGrid.SlideDuration;
         spriteGrid.SetObjectSprite(currentCoord, destinationCoord, objectSprite);
         spriteGrid.StartObjectAnimation(currentCoord);

@@ -19,8 +19,8 @@ public abstract class Sprite(ITextureAtlas textureAtlas) : ISprite
     public float LayerDepth { get; set; } = 0f;
 
     // UPDATE VARIABLES
-    public int Duration { get; set; }
-    protected int TotalElapsed;
+    public virtual int Duration { get; set; }
+    protected int Elapsed;
     protected Vector2 StartPosition;
     protected readonly float Complete = 1.0f;
 

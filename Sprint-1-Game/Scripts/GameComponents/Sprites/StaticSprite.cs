@@ -6,10 +6,10 @@ namespace Scripts.GameComponents;
 public class StaticSprite(ITextureAtlas textureAtlas) : Sprite(textureAtlas)
 {
     public override bool IsFinished { get; protected set; } = false;
-    private float Progress => Math.Min((float)TotalElapsed / (float)Duration, Complete);
+    private float Progress => Math.Min((float)Elapsed / (float)Duration, Complete);
     public override void Update(int dtMs)
     {
-        TotalElapsed += dtMs;
+        Elapsed += dtMs;
 
         Vector2 diff = CurrentPosition - TargetPosition;
         bool shouldMove = diff.Length() > 0.01f;
@@ -25,7 +25,7 @@ public class StaticSprite(ITextureAtlas textureAtlas) : Sprite(textureAtlas)
         else
         {
             CurrentPosition = TargetPosition;
-            TotalElapsed = 0;
+            Elapsed = 0;
             IsFinished = true;
         }
     }
