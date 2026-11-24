@@ -38,6 +38,17 @@ public class FileNames
     "Content/Levels/level10.csv",
     ];
 
+    public readonly static string[] ObjectSelectorFileNames = 
+    [
+    "Content/PaletteGrids/object-grid-1.csv",
+    ];
+
+    public readonly static string[] TileSelectorFileNames = 
+    [
+    "Content/PaletteGrids/tile-grid-1.csv",
+    "Content/PaletteGrids/tile-grid-2.csv",
+    ];
+
     public readonly static string SnapAudio = "audio/snap";
     public readonly static string SongAudio = "audio/song";
     public readonly static string DefaultFont = "Font/defaultFont";
@@ -51,6 +62,6 @@ public class FileNames
     public readonly static string LavaFizzAudio = "audio/fizz";
     public readonly static string StoneScrapeAudio = "audio/stoneScrape";
     public readonly static string DeathAudio = "audio/entityDeath";
-
+    public readonly static string FogOfWarEffect = "Effects/FogOfWarEffect";
 
 }

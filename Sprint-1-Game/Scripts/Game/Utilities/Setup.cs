@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Scripts.GameComponents;
@@ -14,19 +15,22 @@ public class Setup(ContentManager content, GameWindow window)
     private IInputManager ButtonInput;
     private IInputManager MouseInput;
     private ITextureAtlas TextureAtlas;
-    private SpriteFontManager SpriteFontManager = new(content);
+    private ShaderManager ShaderManager;
+    private UIFontAtlas UIFontAtlas = new(content);
     public void Initialize(out SceneManager sceneManager)
     {
         ButtonInput = new KeyboardInputManager();
         MouseInput = new MouseInputManager();
         AudioManager = new AudioManager();
+        ShaderManager = new ShaderManager();
 
         TextureAtlas = new TextureAtlas(content);
         MapDefaultInputs();
         AddAnimations();
         AddRegions();
         AddFont();
-        sceneManager = new(ButtonInput, MouseInput, AudioManager, TextureAtlas, SpriteFontManager, window);
+        sceneManager = new(ButtonInput, MouseInput, AudioManager, ShaderManager, TextureAtlas, UIFontAtlas, window);
+        sceneManager.Init();
     }
 
     public void LoadContent()
@@ -34,7 +38,7 @@ public class Setup(ContentManager content, GameWindow window)
         BindAllTextures();
         LoadAudio();
         LoadUI();
-
+        LoadEffects();
     }
 
 
@@ -60,6 +64,7 @@ public class Setup(ContentManager content, GameWindow window)
         ButtonInput.MapInput(InputNames.Snap, (int)Keys.F);
 
         ButtonInput.MapInput(InputNames.ExitGame, (int)Keys.Q);
+        ButtonInput.MapInput(InputNames.Resume, (int)Keys.Escape);
         ButtonInput.MapInput(InputNames.ResetGame, (int)Keys.R);
         ButtonInput.MapInput(InputNames.ResetLevel, (int)Keys.R);
 
@@ -174,6 +179,9 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddRegion(RegionNames.WaterTile, 0, 4, 64, 64);
         TextureAtlas.AddRegion(RegionNames.BoulderWaterTile, 1, 4, 64, 64);
         TextureAtlas.AddRegion(RegionNames.PumpkinWaterTile, 2, 4, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.InventorySlot, 3, 4, 64, 64);
+
+        TextureAtlas.AddRegion(RegionNames.IceTile, 0, 0, 602, 602);
 
         // objects
         TextureAtlas.AddRegion(RegionNames.Rock, 0, 0, 64, 64);
@@ -266,8 +274,13 @@ public class Setup(ContentManager content, GameWindow window)
 
     private void AddFont()
     {
-        SpriteFontManager.MapFont(FontNames.DefaultFont, FileNames.DefaultFont);
-        SpriteFontManager.MapFont(FontNames.DungeonFont, FileNames.DungeonFont);
+        UIFontAtlas.MapFont(FontNames.DefaultFont, FileNames.DefaultFont);
+        UIFontAtlas.MapFont(FontNames.DungeonFont, FileNames.DungeonFont);
 
+    }
+
+    private void LoadEffects()
+    {
+        ShaderManager.MapEffect(ShaderEffectNames.FogOfWar, content.Load<Effect>(FileNames.FogOfWarEffect));
     }
 }

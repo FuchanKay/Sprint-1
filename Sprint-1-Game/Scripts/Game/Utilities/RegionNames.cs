@@ -40,6 +40,7 @@ public class RegionNames
     public readonly static string IceTile = "Ice";
     public readonly static string BoulderWaterTile = "Boulder Water";
     public readonly static string PumpkinWaterTile = "Pumpkin Water";
+    public readonly static string InventorySlot = "InventorySlot";
     public readonly static string LavaTile = "Lava";
     public readonly static string BugTile = "Bug";
     public readonly static string BugTileCC = "CCBug";

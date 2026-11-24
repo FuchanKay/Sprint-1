@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 namespace Scripts.Game;
 
-public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager, GameWindow window) : ISceneController
+public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManager buttonInput, IAudioManager audioManager, ShaderManager shaderManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas, GameWindow window) : ISceneController
 {
     private PuzzleLevel Level;
     private LevelFileParser LevelFileParser;
@@ -12,17 +12,19 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
     private GameLayoutManager GameLayoutManager = new();
-    private UIManager UIManager = new(spriteFontManager);
+    private UIManager UIManager = new(uIFontAtlas);
     private readonly IAudioManager AudioManager = audioManager;
+    private readonly ShaderManager ShaderManager = shaderManager;
     private ILevelTransition LevelTransition;
     public int CurrentLevelIndex = 0;
-    private BasicSpriteFontWriter DeathMessage = new(spriteFontManager);
+    private UIFont DeathMessage = new(uIFontAtlas);
 
     public void Init()
     {
+        Gum.GumService.Default.Root.Children.Clear();
         GameLayoutManager.Init(window);
         LevelFileParser = new LevelFileParser();
-        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
+        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, ShaderManager, GameLayoutManager);
         Level.Init(CurrentLevelIndex);
         UIManager.Init(Level);
         LevelTransition = new WipeTransition(Level);
@@ -31,20 +33,13 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
 
     public void Init(GridPointer grid, LevelContext level)
     {
+        Gum.GumService.Default.Root.Children.Clear();
         GameLayoutManager.Init(window);
-        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, GameLayoutManager);
+        Level = new PuzzleLevel(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, LevelFileParser, AudioManager, ShaderManager, GameLayoutManager);
         Level.Init(grid, level);
         UIManager.Init(Level);
+        LevelTransition = new WipeTransition(Level);
         InitDeathMessage();
-    }
-
-    private void InitDeathMessage()
-    {
-        string deathMessageText = "Press Z to Undo, or R to Restart";
-        Vector2 messageSize = spriteFontManager.GetFont(FontNames.DungeonFont).MeasureString(deathMessageText);
-        float LevelScreenRatio = 4f/5f;
-        Vector2 DeathMessagePosition = new Vector2(window.ClientBounds.Width * (LevelScreenRatio / 2f) - messageSize.X/2f, window.ClientBounds.Height/2f + messageSize.Y/2f);
-        DeathMessage.Init(FontNames.DungeonFont, DeathMessagePosition, deathMessageText, Color.DarkRed);
     }
 
     public void Update(int dtMs)
@@ -143,5 +138,15 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         UIManager.Draw(sb);
         if(Level.Context.PlayerIsDead) DeathMessage.Draw(sb);
         if(LevelTransition.IsActive) LevelTransition.Draw(sb);
+    }
+
+    private void InitDeathMessage()
+    {
+        DeathMessage.Init(FontNames.DungeonFont);
+        DeathMessage.Text = "Press Z to Undo, or R to Restart";
+        DeathMessage.Color = Color.DarkRed;
+        DeathMessage.OriginEnum = UIFont.GenericOrigin.Center;
+        float LevelScreenRatio = 4f/5f;
+        DeathMessage.Pos = new Vector2(window.ClientBounds.Width * (LevelScreenRatio / 2f), window.ClientBounds.Height/2f);
     }
 }

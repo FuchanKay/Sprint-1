@@ -43,4 +43,9 @@ public class EraserBrush(IInputManager mouseInput, SpriteGrid spriteGrid, LevelC
     {
 
     }
+
+    public void SetSelection(Coordinate coord)
+    {
+        
+    }
 }

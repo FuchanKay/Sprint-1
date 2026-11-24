@@ -1,28 +1,30 @@
 using System.Collections.Generic;
+using Gum.DataTypes.Variables;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
 namespace Scripts.Game;
-
-public class LevelEditorSceneController(SceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, ITextureAtlas textureAtlas, SpriteFontManager spriteFontManager) : ISceneController
+public class LevelEditorSceneController(SceneManager sceneManager, IInputManager buttonInput, IInputManager mouseInput, IAudioManager audioManager, ITextureAtlas textureAtlas, UIFontAtlas uIFontAtlas, ShaderManager shaderManager) : ISceneController
 {
     private LevelContext Context = new()
     {
         RawSpriteWidthPx = 256,
         RawSpriteHeightPx = 256,
-        GridScale = 0.175f,
-        PuzzleOffsetX = 50,
-        PuzzleOffsetY = 50,
+        GridScale = 0.1875f,
+        PuzzleOffsetX = 160,
+        PuzzleOffsetY = 160,
     };
     private GridPointer CurrentGrid = new();
+    private SpriteGrid SpriteGrid;
+    private LevelEditorPalette LevelEditorPalette;
+    
     private readonly ObjectSpriteFactory ObjectSpriteFactory = new(textureAtlas);
     private readonly TileSpriteFactory TileSpriteFactory = new(textureAtlas);
     private readonly EffectSpriteFactory EffectSpriteFactory = new(textureAtlas);
-    private LevelEditorHUDPanel HUD = new(spriteFontManager);
+    private LevelEditorHUDPanel HUD = new(uIFontAtlas);
     private readonly List<GridPointer> UndoHistory = [];
     private readonly List<GridPointer> RedoHistory = [];
     private readonly int UndoHistoryMaxLength = 2000;
-    private SpriteGrid SpriteGrid;
     private IBrush Brush;
     private readonly int UndoRedoBufferMs = 400;
     private int UndoBufferTimerMs = 0;
@@ -30,25 +32,16 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
 
     public void Init()
     {
-        CurrentGrid.Init();
+        InitLevelEditorGrid();
+        InitUI();
+
         UndoHistory.Clear();
-        var levelFileName = FileNames.LevelFileNames[1];
-        string[] levelFile = LevelFileParser.ParseLevelFile(levelFileName);
-        LevelFileParser levelFileParser = new();
-        Context.LevelName = levelFileParser.GetLevelName(levelFile);
-        Context.LevelWidth = levelFileParser.GetLevelWidth(levelFile);
-        Context.LevelHeight = levelFileParser.GetLevelHeight(levelFile);
-        CurrentGrid = levelFileParser.CreateGrids(levelFile);
-
-        SpriteGrid = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory);
-        SpriteGrid.Init(CurrentGrid, Context);
-
         UndoHistory.Add(CurrentGrid.Clone());
 
         Brush = new EraserBrush(mouseInput, SpriteGrid, Context, UndoHistory, RedoHistory);
         Brush.Init(CurrentGrid);
 
-        HUD = new(spriteFontManager);
+        HUD = new(uIFontAtlas);
         HUD.Init();
     }
 
@@ -56,6 +49,14 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
     {
         SpriteGrid.Update(dtMs);
         Brush.Update(dtMs);
+
+        var objCoord = Coordinate.Zero;
+        var tileCoord = Coordinate.Zero;
+        var clickedObjectSelector = mouseInput.IsPressed(InputNames.Select) && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, LevelEditorPalette.ObjectSelectorContext, out objCoord);
+        var clickedTileSelector = mouseInput.IsPressed(InputNames.Select) && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, LevelEditorPalette.TileSelectorContext, out tileCoord);
+        var objNotEmpty = LevelEditorPalette.ObjectSelectorGrid.GetObject(objCoord).Id != ObjectIds.Empty;
+        var tileNotEmpty = LevelEditorPalette.TileSelectorGrid.GetTile(tileCoord).Id != TileIds.Empty;
+        
 
         if (UndoHistory.Count > UndoHistoryMaxLength) UndoHistory.RemoveAt(0);
 
@@ -68,15 +69,17 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
             Brush = new EraserBrush(mouseInput, SpriteGrid, Context, UndoHistory, RedoHistory);
             Brush.Init(CurrentGrid);
         }
-        else if (buttonInput.IsPressed(InputNames.ObjectPaintBrushMode))
+        else if (buttonInput.IsPressed(InputNames.ObjectPaintBrushMode) || clickedObjectSelector)
         {
-            Brush = new ObjectPaintBrush(buttonInput, mouseInput, SpriteGrid, Context, ObjectSpriteFactory, UndoHistory, RedoHistory);
+            Brush = new ObjectPaintBrush(buttonInput, mouseInput, audioManager, SpriteGrid, Context, LevelEditorPalette.ObjectSelectorContext, LevelEditorPalette.ObjectSelectorGrid, ObjectSpriteFactory, UndoHistory, RedoHistory);
             Brush.Init(CurrentGrid);
+            if(clickedObjectSelector && objNotEmpty) Brush.SetSelection(objCoord);
         }
-        else if (buttonInput.IsPressed(InputNames.TileBrushMode))
+        else if (buttonInput.IsPressed(InputNames.TileBrushMode) || clickedTileSelector)
         {
-            Brush = new TilePaintBrush(buttonInput, mouseInput, SpriteGrid, Context, TileSpriteFactory, UndoHistory, RedoHistory);
+            Brush = new TilePaintBrush(buttonInput, mouseInput, audioManager, SpriteGrid, Context, LevelEditorPalette.TileSelectorContext, LevelEditorPalette.TileSelectorGrid, TileSpriteFactory, UndoHistory, RedoHistory);
             Brush.Init(CurrentGrid);
+            if(clickedTileSelector && tileNotEmpty) Brush.SetSelection(tileCoord);
         }
         else if (buttonInput.IsPressed(InputNames.Undo) && UndoHistory.Count > 0)
         {
@@ -122,8 +125,10 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
 
     public void Draw(SpriteBatch sb)
     {
-        SpriteGrid.Draw(sb);
         Brush.Draw(sb);
+        SpriteGrid.Draw(sb);
+        LevelEditorPalette.ObjectSelectorSpriteGrid.Draw(sb);
+        LevelEditorPalette.TileSelectorSpriteGrid.Draw(sb);
         HUD.Draw(sb);
     }
 
@@ -144,5 +149,28 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
         RedoHistory.RemoveAt(top);
         SpriteGrid.Init(CurrentGrid, Context);
         Brush.Init(CurrentGrid);
+    }
+
+    private void InitLevelEditorGrid()
+    {
+        CurrentGrid.Init();
+        var levelFileName = FileNames.LevelFileNames[1];
+        string[] levelFile = LevelFileParser.ParseLevelFile(levelFileName);
+        LevelFileParser levelFileParser = new();
+        Context.LevelName = levelFileParser.GetLevelName(levelFile);
+        Context.LevelWidth = levelFileParser.GetLevelWidth(levelFile);
+        Context.LevelHeight = levelFileParser.GetLevelHeight(levelFile);
+        CurrentGrid = levelFileParser.CreateGrids(levelFile);
+
+        SpriteGrid = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, shaderManager);
+        SpriteGrid.Init(CurrentGrid, Context);
+    }
+
+    private void InitUI()
+    {
+        LevelEditorPalette = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, shaderManager, audioManager, Brush);
+        LevelEditorPalette.Init();
+        Gum.GumService.Default.Root.Children.Clear();
+        LevelEditorPalette.CreateLevelEditorPanel();
     }
 }

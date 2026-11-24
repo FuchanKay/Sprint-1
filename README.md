@@ -1,4 +1,4 @@
-# Sprint-1 Game
+# Sugar Snap
 
 *Name Pending* is a grid-based puzzle game built with C# and MonoGame. Move through the level, push objects, and use the special tiles and objects to solve the room.
 

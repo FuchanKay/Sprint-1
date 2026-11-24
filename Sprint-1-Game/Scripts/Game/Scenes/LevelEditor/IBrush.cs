@@ -9,4 +9,5 @@ public interface IBrush
     void Draw(SpriteBatch sb);
     void CycleRight();
     void CycleLeft();
+    void SetSelection(Coordinate coord);
 }

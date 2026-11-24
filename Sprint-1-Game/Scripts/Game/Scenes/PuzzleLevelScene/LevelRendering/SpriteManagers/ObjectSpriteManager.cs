@@ -9,6 +9,7 @@ namespace Scripts.Game;
 public class ObjectSpriteManager
 {
     public readonly Dictionary<Vector2, ISprite> ObjectSprites = [];
+    public ISprite PlayerSprite;
     public readonly List<ISprite> AnimatingObjectSprites = [];
     private LevelContext Context;
     private ObjectSpriteFactory ObjectSpriteFactory;
@@ -36,7 +37,9 @@ public class ObjectSpriteManager
 
                 if (obj.Id != ObjectIds.Empty)
                 {
-                    ObjectSprites.Add(spriteCoord, objectSpriteFactory.CreateObjectSprite(obj, spriteCoord, context));
+                    var objectSprite = objectSpriteFactory.CreateObjectSprite(obj, spriteCoord, context);
+                    ObjectSprites.Add(spriteCoord, objectSprite);
+                    if(obj.Id == ObjectIds.Player) PlayerSprite = objectSprite;
                 }
             }
         }
@@ -123,8 +126,12 @@ public class ObjectSpriteManager
     {
         foreach (var sprite in AnimatingObjectSprites)
         {
+            var isPlayer = sprite.CurrentPosition == PlayerSprite.CurrentPosition;
+
             ObjectSprites.Remove(sprite.CurrentPosition);
             sprite.Update(dtMs);
+
+            if (isPlayer) PlayerSprite = sprite;
 
             if(!ObjectSprites.TryAdd(sprite.CurrentPosition, sprite))
             {
