@@ -74,7 +74,7 @@ public class Game1 : Core
 
     private void InitializeGum()
     {
-        Gum.GumService.Default.Initialize(this, DefaultVisualsVersion.V3);
+        //Gum.GumService.Default.Initialize(this, DefaultVisualsVersion.V3);
         Gum.GumService.Default.ContentLoader.XnaContentManager = Core.Content;
 
         FrameworkElement.KeyboardsForUiControl.Add(Gum.GumService.Default.Keyboard);
