@@ -47,6 +47,7 @@ public class PuzzleLevelSceneController(ISceneManager sceneManager, IInputManage
         if (LevelTransition.IsActive)
         {
             LevelTransition.Update(dtMs);
+            Level.EventQueue.Clear();
             Level.Update(dtMs);
             return;
         } else if (sceneManager.SceneTransition.IsActive)
