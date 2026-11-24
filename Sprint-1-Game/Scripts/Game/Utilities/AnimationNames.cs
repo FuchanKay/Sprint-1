@@ -49,6 +49,10 @@ public class AnimationNames
     public readonly static string BugTileIdle = "-Bug Tile Idle";
     public readonly static string CCBugTileIdle = "-CC Bug Tile Idle";
     public readonly static string OpenDoorIdle = "-Open Door Idle";
+    public readonly static string IdleNorth = "-Idle North";
+    public readonly static string IdleSouth = "-Idle South";
+    public readonly static string IdleEast = "-Idle East";
+    public readonly static string IdleWest = "-Idle West";
 
     public static string ObjectRotateClockwiseFrom(Directions direction)
     {
@@ -95,6 +99,18 @@ public class AnimationNames
             Directions.South => PlayerPushSouth,
             Directions.West => PlayerPushWest,
             _ => PlayerPushEast,
+        };
+    }
+
+    public static string ToPlayerIdleAnimationName(Directions direction)
+    {
+        return direction switch
+        {
+            Directions.North => IdleNorth,
+            Directions.East => IdleEast,
+            Directions.South => IdleSouth,
+            Directions.West => IdleWest,
+            _ => IdleSouth
         };
     }
 

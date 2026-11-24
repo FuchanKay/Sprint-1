@@ -34,8 +34,8 @@ public class ObjectSpriteFactory(ITextureAtlas textureAtlas)
                 spriteScale = context.GridScale * 4.0f;
                 break;
             case ObjectIds.Player:
-                sprite = new StaticSprite(textureAtlas);
-                regionName = RegionNames.ToIdleRegionName(obj.Direction);
+                sprite = new AnimatedSprite(textureAtlas);
+                regionName = AnimationNames.ToPlayerIdleAnimationName(obj.Direction);
                 sprite.Texture = textureAtlas.GetTexture(TextureNames.Player);
                 spriteScale = context.GridScale * 4.0f;
                 break;
