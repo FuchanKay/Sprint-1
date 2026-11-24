@@ -65,8 +65,12 @@ public class SceneManager(IInputManager buttonInput, IInputManager mouseInput, I
     public void Draw(SpriteBatch sb)
     {
         CurrentScene.Draw(sb);
-        QuitConfirmation.Draw(sb);
         if (SceneTransition.IsActive) SceneTransition.Draw(sb);
+    }
+
+    public void DrawOverGUM(SpriteBatch sb)
+    {
+        QuitConfirmation.Draw(sb);
     }
 
     public void SwapScene(string sceneName)

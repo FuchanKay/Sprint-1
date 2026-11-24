@@ -69,6 +69,9 @@ public class Game1 : Core
         SpriteBatch.End();
 
         Gum.GumService.Default.Draw();
+        SpriteBatch.Begin(SpriteSortMode.FrontToBack);
+        SceneManager.DrawOverGUM(SpriteBatch);
+        SpriteBatch.End();
         base.Draw(gameTime);
     }
 
