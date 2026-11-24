@@ -1,9 +1,8 @@
 namespace Scripts.Game;
 
-using System.Collections.Generic;
 using Scripts.GameComponents;
 
-public class SeedGrowthSubEvent(Stack<ILevelSubEvent> subEventStack) : ILevelSubEvent
+public class SeedGrowthSubEvent : ILevelSubEvent
 {
     public void Execute(SpriteGrid spriteGrid, GridPointer gridPointer, InventoryManager inventoryManager, LevelContext context, IAudioManager audioManager)
     {

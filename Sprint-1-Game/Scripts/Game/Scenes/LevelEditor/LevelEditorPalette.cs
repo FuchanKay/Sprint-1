@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 using System;
 using Gum.Forms.Controls;
