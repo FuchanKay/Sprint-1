@@ -1,0 +1,182 @@
+{
+  "FontRanges": "32-126,160-255",
+  "FontSpacingVertical": 1,
+  "FontSpacingHorizontal": 1,
+  "UseFontCharacterFile": false,
+  "AutoSizeFontOutputs": false,
+  "FontGenerator": 1,
+  "Version": 7,
+  "DefaultCanvasWidth": 1280,
+  "DefaultCanvasHeight": 720,
+  "CustomCanvasSizes": [
+    {
+      "Width": null,
+      "Height": null,
+      "FriendlyName": "Project Default"
+    },
+    {
+      "Width": 640,
+      "Height": 480,
+      "FriendlyName": "480p"
+    },
+    {
+      "Width": 1280,
+      "Height": 720,
+      "FriendlyName": "720p"
+    },
+    {
+      "Width": 1280,
+      "Height": 800,
+      "FriendlyName": "Steam Deck"
+    },
+    {
+      "Width": 1920,
+      "Height": 1080,
+      "FriendlyName": "1080p"
+    },
+    {
+      "Width": 3840,
+      "Height": 2160,
+      "FriendlyName": "4k"
+    }
+  ],
+  "ShowOutlines": true,
+  "ShowCanvasOutline": true,
+  "ShowRuler": true,
+  "ShowCheckerBackground": true,
+  "TextureFilter": "Point",
+  "ConvertVariablesOnUnitTypeChange": false,
+  "RestrictToUnitValues": true,
+  "SnapToGrid": false,
+  "GridSize": 16,
+  "RestrictFileNamesForAndroid": false,
+  "Guides": [],
+  "FavoriteComponents": [],
+  "ParentProjectRoot": "",
+  "LocalizationFiles": [],
+  "ShowLocalizationInGum": true,
+  "CurrentLanguageIndex": 0,
+  "ScreenReferences": [
+    {
+      "Name": "GameSceneUI",
+      "ElementType": 0,
+      "LinkType": 0
+    },
+    {
+      "Name": "TitleSceneUI",
+      "ElementType": 0,
+      "LinkType": 0
+    }
+  ],
+  "ComponentReferences": [
+    {
+      "Name": "Controls/Panel",
+      "ElementType": 1,
+      "LinkType": 0
+    },
+    {
+      "Name": "GameUI/EnemyCounterMenu",
+      "ElementType": 1,
+      "LinkType": 0
+    },
+    {
+      "Name": "GameUI/GameInstructionMenu",
+      "ElementType": 1,
+      "LinkType": 0
+    },
+    {
+      "Name": "GameUI/GameSceneHUD",
+      "ElementType": 1,
+      "LinkType": 0
+    },
+    {
+      "Name": "GameUI/InventoryMenu",
+      "ElementType": 1,
+      "LinkType": 0
+    },
+    {
+      "Name": "GameUI/InventorySlot",
+      "ElementType": 1,
+      "LinkType": 0
+    },
+    {
+      "Name": "GameUI/LevelTitleMenu",
+      "ElementType": 1,
+      "LinkType": 0
+    },
+    {
+      "Name": "GameUI/Pieces/ItemBackground",
+      "ElementType": 1,
+      "LinkType": 0
+    },
+    {
+      "Name": "GameUI/Pieces/ItemIcon",
+      "ElementType": 1,
+      "LinkType": 0
+    },
+    {
+      "Name": "GameUI/Pieces/SlotNumber",
+      "ElementType": 1,
+      "LinkType": 0
+    },
+    {
+      "Name": "GameUI/Pieces/TitleBar",
+      "ElementType": 1,
+      "LinkType": 0
+    },
+    {
+      "Name": "GameUI/TimeMenu",
+      "ElementType": 1,
+      "LinkType": 0
+    }
+  ],
+  "StandardElementReferences": [
+    {
+      "Name": "Circle",
+      "ElementType": 2,
+      "LinkType": 0
+    },
+    {
+      "Name": "Component",
+      "ElementType": 2,
+      "LinkType": 0
+    },
+    {
+      "Name": "Container",
+      "ElementType": 2,
+      "LinkType": 0
+    },
+    {
+      "Name": "NineSlice",
+      "ElementType": 2,
+      "LinkType": 0
+    },
+    {
+      "Name": "Polygon",
+      "ElementType": 2,
+      "LinkType": 0
+    },
+    {
+      "Name": "Rectangle",
+      "ElementType": 2,
+      "LinkType": 0
+    },
+    {
+      "Name": "Sprite",
+      "ElementType": 2,
+      "LinkType": 0
+    },
+    {
+      "Name": "Text",
+      "ElementType": 2,
+      "LinkType": 0
+    }
+  ],
+  "BehaviorReferences": [
+    {
+      "Name": "PanelBehavior"
+    }
+  ],
+  "SinglePixelTextureFile": "",
+  "CustomProperties": []
+}

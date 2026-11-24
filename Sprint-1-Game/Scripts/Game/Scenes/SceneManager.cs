@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
+using Microsoft.Xna.Framework.Content;
 
 namespace Scripts.Game;
 

@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Gum.Forms;
+using Gum.Forms.Controls;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary;
 using Scripts.Game;
-using Gum.Forms;
-using Gum.Forms.Controls;
 namespace Sprint_1_Game.Scripts;
 
 public class Game1 : Core
@@ -15,7 +15,7 @@ public class Game1 : Core
     private static readonly Color BackgroundColor = Color.Black;
     private readonly Setup Setup;
     private SceneManager SceneManager;
-
+    Gum.GumService GumUI => Gum.GumService.Default;
     public Game1() : base(Name, ScreenWidth, ScreenHeight, IsFullScreen)
     {
         Setup = new(Content, Window);
@@ -25,6 +25,9 @@ public class Game1 : Core
     {
         Setup.Initialize(out var sceneManager);
         SceneManager = sceneManager;
+
+        GumUI.Initialize(this, "GUMProject/GUMProject.gumj");
+
         base.Initialize();
         InitializeGum();
     }
@@ -50,6 +53,8 @@ public class Game1 : Core
             Setup.LoadContent();
             SceneManager.Init();
         }
+        GumUI.Update(gameTime);
+
 
         Gum.GumService.Default.Update(gameTime);
         base.Update(gameTime);
@@ -69,7 +74,7 @@ public class Game1 : Core
 
     private void InitializeGum()
     {
-        Gum.GumService.Default.Initialize(this, DefaultVisualsVersion.V3);
+        //Gum.GumService.Default.Initialize(this, DefaultVisualsVersion.V3);
         Gum.GumService.Default.ContentLoader.XnaContentManager = Core.Content;
 
         FrameworkElement.KeyboardsForUiControl.Add(Gum.GumService.Default.Keyboard);

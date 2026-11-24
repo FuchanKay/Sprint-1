@@ -1,0 +1,19 @@
+{
+  "TreeViewState": {
+    "ExpandedNodes": [
+      "Screens",
+      "Screens/GameSceneUI",
+      "Components",
+      "Components/Controls",
+      "Components/GameUI",
+      "Components/GameUI/Pieces",
+      "Components/GameUI/Pieces/ItemIcon",
+      "Components/GameUI/Pieces/SlotNumber",
+      "Components/GameUI/Pieces/TitleBar",
+      "Components/GameUI/InventorySlot",
+      "Components/GameUI/LevelTitleMenu",
+      "Components/GameUI/LevelTitleMenu/MainContainer",
+      "Behaviors"
+    ]
+  }
+}

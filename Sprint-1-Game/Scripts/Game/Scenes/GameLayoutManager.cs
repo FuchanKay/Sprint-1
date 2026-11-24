@@ -8,10 +8,7 @@ public class GameLayoutManager
 {
     private const float LevelSceneRatio = 4f / 5f;
     private const float HUDSceneRatio = 1f / 5f;
-    public LevelContext LevelContext;
-    //place holder, will be implemented in the future
-    public LevelContext HUDContext;
-
+    private LevelContext LevelContext;
     private int CurrentSceneWidth;
     private int CurrentSceneHeight;
 
@@ -43,8 +40,4 @@ public class GameLayoutManager
         LevelContext.GridScale = Math.Min(scaleX, scaleY);
     }
     //place holder, will be implemented in the future
-    public void HUDLayout(LevelContext context)
-    {
-        HUDContext = context;
-    }
 }

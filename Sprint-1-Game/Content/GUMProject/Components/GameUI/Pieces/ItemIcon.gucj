@@ -1,0 +1,103 @@
+{
+  "Name": "GameUI/Pieces/ItemIcon",
+  "BaseType": "Container",
+  "States": [
+    {
+      "Name": "Default",
+      "Variables": [
+        {
+          "Name": "Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 64
+        },
+        {
+          "Name": "SpriteInstance.Height",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "SpriteInstance.HeightUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 2
+        },
+        {
+          "Name": "SpriteInstance.SourceFile",
+          "Type": "string",
+          "SetsValue": true,
+          "IsFile": true,
+          "ValueAsString": "Components\\GameUI\\GUMUI.png"
+        },
+        {
+          "Name": "SpriteInstance.TextureAddress",
+          "Type": "TextureAddress",
+          "SetsValue": true,
+          "ValueAsInt": 1
+        },
+        {
+          "Name": "SpriteInstance.TextureHeight",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 64
+        },
+        {
+          "Name": "SpriteInstance.TextureLeft",
+          "Type": "int",
+          "ExposedAsName": "IconLeft",
+          "SetsValue": true,
+          "ValueAsInt": 0
+        },
+        {
+          "Name": "SpriteInstance.TextureTop",
+          "Type": "int",
+          "ExposedAsName": "IconTop",
+          "SetsValue": true,
+          "ValueAsInt": 64
+        },
+        {
+          "Name": "SpriteInstance.TextureWidth",
+          "Type": "int",
+          "SetsValue": true,
+          "ValueAsInt": 64
+        },
+        {
+          "Name": "SpriteInstance.Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 0
+        },
+        {
+          "Name": "SpriteInstance.WidthUnits",
+          "Type": "DimensionUnitType",
+          "SetsValue": true,
+          "ValueAsInt": 2
+        },
+        {
+          "Name": "State",
+          "Type": "State",
+          "Category": "States and Visibility",
+          "ValueAsString": "Default"
+        },
+        {
+          "Name": "Width",
+          "Type": "float",
+          "SetsValue": true,
+          "ValueAsFloat": 64
+        }
+      ],
+      "VariableLists": []
+    }
+  ],
+  "Categories": [],
+  "Instances": [
+    {
+      "Name": "SpriteInstance",
+      "BaseType": "Sprite"
+    }
+  ],
+  "Events": [],
+  "Behaviors": [],
+  "VariablesHiddenFromInstances": []
+}

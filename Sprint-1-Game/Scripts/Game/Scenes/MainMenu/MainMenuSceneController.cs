@@ -50,5 +50,6 @@ public class MainMenuSceneController(ISceneManager sceneManager, IInputManager m
         ExitGameButton.Draw(sb);
         LevelEditorButton.Draw(sb);
         GameTitle.Draw(sb);
+
     }
 }

@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Scripts.GameComponents;
-
 namespace Scripts.Game;
 
 public class Setup(ContentManager content, GameWindow window)
@@ -25,6 +24,7 @@ public class Setup(ContentManager content, GameWindow window)
         ShaderManager = new ShaderManager();
 
         TextureAtlas = new TextureAtlas(content);
+
         MapDefaultInputs();
         AddAnimations();
         AddRegions();
@@ -37,7 +37,6 @@ public class Setup(ContentManager content, GameWindow window)
     {
         BindAllTextures();
         LoadAudio();
-        LoadUI();
         LoadEffects();
     }
 
@@ -269,9 +268,8 @@ public class Setup(ContentManager content, GameWindow window)
         AudioManager.MapSound(SoundNames.StoneScrape, content.Load<SoundEffect>(FileNames.StoneScrapeAudio), 0.75f);
         AudioManager.MapSound(SoundNames.Death, content.Load<SoundEffect>(FileNames.DeathAudio), 0.5f);
     }
-    private void LoadUI()
+    private void AddUItexture()
     {
-        //place holder, will be implemented in the future
     }
 
     private void AddFont()
