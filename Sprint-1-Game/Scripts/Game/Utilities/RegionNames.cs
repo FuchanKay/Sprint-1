@@ -66,7 +66,6 @@ public class RegionNames
     public readonly static string ZombieIdleS = "Zombie Idle South";
     public readonly static string ZombieIdleW = "Zombie Idle West";
     public readonly static string Skeleton = "Skeleton";
-    public readonly static string Slash = "Slash";
     public readonly static string Warlock = "Warlock";
     public readonly static string Bat = "Bat";
 

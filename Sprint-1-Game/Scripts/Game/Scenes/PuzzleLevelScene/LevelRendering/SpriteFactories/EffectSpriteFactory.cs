@@ -79,10 +79,9 @@ public class EffectSpriteFactory(ITextureAtlas textureAtlas)
                 break;
             case EffectIds.Slash:
                 sprite.SetState(AnimationNames.Slash);
-                sprite.Texture = textureAtlas.GetTexture(TextureNames.Slash);
-                sprite.IdleName = RegionNames.Slash;
-                spriteScale = context.GridScale * 0.8f;
-                sprite.Color = Color.White;
+                sprite.Texture = textureAtlas.GetTexture(TextureNames.EffectSprites);
+                sprite.IdleName = AnimationNames.Slash;
+                spriteScale = context.GridScale * 4.0f;
                 break;
             default:
                 break;

@@ -97,7 +97,7 @@ public class Setup(ContentManager content, GameWindow window)
         // rotate counterclockwise
         int rotateFrames = 2;
         int rotateDelay = 200;
-        int idleDelay = 400;
+        int idleDelay = 500;
         TextureAtlas.AddAnimation(AnimationNames.RotateSE, 0, 0, rotateFrames, 64, 64, rotateDelay);
         TextureAtlas.AddAnimation(AnimationNames.RotateEN, 0, 2, rotateFrames, 64, 64, rotateDelay);
         TextureAtlas.AddAnimation(AnimationNames.RotateNW, 0, 4, rotateFrames, 64, 64, rotateDelay);
@@ -128,9 +128,10 @@ public class Setup(ContentManager content, GameWindow window)
         // effects
         TextureAtlas.AddAnimation(AnimationNames.Explosion, 0, 0, 4, 105, 96);
         TextureAtlas.AddAnimation(AnimationNames.LaserImpact, 0, 0, 4, 105, 96, 150);
-        TextureAtlas.AddAnimation(AnimationNames.Slash, 0, 0, 6, 102, 440, 50);
         TextureAtlas.AddAnimation(AnimationNames.LavaSplash, 1, 0, 6, 64, 64, 80);
         TextureAtlas.AddAnimation(AnimationNames.WaterSplash, 0, 0, 6, 64, 64);
+        TextureAtlas.AddAnimation(AnimationNames.Slash, 2, 0, 6, 64, 64, 30);
+
         //door open
         TextureAtlas.AddAnimation(AnimationNames.DoorOpening, 0, 0, 5, 15, 27, 100);
 
@@ -199,7 +200,6 @@ public class Setup(ContentManager content, GameWindow window)
         // effects
         TextureAtlas.AddRegion(RegionNames.LaserBeam, 4, 2, 64, 64);
         TextureAtlas.AddRegion(RegionNames.Explosion, 2, 0, 105, 96);
-        TextureAtlas.AddRegion(RegionNames.Slash, 0, 0, 102, 440);
 
         // lizard mouth open states
         TextureAtlas.AddRegion(RegionNames.LizardMouthOpenWest, 0, 2, 64, 64);
@@ -236,7 +236,6 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddTexture(TextureNames.Bomb, FileNames.BombTexture);
         TextureAtlas.AddTexture(TextureNames.Key, FileNames.KeyTexture);
         TextureAtlas.AddTexture(TextureNames.Explosion, FileNames.ExplosionTexture);
-        TextureAtlas.AddTexture(TextureNames.Slash, FileNames.SlashTexture);
 
         TextureAtlas.AddTexture(TextureNames.Skeleton, FileNames.SkeletonTexture);
         TextureAtlas.AddTexture(TextureNames.Warlock, FileNames.WarlockTexture);
