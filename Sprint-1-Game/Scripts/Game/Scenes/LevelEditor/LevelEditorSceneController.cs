@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Gum.DataTypes.Variables;
 using Microsoft.Xna.Framework.Graphics;
 using Scripts.GameComponents;
 
@@ -51,8 +52,11 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
 
         var objCoord = Coordinate.Zero;
         var tileCoord = Coordinate.Zero;
-        var clickedObjectSelector = mouseInput.IsPressed(InputNames.Select) && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, LevelEditorPalette.ObjectSelectorContext, out objCoord) && LevelEditorPalette.ObjectSelectorGrid.GetObject(objCoord).Id != ObjectIds.Empty;
-        var clickedTileSelector = mouseInput.IsPressed(InputNames.Select) && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, LevelEditorPalette.TileSelectorContext, out tileCoord) && LevelEditorPalette.TileSelectorGrid.GetTile(tileCoord).Id != TileIds.Empty;
+        var clickedObjectSelector = mouseInput.IsPressed(InputNames.Select) && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, LevelEditorPalette.ObjectSelectorContext, out objCoord);
+        var clickedTileSelector = mouseInput.IsPressed(InputNames.Select) && LevelEditorMouseCoordinates.TryGetGridCoordinate(mouseInput, LevelEditorPalette.TileSelectorContext, out tileCoord);
+        var objNotEmpty = LevelEditorPalette.ObjectSelectorGrid.GetObject(objCoord).Id != ObjectIds.Empty;
+        var tileNotEmpty = LevelEditorPalette.TileSelectorGrid.GetTile(tileCoord).Id != TileIds.Empty;
+        
 
         if (UndoHistory.Count > UndoHistoryMaxLength) UndoHistory.RemoveAt(0);
 
@@ -69,13 +73,13 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
         {
             Brush = new ObjectPaintBrush(buttonInput, mouseInput, audioManager, SpriteGrid, Context, LevelEditorPalette.ObjectSelectorContext, LevelEditorPalette.ObjectSelectorGrid, ObjectSpriteFactory, UndoHistory, RedoHistory);
             Brush.Init(CurrentGrid);
-            if(clickedObjectSelector) Brush.SetSelection(objCoord);
+            if(clickedObjectSelector && objNotEmpty) Brush.SetSelection(objCoord);
         }
         else if (buttonInput.IsPressed(InputNames.TileBrushMode) || clickedTileSelector)
         {
             Brush = new TilePaintBrush(buttonInput, mouseInput, audioManager, SpriteGrid, Context, LevelEditorPalette.TileSelectorContext, LevelEditorPalette.TileSelectorGrid, TileSpriteFactory, UndoHistory, RedoHistory);
             Brush.Init(CurrentGrid);
-            if(clickedTileSelector) Brush.SetSelection(tileCoord);
+            if(clickedTileSelector && tileNotEmpty) Brush.SetSelection(tileCoord);
         }
         else if (buttonInput.IsPressed(InputNames.Undo) && UndoHistory.Count > 0)
         {
@@ -164,7 +168,7 @@ public class LevelEditorSceneController(SceneManager sceneManager, IInputManager
 
     private void InitUI()
     {
-        LevelEditorPalette = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, shaderManager, audioManager);
+        LevelEditorPalette = new(ObjectSpriteFactory, TileSpriteFactory, EffectSpriteFactory, shaderManager, audioManager, Brush);
         LevelEditorPalette.Init();
         Gum.GumService.Default.Root.Children.Clear();
         LevelEditorPalette.CreateLevelEditorPanel();

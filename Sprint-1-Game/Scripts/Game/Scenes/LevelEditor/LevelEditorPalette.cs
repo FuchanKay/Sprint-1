@@ -7,7 +7,7 @@ using Gum.Wireframe;
 
 namespace Scripts.Game;
 
-public class LevelEditorPalette(ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, EffectSpriteFactory effectSpriteFactory, ShaderManager shaderManager, IAudioManager audioManager)
+public class LevelEditorPalette(ObjectSpriteFactory objectSpriteFactory, TileSpriteFactory tileSpriteFactory, EffectSpriteFactory effectSpriteFactory, ShaderManager shaderManager, IAudioManager audioManager, IBrush brush)
 {
     public LevelContext ObjectSelectorContext = new()
     {
@@ -120,6 +120,7 @@ public class LevelEditorPalette(ObjectSpriteFactory objectSpriteFactory, TileSpr
 
         objectSelectorIndex--;
         UpdateEnable(objectSelectorIndex, LeftArrowButton, RightArrowButton, FileNames.ObjectSelectorFileNames);
+        // the brush......
 
         UpdateObjectSelectorGrid();
     }
