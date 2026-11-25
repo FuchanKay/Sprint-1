@@ -36,12 +36,8 @@ public class RegionNames
     public readonly static string PitTile = "Pit";
     public readonly static string BoulderPitTile = "Boulder Pit";
     public readonly static string PumpkinPitTile = "Pumpkin Pit";
-    public readonly static string WaterTile = "Water";
     public readonly static string IceTile = "Ice";
-    public readonly static string BoulderWaterTile = "Boulder Water";
-    public readonly static string PumpkinWaterTile = "Pumpkin Water";
     public readonly static string InventorySlot = "InventorySlot";
-    public readonly static string LavaTile = "Lava";
     public readonly static string BugTile = "Bug";
     public readonly static string BugTileCC = "CCBug";
     public readonly static string LaserBeam = "Laser Beam";

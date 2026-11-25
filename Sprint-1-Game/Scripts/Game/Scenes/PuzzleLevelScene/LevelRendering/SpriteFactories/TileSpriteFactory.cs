@@ -15,7 +15,7 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
             case TileIds.Floor:
                 sprite = new StaticSprite(textureAtlas);
                 var floor = tile as FloorTile;
-                if(floor.RegionName == AnimationNames.GrassTileIdle) sprite = new AnimatedSprite(textureAtlas);
+                if(floor.RegionName.Contains('-')) sprite = new AnimatedSprite(textureAtlas);
                 sprite.SetState(floor.RegionName);
                 sprite.IdleName = floor.RegionName;
                 sprite.Rotation = Utilities.ToRadians(tile.Direction);
@@ -26,18 +26,18 @@ public class TileSpriteFactory(ITextureAtlas textureAtlas)
                 sprite.IdleName = RegionNames.PitTile;
                 break;
             case TileIds.Water:
-                sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.WaterTile);
-                sprite.IdleName = RegionNames.WaterTile;
+                sprite = new AnimatedSprite(textureAtlas);
+                sprite.SetState(AnimationNames.WaterIdle);
+                sprite.IdleName = AnimationNames.WaterIdle;
                 break;
             case TileIds.Ice:
                 sprite = new StaticSprite(textureAtlas);
                 sprite.SetState(RegionNames.IceTile);
                 break;
             case TileIds.Lava:
-                sprite = new StaticSprite(textureAtlas);
-                sprite.SetState(RegionNames.LavaTile);
-                sprite.IdleName = RegionNames.LavaTile;
+                sprite = new AnimatedSprite(textureAtlas);
+                sprite.SetState(AnimationNames.LavaIdle);
+                sprite.IdleName = AnimationNames.LavaIdle;
                 break;
             case TileIds.Bug:
                 sprite = new AnimatedSprite(textureAtlas);

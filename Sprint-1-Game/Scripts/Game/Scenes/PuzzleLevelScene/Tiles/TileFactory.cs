@@ -44,7 +44,7 @@ public class TileFactory()
 
     public static ITile CreateWaterBoulderTile()
     {
-        return CreateFloorTile(RegionNames.BoulderWaterTile);
+        return CreateFloorTile(AnimationNames.WaterBoulderIdle);
     }
 
     public static ITile CreatePitPumpkinTile()
@@ -54,7 +54,7 @@ public class TileFactory()
 
     public static ITile CreateWaterPumpkinTile()
     {
-        return CreateFloorTile(RegionNames.PumpkinWaterTile);
+        return CreateFloorTile(AnimationNames.WaterPumpkinIdle);
     }
 
     public static ITile CreateVineStartTile()

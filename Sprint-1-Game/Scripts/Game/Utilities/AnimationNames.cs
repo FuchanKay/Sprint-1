@@ -49,6 +49,10 @@ public class AnimationNames
     public readonly static string BugTileIdle = "-Bug Tile Idle";
     public readonly static string CCBugTileIdle = "-CC Bug Tile Idle";
     public readonly static string OpenDoorIdle = "-Open Door Idle";
+    public readonly static string LavaIdle = "-Lava Idle";
+    public readonly static string WaterIdle = "-Water Idle";
+    public readonly static string WaterBoulderIdle = "-Water Boulder Idle";
+    public readonly static string WaterPumpkinIdle = "-Water Pumpkin Idle";
     public readonly static string IdleNorth = "-Idle North";
     public readonly static string IdleSouth = "-Idle South";
     public readonly static string IdleEast = "-Idle East";

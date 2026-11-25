@@ -1,4 +1,4 @@
-Level1,10,10,Dark,,,,,,
+Level1,10,10,_,,,,,,
 Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt,Dirt
 Dirt,Dirt,Dirt,Ice,Ice,Ice,Ice,Ice,Ice,Dirt
 Dirt,VineSeed,Ice,Ice,Ice,Ice,Dirt,Dirt,Dirt,Dirt
@@ -17,6 +17,6 @@ Wall.3,_,_,_,_,_,_,_,_,Wall.1
 Wall.3,_,_,_,_,_,_,_,_,Wall.1
 Wall.3,_,_,_,_,_,Rock,_,_,Wall.1
 Wall.3,Zombie,_,_,_,_,_,_,_,Wall.1
-Wall.3,_,_,_,_,_,_,_,Bomb,Wall.1
+Wall.3,_,_,_,_,_,_,Pumpkin,Bomb,Wall.1
 Wall.3,Zombie,_,_,_,_,_,_,_,Wall.1
 CornerWall.3,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,Wall.2,CornerWall.2

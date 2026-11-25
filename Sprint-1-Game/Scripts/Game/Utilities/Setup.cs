@@ -127,13 +127,23 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddAnimation(AnimationNames.PlayerPushWest, 6, 4, pushFrames, 64, 64);
 
         // tiles
+        int tileIdleDelay = 600;
         TextureAtlas.AddAnimation(AnimationNames.GrassTileIdle, 0, 1, 2, 64, 64, idleDelay);
+
         TextureAtlas.AddAnimation(AnimationNames.PumpkinSeedTileIdle, 1, 0, 2, 64, 64, idleDelay);
         TextureAtlas.AddAnimation(AnimationNames.VineSeedTileIdle, 1, 2, 2, 64, 64, idleDelay);
+
         TextureAtlas.AddAnimation(AnimationNames.BugTileIdle, 2, 1, 2, 64, 64, 300);
         TextureAtlas.AddAnimation(AnimationNames.BugTileRotate, 2, 0, rotateFrames, 64, 64, rotateDelay);
         TextureAtlas.AddAnimation(AnimationNames.CCBugTileIdle, 2, 4, 2, 64, 64, 300);
         TextureAtlas.AddAnimation(AnimationNames.BugTileRotateCC, 2, 3, rotateFrames, 64, 64, rotateDelay);
+
+        TextureAtlas.AddAnimation(AnimationNames.LavaIdle, 3, 3, 3, 64, 64, tileIdleDelay);
+        TextureAtlas.AddAnimation(AnimationNames.WaterIdle, 4, 0, 3, 64, 64, idleDelay);
+        TextureAtlas.AddAnimation(AnimationNames.WaterBoulderIdle, 4, 3, 3, 64, 64, tileIdleDelay);
+        TextureAtlas.AddAnimation(AnimationNames.WaterPumpkinIdle, 5, 0, 3, 64, 64, tileIdleDelay);
+
+        // objects
         TextureAtlas.AddAnimation(AnimationNames.PumpkinGrowth, 1, 0, 6, 64, 64, 125);
 
         // effects
@@ -167,7 +177,7 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddRegion(RegionNames.IdleSouth, 7, 0, 64, 64);
         TextureAtlas.AddRegion(RegionNames.IdleEast, 1, 0, 64, 64);
         TextureAtlas.AddRegion(RegionNames.IdleWest, 5, 0, 64, 64);
-        
+
         // tiles
         TextureAtlas.AddRegion(RegionNames.DirtTile, 0, 0, 64, 64);
         TextureAtlas.AddRegion(RegionNames.BrickTile, 3, 0, 64, 64);
@@ -180,12 +190,7 @@ public class Setup(ContentManager content, GameWindow window)
         TextureAtlas.AddRegion(RegionNames.PitTile, 0, 3, 64, 64);
         TextureAtlas.AddRegion(RegionNames.BoulderPitTile, 1, 3, 64, 64);
         TextureAtlas.AddRegion(RegionNames.PumpkinPitTile, 2, 3, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.LavaTile, 3, 3, 64, 64);
-
-        TextureAtlas.AddRegion(RegionNames.WaterTile, 0, 4, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.BoulderWaterTile, 1, 4, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.PumpkinWaterTile, 2, 4, 64, 64);
-        TextureAtlas.AddRegion(RegionNames.InventorySlot, 3, 4, 64, 64);
+        TextureAtlas.AddRegion(RegionNames.InventorySlot, 3, 5, 64, 64);
 
         TextureAtlas.AddRegion(RegionNames.IceTile, 0, 0, 602, 602);
 

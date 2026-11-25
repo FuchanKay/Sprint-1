@@ -10,7 +10,7 @@ public class LavaTile : ITile
         };
     }
     public TileIds Id => TileIds.Lava;
-    public string RegionName => RegionNames.LavaTile;
+    public string RegionName => AnimationNames.LavaIdle;
     public bool IsWalkable => false;
     public bool IsRotatable => false;
 
